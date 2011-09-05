@@ -44,7 +44,7 @@ alias spotoff="sudo mdutil -a -i off"
 alias spoton="sudo mdutil -a -i on"
 
 # One of @janmoesen’s ProTip™s
-for method in GET POST HEAD PUT DELETE; do alias "$method"="lwp-request -m '$method'"; done
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do alias "$method"="lwp-request -m '$method'"; done
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
