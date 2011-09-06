@@ -6,7 +6,13 @@
 git clone https://github.com/mathiasbynens/dotfiles.git && cd dotfiles && ./bootstrap.sh
 ```
 
-To update, cd into the `dotfiles` folder and then:
+When setting up a new Mac, you may want to set some sensible OS X defaults:
+
+```bash
+./.osx
+```
+
+To update, `cd` into your local `dotfiles` repository and then:
 
 ```bash
 ./bootstrap.sh
