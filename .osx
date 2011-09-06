@@ -28,6 +28,9 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 # Disable OS X Lion auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Disable OS X DMG Mounting Verification
+defaults write com.apple.frameworks.diskimages skip-verify true
+
 # Reset Launchpad
 rm ~/Library/Application\ Support/Dock/*.db
 
