@@ -41,4 +41,4 @@ sudo tmutil disablelocal
 killall Safari && killall Finder && killall Dock
 
 # Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
-echo "0×08000100:0" > ~/.CFUserTextEncoding
+echo "0x08000100:0" > ~/.CFUserTextEncoding
