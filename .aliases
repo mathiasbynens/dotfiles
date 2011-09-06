@@ -7,6 +7,9 @@ alias -- -="cd -"
 # List all files colorized in long format, including dot files
 alias la="ls -Gla"
 
+# Undo a `git push`
+alias undopush="git push -f origin HEAD^:master"
+
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
