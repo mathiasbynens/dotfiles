@@ -7,6 +7,9 @@ alias -- -="cd -"
 # List all files colorized in long format, including dot files
 alias la="ls -Gla"
 
+# List only directories
+alias lsd='ls -l | grep "^d"'
+
 # Undo a `git push`
 alias undopush="git push -f origin HEAD^:master"
 
