@@ -19,6 +19,9 @@ defaults write com.apple.screencapture disable-shadow -bool true
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
+# Enables spring loading on Applications, etc. 
+defaults write enable-spring-load-actions-on-all-items -bool true
+
 # Disable press-and-hold for keys in favor of key repeat
 defaults write -g ApplePressAndHoldEnabled -bool false
 
