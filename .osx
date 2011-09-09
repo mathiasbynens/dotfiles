@@ -71,6 +71,9 @@ chflags nohidden ~/Library
 # Disable local Time Machine backups
 sudo tmutil disablelocal
 
+# Disable "downloaded from internet" warning
+defaults write com.apple.LaunchServices LSQuarantine -bool NO
+
 # Kill affected applications
 for app in Safari Finder Dock Mail; do killall "$app"; done
 
