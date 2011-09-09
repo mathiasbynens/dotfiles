@@ -7,3 +7,6 @@ done
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
+
+# Load the git completion script
+source ~/.git-completion.sh
