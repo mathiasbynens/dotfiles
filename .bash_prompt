@@ -11,7 +11,7 @@ pwd |rev| awk -F / '{print $1,$2}' | rev | sed s_\ _/_
 }
 
 #Customize the prompt
-PS1="\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\$(last_two_dirs)\[\033[00m\]\$(parse_git_branch) "
+PS1="\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\$(last_two_dirs)\[\033[00m\]\$(parse_git_branch)"
 case `id -u` in
       0) PS1="${PS1}# ";;
       *) PS1="${PS1}$ ";;
