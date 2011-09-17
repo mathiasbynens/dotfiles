@@ -7,3 +7,7 @@ done
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
+
+#  auto complete ssh host names (the crap between ` and ` just has to be a list... you could just make a list of hosts....
+complete -W "$(echo `grep ^Host ~/.ssh/config |sed -e 's/Host //g'| grep -v "*"`;)" ssh
+
