@@ -76,3 +76,6 @@ for app in Safari Finder Dock Mail; do killall "$app"; done
 
 # Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
 echo "0x08000100:0" > ~/.CFUserTextEncoding
+
+# Show hidden files (files than begin with a dot)
+defaults write com.apple.Finder AppleShowAllFiles TRUE
