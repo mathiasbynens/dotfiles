@@ -40,6 +40,15 @@ defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 
+# Show POSIX Path in Finder Window Title
+defaults write com.apple.finder _FXShowPosixPathInTitle –bool YES
+
+# Increase sheet open speed
+defaults write NSGlobalDomain NSWindowResizeTime .001
+
+# Make hidden applications transparent
+defaults write com.apple.Dock showhidden -bool YES
+
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
