@@ -4,6 +4,9 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Enable the 2D Dock
 defaults write com.apple.dock no-glass -bool true
 
+# Make Dock icons of hidden applications translucent
+defaults write com.apple.Dock showhidden -bool true
+
 # Disable menu bar transparency
 defaults write -g AppleEnableMenuBarTransparency -bool false
 
@@ -40,14 +43,11 @@ defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 
-# Show POSIX Path in Finder Window Title
-defaults write com.apple.finder _FXShowPosixPathInTitle –bool YES
+# Display full POSIX path as Finder window title
+defaults write com.apple.finder _FXShowPosixPathInTitle –bool true
 
-# Increase sheet open speed
-defaults write NSGlobalDomain NSWindowResizeTime .001
-
-# Make hidden applications transparent
-defaults write com.apple.Dock showhidden -bool YES
+# Increase window resize speed for Cocoa applications
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
