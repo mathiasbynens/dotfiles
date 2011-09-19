@@ -4,3 +4,4 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -av . ~
 fi
+source "$HOME/.bash_profile"
