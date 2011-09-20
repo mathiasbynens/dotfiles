@@ -25,6 +25,12 @@ defaults write com.apple.dock mouse-over-hilte-stack -bool true
 # Enable spring loading for all Dock items
 defaults write enable-spring-load-actions-on-all-items -bool true
 
+# Show indicator lights for open applications in the Dock
+defaults write com.apple.Dock show-process-indicators -bool true
+
+# Don’t animate opening applications from the Dock
+defaults write com.apple.Dock launchanim -bool false
+
 # Disable press-and-hold for keys in favor of key repeat
 defaults write -g ApplePressAndHoldEnabled -bool false
 
