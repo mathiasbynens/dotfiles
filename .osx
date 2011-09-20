@@ -5,7 +5,7 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 defaults write com.apple.dock no-glass -bool true
 
 # Make Dock icons of hidden applications translucent
-defaults write com.apple.Dock showhidden -bool true
+defaults write com.apple.dock showhidden -bool true
 
 # Disable menu bar transparency
 defaults write -g AppleEnableMenuBarTransparency -bool false
@@ -15,6 +15,9 @@ defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
 
 # Expand print panel by default
 defaults write -g PMPrintingExpandedStateForPrint -bool true
+
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
@@ -26,10 +29,10 @@ defaults write com.apple.dock mouse-over-hilte-stack -bool true
 defaults write enable-spring-load-actions-on-all-items -bool true
 
 # Show indicator lights for open applications in the Dock
-defaults write com.apple.Dock show-process-indicators -bool true
+defaults write com.apple.dock show-process-indicators -bool true
 
 # Don’t animate opening applications from the Dock
-defaults write com.apple.Dock launchanim -bool false
+defaults write com.apple.dock launchanim -bool false
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write -g ApplePressAndHoldEnabled -bool false
