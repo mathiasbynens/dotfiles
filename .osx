@@ -10,6 +10,9 @@ defaults write com.apple.dock showhidden -bool true
 # Disable menu bar transparency
 defaults write -g AppleEnableMenuBarTransparency -bool false
 
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
 # Expand save panel by default
 defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
 
