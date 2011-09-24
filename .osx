@@ -135,7 +135,7 @@ defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 defaults write com.apple.dashboard devmode -bool true
 
 # Reset Launchpad
-rm ~/Library/Application\ Support/Dock/*.db
+[ -e ~/Library/Application\ Support/Dock/*.db ] && rm ~/Library/Application\ Support/Dock/*.db
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
