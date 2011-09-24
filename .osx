@@ -141,7 +141,7 @@ rm ~/Library/Application\ Support/Dock/*.db
 chflags nohidden ~/Library
 
 # Disable local Time Machine backups
-sudo tmutil disablelocal
+hash tmutil &> /dev/null && sudo tmutil disablelocal
 
 # Kill affected applications
 for app in Safari Finder Dock Mail; do killall "$app"; done
