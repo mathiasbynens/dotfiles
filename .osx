@@ -143,8 +143,9 @@ chflags nohidden ~/Library
 # Disable local Time Machine backups
 hash tmutil &> /dev/null && sudo tmutil disablelocal
 
+# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
+# Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
+#echo "0x08000100:0" > ~/.CFUserTextEncoding
+
 # Kill affected applications
 for app in Safari Finder Dock Mail; do killall "$app"; done
-
-# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
-echo "0x08000100:0" > ~/.CFUserTextEncoding
