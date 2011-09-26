@@ -1,3 +1,6 @@
+# Enable subpixel font rendering on non-Apple LCDs
+defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
+
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
