@@ -10,7 +10,7 @@ function httpcompression() {
 }
 
 function json() {
-  curl "$*" | python -mjson.tool | pygmentize -l javascript
+  python -mjson.tool <<< "$*" | pygmentize -l javascript
 }
 
 # All the dig info
