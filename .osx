@@ -150,7 +150,7 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 # Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
 
-# Remove the green checkmark icons in Dropbox
+# Remove Dropbox’s green checkmark icons in Finder.app
 file=/Applications/Dropbox.app/Contents/Resources/check.icns
 [ -e "$file" ] && mv -f "$file" "$file.bak"
 unset file
