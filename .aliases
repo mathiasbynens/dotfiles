@@ -29,6 +29,9 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 # Start an HTTP server from a directory
 alias server="open http://localhost:8080/ && python -m SimpleHTTPServer 8080"
 
+# Canonical hex dump; some systems have this symlinked
+type -t hd > /dev/null || alias hd='hexdump -C'
+
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
 
