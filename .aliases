@@ -47,7 +47,7 @@ type -t md5sum > /dev/null || alias md5sum="md5"
 alias c="tr -d '\n' | pbcopy"
 
 # Recursively delete `.DS_Store` files
-alias cleanup="find . -name '*.DS_Store' -type f -delete"
+alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # Shortcuts
 alias d="cd ~/Documents/Dropbox"
