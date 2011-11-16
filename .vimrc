@@ -1,5 +1,7 @@
 " Make vim more useful
 set nocompatible
+" Enhance command-line completion
+set wildmenu
 " Allow cursor keys in insert mode
 set esckeys
 " Optimize for fast terminal connections
