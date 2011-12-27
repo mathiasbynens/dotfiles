@@ -9,6 +9,7 @@ function httpcompression() {
   encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" | grep '^Content-Encoding:')" && echo "$1 is encoded using ${encoding#* }" || echo "$1 is not using any encoding"
 }
 
+# Syntax-highlight JSON files
 function json() {
   python -mjson.tool <<< "$*" | pygmentize -l javascript
 }
@@ -16,4 +17,10 @@ function json() {
 # All the dig info
 function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
+}
+
+# Escape UTF-8 characters into their 3-byte format
+function escape() {
+  printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u)
+  echo # newline
 }
