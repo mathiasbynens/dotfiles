@@ -18,6 +18,12 @@ To update, `cd` into your local `dotfiles` repository and then:
 ./bootstrap.sh
 ```
 
+Alternatively, to update while avoiding the confirmation prompt:
+
+```bash
+./bootstrap.sh -f
+```
+
 Suggestions/improvements
 [welcome](https://github.com/mathiasbynens/dotfiles/issues)!
 
