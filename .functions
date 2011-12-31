@@ -6,7 +6,9 @@ function md() {
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
 	local port="${1:-8000}"
-	open "http://localhost:${port}/" && python -m SimpleHTTPServer "$port"
+	open "http://localhost:${port}/"
+	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
+	python -c "import SimpleHTTPServer; import sys; sys.argv = [None, '$port']; SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map[''] = 'text/plain'; SimpleHTTPServer.test();"
 }
 
 # Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL.
