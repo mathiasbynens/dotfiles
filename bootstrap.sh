@@ -1,5 +1,4 @@
 #!/bin/bash
-mkdir -p ~/.vim/{backups,swaps,undo}
 cd "$(dirname "$0")"
 git pull
 function doIt() {
