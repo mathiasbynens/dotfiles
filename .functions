@@ -8,7 +8,8 @@ function server() {
 	local port="${1:-8000}"
 	open "http://localhost:${port}/"
 	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-	python -c "import SimpleHTTPServer; import sys; sys.argv = [None, '$port']; SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map[''] = 'text/plain;charset=UTF-8'; SimpleHTTPServer.test();"
+	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
+	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
 
 # Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL.
