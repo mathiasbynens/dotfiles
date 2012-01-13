@@ -162,7 +162,7 @@ for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 
 ##################
 ### additional ###
 
-# Disable internal Laptop Display when external Display is attached
+# Disable internal Laptop Display when external Display is attached (pre-10.7 behavior)
 sudo nvram boot-args="iog=0x0"
 
 # Enable Resume for Safari to restore Tabs
