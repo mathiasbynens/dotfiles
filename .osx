@@ -159,7 +159,9 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
 
 
+##################
 ### additional ###
+
 # Disable internal Laptop Display when external Display is attached
 sudo nvram boot-args="iog=0x0"
 
