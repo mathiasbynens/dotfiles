@@ -167,3 +167,9 @@ sudo nvram boot-args="iog=0x0"
 
 # Enable Resume for Safari to restore Tabs
 defaults write com.apple.Safari NSQuitAlwaysKeepsWindows -int 0
+
+# Disable Sudden Motion Sensor in a portable Mac with a SSD
+sudo pmset -a sms 0
+
+# Change Hibernation Mode (0:RAM, 1:HDD, 3:RAM+HDD) and delete last image (Standard: 3)
+sudo pmset -a hibernatemode 0; sudo rm /var/vm/sleepimage
