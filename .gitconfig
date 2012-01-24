@@ -1,11 +1,18 @@
+[alias]
+	c = commit -am
+	up = pull
+	p = push
+	s = status
+[branch]
+	autosetuprebase = always
+[color]
+	ui = always
 [apply]
 	whitespace = fix
 [core]
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-[color]
-	ui = auto
 [color "branch"]
 	current = yellow reverse
 	local = yellow
