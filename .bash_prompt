@@ -44,6 +44,7 @@ function parse_git_branch() {
 }
 
 # iTerm Tab and Title Customization and prompt customization
+# http://sage.ucsc.edu/xtal/iterm_tab_customization.html
 
 # Put the string " [bash]   hostname::/full/directory/path"
 # in the title bar using the command sequence
