@@ -18,7 +18,9 @@ set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
-set undodir=~/.vim/undo
+if exists("&undodir")
+  set undodir=~/.vim/undo
+endif
 
 " Enable line numbers
 set number
@@ -53,9 +55,11 @@ set shortmess=atI
 set showmode
 " Show the filename in the window titlebar
 set title
-" Use relative line numbers
-set relativenumber
-au BufReadPost * set relativenumber
+if exists("&relativenumber")
+  " Use relative line numbers
+  set relativenumber
+  au BufReadPost * set relativenumber
+endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
