@@ -3,8 +3,6 @@
 	up = pull
 	p = push
 	s = status
-[branch]
-	autosetuprebase = always
 [color]
 	ui = always
 [apply]
