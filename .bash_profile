@@ -5,6 +5,10 @@ for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
 done
 unset file
 
+# init z   https://github.com/rupa/z
+. ~/code/z/z.sh
+
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 
