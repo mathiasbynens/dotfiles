@@ -55,8 +55,10 @@ set shortmess=atI
 set showmode
 " Show the filename in the window titlebar
 set title
+" Show the (partial) command as it’s being typed
+set showcmd
+" Use relative line numbers
 if exists("&relativenumber")
-	" Use relative line numbers
 	set relativenumber
 	au BufReadPost * set relativenumber
 endif
@@ -64,11 +66,21 @@ endif
 set scrolloff=3
 
 " Strip trailing whitespace (,ss)
-function! StripWhitespace ()
+function! StripWhitespace()
 	let save_cursor = getpos(".")
 	let old_query = getreg('/')
 	:%s/\s\+$//e
 	call setpos('.', save_cursor)
 	call setreg('/', old_query)
 endfunction
-noremap <leader>ss :call StripWhitespace ()<CR>
+noremap <leader>ss :call StripWhitespace()<CR>
+" Save a file as root (,W)
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+" Automatic commands
+if has("autocmd")
+	" Enable file type detection
+	filetype on
+	" Treat .json files as .js
+	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+endif
