@@ -127,6 +127,9 @@ defaults write com.apple.terminal StringEncodings -array 4
 # Disable the Ping sidebar in iTunes
 defaults write com.apple.iTunes disablePingSidebar -bool true
 
+# Make ⌘ + F focus the search input in iTunes
+defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
+
 # Disable all the other Ping stuff in iTunes
 defaults write com.apple.iTunes disablePing -bool true
 
