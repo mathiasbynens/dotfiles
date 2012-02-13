@@ -3,6 +3,13 @@ function md() {
 	mkdir -p "$@" && cd "$@"
 }
 
+
+# find shorthand
+function f() {
+    find . -name "$1" 
+}
+
+
 # lets toss an image onto my server and pbcopy that bitch.
 function scpp() {
     scp "$1" aurgasm@aurgasm.us:~/paulirish.com/i;
