@@ -1,3 +1,8 @@
+[alias]
+	l = log -p
+	s = status
+	p = !"git pull; git submodule foreach git pull origin master"
+	undopush = push -f origin HEAD^:master
 [apply]
 	whitespace = fix
 [core]
