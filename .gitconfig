@@ -5,6 +5,10 @@
 	s = status -s
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
+	# Commit all changes
+	ca = commit -a
+	# Switch to a branch, creating it if necessary
+	go = checkout -B
 	# Undo a `git push`
 	undopush = push -f origin HEAD^:master
 
