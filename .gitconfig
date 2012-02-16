@@ -5,6 +5,8 @@
 	s = status -s
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
+	# Clone a repository including all submodules
+	c = clone --recursive
 	# Commit all changes
 	ca = commit -a
 	# Switch to a branch, creating it if necessary
