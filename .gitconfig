@@ -47,6 +47,11 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+# Use `origin` as the default remote on the `master` branch in all cases
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+
 # URL shorthands
 [url "git@github.com:"]
 	insteadOf = "gh:"
