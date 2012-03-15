@@ -157,6 +157,11 @@ defaults write com.apple.Mail DisableSendAnimations -bool true
 # Disable Resume system-wide
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 
+# Disable the “reopen windows when logging back in” option
+# This works, although the checkbox will still appear to be checked.
+defaults write com.apple.loginwindow TALLogoutSavesState -bool false
+defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+
 # Enable Dashboard dev mode (allows keeping widgets on the desktop)
 defaults write com.apple.dashboard devmode -bool true
 
