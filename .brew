@@ -1,0 +1,20 @@
+# Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
+brew update && brew upgrade
+
+# Install wget with IRI support
+brew install wget --enable-iri
+
+# Install RingoJS and Narwhal
+# Note that the order in which these are installed is important; see http://git.io/brew-narwhal-ringo.
+brew install ringojs
+brew install narwhal
+
+# Everything else
+brew install ack
+brew install git
+brew install lynx
+brew install node
+brew install rename
+brew install rhino
+brew install tree
+brew install webkit2png
