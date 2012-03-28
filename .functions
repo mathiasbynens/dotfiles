@@ -64,7 +64,7 @@ function unidecode() {
 	echo # newline
 }
 
-# Get a character's unicode codepoint
+# Get a character’s Unicode code point
 function codepoint() {
 	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))"
 	echo # newline
