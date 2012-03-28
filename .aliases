@@ -30,8 +30,11 @@ fi
 
 # Undo a `git push`
 alias undopush="git push -f origin HEAD^:master"
+
 # hub override.
-alias git=hub
+# alias git=hub  # not crazy about this..
+
+
 # git root
 alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 
