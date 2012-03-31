@@ -35,6 +35,9 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 # Show all filename extensions in Finder
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
+# Show status bar in Finder
+defaults write com.apple.finder ShowStatusBar -bool true
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
