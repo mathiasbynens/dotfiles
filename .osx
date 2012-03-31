@@ -54,7 +54,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
 # Enable spring loading for all Dock items
-defaults write enable-spring-load-actions-on-all-items -bool true
+defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
