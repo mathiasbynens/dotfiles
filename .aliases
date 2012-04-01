@@ -10,6 +10,7 @@ alias p="cd ~/Projects"
 alias g="git"
 alias v="vim"
 alias m="mate ."
+alias s="subl ."
 
 # List all files colorized in long format, including dot files
 alias la="ls -Gla"
