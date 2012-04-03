@@ -35,6 +35,14 @@ else
 	RESET="\033[m"
 fi
 
+export MAGENTA
+export ORANGE
+export GREEN
+export PURPLE
+export WHITE
+export BOLD
+export RESET
+
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
