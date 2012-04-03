@@ -144,6 +144,12 @@ defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
+# Enable the debug menu in Address Book
+defaults write com.apple.addressbook ABShowDebugMenu -bool true
+
+# Enable the debug menu in iCal
+defaults write com.apple.iCal IncludeDebugMenu -bool true
+
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
