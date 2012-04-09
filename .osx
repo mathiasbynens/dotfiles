@@ -43,6 +43,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Show status bar in Finder
 defaults write com.apple.finder ShowStatusBar -bool true
 
+# Allow text selection in Quick Look
+defaults write com.apple.finder QLEnableTextSelection -bool true
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
@@ -198,9 +201,6 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 file=/Applications/Dropbox.app/Contents/Resources/check.icns
 [ -e "$file" ] && mv -f "$file" "$file.bak"
 unset file
-
-# Enable the ability to highlight text in QuickLook
-defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
 # Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
 # Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
