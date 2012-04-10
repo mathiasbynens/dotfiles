@@ -26,4 +26,4 @@ export LANG="en_US"
 complete -W "NSGlobalDomain" defaults
 
 # Add tab completion for `killall SystemUIServer`
-complete -W "SystemUIServer" killall
+complete -o "nospace" -W "SystemUIServer" killall
