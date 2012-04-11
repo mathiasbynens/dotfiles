@@ -202,6 +202,10 @@ unset file
 # Enable the ability to highlight text in QuickLook
 defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
+# Enable focus follows mouse in terminal
+# or mouse hover makes you type in this terminal window
+defaults write com.apple.terminal FocusFollowsMouse -string YES
+
 # Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
 # Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
