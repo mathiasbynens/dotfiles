@@ -11,6 +11,11 @@ alias g="git"
 alias v="vim"
 alias m="mate ."
 alias s="subl ."
+alias o="open"
+alias oo="open ."
+
+# List all files colorized in long format
+alias l="ls -Gl"
 
 # List all files colorized in long format, including dot files
 alias la="ls -Gla"
