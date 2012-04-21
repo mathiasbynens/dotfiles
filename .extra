@@ -1,0 +1,17 @@
+# PATH additions
+for another_bin in \
+    $HOME/bin \
+    /usr/local/php5/bin
+do
+    [[ -e $another_bin ]] && export PATH=$another_bin:$PATH
+done
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# Git credentials
+# Not in the repository, to prevent people from accidentally committing under my name
+GIT_AUTHOR_NAME="Roderik van der Veer"
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="roderik.van.der.veer@kunstmaan.be"
+GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"

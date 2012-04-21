@@ -5,7 +5,7 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="cd ~/Dropbox"
 alias p="cd ~/Projects"
 alias g="git"
 alias v="vim"
@@ -102,3 +102,18 @@ done
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 10'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+
+
+
+# Open a manpage in Preview, which can be saved to PDF
+function pman {
+   man -t "${1}" | open -f -a /Applications/Preview.app
+}
+alias man="pman"
+alias psqlstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+alias psqlstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias mysqlstart='mysql.server start'
+alias mysqlstop='mysql.server stop'
+alias startall='psqlstart;mysqlstart'
+alias stopall='psqlstop;mysqlstop'
+alias kd="cd /opt/kDeploy/tools"
