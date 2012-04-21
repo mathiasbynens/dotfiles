@@ -1,4 +1,6 @@
-# Mathias’s dotfiles
+# Roderik's dotfiles
+
+This is a fork of Mathias’s dotfiles customised for my use. For example, I use zsh and do not like all of Mathias's defaults. Use with caution!Roderik's dotfiles
 
 ## Installation
 
