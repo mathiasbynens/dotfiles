@@ -16,5 +16,8 @@ GIT_AUTHOR_EMAIL="roderik.van.der.veer@kunstmaan.be"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
-eval "$(rbenv init -)"
-rbenv global 1.9.3-p194
+hash rbenv &>/dev/null
+if [ $? -eq 0 ]; then
+	eval "$(rbenv init -)"
+	rbenv global 1.9.3-p194
+fi
