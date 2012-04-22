@@ -34,4 +34,4 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 
 ## More help
 
-Check out (this blog post about my development environment)[http://vanderveer.be/blog/2012/04/21/setting-up-my-perfect-developer-environment-on-osx-10-dot-8-mountain-lion-dp3-edition/] where i detail how i use this repo. 
+Check out [this blog post about my development environment](http://vanderveer.be/blog/2012/04/21/setting-up-my-perfect-developer-environment-on-osx-10-dot-8-mountain-lion-dp3-edition/) where i detail how i use this repo. 
