@@ -10,7 +10,7 @@
 	# Clone a repository including all submodules
 	c = clone --recursive
 	# Commit all changes
-	ca = commit -a
+	ca = !git add . && git add -u && git commit -a
 	# Switch to a branch, creating it if necessary
 	go = checkout -B
 	# Undo a `git push`
