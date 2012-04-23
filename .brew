@@ -1,5 +1,8 @@
-# Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
-brew update && brew upgrade
+# Make sure we’re using the latest Homebrew
+brew update
+
+# Upgrade any already-installed formulae
+brew upgrade
 
 # Install wget with IRI support
 brew install wget --enable-iri
@@ -9,9 +12,11 @@ brew install wget --enable-iri
 brew install ringojs
 brew install narwhal
 
-# Everything else
+# Install everything else
 brew install ack
+#brew install exiv2
 brew install git
+#brew install imagemagick
 brew install lynx
 brew install node
 brew install rename
