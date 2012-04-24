@@ -21,9 +21,6 @@ set match-hidden-files off
 # Show all autocomplete results at once
 set page-completions off
 
-# Immediately show all possible completions
-set show-all-if-ambiguous on
-
 # If there are more than 200 possible completions for a word, ask to show them all
 set completion-query-items 200
 
