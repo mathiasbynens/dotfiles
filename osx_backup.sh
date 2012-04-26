@@ -14,7 +14,7 @@ function process () {
   echo "Creating backup..."
 
   # extract the settings being modified by .osx
-  settings=`egrep "^defaults (-currentHost )?write [[:alnum:][:punct:]]+ [[:alnum:][:punct:]]+ (-array |-bool |-int |-string |-dict-add )?.*" .osx | sed "s/write/read/" | sed "s/\(defaults\)\(.*\)\(read [a-zA-Z[:punct:] ]*\) -.*/\1\2\3/"`
+  settings=`egrep "^defaults (-currentHost )?write [[:alnum:][:punct:]]+ [[:alnum:][:punct:]]+ (-array |-bool |-int |-string |-dict-add |-array-add )?.*" .osx | sed "s/write/read/" | sed "s/\(defaults\)\(.*\)\(read [a-zA-Z[:punct:] ]*\) -.*/\1\2\3/"`
 
   # Bash workaround to enable iteration over array values that have whitespace
   oldifs=$IFS
