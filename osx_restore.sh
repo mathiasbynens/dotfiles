@@ -1,73 +1,5 @@
 #!/bin/bash
 
-# Settings - Check .osx for description of modification
-declare -a settings=( "NSGlobalDomain AppleKeyboardUIMode" \
-                      "NSGlobalDomain AppleFontSmoothing" \
-                      "com.apple.dock no-glass" \
-                      "com.apple.dock autohide" \
-                      "com.apple.dock showhidden" \
-                      "com.apple.dock itunes-notifications" \
-                      "NSGlobalDomain AppleEnableMenuBarTransparency" \
-                      "com.apple.menuextra.battery ShowPercent" \
-                      "com.apple.menuextra.battery ShowTime" \
-                      "NSGlobalDomain AppleShowScrollBars" \
-                      "com.apple.finder QuitMenuItem" \
-                      "com.apple.finder DisableAllAnimations" \
-                      "NSGlobalDomain AppleShowAllExtensions" \
-                      "com.apple.finder ShowStatusBar" \
-                      "NSGlobalDomain NSNavPanelExpandedStateForSaveMode" \
-                      "NSGlobalDomain PMPrintingExpandedStateForPrint" \
-                      "com.apple.LaunchServices LSQuarantine" \
-                      "com.apple.screencapture disable-shadow" \
-                      "com.apple.dock mouse-over-hilte-stack" \
-                      "com.apple.dock enable-spring-load-actions-on-all-items" \
-                      "com.apple.dock show-process-indicators" \
-                      "com.apple.dock launchanim" \
-                      "com.apple.Dock autohide-delay" \
-                      "NSGlobalDomain NSTextShowsControlCharacters" \
-                      "NSGlobalDomain ApplePressAndHoldEnabled" \
-                      "NSGlobalDomain KeyRepeat" \
-                      "NSGlobalDomain NSAutomaticSpellingCorrectionEnabled" \
-                      "NSGlobalDomain NSAutomaticWindowAnimationsEnabled" \
-                      "com.apple.NetworkBrowser BrowseAllInterfaces" \
-                      "com.apple.frameworks.diskimages skip-verify" \
-                      "com.apple.frameworks.diskimages skip-verify-locked" \
-                      "com.apple.frameworks.diskimages skip-verify-remote" \
-                      "com.apple.frameworks.diskimages auto-open-ro-root" \
-                      "com.apple.frameworks.diskimages auto-open-rw-root" \
-                      "com.apple.finder OpenWindowForNewRemovableDisk" \
-                      "com.apple.finder _FXShowPosixPathInTitle" \
-                      "NSGlobalDomain NSWindowResizeTime" \
-                      "com.apple.desktopservices DSDontWriteNetworkStores" \
-                      "com.apple.finder FXEnableExtensionChangeWarning" \
-                      "com.apple.finder WarnOnEmptyTrash" \
-                      "com.apple.finder EmptyTrashSecurely" \
-                      "com.apple.screensaver askForPassword" \
-                      "com.apple.screensaver askForPasswordDelay" \
-                      "com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking" \
-                      "com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick" \
-                      "com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick" \
-                      "com.apple.Safari DebugSnapshotsUpdatePolicy" \
-                      "com.apple.Safari IncludeInternalDebugMenu" \
-                      "com.apple.Safari FindOnPageMatchesWordStartsOnly" \
-                      "com.apple.Safari ProxiesInBookmarksBar" \
-                      "NSGlobalDomain WebKitDeveloperExtras" \
-                      "com.apple.addressbook ABShowDebugMenu" \
-                      "com.apple.iCal IncludeDebugMenu" \
-                      "com.apple.terminal StringEncodings" \
-                      "com.apple.iTunes disablePingSidebar" \
-                      "com.apple.iTunes disablePing" \
-                      "com.apple.iTunes NSUserKeyEquivalents" \
-                      "com.apple.Mail DisableReplyAnimations" \
-                      "com.apple.Mail DisableSendAnimations" \
-                      "com.apple.mail AddressesIncludeNameOnPasteboard" \
-                      "NSGlobalDomain NSQuitAlwaysKeepsWindows" \
-                      "com.apple.loginwindow TALLogoutSavesState" \
-                      "com.apple.loginwindow LoginwindowLaunchesRelaunchApps" \
-                      "com.apple.dashboard devmode" \
-                    )
-
-
 function restore () {
   # Check that there are backup settings to restore from
   if [[ ! -e ".osx_settings_backup" ]]; then
@@ -75,21 +7,32 @@ function restore () {
     exit
   fi
 
+  echo "Restoring backup..."
+
+  # extract the backup settings from .osx_settings_backup
+  settings=`egrep "^defaults (-currentHost )?:action: [[:alnum:][:punct:]]+ [[:alnum:][:punct:]]+" .osx_settings_backup`
+
   # Bash workaround to enable iteration over array values that have whitespace
   oldifs=$IFS
   IFS=$(echo -en "\n\b")
 
   # Iterate over the OSX settings array - storing the current value in .osx_settings_backup
   for s in ${settings[*]}; do
-    # extract the current setting value from .osx_settings_backup
-    value=`grep "$s : .*" .osx_settings_backup | sed "s/.* : //"`
+
+    # get the value
+    value=`echo $s | sed "s/.* : //"`
+
+    # get the command
+    com=`echo $s | sed "s/ : .*//"`
 
     # if the backed up setting is 'default', the modified setting is removed which
     # causes OSX to revert to the default settings
     if [[ $value = 'default' ]]; then
-      eval "defaults delete $s"
+      com=`echo $com | sed "s/ :action: / delete /"`
+      eval "$com"
     else
-      eval "defaults write $s '$value'"
+      com=`echo $com | sed "s/ :action: / write /"`
+      eval "$com '$value'"
     fi
     unset value
   done
@@ -123,6 +66,8 @@ function restore () {
 
   # Kill affected applications
   for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+
+  echo "Backup restored."
 }
 
 restore
