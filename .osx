@@ -136,6 +136,9 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
+# Set the icon size of the Dock to 48 pixels
+defaults write com.apple.dock tilesize -int 48
+
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
