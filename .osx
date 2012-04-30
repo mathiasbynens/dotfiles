@@ -70,6 +70,12 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryCli
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string "$HOME/Desktop"
+
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
+
 # Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
 
@@ -235,9 +241,3 @@ unset file
 # Kill affected applications
 for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer; do killall "$app" > /dev/null 2>&1; done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
-
-# Change screen shot save location
-defaults write com.apple.screencapture location /your folder path/
-
-# Change screen shot file format BMP/GIF/JPG/PDF/PNG/TIFF
-defaults write com.apple.screencapture type /your file format/
