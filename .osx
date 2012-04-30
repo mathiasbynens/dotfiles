@@ -235,3 +235,9 @@ unset file
 # Kill affected applications
 for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer; do killall "$app" > /dev/null 2>&1; done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+# Change screen shot save location
+defaults write com.apple.screencapture location /your folder path/
+
+# Change screen shot file format BMP/GIF/JPG/PDF/PNG/TIFF
+defaults write com.apple.screencapture type /your file format/
