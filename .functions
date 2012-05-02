@@ -6,7 +6,7 @@ function md() {
 
 # find shorthand
 function f() {
-    find . -name "$1" 
+    find . -name "$1"
 }
 
 
@@ -41,6 +41,15 @@ function json() {
 		# e.g. `json '{"foo":42}'`
 		python -mjson.tool <<< "$*" | pygmentize -l javascript
 	fi
+}
+
+
+# get gzipped size
+function gz() {
+	echo "orig size    (bytes): "
+	cat "$1" | wc -c
+	echo "gzipped size (bytes): "
+	gzip -c "$1" | wc -c
 }
 
 # All the dig info
