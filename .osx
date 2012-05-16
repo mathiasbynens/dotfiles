@@ -30,14 +30,6 @@ defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 # Disable Resume system-wide
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 
-# Disable the “reopen windows when logging back in” option
-# This works, although the checkbox will still appear to be checked,
-# and the command needs to be entered again for every restart.
-#
-# Only relevant for <10.7.4
-# defaults write com.apple.loginwindow TALLogoutSavesState -bool false
-# defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
-
 # Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
 # Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
