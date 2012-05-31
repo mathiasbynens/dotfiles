@@ -297,11 +297,7 @@ __git_ps1 ()
 				fi
 			fi
 			if [ -n "${GIT_PS1_SHOWSTASHSTATE-}" ]; then
-<<<<<<< .merge_file_QTk2qw
 				git rev-parse --verify refs/stash >/dev/null 2>&1 && s="$"
-=======
-			        git rev-parse --verify refs/stash >/dev/null 2>&1 && s="$"
->>>>>>> .merge_file_GqAX7u
 			fi
 
 			if [ -n "${GIT_PS1_SHOWUNTRACKEDFILES-}" ]; then
@@ -698,6 +694,7 @@ __git_complete_revlist_file ()
 		COMPREPLY=($(compgen -P "$pfx" \
 			-W "$(git --git-dir="$(__gitdir)" ls-tree "$ls" \
 				| sed '/^100... blob /{
+<<<<<<< HEAD
 <<<<<<< .merge_file_QTk2qw
 					   s,^.*	,,
 					   s,$, ,
@@ -710,6 +707,8 @@ __git_complete_revlist_file ()
 					   s,^.*	,,
 					   s,$,/,
 =======
+=======
+>>>>>>> 0a3f3acc2e431826de6b93c245099b20c26743c0
 				           s,^.*	,,
 				           s,$, ,
 				       }
@@ -720,7 +719,10 @@ __git_complete_revlist_file ()
 				       /^040000 tree /{
 				           s,^.*	,,
 				           s,$,/,
+<<<<<<< HEAD
 >>>>>>> .merge_file_GqAX7u
+=======
+>>>>>>> 0a3f3acc2e431826de6b93c245099b20c26743c0
 				       }
 				       s/^.*	//')" \
 			-- "$cur_"))
