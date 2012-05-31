@@ -694,21 +694,6 @@ __git_complete_revlist_file ()
 		COMPREPLY=($(compgen -P "$pfx" \
 			-W "$(git --git-dir="$(__gitdir)" ls-tree "$ls" \
 				| sed '/^100... blob /{
-<<<<<<< HEAD
-<<<<<<< .merge_file_QTk2qw
-					   s,^.*	,,
-					   s,$, ,
-				       }
-				       /^120000 blob /{
-					   s,^.*	,,
-					   s,$, ,
-				       }
-				       /^040000 tree /{
-					   s,^.*	,,
-					   s,$,/,
-=======
-=======
->>>>>>> 0a3f3acc2e431826de6b93c245099b20c26743c0
 				           s,^.*	,,
 				           s,$, ,
 				       }
@@ -719,10 +704,6 @@ __git_complete_revlist_file ()
 				       /^040000 tree /{
 				           s,^.*	,,
 				           s,$,/,
-<<<<<<< HEAD
->>>>>>> .merge_file_GqAX7u
-=======
->>>>>>> 0a3f3acc2e431826de6b93c245099b20c26743c0
 				       }
 				       s/^.*	//')" \
 			-- "$cur_"))
