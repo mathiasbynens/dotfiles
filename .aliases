@@ -12,6 +12,10 @@ alias shhve='ssh paul@javascriptbattle.com'
 alias slt='open -a "Sublime Text 2"'
 
 
+# handy things
+alias bunyip='node ~/code/bunyip/cli.js'
+
+
 # List all files colorized in long format, including dot files
 alias la="ls -Gla"
 
