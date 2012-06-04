@@ -13,6 +13,10 @@
 	ca = !git add . && git add -u && git commit -a
 	# Switch to a branch, creating it if necessary
 	go = checkout -B
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 	# Undo a `git push`
