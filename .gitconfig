@@ -10,7 +10,7 @@
 	# Clone a repository including all submodules
 	c = clone --recursive
 	# Commit all changes
-	ca = !git add . && git add -u && git commit -av
+	ca = !git add -A && git commit -av
 	# Switch to a branch, creating it if necessary
 	go = checkout -B
 	# Show verbose output about tags, branches or remotes
