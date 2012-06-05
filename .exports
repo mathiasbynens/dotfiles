@@ -16,8 +16,6 @@ export LESS_TERMCAP_md="$ORANGE"
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
-# Make some commands not show up in history
-#export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
 
 # Fix psycopg2 on 10.7.3
 export PGHOST=/tmp
