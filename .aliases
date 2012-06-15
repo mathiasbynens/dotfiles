@@ -6,6 +6,7 @@ alias -- -="cd -"
 
 # Shortcuts
 alias d="cd ~/Documents/Dropbox"
+alias j="jobs"
 alias p="cd ~/Projects"
 alias g="git"
 alias v="vim"
