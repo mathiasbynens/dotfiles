@@ -27,6 +27,9 @@ alias la="ls -Gla"
 # List only directories
 alias lsd='ls -l | grep "^d"'
 
+# Make directories with parents
+alias mkdir="mkdir --parents --verbose"
+
 # Always use color output for `ls`
 if [[ "$OSTYPE" =~ ^darwin ]]; then
 	alias ls="command ls -G"
