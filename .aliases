@@ -11,6 +11,8 @@ alias shhve='ssh paul@javascriptbattle.com'
 # programs
 alias slt='open -a "Sublime Text 2"'
 
+# be nice
+alias please=sudo
 
 # handy things
 alias bunyip='node ~/code/bunyip/cli.js'
