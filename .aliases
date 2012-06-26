@@ -15,6 +15,7 @@ alias j="jobs"
 alias v="vim"
 alias m="mate ."
 alias s="subl ."
+alias t="tree"
 alias o="open"
 alias oo="open ."
 
