@@ -40,11 +40,8 @@ defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 # Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
 
-# Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
 ###############################################################################
-# Trackpad, keyboard, and input                                               #
+# Trackpad, mouse, keyboard, and input                                        #
 ###############################################################################
 
 # Trackpad: enable tap to click for this user and for the login screen
@@ -61,6 +58,9 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryCli
 # Trackpad: swipe between pages with three fingers
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
+
+# Disable “natural” (Lion-style) scrolling
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
@@ -293,5 +293,7 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer; do killall "$app" > /dev/null 2>&1; done
+for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer; do
+	killall "$app" > /dev/null 2>&1
+done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
