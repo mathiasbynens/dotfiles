@@ -239,7 +239,7 @@ defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 ###############################################################################
-# Address Book, Dashboard, iCal, iTunes, and Mail                             #
+# Address Book, Dashboard, iCal, iTunes, Mail, and Disk Utility               #
 ###############################################################################
 
 # Enable the debug menu in Address Book
@@ -266,6 +266,9 @@ defaults write com.apple.Mail DisableSendAnimations -bool true
 
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+# Enable the debug menu in Disk Utility
+defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 
 ###############################################################################
 # Terminal                                                                    #
