@@ -1,8 +1,14 @@
+#!/bin/bash
+
 # Make sure we’re using the latest Homebrew
 brew update
 
 # Upgrade any already-installed formulae
 brew upgrade
+
+# Install GNU core utilities (those that come with OS X are outdated)
+brew install coreutils
+echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 
 # Install wget with IRI support
 brew install wget --enable-iri
@@ -15,6 +21,7 @@ brew install narwhal
 # Install more recent versions of some OS X tools
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
+
 # These two formulae didn’t work well last time I tried them:
 #brew install homebrew/dupes/vim
 #brew install homebrew/dupes/screen
