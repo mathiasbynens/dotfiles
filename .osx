@@ -258,6 +258,9 @@ defaults write com.apple.dashboard devmode -bool true
 # Enable the debug menu in iCal
 defaults write com.apple.iCal IncludeDebugMenu -bool true
 
+# Make iTunes arrows go to your library instead of the iTunes Store
+defaults write com.apple.iTunes invertStoreLinks -bool YES
+
 # Disable the Ping sidebar in iTunes
 defaults write com.apple.iTunes disablePingSidebar -bool true
 
