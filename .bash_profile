@@ -14,6 +14,16 @@ shopt -s histappend
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+	tmp="$(shopt -q "$option" 2>&1 > /dev/null | grep "invalid shell option name")"
+	if [ '' == "$tmp" ]; then
+		shopt -s "$option"
+	fi
+done
+
 # Prefer US English and use UTF-8
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
