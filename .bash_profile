@@ -18,10 +18,7 @@ shopt -s cdspell
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
 for option in autocd globstar; do
-	tmp="$(shopt -q "$option" 2>&1 > /dev/null | grep "invalid shell option name")"
-	if [ '' == "$tmp" ]; then
-		shopt -s "$option"
-	fi
+	shopt -s "$option" 2> /dev/null
 done
 
 # Prefer US English and use UTF-8
