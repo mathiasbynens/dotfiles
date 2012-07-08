@@ -1,3 +1,6 @@
+#Faster Show/Hide Dock
+defaults write com.apple.dock autohide-time-modifier -float 0.15
+
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
