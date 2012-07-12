@@ -1,4 +1,4 @@
-" Make vim more useful
+" Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
@@ -53,7 +53,7 @@ set noerrorbells
 set nostartofline
 " Show the cursor position
 set ruler
-" Don’t show the intro message when starting vim
+" Don’t show the intro message when starting Vim
 set shortmess=atI
 " Show the current mode
 set showmode
@@ -68,6 +68,9 @@ if exists("&relativenumber")
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
+" Respect modeline in files
+set modeline
+set modelines=4
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
