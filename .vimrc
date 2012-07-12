@@ -68,6 +68,9 @@ if exists("&relativenumber")
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
+" Respect modeline in files
+set modeline
+set modelines=4
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
