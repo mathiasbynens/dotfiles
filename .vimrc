@@ -1,4 +1,4 @@
-" Make vim more useful
+" Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
@@ -26,6 +26,9 @@ if exists("&undodir")
 	set undodir=~/.vim/undo
 endif
 
+" Respect modeline in files
+set modeline
+set modelines=4
 " Enable line numbers
 set number
 " Enable syntax highlighting
@@ -53,7 +56,7 @@ set noerrorbells
 set nostartofline
 " Show the cursor position
 set ruler
-" Don’t show the intro message when starting vim
+" Don’t show the intro message when starting Vim
 set shortmess=atI
 " Show the current mode
 set showmode
