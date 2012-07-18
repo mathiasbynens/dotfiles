@@ -44,7 +44,7 @@ defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
 
 ###############################################################################
-# Trackpad, mouse, keyboard, and input                                        #
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
 # Trackpad: enable tap to click for this user and for the login screen
@@ -65,6 +65,9 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeF
 
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+
+# Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
