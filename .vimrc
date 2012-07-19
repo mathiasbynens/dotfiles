@@ -19,6 +19,11 @@ let mapleader=","
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
+" read/write a ~/.viminfo file, don't store more
+" than 20 files and 50 lines/commands per file
+set viminfo='20,\"50,:50,%,n~/.viminfo
+" keep 50 lines of command line history
+set history=50
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -93,4 +98,12 @@ if has("autocmd")
 	filetype on
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+	augroup cursor
+	autocmd!
+	" When editing a file, always jump to the last cursor position
+	autocmd BufReadPost *
+	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+	\   exe "normal! g'\"" |
+	\ endif
+	augroup END
 endif
