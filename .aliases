@@ -19,10 +19,10 @@ alias o="open"
 alias oo="open ."
 
 # Detect which `ls` flavor is in use
-if ls --color 2> /dev/null | grep -q 'invalid option'; then # OS X `ls`
-	colorflag="-G"
-else # GNU `ls`
+if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
+else # OS X `ls`
+	colorflag="-G"
 fi
 
 # List all files colorized in long format
