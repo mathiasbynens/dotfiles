@@ -19,11 +19,10 @@ alias o="open"
 alias oo="open ."
 
 # Detect which `ls` flavor is in use
-tmp="$(ls --color 2>&1 > /dev/null | grep "illegal option")"
-if [ '' == "$tmp" ]; then # GNU `ls`
-	colorflag="--color"
-else # OS X `ls`
+if ls --color 2> /dev/null | grep -q 'invalid option'; then # OS X `ls`
 	colorflag="-G"
+else # GNU `ls`
+	colorflag="--color"
 fi
 
 # List all files colorized in long format
