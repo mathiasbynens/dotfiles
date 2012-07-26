@@ -10,7 +10,8 @@ alias shhve='ssh paul@javascriptbattle.com'
 
 # programs
 alias slt='open -a "Sublime Text 2"'
-alias subl='open -a "Sublime Text 2"'
+# also do this:
+# ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 
 # be nice
 alias please=sudo
