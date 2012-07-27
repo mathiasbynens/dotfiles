@@ -224,6 +224,9 @@ defaults write com.apple.dock launchanim -bool false
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
 
+# Don’t show Dashboard as a Space
+defaults write com.apple.dock "dashboard-in-overlay" -bool true
+
 # Remove the auto-hiding Dock delay
 defaults write com.apple.Dock autohide-delay -float 0
 # Remove the animation when hiding/showing the Dock
