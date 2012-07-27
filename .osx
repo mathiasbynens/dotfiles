@@ -270,6 +270,9 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 # Safari & WebKit                                                             #
 ###############################################################################
 
+# Hide Safari’s bookmarks bar by default
+defaults write com.apple.Safari ShowFavoritesBar -bool false
+
 # Disable Safari’s thumbnail cache for History and Top Sites
 defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
