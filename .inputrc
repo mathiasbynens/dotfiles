@@ -1,9 +1,6 @@
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 
-# Don’t prompt unless there are over 500 possible completions
-set completion-query-items 500
-
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
 
@@ -15,9 +12,6 @@ set match-hidden-files off
 
 # Show all autocomplete results at once
 set page-completions off
-
-# Immediately show all possible completions
-set show-all-if-ambiguous on
 
 # If there are more than 200 possible completions for a word, ask to show them all
 set completion-query-items 200
