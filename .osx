@@ -22,6 +22,10 @@ defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreS
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
+# Disable smooth scrolling
+# (Uncomment if you’re on an older Mac that messes up the animation)
+#defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
+
 # Disable opening and closing window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
