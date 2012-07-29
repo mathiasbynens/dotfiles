@@ -77,3 +77,51 @@ function codepoint() {
 	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))"
 	echo # newline
 }
+
+# Add note to Notes.app (OS X 10.8)
+# Argument or pipe:
+# note 'foo'
+# echo 'foo' | note
+function note() {
+	local text
+
+	if [ -t 0 ]; then
+		text=$1 # arg
+	else
+		text=`cat` # pipe
+	fi
+
+	body=$(echo "$text" | sed -E 's|$|<br>|g')
+
+	osascript >/dev/null <<EOF
+tell application "Notes"
+	tell account "iCloud"
+		tell folder "Notes"
+			make new note with properties {name:"$text", body:"$body"}
+		end tell
+	end tell
+end tell
+EOF
+}
+
+# Add reminder to Reminders.app (OS X 10.8)
+# Argument or pipe:
+# remind 'foo'
+# echo 'foo' | remind
+function remind() {
+	local text
+
+	if [ -t 0 ]; then
+		text=$1 # arg
+	else
+		text=`cat` # pipe
+	fi
+
+	osascript >/dev/null <<EOF
+tell application "Reminders"
+	tell the default list
+		make new reminder with properties {name:"$text"}
+	end tell
+end tell
+EOF
+}
