@@ -101,7 +101,7 @@ alias spoton="sudo mdutil -a -i on"
 alias plistbuddy="/usr/libexec/PlistBuddy"
 
 # Launch iOS Simulator
-alias simulator="open /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
+alias ios="open /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
