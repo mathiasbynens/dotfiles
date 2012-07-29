@@ -77,3 +77,10 @@ function codepoint() {
 	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))"
 	echo # newline
 }
+
+# Manually remove a downloaded app or file from the quarantine
+function unquarantine() {
+	for attribute in com.apple.metadata:kMDItemDownloadedDate com.apple.metadata:kMDItemWhereFroms com.apple.quarantine; do
+		xattr -r -d "$attribute" "$@"
+	done
+}
