@@ -10,7 +10,7 @@ brew upgrade
 brew install coreutils
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-echo findutils
+brew install findutils
 
 # Install wget with IRI support
 brew install wget --enable-iri
