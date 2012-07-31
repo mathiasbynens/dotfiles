@@ -41,3 +41,6 @@ brew install rename
 brew install rhino
 brew install tree
 brew install webkit2png
+
+# Remove outdated versions from the cellar
+brew cleanup
