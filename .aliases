@@ -77,6 +77,9 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 # File size
 alias fs="stat -c \"%s bytes\""
 
+# List sizes of all files and directories in the current directory, including dot files
+alias fslist="du -shc * .[^.]*"
+
 # ROT13-encode text. Works for decoding, too! ;)
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 
