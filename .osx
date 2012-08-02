@@ -332,7 +332,7 @@ defaults write com.apple.iTunes disablePing -bool true
 # Make ⌘ + F focus the search input in iTunes
 # To use these commands in another language, browse iTunes’s package contents,
 # open `Contents/Resources/your-language.lproj/Localizable.strings`, and look
-# for `kMenuItemFullScreen` and `kHiddenMenuItemTargetSearch`.
+# for `kHiddenMenuItemTargetSearch`.
 defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
 
 # Disable send and reply animations in Mail.app
@@ -341,6 +341,9 @@ defaults write com.apple.Mail DisableSendAnimations -bool true
 
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+# Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
+defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\\U21a9"
 
 # Enable the debug menu in Disk Utility
 defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
