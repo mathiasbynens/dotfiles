@@ -91,12 +91,12 @@ alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
 
 # Show/hide hidden files in Finder
-alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false && killall Finder"
+alias show="defaults write com.apple.Finder AppleShowAllFiles -bool YES && killall Finder"
+alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool NO && killall Finder"
 
 # Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool NO && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool YES && killall Finder"
 
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
