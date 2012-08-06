@@ -32,6 +32,10 @@ cd; curl -#L https://github.com/mathiasbynens/dotfiles/tarball/master | tar -xzv
 
 To update later on, just run that command again.
 
+### Specify the `$PATH`
+
+If `~/.path` exists, it will be sourced along with the other files, before any feature testing (such as detecting which version of `ls` is being used) takes place.
+
 ### Add custom commands without creating a new fork
 
 If `~/.extra` exists, it will be sourced along with the other files. You can use this to add a few custom commands without the need to fork this entire repository, or to add commands you don’t want to commit to a public repository.
@@ -51,6 +55,8 @@ GIT_AUTHOR_EMAIL="mathias@mailinator.com"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 ```
+
+You could also use `~/.extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/mathiasbynens/dotfiles/fork_select) instead, though.
 
 ### Sensible OS X defaults
 
