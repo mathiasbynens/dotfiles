@@ -11,9 +11,13 @@ if [ $? -eq 0 ]; then
 	}
 fi
 
-# Create a data URL from an image (works for other file types too, if you tweak the Content-Type afterwards)
-dataurl() {
-	echo "data:image/${1##*.};base64,$(openssl base64 -in "$1")" | tr -d '\n'
+# Create a data URL from a file
+function dataurl() {
+	local mimeType=$(file --mime-type "$1" | cut -d ' ' -f2)
+	if [[ $mimeType == text/* ]]; then
+		mimeType="${mimeType};charset=utf-8"
+	fi
+	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
