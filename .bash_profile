@@ -1,7 +1,7 @@
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to set or extend `$PATH`.
 # * ~/.extra can be used for settings you don’t want to commit.
-for file in ~/.{path,extra,bash_prompt,exports,aliases,functions,extra}; do
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file
