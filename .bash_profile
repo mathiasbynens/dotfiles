@@ -34,7 +34,7 @@ export LANG="en_US"
 complete -W "NSGlobalDomain" defaults
 
 # Add `killall` tab completion for common apps
-complete -o "nospace" -W "Address Book Contacts iCal Calendar Dock Finder Mail \
+complete -o "nospace" -W "Address\ Book Contacts iCal Calendar Dock Finder Mail \
     Safari iTunes SystemUIServer Terminal Twitter" killall
 
 # If possible, add tab completion for many more commands
