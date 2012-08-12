@@ -69,6 +69,14 @@ defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
+# Restart automatically after 10 seconds if the computer freezes
+sudo pmset -b panicrestart 10 # battery
+sudo pmset -c panicrestart 10 # power adapter
+
+# Never go into computer sleep mode
+sudo pmset -b sleep 0 # battery
+sudo pmset -c sleep 0 # power adapter
+
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
