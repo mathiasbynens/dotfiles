@@ -367,6 +367,9 @@ defaults write com.apple.iTunes disablePingSidebar -bool true
 # Disable all the other Ping stuff in iTunes
 defaults write com.apple.iTunes disablePing -bool true
 
+# Disable radio stations in iTunes
+defaults write com.apple.iTunes disableRadio -bool true
+
 # Make ⌘ + F focus the search input in iTunes
 # To use these commands in another language, browse iTunes’s package contents,
 # open `Contents/Resources/your-language.lproj/Localizable.strings`, and look
