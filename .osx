@@ -67,7 +67,7 @@ defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
 # Disable the crash reporter
-#defaults write com.apple.CrashReporter DialogType -string 'none'
+#defaults write com.apple.CrashReporter DialogType -string "none"
 
 # Set Help Viewer windows to non-floating mode
 defaults write com.apple.helpviewer DevMode -bool true
@@ -124,10 +124,10 @@ sudo chmod 444 /private/var/db/.AccessibilityAPIEnabled
 #sudo osascript -e 'tell application "System Events" to set UI elements enabled to true'
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
-defaults write com.apple.universalaccess 'closeViewScrollWheelToggle' -bool true
-defaults write com.apple.universalaccess 'HIDScrollZoomModifierMask' -int 262144
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 # Follow the keyboard focus while zoomed in
-defaults write com.apple.universalaccess 'closeViewZoomFollowsFocus' -bool true
+defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
@@ -136,9 +136,9 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write NSGlobalDomain KeyRepeat -int 0
 
 # Automatically illuminate built-in MacBook keyboard in low light
-defaults write com.apple.BezelServices 'kDim' -bool true
+defaults write com.apple.BezelServices kDim -bool true
 # Turn off keyboard illumination when computer is not used for 5 minutes
-defaults write com.apple.BezelServices 'kDimTime' -int 300
+defaults write com.apple.BezelServices kDimTime -int 300
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
@@ -292,10 +292,10 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 
 # Don’t group windows by application in Mission Control
 # (i.e. use the old Exposé behavior instead)
-defaults write com.apple.dock "expose-group-by-app" -bool false
+defaults write com.apple.dock expose-group-by-app -bool false
 
 # Don’t show Dashboard as a Space
-defaults write com.apple.dock "dashboard-in-overlay" -bool true
+defaults write com.apple.dock dashboard-in-overlay -bool true
 
 # Remove the auto-hiding Dock delay
 defaults write com.apple.Dock autohide-delay -float 0
@@ -358,7 +358,7 @@ defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 # Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
