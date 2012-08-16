@@ -314,6 +314,9 @@ defaults write com.apple.dock showhidden -bool true
 # Reset Launchpad
 find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
 
+# Add iPhone Simulator.app to Launchpad
+ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app ~/Applications
+
 # Add a spacer to the left side of the Dock (where the applications are)
 #defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 # Add a spacer to the right side of the Dock (where the Trash is)
