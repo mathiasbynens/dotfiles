@@ -23,4 +23,6 @@ export PGHOST=/tmp
 # no ._ files in archives please
 export COPYFILE_DISABLE=true
 
+export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
+
 export TZ='Europe/Brussels'
