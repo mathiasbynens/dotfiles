@@ -74,15 +74,6 @@ alias c="tr -d '\n' | pbcopy"
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
-# File size
-if stat -c '' . > /dev/null 2>&1; then
-	# GNU `stat`
-	alias fs="stat -c \"%s bytes\""
-else
-	# OS X `stat`
-	alias fs="stat -f \"%z bytes\""
-fi
-
 # ROT13-encode text. Works for decoding, too! ;)
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 
