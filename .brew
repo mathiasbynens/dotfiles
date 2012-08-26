@@ -26,6 +26,9 @@ brew install narwhal
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 brew tap josegonzalez/homebrew-php
+# Install PHP’s dependencies first: `libpng` and `freetype`
+brew install libpng
+brew install freetype
 brew install php54
 
 # These two formulae didn’t work well last time I tried them:
