@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[-undef (${1:macro}).]]></content>
+    <tabTrigger>undef</tabTrigger>
+    <scope>source.erlang</scope>
+    <description>Undef Directive</description>
+</snippet>

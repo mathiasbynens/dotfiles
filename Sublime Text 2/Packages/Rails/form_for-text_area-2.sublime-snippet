@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${TM_RAILS_TEMPLATE_START_RUBY_EXPR}f.text_area :${1:attribute}${TM_RAILS_TEMPLATE_END_RUBY_EXPR}]]></content>
+    <tabTrigger>ffta</tabTrigger>
+    <scope>text.html.ruby, text.haml</scope>
+    <description>form_for text_area</description>
+</snippet>

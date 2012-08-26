@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[#!/usr/bin/env groovy -w
+
+]]></content>
+    <tabTrigger>#!</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>#!/usr/bin/env groovy -w</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[static final ${1:String}${1/(.+)/(?1: )/}${2:var}${3: = ${4:null}}$0]]></content>
+    <tabTrigger>sfv</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>static final var</description>
+</snippet>

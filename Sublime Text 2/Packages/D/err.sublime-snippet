@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[Stderr("$1").newline;]]></content>
+    <tabTrigger>err</tabTrigger>
+    <scope>source.d</scope>
+    <description>Stderr(…)</description>
+</snippet>

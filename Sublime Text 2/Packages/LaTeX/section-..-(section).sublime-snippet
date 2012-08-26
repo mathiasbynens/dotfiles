@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[\section{${1:section name}} % (fold)
+\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3)/g}}}
+${0:$TM_SELECTED_TEXT}
+% section $2 (end)]]></content>
+    <tabTrigger>sec</tabTrigger>
+    <scope>text.tex.latex</scope>
+    <description>Section</description>
+</snippet>

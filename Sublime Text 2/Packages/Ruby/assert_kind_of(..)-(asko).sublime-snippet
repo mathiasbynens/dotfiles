@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_kind_of(${1:ExpectedKind}, ${0:actual_instance})]]></content>
+    <tabTrigger>asko</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_kind_of(..)</description>
+</snippet>

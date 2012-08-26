@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[warning(['${1:Description}']);]]></content>
+    <tabTrigger>war</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>warning</description>
+</snippet>

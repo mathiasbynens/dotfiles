@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[${1:private}${1/(.+)/(?1: )/}${2:${TM_FILENAME/(.*?)(\..+)/$1/}}(${3:args}) {
+	$0
+}]]></content>
+    <tabTrigger>con</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>constructor() { … }</description>
+</snippet>

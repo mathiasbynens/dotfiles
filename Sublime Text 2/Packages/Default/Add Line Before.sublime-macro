@@ -1,0 +1,6 @@
+[
+    {"command": "move_to", "args": {"to": "hardbol"}},
+    {"command": "insert", "args": {"characters": "\n"}},
+    {"command": "move", "args": {"by": "lines", "forward": false}},
+    {"command": "reindent", "args": {"force_indent": false}}
+]

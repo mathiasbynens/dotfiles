@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[\\begin{${1:t}${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}{${2:c}}
+$0${2/((?<=.)c|l|r)|./(?1: & )/g}
+\\end{${1:t}${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}]]></content>
+    <tabTrigger>tab</tabTrigger>
+    <scope>text.tex.latex</scope>
+    <description>Tabular</description>
+</snippet>

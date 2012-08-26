@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[ :yields: ${0:arguments}]]></content>
+    <tabTrigger>y</tabTrigger>
+    <scope>source.ruby comment</scope>
+    <description>:yields:</description>
+</snippet>

@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[#!/usr/bin/env ruby${TM_RUBY_SWITCHES: -wKU}
+]]></content>
+    <tabTrigger>rb</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>#!/usr/bin/env ruby -wKU</description>
+</snippet>

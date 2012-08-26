@@ -1,0 +1,23 @@
+Drop on upgrade: This patch has already been applied to the Scintilla hg repo.
+
+Do not highlight keyword2 items that are used as a sub-identifier, i.e. do not
+highlight "open" in "myobject.open".
+
+https://sourceforge.net/tracker/?func=detail&aid=3325333&group_id=2439&atid=102439
+Index: /home/toddw/src/editors/scintilla/hg/scintilla/lexers/LexPython.cxx
+--- src/LexPython.cxx	Thu Jun 23 09:11:58 2011 +1000
++++ src/LexPython.cxx	Thu Jun 23 13:00:39 2011 -0700
+@@ -264,7 +264,12 @@
+ 						}
+ 					}
+ 				} else if (keywords2.InList(s)) {
+-					style = SCE_P_WORD2;
++					// We don't want to highlight keywords2
++					// that are used as a sub-identifier,
++					// i.e. not open in "foo.open".
++					int pos = styler.GetStartSegment() - 1;
++					if (pos < 0 || (styler.SafeGetCharAt(pos, '\0') != '.'))
++						style = SCE_P_WORD2;
+ 				}
+ 				sc.ChangeState(style);
+ 				sc.SetState(SCE_P_DEFAULT);

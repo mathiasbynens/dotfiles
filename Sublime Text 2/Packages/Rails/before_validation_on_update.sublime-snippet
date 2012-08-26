@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[before_validation_on_update]]></content>
+    <tabTrigger>befvou</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>before_validation_on_update</description>
+</snippet>

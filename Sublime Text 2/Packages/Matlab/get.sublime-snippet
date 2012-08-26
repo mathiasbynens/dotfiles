@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[get(${1:gca},'${2:PropertyName}');]]></content>
+    <tabTrigger>get</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>get</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[after_update ]]></content>
+    <tabTrigger>aftu</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>after_update</description>
+</snippet>

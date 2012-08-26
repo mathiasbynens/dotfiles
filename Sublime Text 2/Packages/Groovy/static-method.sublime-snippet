@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[static ${1:void}${1/(.+)/(?1: )/}${2:methodName}(${3:args}) {
+	$0
+}]]></content>
+    <tabTrigger>sm</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>static method() { … }</description>
+</snippet>

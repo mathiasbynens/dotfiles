@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[foreach ${1:var} ${2:\$list} {
+	${3}
+}
+]]></content>
+    <tabTrigger>foreach</tabTrigger>
+    <scope>source.tcl</scope>
+    <description>foreach...</description>
+</snippet>

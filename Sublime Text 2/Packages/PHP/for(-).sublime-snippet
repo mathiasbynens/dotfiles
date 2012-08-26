@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[for (\$${1:i}=${2:0}; \$${1:i} < $3; \$${1:i}++) { 
+	${0:# code...}
+}]]></content>
+    <tabTrigger>for</tabTrigger>
+    <scope>source.php</scope>
+    <description>for …</description>
+</snippet>

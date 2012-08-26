@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[each_key { |${1:key}| $0 }]]></content>
+    <tabTrigger>eak</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>each_key { |key| .. }</description>
+</snippet>

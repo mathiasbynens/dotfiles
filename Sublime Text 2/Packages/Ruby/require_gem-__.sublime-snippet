@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[require "$0"]]></content>
+    <tabTrigger>reqg-</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>require_gem ".."</description>
+</snippet>

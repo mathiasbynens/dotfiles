@@ -1,0 +1,5 @@
+[
+    {"command": "move_to", "args": {"to": "hardbol", "extend": true}},
+    {"command": "add_to_kill_ring", "args": {"forward": false}},
+    {"command": "left_delete"}
+]

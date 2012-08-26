@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[validates_uniqueness_of :${1:attribute}${2:, :on => :${3:create}, :message => "${4:must be unique}", :if => proc { |obj| ${6:obj.condition?} }}]]></content>
+    <tabTrigger>vuif</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>validates_uniqueness_of if</description>
+</snippet>

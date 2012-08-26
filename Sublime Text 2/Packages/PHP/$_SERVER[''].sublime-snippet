@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[\$_SERVER['${1:variable}']]]></content>
+    <tabTrigger>$_</tabTrigger>
+    <scope>source.php</scope>
+    <description>SERVER['…']</description>
+</snippet>

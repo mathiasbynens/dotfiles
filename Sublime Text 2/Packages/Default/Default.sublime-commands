@@ -1,0 +1,118 @@
+[
+    {
+        "caption": "Word Wrap: Toggle",
+        "command": "toggle_setting",
+        "args": {"setting": "word_wrap"}
+    },
+    {
+        "caption": "Convert Case: Upper Case",
+        "command": "upper_case"
+    },
+    {
+        "caption": "Convert Case: Lower Case",
+        "command": "lower_case"
+    },
+    {
+        "caption": "Convert Case: Title Case",
+        "command": "title_case"
+    },
+    {
+        "caption": "Convert Case: Swap Case",
+        "command": "swap_case"
+    },
+
+    { "command": "toggle_comment", "args": {"block": false}, "caption": "Toggle Comment" },
+    { "command": "toggle_comment", "args": {"block": true}, "caption": "Toggle Block Comment" },
+
+    { "command": "toggle_bookmark", "caption": "Bookmarks: Toggle" },
+    { "command": "next_bookmark", "caption": "Bookmarks: Select Next" },
+    { "command": "prev_bookmark", "caption": "Bookmarks: Select Previous" },
+    { "command": "clear_bookmarks", "caption": "Bookmarks: Clear All" },
+    { "command": "select_all_bookmarks", "caption": "Bookmarks: Select All" },
+
+    { "caption": "Indentation: Convert to Tabs", "command": "unexpand_tabs", "args": {"set_translate_tabs": true} },
+    { "caption": "Indentation: Convert to Spaces", "command": "expand_tabs", "args": {"set_translate_tabs": true} },
+    { "caption": "Indentation: Reindent Lines", "command": "reindent", "args": {"single_line": false} },
+
+    { "caption": "View: Toggle Side Bar", "command": "toggle_side_bar" },
+    { "caption": "View: Toggle Open Files in Side Bar", "command": "toggle_show_open_files" },
+    { "caption": "View: Toggle Minimap", "command": "toggle_minimap" },
+    { "caption": "View: Toggle Tabs", "command": "toggle_tabs" },
+    { "caption": "View: Toggle Status Bar", "command": "toggle_status_bar" },
+    { "caption": "View: Toggle Menu", "command": "toggle_menu" },
+
+    { "caption": "Project: Save As", "command": "save_project_as" },
+    { "caption": "Project: Close", "command": "close_project" },
+    { "caption": "Project: Add Folder", "command": "prompt_add_folder" },
+
+    { "caption": "Preferences: Settings - Default", "command": "open_file", "args": {"file": "${packages}/Default/Preferences.sublime-settings"} },
+    { "caption": "Preferences: Settings - User", "command": "open_file", "args": {"file": "${packages}/User/Preferences.sublime-settings"} },
+    { "caption": "Preferences: Browse Packages", "command": "open_dir", "args": {"dir": "$packages"} },
+
+    {
+        "caption": "Preferences: Key Bindings - Default",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/Default/Default (Windows).sublime-keymap",
+            "platform": "Windows"
+        }
+    },
+    {
+        "caption": "Preferences: Key Bindings - Default",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/Default/Default (OSX).sublime-keymap",
+            "platform": "OSX"
+        }
+    },
+    {
+        "caption": "Preferences: Key Bindings - Default",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/Default/Default (Linux).sublime-keymap",
+            "platform": "Linux"
+        }
+    },
+    {
+        "caption": "Preferences: Key Bindings - User",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/Default (Windows).sublime-keymap",
+            "platform": "Windows"
+        }
+    },
+    {
+        "caption": "Preferences: Key Bindings - User",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/Default (OSX).sublime-keymap",
+            "platform": "OSX"
+        }
+    },
+    {
+        "caption": "Preferences: Key Bindings - User",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/Default (Linux).sublime-keymap",
+            "platform": "Linux"
+        }
+    },
+
+    { "caption": "File: Save All", "command": "save_all" },
+    { "caption": "File: Revert", "command": "revert" },
+    { "caption": "File: New View into File", "command": "clone_file" },
+    { "caption": "File: Close All", "command": "close_all" },
+
+    { "caption": "HTML: Wrap Selection With Tag", "command": "insert_snippet", "args": { "name": "Packages/XML/long-tag.sublime-snippet" } },
+    { "caption": "HTML: Encode Special Characters", "command": "encode_html_entities" },
+
+    { "caption": "Rot13 Selection", "command": "rot13" },
+
+    { "caption": "Sort Lines", "command": "sort_lines", "args": {"case_sensitive": false} },
+    { "caption": "Sort Lines (Case Sensitive)", "command": "sort_lines", "args": {"case_sensitive": true} },
+
+    { "caption": "Code Folding: Unfold All", "command": "unfold_all" },
+    { "caption": "Code Folding: Fold Tag Attributes", "command": "fold_tag_attributes" },
+
+    { "caption": "About", "command": "show_about_window" }
+]

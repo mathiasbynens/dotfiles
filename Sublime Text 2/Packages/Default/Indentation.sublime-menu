@@ -1,0 +1,17 @@
+[
+{ "command": "toggle_setting", "args": {"setting": "translate_tabs_to_spaces"}, "caption": "Indent Using Spaces", "checkbox": true },
+     { "caption": "-" },
+     { "command": "set_setting", "args": {"setting": "tab_size", "value": 1}, "caption": "Tab Width: 1", "checkbox": true },
+     { "command": "set_setting", "args": {"setting": "tab_size", "value": 2}, "caption": "Tab Width: 2", "checkbox": true },
+     { "command": "set_setting", "args": {"setting": "tab_size", "value": 3}, "caption": "Tab Width: 3", "checkbox": true },
+     { "command": "set_setting", "args": {"setting": "tab_size", "value": 4}, "caption": "Tab Width: 4", "checkbox": true },
+     { "command": "set_setting", "args": {"setting": "tab_size", "value": 5}, "caption": "Tab Width: 5", "checkbox": true },
+     { "command": "set_setting", "args": {"setting": "tab_size", "value": 6}, "caption": "Tab Width: 6", "checkbox": true },
+     { "command": "set_setting", "args": {"setting": "tab_size", "value": 7}, "caption": "Tab Width: 7", "checkbox": true },
+     { "command": "set_setting", "args": {"setting": "tab_size", "value": 8}, "caption": "Tab Width: 8", "checkbox": true },
+     { "caption": "-" },
+     { "command": "detect_indentation", "caption": "Guess Settings From Buffer" },
+     { "caption": "-" },
+     { "command": "expand_tabs", "caption": "Convert Indentation to Spaces", "args": {"set_translate_tabs": true} },
+     { "command": "unexpand_tabs", "caption": "Convert Indentation to Tabs", "args": {"set_translate_tabs": true} }
+ ]

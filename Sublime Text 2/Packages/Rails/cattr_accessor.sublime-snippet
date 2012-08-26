@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[cattr_accessor :${0:attr_names}]]></content>
+    <tabTrigger>crw</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>cattr_accessor</description>
+</snippet>

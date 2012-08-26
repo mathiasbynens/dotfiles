@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[module Main where
+
+main = ${1:putStrLn "Hello World"}]]></content>
+    <tabTrigger>main</tabTrigger>
+    <scope>source.haskell</scope>
+    <description>Main</description>
+</snippet>

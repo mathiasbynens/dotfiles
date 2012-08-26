@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[\\${1:t} -> ${0:f t}]]></content>
+    <tabTrigger>\</tabTrigger>
+    <scope>source.haskell</scope>
+    <description>\t -&gt; f t</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[logger.error { "${1:message}" }$0]]></content>
+    <tabTrigger>loge</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>logger.error</description>
+</snippet>

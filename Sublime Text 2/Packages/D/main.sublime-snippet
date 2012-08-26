@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[void main() {
+	${1}
+}]]></content>
+    <tabTrigger>main</tabTrigger>
+    <scope>source.d</scope>
+    <description>void main() { … }</description>
+</snippet>

@@ -1,0 +1,10 @@
+--- openkomodo/src/codeintel/lib/codeintel2/database/langlib.py
++++ openkomodo/src/codeintel/lib/codeintel2/database/langlib.py
+@@ -1287,7 +1287,6 @@ class LangZone(object):
+                 # Too few indeces in memory to bother culling.
+                 return
+ 
+-            print "XXX culling memory..."
+             now = time.time()
+             for dbsubpath, (index, atime) \
+                     in self._index_and_atime_from_dbsubpath.items():

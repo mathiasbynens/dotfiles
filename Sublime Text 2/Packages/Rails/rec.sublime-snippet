@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[redirect_to :controller => "${1:items}"]]></content>
+    <tabTrigger>rec</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>redirect_to (controller)</description>
+</snippet>

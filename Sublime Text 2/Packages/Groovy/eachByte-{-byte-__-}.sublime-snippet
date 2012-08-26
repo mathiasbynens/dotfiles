@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[eachByte {${1/(.+)/(?1: )/}${1:byte}${1/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>eab</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>eachByte { … }</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[render :layout => "${1:layoutname}"]]></content>
+    <tabTrigger>rl</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (layout)</description>
+</snippet>

@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[${1:expression} while ${2:condition};
+]]></content>
+    <tabTrigger>xwhile</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Loop One-line</description>
+</snippet>

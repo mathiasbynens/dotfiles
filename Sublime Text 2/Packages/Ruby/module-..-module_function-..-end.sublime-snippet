@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[module ${1:${TM_FILENAME/(?:\A|_)([A-Za-z0-9]+)(?:\.rb)?/(?2::\u$1)/g}}
+	module_function
+	
+	$0
+end]]></content>
+    <tabTrigger>mod</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>module .. module_function .. end</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[elements.each(${1:"${2://XPath}"}) do |${3:node}|
+	$0
+end]]></content>
+    <tabTrigger>xpa</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>xpath(..) { .. }</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[griddata(${1:xx}, ${2:yy}, ${3:zz}, ${4:xi}, ${5:yi}); ]]></content>
+    <tabTrigger>griddata</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>griddata</description>
+</snippet>

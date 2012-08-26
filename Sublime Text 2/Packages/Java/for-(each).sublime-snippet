@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[for ($1 : $2) {
+	$0
+}]]></content>
+    <tabTrigger>fore</tabTrigger>
+    <scope>source.java</scope>
+    <description>for (each)</description>
+</snippet>

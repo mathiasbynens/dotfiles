@@ -1,0 +1,156 @@
+diff
+
+Add Element.names dict which provides a mapping of children's 'name' attribute
+to the child element. This dict is built the first time .names is accessed.
+This is useful for namespace-lookup for completion eval.
+
+--- ciElementTree/cElementTree.c.1	2006-09-26 21:18:32.000000000 -0700
++++ ciElementTree/cElementTree.c	2006-09-26 22:49:57.000000000 -0700
+@@ -228,6 +228,10 @@
+     int length; /* actual number of items */
+     int allocated; /* allocated items */
+ 
++    /* dict: lazy 'name' attr -> child elem mapping, or None if not
++       accessed */
++    PyObject* names;
++
+     /* this either points to _children or to a malloced buffer */
+     PyObject* *children;
+ 
+@@ -282,6 +286,9 @@
+     Py_INCREF(attrib);
+     self->extra->attrib = attrib;
+ 
++    Py_INCREF(Py_None);
++    self->extra->names = Py_None;
++
+     self->extra->length = 0;
+     self->extra->allocated = STATIC_CHILDREN;
+     self->extra->children = self->extra->_children;
+@@ -296,6 +303,8 @@
+ 
+     Py_DECREF(self->extra->attrib);
+ 
++    Py_DECREF(self->extra->names);
++
+     for (i = 0; i < self->extra->length; i++)
+         Py_DECREF(self->extra->children[i]);
+ 
+@@ -487,6 +496,11 @@
+ 
+     self->extra->length++;
+ 
++    if (self->extra->names != Py_None) {
++        Py_INCREF(Py_None);
++        self->extra->names = Py_None;
++    }
++
+     return 0;
+ }
+ 
+@@ -510,6 +524,46 @@
+ }
+ 
+ LOCAL(PyObject*)
++element_get_names(ElementObject* self)
++{
++    /* return borrowed reference to names dictionary */
++    /* note: this function assumes that the extra section exists */
++
++    int i;
++    PyObject* res = self->extra->names;
++
++    if (res == Py_None) {
++        /* create missing dictionary */
++        res = PyDict_New();
++        if (!res)
++            return NULL;
++
++        for (i = 0; i < self->extra->length; i++) {
++            ElementObject* child = (ElementObject*) self->extra->children[i];
++            if (child->extra) {
++                PyObject* name;
++                PyObject* attrib = element_get_attrib(child);
++                if (!attrib)
++                    return NULL;
++
++                name = PyDict_GetItemString(attrib, "name");
++                if (name) {
++                    /* TODO: Get review of ref counting here. */
++                    if (PyDict_SetItem(res, name, (PyObject*)child) < 0) {
++                        Py_DECREF(res);
++                        return NULL;
++                    }
++                }
++            }
++        }
++
++        self->extra->names = res;
++    }
++
++    return res;
++}
++
++LOCAL(PyObject*)
+ element_get_text(ElementObject* self)
+ {
+     /* return borrowed reference to text attribute */
+@@ -1086,6 +1139,11 @@
+ 
+     self->extra->length++;
+ 
++    if (self->extra->names != Py_None) {
++        Py_INCREF(Py_None);
++        self->extra->names = Py_None;
++    }
++
+     Py_RETURN_NONE;
+ }
+ 
+@@ -1209,6 +1267,11 @@
+     for (; i < self->extra->length; i++)
+         self->extra->children[i] = self->extra->children[i+1];
+ 
++    if (self->extra->names != Py_None) { /* FIXME: could just update dict */
++        Py_INCREF(Py_None);
++        self->extra->names = Py_None;
++    }
++
+     Py_RETURN_NONE;
+ }
+ 
+@@ -1340,6 +1403,11 @@
+ 
+     self->extra->length += new - old;
+ 
++    if (self->extra->names != Py_None) {
++        Py_INCREF(Py_None);
++        self->extra->names = Py_None;
++    }
++
+     /* discard the recycle bin, and everything in it */
+     Py_XDECREF(recycle);
+ 
+@@ -1370,6 +1438,11 @@
+             self->extra->children[i] = self->extra->children[i+1];
+     }
+ 
++    if (self->extra->names != Py_None) {
++        Py_INCREF(Py_None);
++        self->extra->names = Py_None;
++    }
++
+     Py_DECREF(old);
+ 
+     return 0;
+@@ -1437,6 +1510,10 @@
+         if (!self->extra)
+             element_new_extra(self, NULL);
+ 	res = element_get_attrib(self);
++    } else if (strcmp(name, "names") == 0) {
++        if (!self->extra)
++            element_new_extra(self, NULL);
++	    res = element_get_names(self);
+     } else if (strcmp(name, "localName") == 0)
+         res = self->localName;
+     else if (strcmp(name, "ns") == 0)

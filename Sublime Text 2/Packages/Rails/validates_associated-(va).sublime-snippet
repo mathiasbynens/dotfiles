@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[validates_associated :${1:attribute}${2:, :on => :${3:create}}]]></content>
+    <tabTrigger>va</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>validates_associated</description>
+</snippet>

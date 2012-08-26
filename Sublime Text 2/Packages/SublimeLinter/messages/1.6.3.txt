@@ -1,0 +1,26 @@
+SublimeLinter 1.6.3 changelog
+
+NEW FEATURES
+
+- Support for `.jshintrc` files. If using JSHint, SublimeLinter
+  will recursively search the directory tree (from the file location
+  to the file-system root directory). This functionality is
+  specified in the JSHint README.
+  https://github.com/jshint/node-jshint/#within-your-projects-directory-tree
+
+
+CHANGES/FIXES
+
+- Fixed README reference in the menu.
+
+- Updated CoffeeScript module to be compatible with the updated
+  coffee command in version 1.3.
+
+
+IMPORTANT
+
+If you are using the CoffeeScript linting, please upgrade
+the installed coffee-script NPM module to 1.3 or greater.
+
+    npm update -g coffee-script
+

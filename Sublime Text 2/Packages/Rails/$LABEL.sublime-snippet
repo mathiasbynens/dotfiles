@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[\$LABEL]]></content>
+    <tabTrigger>$L</tabTrigger>
+    <scope>source.yaml</scope>
+    <description>$LABEL</description>
+</snippet>

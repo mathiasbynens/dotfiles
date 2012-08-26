@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[${1:expression} unless ${2:condition};
+]]></content>
+    <tabTrigger>xunless</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Conditional One-line</description>
+</snippet>

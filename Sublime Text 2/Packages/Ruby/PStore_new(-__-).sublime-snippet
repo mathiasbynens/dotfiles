@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[PStore.new(${1:"${2:file_name.pstore}"})]]></content>
+    <tabTrigger>Pn-</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>PStore.new( .. )</description>
+</snippet>

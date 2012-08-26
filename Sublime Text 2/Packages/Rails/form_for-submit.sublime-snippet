@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${TM_RAILS_TEMPLATE_START_RUBY_EXPR}f.submit "${1:Submit}"${2:, :disable_with => '${3:$1ing...}'}${TM_RAILS_TEMPLATE_END_RUBY_EXPR}]]></content>
+    <tabTrigger>f.</tabTrigger>
+    <scope>text.html.ruby, text.haml</scope>
+    <description>f.submit (ffs)</description>
+</snippet>

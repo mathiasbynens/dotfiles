@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[switch (${1:variable}) {
+	case '${2:value}':
+		${3:# code...}
+		break;
+	$0
+	default:
+		${4:# code...}
+		break;
+}]]></content>
+    <tabTrigger>switch</tabTrigger>
+    <scope>source.php</scope>
+    <description>switch …</description>
+</snippet>

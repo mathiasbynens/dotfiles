@@ -1,0 +1,11 @@
+<!-- See http://www.sublimetext.com/docs/snippets for more information -->
+<snippet>
+    <tabTrigger>for</tabTrigger>
+    <scope>source.python</scope>
+    <description>For Loop</description>
+
+	<content><![CDATA[
+for ${1:x} in ${2:xrange(1,10)}:
+	${0:pass}
+]]></content>
+</snippet>

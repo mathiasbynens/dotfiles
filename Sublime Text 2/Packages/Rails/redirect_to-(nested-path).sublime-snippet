@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[redirect_to(${2:${12:parent}_${13:child}_path(${14:@}${15:${12}}, ${16:@}${17:${13}})})]]></content>
+    <tabTrigger>renp</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>redirect_to (nested path)</description>
+</snippet>

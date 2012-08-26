@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[def create
+	@${1:model} = ${2:${1/[[:alpha:]]+|(_)/(?1::\u$0)/g}}.new(params[:$1])
+	$0
+	respond_to do |wants|
+		if @$1.save
+			flash[:notice] = '$2 was successfully created.'
+			wants.html { redirect_to(@$1) }
+			wants.xml { render :xml => @$1, :status => :created, :location => @$1 }
+		else
+			wants.html { render :action => "new" }
+			wants.xml { render :xml => @$1.errors, :status => :unprocessable_entity }
+		end
+	end
+end
+]]></content>
+    <tabTrigger>defcreate</tabTrigger>
+    <scope>meta.rails.controller</scope>
+    <description>def create - resource</description>
+</snippet>

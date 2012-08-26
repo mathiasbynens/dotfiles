@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[toCharacter()]]></content>
+    <tabTrigger>to</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>to Character</description>
+</snippet>

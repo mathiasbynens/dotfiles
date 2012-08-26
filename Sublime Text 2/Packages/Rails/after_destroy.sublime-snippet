@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[after_destroy ]]></content>
+    <tabTrigger>aftd</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>after_destroy</description>
+</snippet>

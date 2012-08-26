@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[rug(${1:jitter(${2:x})})]]></content>
+    <tabTrigger>rug</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Add Tick Marks</description>
+</snippet>

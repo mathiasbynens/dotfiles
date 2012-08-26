@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[else
+	${1:body}]]></content>
+    <tabTrigger>else</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>else</description>
+</snippet>

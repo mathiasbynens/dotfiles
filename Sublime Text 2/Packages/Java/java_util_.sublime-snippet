@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[java.util.]]></content>
+    <tabTrigger>j.u</tabTrigger>
+    <scope>source.java</scope>
+    <description>java.util.</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[<?${TM_PHP_OPEN_TAG:php} if (${1:condition}): ?>
+	$0
+<?${TM_PHP_OPEN_TAG:php} endif ?>]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>text.html - source</scope>
+    <description>&lt;?php if (…) ?&gt; … &lt;?php endif ?&gt;</description>
+</snippet>

@@ -1,0 +1,16 @@
+SublimeLinter 1.6.6 changelog
+
+CHANGES/FIXES
+
+- JSHint now shows underlines at the appropriate character positions when
+  using tabs for indentation.
+
+- Upgrading CSSLint to the latest version (v0.9.8). This adds support for the
+  latest "Compatibility" options: "Disallow star hack" and "Disallow
+  underscore hack".
+
+- Annotation highlighting is working again.
+
+- Git Commit Message linting now ignores `git --diff` output in messages.
+  These lines are automatically generated and inserted when running
+  `git commit -v`.

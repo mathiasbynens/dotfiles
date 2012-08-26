@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[page.toggle ${1:"${2:id(s)}"}]]></content>
+    <tabTrigger>tog</tabTrigger>
+    <scope>source.ruby.rails.rjs</scope>
+    <description>page.toggle (*ids)</description>
+</snippet>

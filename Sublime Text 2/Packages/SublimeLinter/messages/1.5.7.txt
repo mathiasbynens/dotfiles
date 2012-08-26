@@ -1,0 +1,10 @@
+SublimeLinter 1.5.7 changelog
+
+CHANGES/FIXES
+
+- node.js is the preferred Javascript engine on Mac OS X and will be used if it is installed.
+  JavaScriptCore does not handle non-ASCII text correctly and you should install node.js
+  if possible.
+
+- If you imported BaseLinter.JSC_PATH, please change your linter to use the self.jsc_path()
+  method instead. JSC_PATH should no longer be considered public.

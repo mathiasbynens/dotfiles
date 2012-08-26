@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_same(${1:expected}, ${0:actual})]]></content>
+    <tabTrigger>ass</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_same(..)</description>
+</snippet>

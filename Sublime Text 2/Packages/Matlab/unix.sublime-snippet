@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[[${1:s},${2:w}] = unix('${3:Unix commands}');]]></content>
+    <tabTrigger>uni</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>unix</description>
+</snippet>

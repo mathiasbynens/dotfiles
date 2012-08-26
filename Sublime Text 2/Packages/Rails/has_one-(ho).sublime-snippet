@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[has_one :${1:object}${2:, :class_name => "${3:${1/[[:alpha:]]+|(_)/(?1::\u$0)/g}}", :foreign_key => "${4:${1}_id}"}]]></content>
+    <tabTrigger>ho</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>has_one</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[runAfter(${1:delay}) {
+	$0
+}]]></content>
+    <tabTrigger>runa</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>runAfter() { … }</description>
+</snippet>

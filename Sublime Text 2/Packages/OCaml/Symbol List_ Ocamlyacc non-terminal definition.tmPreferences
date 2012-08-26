@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Ocamlyacc non-terminal definition</string>
+	<key>scope</key>
+	<string>entity.name.function.non-terminal.ocamlyacc</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>1</integer>
+		<key>symbolTransformation</key>
+		<string>s/^/non-terminal: /</string>
+	</dict>
+	<key>uuid</key>
+	<string>2169BE86-FF3F-42AD-A396-82905FBF336A</string>
+</dict>
+</plist>

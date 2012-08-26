@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_match(/${1:expected_pattern}/, ${0:actual_string})]]></content>
+    <tabTrigger>asm</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_match(..)</description>
+</snippet>

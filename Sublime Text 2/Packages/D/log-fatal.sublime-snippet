@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[log.fatal("$1");]]></content>
+    <tabTrigger>logf</tabTrigger>
+    <scope>source.d</scope>
+    <description>log.fatal(…)</description>
+</snippet>

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+ Version: MPL 1.1/GPL 2.0/LGPL 2.1
+ 
+ The contents of this file are subject to the Mozilla Public License
+ Version 1.1 (the "License"); you may not use this file except in
+ compliance with the License. You may obtain a copy of the License at
+ http://www.mozilla.org/MPL/
+ 
+ Software distributed under the License is distributed on an "AS IS"
+ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ License for the specific language governing rights and limitations
+ under the License.
+ 
+ The Original Code is Komodo code.
+ 
+ The Initial Developer of the Original Code is ActiveState Software Inc.
+ Portions created by ActiveState Software Inc are Copyright (C) 2000-2007
+ ActiveState Software Inc. All Rights Reserved.
+ 
+ Contributor(s):
+   ActiveState Software Inc
+ 
+ Alternatively, the contents of this file may be used under the terms of
+ either the GNU General Public License Version 2 or later (the "GPL"), or
+ the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+ in which case the provisions of the GPL or the LGPL are applicable instead
+ of those above. If you wish to allow use of your version of this file only
+ under the terms of either the GPL or the LGPL, and not to allow others to
+ use your version of this file under the terms of the MPL, indicate your
+ decision by deleting the provisions above and replace them with the notice
+ and other provisions required by the GPL or the LGPL. If you do not delete
+ the provisions above, a recipient may use your version of this file under
+ the terms of any one of the MPL, the GPL or the LGPL.
+ 
+ ***** END LICENSE BLOCK ***** -->
+
+<codeintel description="JavaScript framework for web development" name="Prototype" version="2.0">
+  <file lang="JavaScript" path="prototype">
+    <scope ilk="blob" lang="JavaScript" name="prototype">
+      <scope doc="The $() function is a handy shortcut to the all-too-frequent&#xA;document.getElementById() function of the DOM. Like the DOM&#xA;function, this one returns the element that has the id&#xA;passed as an argument." ilk="function" name="$" returns="Element" signature="$(elementId [, ...]) --&gt; Element">
+        <variable citdl="String" ilk="argument" name="elementId" />
+      </scope>
+      <scope doc="The $F() function is a another welcome shortcut. It returns&#xA;the value of any field input control, like text boxes or&#xA;drop-down lists." ilk="function" name="$F" returns="String" signature="$F(element/elementId]) --&gt; String">
+        <variable citdl="Element" ilk="argument" name="element" />
+      </scope>
+      <scope doc="The $A() function converts the single argument it receives&#xA;into an Array object." ilk="function" name="$A" returns="Array" signature="$A(obj) --&gt; Array">
+        <variable citdl="Object" ilk="argument" name="obj" />
+      </scope>
+      <scope doc="The $H() function converts objects into enumerable Hash&#xA;objects that resemble associative arrays." ilk="function" name="$H" returns="Hash" signature="$H(obj) --&gt; Hash">
+        <variable citdl="Object" ilk="argument" name="obj" />
+      </scope>
+      <scope doc="The $R() function is simply a short hand to writing new&#xA;ObjectRange(lowerBound, upperBound, excludeBounds)." ilk="function" name="$R" returns="ObjectRange" signature="$R(lowerBound, upperBound, excludeBounds) --&gt; ObjectRange">
+        <variable citdl="Number" ilk="argument" name="lowerBound" />
+        <variable citdl="Number" ilk="argument" name="upperBound" />
+        <variable citdl="Boolean" ilk="argument" name="excludeBounds" />
+      </scope>
+      <variable citdl="Object" name="Try">
+        <scope doc="The Try.these() function makes it easy when you want to,&#xA;ahem, try different function calls until one of them works.&#xA;It takes a number of functions as arguments and calls them&#xA;one by one, in sequence, until one of them works, returning&#xA;the result of that successful function call." ilk="function" name="these" signature="these(func1, [, ...])">
+          <variable citdl="Function" ilk="argument" name="func1" />
+        </scope>
+      </variable>
+      <variable name="Object">
+        <scope doc="Provides a way to implement inheritance by copying all&#xA;properties and methods from source to destination." ilk="function" name="extend" signature="extend(destination, source)" />
+        <scope doc="Returns a human-readable string representation of targetObj.&#xA;It defaults to the return value of toString if the given&#xA;object does not define an inspect instance method." ilk="function" name="inspect" signature="inspect(targetObj)" />
+      </variable>
+      <variable name="Number">
+        <scope doc="Returns the hexadecimal representation of the number. Useful&#xA;when converting the RGB components of a color into its HTML&#xA;representation." ilk="function" name="toColorPart" signature="toColorPart()" />
+        <scope doc="Returns the next number. This function is used in scenarios&#xA;that involve iteration." ilk="function" name="succ" signature="succ()" />
+        <scope doc="Calls the iterator function repeatedly passing the current&#xA;index in the index argument." ilk="function" name="times" signature="times(iterator)" />
+      </variable>
+      <variable name="Function">
+        <scope doc="Returns an instance of the function pre-bound to the&#xA;function(=method) owner object. The returned function will&#xA;have the same arguments as the original one." ilk="function" name="bind" signature="bind(object)" />
+        <scope doc="Returns an instance of the function pre-bound to the&#xA;function(=method) owner object.The returned function will&#xA;have the current event object as its argument." ilk="function" name="bindAsEventListener" signature="bindAsEventListener(object)" />
+      </variable>
+      <variable name="String">
+        <scope doc="Returns the string with any HTML or XML tags removed" ilk="function" name="stripTags" signature="stripTags()" />
+        <scope doc="Returns the string with any &amp;lt;script /&amp;gt; blocks removed" ilk="function" name="stripScripts" signature="stripScripts()" />
+        <scope doc="Returns the string with any HTML markup characters properly&#xA;escaped" ilk="function" name="escapeHTML" signature="escapeHTML()" />
+        <scope doc="The reverse of escapeHTML()" ilk="function" name="unescapeHTML" signature="unescapeHTML()" />
+        <scope doc="Returns an Array object containing all the &amp;lt;script /&amp;gt;&#xA;blocks found in the string." ilk="function" name="extractScripts" signature="extractScripts()" />
+        <scope doc="Evaluates each &amp;lt;script /&amp;gt; block found in the string." ilk="function" name="evalScripts" signature="evalScripts()" />
+        <scope doc="Splits a querystring into an associative Array indexed by&#xA;parameter name (more like a hash)." ilk="function" name="toQueryParams" signature="toQueryParams()" />
+        <scope doc="Same as toQueryParams()." ilk="function" name="parseQuery" signature="parseQuery()" />
+        <scope doc="Splits the string into an Array of its characters." ilk="function" name="toArray" signature="toArray()" />
+        <scope doc="Converts a hyphen-delimited-string into a camelCaseString.&#xA;This function is useful when writing code that deals with&#xA;style properties, for example." ilk="function" name="camelize" signature="camelize()" />
+      </variable>
+      <variable name="Array">
+        <scope doc="Empties the array and returns itself." ilk="function" name="clear" signature="clear()" />
+        <scope doc="Returns the array without the elements that are null or&#xA;undefined." ilk="function" name="compact" signature="compact()" />
+        <scope doc="Returns the first element of the array." ilk="function" name="first" signature="first()" />
+        <scope doc="Returns a flat, one-dimensional version of the array. This&#xA;flattening happens by finding each of the array&apos;s elements&#xA;that are also arrays and including their elements in the&#xA;returned array, recursively." ilk="function" name="flatten" signature="flatten()" />
+        <scope doc="Returns the zero-based position of the given value if it is&#xA;found in the array. Returns -1 if value is not found." ilk="function" name="indexOf" signature="indexOf(value)" />
+        <scope doc="Overriden to return a nicely formatted string representation&#xA;of the array with its elements." ilk="function" name="inspect" signature="inspect()" />
+        <scope doc="Returns the last element of the array." ilk="function" name="last" signature="last()" />
+        <scope doc="Returns the array in reverse sequence. If no argument is&#xA;given or if the argument is true the array itself will also&#xA;be reversed." ilk="function" name="reverse" signature="reverse([applyToSelf])" />
+        <scope doc="Returns the first element and removes it from the array,&#xA;reducing the array&apos;s length by 1." ilk="function" name="shift" signature="shift()" />
+        <scope doc="Returns the array excluding the elements that are included&#xA;in the list of arguments." ilk="function" name="without" signature="without(value1 [, value2 [, .. valueN]])" />
+      </variable>
+      <variable name="document">
+        <scope doc="Returns all the elements that are associated with the given&#xA;CSS class name. If no parentElement id given, the entire&#xA;document body will be searched." ilk="function" name="getElementsByClassName" signature="getElementsByClassName(className [, parentElement])" />
+      </variable>
+      <variable name="Event">
+        <variable citdl="Number" doc="8: Constant. Code for the Backspace key." name="KEY_BACKSPACE" />
+        <variable citdl="Number" doc="9: Constant. Code for the Tab key." name="KEY_TAB" />
+        <variable citdl="Number" doc="13: Constant. Code for the Return key." name="KEY_RETURN" />
+        <variable citdl="Number" doc="27: Constant. Code for the Esc key." name="KEY_ESC" />
+        <variable citdl="Number" doc="37: Constant. Code for the Left arrow key." name="KEY_LEFT" />
+        <variable citdl="Number" doc="38: Constant. Code for the Up arrow key." name="KEY_UP" />
+        <variable citdl="Number" doc="39: Constant. Code for the Right arrow key." name="KEY_RIGHT" />
+        <variable citdl="Number" doc="40: Constant. Code for the Down arrow key." name="KEY_DOWN" />
+        <variable citdl="Number" doc="46: Constant. Code for the Delete key." name="KEY_DELETE" />
+        <variable citdl="Array" doc="List of cached observers. Part of the internal&#xA;implementation details of the object." name="observers:" />
+        <scope doc="Returns element that originated the event." ilk="function" name="element" signature="element(event)" />
+        <scope doc="Returns true if the left mouse button was clicked." ilk="function" name="isLeftClick" signature="isLeftClick(event)" />
+        <scope doc="Returns the x coordinate of the mouse pointer on the page." ilk="function" name="pointerX" signature="pointerX(event)" />
+        <scope doc="Returns the y coordinate of the mouse pointer on the page." ilk="function" name="pointerY" signature="pointerY(event)" />
+        <scope doc="Use this function to abort the default behavior of an event&#xA;and to suspend its propagation." ilk="function" name="stop" signature="stop(event)" />
+        <scope doc="Traverses the DOM tree upwards, searching for the first&#xA;element with the given tag name, starting from the element&#xA;that originated the event." ilk="function" name="findElement" signature="findElement(event, tagName)" />
+        <scope doc="Adds an event handler function to an event." ilk="function" name="observe" signature="observe(element, name, observer, useCapture)" />
+        <scope doc="Removes an event handler from the event." ilk="function" name="stopObserving" signature="stopObserving(element, name, observer, useCapture)" />
+        <scope doc="Private method, do not worry about it." ilk="function" name="_observeAndCache" signature="_observeAndCache(element, name, observer, useCapture)" />
+        <scope doc="Private method, do not worry about it. Clears all cached&#xA;observers from memory." ilk="function" name="unloadCache" signature="unloadCache()" />
+      </variable>
+      <variable name="PeriodicalExecuter">
+        <scope attributes="__ctor__" doc="Creates one instance of this object that will call the&#xA;function repeatedly." ilk="function" name="PeriodicalExecuter" signature="PeriodicalExecuter(callback, interval)" />
+        <variable citdl="Function" doc="The function to be called. No parameters will be passed to&#xA;it." name="callback" />
+        <variable citdl="Number" doc="This is actually the interval in seconds" name="frequency" />
+        <variable citdl="Boolean" doc="Indicates if the function call is in progress" name="currentlyExecuting" />
+      </variable>
+      <variable name="Prototype">
+        <variable citdl="String" doc="The version of the library" name="Version" />
+        <variable citdl="Function" doc="An empty function object" name="emptyFunction" />
+        <variable citdl="Function" doc="A function object that just echoes back the given parameter." name="K" />
+        <variable citdl="String" doc="A regular expression to identify scripts" name="ScriptFragment" />
+      </variable>
+      <variable name="Enumerable">
+        <scope doc="Calls the given iterator function passing each element in&#xA;the list in the first argument and the index of the element&#xA;in the second argument" ilk="function" name="each" signature="each(iterator)" />
+        <scope doc="This function is a way to test the entire collection of&#xA;values using a given function. all will return false if the&#xA;iterator function returns false or null for any of the&#xA;elements." ilk="function" name="all" signature="all([iterator])" />
+        <scope doc="This function is a way to test the entire collection of&#xA;values using a given function. any will return true if the&#xA;iterator function does not return false or null for any of&#xA;the elements." ilk="function" name="any" signature="any(iterator)" />
+        <scope doc="Calls the iterator function for each element in the&#xA;collection and returns each result in an Array, one result&#xA;element for each element in the collection, in the same&#xA;sequence." ilk="function" name="collect" signature="collect(iterator)" />
+        <scope doc="Calls the iterator function for each element in the&#xA;collection and returns the first element that caused the&#xA;iterator function to return true (or, more precisely, not-&#xA;false.) If no element returns true, then detect returns&#xA;null." ilk="function" name="detect" signature="detect(iterator)" />
+        <scope doc="Same as toArray()." ilk="function" name="entries" signature="entries()" />
+        <scope doc="Same as detect()." ilk="function" name="find" signature="find(iterator)" />
+        <scope doc="Calls the iterator function for each element in the&#xA;collection and returns an Array with all the elements that&#xA;caused the iterator function to return a value that resolves&#xA;to true. This function is the opposite of reject()." ilk="function" name="findAll" signature="findAll(iterator)" />
+        <scope doc="Tests the string value of each element in the collection&#xA;against the pattern regular expression . The function will&#xA;return an Array containing all the elements that matched the&#xA;regular expression." ilk="function" name="grep" signature="grep(pattern [, iterator])" />
+        <scope doc="Tries to find the given object in the collection. Returns&#xA;true if the object is found, false otherwise." ilk="function" name="include" signature="include(obj)" />
+        <scope doc="Combines all the elements of the collection using the&#xA;iterator function. The iterator is called passing the result&#xA;of the previous iteration in the accumulator argument." ilk="function" name="inject" signature="inject(initialValue, iterator)" />
+        <scope doc="Calls the method specified by methodName in each element of&#xA;the collection, passing any given arguments (arg1 to argN),&#xA;and returns the results in an Array object." ilk="function" name="invoke" signature="invoke(methodName [, arg1 [, arg2 [...]]])" />
+        <scope doc="Same as collect()." ilk="function" name="map" signature="map(iterator)" />
+        <scope doc="Returns the element with the greatest value in the&#xA;collection or the greatest result of calling the iterator&#xA;for each element in the collection, if an iterator is given." ilk="function" name="max" signature="max([iterator])" />
+        <scope doc="Same as include()." ilk="function" name="member" signature="member(obj)" />
+        <scope doc="Returns the element with the lowest value in the collection&#xA;or the lowest result of calling the iterator for each&#xA;element in the collection, if an iterator is given." ilk="function" name="min" signature="min([iterator])" />
+        <scope doc="Returns an Array containing two other arrays. The first&#xA;array will contain all the elements that caused the iterator&#xA;function to return true and the second array will contain&#xA;the remaining elements." ilk="function" name="partition" signature="partition([iterator])" />
+        <scope doc="Retrieves the value to the property specified by&#xA;propertyName in each element of the collection and returns&#xA;the results in an Array object." ilk="function" name="pluck" signature="pluck(propertyName)" />
+        <scope doc="Calls the iterator function for each element in the&#xA;collection and returns an Array with all the elements that&#xA;caused the iterator function to return a value that resolves&#xA;to false. This function is the opposite of findAll()." ilk="function" name="reject" signature="reject(iterator)" />
+        <scope doc="Same as findAll()." ilk="function" name="select" signature="select(iterator)" />
+        <scope doc="Returns an Array with all the elements sorted according to&#xA;the result the iterator function call." ilk="function" name="sortBy" signature="sortBy(iterator)" />
+        <scope doc="Returns an Array with all the elements of the collection." ilk="function" name="toArray" signature="toArray()" />
+        <scope doc="Merges each given collection with the current collection.&#xA;The merge operation returns a new array with the same number&#xA;of elements as the current collection and each element is an&#xA;array (let&apos;s call them sub-arrays) of the elements with the&#xA;same index from each of the merged collections." ilk="function" name="zip" signature="zip(collection1[, collection2 [, ... collectionN [,transform]]])" />
+      </variable>
+      <variable name="Hash">
+        <scope doc="Returns an Array with the keys of all items." ilk="function" name="keys" signature="keys()" />
+        <scope doc="Returns an Array with the values of all items." ilk="function" name="values" signature="values()" />
+        <scope doc="Combines the hash with the other hash passed in and returns&#xA;the new resulting hash." ilk="function" name="merge" signature="merge(otherHash)" />
+        <scope doc="Returns all the items of the hash in a string formatted like&#xA;a query string, e.g." ilk="function" name="toQueryString" signature="toQueryString()" />
+        <scope doc="Overriden to return a nicely formatted string representation&#xA;of the hash with its key:value pairs." ilk="function" name="inspect" signature="inspect()" />
+      </variable>
+      <scope ilk="class" name="ObjectRange">
+        <variable doc="The lower bound of the range" name="start" />
+        <variable doc="The upper bound of the range" name="end" />
+        <variable citdl="Boolean" doc="Determines if the boundaries themselves are part of the&#xA;range." name="exclusive" />
+        <scope attributes="__ctor__" doc="Creates one range object, spanning from start to end. It is&#xA;important to note that start and end have to be objects of&#xA;the same type and they must have a succ() method." ilk="function" name="ObjectRange" signature="ObjectRange(start, end, exclusive)" />
+        <scope doc="Checks if the given value is part of the range. Returns true&#xA;or false." ilk="function" name="include" signature="include(searchedValue)" />
+      </scope>
+      <variable name="Class">
+        <scope doc="Defines a constructor for a new class" ilk="function" name="create" signature="create(*)" />
+      </variable>
+      <variable name="Ajax">
+        <variable citdl="Number" doc="The number of AJAX requests in progress." name="activeRequestCount" />
+        <scope doc="Returns a new XMLHttpRequest object" ilk="function" name="getTransport" signature="getTransport()" />
+        <variable name="Responders">
+          <variable citdl="Array" doc="The list of objects registered for AJAX events&#xA;notifications." name="responders" />
+          <scope doc="The object passed in the responderToAdd argument should&#xA;contain methods named like the AJAX events (e.g. onCreate,&#xA;onComplete, onException, etc.) When the corresponding event&#xA;occurs all the registered objects that contain a method with&#xA;the appropriate name will have that method called." ilk="function" name="register" signature="register(responderToAdd)" />
+          <scope doc="The object passed in the responderToRemove argument will be&#xA;removed from the list of registered objects." ilk="function" name="unregister" signature="unregister(responderToRemove)" />
+          <scope doc="Runs through the list of registered objects looking for the&#xA;ones that have the method determined in the callback&#xA;argument. Then each of these methods is called passing the&#xA;other 3 arguments." ilk="function" name="dispatch" signature="dispatch(callback, request, transport, json)" />
+        </variable>
+        <scope ilk="class" name="Base">
+          <scope doc="Sets the desired options for the AJAX operation" ilk="function" name="setOptions" signature="setOptions(options)" />
+          <scope doc="Returns true if the AJAX operation succeeded, false&#xA;otherwise" ilk="function" name="responseIsSuccess" signature="responseIsSuccess()" />
+          <scope doc="The opposite of responseIsSuccess()." ilk="function" name="responseIsFailure" signature="responseIsFailure()" />
+        </scope>
+        <scope ilk="class" name="Request">
+          <variable citdl="Array" doc="List of possible events/statuses reported during an AJAX&#xA;operation." name="Events" />
+          <variable citdl="XMLHttpRequest" doc="The XMLHttpRequest object that carries the AJAX operation" name="transport" />
+          <variable citdl="String" doc="The URL targeted by the request." name="url" />
+          <scope attributes="__ctor__" doc="Creates one instance of this object that will call the given&#xA;url using the given options. The onCreate event will be&#xA;raised during the constructor call." ilk="function" name="Request" signature="Request(url, options)" />
+          <scope doc="This method is typically not called externally. It is called&#xA;internally to evaluate the content of an eventual X-JSON&#xA;HTTP header present in the AJAX response." ilk="function" name="evalJSON" signature="evalJSON()" />
+          <scope doc="This method is typically not called externally. If the AJAX&#xA;response has a Content-type header of text/javascript then&#xA;the response body will be evaluated and this method will be&#xA;used." ilk="function" name="evalResponse" signature="evalResponse()" />
+          <scope doc="Retrieves the contents of any HTTP header of the AJAX&#xA;response. Call this only after the AJAX call is completed." ilk="function" name="header" signature="header(name)" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the object itself when the AJAX call status changes." ilk="function" name="onStateChange" signature="onStateChange()" />
+          <scope doc="This method is typically not called externally. It is&#xA;already called during the constructor call." ilk="function" name="request" signature="request(url)" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the object itself when the AJAX call status changes." ilk="function" name="respondToReadyState" signature="respondToReadyState(readyState)" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the object itself to assemble the HTTP header that will&#xA;be sent during the HTTP request." ilk="function" name="setRequestHeaders" signature="setRequestHeaders()" />
+        </scope>
+        <scope ilk="class" name="Updater">
+          <variable citdl="Object" doc="This object contains two properties: containers.success will&#xA;be used when the AJAX call succeeds, and containers.failure&#xA;will be used otherwise." name="containers" />
+          <scope attributes="__ctor__" doc="Creates one instance of this object that will call the given&#xA;url using the given options." ilk="function" name="Updater" signature="Updater(container, url, options)" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the object itself when the response is received." ilk="function" name="updateContent" signature="updateContent()" />
+        </scope>
+        <scope ilk="class" name="PeriodicalUpdater">
+          <variable citdl="Object" doc="This value will be passed straight to the Ajax.Updater&apos;s&#xA;constructor." name="container" />
+          <variable citdl="String" doc="This value will be passed straight to the Ajax.Updater&apos;s&#xA;constructor." name="url" />
+          <variable citdl="Number" doc="Interval (not frequency) between refreshes, in seconds.&#xA;Defaults to 2 seconds." name="frequency" />
+          <variable citdl="Number" doc="Keeps the current decay level applied when re-executing the&#xA;task" name="decay" />
+          <variable citdl="Ajax.Updater" doc="The most recently used Ajax.Updater object" name="updater" />
+          <variable citdl="Object" doc="The JavaScript timer being used to notify the object when it&#xA;is time for the next refresh." name="timer" />
+          <scope attributes="__ctor__" doc="Creates one instance of this object that will call the given&#xA;url using the given options." ilk="function" name="PeriodicalUpdater" signature="PeriodicalUpdater(container, url, options)" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the object itself to start performing its periodical&#xA;tasks." ilk="function" name="start" signature="start()" />
+          <scope doc="Causes the object to stop performing its periodical tasks." ilk="function" name="stop" signature="stop()" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the currently used Ajax.Updater after it completes the&#xA;request." ilk="function" name="updateComplete" signature="updateComplete()" />
+          <scope doc="This method is typically not called externally. It is called&#xA;internally when it is time for the next update." ilk="function" name="onTimerEvent" signature="onTimerEvent()" />
+        </scope>
+      </variable>
+      <variable name="options">
+        <variable citdl="String" doc="Method of the HTTP request" name="method" />
+        <variable citdl="String" doc="The url-formatted list of values passed to the request" name="parameters" />
+        <variable citdl="Boolean" doc="Indicates if the AJAX call will be made asynchronously" name="asynchronous" />
+        <variable citdl="String" doc="Content passed to in the request&apos;s body in case of a HTTP&#xA;POST" name="postBody" />
+        <variable citdl="Array" doc="List of HTTP headers to be passed with the request. This&#xA;list must have an even number of items, any odd item is the&#xA;name of a custom header, and the following even item is the&#xA;string value of that header." name="requestHeaders" />
+        <variable citdl="Function" doc="Custom function to be called when the respective&#xA;event/status is reached during the AJAX call. Example var&#xA;myOpts = {onComplete: showResponse, onLoaded:&#xA;registerLoaded};." name="onXXXXXXXX" />
+        <variable citdl="Function" doc="Custom function to be called when the AJAX call completes&#xA;successfully. The function used will receive one argument,&#xA;containing the XMLHttpRequest object that is carrying the&#xA;AJAX operation and another argument containing the evaluated&#xA;X-JSON response HTTP header." name="onSuccess" />
+        <variable citdl="Function" doc="Custom function to be called when the AJAX call completes&#xA;with error. The function used will receive one argument,&#xA;containing the XMLHttpRequest object that is carrying the&#xA;AJAX operation and another argument containing the evaluated&#xA;X-JSON response HTTP header." name="onFailure" />
+        <variable citdl="Function" doc="Custom function to be called when an exceptional condition&#xA;happens on the client side of the AJAX call, like an invalid&#xA;response or invalid arguments. The function used will&#xA;receive two arguments, containing the Ajax.Request object&#xA;that wraps the AJAX operation and the exception object." name="onException" />
+        <variable citdl="an Insertion class" doc="A class that will determine how the new content will be&#xA;inserted. It can be Insertion.Before, Insertion.Top,&#xA;Insertion.Bottom, or Insertion.After." name="insertion" />
+        <variable citdl="Boolean" doc="Determines if script blocks will be evaluated when the&#xA;response arrives. Applies only to Ajax.Updater objects." name="evalScripts" />
+        <variable citdl="Number" doc="Determines the progressive slowdown in a&#xA;Ajax.PeriodicalUpdater object refresh rate when the received&#xA;response is the same as the last one. For example, if you&#xA;use 2, after one of the refreshes produces the same result&#xA;as the previous one, the object will wait twice as much time&#xA;for the next refresh." name="decay" />
+        <variable citdl="Number" doc="Interval (not frequency) between refreshes, in seconds.&#xA;Applies only to Ajax.PeriodicalUpdater objects." name="frequency" />
+      </variable>
+      <variable name="Element">
+        <scope doc="Adds the given class name to the element&apos;s class names." ilk="function" name="addClassName" signature="addClassName(element, className)" />
+        <scope doc="Returns an Element.ClassNames object representing the CSS&#xA;class names associated with the given element." ilk="function" name="classNames" signature="classNames(element)" />
+        <scope doc="Removes any white space text node children of the element" ilk="function" name="cleanWhitespace" signature="cleanWhitespace(element)" />
+        <scope doc="Returns a Boolean value indicating if the element tag is&#xA;empty (or has only whitespaces)" ilk="function" name="empty" signature="empty(element)" />
+        <scope doc="Returns the dimensions of the element. The returned value is&#xA;an object with two properties: height and width." ilk="function" name="getDimensions" signature="getDimensions(element)" />
+        <scope doc="Returns the offsetHeight of the element" ilk="function" name="getHeight" signature="getHeight(element)" />
+        <scope doc="Returns the value of the CSS property in the given element&#xA;or null if not present." ilk="function" name="getStyle" signature="getStyle(element, cssProperty)" />
+        <scope doc="Returns true if the element has the given class name as one&#xA;of its class names." ilk="function" name="hasClassName" signature="hasClassName(element, className)" />
+        <scope doc="Hides each element by setting its style.display to &apos;none&apos;." ilk="function" name="hide" signature="hide(elem1 [, elem2 [, elem3 [...]]])" />
+        <scope doc="" ilk="function" name="makeClipping" signature="makeClipping(element)" />
+        <scope doc="Changes the element&apos;s style.position to &apos;relative&apos;" ilk="function" name="makePositioned" signature="makePositioned(element)" />
+        <scope doc="Removes the element from the document." ilk="function" name="remove" signature="remove(element)" />
+        <scope doc="Removes the given class name from the element&apos;s class names." ilk="function" name="removeClassName" signature="removeClassName(element, className)" />
+        <scope doc="Scrolls the window to the element position." ilk="function" name="scrollTo" signature="scrollTo(element)" />
+        <scope doc="Sets the value of the CSS properties in the given element,&#xA;according to the values in the cssPropertyHash argument." ilk="function" name="setStyle" signature="setStyle(element, cssPropertyHash)" />
+        <scope doc="Shows each element by resetting its style.display to &apos;&apos;." ilk="function" name="show" signature="show(elem1 [, elem2 [, elem3 [...]]])" />
+        <scope doc="Toggles the visibility of each passed element." ilk="function" name="toggle" signature="toggle(elem1 [, elem2 [, elem3 [...]]])" />
+        <scope doc="" ilk="function" name="undoClipping" signature="undoClipping(element)" />
+        <scope doc="Clears the element&apos;s style.position to &apos;&apos;" ilk="function" name="undoPositioned" signature="undoPositioned(element)" />
+        <scope doc="Replaces the inner html of the element with the given html&#xA;argument. If the given html contains &amp;lt;script&amp;gt; blocks&#xA;they will not be included but they will be evaluated." ilk="function" name="update" signature="update(element, html)" />
+        <scope doc="Returns a Boolean value indicating if the element is&#xA;visible." ilk="function" name="visible" signature="visible(element)" />
+        <scope ilk="class" name="ClassNames">
+          <scope attributes="__ctor__" doc="Creates an Element.ClassNames object representing the CSS&#xA;class names of the given element." ilk="function" name="ClassNames" signature="ClassNames(element)" />
+          <scope doc="Includes the given CSS class name in the list of class names&#xA;associated with the element." ilk="function" name="add" signature="add(className)" />
+          <scope doc="Removes the given CSS class name from the list of class&#xA;names associated with the element." ilk="function" name="remove" signature="remove(className)" />
+          <scope doc="Associates the element with the given CSS class name,&#xA;removing any other class names from the element." ilk="function" name="set" signature="set(className)" />
+        </scope>
+      </variable>
+      <variable name="Abstract">
+        <scope ilk="class" name="Insertion">
+          <scope attributes="__ctor__" doc="Creates an object that will help with dynamic content&#xA;insertion." ilk="function" name="Insertion" signature="Insertion(element, content)" />
+          <scope doc="" ilk="function" name="contentFromAnonymousTable" signature="contentFromAnonymousTable()" />
+          <variable citdl="String" doc="Parameter that specifies where the content will be placed&#xA;relative to the given element. The possible values are:&#xA;&apos;beforeBegin&apos;, &apos;afterBegin&apos;, &apos;beforeEnd&apos;, and &apos;afterEnd&apos;." name="adjacency" />
+          <variable citdl="Object" doc="The element object that the insertion will be made relative&#xA;to." name="element" />
+          <variable citdl="String" doc="The HTML that will be inserted." name="content" />
+        </scope>
+        <scope ilk="class" name="TimedObserver">
+          <scope attributes="__ctor__" doc="Creates an object that will monitor the element." ilk="function" name="TimedObserver" signature="TimedObserver(element, frequency, callback)" />
+          <scope doc="Derived classes have to implement this method to determine&#xA;what is the current value being monitored in the element." ilk="function" name="getValue" signature="getValue()" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the object itself to start monitoring the element." ilk="function" name="registerCallback" signature="registerCallback()" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the object itself periodically to check the element." ilk="function" name="onTimerEvent" signature="onTimerEvent()" />
+          <variable citdl="Object" doc="The element object that is being monitored." name="element" />
+          <variable citdl="Number" doc="This is actually the interval in seconds between checks." name="frequency" />
+          <variable citdl="Function" doc="The function to be called whenever the element changes. It&#xA;will receive the element object and the new value." name="callback" />
+          <variable citdl="String" doc="The last value verified in the element." name="lastValue" />
+        </scope>
+        <scope ilk="class" name="EventObserver">
+          <scope attributes="__ctor__" doc="Creates an object that will monitor the element." ilk="function" name="EventObserver" signature="EventObserver(element, callback)" />
+          <scope doc="Derived classes have to implement this method to determine&#xA;what is the current value being monitored in the element." ilk="function" name="getValue" signature="getValue()" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the object to bind itself to the element&apos;s event." ilk="function" name="registerCallback" signature="registerCallback()" />
+          <scope doc="This method is typically not called externally. It is called&#xA;by the object to bind itself to the events of each data&#xA;entry element in the form." ilk="function" name="registerFormCallbacks" signature="registerFormCallbacks()" />
+          <scope doc="This method is typically not called externally. It will be&#xA;bound to the element&apos;s event." ilk="function" name="onElementEvent" signature="onElementEvent()" />
+          <variable citdl="Object" doc="The element object that is being monitored." name="element" />
+          <variable citdl="Function" doc="The function to be called whenever the element changes. It&#xA;will receive the element object and the new value." name="callback" />
+          <variable citdl="String" doc="The last value verified in the element." name="lastValue" />
+        </scope>
+      </variable>
+      <variable name="Insertion">
+        <scope ilk="class" name="Before">
+          <scope attributes="__ctor__" doc="Inherited from Abstract.Insertion. Creates an object that&#xA;will help with dynamic content insertion." ilk="function" name="Before" signature="Before(element, content)" />
+        </scope>
+        <scope ilk="class" name="Top">
+          <scope attributes="__ctor__" doc="Inherited from Abstract.Insertion. Creates an object that&#xA;will help with dynamic content insertion." ilk="function" name="Top" signature="Top(element, content)" />
+        </scope>
+        <scope ilk="class" name="Bottom">
+          <scope attributes="__ctor__" doc="Inherited from Abstract.Insertion. Creates an object that&#xA;will help with dynamic content insertion." ilk="function" name="Bottom" signature="Bottom(element, content)" />
+        </scope>
+        <scope ilk="class" name="After">
+          <scope attributes="__ctor__" doc="Inherited from Abstract.Insertion. Creates an object that&#xA;will help with dynamic content insertion." ilk="function" name="After" signature="After(element, content)" />
+        </scope>
+      </variable>
+      <variable name="Field">
+        <scope doc="Clears the value of each passed form field element." ilk="function" name="clear" signature="clear(field1 [, field2 [, field3 [...]]])" />
+        <scope doc="Returns true only if all forms fields contain non-empty&#xA;values." ilk="function" name="present" signature="present(field1 [, field2 [, field3 [...]]])" />
+        <scope doc="Moves the input focus to the given form field." ilk="function" name="focus" signature="focus(field)" />
+        <scope doc="Selects the value in fields that support text selection" ilk="function" name="select" signature="select(field)" />
+        <scope doc="Move the focus and selects the value in fields that support&#xA;text selection" ilk="function" name="activate" signature="activate(field)" />
+      </variable>
+      <variable name="Form">
+        <scope doc="Returns a url-formatted list of field names and their&#xA;values, like &apos;field1=value1&amp;field2;=value2&amp;field3;=value3&apos;" ilk="function" name="serialize" signature="serialize(form)" />
+        <scope doc="Returns the first enabled field element in the form." ilk="function" name="findFirstElement" signature="findFirstElement(form)" />
+        <scope doc="Returns an Array containing all the input fields in the&#xA;form." ilk="function" name="getElements" signature="getElements(form)" />
+        <scope doc="Returns an Array containing all the &amp;lt;input&amp;gt; elements&#xA;in the form. Optionally, the list can be filtered by the&#xA;type or name attributes of the elements." ilk="function" name="getInputs" signature="getInputs(form [, typeName [, name]])" />
+        <scope doc="Disables all the input fields in the form." ilk="function" name="disable" signature="disable(form)" />
+        <scope doc="Enables all the input fields in the form." ilk="function" name="enable" signature="enable(form)" />
+        <scope doc="Activates the first visible, enabled input field in the&#xA;form." ilk="function" name="focusFirstElement" signature="focusFirstElement(form)" />
+        <scope doc="Resets the form. The same as calling the reset() method of&#xA;the form object." ilk="function" name="reset" signature="reset(form)" />
+        <variable name="Element">
+          <scope doc="Returns the element&apos;s name=value pair, like&#xA;&apos;elementName=elementValue&apos;" ilk="function" name="serialize" signature="serialize(element)" />
+          <scope doc="Returns the value of the element." ilk="function" name="getValue" signature="getValue(element)" />
+          <variable name="Serializers">
+            <scope doc="Returns an Array with the element&apos;s name and value, like&#xA;[&apos;elementName&apos;, &apos;elementValue&apos;]" ilk="function" name="inputSelector" signature="inputSelector(element)" />
+            <scope doc="Returns an Array with the element&apos;s name and value, like&#xA;[&apos;elementName&apos;, &apos;elementValue&apos;]" ilk="function" name="textarea" signature="textarea(element)" />
+            <scope doc="Returns an Array with the element&apos;s name and all selected&#xA;options&apos; values or texts, like [&apos;elementName&apos;, &apos;selOpt1&#xA;selOpt4 selOpt9&apos;]" ilk="function" name="select" signature="select(element)" />
+          </variable>
+          <scope ilk="class" name="Observer">
+            <scope attributes="__ctor__" doc="Inherited from Abstract.TimedObserver. Creates an object&#xA;that will monitor the element&apos;s value property." ilk="function" name="Observer" signature="Observer(element, frequency, callback)" />
+            <scope doc="Returns the element&apos;s value." ilk="function" name="getValue" signature="getValue()" />
+          </scope>
+          <scope ilk="class" name="EventObserver">
+            <scope attributes="__ctor__" doc="Inherited from Abstract.EventObserver. Creates an object&#xA;that will monitor the element&apos;s value property." ilk="function" name="EventObserver" signature="EventObserver(element, callback)" />
+            <scope doc="Returns the element&apos;s value" ilk="function" name="getValue" signature="getValue()" />
+          </scope>
+        </variable>
+        <scope ilk="class" name="Observer">
+          <scope attributes="__ctor__" doc="Inherited from Abstract.TimedObserver. Creates an object&#xA;that will monitor the form for changes." ilk="function" name="Observer" signature="Observer(form, frequency, callback)" />
+          <scope doc="Returns the serialization of all form&apos;s data." ilk="function" name="getValue" signature="getValue()" />
+        </scope>
+        <scope ilk="class" name="EventObserver">
+          <scope attributes="__ctor__" doc="Inherited from Abstract.EventObserver. Creates an object&#xA;that will monitor the form for changes." ilk="function" name="EventObserver" signature="EventObserver(form, callback)" />
+          <scope doc="Returns the serialization of all form&apos;s data." ilk="function" name="getValue" signature="getValue()" />
+        </scope>
+      </variable>
+      <variable name="Position">
+        <scope doc="Adjusts the deltaX and deltaY properties to accommodate&#xA;changes in the scroll position. Remember to call this method&#xA;before any calls to withinIncludingScrolloffset after the&#xA;page scrolls." ilk="function" name="prepare" signature="prepare()" />
+        <scope doc="Returns an Array with the correct scroll offsets of the&#xA;element, including any scroll offsets that affect the&#xA;element." ilk="function" name="realOffset" signature="realOffset(element)" />
+        <scope doc="Returns an Array with the correct positioning offsets of the&#xA;element, including any offsets that are imposed by&#xA;positioned parent elements." ilk="function" name="cumulativeOffset" signature="cumulativeOffset(element)" />
+        <scope doc="Tests if the given point coordinates are inside the bounding&#xA;rectangle of the given element" ilk="function" name="within" signature="within(element, x, y)" />
+        <scope doc="&amp;nbsp;" ilk="function" name="withinIncludingScrolloffsets" signature="withinIncludingScrolloffsets(element, x, y)" />
+        <scope doc="within() needs to be called right before calling this&#xA;method. This method will return a decimal number between 0.0&#xA;and 1.0 representing the fraction of the coordinate that&#xA;overlaps on the element." ilk="function" name="overlap" signature="overlap(mode, element)" />
+        <scope doc="Resizes and repositions the target element identically to&#xA;the source element." ilk="function" name="clone" signature="clone(source, target)" />
+      </variable>
+    </scope>
+  </file>
+</codeintel>

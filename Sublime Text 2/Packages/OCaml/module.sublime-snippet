@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[module ${1:Name} = struct
+	$0
+end]]></content>
+    <tabTrigger>module</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>module</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[length(${1:x})]]></content>
+    <tabTrigger>len</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Length</description>
+</snippet>

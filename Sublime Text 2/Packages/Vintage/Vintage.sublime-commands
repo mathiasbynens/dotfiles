@@ -1,0 +1,20 @@
+[
+    {
+        "caption": ":w - Save",
+        "command": "save"
+    },
+    {
+        "caption": ":e - Revert",
+        "command": "revert"
+    },
+    {
+        "caption": ":0 - BOF",
+        "command": "move_to",
+        "args": {"to": "bof"}
+    },
+    {
+        "caption": ":$ - EOF",
+        "command": "move_to",
+        "args": {"to": "eof"}
+    }
+]

@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[${1:page}~\pageref{$2}$0
+]]></content>
+    <tabTrigger>page</tabTrigger>
+    <scope>text.tex.latex</scope>
+    <description>Page</description>
+</snippet>

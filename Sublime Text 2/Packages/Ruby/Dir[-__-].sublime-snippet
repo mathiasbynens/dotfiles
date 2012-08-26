@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[Dir[${1:"${2:glob/**/*.rb}"}]]]></content>
+    <tabTrigger>Dir</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>Dir[".."]</description>
+</snippet>

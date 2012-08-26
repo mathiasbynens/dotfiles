@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[if ARGV.$1
+	abort "Usage:  #{\$PROGRAM_NAME} ${2:ARGS_GO_HERE}"
+end]]></content>
+    <tabTrigger>usai</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>usage_if()</description>
+</snippet>

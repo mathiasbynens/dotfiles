@@ -1,0 +1,16 @@
+{
+	// Don't change settings here or they'll be overwritten.
+	// Use Packages/User/Preferences.sublime-settings instead.
+
+	// Enables/disables standard Vi key bindings including the Ctrl modifier
+	// that may override some platform-specific conventions.
+	// On OS X, this value is overridden in the platform specific settings, so
+	// you'll need to place this line in your user settings to override it.
+	"vintage_ctrl_keys": false,
+
+	// Always propagate copied text to the system clipboard.
+	"vintage_use_clipboard": false,
+
+	// Whether to enter command mode when opening a file.
+	"vintage_start_in_command_mode": false
+}

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[require '${1:file}';$0]]></content>
+    <tabTrigger>req</tabTrigger>
+    <scope>source.php</scope>
+    <description>require …</description>
+</snippet>

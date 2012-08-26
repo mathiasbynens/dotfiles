@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[`[[ $TM_LINE_INDEX != 0 ]] && echo; echo`=begin rdoc
+	$0
+=end]]></content>
+    <tabTrigger>=b</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>New Block</description>
+</snippet>

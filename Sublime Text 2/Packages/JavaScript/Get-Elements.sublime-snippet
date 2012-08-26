@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[getElement${1/(T)|.*/(?1:s)/}By${1:T}${1/(T)|(I)|.*/(?1:agName)(?2:d)/}('$2')]]></content>
+    <tabTrigger>get</tabTrigger>
+    <scope>source.js</scope>
+    <description>Get Elements</description>
+</snippet>

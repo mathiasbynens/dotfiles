@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[${TM_RAILS_TEMPLATE_START_RUBY_EXPR}error_messages_for :${1:model}${TM_RAILS_TEMPLATE_END_RUBY_EXPR}
+
+${TM_RAILS_TEMPLATE_START_RUBY_INLINE}form_for @${2:$1} do |f|${TM_RAILS_TEMPLATE_END_RUBY_INLINE}
+  $0
+${TM_RAILS_TEMPLATE_END_RUBY_BLOCK}]]></content>
+    <tabTrigger>ffe</tabTrigger>
+    <scope>text.html.ruby, text.haml</scope>
+    <description>form_for with errors</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[ARGF.each_line$1 do |${2:line}|
+	$0
+end]]></content>
+    <tabTrigger>unif</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>unix_filter { .. }</description>
+</snippet>

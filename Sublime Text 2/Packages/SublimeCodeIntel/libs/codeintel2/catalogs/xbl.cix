@@ -1,0 +1,14 @@
+<codeintel description="XBL JavaScript support - version 1.0" name="XBL" version="2.0">
+  <file lang="JavaScript" path="xbl">
+    <scope ilk="blob" lang="JavaScript" name="xbl" src="xbl">
+      <variable citdl="Object" name="document">
+        <scope ilk="function" name="addBinding" signature="addBinding(in Element elt, in DOMString bindingURL)" returns="Element" doc="Attaches the specified binding (and any bindings that the binding inherits from)&#10;to an element. This call is not necessarily synchronous. The binding may not be&#10;attached yet when the call completes.&#10;(NOT IMPLEMENTED by Mozilla)" />
+        <scope ilk="function" name="getAnonymousElementByAttribute" signature="getAnonymousElementByAttribute(in Element elt, in DOMString attrName, in DOMString attrValue)" returns="Element" doc="Retrieves an anonymous decendant with a specified attribute value. Typically&#10;used with an (arbitrary) anonid attribute to retrieve a specific anonymous child&#10;in an XBL binding." />
+        <scope ilk="function" name="getAnonymousNodes" signature="getAnonymousNodes(in Element elt)" returns="NodeList" doc="Returns the list of anonymous children for the specified element." />
+        <scope ilk="function" name="getBindingParent" signature="getBindingParent(in Node node)" returns="Element" doc="Used to obtain the bound element with the binding attached that is&#10;responsible for the generation of the specified anonymous node.&#10;This method enables an author to determine the scope of any content node.&#10;When content at the document-level scope is passed in as an argument,&#10;the property's value is null." />
+        <scope ilk="function" name="loadBindingDocument" signature="loadBindingDocument(in DOMString documentURL)" returns="Element" doc="Used to synchronously obtain the specified binding document for&#10;use within a particular document (the one on which the&#10;loadBindingDocument method was invoked). The binding document can&#10;then be modified programmatically using the DOM. Any subsequent bindings&#10;that are attached to elements within the document will be constructed&#10;from the modified binding document." />
+        <scope ilk="function" name="removeBinding" signature="removeBinding(in Element elt, in DOMString bindingURL)" returns="Element" doc="Detaches the specified binding (and any bindings that&#10;the binding inherits from explicitly using the extends attribute)&#10;from the element. See here for more information.&#10;(NOT IMPLEMENTED by Mozilla)" />
+      </variable>
+    </scope>
+  </file>
+</codeintel>

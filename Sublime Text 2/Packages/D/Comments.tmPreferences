@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Comments</string>
+	<key>scope</key>
+	<string>source.d</string>
+	<key>settings</key>
+	<dict>
+		<key>shellVariables</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_START</string>
+				<key>value</key>
+				<string>/*</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_END</string>
+				<key>value</key>
+				<string>*/</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_MODE</string>
+				<key>value</key>
+				<string>block</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_DISABLE_INDENT</string>
+				<key>value</key>
+				<string>yes</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_START_2</string>
+				<key>value</key>
+				<string>//</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_START_3</string>
+				<key>value</key>
+				<string>/+</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_END_3</string>
+				<key>value</key>
+				<string>+/</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_MODE_3</string>
+				<key>value</key>
+				<string>block</string>
+			</dict>
+		</array>
+	</dict>
+	<key>uuid</key>
+	<string>4A7C08E3-CF6E-47AC-B5C4-F177BC6F2653</string>
+</dict>
+</plist>

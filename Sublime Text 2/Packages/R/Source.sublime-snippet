@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[source(${1:"${2:}"}${3:, chdir = ${4:TRUE}})]]></content>
+    <tabTrigger>sou</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Source</description>
+</snippet>

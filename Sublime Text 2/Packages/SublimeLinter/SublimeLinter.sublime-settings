@@ -1,0 +1,215 @@
+/*
+    SublimeLinter default settings
+*/
+{
+    /*
+        Sets the mode in which SublimeLinter runs:
+
+        true - Linting occurs in the background as you type (the default).
+        false - Linting only occurs when you initiate it.
+        "load-save" - Linting occurs only when a file is loaded and saved.
+        "save-only" - Linting occurs only when a file is saved.
+    */
+    "sublimelinter": true,
+
+    /*
+        Maps language names (which should be all lowercase) to executables
+        for non-built in linters. If the executable is not in the default system path,
+        or on posix systems is not in /usr/local/bin or ~/bin, then you must specify
+        the full path to the executable. Note that paths in Windows must use double
+        backslashes, for example "C:\\Program Files (x86)\\nodejs\\node.exe".
+
+        Please note that the map _keys_ do not always match the name of the
+        executable, but rather the language syntax for the executable to lint.
+
+        This is the effective default map; your mappings may override these.
+
+        "sublimelinter_executable_map":
+        {
+            "perl": "perl",
+            "php": "php",
+            "ruby": "ruby"
+        },
+    */
+    "sublimelinter_executable_map":
+    {
+    },
+
+    /*
+        Maps syntax names to linters. This allows variations on a syntax
+        (for example "Python (Django)") to be linted. The key is
+        the base filename of the .tmLanguage syntax file, and the value
+        is the linter name (lowercase) the syntax maps to.
+    */
+    "sublimelinter_syntax_map":
+    {
+        "Python Django": "python",
+        "Ruby on Rails": "ruby"
+    },
+
+    // An array of linter names to disable. Names should be lowercase.
+    "sublimelinter_disable":
+    [
+    ],
+
+    /*
+        The minimum delay in seconds (fractional seconds are okay) before
+        a linter is run when the "sublimelinter" setting is true. This allows
+        you to have background linting active, but defer the actual linting
+        until you are idle. When this value is greater than the built in linting delay,
+        errors are erased when the file is modified, since the assumption is
+        you don't want to see errors while you type.
+    */
+    "sublimelinter_delay": 0,
+
+    /*
+        Selects the way the lines with errors or warnings are marked; "outline"
+        (default) draws outline boxes around the lines, "fill" fills the lines
+        with the outline color, and "none" disables all outline styles
+        (useful if "sublimelinter_gutter_marks" is set).
+    */
+    "sublimelinter_mark_style": "outline",
+
+    /*
+        If true, lines with errors or warnings will be filled in with the
+        outline color.
+
+        This setting is DEPRECATED and will be ignored in future
+        versions. Use "sublimelinter_mark_style" instead. For backwards
+        compatibility reasons, this setting overrides "sublimelinter_mark_style"
+        if that one is set to "outline", but has no effect if it's set to "none".
+    */
+    "sublimelinter_fill_outlines": false,
+
+    // If true, lines with errors or warnings will have a gutter mark.
+    "sublimelinter_gutter_marks": false,
+
+    // If true, the find next/previous error commands will wrap.
+    "sublimelinter_wrap_find": true,
+
+    // If true, when the file is saved any errors will appear in a popup list
+    "sublimelinter_popup_errors_on_save": false,
+
+    // Javascript linter: "gjslint" to use the closure javascript linter (if available),
+    // or either "jshint" or "jslint" to use a built in linter.
+    "javascript_linter": "jshint",
+
+    // jshint: options for linting JavaScript. See http://www.jshint.com/options/ for more info.
+    // By deault, eval is allowed.
+    "jshint_options":
+    {
+        "indent": 1,
+        "evil": true,
+        "regexdash": true,
+        "browser": true,
+        "wsh": true,
+        "trailing": true,
+        "sub": true
+    },
+
+    // A list of command line options to send to gjslint. --nobeep is always sent.
+    "gjslint_options":
+    [
+    ],
+
+    // A list of gjslint error numbers to ignore. The list of error codes is here:
+    // http://closure-linter.googlecode.com/svn/trunk/closure_linter/errors.py
+    "gjslint_ignore":
+    [
+        110  // line too long
+    ],
+
+    // CSSLint options:
+    // Each rule can have three values: error|warning|true|false
+    // false => rule is disabled.
+    // true => alias to 'error'
+    // All rules are enabled by default.
+    // Currently the only difference between warnings and errors is in the prefix of the message in the Sublime status bar.
+    "csslint_options":
+    {
+        "adjoining-classes": "warning",
+        "box-model": true,
+        "box-sizing": "warning",
+        "compatible-vendor-prefixes": "warning",
+        "display-property-grouping": true,
+        "duplicate-background-images": "warning",
+        "duplicate-properties": true,
+        "empty-rules": true,
+        "errors": true,
+        "fallback-colors": "warning",
+        "floats": "warning",
+        "font-faces": "warning",
+        "font-sizes": "warning",
+        "gradients": "warning",
+        "ids": "warning",
+        "import": "warning",
+        "important": "warning",
+        "known-properties": true,
+        "outline-none": "warning",
+        "overqualified-elements": "warning",
+        "qualified-headings": "warning",
+        "regex-selectors": "warning",
+        "rules-count": "warning",
+        "shorthand": "warning",
+        "star-property-hack": "warning",
+        "text-indent": "warning",
+        "underscore-property-hack": "warning",
+        "unique-headings": "warning",
+        "universal-selector": "warning",
+        "vendor-prefix": true,
+        "zero-units": "warning"
+    },
+
+    // Set this to false to turn pep8 checking off completely
+    "pep8": true,
+
+    /*
+        A list of pep8 error numbers to ignore. By default "line too long" errors are ignored.
+        The list of error codes is in this file: https://github.com/jcrocholl/pep8/blob/master/pep8.py.
+        Search for "Ennn:", where nnn is a 3-digit number.
+    */
+    "pep8_ignore":
+    [
+        "E501"
+    ],
+
+    /*
+        If you use SublimeLinter for pyflakes checks, you can ignore some of the "undefined name xxx"
+        errors (comes in handy if you work with post-processors, globals/builtins available only at runtime, etc.).
+        You can control what names will be ignored with the user setting "pyflakes_ignore".
+
+        Example:
+
+        "pyflakes_ignore":
+            [
+                "some_custom_builtin_o_mine",
+                "A_GLOBAL_CONSTANT"
+            ],
+    */
+    "pyflakes_ignore":
+    [
+    ],
+
+    /*
+        Ordinarily pyflakes will issue a warning when 'from foo import *' is used,
+        but it is ignored since the warning is not that helpful. If you want to see this warning,
+        set this option to false.
+    */
+    "pyflakes_ignore_import_*": true,
+
+    /*
+        Perl linter: "perl" to use the Perl language syntax check, or "perlcritic" to use Perl::Critic linting.
+        Perl is now set to use "perlcritic" by default due to a vulnerability with blindly running `perl -c`
+        on files with `BEGIN` or `CHECK` blocks.
+    */
+    "perl_linter": "perlcritic",
+
+    // Objective-J: if true, non-ascii characters are flagged as an error.
+    "sublimelinter_objj_check_ascii": false,
+
+    // Set to true to highlight annotations
+    "sublimelinter_notes": false,
+
+    // The set of annotation phrases to highlight
+    "annotations": ["TODO", "README", "FIXME"]
+}

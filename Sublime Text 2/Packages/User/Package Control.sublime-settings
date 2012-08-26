@@ -1,0 +1,11 @@
+{
+	"auto_upgrade_last_run": 1345971505,
+	"installed_packages":
+	[
+		"Package Control",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"Theme - Aqua",
+		"Theme - Soda"
+	]
+}

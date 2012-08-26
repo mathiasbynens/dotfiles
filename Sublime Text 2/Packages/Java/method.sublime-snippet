@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[${1:void} ${2:method}($3) ${4:throws $5 }{
+	$0
+}
+]]></content>
+    <tabTrigger>m</tabTrigger>
+    <scope>source.java</scope>
+    <description>method</description>
+</snippet>

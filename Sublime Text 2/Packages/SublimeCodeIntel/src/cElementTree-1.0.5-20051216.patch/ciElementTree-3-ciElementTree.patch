@@ -1,0 +1,171 @@
+diff
+
+Change ext name to ciElementTree for our codeintel-specific mods to allow
+co-habitation with a pure(r) cElementTree.
+
+--- ciElementTree/setup.py.original	2006-09-27 14:08:47.000000000 -0700
++++ ciElementTree/setup.py	2006-09-27 14:09:09.000000000 -0700
+@@ -13,9 +13,9 @@
+ # --------------------------------------------------------------------
+ # identification
+ 
+-NAME = "cElementTree"
++NAME = "ciElementTree"
+ VERSION = "1.0.5-20051216"
+-DESCRIPTION = "A fast C implementation of the ElementTree API."
++DESCRIPTION = "A fast C implementation of the ElementTree API. (Subverted for codeintel.)"
+ AUTHOR = "Fredrik Lundh", "fredrik@pythonware.com"
+ HOMEPAGE = "http://www.effbot.org/zone/celementtree.htm"
+ DOWNLOAD = "http://effbot.org/downloads#celementtree"
+@@ -63,7 +63,7 @@
+ 
+ ext_modules.append(
+     Extension(
+-        "cElementTree", ["cElementTree.c"] + sources,
++        "ciElementTree", ["cElementTree.c"] + sources,
+         define_macros=defines,
+         include_dirs=includes,
+         )
+--- ciElementTree/cElementTree.c.original	2006-09-27 14:09:59.000000000 -0700
++++ ciElementTree/cElementTree.c	2006-09-27 14:12:26.000000000 -0700
+@@ -2798,7 +2798,7 @@
+ };
+ 
+ DL_EXPORT(void)
+-initcElementTree(void)
++initciElementTree(void)
+ {
+     PyObject* m;
+     PyObject* g;
+@@ -2813,7 +2813,7 @@
+     XMLParser_Type.ob_type = &PyType_Type;
+ #endif
+ 
+-    m = Py_InitModule("cElementTree", _functions);
++    m = Py_InitModule("ciElementTree", _functions);
+ 
+     /* python glue code */
+ 
+@@ -2836,19 +2836,19 @@
+         "ET = ElementTree\n"
+         "del ElementTree\n"
+ 
+-        "import cElementTree\n"
++        "import ciElementTree\n"
+ 
+         "try:\n" /* check if copy works as is */
+-        "  copy(cElementTree.Element('x'))\n"
++        "  copy(ciElementTree.Element('x'))\n"
+         "except:\n"
+         "  def copyelement(elem):\n"
+         "    return elem\n"
+ 
+         "def Comment(text=None):\n" /* public */
+-        "  element = cElementTree.Element(ET.Comment)\n"
++        "  element = ciElementTree.Element(ET.Comment)\n"
+         "  element.text = text\n"
+         "  return element\n"
+-        "cElementTree.Comment = Comment\n"
++        "ciElementTree.Comment = Comment\n"
+ 
+         "class ElementTree(ET.ElementTree):\n" /* public */
+         "  def parse(self, source, parser=None):\n"
+@@ -2862,10 +2862,10 @@
+         "        parser.feed(data)\n"
+         "      self._root = parser.close()\n"
+         "    else:\n" 
+-        "      parser = cElementTree.XMLParser()\n"
++        "      parser = ciElementTree.XMLParser()\n"
+         "      self._root = parser._parse(source)\n"
+         "    return self._root\n"
+-        "cElementTree.ElementTree = ElementTree\n"
++        "ciElementTree.ElementTree = ElementTree\n"
+ 
+         "def getiterator(node, tag=None):\n" /* helper */
+         "  if tag == '*':\n"
+@@ -2889,11 +2889,11 @@
+         "  tree = ElementTree()\n"
+         "  tree.parse(source, parser)\n"
+         "  return tree\n"
+-        "cElementTree.parse = parse\n"
++        "ciElementTree.parse = parse\n"
+ 
+ #if (PY_VERSION_HEX < 0x02020000)
+         "if hasattr(ET, 'iterparse'):\n"
+-        "    cElementTree.iterparse = ET.iterparse\n" /* delegate on 2.1 */
++        "    ciElementTree.iterparse = ET.iterparse\n" /* delegate on 2.1 */
+ #else
+         "class iterparse(object):\n"
+         " root = None\n"
+@@ -2904,8 +2904,8 @@
+         "  self._events = events\n"
+         " def __iter__(self):\n" 
+         "  events = []\n"
+-        "  b = cElementTree.TreeBuilder()\n"
+-        "  p = cElementTree.XMLParser(b)\n"
++        "  b = ciElementTree.TreeBuilder()\n"
++        "  p = ciElementTree.XMLParser(b)\n"
+         "  p._setevents(events, self._events)\n"
+         "  while 1:\n"
+         "    data = self._file.read(16384)\n"
+@@ -2919,26 +2919,26 @@
+         "  for event in events:\n"
+         "    yield event\n"
+         "  self.root = root\n"
+-        "cElementTree.iterparse = iterparse\n"
++        "ciElementTree.iterparse = iterparse\n"
+ #endif
+ 
+         "def PI(target, text=None):\n" /* public */
+-        "  element = cElementTree.Element(ET.ProcessingInstruction)\n"
++        "  element = ciElementTree.Element(ET.ProcessingInstruction)\n"
+         "  element.text = target\n"
+         "  if text:\n"
+         "    element.text = element.text + ' ' + text\n"
+         "  return element\n"
+ 
+-        "  elem = cElementTree.Element(ET.PI)\n"
++        "  elem = ciElementTree.Element(ET.PI)\n"
+         "  elem.text = text\n"
+         "  return elem\n"
+-        "cElementTree.PI = cElementTree.ProcessingInstruction = PI\n"
++        "ciElementTree.PI = ciElementTree.ProcessingInstruction = PI\n"
+ 
+         "def XML(text):\n" /* public */
+-        "  parser = cElementTree.XMLParser()\n"
++        "  parser = ciElementTree.XMLParser()\n"
+         "  parser.feed(text)\n"
+         "  return parser.close()\n"
+-        "cElementTree.XML = cElementTree.fromstring = XML\n"
++        "ciElementTree.XML = ciElementTree.fromstring = XML\n"
+ 
+         "def XMLID(text):\n" /* public */
+         "  tree = XML(text)\n"
+@@ -2948,17 +2948,17 @@
+         "    if id:\n"
+         "      ids[id] = elem\n"
+         "  return tree, ids\n"
+-        "cElementTree.XMLID = XMLID\n"
++        "ciElementTree.XMLID = XMLID\n"
+ 
+-        "cElementTree.dump = ET.dump\n"
+-        "cElementTree.ElementPath = ElementPath = ET.ElementPath\n"
+-        "cElementTree.iselement = ET.iselement\n"
+-        "cElementTree.QName = ET.QName\n"
+-        "cElementTree.tostring = ET.tostring\n"
+-        "cElementTree.VERSION = '" VERSION "'\n"
+-        "cElementTree.__version__ = '" VERSION "'\n"
+-        "cElementTree.XMLParserError = SyntaxError\n"
+-        "cElementTree._patched_for_komodo_ = True\n"
++        "ciElementTree.dump = ET.dump\n"
++        "ciElementTree.ElementPath = ElementPath = ET.ElementPath\n"
++        "ciElementTree.iselement = ET.iselement\n"
++        "ciElementTree.QName = ET.QName\n"
++        "ciElementTree.tostring = ET.tostring\n"
++        "ciElementTree.VERSION = '" VERSION "'\n"
++        "ciElementTree.__version__ = '" VERSION "'\n"
++        "ciElementTree.XMLParserError = SyntaxError\n"
++        "ciElementTree._patched_for_komodo_ = True\n"
+ 
+        );
+ 

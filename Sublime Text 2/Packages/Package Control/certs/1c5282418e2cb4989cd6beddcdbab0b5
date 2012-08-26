@@ -1,0 +1,113 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            0a:5f:11:4d:03:5b:17:91:17:d2:ef:d4:03:8c:3f:3b
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert High Assurance EV Root CA
+        Validity
+            Not Before: Apr  2 12:00:00 2008 GMT
+            Not After : Apr  3 00:00:00 2022 GMT
+        Subject: C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert High Assurance CA-3
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:bf:61:0a:29:10:1f:5e:fe:34:37:51:08:f8:1e:
+                    fb:22:ed:61:be:0b:0d:70:4c:50:63:26:75:15:b9:
+                    41:88:97:b6:f0:a0:15:bb:08:60:e0:42:e8:05:29:
+                    10:87:36:8a:28:65:a8:ef:31:07:74:6d:36:97:2f:
+                    28:46:66:04:c7:2a:79:26:7a:99:d5:8e:c3:6d:4f:
+                    a0:5e:ad:bc:3d:91:c2:59:7b:5e:36:6c:c0:53:cf:
+                    00:08:32:3e:10:64:58:10:13:69:c7:0c:ee:9c:42:
+                    51:00:f9:05:44:ee:24:ce:7a:1f:ed:8c:11:bd:12:
+                    a8:f3:15:f4:1c:7a:31:69:01:1b:a7:e6:5d:c0:9a:
+                    6c:7e:09:9e:e7:52:44:4a:10:3a:23:e4:9b:b6:03:
+                    af:a8:9c:b4:5b:9f:d4:4b:ad:92:8c:ce:b5:11:2a:
+                    aa:37:18:8d:b4:c2:b8:d8:5c:06:8c:f8:ff:23:bd:
+                    35:5e:d4:7c:3e:7e:83:0e:91:96:05:98:c3:b2:1f:
+                    e3:c8:65:eb:a9:7b:5d:a0:2c:cc:fc:3c:d9:6d:ed:
+                    cc:fa:4b:43:8c:c9:d4:b8:a5:61:1c:b2:40:b6:28:
+                    12:df:b9:f8:5f:fe:d3:b2:c9:ef:3d:b4:1e:4b:7c:
+                    1c:4c:99:36:9e:3d:eb:ec:a7:68:5e:1d:df:67:6e:
+                    5e:fb
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Certificate Sign, CRL Sign
+            X509v3 Certificate Policies:
+                Policy: 2.16.840.1.114412.1.3.0.2
+                  CPS: http://www.digicert.com/ssl-cps-repository.htm
+                  User Notice:
+                    Explicit Text:
+
+            X509v3 Basic Constraints: critical
+                CA:TRUE, pathlen:0
+            Authority Information Access:
+                OCSP - URI:http://ocsp.digicert.com
+
+            X509v3 CRL Distribution Points:
+
+                Full Name:
+                  URI:http://crl3.digicert.com/DigiCertHighAssuranceEVRootCA.crl
+
+                Full Name:
+                  URI:http://crl4.digicert.com/DigiCertHighAssuranceEVRootCA.crl
+
+            X509v3 Authority Key Identifier:
+                keyid:B1:3E:C3:69:03:F8:BF:47:01:D4:98:26:1A:08:02:EF:63:64:2B:C3
+
+            X509v3 Subject Key Identifier:
+                50:EA:73:89:DB:29:FB:10:8F:9E:E5:01:20:D4:DE:79:99:48:83:F7
+    Signature Algorithm: sha1WithRSAEncryption
+         1e:e2:a5:48:9e:6c:db:53:38:0f:ef:a6:1a:2a:ac:e2:03:43:
+         ed:9a:bc:3e:8e:75:1b:f0:fd:2e:22:59:ac:13:c0:61:e2:e7:
+         fa:e9:99:cd:87:09:75:54:28:bf:46:60:dc:be:51:2c:92:f3:
+         1b:91:7c:31:08:70:e2:37:b9:c1:5b:a8:bd:a3:0b:00:fb:1a:
+         15:fd:03:ad:58:6a:c5:c7:24:99:48:47:46:31:1e:92:ef:b4:
+         5f:4e:34:c7:90:bf:31:c1:f8:b1:84:86:d0:9c:01:aa:df:8a:
+         56:06:ce:3a:e9:0e:ae:97:74:5d:d7:71:9a:42:74:5f:de:8d:
+         43:7c:de:e9:55:ed:69:00:cb:05:e0:7a:61:61:33:d1:19:4d:
+         f9:08:ee:a0:39:c5:25:35:b7:2b:c4:0f:b2:dd:f1:a5:b7:0e:
+         24:c4:26:28:8d:79:77:f5:2f:f0:57:ba:7c:07:d4:e1:fc:cd:
+         5a:30:57:7e:86:10:47:dd:31:1f:d7:fc:a2:c2:bf:30:7c:5d:
+         24:aa:e8:f9:ae:5f:6a:74:c2:ce:6b:b3:46:d8:21:be:29:d4:
+         8e:5e:15:d6:42:4a:e7:32:6f:a4:b1:6b:51:83:58:be:3f:6d:
+         c7:fb:da:03:21:cb:6a:16:19:4e:0a:f0:ad:84:ca:5d:94:b3:
+         5a:76:f7:61
+-----BEGIN CERTIFICATE-----
+MIIGWDCCBUCgAwIBAgIQCl8RTQNbF5EX0u/UA4w/OzANBgkqhkiG9w0BAQUFADBs
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
+d3cuZGlnaWNlcnQuY29tMSswKQYDVQQDEyJEaWdpQ2VydCBIaWdoIEFzc3VyYW5j
+ZSBFViBSb290IENBMB4XDTA4MDQwMjEyMDAwMFoXDTIyMDQwMzAwMDAwMFowZjEL
+MAkGA1UEBhMCVVMxFTATBgNVBAoTDERpZ2lDZXJ0IEluYzEZMBcGA1UECxMQd3d3
+LmRpZ2ljZXJ0LmNvbTElMCMGA1UEAxMcRGlnaUNlcnQgSGlnaCBBc3N1cmFuY2Ug
+Q0EtMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAL9hCikQH17+NDdR
+CPge+yLtYb4LDXBMUGMmdRW5QYiXtvCgFbsIYOBC6AUpEIc2iihlqO8xB3RtNpcv
+KEZmBMcqeSZ6mdWOw21PoF6tvD2Rwll7XjZswFPPAAgyPhBkWBATaccM7pxCUQD5
+BUTuJM56H+2MEb0SqPMV9Bx6MWkBG6fmXcCabH4JnudSREoQOiPkm7YDr6ictFuf
+1EutkozOtREqqjcYjbTCuNhcBoz4/yO9NV7UfD5+gw6RlgWYw7If48hl66l7XaAs
+zPw82W3tzPpLQ4zJ1LilYRyyQLYoEt+5+F/+07LJ7z20Hkt8HEyZNp496+ynaF4d
+32duXvsCAwEAAaOCAvowggL2MA4GA1UdDwEB/wQEAwIBhjCCAcYGA1UdIASCAb0w
+ggG5MIIBtQYLYIZIAYb9bAEDAAIwggGkMDoGCCsGAQUFBwIBFi5odHRwOi8vd3d3
+LmRpZ2ljZXJ0LmNvbS9zc2wtY3BzLXJlcG9zaXRvcnkuaHRtMIIBZAYIKwYBBQUH
+AgIwggFWHoIBUgBBAG4AeQAgAHUAcwBlACAAbwBmACAAdABoAGkAcwAgAEMAZQBy
+AHQAaQBmAGkAYwBhAHQAZQAgAGMAbwBuAHMAdABpAHQAdQB0AGUAcwAgAGEAYwBj
+AGUAcAB0AGEAbgBjAGUAIABvAGYAIAB0AGgAZQAgAEQAaQBnAGkAQwBlAHIAdAAg
+AEMAUAAvAEMAUABTACAAYQBuAGQAIAB0AGgAZQAgAFIAZQBsAHkAaQBuAGcAIABQ
+AGEAcgB0AHkAIABBAGcAcgBlAGUAbQBlAG4AdAAgAHcAaABpAGMAaAAgAGwAaQBt
+AGkAdAAgAGwAaQBhAGIAaQBsAGkAdAB5ACAAYQBuAGQAIABhAHIAZQAgAGkAbgBj
+AG8AcgBwAG8AcgBhAHQAZQBkACAAaABlAHIAZQBpAG4AIABiAHkAIAByAGUAZgBl
+AHIAZQBuAGMAZQAuMBIGA1UdEwEB/wQIMAYBAf8CAQAwNAYIKwYBBQUHAQEEKDAm
+MCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wgY8GA1UdHwSB
+hzCBhDBAoD6gPIY6aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0SGln
+aEFzc3VyYW5jZUVWUm9vdENBLmNybDBAoD6gPIY6aHR0cDovL2NybDQuZGlnaWNl
+cnQuY29tL0RpZ2lDZXJ0SGlnaEFzc3VyYW5jZUVWUm9vdENBLmNybDAfBgNVHSME
+GDAWgBSxPsNpA/i/RwHUmCYaCALvY2QrwzAdBgNVHQ4EFgQUUOpzidsp+xCPnuUB
+INTeeZlIg/cwDQYJKoZIhvcNAQEFBQADggEBAB7ipUiebNtTOA/vphoqrOIDQ+2a
+vD6OdRvw/S4iWawTwGHi5/rpmc2HCXVUKL9GYNy+USyS8xuRfDEIcOI3ucFbqL2j
+CwD7GhX9A61YasXHJJlIR0YxHpLvtF9ONMeQvzHB+LGEhtCcAarfilYGzjrpDq6X
+dF3XcZpCdF/ejUN83ulV7WkAywXgemFhM9EZTfkI7qA5xSU1tyvED7Ld8aW3DiTE
+JiiNeXf1L/BXunwH1OH8zVowV36GEEfdMR/X/KLCvzB8XSSq6PmuX2p0ws5rs0bY
+Ib4p1I5eFdZCSucyb6Sxa1GDWL4/bcf72gMhy2oWGU4K8K2Eyl2Us1p292E=
+-----END CERTIFICATE-----

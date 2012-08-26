@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[disp(sprintf('${1:%s}\\n'${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/});]]></content>
+    <tabTrigger>dsp</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>disp sprintf</description>
+</snippet>

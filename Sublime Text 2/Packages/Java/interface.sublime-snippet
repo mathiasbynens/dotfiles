@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[interface ${1:${TM_FILENAME/(.*?)(\..+)/$1/}} ${2:extends ${3:Parent} }{
+	$0
+}]]></content>
+    <tabTrigger>in</tabTrigger>
+    <scope>source.java</scope>
+    <description>interface</description>
+</snippet>

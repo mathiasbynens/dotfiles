@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[${1:${TM_FILENAME/(?:\A|_)([A-Za-z0-9]+)(?:\.rb)?/(?2::\u$1)/g}} = Struct.new(:${2:attr_names}) do
+	def ${3:method_name}
+		$0
+	end
+	
+	
+end]]></content>
+    <tabTrigger>cla</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>ClassName = Struct .. do .. end</description>
+</snippet>

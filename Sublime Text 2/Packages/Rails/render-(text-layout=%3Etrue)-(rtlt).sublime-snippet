@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[render :text => "${1:text to render...}", :layout => ${2:true}]]></content>
+    <tabTrigger>rtlt</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (text, layout =&gt; true)</description>
+</snippet>

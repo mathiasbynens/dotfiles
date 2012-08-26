@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[exp($1) $2]]></content>
+    <tabTrigger>e</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>exp</description>
+</snippet>

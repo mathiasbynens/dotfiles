@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[seq(${1:from}, ${2:to}, ${3:by})]]></content>
+    <tabTrigger>seq</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Sequence (from,to,by)</description>
+</snippet>

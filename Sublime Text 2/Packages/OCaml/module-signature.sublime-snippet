@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[module ${1:Name} : sig
+	$0
+end]]></content>
+    <tabTrigger>sig</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>module signature</description>
+</snippet>

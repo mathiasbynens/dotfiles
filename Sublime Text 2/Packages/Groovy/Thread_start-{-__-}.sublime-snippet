@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[Thread.start {
+	$0
+}]]></content>
+    <tabTrigger>thread</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>Thread.start { … }</description>
+</snippet>

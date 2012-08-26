@@ -1,0 +1,9 @@
+<snippet>
+	<description>Vector For Loop</description>
+    <content><![CDATA[for (std::vector<$1>::iterator ${3:i} = $2.begin(); $3 != $2.end(); ++$3)
+{
+	$0
+}]]></content>
+    <tabTrigger>forv</tabTrigger>
+    <scope>source.c, source.objc, source.c++, source.objc++</scope>
+</snippet>

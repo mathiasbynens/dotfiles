@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[debug {
+	$0
+}]]></content>
+    <tabTrigger>debug</tabTrigger>
+    <scope>source.d</scope>
+    <description>debug { … }</description>
+</snippet>

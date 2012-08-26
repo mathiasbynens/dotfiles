@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[# => ]]></content>
+    <tabTrigger>#</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>Add ‘# =&gt;’ Marker</description>
+</snippet>

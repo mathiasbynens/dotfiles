@@ -1,0 +1,94 @@
+diff
+
+Tailor the Element repr for codeintel blob elements.
+If a scope tag repr is "<ILK 'NAME'>", where ILK is the 'ilk' attribute value
+and NAME is the 'name' attribute value. Otherwise the repr is "<TAG 'NAME'>".
+In both cases, if there is no 'name' attribute then that part of the repr is
+skipped.
+
+
+--- ciElementTree/cElementTree.c.head	2006-09-26 21:17:44.000000000 -0700
++++ ciElementTree/cElementTree.c	2006-09-26 21:17:16.000000000 -0700
+@@ -1229,6 +1336,73 @@
+ }
+ 
+ static PyObject*
++ci_element_repr(ElementObject* self)
++{
++    PyObject* repr;
++    PyObject* attrib;
++    PyObject* name;
++    PyObject* import;
++
++    if (!self->extra)
++        element_new_extra(self, NULL);
++    attrib = element_get_attrib(self);
++    if (!attrib)
++        return NULL;
++
++    repr = PyString_FromString("<");
++    import = PyString_FromString("import");
++    if (PyObject_Compare(self->tag, import) == 0) {
++        /* import foo
++         * from foo import bar
++         * import foo as baz
++         * from foo import bar as baz
++         */
++        PyObject* module = PyDict_GetItemString(attrib, "module");
++        PyObject* symbol = PyDict_GetItemString(attrib, "symbol");
++        PyObject* alias = PyDict_GetItemString(attrib, "alias");
++        if (symbol) {
++            /* from module import symbol
++             * from module import symbol as alias
++             */
++            PyString_ConcatAndDel(&repr, PyString_FromString("from "));
++            PyString_ConcatAndDel(&repr, PyObject_Str(module));
++            PyString_ConcatAndDel(&repr, PyString_FromString(" import "));
++            PyString_ConcatAndDel(&repr, PyObject_Str(symbol));
++            if (alias) {
++                PyString_ConcatAndDel(&repr, PyString_FromString(" as "));
++                PyString_ConcatAndDel(&repr, PyObject_Str(alias));
++            }
++        } else {
++            /* import module
++             * import module as alias
++             */
++            PyString_ConcatAndDel(&repr, PyString_FromString("import "));
++            PyString_ConcatAndDel(&repr, PyObject_Str(module));
++            if (alias) {
++                PyString_ConcatAndDel(&repr, PyString_FromString(" as "));
++                PyString_ConcatAndDel(&repr, PyObject_Str(alias));
++            }
++        }
++    } else {
++        PyObject* ilk = PyDict_GetItemString(attrib, "ilk");
++        if (ilk) {
++            PyString_ConcatAndDel(&repr, PyObject_Str(ilk));
++        } else {
++            PyString_ConcatAndDel(&repr, PyObject_Str(self->tag));
++        }
++        name = PyDict_GetItemString(attrib, "name");
++        if (name != NULL) {
++           PyString_ConcatAndDel(&repr, PyString_FromString(" "));
++           PyString_ConcatAndDel(&repr, PyObject_Repr(name));
++        }
++    }
++    PyString_ConcatAndDel(&repr, PyString_FromString(">"));
++
++    Py_XDECREF(import);
++    return repr;
++}
++
++static PyObject*
+ element_set(ElementObject* self, PyObject* args)
+ {
+     PyObject* attrib;
+@@ -1488,7 +1513,7 @@
+     (getattrfunc)element_getattr, /* tp_getattr */
+     (setattrfunc)element_setattr, /* tp_setattr */
+     0, /* tp_compare */
+-    (reprfunc)element_repr, /* tp_repr */
++    (reprfunc)ci_element_repr, /* tp_repr */
+     0, /* tp_as_number */
+     &element_as_sequence, /* tp_as_sequence */
+ };

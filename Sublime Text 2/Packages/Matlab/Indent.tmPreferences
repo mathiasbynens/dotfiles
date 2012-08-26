@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Miscellaneous Matlab</string>
+	<key>scope</key>
+	<string>source.matlab</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>^\s*\b(end\w*|catch|else|elseif|case|otherwise)\b</string>
+		<key>highlightPairs</key>
+		<array>
+			<array>
+				<string>(</string>
+				<string>)</string>
+			</array>
+			<array>
+				<string>[</string>
+				<string>]</string>
+			</array>
+			<array>
+				<string>{</string>
+				<string>}</string>
+			</array>
+			<array>
+				<string>"</string>
+				<string>"</string>
+			</array>
+		</array>
+		<key>increaseIndentPattern</key>
+		<string>(?x)^\s*
+    \b(
+       function
+       |if|else|elseif
+       |switch|case|otherwise
+       |for|while
+	  |try|catch
+       |unwind_protect
+	)\b</string>
+		<key>smartTypingPairs</key>
+		<array>
+			<array>
+				<string>(</string>
+				<string>)</string>
+			</array>
+			<array>
+				<string>[</string>
+				<string>]</string>
+			</array>
+			<array>
+				<string>{</string>
+				<string>}</string>
+			</array>
+			<array>
+				<string>"</string>
+				<string>"</string>
+			</array>
+			<array>
+				<string>'</string>
+				<string>'</string>
+			</array>
+		</array>
+	</dict>
+	<key>uuid</key>
+	<string>2CD1353B-AEC7-4BBF-8061-6038D1E93FA8</string>
+</dict>
+</plist>

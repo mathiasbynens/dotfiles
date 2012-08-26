@@ -1,0 +1,9 @@
+<snippet>
+	<name>Struct</name>
+    <content><![CDATA[struct ${1:${TM_FILENAME/(.+)\..+|.*/$/:name}}
+{
+	${0:/* data */}
+};]]></content>
+    <tabTrigger>struct</tabTrigger>
+    <scope>source.c, source.objc, source.c++, source.objc++</scope>
+</snippet>

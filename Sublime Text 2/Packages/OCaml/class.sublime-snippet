@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[class ${1:name} =
+	object ${2:(self)}
+		${3:contents}
+	end]]></content>
+    <tabTrigger>class</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>class</description>
+</snippet>

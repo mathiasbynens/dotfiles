@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[assert_no_difference "${1:Model}.${2:count}" do
+  $0
+end]]></content>
+    <tabTrigger>asnd</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_no_difference</description>
+</snippet>

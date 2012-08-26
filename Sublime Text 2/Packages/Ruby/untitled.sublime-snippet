@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[opts.on( "-${1:o}", "--${2:long-option-name}"${3/^\s*$|(.*\S.*)/(?1:, )/}${3:String},
+         "${4:Option description.}" ) do |${6:opt}|
+	$0
+end]]></content>
+    <tabTrigger>opt</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>option(..)</description>
+</snippet>

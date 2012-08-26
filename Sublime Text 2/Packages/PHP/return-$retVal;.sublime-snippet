@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[return$1;$0]]></content>
+    <tabTrigger>ret</tabTrigger>
+    <scope>source.php</scope>
+    <description>return</description>
+</snippet>

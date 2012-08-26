@@ -1,0 +1,18 @@
+<snippet>
+    <content><![CDATA[package ${1:ClassName};
+
+${2:use base qw(${3:ParentClass});
+
+}sub new {
+	my \$class = shift;
+	\$class = ref \$class if ref \$class;
+	my \$self = bless {}, \$class;
+	\$self;
+}
+
+1;
+]]></content>
+    <tabTrigger>class</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Package</description>
+</snippet>

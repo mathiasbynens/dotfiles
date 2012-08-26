@@ -1,0 +1,8 @@
+[
+	{ "command": "close_by_index", "args": { "group": -1, "index": -1 }, "caption": "Close" },
+	{ "command": "close_others_by_index", "args": { "group": -1, "index": -1 }, "caption": "Close others" },
+	{ "command": "close_to_right_by_index", "args": { "group": -1, "index": -1 }, "caption": "Close tabs to the right" },
+	{ "caption": "-" },
+	{ "command": "new_file" },
+	{ "command": "prompt_open_file", "caption": "Open file" }
+]

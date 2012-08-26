@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[case '${1:variable}':
+	${0:# code...}
+	break;]]></content>
+    <tabTrigger>case</tabTrigger>
+    <scope>source.php</scope>
+    <description>case …</description>
+</snippet>

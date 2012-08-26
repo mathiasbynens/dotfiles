@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[class ${1:BlankSlate}
+	instance_methods.each { |meth| undef_method(meth) unless meth =~ /\A__/ }
+	
+	def initialize${2/(^.*?\S.*)|.*/(?1:\()/}${2:args}${2/(^.*?\S.*)|.*/(?1:\))/}
+		@${3:delegate} = ${4:delegate_object}
+		
+		$0
+	end
+	
+	def method_missing(meth, *args, &block)
+		@${3:delegate}.send(meth, *args, &block)
+	end
+	
+	
+end]]></content>
+    <tabTrigger>cla</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>class BlankSlate .. initialize .. end</description>
+</snippet>

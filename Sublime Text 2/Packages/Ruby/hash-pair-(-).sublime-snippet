@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[:${1:key} => ${2:"${3:value}"}${4:, }]]></content>
+    <tabTrigger>:</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>Hash Pair — :key =&gt; "value"</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[all {${1/(.+)/(?1: )/}${1:obj}${1/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>all</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>all { … }</description>
+</snippet>

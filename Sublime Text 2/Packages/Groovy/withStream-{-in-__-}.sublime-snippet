@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[withStream {${1/(.+)/(?1: )/}${1:stream}${1/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>with</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>withStream { … }</description>
+</snippet>

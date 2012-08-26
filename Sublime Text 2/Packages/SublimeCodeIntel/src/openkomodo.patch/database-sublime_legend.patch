@@ -1,0 +1,26 @@
+--- openkomodo/src/codeintel/lib/codeintel2/database/database.py
++++ openkomodo/src/codeintel/lib/codeintel2/database/database.py
+@@ -445,15 +445,19 @@ class Database(object):
+         self.acquire_lock()
+         try:
+             log.debug("fs-write: create db skeleton in '%s'", self.base_dir)
+-            os.makedirs(self.base_dir)
++            if not exists(self.base_dir):
++                os.makedirs(self.base_dir)
+             open(join(self.base_dir, "README.txt"), 'w').write(dedent("""
+                 This is a database for the Code Intelligence system (a
+-                subsystem of Komodo). Do NOT modify anything in here unless
+-                you know what you are doing.
++                subsystem of SublimeCodeIntel). Do NOT modify anything in here
++                unless you know what you are doing.
+ 
+-                See http://www.activestate.com/Products/Komodo/ for details.
++                See http://github.com/Kronuz/SublimeCodeIntel for details.
+             """))
+             open(join(self.base_dir, "VERSION"), 'w').write(self.VERSION)
++            config_file = join(self.base_dir, "config")
++            if not exists(config_file):
++                open(config_file, 'w').write("{}")
+             os.mkdir(join(self.base_dir, "db"))
+         finally:
+             self.release_lock()

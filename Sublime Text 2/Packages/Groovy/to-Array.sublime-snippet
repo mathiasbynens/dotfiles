@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[toArray()]]></content>
+    <tabTrigger>to</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>to Array</description>
+</snippet>

@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[t.binary :${1:title}${2:, :limit => ${3:2}.megabytes}
+t.$0]]></content>
+    <tabTrigger>t.</tabTrigger>
+    <scope>meta.rails.migration.create_table, meta.rails.migration.change_table</scope>
+    <description>t.binary (tcbi)</description>
+</snippet>

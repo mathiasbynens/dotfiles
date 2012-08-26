@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[log.warn("$1");]]></content>
+    <tabTrigger>logw</tabTrigger>
+    <scope>source.d</scope>
+    <description>log.warn(…)</description>
+</snippet>

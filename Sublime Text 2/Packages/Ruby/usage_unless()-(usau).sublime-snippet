@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[unless ARGV.$1
+	abort "Usage:  #{\$PROGRAM_NAME} ${2:ARGS_GO_HERE}"
+end]]></content>
+    <tabTrigger>usau</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>usage_unless()</description>
+</snippet>

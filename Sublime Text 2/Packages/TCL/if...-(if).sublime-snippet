@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[if {${1:condition}} {
+	${2}
+}
+]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.tcl</scope>
+    <description>if...</description>
+</snippet>

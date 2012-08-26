@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_rjs :${1:replace}, ${2:"${3:dom id}"}]]></content>
+    <tabTrigger>asrj</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>assert_rjs</description>
+</snippet>

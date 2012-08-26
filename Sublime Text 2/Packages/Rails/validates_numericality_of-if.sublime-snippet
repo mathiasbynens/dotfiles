@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[validates_numericality_of :${1:attribute}${2:, :on => :${3:create}, :message => "${4:is not a number}"}, :if => proc { |obj| ${5:obj.condition?} }}]]></content>
+    <tabTrigger>vnif</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>validates_numericality_of if</description>
+</snippet>

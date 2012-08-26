@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[import ${1:${TM_FILEPATH/.+\/([^\/]+)\/[^\/]+\.d$/\l$1/}.};]]></content>
+    <tabTrigger>im</tabTrigger>
+    <scope>source.d</scope>
+    <description>import …</description>
+</snippet>

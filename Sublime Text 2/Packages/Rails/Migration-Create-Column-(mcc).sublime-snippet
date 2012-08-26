@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[t.column ${1:title}, :${2:string}
+$0]]></content>
+    <tabTrigger>mcol</tabTrigger>
+    <scope>meta.rails.migration.create_table</scope>
+    <description>Create Column in Table</description>
+</snippet>

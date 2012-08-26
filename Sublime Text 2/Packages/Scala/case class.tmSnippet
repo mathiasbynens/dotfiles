@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>case class ${1:${TM_FILENAME/(.*)\.scala/$1/}}${2:($3)} ${4:extends ${5:Any} }{
+	$0
+}</string>
+	<key>name</key>
+	<string>case class</string>
+	<key>scope</key>
+	<string>source.scala</string>
+	<key>tabTrigger</key>
+	<string>case class</string>
+	<key>uuid</key>
+	<string>493A836C-428D-4CA5-9E29-E2C927C8B642</string>
+</dict>
+</plist>

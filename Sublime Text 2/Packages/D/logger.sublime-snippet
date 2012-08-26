@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[import tango.util.log.Log, tango.util.log.Configurator;
+
+protected static Logger log = null;
+static this() {
+	log = Log.getLogger(${1:__FILE__});${2:
+	//log.setLevel(log.Level.${3:Info});}
+}]]></content>
+    <tabTrigger>logger</tabTrigger>
+    <scope>source.d</scope>
+    <description>Logger for Module</description>
+</snippet>

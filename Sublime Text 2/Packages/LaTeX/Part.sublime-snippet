@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[\part{${1:part name}} % (fold)
+\label{prt:${2:${1/(\w+)|\W+/(?1:\L$0:_)/g}}}
+${0:$TM_SELECTED_TEXT}
+% part $2 (end)]]></content>
+    <tabTrigger>part</tabTrigger>
+    <scope>text.tex.latex</scope>
+    <description>Part</description>
+</snippet>

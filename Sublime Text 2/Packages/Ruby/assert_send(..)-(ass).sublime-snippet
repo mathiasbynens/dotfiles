@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_send([${1:object}, :${2:message}, ${0:args}])]]></content>
+    <tabTrigger>ass</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_send(..)</description>
+</snippet>

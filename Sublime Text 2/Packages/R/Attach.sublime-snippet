@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[attach(${1:frame})]]></content>
+    <tabTrigger>att</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Attach</description>
+</snippet>

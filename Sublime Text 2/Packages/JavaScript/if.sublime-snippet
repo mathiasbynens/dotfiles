@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[if (${1:true}) {${0:$TM_SELECTED_TEXT}};]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.js</scope>
+    <description>if</description>
+</snippet>

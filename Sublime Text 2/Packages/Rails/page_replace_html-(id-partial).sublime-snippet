@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[page.replace_html ${1:"${2:id}"}, :${3:partial => "${4:template}"}]]></content>
+    <tabTrigger>reph</tabTrigger>
+    <scope>source.ruby.rails.rjs</scope>
+    <description>page.replace_html (id, partial)</description>
+</snippet>

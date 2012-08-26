@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[eachFile {${1/(.+)/(?1: )/}${1:file}${1/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>eaf</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>eachFile { … }</description>
+</snippet>

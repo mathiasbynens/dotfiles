@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[throw $0]]></content>
+    <tabTrigger>th</tabTrigger>
+    <scope>source.java</scope>
+    <description>throw</description>
+</snippet>

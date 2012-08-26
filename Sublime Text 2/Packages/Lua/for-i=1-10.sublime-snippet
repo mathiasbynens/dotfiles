@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[for ${1:i}=${2:1},${3:10} do
+	${0:print(i)}
+end]]></content>
+    <tabTrigger>for</tabTrigger>
+    <scope>source.lua</scope>
+    <description>for i=1,10</description>
+</snippet>

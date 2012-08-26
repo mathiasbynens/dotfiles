@@ -1,0 +1,19 @@
+diff -r -du src/LexOthers.cxx scintilla/src/LexOthers.cxx
+--- src/LexOthers.cxx	2005-08-29 18:09:20.000000000 -0700
++++ src/LexOthers.cxx	2007-05-01 17:00:17.000000000 -0700
+@@ -1037,7 +1037,14 @@
+		if (AtEOL(styler, i) || (linePos >= sizeof(lineBuffer) - 1)) {
+			// End of line (or of line buffer) met, colourise it
+			lineBuffer[linePos] = '\0';
+-			ColouriseErrorListLine(lineBuffer, linePos, i, styler, valueSeparate);
++
++			// ACTIVESTATE
++			// Ensure that styles are split across lines --
++			// otherwise hotspots cover "too much" and blend
++			// consecutive errors into a single hotspot.
++			ColouriseErrorListLine(lineBuffer, linePos, i - 1, styler, valueSeparate);
++			styler.ColourTo(i, SCE_ERR_DEFAULT);
++
+			linePos = 0;
+		}
+	}

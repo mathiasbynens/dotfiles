@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[if ${1:condition}
+	${2:body}
+elseif ${3:condition}
+	${4:body}
+else
+	${5:body}
+end
+]]></content>
+    <tabTrigger>ifeif</tabTrigger>
+    <scope>source.matlab , source.octave</scope>
+    <description>if … elseif … end</description>
+</snippet>

@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[foreach ${1:my \$${2:x}} (@${3:array}) {
+	${4:# body...}
+}
+]]></content>
+    <tabTrigger>fore</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Loop</description>
+</snippet>

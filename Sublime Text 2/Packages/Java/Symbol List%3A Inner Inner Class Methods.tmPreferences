@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Inner Inner Class Methods</string>
+	<key>scope</key>
+	<string>source.java meta.class.body meta.class.body meta.class.body meta.method.identifier</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>1</integer>
+		<key>symbolTransformation</key>
+		<string>
+		s/\s{2,}/ /g;
+		s/.*/    $0/g;
+	</string>
+	</dict>
+	<key>uuid</key>
+	<string>FD0CE2DC-6D44-4E22-B4E5-C47C57F5B677</string>
+</dict>
+</plist>

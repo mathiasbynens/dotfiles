@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[public class ${1:${TM_FILENAME/(.*?)(\..+)/$1/}} extends ${2:TestCase} {
+	$0
+}]]></content>
+    <tabTrigger>tc</tabTrigger>
+    <scope>source.java</scope>
+    <description>test case</description>
+</snippet>

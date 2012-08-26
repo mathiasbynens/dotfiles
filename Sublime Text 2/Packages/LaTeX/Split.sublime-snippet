@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[\begin{split}
+	$0
+\end{split}]]></content>
+    <tabTrigger>spl</tabTrigger>
+    <scope>text.tex.latex</scope>
+    <description>Split</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[render :text => "${1:text to render...}"]]></content>
+    <tabTrigger>rt</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (text)</description>
+</snippet>

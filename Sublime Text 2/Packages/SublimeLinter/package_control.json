@@ -1,0 +1,20 @@
+{
+	"schema_version": "1.1",
+	"packages": [
+		{
+			"name": "SublimeLinter",
+			"description": "Inline lint highlighting for the Sublime Text 2 editor",
+			"author": "Kronuz, Aparajita Fishman, Jake Swartwood",
+			"homepage": "http://github.com/SublimeLinter/SublimeLinter",
+			"last_modified": "2012-08-02 00:19:27",
+			"platforms": {
+				"*": [
+					{
+						"version": "1.6.7",
+						"url": "https://nodeload.github.com/SublimeLinter/SublimeLinter/zipball/v1.6.7"
+					}
+				]
+			}
+		}
+	]
+}

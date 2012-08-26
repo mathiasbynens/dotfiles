@@ -1,0 +1,20 @@
+SublimeLinter 1.6.5 changelog
+
+NEW FEATURES
+
+- Added a (Ruby) Haml linter based on `haml -c`. For more information about
+  Haml, please see http://haml.info.
+
+- Added a simple Git commit message linter. This linter follows the rules as
+  defined by http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+
+CHANGES/FIXES
+
+- Updated several links to point to the SublimeLinter's new Github location.
+
+- "Ruby on Rails" syntax maps to "ruby" as part of the default settings.
+
+- Linter arguments are now consistently defined as arrays (instead of tuples).
+
+- Syntax map settings are no longer (sometimes) case-sensitive.

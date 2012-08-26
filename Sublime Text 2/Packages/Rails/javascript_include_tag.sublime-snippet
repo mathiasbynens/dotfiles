@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${TM_RAILS_TEMPLATE_START_RUBY_EXPR}javascript_include_tag ${1::all}${2:, :cache => ${3:true}}${TM_RAILS_TEMPLATE_END_RUBY_EXPR}]]></content>
+    <tabTrigger>jit</tabTrigger>
+    <scope>text.html.ruby</scope>
+    <description>javascript_include_tag</description>
+</snippet>

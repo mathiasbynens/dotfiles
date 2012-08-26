@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[when ${1:condition}
+	$0]]></content>
+    <tabTrigger>when</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>when …</description>
+</snippet>

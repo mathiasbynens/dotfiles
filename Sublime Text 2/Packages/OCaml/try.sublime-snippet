@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[try
+	$0
+with
+| _ -> failwith "Unknown"]]></content>
+    <tabTrigger>try</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>try</description>
+</snippet>

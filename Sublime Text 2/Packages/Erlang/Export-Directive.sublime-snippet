@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[-export ([${1:function}/${2:arity}]).]]></content>
+    <tabTrigger>exp</tabTrigger>
+    <scope>source.erlang</scope>
+    <description>Export Directive</description>
+</snippet>

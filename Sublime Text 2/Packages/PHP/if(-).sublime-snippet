@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[if (${1:condition}) {
+	${0:# code...}
+}]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.php</scope>
+    <description>if …</description>
+</snippet>

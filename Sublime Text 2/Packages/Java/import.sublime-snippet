@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[import ]]></content>
+    <tabTrigger>im</tabTrigger>
+    <scope>source.java</scope>
+    <description>import</description>
+</snippet>

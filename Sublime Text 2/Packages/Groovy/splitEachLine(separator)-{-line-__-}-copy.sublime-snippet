@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[splitEachLine(${1:separator}) {${2/(.+)/(?1: )/}${2:obj}${2/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>sel</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>splitEachLine(separator) { … }</description>
+</snippet>

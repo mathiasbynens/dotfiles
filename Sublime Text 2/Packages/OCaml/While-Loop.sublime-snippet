@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[while ${1:condition} do
+	$0
+done]]></content>
+    <tabTrigger>while</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>while loop</description>
+</snippet>

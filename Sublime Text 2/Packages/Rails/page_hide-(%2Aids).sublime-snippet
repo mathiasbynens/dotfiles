@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[page.hide ${1:"${2:id(s)}"}]]></content>
+    <tabTrigger>hide</tabTrigger>
+    <scope>source.ruby.rails.rjs</scope>
+    <description>page.hide (*ids)</description>
+</snippet>

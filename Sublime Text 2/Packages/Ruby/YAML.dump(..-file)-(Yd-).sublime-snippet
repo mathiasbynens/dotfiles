@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[File.open(${1:"${2:path/to/file}.yaml"}, "w") { |${3:file}| YAML.dump(${4:obj}, ${3:file}) }]]></content>
+    <tabTrigger>Yd-</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>YAML.dump(.., file)</description>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[try {
+	$2
+} catch (${1:Exception} e) {
+	$3
+} finally {
+	$0
+}]]></content>
+    <tabTrigger>tcf</tabTrigger>
+    <scope>source.d</scope>
+    <description>try … catch … finally</description>
+</snippet>

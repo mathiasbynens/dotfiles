@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[cut(${1:x}, breaks = c(${2:${3:}, ${4:max(${1:x})}}))]]></content>
+    <tabTrigger>cut</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Divide Into Intervals</description>
+</snippet>

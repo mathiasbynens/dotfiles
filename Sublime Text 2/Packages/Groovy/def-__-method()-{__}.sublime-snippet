@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[${1:def} ${2:methodName}(${3:args}) {
+	$0
+}]]></content>
+    <tabTrigger>m</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>method() { … }</description>
+</snippet>

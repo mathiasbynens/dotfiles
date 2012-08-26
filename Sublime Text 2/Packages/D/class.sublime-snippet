@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[class ${1:${TM_FILENAME/(.*?)(\..+)/$1/}} {
+	this($2) {
+		$0
+	}
+}
+]]></content>
+    <tabTrigger>class</tabTrigger>
+    <scope>source.d</scope>
+    <description>class … { … }</description>
+</snippet>

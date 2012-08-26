@@ -1,0 +1,44 @@
+--- openkomodo/src/python-sitelib/koCatalog.py	2011-02-11 10:16:11.000000000 -0600
++++ openkomodo/src/python-sitelib/koCatalog.py	2011-05-29 21:05:30.000000000 -0500
+@@ -46,7 +46,7 @@
+ 
+ from elementtree import XMLTreeBuilder
+ try:
+-    import cElementTree as ElementTree # effbot's C module
++    import ciElementTree as ElementTree # effbot's C module
+ except ImportError:
+     log.error("using element tree and not cElementTree, performace will suffer")
+     import elementtree.ElementTree as ElementTree # effbot's pure Python module
+--- openkomodo/src/python-sitelib/koRNGElementTree.py	2011-02-11 10:16:11.000000000 -0600
++++ openkomodo/src/python-sitelib/koRNGElementTree.py	2011-05-29 21:05:09.000000000 -0500
+@@ -44,7 +44,7 @@
+ 
+ from elementtree import XMLTreeBuilder
+ try:
+-    import cElementTree as ElementTree # effbot's C module
++    import ciElementTree as ElementTree # effbot's C module
+ except ImportError:
+     log.error("using element tree and not cElementTree, performace will suffer")
+     import elementtree.ElementTree as ElementTree # effbot's pure Python module
+--- openkomodo/src/python-sitelib/koXMLDatasetInfo.py	2011-05-29 16:22:05.000000000 -0500
++++ openkomodo/src/python-sitelib/koXMLDatasetInfo.py	2011-05-29 20:43:09.000000000 -0500
+@@ -367,7 +367,7 @@
+     catalogs = os.path.join(basedir, "test", "stuff", "xml")
+     getService().setCatalogs([os.path.join(catalogs, "testcat.xml")])
+ 
+-    from cElementTree import Element
++    from ciElementTree import Element
+     tree = koXMLTreeService.XMLDocument()
+     tree.root = tree.current = Element('')
+     handlerclass = get_tree_handler(tree, tree.current)
+--- openkomodo/src/python-sitelib/koXMLTreeService.py	2011-02-11 10:16:11.000000000 -0600
++++ openkomodo/src/python-sitelib/koXMLTreeService.py	2011-05-29 20:43:21.000000000 -0500
+@@ -36,7 +36,7 @@
+ 
+ import time
+ import re
+-from cElementTree import TreeBuilder, XMLParser, Element
++from ciElementTree import TreeBuilder, XMLParser, Element
+ import logging
+ log = logging.getLogger("koXMLTreeService")
+ #log.setLevel(logging.INFO)

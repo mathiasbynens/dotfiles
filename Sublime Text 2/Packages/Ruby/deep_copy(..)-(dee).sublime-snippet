@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[Marshal.load(Marshal.dump(${0:obj_to_copy}))]]></content>
+    <tabTrigger>deec</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>deep_copy(..)</description>
+</snippet>

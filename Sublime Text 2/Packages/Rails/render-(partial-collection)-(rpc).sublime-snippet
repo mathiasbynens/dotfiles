@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[render :partial => "${1:item}", :collection => ${2:@$1s}]]></content>
+    <tabTrigger>rpc</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (partial, collection)</description>
+</snippet>

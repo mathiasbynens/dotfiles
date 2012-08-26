@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[${1:map}.resource :${2:resource}${10: do |${11:$2}|
+  $0
+end}]]></content>
+    <tabTrigger>mapr</tabTrigger>
+    <scope>meta.rails.routes</scope>
+    <description>map.resource</description>
+</snippet>

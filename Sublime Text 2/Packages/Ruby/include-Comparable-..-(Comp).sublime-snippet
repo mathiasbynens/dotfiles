@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[include Comparable
+
+def <=>(other)
+	$0
+end]]></content>
+    <tabTrigger>Comp</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>include Comparable ..</description>
+</snippet>

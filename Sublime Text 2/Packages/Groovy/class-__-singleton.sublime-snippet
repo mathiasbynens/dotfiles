@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[private static ${1:${TM_FILENAME/(.*?)(\..+)/$1/}} instance
+
+static $1 getInstance(${2:args}) { 
+	if (!instance) instance = new $1(${2:args})
+	return instance
+}]]></content>
+    <tabTrigger>instance</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>instance … (Singleton)</description>
+</snippet>

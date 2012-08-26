@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[Stderr.format("${1:foo = {\}}", $2).newline;]]></content>
+    <tabTrigger>errf</tabTrigger>
+    <scope>source.d</scope>
+    <description>Stderr(format, …)</description>
+</snippet>

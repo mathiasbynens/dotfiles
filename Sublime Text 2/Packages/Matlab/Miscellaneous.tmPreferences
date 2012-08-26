@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Miscellaneous</string>
+	<key>scope</key>
+	<string>source.matlab</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>^\s*end\b</string>
+		<key>highlightPairs</key>
+		<array>
+			<array>
+				<string>(</string>
+				<string>)</string>
+			</array>
+			<array>
+				<string>[</string>
+				<string>]</string>
+			</array>
+			<array>
+				<string>{</string>
+				<string>}</string>
+			</array>
+			<array>
+				<string>"</string>
+				<string>"</string>
+			</array>
+		</array>
+		<key>increaseIndentPattern</key>
+		<string>^\s*\\begin\{.*\}</string>
+		<key>shellVariables</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_START</string>
+				<key>value</key>
+				<string>% </string>
+			</dict>
+		</array>
+		<key>smartTypingPairs</key>
+		<array>
+			<array>
+				<string>(</string>
+				<string>)</string>
+			</array>
+			<array>
+				<string>[</string>
+				<string>]</string>
+			</array>
+			<array>
+				<string>{</string>
+				<string>}</string>
+			</array>
+			<array>
+				<string>"</string>
+				<string>"</string>
+			</array>
+		</array>
+	</dict>
+	<key>uuid</key>
+	<string>E190EAB2-D99C-4DDC-90A2-0F17A014FE07</string>
+</dict>
+</plist>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[def test_${1:case_name}
+	$0
+end]]></content>
+    <tabTrigger>deft</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>def test_ .. end</description>
+</snippet>

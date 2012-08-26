@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[/**
+ * $0
+ */]]></content>
+    <tabTrigger>doc</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>Doc Block</description>
+</snippet>

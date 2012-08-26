@@ -1,0 +1,100 @@
+[
+	// Basic drag select
+	{
+		"button": "button1", "count": 1,
+		"press_command": "drag_select"
+	},
+	{
+		"button": "button1", "count": 1, "modifiers": ["ctrl"],
+		"press_command": "drag_select",
+		"press_args": {"additive": true}
+	},
+	{
+		"button": "button1", "count": 1, "modifiers": ["alt"],
+		"press_command": "drag_select",
+		"press_args": {"subtractive": true}
+	},
+
+	// Select between selection and click location
+	{
+		"button": "button1", "modifiers": ["shift"],
+		"press_command": "drag_select",
+		"press_args": {"extend": true}
+	},
+	{
+		"button": "button1", "modifiers": ["shift", "ctrl"],
+		"press_command": "drag_select",
+		"press_args": {"additive": true, "extend": true}
+	},
+	{
+		"button": "button1", "modifiers": ["shift", "alt"],
+		"press_command": "drag_select",
+		"press_args": {"subtractive": true, "extend": true}
+	},
+
+	// Drag select by words
+	{
+		"button": "button1", "count": 2,
+		"press_command": "drag_select",
+		"press_args": {"by": "words"}
+	},
+	{
+		"button": "button1", "count": 2, "modifiers": ["ctrl"],
+		"press_command": "drag_select",
+		"press_args": {"by": "words", "additive": true}
+	},
+	{
+		"button": "button1", "count": 2, "modifiers": ["alt"],
+		"press_command": "drag_select",
+		"press_args": {"by": "words", "subtractive": true}
+	},
+
+	// Drag select by lines
+	{
+		"button": "button1", "count": 3,
+		"press_command": "drag_select",
+		"press_args": {"by": "lines"}
+	},
+	{
+		"button": "button1", "count": 3, "modifiers": ["ctrl"],
+		"press_command": "drag_select",
+		"press_args": {"by": "lines", "additive": true}
+	},
+	{
+		"button": "button1", "count": 3, "modifiers": ["alt"],
+		"press_command": "drag_select",
+		"press_args": {"by": "lines", "subtractive": true}
+	},
+
+	// Column select
+	{
+		"button": "button2", "modifiers": ["shift"],
+		"press_command": "drag_select",
+		"press_args": {"by": "columns"}
+	},
+	{
+		"button": "button2", "modifiers": ["shift", "ctrl"],
+		"press_command": "drag_select",
+		"press_args": {"by": "columns", "additive": true}
+	},
+	{
+		"button": "button2", "modifiers": ["shift", "alt"],
+		"press_command": "drag_select",
+		"press_args": {"by": "columns", "subtractive": true}
+	},
+
+	// Middle click paste
+	{ "button": "button3", "command": "paste_selection_clipboard" },
+
+	// Switch files with buttons 4 and 5, as well as 8 and 9
+	{ "button": "button4", "modifiers": [], "command": "prev_view" },
+	{ "button": "button5", "modifiers": [], "command": "next_view" },
+	{ "button": "button8", "modifiers": [], "command": "prev_view" },
+	{ "button": "button9", "modifiers": [], "command": "next_view" },
+
+	// Change font size with ctrl+scroll wheel
+	{ "button": "scroll_down", "modifiers": ["ctrl"], "command": "decrease_font_size" },
+	{ "button": "scroll_up", "modifiers": ["ctrl"], "command": "increase_font_size" },
+
+	{ "button": "button2", "modifiers": [], "press_command": "context_menu" }
+]

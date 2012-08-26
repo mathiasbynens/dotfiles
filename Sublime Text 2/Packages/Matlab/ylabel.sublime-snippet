@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[set(get(gca,'YLabel'),'String',${1:'${2}'});]]></content>
+    <tabTrigger>yla</tabTrigger>
+    <scope>source.matlab , source.octave</scope>
+    <description>ylabel</description>
+</snippet>

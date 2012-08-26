@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[class ${1:${TM_FILENAME/(.*?)(\..+)/$1/}} ${2:extends ${3:Parent} }${4:implements ${5:Interface} }{
+	$0
+}]]></content>
+    <tabTrigger>cl</tabTrigger>
+    <scope>source.java</scope>
+    <description>class</description>
+</snippet>

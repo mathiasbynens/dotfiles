@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[Stdout.format("${1:foo = {\}}", $2).newline;]]></content>
+    <tabTrigger>outf</tabTrigger>
+    <scope>source.d</scope>
+    <description>Stdout(format, …)</description>
+</snippet>

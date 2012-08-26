@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[lines(${1:x}${2:, color=${3:red}})]]></content>
+    <tabTrigger>lin</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Polygonal Line</description>
+</snippet>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Comment</string>
+	<key>scope</key>
+	<string>source.clojure</string>
+	<key>settings</key>
+	<dict>
+		<key>shellVariables</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_START</string>
+				<key>value</key>
+				<string>; </string>
+			</dict>
+		</array>
+	</dict>
+	<key>uuid</key>
+	<string>40910C79-E8F5-4930-8493-EC63AC6AAF0F</string>
+</dict>
+</plist>

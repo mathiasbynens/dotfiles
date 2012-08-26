@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[as Set]]></content>
+    <tabTrigger>as</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>as Set</description>
+</snippet>

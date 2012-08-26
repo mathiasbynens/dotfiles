@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[File.join(File.dirname(__FILE__), *%w[${1:rel path here}])]]></content>
+    <tabTrigger>patfh</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>path_from_here( .. )</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[toInteger()]]></content>
+    <tabTrigger>to</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>to Integer</description>
+</snippet>

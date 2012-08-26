@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[for ${1:i} = ${2:startval} to ${3:endval} do
+	$4
+done
+$0]]></content>
+    <tabTrigger>for</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>for loop</description>
+</snippet>

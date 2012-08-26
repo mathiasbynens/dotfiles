@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[public void test${1:Name}() throws Exception {
+	$0
+}]]></content>
+    <tabTrigger>t</tabTrigger>
+    <scope>source.java</scope>
+    <description>test</description>
+</snippet>

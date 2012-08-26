@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[collect { |${1:e}| $0 }]]></content>
+    <tabTrigger>col</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>collect { |e| .. }</description>
+</snippet>

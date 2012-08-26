@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[${TM_SELECTED_TEXT/([\t ]*).*/$1/m}begin
+	${3:${TM_SELECTED_TEXT/(\A.*)|(.+)|\n\z/(?1:$0:(?2:\t$0))/g}}
+${TM_SELECTED_TEXT/([\t ]*).*/$1/m}rescue ${1:Exception}${2/.+/ => /}${2:e}
+${TM_SELECTED_TEXT/([\t ]*).*/$1/m}	$0
+${TM_SELECTED_TEXT/([\t ]*).*/$1/m}end
+]]></content>
+    <tabTrigger>begin</tabTrigger>
+    <scope>source.ruby - comment</scope>
+    <description>begin … rescue … end</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[if ($1) {
+	$0
+}]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.java</scope>
+    <description>if</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[\[
+	$TM_SELECTED_TEXT$1
+\]]]></content>
+    <tabTrigger>$$</tabTrigger>
+    <scope>text.tex.latex</scope>
+    <description>Display Math — \[ … \]</description>
+</snippet>

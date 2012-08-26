@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[unless ($1) {
+	${2:# body...}
+}
+]]></content>
+    <tabTrigger>unless</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Conditional</description>
+</snippet>

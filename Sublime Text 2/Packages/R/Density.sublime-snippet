@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[density(${1:x}${2:, bw = ${3:bandwidth}})]]></content>
+    <tabTrigger>den</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Density</description>
+</snippet>

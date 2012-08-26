@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${1:key}: ${2:"${3:value}"}${4:, }]]></content>
+    <tabTrigger>:</tabTrigger>
+    <scope>source.js</scope>
+    <description>Object key — key: "value"</description>
+</snippet>

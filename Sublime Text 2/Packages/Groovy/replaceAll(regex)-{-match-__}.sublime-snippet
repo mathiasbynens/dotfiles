@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[replaceAll(/${1:regex}/) {${2/(.+)/(?1: )/}${2:match}${2/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>replace</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>replaceAll(regex) { … }</description>
+</snippet>

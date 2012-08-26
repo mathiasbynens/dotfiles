@@ -1,0 +1,68 @@
+--- ciElementTree/cElementTree.c.original	2006-10-25 10:19:57.000000000 -0700
++++ ciElementTree/cElementTree.c	2006-10-25 10:29:06.000000000 -0700
+@@ -232,6 +232,9 @@
+        accessed */
+     PyObject* names;
+ 
++    /* dict for open use to cache arbitrary info on an elem */
++    PyObject* cache;
++
+     /* this either points to _children or to a malloced buffer */
+     PyObject* *children;
+ 
+@@ -289,6 +292,9 @@
+     Py_INCREF(Py_None);
+     self->extra->names = Py_None;
+ 
++    Py_INCREF(Py_None);
++    self->extra->cache = Py_None;
++
+     self->extra->length = 0;
+     self->extra->allocated = STATIC_CHILDREN;
+     self->extra->children = self->extra->_children;
+@@ -305,6 +311,8 @@
+ 
+     Py_DECREF(self->extra->names);
+ 
++    Py_DECREF(self->extra->cache);
++
+     for (i = 0; i < self->extra->length; i++)
+         Py_DECREF(self->extra->children[i]);
+ 
+@@ -524,6 +532,25 @@
+ }
+ 
+ LOCAL(PyObject*)
++element_get_cache(ElementObject* self)
++{
++    /* return borrowed reference to cache dictionary */
++    /* note: this function assumes that the extra section exists */
++
++    PyObject* res = self->extra->cache;
++
++    if (res == Py_None) {
++        /* create missing dictionary */
++        res = PyDict_New();
++        if (!res)
++            return NULL;
++        self->extra->cache = res;
++    }
++
++    return res;
++}
++
++LOCAL(PyObject*)
+ element_get_names(ElementObject* self)
+ {
+     /* return borrowed reference to names dictionary */
+@@ -1552,6 +1579,10 @@
+         if (!self->extra)
+             element_new_extra(self, NULL);
+ 	    res = element_get_names(self);
++    } else if (strcmp(name, "cache") == 0) {
++        if (!self->extra)
++            element_new_extra(self, NULL);
++	    res = element_get_cache(self);
+     } else if (strcmp(name, "localName") == 0)
+         res = self->localName;
+     else if (strcmp(name, "ns") == 0)

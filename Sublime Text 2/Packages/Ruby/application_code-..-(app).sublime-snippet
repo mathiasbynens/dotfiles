@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[if __FILE__ == \$PROGRAM_NAME
+	$0
+end]]></content>
+    <tabTrigger>app</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>application { .. }</description>
+</snippet>

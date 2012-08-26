@@ -1,0 +1,373 @@
+diff -r -du src/AutoComplete.cxx src/AutoComplete.cxx
+--- src/AutoComplete.cxx	2005-08-29 18:09:20.000000000 -0700
++++ src/AutoComplete.cxx	2007-05-01 17:00:17.000000000 -0700
+@@ -124,6 +124,56 @@
+ 	lb->Select(current);
+ }
+ 
++
++/* ActiveState change:
++ * Change AutoComplete "ignoreCase" ordering of autocomplete results to
++ * move all non-alphanumeric characters to after the numbers and letters.
++ * The letters are still compared case-insensitively.
++ *
++ * Justification: It is weird that some punctuation chars appear before
++ * numbers and letters in sort order (e.g., '!' and '#'), some in between
++ * (e.g., ':', '<') and some after (e.g., '_', '['). This can be relevant
++ * for autocomplete in some languages -- for example, CSS:
++ * 	p {
++ * 		color: <|>
++ * 		       +------------+
++ * 		       | inherit    |
++ * 		       | rgb(       |
++ * 		       | !important |
++ * 		       | #          |
++ * 		       +------------+
++ *  }
++ * */
++static inline char OrdPunctLast(char ch) {
++	if (ch >= 'a' && ch <= 'z')
++		return static_cast<char>(ch - 'a' + 'A');
++	else if (ch >= '!' && ch <= '/')
++		return static_cast<char>(ch - '!' + '[');
++	else if (ch >= ':' && ch <= '@')
++		return static_cast<char>(ch - ':' + '[');
++	else
++		return ch;
++}
++
++static int CompareNPunctLast(const char *a, const char *b, size_t len) {
++ 	while (*a && *b && len) {
++ 		if (*a != *b) {
++ 			char upperA = OrdPunctLast(*a);
++ 			char upperB = OrdPunctLast(*b);
++ 			if (upperA != upperB)
++ 				return upperA - upperB;
++ 		}
++ 		a++;
++ 		b++;
++ 		len--;
++ 	}
++ 	if (len == 0)
++ 		return 0;
++ 	else
++ 		// Either *a or *b is nul
++ 		return *a - *b;	
++}
++
+ void AutoComplete::Select(const char *word) {
+ 	size_t lenWord = strlen(word);
+ 	int location = -1;
+@@ -136,7 +186,7 @@
+ 		lb->GetValue(pivot, item, maxItemLen);
+ 		int cond;
+ 		if (ignoreCase)
+-			cond = CompareNCaseInsensitive(word, item, lenWord);
++			cond = CompareNPunctLast(word, item, lenWord);
+ 		else
+ 			cond = strncmp(word, item, lenWord);
+ 		if (!cond) {
+@@ -144,7 +194,7 @@
+ 			while (pivot > start) {
+ 				lb->GetValue(pivot-1, item, maxItemLen);
+ 				if (ignoreCase)
+-					cond = CompareNCaseInsensitive(word, item, lenWord);
++					cond = CompareNPunctLast(word, item, lenWord);
+ 				else
+ 					cond = strncmp(word, item, lenWord);
+ 				if (0 != cond)
+@@ -160,7 +210,7 @@
+ 						location = pivot;
+ 						break;
+ 					}
+-					if (CompareNCaseInsensitive(word, item, lenWord))
++					if (CompareNPunctLast(word, item, lenWord))
+ 						break;
+ 				}
+ 			}
+Only in src: CVS
+diff -r -du src/CellBuffer.cxx src/CellBuffer.cxx
+--- src/CellBuffer.cxx	2005-08-29 18:09:20.000000000 -0700
++++ src/CellBuffer.cxx	2007-05-01 17:00:17.000000000 -0700
+@@ -769,6 +773,11 @@
+ void CellBuffer::BasicDeleteChars(int position, int deleteLength) {
+ 	if (deleteLength == 0)
+ 		return;
++	// XXX ACTIVESTATE bug 48527 {
++	int length = substance.Length();
++	if (deleteLength > length)
++		deleteLength = length;
++	// XXX }
+ 
+ 	if ((position == 0) && (deleteLength == substance.Length())) {
+ 		// If whole buffer is being deleted, faster to reinitialise lines data
+diff -r -du src/Document.cxx src/Document.cxx
+--- src/Document.cxx	2005-08-29 18:09:20.000000000 -0700
++++ src/Document.cxx	2007-05-01 17:00:17.000000000 -0700
+@@ -154,24 +154,27 @@
+ 
+ int Document::GetMark(int line) {
+ 	return static_cast<LineMarkers *>(perLineData[ldMarkers])->MarkValue(line);
+ }
+ 
+ int Document::AddMark(int line, int markerNum) {
+-	if (line <= LinesTotal()) {
++	if (line >= 0 && line <= LinesTotal()) {
+ 		int prev = static_cast<LineMarkers *>(perLineData[ldMarkers])->
+ 			AddMark(line, markerNum, LinesTotal());
+ 		DocModification mh(SC_MOD_CHANGEMARKER, LineStart(line), 0, 0, 0, line);
+ 		NotifyModified(mh);
+ 		return prev;
+ 	} else {
+ 		return 0;
+ 	}
+ }
+ 
+ void Document::AddMarkSet(int line, int valueSet) {
++	if (line < 0 || line > LinesTotal()) {
++		return;
++	}
+ 	unsigned int m = valueSet;
+ 	for (int i = 0; m; i++, m >>= 1)
+ 		if (m & 1)
+ 			static_cast<LineMarkers *>(perLineData[ldMarkers])->
+ 				AddMark(line, i, LinesTotal());
+ 	DocModification mh(SC_MOD_CHANGEMARKER, LineStart(line), 0, 0, 0, line);
+@@ -271,6 +271,18 @@
+ 	}
+ }
+ 
++// Quick-n-dirty position helper.  Could be optimized by not using
++// MovePositionOutsideChar.  charPos may be neg or pos
++int Document::GetBytePositionForCharOffset(int bytePos, int charOffset, bool checkLineEnd) {
++	int moveDir = charOffset >=0 ? 1 : -1;
++	int charCount = charOffset * moveDir;
++	int newPos = bytePos;
++	for (int i = 0; i < charCount; ++i) {
++		newPos = MovePositionOutsideChar(newPos + moveDir, moveDir, checkLineEnd);
++	}
++	return newPos;
++}
++
+ // Normalise a position so that it is not halfway through a two byte character.
+ // This can occur in two situations -
+ // When lines are terminated with \r\n pairs which should be treated as one character.
+@@ -1501,7 +1513,7 @@
+ 	} else if (isspacechar(startChar)) {
+ 		while (pos < length && isspacechar(cb.CharAt(pos)))
+ 			++pos;
+-	} else {
++	} else if (pos < length) { // ACTIVESTATE
+ 		++pos;
+ 	}
+ 	return pos;
+diff -r -du src/Document.h src/Document.h
+--- src/Document.h	2005-08-29 18:09:20.000000000 -0700
++++ src/Document.h	2007-05-01 17:00:17.000000000 -0700
+@@ -137,6 +137,9 @@
+ 	int LenChar(int pos);
+ 	int MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd=true);
+ 
++	// ACTIVESTATE	
++	int GetBytePositionForCharOffset(int bytePos, int charOffset, bool checkLineEnd=true);
++
+ 	// Gateways to modifying document
+ 	void ModifiedAt(int pos);
+ 	bool DeleteChars(int pos, int len);
+diff -r -du src/Editor.cxx src/Editor.cxx
+--- src/Editor.cxx	2005-08-29 18:09:20.000000000 -0700
++++ src/Editor.cxx	2007-05-01 17:00:17.000000000 -0700
+@@ -806,8 +806,13 @@
+ 
+ /**
+  * Asks document to find a good position and then moves out of any invisible positions.
+  */
++// ACTIVESTATE
++int Editor::GetBytePositionForCharOffset(int bytePos, int charOffset, bool checkLineEnd) {
++	return pdoc->GetBytePositionForCharOffset(bytePos, charOffset, checkLineEnd);
++}
++
+ int Editor::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) const {
+ 	return MovePositionOutsideChar(SelectionPosition(pos), moveDir, checkLineEnd).Position();
+ }
+ 
+@@ -5726,13 +5731,21 @@
+ 		}
+ 	}
+ 	lastClickTime = curTime;
+ 	lastXChosen = pt.x + xOffset;
++	lastClick = pt; // ACTIVESTATE need this to make dblclicks work in scimoz
+ 	ShowCaretAtCurrentPosition();
+ }
+ 
+ bool Editor::PositionIsHotspot(int position) {
+-	return vs.styles[pdoc->StyleAt(position) & pdoc->stylingBitsMask].hotspot;
++	// return vs.styles[pdoc->StyleAt(position) & pdoc->stylingBitsMask].hotspot;
++	// StyleAt returns _signed_ chars, which don't play well with array indexing
++	// for "large" style numbers like -80 =)
++	// The signature of StyleAt should probably be changed.
++	// Also, styleAt currently doesn't "filter out" indicator bits, which again points
++	// in never-never land.
++	int style = (unsigned char)(pdoc->StyleAt(position)) & pdoc->stylingBitsMask;
++	return vs.styles[style].hotspot;
+ }
+ 
+ bool Editor::PointIsHotspot(Point pt) {
+ 	int pos = PositionFromLocation(pt, true);
+@@ -8083,7 +8096,32 @@
+ 		break;
+ 
+ 	case SCI_GETPASTECONVERTENDINGS:
+ 		return convertPastes ? 1 : 0;
++ 
++	// ACTIVESTATE Komodo-only function.
++	case SCI_POSITIONATCHAR:
++		// The 'false' is to ensure CRLF is treated at _two_ chars
++		// instead of one, as MovePositionOutsideChar (the underlying
++		// function) would otherwise do. (E.g., for the find system
++		// which must treat CRLF as two characters).
++		return pdoc->GetBytePositionForCharOffset(wParam, lParam, false);
++
++	case SCI_POSITIONATCOLUMN:
++		return pdoc->FindColumn(wParam, lParam);
++
++	case SCI_SETDRAGPOSITION:
++		SetDragPosition(SelectionPosition(wParam));
++		break;
++
++	case SCI_GETDRAGPOSITION:
++		return posDrag.Position();
++
++	case SCI_STOPTIMERS: // This patch from stop_timers.patch
++		SetTicking(false);
++		SetIdle(false);
++
++	// END ACTIVESTATE
++
+ 
+ 	case SCI_GETCHARACTERPOINTER:
+ 		return reinterpret_cast<sptr_t>(pdoc->BufferPointer());
+diff -r -du src/Editor.h src/Editor.h
+--- src/Editor.h	2005-08-29 18:09:20.000000000 -0700
++++ src/Editor.h	2007-05-01 17:00:17.000000000 -0700
+@@ -361,5 +361,9 @@
+ 	void SetEmptySelection(int currentPos_);
+ 	bool RangeContainsProtected(int start, int end) const;
+ 	bool SelectionContainsProtected();
++	
++	// ACTIVESTATE
++	int GetBytePositionForCharOffset(int bytePos, int charOffset, bool checkLineEnd=true);
++
+ 	int MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd=true) const;
+  	SelectionPosition MovePositionOutsideChar(SelectionPosition pos, int moveDir, bool checkLineEnd=true) const;
+	int MovePositionTo(SelectionPosition newPos, Selection::selTypes sel=Selection::noSel, bool ensureVisible=true);
+ 	int MovePositionTo(int newPos, Selection::selTypes sel=Selection::noSel, bool ensureVisible=true);
+diff -r -du src/KeyWords.cxx src/KeyWords.cxx
+--- src/KeyWords.cxx	2005-08-29 18:09:20.000000000 -0700
++++ src/KeyWords.cxx	2007-05-01 17:00:17.000000000 -0700
+@@ -209,9 +213,8 @@
+ 	LINK_LEXER(lmSpice);
+ 	LINK_LEXER(lmSQL);
+ 	LINK_LEXER(lmTACL);
+ 	LINK_LEXER(lmTADS3);
+ 	LINK_LEXER(lmTAL);
+-	LINK_LEXER(lmTCL);
+ 	LINK_LEXER(lmTeX);
+ 	LINK_LEXER(lmVB);
+ 	LINK_LEXER(lmVBScript);
+@@ -217,6 +220,10 @@
+ 	LINK_LEXER(lmVHDL);
+ 	LINK_LEXER(lmXML);
+ 	LINK_LEXER(lmYAML);
++	LINK_LEXER(lmUDL);
++	LINK_LEXER(lmXSLT);
++	LINK_LEXER(lmTcl);
++	LINK_LEXER(lmCoffeeScript);
+ 
+ //--Autogenerated -- end of automatically generated section
+ 
+diff -r -du src/LineMarker.cxx src/LineMarker.cxx
+--- src/LineMarker.cxx	2005-08-29 18:09:20.000000000 -0700
++++ src/LineMarker.cxx	2007-05-01 17:00:17.000000000 -0700
+@@ -267,8 +267,12 @@
+ 		int width = surface->WidthText(fontForCharacter, character, 1);
+ 		rc.left += (rc.Width() - width) / 2;
+ 		rc.right = rc.left + width;
+-		surface->DrawTextClipped(rc, fontForCharacter, rc.bottom - 2,
+-			character, 1, fore.allocated, back.allocated);
++		// ACTIVESTATE Komodo use transparent background for margin symbols, and more
++		// buffer under character.
++		// XXX unfortunately, spacing at the bottom doesn't work well for all font
++		// sizes, some kind of more complex font size calculation needs to happen
++		surface->DrawTextTransparent(rc, fontForCharacter, rc.bottom - 4,
++			character, 1, fore.allocated);
+ 
+ 	} else if (markType == SC_MARK_DOTDOTDOT) {
+ 		int right = centreX - 6;
+diff -r -du src/ScintillaBase.cxx src/ScintillaBase.cxx
+--- src/ScintillaBase.cxx	2005-08-29 18:09:20.000000000 -0700
++++ src/ScintillaBase.cxx	2007-05-01 17:00:17.000000000 -0700
+@@ -85,6 +85,14 @@
+ 	}
+ }
+ 
++// XXX ActiveState bug 33804
++void ScintillaBase::PasteRectangular(int pos, const char *ptr, int len) {
++	if (ac.Active()) {
++		ac.Cancel();
++	}
++	Editor::PasteRectangular(SelectionPosition(pos), ptr, len);
++}
++
+ void ScintillaBase::Command(int cmdId) {
+ 
+ 	switch (cmdId) {
+@@ -180,16 +188,34 @@
+ 		    (iMessage != SCI_CHARRIGHT) &&
+ 		    (iMessage != SCI_CHARRIGHTEXTEND) &&
+ 		    (iMessage != SCI_EDITTOGGLEOVERTYPE) &&
+ 		    (iMessage != SCI_DELETEBACK) &&
+-		    (iMessage != SCI_DELETEBACKNOTLINE)
++		    (iMessage != SCI_DELETEBACKNOTLINE) &&
++		    // ACTIVESTATE start
++		    (iMessage != SCI_NEWLINE) &&
++		    (iMessage != SCI_LINEDOWN) &&
++		    (iMessage != SCI_LINEUP) &&
++		    (iMessage != SCI_VCHOME) &&
++		    (iMessage != SCI_WORDLEFT) &&
++		    (iMessage != SCI_WORDLEFTEXTEND) &&
++		    (iMessage != SCI_WORDRIGHT) &&
++		    (iMessage != SCI_WORDRIGHTEXTEND) &&
++		    (iMessage != SCI_LINEEND)
++		    // ACTIVESTATE end
+ 		) {
+ 			ct.CallTipCancel();
+ 		}
++		//XXX Komodo change: Scintilla's CallTip::posStartCallTip
++		//    gets improperly set to the currentPos when
++		//    SCI_CALLTIPSHOW is called, rather than the actual
++		//    position it is told to show at. The result is that
++		//    this block can cancel the calltip at the wrong pos.
++		/*
+ 		if ((iMessage == SCI_DELETEBACK) || (iMessage == SCI_DELETEBACKNOTLINE)) {
+ 			if (sel.MainCaret() <= ct.posStartCallTip) {
+ 				ct.CallTipCancel();
+ 			}
+ 		}
++		*/
+ 	}
+ 	return Editor::KeyCommand(iMessage);
+ }
+diff -r -du src/ScintillaBase.h src/ScintillaBase.h
+--- src/ScintillaBase.h	2005-08-29 18:09:20.000000000 -0700
++++ src/ScintillaBase.h	2007-05-01 17:00:17.000000000 -0700
+@@ -61,6 +61,9 @@
+ 	virtual ~ScintillaBase();
+ 	virtual void Initialise() = 0;
+ 	virtual void Finalise() = 0;
++	
++	// XXX ActiveState bug 33804
++	void PasteRectangular(int pos, const char *ptr, int len);
+ 
+ 	virtual void RefreshColourPalette(Palette &pal, bool want);
+ 

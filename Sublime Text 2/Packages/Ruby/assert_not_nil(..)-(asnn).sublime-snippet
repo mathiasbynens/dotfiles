@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_not_nil(${0:instance})]]></content>
+    <tabTrigger>asnn</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_not_nil(..)</description>
+</snippet>

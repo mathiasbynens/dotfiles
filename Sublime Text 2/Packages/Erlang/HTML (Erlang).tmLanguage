@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>yaws</string>
+	</array>
+	<key>foldingStartMarker</key>
+	<string>(?x)
+		(&lt;(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl|erl)\b.*?&gt;
+		|&lt;!--(?!.*--&gt;)
+		|\{\s*($|\?&gt;\s*$|//|/\*(.*\*/\s*$|(?!.*?\*/)))
+		)</string>
+	<key>foldingStopMarker</key>
+	<string>(?x)
+		(&lt;/(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl|erl)&gt;
+		|^\s*--&gt;
+		|(^|\s)\}
+		)</string>
+	<key>keyEquivalent</key>
+	<string>^~E</string>
+	<key>name</key>
+	<string>HTML (Erlang)</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>begin</key>
+			<string>&lt;erl&gt;</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.embedded.erlang</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>&lt;/erl&gt;</string>
+			<key>name</key>
+			<string>source.erlang.embedded.html</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.erlang</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>text.html.basic</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.html.erlang.yaws</string>
+	<key>uuid</key>
+	<string>3FBFF015-B650-4734-848C-47B53ACD5E32</string>
+</dict>
+</plist>

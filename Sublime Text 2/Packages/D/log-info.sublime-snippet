@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[log.info("$1");]]></content>
+    <tabTrigger>log</tabTrigger>
+    <scope>source.d</scope>
+    <description>log.info(…)</description>
+</snippet>

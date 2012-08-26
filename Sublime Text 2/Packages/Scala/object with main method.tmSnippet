@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleUUID</key>
+	<string>452017E8-0065-49EF-AB9D-7849B27D9367</string>
+	<key>content</key>
+	<string>object ${1:${TM_FILENAME/(.*)\.scala/$1/}} {
+  def main(args: Array[String]): Unit = {
+    $2
+  }
+}
+</string>
+	<key>name</key>
+	<string>object with main method</string>
+	<key>scope</key>
+	<string>source.scala</string>
+	<key>tabTrigger</key>
+	<string>omain</string>
+	<key>uuid</key>
+	<string>853C1915-7B23-4C79-AAAA-AEDFB21CA08C</string>
+</dict>
+</plist>

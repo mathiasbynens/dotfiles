@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${TM_RAILS_TEMPLATE_START_RUBY_EXPR}link_to "${1:link text...}", :controller => "${2:items}", :action => "${3:edit}", :id => ${4:@item}${TM_RAILS_TEMPLATE_END_RUBY_EXPR}]]></content>
+    <tabTrigger>licai</tabTrigger>
+    <scope>text.html.ruby, text.haml</scope>
+    <description>link_to (controller, action, id)</description>
+</snippet>

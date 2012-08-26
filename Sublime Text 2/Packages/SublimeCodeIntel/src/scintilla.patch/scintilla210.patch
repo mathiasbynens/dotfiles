@@ -1,0 +1,86 @@
+diff -ruN scintilla.orig/include/Accessor.h scintilla/include/Accessor.h
+--- include/Accessor.h	2007-04-06 19:57:02.000000000 -0500
++++ include/Accessor.h	2011-05-29 23:24:12.000000000 -0500
+@@ -5,6 +5,9 @@
+ // Copyright 1998-2001 by Neil Hodgson <neilh@scintilla.org>
+ // The License.txt file describes the conditions under which this software may be distributed.
+ 
++#ifndef ACCESSOR_H_
++#define ACCESSOR_H_
++
+ enum { wsSpace = 1, wsTab = 2, wsSpaceTab = 4, wsInconsistent=8};
+ 
+ class Accessor;
+@@ -77,3 +80,5 @@
+ 	virtual int IndentAmount(int line, int *flags, PFNIsCommentLeader pfnIsCommentLeader = 0)=0;
+ 	virtual void IndicatorFill(int start, int end, int indicator, int value)=0;
+ };
++
++#endif // ACCESSOR_H_
+\ No newline at end of file
+Binary files scintilla.orig/include/Face.pyc and scintilla/include/Face.pyc differ
+diff -ruN scintilla.orig/include/KeyWords.h scintilla/include/KeyWords.h
+--- include/KeyWords.h	2009-07-21 04:05:43.000000000 -0500
++++ include/KeyWords.h	2011-05-29 23:34:09.000000000 -0500
+@@ -5,6 +5,11 @@
+ // Copyright 1998-2001 by Neil Hodgson <neilh@scintilla.org>
+ // The License.txt file describes the conditions under which this software may be distributed.
+ 
++#ifndef KEYWORDS_H_
++#define KEYWORDS_H_
++
++#include "Accessor.h"
++
+ #ifdef SCI_NAMESPACE
+ namespace Scintilla {
+ #endif
+@@ -111,3 +116,5 @@
+ 		return true;
+ 	return false;
+ }
++
++#endif // KEYWORDS_H_
+diff -ruN scintilla.orig/src/PropSet.cxx scintilla/src/PropSet.cxx
+--- src/PropSet.cxx	2010-02-16 18:39:46.000000000 -0600
++++ src/PropSet.cxx	2011-05-29 23:12:56.000000000 -0500
+@@ -17,7 +17,6 @@
+ #endif
+ 
+ #include <string>
+-#include <map>
+ 
+ #include "Platform.h"
+ 
+@@ -28,7 +27,6 @@
+ using namespace Scintilla;
+ #endif
+ 
+-typedef std::map<std::string, std::string> mapss;
+ 
+ PropSetSimple::PropSetSimple() {
+ 	mapss *props = new mapss;
+diff -ruN scintilla.orig/src/PropSetSimple.h scintilla/src/PropSetSimple.h
+--- src/PropSetSimple.h	2009-07-21 03:55:42.000000000 -0500
++++ src/PropSetSimple.h	2011-05-29 23:16:30.000000000 -0500
+@@ -8,14 +8,20 @@
+ #ifndef PROPSETSIMPLE_H
+ #define PROPSETSIMPLE_H
+ 
++#include "PropSet.h"
++#include <map>
++#include <string>
++
+ #ifdef SCI_NAMESPACE
+ namespace Scintilla {
+ #endif
+ 
++typedef std::map<std::string, std::string> mapss;
++
+ class PropSetSimple : public PropertyGet {
+-	void *impl;
+ 	void Set(const char *keyVal);
+ public:
++	void *impl;
+ 	PropSetSimple();
+ 	virtual ~PropSetSimple();
+ 	void Set(const char *key, const char *val, int lenKey=-1, int lenVal=-1);

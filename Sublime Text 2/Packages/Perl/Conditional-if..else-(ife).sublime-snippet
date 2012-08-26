@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[if ($1) {
+	${2:# body...}
+} else {
+	${3:# else...}
+}
+]]></content>
+    <tabTrigger>ife</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Conditional if..else</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[final ]]></content>
+    <tabTrigger>fi</tabTrigger>
+    <scope>source.java</scope>
+    <description>final</description>
+</snippet>

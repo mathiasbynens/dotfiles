@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[${1:expression} foreach @${2:array};
+]]></content>
+    <tabTrigger>xfore</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Loop One-line</description>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[switch ${1:switch_expression}
+	case ${2:case_expression}
+		${3:body}
+	otherwise
+		${4:body}
+end]]></content>
+    <tabTrigger>switch</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>switch ... case ... otherwise ... end</description>
+</snippet>

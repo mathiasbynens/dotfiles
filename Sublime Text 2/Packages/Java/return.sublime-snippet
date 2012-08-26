@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[return ]]></content>
+    <tabTrigger>re</tabTrigger>
+    <scope>source.java</scope>
+    <description>return</description>
+</snippet>

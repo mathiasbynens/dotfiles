@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Ocamllex pattern definition</string>
+	<key>scope</key>
+	<string>entity.name.type.pattern.stupid-goddamn-hack.ocamllex</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>1</integer>
+		<key>symbolTransformation</key>
+		<string>s/^/pattern: /</string>
+	</dict>
+	<key>uuid</key>
+	<string>52F126D8-181E-4A22-ABD4-831550FF28AD</string>
+</dict>
+</plist>

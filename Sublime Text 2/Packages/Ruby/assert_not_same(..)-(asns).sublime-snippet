@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_not_same(${1:unexpected}, ${0:actual})]]></content>
+    <tabTrigger>asns</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_not_same(..)</description>
+</snippet>

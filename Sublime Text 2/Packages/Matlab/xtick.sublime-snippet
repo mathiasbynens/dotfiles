@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[set(gca,'XTick',${1:[${2}]});]]></content>
+    <tabTrigger>xti</tabTrigger>
+    <scope>source.matlab , source.octave</scope>
+    <description>xtick</description>
+</snippet>

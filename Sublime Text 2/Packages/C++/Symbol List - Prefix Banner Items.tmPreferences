@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Prefix Banner Items</string>
+	<key>scope</key>
+	<string>meta.toc-list.banner</string>
+	<key>settings</key>
+	<dict>
+		<key>symbolTransformation</key>
+		<string>
+   s/^\s+/# /;
+   s/^=+$/-/;
+   </string>
+	</dict>
+	<key>uuid</key>
+	<string>A8E4E48A-81F3-4DB7-A7A2-88662C06E011</string>
+</dict>
+</plist>

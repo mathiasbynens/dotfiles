@@ -1,0 +1,110 @@
+--- src/LexCPP.cxx	2011-01-03 12:22:32.000000000 -0800
++++ src/LexCPP.cxx	2011-07-08 11:11:54.000000000 -0700
+@@ -25,6 +25,13 @@
+ using namespace Scintilla;
+ #endif
+ 
++// KOMODO  see if a style is one of our IO styles
++static inline bool IsIOStyle(int style) {
++	return style == SCE_C_STDIN ||
++		style == SCE_C_STDOUT ||
++		style == SCE_C_STDERR;
++}
++
+ static bool IsSpaceEquiv(int state) {
+ 	return (state <= SCE_C_COMMENTDOC) ||
+ 		// including SCE_C_DEFAULT, SCE_C_COMMENT, SCE_C_COMMENTLINE
+@@ -50,6 +57,29 @@
+ 	return false;
+ }
+ 
++static bool followsReturnKeyword(StyleContext &sc, Accessor &styler) {
++    // Don't look at styles, so no need to flush.
++	int pos = (int) sc.currentPos;
++	int currentLine = styler.GetLine(pos);
++	int lineStartPos = styler.LineStart(currentLine);
++	char ch;
++	while (--pos > lineStartPos) {
++		ch = styler.SafeGetCharAt(pos);
++		if (ch != ' ' && ch != '\t') {
++			break;
++		}
++	}
++	const char *retBack = "nruter";
++	const char *s = retBack;
++	while (*s
++	       && pos >= lineStartPos
++	       && styler.SafeGetCharAt(pos) == *s) {
++		s++;
++		pos--;
++	}
++	return !*s;
++}
++
+ static void ColouriseCppDoc(unsigned int startPos, int length, int initStyle, WordList *keywordlists[],
+                             Accessor &styler, bool caseSensitive) {
+ 
+@@ -116,10 +146,14 @@
+ 	for (; sc.More(); sc.Forward()) {
+ 
+ 		if (sc.atLineStart) {
+-			if (sc.state == SCE_C_STRING) {
++			int lineStartState = sc.state;
++			if (lineStartState == SCE_C_STRING
++			    || lineStartState == SCE_C_CHARACTER) {
+ 				// Prevent SCE_C_STRINGEOL from leaking back to previous line which
+ 				// ends with a line continuation by locking in the state upto this position.
+-				sc.SetState(SCE_C_STRING);
++				sc.SetState(lineStartState);
++			} else if (IsIOStyle(sc.state)) {
++				sc.SetState(SCE_C_DEFAULT);
+ 			}
+ 			// Reset states to begining of colourise so no surprises
+ 			// if different sets of lines lexed.
+@@ -152,7 +192,7 @@
+ 				}
+ 				break;
+ 			case SCE_C_IDENTIFIER:
+-				if (!setWord.Contains(sc.ch) || (sc.ch == '.')) {
++				if (!setWord.Contains(sc.ch) || (sc.ch == '.') || (sc.ch == '$')) {
+ 					char s[1000];
+ 					if (caseSensitive) {
+ 						sc.GetCurrent(s, sizeof(s));
+@@ -309,7 +349,7 @@
+ 				} else {
+ 					sc.SetState(SCE_C_NUMBER);
+ 				}
+-			} else if (setWordStart.Contains(sc.ch) || (sc.ch == '@')) {
++			} else if (setWordStart.Contains(sc.ch) || (sc.ch == '@') || (sc.ch == '$')) {
+ 				if (lastWordWasUUID) {
+ 					sc.SetState(SCE_C_UUID);
+ 					lastWordWasUUID = false;
+@@ -329,8 +369,11 @@
+ 					sc.SetState(SCE_C_COMMENTLINEDOC);
+ 				else
+ 					sc.SetState(SCE_C_COMMENTLINE);
+-			} else if (sc.ch == '/' && setOKBeforeRE.Contains(chPrevNonWhite) &&
+-				(!setCouldBePostOp.Contains(chPrevNonWhite) || !FollowsPostfixOperator(sc, styler))) {
++			} else if (sc.ch == '/'
++				   && (setOKBeforeRE.Contains(chPrevNonWhite)
++				       || followsReturnKeyword(sc, styler))
++				   && (!setCouldBePostOp.Contains(chPrevNonWhite)
++				       || !FollowsPostfixOperator(sc, styler))) {
+ 				sc.SetState(SCE_C_REGEX);	// JavaScript's RegEx
+ 			} else if (sc.ch == '\"') {
+ 				sc.SetState(SCE_C_STRING);
+@@ -452,8 +495,12 @@
+ 					levelMinCurrent = levelNext;
+ 				}
+ 				levelNext++;
+-			} else if (ch == '}') {
+-				levelNext--;
++			} else if (ch == '[') {
++				levelNext++;
++			} else if (ch == '}' || ch == ']') {
++				if ((levelNext & (SC_FOLDLEVELNUMBERMASK & ~SC_FOLDLEVELBASE)) > 0) {
++					levelNext--;
++				}
+ 			}
+ 		}
+ 		if (!IsASpace(ch))

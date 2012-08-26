@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[mattr_accessor :${0:attr_names}]]></content>
+    <tabTrigger>mrw</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>mattr_accessor</description>
+</snippet>

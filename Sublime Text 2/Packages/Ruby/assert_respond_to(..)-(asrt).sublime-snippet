@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_respond_to(${1:object}, :${0:method})]]></content>
+    <tabTrigger>asrt</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_respond_to(..)</description>
+</snippet>

@@ -1,0 +1,37 @@
+[
+    {
+        "caption": "SublimeCodeIntel: Reset",
+        "command": "sublimecodeintel_reset",
+        "args": {"action": "reset"}
+    },
+    {
+        "caption": "SublimeCodeIntel: Enable Plugin",
+        "command": "sublimecodeintel_enable",
+        "args": {"action": "enable"}
+    },
+    {
+        "caption": "SublimeCodeIntel: Disable Plugin",
+        "command": "sublimecodeintel_disable",
+        "args": {"action": "disable"}
+    },
+    {
+        "caption": "SublimeCodeIntel: Enable Live Autocompletion",
+        "command": "sublimecodeintel_enable_live",
+        "args": {"action": "on"}
+    },
+    {
+        "caption": "SublimeCodeIntel: Disable Live Autocompletion",
+        "command": "sublimecodeintel_disable_live",
+        "args": {"action": "off"}
+    },
+    {
+        "caption": "SublimeCodeIntel: Enable Live Autocompletion for Current Language",
+        "command": "sublimecodeintel_enable_live_lang",
+        "args": {"action": "lang-on"}
+    },
+    {
+        "caption": "SublimeCodeIntel: Disable Live Autocompletion for Current Language",
+        "command": "sublimecodeintel_disable_live_lang",
+        "args": {"action": "lang-off"}
+    }
+]

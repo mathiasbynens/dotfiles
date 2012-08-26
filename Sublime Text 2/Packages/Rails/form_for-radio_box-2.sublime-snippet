@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${TM_RAILS_TEMPLATE_START_RUBY_EXPR}f.radio_box :${1:attribute}, :${2:tag_value}${TM_RAILS_TEMPLATE_END_RUBY_EXPR}]]></content>
+    <tabTrigger>ffrb</tabTrigger>
+    <scope>text.html.ruby, text.haml</scope>
+    <description>form_for radio_box</description>
+</snippet>

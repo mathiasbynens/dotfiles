@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleUUID</key>
+	<string>4675A940-6227-11D9-BFB1-000D93589AF6</string>
+	<key>name</key>
+	<string>Symbol List: Indent Class Methods</string>
+	<key>scope</key>
+	<string>meta.class-struct-block.c++ entity.name.function</string>
+	<key>settings</key>
+	<dict>
+		<key>symbolTransformation</key>
+		<string>
+      s/^\s*/ /;  # pad</string>
+	</dict>
+	<key>uuid</key>
+	<string>B2B97E23-E686-4410-991D-A92AF3A9FC95</string>
+</dict>
+</plist>

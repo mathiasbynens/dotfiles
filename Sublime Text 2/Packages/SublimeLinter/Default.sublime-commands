@@ -1,0 +1,42 @@
+[
+    {
+        "caption": "SublimeLinter: Lint Current File",
+        "command": "sublimelinter_lint",
+        "args": {"action": "lint"}
+    },
+    {
+        "caption": "SublimeLinter: Show Error List",
+        "command": "sublimelinter_show_errors",
+        "args": {"action": "lint", "show_popup": true}
+    },
+    {
+        "caption": "SublimeLinter: Background Linting",
+        "command": "sublimelinter_lint",
+        "args": {"action": "on"}
+    },
+    {
+        "caption": "SublimeLinter: Load-Save Linting",
+        "command": "sublimelinter_enable_load_save",
+        "args": {"action": "load-save"}
+    },
+    {
+        "caption": "SublimeLinter: Save-Only Linting",
+        "command": "sublimelinter_enable_save_only",
+        "args": {"action": "save-only"}
+    },
+    {
+        "caption": "SublimeLinter: Disable Linting",
+        "command": "sublimelinter_disable",
+        "args": {"action": "off"}
+    },
+    {
+        "caption": "SublimeLinter: Extract Annotations",
+        "command": "sublimelinter_annotations",
+        "args": {}
+    },
+    {
+        "caption": "SublimeLinter: Reset",
+        "command": "sublimelinter_lint",
+        "args": {"action": "reset"}
+    }
+]

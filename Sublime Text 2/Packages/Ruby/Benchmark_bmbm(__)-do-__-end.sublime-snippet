@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[TESTS = ${1:10_000}
+Benchmark.bmbm do |results|
+  $0
+end]]></content>
+    <tabTrigger>bm-</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>Benchmark.bmbm do .. end</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+	<description>printf …</description>
+    <content><![CDATA[printf("${1:%s}\\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}]]></content>
+    <tabTrigger>printf</tabTrigger>
+    <scope>source.c, source.objc, source.c++, source.objc++</scope>
+</snippet>

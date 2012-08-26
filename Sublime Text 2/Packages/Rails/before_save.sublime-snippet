@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[before_save ]]></content>
+    <tabTrigger>befs</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>before_save</description>
+</snippet>

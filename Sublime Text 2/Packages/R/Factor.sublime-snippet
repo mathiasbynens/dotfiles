@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[factor(${1:x})]]></content>
+    <tabTrigger>fac</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Factor</description>
+</snippet>

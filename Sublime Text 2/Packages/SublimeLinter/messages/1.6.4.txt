@@ -1,0 +1,29 @@
+SublimeLinter 1.6.4 changelog
+
+IMPORTANT!!
+
+Please note that the SublimeLinter repository has moved to:
+
+  https://github.com/SublimeLinter/SublimeLinter
+
+Issues and pull requests should be made there.
+
+
+NEW FEATURES
+
+- The Objective-J linter now catches spaces inside parentheses
+  and dependent clauses on the same line as a control structure.
+
+
+CHANGES/FIXES
+
+- The README has been reorganized to hopefully be clearer.
+
+- More explicit Node.js installation instructions have been provided.
+
+- The "pep8" setting is now recognized in SublimeLinter's settings.
+
+- When a minimum delay is specified with the "sublimelinter_delay" setting,
+  SublimeLinter will only lint the currently displayed file when the
+  queued linters run. This allows you to avoid linting of files as they
+  are selected in the choose file palette.

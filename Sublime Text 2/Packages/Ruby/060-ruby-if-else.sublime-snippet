@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[if ${1:condition}
+	$2
+else
+	$3
+end]]></content>
+    <tabTrigger>ife</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>if … else … end</description>
+</snippet>

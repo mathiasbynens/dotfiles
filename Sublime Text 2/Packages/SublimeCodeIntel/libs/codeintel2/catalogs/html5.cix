@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codeintel version="2.0" name="HTML5" description="HTML5 (Canvas, Web Messaging, Microdata)">
+  <file lang="JavaScript" mtime="1260576157" path="nsIDOMCanvasRenderingContext2D.idl">
+    <scope ilk="blob" lang="JavaScript" name="html5_api">
+
+      <!-- General -->
+      <!-- Extend the HTML Document for new HTML 5 DOM methods. -->
+      <scope ilk="class" name="HTMLDocument">
+        <variable citdl="String" name="innerHTML" doc="Parse/Serialize the HTML/XML document contents." />
+        <variable citdl="Element" name="activeElement" doc="The currently focused element." />
+        <variable citdl="Boolean" name="hasFocus" doc="Whether the document has focus." />
+        <scope doc="Select DOM elements by their class name." ilk="function" name="getElementsByClassName" returns="NodeList" signature="getElementsByClassName(name) -&gt; array of DOM elements" />
+        <scope doc="Returns a selection object representing the selected item(s)." ilk="function" name="getSelection" signature="getSelection() =&gt; selection" />
+        <scope doc="Return the array of microdata elements for the provided type names." ilk="function" name="getItems" returns="NodeList" signature="getItems(typeNames) -&gt; array of HTML elements" />
+      </scope>
+
+      <scope ilk="class" name="Element">
+        <variable citdl="String" name="innerHTML" doc="Parse/Serialize the HTML/XML document contents." />
+        <variable citdl="DOMTokenList" name="classList" doc="Class names collection object." />
+        <scope doc="Select DOM elements by their class name." ilk="function" name="getElementsByClassName" returns="NodeList" signature="getElementsByClassName(name) -&gt; array of DOM elements" />
+        <scope doc="Return the canvas rendering context for this element. Use a contextId of &quot;2d&quot; for the two-dimensional context." ilk="function" name="getContext" returns="nsIDOMCanvasRenderingContext2D" signature="getContext(contextId) -&gt; context" />
+
+      <!-- Extend the HTML Element to add in the microdata properties. -->
+        <variable citdl="Boolean" name="itemScope" doc="Is set to true when there are properties defined on the element." />
+        <variable citdl="String" name="itemType" doc="The URL that represents the type of item data." />
+        <variable citdl="String" name="itemId" doc="Global identifier for the item." />
+        <variable name="itemValue" doc="The element's value" />
+        <variable citdl="DOMSettableTokenList" name="itemRef" doc="List of element id's" />
+        <variable citdl="DOMSettableTokenList" name="itemProp" doc="The names of the name-value pairs it adds" />
+        <variable citdl="HTMLPropertiesCollection" name="properties" doc="" />
+      </scope>
+  
+      <!-- Canvas -->
+
+      <!-- Canvas 2D context APIs, mostly from the mozilla nsIDOMCanvasRenderingContext2D.idl -->
+      <scope attributes="scriptable" ilk="class" line="47" lineend="50" name="nsIDOMCanvasGradient" signature="nsIDOMCanvasGradient" uuid="bbb20a59-524e-4662-981e-5e142814b20c">
+        <scope doc="Adds a color stop with the given color to the gradient at the given offset. 0.0 is the offset at one end of the gradient, 1.0 is the offset at the other end. Throws an INDEX_SIZE_ERR exception if the offset it out of range. Throws a SYNTAX_ERR exception if the color cannot be parsed." ilk="function" line="49" lineend="49" name="addColorStop" signature="addColorStop(offset, color)">
+          <variable citdl="float" ilk="argument" name="offset" />
+          <variable citdl="DOMString" ilk="argument" name="color" />
+        </scope>
+      </scope>
+      <scope attributes="scriptable" ilk="class" line="53" lineend="55" name="nsIDOMCanvasPattern" signature="nsIDOMCanvasPattern" uuid="21dea65c-5c08-4eb1-ac82-81fe95be77b8" />
+      <scope attributes="scriptable" ilk="class" line="58" lineend="61" name="nsIDOMTextMetrics" signature="nsIDOMTextMetrics" uuid="2d01715c-ec7d-424a-ab85-e0fd70c8665c">
+        <variable attributes="readonly" citdl="float" line="60" name="width" />
+      </scope>
+      <scope attributes="scriptable" ilk="class" line="64" lineend="208" name="nsIDOMCanvasRenderingContext2D" signature="nsIDOMCanvasRenderingContext2D" uuid="66e6d87c-759c-43a7-b3d3-3348180b35df">
+        <variable attributes="readonly" citdl="nsIDOMHTMLCanvasElement" line="68" name="canvas" />
+        <scope doc="Pushes the current state onto the stack" ilk="function" line="71" lineend="71" name="save" signature="save()" />
+        <scope doc="Pops the top state on the stack, restoring the context to that state." ilk="function" line="72" lineend="72" name="restore" signature="restore()" />
+        <scope doc="Changes the transformation matrix to apply a scaling transformation with the given characteristics." ilk="function" line="75" lineend="75" name="scale" signature="scale(x, y)">
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+        </scope>
+        <scope doc="Changes the transformation matrix to apply a rotation transformation with the given characteristics. The angle is in radians." ilk="function" line="76" lineend="76" name="rotate" signature="rotate(angle)">
+          <variable citdl="float" ilk="argument" name="angle" />
+        </scope>
+        <scope doc="Changes the transformation matrix to apply a translation transformation with the given characteristics." ilk="function" line="77" lineend="77" name="translate" signature="translate(x, y)">
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+        </scope>
+        <scope doc="Changes the transformation matrix to apply the matrix given by the arguments as described below." ilk="function" line="78" lineend="78" name="transform" signature="transform(m11, m12, m21, m22, dx, dy)">
+          <variable citdl="float" ilk="argument" name="m11" />
+          <variable citdl="float" ilk="argument" name="m12" />
+          <variable citdl="float" ilk="argument" name="m21" />
+          <variable citdl="float" ilk="argument" name="m22" />
+          <variable citdl="float" ilk="argument" name="dx" />
+          <variable citdl="float" ilk="argument" name="dy" />
+        </scope>
+        <scope doc="Changes the transformation matrix to the matrix given by the arguments as described below." ilk="function" line="79" lineend="79" name="setTransform" signature="setTransform(m11, m12, m21, m22, dx, dy)">
+          <variable citdl="float" ilk="argument" name="m11" />
+          <variable citdl="float" ilk="argument" name="m12" />
+          <variable citdl="float" ilk="argument" name="m21" />
+          <variable citdl="float" ilk="argument" name="m22" />
+          <variable citdl="float" ilk="argument" name="dx" />
+          <variable citdl="float" ilk="argument" name="dy" />
+        </scope>
+        <variable citdl="float" line="82" name="globalAlpha" />
+        <variable citdl="DOMString" line="83" name="globalCompositeOperation" />
+        <variable citdl="Object" line="86" name="strokeStyle" />
+        <variable citdl="Object" line="87" name="fillStyle" />
+        <variable citdl="float" line="93" name="lineWidth" />
+        <variable citdl="DOMString" line="94" name="lineCap" />
+        <variable citdl="DOMString" line="95" name="lineJoin" />
+        <variable citdl="float" line="96" name="miterLimit" />
+        <variable citdl="float" line="99" name="shadowOffsetX" />
+        <variable citdl="float" line="100" name="shadowOffsetY" />
+        <variable citdl="float" line="101" name="shadowBlur" />
+        <variable citdl="DOMString" line="102" name="shadowColor" />
+        <scope doc="Clears all pixels on the canvas in the given rectangle to transparent black." ilk="function" line="105" lineend="105" name="clearRect" signature="clearRect(x, y, w, h)">
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+          <variable citdl="float" ilk="argument" name="w" />
+          <variable citdl="float" ilk="argument" name="h" />
+        </scope>
+        <scope doc="Paints the given rectangle onto the canvas, using the current fill style." ilk="function" line="106" lineend="106" name="fillRect" signature="fillRect(x, y, w, h)">
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+          <variable citdl="float" ilk="argument" name="w" />
+          <variable citdl="float" ilk="argument" name="h" />
+        </scope>
+        <scope doc="Paints the box that outlines the given rectangle onto the canvas, using the current stroke style." ilk="function" line="107" lineend="107" name="strokeRect" signature="strokeRect(x, y, w, h)">
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+          <variable citdl="float" ilk="argument" name="w" />
+          <variable citdl="float" ilk="argument" name="h" />
+        </scope>
+        <scope doc="Resets the current path." ilk="function" line="110" lineend="110" name="beginPath" signature="beginPath()" />
+        <scope doc="Marks the current subpath as closed, and starts a new subpath with a point the same as the start and end of the newly closed subpath." ilk="function" line="111" lineend="111" name="closePath" signature="closePath()" />
+        <scope doc="Creates a new subpath with the given point." ilk="function" line="113" lineend="113" name="moveTo" signature="moveTo(x, y)">
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+        </scope>
+        <scope doc="Adds the given point to the current subpath, connected to the previous one by a straight line." ilk="function" line="114" lineend="114" name="lineTo" signature="lineTo(x, y)">
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+        </scope>
+        <scope doc="Adds the given point to the current path, connected to the previous one by a quadratic Bézier curve with the given control point." ilk="function" line="115" lineend="115" name="quadraticCurveTo" signature="quadraticCurveTo(cpx, cpy, x, y)">
+          <variable citdl="float" ilk="argument" name="cpx" />
+          <variable citdl="float" ilk="argument" name="cpy" />
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+        </scope>
+        <scope doc="Adds the given point to the current path, connected to the previous one by a cubic Bézier curve with the given control points." ilk="function" line="116" lineend="116" name="bezierCurveTo" signature="bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)">
+          <variable citdl="float" ilk="argument" name="cp1x" />
+          <variable citdl="float" ilk="argument" name="cp1y" />
+          <variable citdl="float" ilk="argument" name="cp2x" />
+          <variable citdl="float" ilk="argument" name="cp2y" />
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+        </scope>
+        <scope doc="Adds a point to the current path, connected to the previous one by a straight line, then adds a second point to the current path, connected to the previous one by an arc whose properties are described by the arguments. Throws an INDEX_SIZE_ERR exception if the given radius is negative." ilk="function" line="117" lineend="117" name="arcTo" signature="arcTo(x1, y1, x2, y2, radius)">
+          <variable citdl="float" ilk="argument" name="x1" />
+          <variable citdl="float" ilk="argument" name="y1" />
+          <variable citdl="float" ilk="argument" name="x2" />
+          <variable citdl="float" ilk="argument" name="y2" />
+          <variable citdl="float" ilk="argument" name="radius" />
+        </scope>
+        <scope doc="Adds points to the subpath such that the arc described by the circumference of the circle described by the arguments, starting at the given start angle and ending at the given end angle, going in the given direction, is added to the path, connected to the previous point by a straight line. Throws an INDEX_SIZE_ERR exception if the given radius is negative." ilk="function" line="118" lineend="118" name="arc" signature="arc(x, y, r, startAngle, endAngle, clockwise)">
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+          <variable citdl="float" ilk="argument" name="r" />
+          <variable citdl="float" ilk="argument" name="startAngle" />
+          <variable citdl="float" ilk="argument" name="endAngle" />
+          <variable citdl="boolean" ilk="argument" name="clockwise" />
+        </scope>
+        <scope doc="Adds a new closed subpath to the path, representing the given rectangle." ilk="function" line="119" lineend="119" name="rect" signature="rect(x, y, w, h)">
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+          <variable citdl="float" ilk="argument" name="w" />
+          <variable citdl="float" ilk="argument" name="h" />
+        </scope>
+        <scope doc="Fills the subpaths with the current fill style." ilk="function" line="121" lineend="121" name="fill" signature="fill()" />
+        <scope doc="Strokes the subpaths with the current stroke style." ilk="function" line="122" lineend="122" name="stroke" signature="stroke()" />
+        <scope doc="Further constrains the clipping region to the given path." ilk="function" line="123" lineend="123" name="clip" signature="clip()" />
+        <variable citdl="DOMString" line="126" name="font" />
+        <variable citdl="DOMString" line="127" name="textAlign" />
+        <variable citdl="DOMString" line="129" name="textBaseline" />
+        <scope doc="Fills the given text at the given position. If a maximum width is provided, the text will be scaled to fit that width if necessary." ilk="function" line="132" lineend="132" name="fillText" signature="fillText(text, x, y)">
+          <variable citdl="DOMString" ilk="argument" name="text" />
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+        </scope>
+        <scope doc="Strokes the given text at the given position. If a maximum width is provided, the text will be scaled to fit that width if necessary." ilk="function" line="133" lineend="133" name="strokeText" signature="strokeText(text, x, y)">
+          <variable citdl="DOMString" ilk="argument" name="text" />
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+        </scope>
+        <scope doc="drawImage(image, dx, dy, dw, dh)&#xA;drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)&#xA;Draws the given image onto the canvas.&#xA;The sx and sy parameters give the x and y coordinates of the source rectangle; the sw and sh arguments give the width and height of the source rectangle; the dx and dy give the x and y coordinates of the destination rectangle; and the dw and dh arguments give the width and height of the destination rectangle." ilk="function" line="143" lineend="143" name="drawImage" signature="drawImage(image, dx, dy)" />
+        <scope doc="Returns true if the given point is in the current path." ilk="function" line="151" lineend="151" name="isPointInPath" returns="boolean" signature="isPointInPath(x, y)">
+          <variable citdl="Element" ilk="argument" name="image" />
+          <variable citdl="float" ilk="argument" name="x" />
+          <variable citdl="float" ilk="argument" name="y" />
+          <variable citdl="float" ilk="argument" name="sx" />
+          <variable citdl="float" ilk="argument" name="sy" />
+          <variable citdl="float" ilk="argument" name="sw" />
+          <variable citdl="float" ilk="argument" name="sh" />
+          <variable citdl="float" ilk="argument" name="dx" />
+          <variable citdl="float" ilk="argument" name="dy" />
+          <variable citdl="float" ilk="argument" name="dw" />
+          <variable citdl="float" ilk="argument" name="dh" />
+        </scope>
+        <scope doc="Returns an ImageData object containing the image data for the given rectangle of the canvas. Throws a NOT_SUPPORTED_ERR exception if any of the arguments are not finite. Throws an INDEX_SIZE_ERR exception if the either of the width or height arguments are zero." ilk="function" line="158" lineend="158" name="getImageData" signature="getImageData(sx, sy, sw, sh)">
+          <variable citdl="float" ilk="argument" name="sx" />
+          <variable citdl="float" ilk="argument" name="sy" />
+          <variable citdl="float" ilk="argument" name="sw" />
+          <variable citdl="float" ilk="argument" name="sh" />
+        </scope>
+        <scope doc="Paints the data from the given ImageData object onto the canvas. If a dirty rectangle is provided, only the pixels from that rectangle are painted. The globalAlpha and globalCompositeOperation attributes, as well as the shadow attributes, are ignored for the purposes of this method call; pixels in the canvas are replaced wholesale, with no composition, alpha blending, no shadows, etc. If the first argument isn&apos;t an ImageData object, throws a TYPE_MISMATCH_ERR exception. Throws a NOT_SUPPORTED_ERR exception if any of the other arguments are not finite." ilk="function" line="159" lineend="159" name="putImageData" signature="putImageData(imagedata, dx, dy [, dirtyX, dirtyY, dirtyWidth, dirtyHeight ])" />
+        <scope doc="Returns an ImageData object with the same dimensions as the argument(s). All the pixels in the returned object are transparent black." ilk="function" line="162" lineend="162" name="createImageData" signature="createImageData([imagedata | sw, sh])">
+          <variable citdl="float" ilk="argument" name="sw" />
+          <variable citdl="float" ilk="argument" name="sh" />
+        </scope>
+        <variable attributes="const" citdl="unsigned long" line="165" name="DRAWWINDOW_DRAW_CARET" />
+        <variable attributes="const" citdl="unsigned long" line="168" name="DRAWWINDOW_DO_NOT_FLUSH" />
+        <scope doc="Renders a region of a window into the canvas.  The contents of the window&apos;s viewport are rendered, ignoring viewport clipping and scrolling." ilk="function" line="205" lineend="205" name="drawWindow" signature="drawWindow(window, x, y, w, h, bgColor)">
+          <variable citdl="Window" ilk="argument" name="window" />
+          <variable citdl="long" ilk="argument" name="x" />
+          <variable citdl="long" ilk="argument" name="y" />
+          <variable citdl="long" ilk="argument" name="w" />
+          <variable citdl="long" ilk="argument" name="h" />
+          <variable citdl="DOMString" ilk="argument" name="bgColor" />
+        </scope>
+      </scope>
+  
+      <!-- Microdata -->
+  
+      <!-- Add the HTMLPropertiesCollection class and it's helper classes. -->
+      <scope doc="A container for DOM tokens" ilk="class" name="DOMTokenList">
+        <variable citdl="Number" doc="The number of items in the list." name="length" />
+        <scope doc="" ilk="function" name="item" returns="DOMString" signature="item(index) -&gt; String" />
+        <scope doc="" ilk="function" name="contains" returns="Boolean" signature="contains(token) -&gt; Boolean" />
+        <scope doc="" ilk="function" name="add" signature="add(token)" />
+        <scope doc="" ilk="function" name="remove" signature="remove(token)" />
+        <scope doc="" ilk="function" name="toggle" returns="Boolean" signature="toggle(name) -&gt; PropertyNodeList" />
+      </scope>
+      <scope classrefs="DOMTokenList" doc="A container for DOM tokens" ilk="class" name="DOMSettableTokenList">
+        <variable citdl="String" doc="The underlying string." name="value" />
+      </scope>
+      <scope classrefs="NodeList" doc="A container for property nodes" ilk="class" name="PropertyNodeList">
+        <variable citdl="array" doc="An array of the various values that the relevant elements have." name="values" />
+      </scope>
+      <scope classrefs="HTMLCollection" doc="A collection of properties." ilk="class" name="HTMLPropertiesCollection">
+        <variable citdl="array" doc="An array of the property names of the elements in the collection." name="names" />
+        <scope doc="Returns a PropertyNodeList object containing any elements that add a property named name." ilk="function" name="namedItem" returns="PropertyNodeList" signature="namedItem(name) -&gt; PropertyNodeList" />
+      </scope>
+
+      <!-- Web messaging -->
+
+      <scope classrefs="Event" doc="A general messaging event." ilk="class" name="MessageEvent">
+        <variable name="data" doc="The data of the message" />
+        <variable citdl="String" name="origin" doc="The origin of the message" />
+        <variable citdl="String" name="lastEventId" doc="The last event ID" />
+        <variable citdl="Window" name="source" doc="The WindowProxy of the source window" />
+        <variable citdl="Array" name="ports" doc="The ports of the message" />
+        <scope doc="Initialize the event." ilk="function" name="initMessageEvent" signature="initMessageEvent(type, canBubble, cancelable, data, origin, lastEventId, source, ports)">
+          <variable citdl="String" ilk="argument" name="type" />
+          <variable citdl="Boolean" ilk="argument" name="canBubble" />
+          <variable citdl="Boolean" ilk="argument" name="cancelable" />
+          <variable ilk="argument" name="data" />
+          <variable citdl="String" ilk="argument" name="origin" />
+          <variable citdl="String" ilk="argument" name="lastEventId" />
+          <variable citdl="Window" ilk="argument" name="source" />
+          <variable citdl="Array" ilk="argument" name="ports" />
+        </scope>
+      </scope>
+      <scope doc="A message port." ilk="class" name="MessagePort">
+        <variable citdl="Function" name="onmessage" />
+        <scope ilk="function" name="start" signature="start()" doc="Begins dispatching messages received on the port." />
+        <scope ilk="function" name="close" signature="close()" doc="Disconnects the port, so that it is no longer active." />
+        <scope ilk="function" name="postMessage" signature="postMessage(message, ports)" doc="Posts a message through the channel, optionally with the given ports.">
+          <variable citdl="String" ilk="argument" name="type" />
+        </scope>
+      </scope>
+      <scope doc="A message channel." ilk="class" name="MessageChannel">
+        <variable citdl="MessagePort" name="port1" />
+        <variable citdl="MessagePort" name="port2" />
+      </scope>
+      <!-- Extend the Window class for the postMessage method. -->
+      <scope ilk="class" name="Window">
+        <scope ilk="function" name="postMessage" signature="postMessage(message, targetOrigin, ports)" doc="Posts a message, optionally with an array of ports, to the given window. If the origin of the target window doesn't match the given origin, the message is discarded, to avoid information leakage. To send the message to the target regardless of origin, set the target origin to '*'. To restrict the message to same-origin targets only, without needing to explicitly state the origin, set the target origin to '/'.">
+          <variable citdl="String" ilk="argument" name="type" />
+          <variable citdl="Boolean" ilk="argument" name="canBubble" />
+          <variable citdl="Boolean" ilk="argument" name="cancelable" />
+        </scope>
+      </scope>
+
+    </scope>
+  </file>
+</codeintel>

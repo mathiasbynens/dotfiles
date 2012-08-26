@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Class Variables</string>
+	<key>scope</key>
+	<string>source.groovy meta.definition.class meta.definition.class-variable.name</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>1</integer>
+		<key>symbolTransformation</key>
+		<string>
+		s/.+/  $0/g
+	</string>
+	</dict>
+	<key>uuid</key>
+	<string>AAC3FB7F-5428-4B6A-B43E-62E4C6677E1F</string>
+</dict>
+</plist>

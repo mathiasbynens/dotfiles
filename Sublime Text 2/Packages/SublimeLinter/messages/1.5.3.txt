@@ -1,0 +1,11 @@
+SublimeLinter 1.5.3 changelog
+
+Please restart Sublime Text 2 after reading this.
+
+CHANGES/FIXES
+
+- Annotations have been fixed.
+
+- Entries in "sublimelinter_syntax_map" take precedence over built in mappings.
+
+- Lint errors in PHP files will hopefully not be logged to the PHP log file.

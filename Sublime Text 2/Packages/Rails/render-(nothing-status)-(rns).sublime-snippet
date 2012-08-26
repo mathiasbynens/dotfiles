@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[render :nothing => ${1:true}, :status => ${2:401}]]></content>
+    <tabTrigger>rns</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (nothing, status)</description>
+</snippet>

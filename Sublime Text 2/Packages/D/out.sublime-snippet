@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[Stdout("$1").newline;]]></content>
+    <tabTrigger>out</tabTrigger>
+    <scope>source.d</scope>
+    <description>Stdout(…)</description>
+</snippet>

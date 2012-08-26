@@ -1,0 +1,15 @@
+{
+	"rulers": [],
+	"translate_tabs_to_spaces": false,
+	"gutter": false,
+	"margin": 1,
+	"syntax": "Packages/Text/Plain text.tmLanguage",
+	"is_widget": true,
+	"word_wrap": false,
+	"auto_match_enabled": false,
+	"scroll_past_end": false,
+	"draw_indent_guides": false,
+	"draw_centered": false,
+	"auto_complete": false,
+	"match_selection": false
+}

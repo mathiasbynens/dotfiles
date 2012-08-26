@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[~f:(fun ${1:()} -> ${2:body})]]></content>
+    <tabTrigger>~f</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>function label</description>
+</snippet>

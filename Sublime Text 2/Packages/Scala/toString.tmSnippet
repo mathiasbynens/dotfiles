@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>override def toString(): String =  $0 
+</string>
+	<key>name</key>
+	<string>toString</string>
+	<key>scope</key>
+	<string>source.scala</string>
+	<key>tabTrigger</key>
+	<string>tostr</string>
+	<key>uuid</key>
+	<string>E3CAD7C5-59B2-4CD2-9D9F-5D225998E2ED</string>
+</dict>
+</plist>

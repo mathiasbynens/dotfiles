@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[\$_FILES['${1:variable}']]]></content>
+    <tabTrigger>$_</tabTrigger>
+    <scope>source.php</scope>
+    <description>FILES['…']</description>
+</snippet>

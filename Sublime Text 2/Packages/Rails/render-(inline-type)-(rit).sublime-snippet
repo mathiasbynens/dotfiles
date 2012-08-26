@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[render :inline => "${1:<%= 'hello' %>}", :type => ${2::rxml}]]></content>
+    <tabTrigger>rit</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (inline, type)</description>
+</snippet>

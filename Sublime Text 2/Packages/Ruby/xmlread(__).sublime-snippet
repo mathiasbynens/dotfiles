@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[REXML::Document.new(File.read(${1:"${2:path/to/file}"}))]]></content>
+    <tabTrigger>xml-</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>xmlread(..)</description>
+</snippet>

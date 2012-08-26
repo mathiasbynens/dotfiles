@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[Array.new(${1:10}) { ${2/(^(?<var>\s*(?:\*|\*?[a-z_])[a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1:|)/}${2:i}${2/(^(?<var>\s*(?:\*|\*?[a-z_])[a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1:| )/}$0 }]]></content>
+    <tabTrigger>Array</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>Array.new(10) { |i| .. }</description>
+</snippet>

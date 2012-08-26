@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[${1:expression} if ${2:condition};
+]]></content>
+    <tabTrigger>xif</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Conditional One-line</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[debug(${1:${TM_FILENAME/(.*?)(\..+)/$1/}}) {
+	$0
+}]]></content>
+    <tabTrigger>debugm</tabTrigger>
+    <scope>source.d</scope>
+    <description>debug(module) { … }</description>
+</snippet>

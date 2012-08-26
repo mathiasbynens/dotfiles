@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[copy(todir:"${1:targetDir}") {
+	fileset(dir:"${2:sourceDir}") {
+		include(name:"${3:includeName}")
+		exclude(name:"${4:excludeName}")
+	}
+}]]></content>
+    <tabTrigger>copy</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>copy(todir: …) { fileset(dir: …) { include … exclude }</description>
+</snippet>

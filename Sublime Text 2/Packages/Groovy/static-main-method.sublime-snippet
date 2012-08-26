@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[static main(args) {
+	$0
+}]]></content>
+    <tabTrigger>main</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>static main() { … }</description>
+</snippet>

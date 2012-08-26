@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${1:key}: ${2:"${3:value}"}]]></content>
+    <tabTrigger>:</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>key: "value" (Hash Pair)</description>
+</snippet>

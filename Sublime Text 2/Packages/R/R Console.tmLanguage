@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array/>
+	<key>keyEquivalent</key>
+	<string>^~R</string>
+	<key>name</key>
+	<string>R Console</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>begin</key>
+			<string>^&gt; </string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.embedded.r-console</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\n|\z</string>
+			<key>name</key>
+			<string>source.r.embedded.r-console</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.r</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.r-console</string>
+	<key>uuid</key>
+	<string>F629C7F3-823B-4A4C-8EEE-9971490C5710</string>
+</dict>
+</plist>

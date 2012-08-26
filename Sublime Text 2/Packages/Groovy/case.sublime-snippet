@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[case ${1:CASE_NAME}:
+	$2
+break$0]]></content>
+    <tabTrigger>case</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>case … break</description>
+</snippet>

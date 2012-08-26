@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${TM_RAILS_TEMPLATE_START_RUBY_EXPR}Fixtures.identify(:${1:name})${TM_RAILS_TEMPLATE_END_RUBY_EXPR}$0]]></content>
+    <tabTrigger>fi</tabTrigger>
+    <scope>source.yaml</scope>
+    <description>&lt;%= Fixtures.identify(:symbol) %&gt;</description>
+</snippet>

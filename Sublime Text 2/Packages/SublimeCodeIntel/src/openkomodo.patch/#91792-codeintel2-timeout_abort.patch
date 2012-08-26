@@ -1,0 +1,29 @@
+--- openkomodo/src/codeintel/lib/codeintel2/buffer.py
++++ openkomodo/src/codeintel/lib/codeintel2/buffer.py
+@@ -265,6 +265,7 @@ class Buffer(object):
+         ctlr.wait(timeout)
+         if not ctlr.is_done():
+             ctlr.done("timed out")
++            ctlr.abort()
+             raise EvalTimeout("eval for %s timed-out" % trg)
+         return ctlr.cplns
+ 
+Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? n
+@@ -289,6 +290,7 @@ class Buffer(object):
+         ctlr.wait(timeout)
+         if not ctlr.is_done():
+             ctlr.done("timed out")
++            ctlr.abort()
+             raise EvalTimeout("eval for %s timed-out" % trg)
+         return ctlr.calltips
+ 
+--- openkomodo/src/codeintel/lib/codeintel2/citadel.py
++++ openkomodo/src/codeintel/lib/codeintel2/citadel.py
+@@ -154,6 +154,7 @@ class CitadelBuffer(Buffer):
+         ctlr.wait(timeout)
+         if not ctlr.is_done():
+             ctlr.done("timed out")
++            ctlr.abort()
+             raise EvalTimeout("eval for %s timed-out" % trg)
+         return ctlr.defns # -> list of Definition's
+ 

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[collect {${1/(.+)/(?1: )/}${1:obj}${1/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>col</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>collect { … }</description>
+</snippet>

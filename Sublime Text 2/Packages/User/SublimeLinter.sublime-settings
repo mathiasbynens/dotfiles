@@ -1,0 +1,34 @@
+{
+	"csslint_options":
+	{
+		"adjoining-classes": false,
+		"box-model": false,
+		"box-sizing": false,
+		"compatible-vendor-prefixes": false,
+		"display-property-grouping": false,
+		"duplicate-background-images": false,
+		"duplicate-properties": false,
+		"empty-rules": false,
+		"errors": false,
+		"fallback-colors": false,
+		"floats": false,
+		"font-faces": false,
+		"font-sizes": false,
+		"gradients": false,
+		"ids": false,
+		"import": false,
+		"important": false,
+		"known-properties": false,
+		"outline-none": false,
+		"overqualified-elements": false,
+		"qualified-headings": false,
+		"regex-selectors": false,
+		"rules-count": false,
+		"shorthand": false,
+		"text-indent": false,
+		"unique-headings": false,
+		"universal-selector": false,
+		"vendor-prefix": false,
+		"zero-units": false
+	}
+}

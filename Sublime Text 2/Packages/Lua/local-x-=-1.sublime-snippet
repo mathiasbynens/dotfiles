@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[local ${1:x} = ${0:1}]]></content>
+    <tabTrigger>local</tabTrigger>
+    <scope>source.lua</scope>
+    <description>local x = 1</description>
+</snippet>

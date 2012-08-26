@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[cum${1:max}(${2:x})]]></content>
+    <tabTrigger>cum</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Cummulative</description>
+</snippet>

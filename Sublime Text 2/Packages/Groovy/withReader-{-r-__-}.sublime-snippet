@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[withReader {${1/(.+)/(?1: )/}${1:reader}${1/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>with</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>withReader { … }</description>
+</snippet>

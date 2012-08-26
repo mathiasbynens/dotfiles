@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[catch (${1:Exception} ${2:e}) {
+	$0
+}]]></content>
+    <tabTrigger>ca</tabTrigger>
+    <scope>source.java</scope>
+    <description>catch</description>
+</snippet>

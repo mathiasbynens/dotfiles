@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>import $2"${1:name}"</string>
+	<key>name</key>
+	<string>Import</string>
+	<key>scope</key>
+	<string>source.go</string>
+	<key>tabTrigger</key>
+	<string>imp</string>
+	<key>uuid</key>
+	<string>2DFA9510-6F88-4BC6-A409-DA4075DEA8FF</string>
+</dict>
+</plist>

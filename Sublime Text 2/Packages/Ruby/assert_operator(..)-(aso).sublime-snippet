@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_operator(${1:left}, :${2:operator}, ${0:right})]]></content>
+    <tabTrigger>aso</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_operator(..)</description>
+</snippet>

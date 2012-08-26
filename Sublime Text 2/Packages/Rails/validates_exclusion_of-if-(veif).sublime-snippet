@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[validates_exclusion_of :${1:attribute}${2:, :in => ${3:%w( ${4:mov avi} )}, :on => :${5:create}, :message => "${6:extension %s is not allowed}"}, :if => proc { |obj| ${7:obj.condition?} }}]]></content>
+    <tabTrigger>veif</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>validates_exclusion_of if</description>
+</snippet>

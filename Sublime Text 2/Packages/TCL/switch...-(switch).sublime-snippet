@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[switch ${1:-exact} -- ${2:\$var} {
+	${3:match} {
+		${4}
+	}
+	default {${5}}
+}
+]]></content>
+    <tabTrigger>switch</tabTrigger>
+    <scope>source.tcl</scope>
+    <description>switch...</description>
+</snippet>

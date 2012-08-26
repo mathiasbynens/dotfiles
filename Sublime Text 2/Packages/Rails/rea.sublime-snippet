@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[redirect_to :action => "${1:index}"]]></content>
+    <tabTrigger>rea</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>redirect_to (action)</description>
+</snippet>

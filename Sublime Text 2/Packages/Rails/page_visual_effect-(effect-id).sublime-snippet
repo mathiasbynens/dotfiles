@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[page.visual_effect :${1:toggle_slide}, ${2:"${3:DOM ID}"}]]></content>
+    <tabTrigger>vis</tabTrigger>
+    <scope>source.ruby.rails.rjs</scope>
+    <description>page.visual_effect (effect, id)</description>
+</snippet>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Sublime Widgets</string>
+	<key>settings</key>
+	<array>
+		<dict>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#E6E6E6</string>
+				<key>caret</key>
+				<string>#000000</string>
+				<key>foreground</key>
+				<string>#1D1D1C</string>
+				<key>invisibles</key>
+				<string>#BFBFBF</string>
+				<key>lineHighlight</key>
+				<string>#00000012</string>
+				<key>selection</key>
+				<string>#9ebccc</string>
+				<key>selectionBorder</key>
+				<string>#a9bbc</string>
+				<key>inactiveSelection</key>
+				<string>#a8afb3</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Comment</string>
+			<key>scope</key>
+			<string>comment</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>italic</string>
+				<key>foreground</key>
+				<string>#0066FF</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Keyword</string>
+			<key>scope</key>
+			<string>keyword, storage</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#4271AE</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>scope</key>
+			<string>constant</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#2C473E</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>scope</key>
+			<string>string</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#1D577D</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>scope</key>
+			<string>constant.character.escape</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#F5871F</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

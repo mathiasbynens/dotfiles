@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[has_many :${1:objects}, :through => :${2:join_association}${3:, :source => :${4:${2}_table_foreign_key_to_${1}_table}}]]></content>
+    <tabTrigger>hmt</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>has_many (through)</description>
+</snippet>

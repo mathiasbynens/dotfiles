@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[ignore (Thread.create (fun () -> 
+    $0
+  ) ())]]></content>
+    <tabTrigger>thread</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>untitled</description>
+</snippet>

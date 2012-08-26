@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[synchronized ]]></content>
+    <tabTrigger>sy</tabTrigger>
+    <scope>source.java</scope>
+    <description>synchronized</description>
+</snippet>

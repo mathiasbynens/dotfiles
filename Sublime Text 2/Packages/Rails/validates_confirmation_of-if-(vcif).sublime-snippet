@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[validates_confirmation_of :${1:attribute}${2:, :on => :${3:create}, :message => "${4:should match confirmation}", :if => proc { |obj| ${5:obj.condition?} }}]]></content>
+    <tabTrigger>vcif</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>validates_confirmation_of if</description>
+</snippet>

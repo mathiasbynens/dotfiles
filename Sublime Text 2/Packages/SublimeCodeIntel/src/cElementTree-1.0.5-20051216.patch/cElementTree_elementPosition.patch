@@ -1,0 +1,244 @@
+--- cElementTree/cElementTree.c.orig	2007-03-19 13:09:30.000000000 -0700
++++ cElementTree/cElementTree.c	2007-03-19 13:09:47.000000000 -0700
+@@ -253,6 +253,11 @@
+        pointer; use JOIN_OBJ to get the object pointer. */
+     PyObject* tail;
+ 
++    PyObject* localName; /* string */
++    PyObject* ns; /* string */
++    PyObject* start; /* tuple(line, col, bytePos) */
++    PyObject* end; /* tuple(line, col, bytePos) */
++
+     ElementObjectExtra* extra;
+ 
+ } ElementObject;
+@@ -304,6 +309,8 @@
+ element_new(PyObject* tag, PyObject* attrib)
+ {
+     ElementObject* self;
++    char* string;
++    int i, size;
+ 
+     self = PyObject_New(ElementObject, &Element_Type);
+     if (self == NULL)
+@@ -335,11 +342,97 @@
+     Py_INCREF(Py_None);
+     self->tail = Py_None;
+ 
++    self->localName = NULL;
++    self->ns = NULL;
++
++    /* look for namespace separator */
++#if defined(Py_USING_UNICODE)
++    if (PyUnicode_Check(tag)) {
++        Py_UNICODE *string = PyUnicode_AS_UNICODE(tag);
++        size = PyUnicode_GET_SIZE(tag);
++    
++        for (i = 0; i < size; i++)
++            if (string[i] == '}')
++                break;
++        if (i != size) {
++            /* convert from universal name */
++            self->ns = PyUnicode_FromUnicode(string+1, i-1);
++            Py_INCREF(self->ns);
++            
++            if (size-i > 0) {
++                self->localName = PyUnicode_FromUnicode(string+i+1, size-i-1);
++                Py_INCREF(self->localName);
++            } else {
++                Py_INCREF(Py_None);
++                self->localName = Py_None;
++            }
++        }
++        
++    } else
++#endif
++    {
++        string = PyString_AS_STRING(tag);
++        size = strlen(string);
++    
++        for (i = 0; i < size; i++)
++            if (string[i] == '}')
++                break;
++        if (i != size) {
++            /* convert from universal name */
++            PyObject* ns = PyString_FromStringAndSize(NULL, i-1);
++            char *p = PyString_AS_STRING(ns);
++            memcpy(p, string+1, i-1);
++            Py_INCREF(ns);
++            self->ns = ns;
++            
++            if (size-i > 0) {
++                PyObject* localName = PyString_FromStringAndSize(NULL, size-i-1);
++                p = PyString_AS_STRING(localName);
++                memcpy(p, string+i+1, size-i-1);
++                Py_INCREF(localName);
++                self->localName = localName;
++            } else {
++                Py_INCREF(Py_None);
++                self->localName = Py_None;
++            }
++        }
++    }
++
++    /* plain name; use key as tag */
++    if (self->localName == NULL) {
++        Py_INCREF(tag);
++        self->localName = tag;
++    }
++    if (self->ns == NULL) {
++        Py_INCREF(Py_None);
++        self->ns = Py_None;
++    }
++    
++    Py_INCREF(Py_None);
++    self->start = Py_None;
++    Py_INCREF(Py_None);
++    self->end = Py_None;
++
+     ALLOC(sizeof(ElementObject), "create element");
+ 
+     return (PyObject*) self;
+ }
+ 
++LOCAL(void)
++element_add_position(ElementObject* self, int end, long line, long col, long bytePos)
++{
++    PyObject* position;
++    position = PyTuple_New(3);
++    PyTuple_SET_ITEM(position, 0, (PyObject*) PyInt_FromLong(line));
++    PyTuple_SET_ITEM(position, 1, (PyObject*) PyInt_FromLong(col));
++    PyTuple_SET_ITEM(position, 2, (PyObject*) PyInt_FromLong(bytePos));
++    if (end) {
++        self->end = position;
++    } else {
++        self->start = position;
++    }
++}
++
+ LOCAL(int)
+ element_resize(ElementObject* self, int extra)
+ {
+@@ -529,6 +622,10 @@
+     Py_DECREF(self->tag);
+     Py_DECREF(JOIN_OBJ(self->text));
+     Py_DECREF(JOIN_OBJ(self->tail));
++    Py_DECREF(self->localName);
++    Py_DECREF(self->ns);
++    Py_DECREF(self->start);
++    Py_DECREF(self->end);
+ 
+     RELEASE(sizeof(ElementObject), "destroy element");
+ 
+@@ -1315,7 +1412,15 @@
+         if (!self->extra)
+             element_new_extra(self, NULL);
+ 	res = element_get_attrib(self);
+-    } else {
++    } else if (strcmp(name, "localName") == 0)
++        res = self->localName;
++    else if (strcmp(name, "ns") == 0)
++        res = self->ns;
++    else if (strcmp(name, "start") == 0)
++        res = self->start;
++    else if (strcmp(name, "end") == 0)
++        res = self->end;
++    else {
+         PyErr_SetString(PyExc_AttributeError, name);
+         return NULL;
+     }
+@@ -1356,6 +1461,14 @@
+         Py_DECREF(self->extra->attrib);
+         self->extra->attrib = value;
+         Py_INCREF(self->extra->attrib);
++    } else if (strcmp(name, "start") == 0) {
++        Py_DECREF(self->start);
++        self->start = value;
++        Py_INCREF(self->start);
++    } else if (strcmp(name, "end") == 0) {
++        Py_DECREF(self->end);
++        self->end = value;
++        Py_INCREF(self->end);
+     } else {
+         PyErr_SetString(PyExc_AttributeError, name);
+         return -1;
+@@ -1491,7 +1604,8 @@
+ 
+ LOCAL(PyObject*)
+ treebuilder_handle_start(TreeBuilderObject* self, PyObject* tag,
+-                         PyObject* attrib)
++                         PyObject* attrib,
++                         long line, long col, long pos)
+ {
+     PyObject* node;
+     PyObject* this;
+@@ -1513,6 +1627,8 @@
+     if (!node)
+         return NULL;
+ 
++    element_add_position((ElementObject*) node, 0, line, col, pos);
++
+     this = (PyObject*) self->this;
+ 
+     if (this != Py_None) {
+@@ -1597,7 +1713,7 @@
+ }
+ 
+ LOCAL(PyObject*)
+-treebuilder_handle_end(TreeBuilderObject* self, PyObject* tag)
++treebuilder_handle_end(TreeBuilderObject* self, PyObject* tag, long line, long col, long pos)
+ {
+     PyObject* item;
+ 
+@@ -1632,6 +1748,8 @@
+     self->last = (ElementObject*) self->this;
+     self->this = (ElementObject*) item;
+ 
++    element_add_position(self->last, 1, line, col, pos);
++
+     if (self->end_event_obj) {
+         PyObject* res;
+         PyObject* action = self->end_event_obj;
+@@ -1710,7 +1828,7 @@
+     if (!PyArg_ParseTuple(args, "O:end", &tag))
+         return NULL;
+ 
+-    return treebuilder_handle_end(self, tag);
++    return treebuilder_handle_end(self, tag, -1, -1, -1);
+ }
+ 
+ LOCAL(PyObject*)
+@@ -1746,7 +1864,7 @@
+     if (!PyArg_ParseTuple(args, "O|O:start", &tag, &attrib))
+         return NULL;
+ 
+-    return treebuilder_handle_start(self, tag, attrib);
++    return treebuilder_handle_start(self, tag, attrib, -1, -1, -1);
+ }
+ 
+ static PyObject*
+@@ -2012,7 +2130,10 @@
+     if (TreeBuilder_CheckExact(self->target))
+         /* shortcut */
+         res = treebuilder_handle_start((TreeBuilderObject*) self->target,
+-                                       tag, attrib);
++                                       tag, attrib,
++                                       (long) EXPAT(GetCurrentLineNumber)(self->parser),
++                                       (long) EXPAT(GetCurrentColumnNumber)(self->parser),
++                                       (long) EXPAT(GetCurrentByteIndex)(self->parser));
+     else if (self->handle_start)
+         res = PyObject_CallFunction(self->handle_start, "OO", tag, attrib);
+     else
+@@ -2056,8 +2177,10 @@
+         /* shortcut */
+         /* the standard tree builder doesn't look at the end tag */
+         res = treebuilder_handle_end(
+-            (TreeBuilderObject*) self->target, Py_None
+-            );
++            (TreeBuilderObject*) self->target, Py_None,
++                        (long) EXPAT(GetCurrentLineNumber)(self->parser),
++                        (long) EXPAT(GetCurrentColumnNumber)(self->parser),
++                        (long) EXPAT(GetCurrentByteIndex)(self->parser));
+     else if (self->handle_end) {
+         tag = makeuniversal(self, tag_in);
+         if (tag) {

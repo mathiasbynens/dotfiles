@@ -1,0 +1,16 @@
+SublimeLinter 1.6.2 changelog
+
+CHANGES/FIXES
+
+- Replaced the default perl linter with Perl::Critic. The standard Perl syntax checker
+  can still be invoked by switching the "perl_linter" setting to "perl".
+
+- Added a LICENSE file to define appropriate usage of SublimeLinter and its source.
+
+- Converted README back to markdown.
+
+
+IMPORTANT
+
+Due to a vulnerability (issue #77) with the Perl linter, Perl syntax checking is no longer
+enabled by default. The default linter for Perl has been replaced by Perl::Critic.

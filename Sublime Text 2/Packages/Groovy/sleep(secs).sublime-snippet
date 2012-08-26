@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[sleep(${1:secs})]]></content>
+    <tabTrigger>sleep</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>sleep(secs)</description>
+</snippet>

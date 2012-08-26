@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[shouldFail${1/(.+)/(?1:\()/}${1:Exception}${1/(.+)/(?1:\))/} {
+	$0
+}]]></content>
+    <tabTrigger>sf</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>shouldFail { … }</description>
+</snippet>

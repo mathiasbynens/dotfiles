@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Methods</string>
+	<key>scope</key>
+	<string>source.groovy meta.definition.method.signature</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>1</integer>
+		<key>symbolTransformation</key>
+		<string>
+		s/\s*.*\s+(\w+)\s*(\(.*\)).*/    $1$2/g
+	</string>
+	</dict>
+	<key>uuid</key>
+	<string>6AF1B177-1700-478F-808B-78D85403FC19</string>
+</dict>
+</plist>

@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[${1:map}.with_options :${2:controller} => '${3:thing}' do |${4:$3}|
+	$0
+end
+]]></content>
+    <tabTrigger>mapwo</tabTrigger>
+    <scope>meta.rails.routes</scope>
+    <description>map.with_options</description>
+</snippet>

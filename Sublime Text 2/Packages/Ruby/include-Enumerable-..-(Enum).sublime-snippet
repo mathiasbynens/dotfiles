@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[include Enumerable
+
+def each(&block)
+	$0
+end]]></content>
+    <tabTrigger>Enum</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>include Enumerable ..</description>
+</snippet>

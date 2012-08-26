@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codeintel description="A lightweight JavaScript library - v1.4.2" name="MochiKit" version="2.0">
+  <file lang="JavaScript" path="MochiKit/DateTime.js">
+    <scope ilk="blob" lang="JavaScript" name="DateTime.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="DateTime">
+          <scope doc="Convert an ISO 8601 date (YYYY-MM-DD) to a Date object." ilk="function" name="isoDate" signature="isoDate(str)" />
+          <scope doc="Convert any ISO 8601 [1] timestamp (or something reasonably&#xA;close to it) to a Date object. Will accept the &quot;de facto&quot;&#xA;form: YYYY-MM-DD hh:mm:ss or (the proper form): YYYY-MM-&#xA;DDThh:mm:ssZ If a time zone designator (&quot;Z&quot; or &quot;[+-]HH:MM&quot;)&#xA;is not present, then the local timezone is used." ilk="function" name="isoTimestamp" signature="isoTimestamp(str)" />
+          <scope doc="Convert a Date object to a string in the form of hh:mm:ss&#xA;Availability: Available in MochiKit 1.3.1+" ilk="function" name="toISOTime" signature="toISOTime(date)" />
+          <scope doc="Convert a Date object to something that&apos;s ALMOST but not&#xA;quite an ISO 8601 [1]_timestamp. If it was a proper ISO&#xA;timestamp it would be: YYYY-MM-DDThh:mm:ssZ However, we see&#xA;junk in SQL and other places that looks like this: YYYY-MM-&#xA;DD hh:mm:ss So, this function returns the latter form,&#xA;despite its name, unless you pass true for realISO." ilk="function" name="toISOTimestamp" signature="toISOTimestamp(date, realISO=false)" />
+          <scope doc="Convert a Date object to an ISO 8601 [1] date string (YYYY-&#xA;MM-DD) Availability: Available in MochiKit 1.3.1+" ilk="function" name="toISODate" signature="toISODate(date)" />
+          <scope doc="Converts a MM/DD/YYYY date to a Date object Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="americanDate" signature="americanDate(str)" />
+          <scope doc="Converts a Date object to an MM/DD/YYYY date, e.g." ilk="function" name="toPaddedAmericanDate" signature="toPaddedAmericanDate(date)" />
+          <scope doc="Converts a Date object to an M/D/YYYY date, e.g." ilk="function" name="toAmericanDate" signature="toAmericanDate(date)" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.DateTime.isoDate" name="isoDate" />
+      <variable citdl="MochiKit.DateTime.isoTimestamp" name="isoTimestamp" />
+      <variable citdl="MochiKit.DateTime.toISOTime" name="toISOTime" />
+      <variable citdl="MochiKit.DateTime.toISOTimestamp" name="toISOTimestamp" />
+      <variable citdl="MochiKit.DateTime.toISODate" name="toISODate" />
+      <variable citdl="MochiKit.DateTime.americanDate" name="americanDate" />
+      <variable citdl="MochiKit.DateTime.toPaddedAmericanDate" name="toPaddedAmericanDate" />
+      <variable citdl="MochiKit.DateTime.toAmericanDate" name="toAmericanDate" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Color.js">
+    <scope ilk="blob" lang="JavaScript" name="Color.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Color">
+          <scope doc="Represents a color. Component values should be integers&#xA;between 0.0 and 1.0." ilk="class" name="Color">
+            <scope attributes="__ctor__" doc="Represents a color. Component values should be integers&#xA;between 0.0 and 1.0." ilk="function" name="Color" signature="Color()" />
+            <scope doc="Returns a Color object based on the background of the&#xA;provided element." ilk="function" name="fromBackground" returns="Color" signature="fromBackground(elem) =&gt; Color" />
+            <scope doc="Returns a Color object based on the result of&#xA;MochiKit.Style.getStyle(elem, style) or null if not found." ilk="function" name="fromComputedStyle" returns="Color" signature="fromComputedStyle(elem, style) =&gt; Color" />
+            <scope doc="Returns a Color object from the given hexadecimal color&#xA;string. For example, &quot;#FFFFFF&quot; would return a Color with RGB&#xA;values [255/255, 255/255, 255/255] (white)." ilk="function" name="fromHexString" returns="Color" signature="fromHexString(hexString) =&gt; Color" />
+            <scope doc="Return a Color object from the given hue, saturation,&#xA;lightness values. Values should be numbers between 0.0 and&#xA;1.0." ilk="function" name="fromHSL" returns="Color" signature="fromHSL(hue, saturation, lightness, alpha=1.0) =&gt; Color" />
+            <scope doc="Returns a Color object from the given decimal hsl color&#xA;string. For example, &quot;hsl(0,0%,100%)&quot; would return a Color&#xA;with HSL values [0/360, 0/360, 360/360] (white)." ilk="function" name="fromHSLString" returns="Color" signature="fromHSLString(hslString) =&gt; Color" />
+            <scope doc="Return a Color object from the given hue, saturation, value&#xA;values. Values should be numbers between 0.0 and 1.0." ilk="function" name="fromHSV" returns="Color" signature="fromHSV(hue, saturation, value, alpha=1.0) =&gt; Color" />
+            <scope doc="Returns a Color object corresponding to the given SVG 1.0&#xA;color keyword name [2] as per the W3C CSS3 Color Module [3].&#xA;&quot;transparent&quot; is also accepted as a color name, and will&#xA;return Color.transparentColor()." ilk="function" name="fromName" returns="Color" signature="fromName(colorName) =&gt; Color" />
+            <scope doc="Return a Color object from the given red, green, blue, and&#xA;alpha values. Values should be numbers between 0 and 1.0." ilk="function" name="fromRGB" returns="Color" signature="fromRGB(red, green, blue, alpha=1.0) =&gt; Color" />
+            <scope doc="Returns a Color object from the given decimal rgb color&#xA;string. For example, &quot;rgb(255,255,255)&quot; would return a Color&#xA;with RGB values [255/255, 255/255, 255/255] (white)." ilk="function" name="fromRGBString" returns="Color" signature="fromRGBString(rgbString) =&gt; Color" />
+            <scope doc="Returns a Color object based on the text color of the&#xA;provided element." ilk="function" name="fromText" returns="Color" signature="fromText(elem) =&gt; Color" />
+            <scope doc="Returns a Color object from the given RGB, HSL, hex, or&#xA;name. Will return null if the string can not be parsed by&#xA;any of these methods." ilk="function" name="fromString" returns="Color" signature="fromString(rgbOrHexString) =&gt; Color" />
+            <scope doc="Returns an object with properties for each SVG 1.0 color&#xA;keyword name [2] supported by CSS3 [3]. Property names are&#xA;the color keyword name in lowercase, and the value is a&#xA;string suitable for Color.fromString()." ilk="function" name="namedColors" returns="Object" signature="namedColors() =&gt; Object" />
+            <scope doc="Return a new Color based on this color, but with the&#xA;provided alpha value." ilk="function" name="colorWithAlpha" returns="Color" signature="colorWithAlpha(alpha) =&gt; Color" />
+            <scope doc="Return a new Color based on this color, but with the&#xA;provided hue value." ilk="function" name="colorWithHue" returns="Color" signature="colorWithHue(hue) =&gt; Color" />
+            <scope doc="Return a new Color based on this color, but with the&#xA;provided saturation value (using the HSL color model)." ilk="function" name="colorWithSaturation" returns="Color" signature="colorWithSaturation(saturation) =&gt; Color" />
+            <scope doc="Return a new Color based on this color, but with the&#xA;provided lightness value." ilk="function" name="colorWithLightness" returns="Color" signature="colorWithLightness(lightness) =&gt; Color" />
+            <scope doc="Return a new Color based on this color, but darker by the&#xA;given level (between 0 and 1.0)." ilk="function" name="darkerColorWithLevel" returns="Color" signature="darkerColorWithLevel(level) =&gt; Color" />
+            <scope doc="Return a new Color based on this color, but lighter by the&#xA;given level (between 0 and 1.0)." ilk="function" name="lighterColorWithLevel" returns="Color" signature="lighterColorWithLevel(level) =&gt; Color" />
+            <scope doc="Return a new Color whose RGBA component values are a&#xA;weighted sum of this color and other. Each component of the&#xA;returned color is the fraction of other&apos;s value plus 1 -&#xA;fraction of this color&apos;s." ilk="function" name="blendedColor" returns="Color" signature="blendedColor(other, fraction=0.5) =&gt; Color" />
+            <scope doc="Return true if the lightness value of this color is greater&#xA;than 0.5. Note that alpha is ignored for this calculation&#xA;(color components are not premultiplied)." ilk="function" name="isLight" returns="Boolean" signature="isLight() =&gt; Boolean" />
+            <scope doc="Return true if the lightness value of this color is less&#xA;than or equal to 0.5. Note that alpha is ignored for this&#xA;calculation (color components are not premultiplied)." ilk="function" name="isDark" returns="Boolean" signature="isDark() =&gt; Boolean" />
+            <scope doc="Return the decimal &quot;rgb(red, green, blue)&quot; string&#xA;representation of this color. If the alpha component is not&#xA;1.0 (fully opaque), the &quot;rgba(red, green, blue, alpha)&quot;&#xA;string representation will be used." ilk="function" name="toRGBString" returns="String" signature="toRGBString() =&gt; String" />
+            <scope doc="Return the decimal &quot;hsl(hue, saturation, lightness)&quot; string&#xA;representation of this color. If the alpha component is not&#xA;1.0 (fully opaque), the &quot;hsla(hue, saturation, lightness,&#xA;alpha)&quot; string representation will be used." ilk="function" name="toHSLString" returns="String" signature="toHSLString() =&gt; String" />
+            <scope doc="Return the hexadecimal &quot;#RRGGBB&quot; string representation of&#xA;this color." ilk="function" name="toHexString" signature="toHexString()" />
+            <scope doc="Return the RGB (red, green, blue, alpha) components of this&#xA;color as an object with r, g, b, and a properties that have&#xA;values between 0.0 and 1.0." ilk="function" name="asRGB" signature="asRGB()" />
+            <scope doc="Return the HSL (hue, saturation, lightness, alpha)&#xA;components of this color as an object with h, s, l and a&#xA;properties that have values between 0.0 and 1.0." ilk="function" name="asHSL" signature="asHSL()" />
+            <scope doc="Return the HSV (hue, saturation, value, alpha) components of&#xA;this color as an object with h, s, v and a properties that&#xA;have values between 0.0 and 1.0." ilk="function" name="asHSV" signature="asHSV()" />
+            <scope doc="Return a Color object whose RGB values are 0, 0, 0&#xA;(#000000)." ilk="function" name="blackColor" returns="Color" signature="blackColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 0, 0, 1&#xA;(#0000ff)." ilk="function" name="blueColor" returns="Color" signature="blueColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 0.6, 0.4, 0.2&#xA;(#996633)." ilk="function" name="brownColor" returns="Color" signature="brownColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 0, 1, 1&#xA;(#00ffff)." ilk="function" name="cyanColor" returns="Color" signature="cyanColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 1/3, 1/3, 1/3&#xA;(#555555)." ilk="function" name="darkGrayColor" returns="Color" signature="darkGrayColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 0.5, 0.5, 0.5&#xA;(#808080)." ilk="function" name="grayColor" returns="Color" signature="grayColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 0, 1, 0.&#xA;(#00ff00)." ilk="function" name="greenColor" returns="Color" signature="greenColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 2/3, 2/3, 2/3&#xA;(#aaaaaa)." ilk="function" name="lightGrayColor" returns="Color" signature="lightGrayColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 1, 0, 1&#xA;(#ff00ff)." ilk="function" name="magentaColor" returns="Color" signature="magentaColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 1, 0.5, 0&#xA;(#ff8000)." ilk="function" name="orangeColor" returns="Color" signature="orangeColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 0.5, 0, 0.5&#xA;(#800080)." ilk="function" name="purpleColor" returns="Color" signature="purpleColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 1, 0, 0&#xA;(#ff0000)." ilk="function" name="redColor" returns="Color" signature="redColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 1, 1, 1&#xA;(#ffffff)." ilk="function" name="whiteColor" returns="Color" signature="whiteColor() =&gt; Color" />
+            <scope doc="Return a Color object whose RGB values are 1, 1, 0&#xA;(#ffff00)." ilk="function" name="yellowColor" returns="Color" signature="yellowColor() =&gt; Color" />
+            <scope doc="Return a Color object that is completely transparent (has&#xA;alpha component of 0)." ilk="function" name="transparentColor" returns="Color" signature="transparentColor() =&gt; Color" />
+          </scope>
+          <scope doc="Returns num * scale clamped between 0 and scale.&#xA;clampColorComponent is not exported by default when using&#xA;JSAN." ilk="function" name="clampColorComponent" signature="clampColorComponent(num, scale)" />
+          <scope doc="Computes RGB values from the provided HSL values. The return&#xA;value is a mapping with &quot;r&quot;, &quot;g&quot;, &quot;b&quot; and &quot;a&quot; keys." ilk="function" name="hslToRGB" signature="hslToRGB(hue, saturation, lightness, alpha)" />
+          <scope doc="Computes RGB values from the provided HSV values. The return&#xA;value is a mapping with &quot;r&quot;, &quot;g&quot;, &quot;b&quot; and &quot;a&quot; keys." ilk="function" name="hsvToRGB" signature="hsvToRGB(hue, saturation, value, alpha)" />
+          <scope doc="Convert num to a zero padded hexadecimal digit for use in a&#xA;hexadecimal color string. Num should be an integer between 0&#xA;and 255." ilk="function" name="toColorPart" signature="toColorPart(num)" />
+          <scope doc="Computes HSL values based on the provided RGB values. The&#xA;return value is a mapping with &quot;h&quot;, &quot;s&quot;, &quot;l&quot; and &quot;a&quot; keys." ilk="function" name="rgbToHSL" signature="rgbToHSL(red, green, blue, alpha)" />
+          <scope doc="Computes HSV values based on the provided RGB values. The&#xA;return value is a mapping with &quot;h&quot;, &quot;s&quot;, &quot;v&quot; and &quot;a&quot; keys." ilk="function" name="rgbToHSV" signature="rgbToHSV(red, green, blue, alpha)" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Color.Color" name="Color" />
+      <variable citdl="MochiKit.Color.fromBackground" name="fromBackground" />
+      <variable citdl="MochiKit.Color.fromComputedStyle" name="fromComputedStyle" />
+      <variable citdl="MochiKit.Color.fromHexString" name="fromHexString" />
+      <variable citdl="MochiKit.Color.fromHSL" name="fromHSL" />
+      <variable citdl="MochiKit.Color.fromHSLString" name="fromHSLString" />
+      <variable citdl="MochiKit.Color.fromHSV" name="fromHSV" />
+      <variable citdl="MochiKit.Color.fromName" name="fromName" />
+      <variable citdl="MochiKit.Color.fromRGB" name="fromRGB" />
+      <variable citdl="MochiKit.Color.fromRGBString" name="fromRGBString" />
+      <variable citdl="MochiKit.Color.fromText" name="fromText" />
+      <variable citdl="MochiKit.Color.fromString" name="fromString" />
+      <variable citdl="MochiKit.Color.namedColors" name="namedColors" />
+      <variable citdl="MochiKit.Color.colorWithAlpha" name="colorWithAlpha" />
+      <variable citdl="MochiKit.Color.colorWithHue" name="colorWithHue" />
+      <variable citdl="MochiKit.Color.colorWithSaturation" name="colorWithSaturation" />
+      <variable citdl="MochiKit.Color.colorWithLightness" name="colorWithLightness" />
+      <variable citdl="MochiKit.Color.darkerColorWithLevel" name="darkerColorWithLevel" />
+      <variable citdl="MochiKit.Color.lighterColorWithLevel" name="lighterColorWithLevel" />
+      <variable citdl="MochiKit.Color.blendedColor" name="blendedColor" />
+      <variable citdl="MochiKit.Color.isLight" name="isLight" />
+      <variable citdl="MochiKit.Color.isDark" name="isDark" />
+      <variable citdl="MochiKit.Color.toRGBString" name="toRGBString" />
+      <variable citdl="MochiKit.Color.toHSLString" name="toHSLString" />
+      <variable citdl="MochiKit.Color.toHexString" name="toHexString" />
+      <variable citdl="MochiKit.Color.asRGB" name="asRGB" />
+      <variable citdl="MochiKit.Color.asHSL" name="asHSL" />
+      <variable citdl="MochiKit.Color.asHSV" name="asHSV" />
+      <variable citdl="MochiKit.Color.blackColor" name="blackColor" />
+      <variable citdl="MochiKit.Color.blueColor" name="blueColor" />
+      <variable citdl="MochiKit.Color.brownColor" name="brownColor" />
+      <variable citdl="MochiKit.Color.cyanColor" name="cyanColor" />
+      <variable citdl="MochiKit.Color.darkGrayColor" name="darkGrayColor" />
+      <variable citdl="MochiKit.Color.grayColor" name="grayColor" />
+      <variable citdl="MochiKit.Color.greenColor" name="greenColor" />
+      <variable citdl="MochiKit.Color.lightGrayColor" name="lightGrayColor" />
+      <variable citdl="MochiKit.Color.magentaColor" name="magentaColor" />
+      <variable citdl="MochiKit.Color.orangeColor" name="orangeColor" />
+      <variable citdl="MochiKit.Color.purpleColor" name="purpleColor" />
+      <variable citdl="MochiKit.Color.redColor" name="redColor" />
+      <variable citdl="MochiKit.Color.whiteColor" name="whiteColor" />
+      <variable citdl="MochiKit.Color.yellowColor" name="yellowColor" />
+      <variable citdl="MochiKit.Color.transparentColor" name="transparentColor" />
+      <variable citdl="MochiKit.Color.clampColorComponent" name="clampColorComponent" />
+      <variable citdl="MochiKit.Color.hslToRGB" name="hslToRGB" />
+      <variable citdl="MochiKit.Color.hsvToRGB" name="hsvToRGB" />
+      <variable citdl="MochiKit.Color.toColorPart" name="toColorPart" />
+      <variable citdl="MochiKit.Color.rgbToHSL" name="rgbToHSL" />
+      <variable citdl="MochiKit.Color.rgbToHSV" name="rgbToHSV" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Logging.js">
+    <scope ilk="blob" lang="JavaScript" name="Logging.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Logging">
+          <scope doc="Properties: num: Identifier for the log message level: Level&#xA;of the log message (&quot;INFO&quot;, &quot;WARN&quot;, &quot;DEBUG&quot;, etc.) info: All&#xA;other arguments passed to log function as an Array&#xA;timestamp: Date object timestamping the log message&#xA;Availability: Available in MochiKit 1.3.1+" ilk="class" name="LogMessage">
+            <scope attributes="__ctor__" doc="Properties: num: Identifier for the log message level: Level&#xA;of the log message (&quot;INFO&quot;, &quot;WARN&quot;, &quot;DEBUG&quot;, etc.) info: All&#xA;other arguments passed to log function as an Array&#xA;timestamp: Date object timestamping the log message&#xA;Availability: Available in MochiKit 1.3.1+" ilk="function" name="LogMessage" signature="LogMessage(num, level, info)" />
+          </scope>
+          <scope doc="A basic logger object that has a buffer of recent messages&#xA;plus a listener dispatch mechanism for &quot;real-time&quot; logging&#xA;of important messages. maxSize is the maximum number of&#xA;entries in the log." ilk="class" name="Logger">
+            <scope attributes="__ctor__" doc="A basic logger object that has a buffer of recent messages&#xA;plus a listener dispatch mechanism for &quot;real-time&quot; logging&#xA;of important messages. maxSize is the maximum number of&#xA;entries in the log." ilk="function" name="Logger" signature="Logger([maxSize])" />
+            <scope doc="Add a listener for log messages. ident is a unique&#xA;identifier that may be used to remove the listener later on." ilk="function" name="addListener" signature="addListener(ident, filter, listener)" />
+            <scope doc="The base functionality behind all of the log functions. The&#xA;first argument is the log level as a string or number, and&#xA;all other arguments are used as the info list." ilk="function" name="baseLog" signature="baseLog(level, message[, ...])" />
+            <scope doc="Clear all messages from the message buffer." ilk="function" name="clear" signature="clear()" />
+            <scope doc="Display the contents of the logger in a useful way for&#xA;browsers. Currently, if MochiKit.LoggingPane is loaded, then&#xA;a pop-up MochiKit.LoggingPane.LoggingPane will be used." ilk="function" name="debuggingBookmarklet" signature="debuggingBookmarklet()" />
+            <scope doc="Dispatch a log message to all listeners." ilk="function" name="dispatchListeners" signature="dispatchListeners(msg)" />
+            <scope doc="Returns a list of messages from the message buffer, ordered&#xA;from the oldest to the newest message. If howMany is&#xA;specified, only the last howMany messages are returned." ilk="function" name="getMessages" signature="getMessages([howMany])" />
+            <scope doc="Get a string representing up to the last howMany messages in&#xA;the message buffer. The default is 30." ilk="function" name="getMessageText" signature="getMessageText([howMany])" />
+            <scope doc="Remove a listener using the ident given to&#xA;Logger.prototype.addListener Availability: Available in&#xA;MochiKit 1.3.1+" ilk="function" name="removeListener" signature="removeListener(ident)" />
+          </scope>
+          <scope doc="Ultra-obnoxious alert(...) listener Availability: Available&#xA;in MochiKit 1.3.1+" ilk="function" name="alertListener" signature="alertListener(msg)" />
+          <scope doc="Log an INFO message to the default logger Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="log" signature="log(message[, info[, ...]])" />
+          <scope doc="Log a DEBUG message to the default logger Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="logDebug" signature="logDebug(message[, info[, ...]])" />
+          <scope doc="Log an ERROR message to the default logger Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="logError" signature="logError(message[, info[, ...]])" />
+          <scope doc="Log a FATAL message to the default logger Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="logFatal" signature="logFatal(message[, info[, ...]])" />
+          <scope doc="Return a function that will match log messages whose level&#xA;is at least minLevel Availability: Available in MochiKit&#xA;1.3.1+" ilk="function" name="logLevelAtLeast" returns="Function" signature="logLevelAtLeast(minLevel) =&gt; Function" />
+          <scope doc="Log a WARNING message to the default logger Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="logWarning" signature="logWarning(message[, info[, ...]])" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Logging.LogMessage" name="LogMessage" />
+      <variable citdl="MochiKit.Logging.Logger" name="Logger" />
+      <variable citdl="MochiKit.Logging.addListener" name="addListener" />
+      <variable citdl="MochiKit.Logging.baseLog" name="baseLog" />
+      <variable citdl="MochiKit.Logging.clear" name="clear" />
+      <variable citdl="MochiKit.Logging.debuggingBookmarklet" name="debuggingBookmarklet" />
+      <variable citdl="MochiKit.Logging.dispatchListeners" name="dispatchListeners" />
+      <variable citdl="MochiKit.Logging.getMessages" name="getMessages" />
+      <variable citdl="MochiKit.Logging.getMessageText" name="getMessageText" />
+      <variable citdl="MochiKit.Logging.removeListener" name="removeListener" />
+      <variable citdl="MochiKit.Logging.alertListener" name="alertListener" />
+      <variable citdl="MochiKit.Logging.log" name="log" />
+      <variable citdl="MochiKit.Logging.logDebug" name="logDebug" />
+      <variable citdl="MochiKit.Logging.logError" name="logError" />
+      <variable citdl="MochiKit.Logging.logFatal" name="logFatal" />
+      <variable citdl="MochiKit.Logging.logLevelAtLeast" name="logLevelAtLeast" />
+      <variable citdl="MochiKit.Logging.logWarning" name="logWarning" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/DragAndDrop.js">
+    <scope ilk="blob" lang="JavaScript" name="DragAndDrop.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="DragAndDrop">
+          <scope doc="A object that can be drag with the mouse. You have the&#xA;following options, with corresponding default values: handle&#xA;(false): Option for giving the element where starting the&#xA;drag." ilk="class" name="Draggable">
+            <scope attributes="__ctor__" doc="A object that can be drag with the mouse. You have the&#xA;following options, with corresponding default values: handle&#xA;(false): Option for giving the element where starting the&#xA;drag." ilk="function" name="Draggable" signature="Draggable(element[, options])" />
+          </scope>
+          <scope doc="A object where you can drop a draggable. You have the&#xA;following options, with corresponding default values: greedy&#xA;(true): Stop on this droppable when a draggable drops over&#xA;it." ilk="class" name="Droppable">
+            <scope attributes="__ctor__" doc="A object where you can drop a draggable. You have the&#xA;following options, with corresponding default values: greedy&#xA;(true): Stop on this droppable when a draggable drops over&#xA;it." ilk="function" name="Droppable" signature="Droppable(element[, options])" />
+          </scope>
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.DragAndDrop.Draggable" name="Draggable" />
+      <variable citdl="MochiKit.DragAndDrop.Droppable" name="Droppable" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Visual.js">
+    <scope ilk="blob" lang="JavaScript" name="Visual.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Visual">
+          <scope doc="Rounds all of the elements that match the tagName and&#xA;className specifiers, using the options provided. tagName or&#xA;className can be null to match all tags or classes." ilk="function" name="roundClass" signature="roundClass(tagName[, className[, options]])" />
+          <scope doc="Immediately round the corners of the specified element.&#xA;element: An element ID string or a DOM node (see&#xA;MochiKit.DOM.getElement)." ilk="function" name="roundElement" signature="roundElement(element[, options])" />
+          <scope doc="Toggle an element between visible and invisible state using&#xA;an effect. element: An element ID string or a DOM node (see&#xA;MochiKit.DOM.getElement)." ilk="function" name="toggle" signature="toggle(element[, effect[, options]])" />
+          <scope doc="Transform the node text into SPAN nodes each containing a&#xA;single letter. Only text nodes that are immediate children&#xA;will be modified by this function." ilk="function" name="tagifyText" signature="tagifyText(element[, tagifyStyle])" />
+          <scope doc="Launch the same effect on a list of elements. elements: A&#xA;list of element ID strings or a DOM nodes (see&#xA;MochiKit.DOM.getElement)." ilk="function" name="multiple" signature="multiple(elements, effect[, options])" />
+          <scope doc="Fades an element using the Opacity effect. Once the effect&#xA;has completed, the element will be hidden with&#xA;MochiKit.Style.hideElement and the original element opacity&#xA;will be restored." ilk="function" name="fade" signature="fade(element[, options])" />
+          <scope doc="Slowly shows an element using the Opacity effect. If the&#xA;element has &quot;display: none&quot; style, it will be changed to&#xA;&quot;display: block&quot; with MochiKit.Style.showElement." ilk="function" name="appear" signature="appear(element [, options])" />
+          <scope doc="Make an element double size while also fading it using the&#xA;Scale and Opacity effects in parallel. Once the effect has&#xA;completed, the element will be hidden with&#xA;MochiKit.Style.hideElement and the original element size,&#xA;position and opacity will be restored." ilk="function" name="puff" signature="puff(element [, options])" />
+          <scope doc="Blind an element up, changing its vertical size to 0 using&#xA;the Scale effect. Once the effect has completed, the element&#xA;will be hidden with MochiKit.Style.hideElement and the&#xA;original element size will be restored." ilk="function" name="blindUp" signature="blindUp(element [, options])" />
+          <scope doc="Blind an element down, restoring its vertical size using the&#xA;Scale effect. If the element has &quot;display: none&quot; style, it&#xA;will be changed to &quot;display: block&quot; with&#xA;MochiKit.Style.showElement." ilk="function" name="blindDown" signature="blindDown(element [, options])" />
+          <scope doc="A switch-off like effect, making the element disappear,&#xA;using the Opacity and Scale effects in sequence. The initial&#xA;Opacity effect uses a flicker (partially random)&#xA;transformation." ilk="function" name="switchOff" signature="switchOff(element [, options])" />
+          <scope doc="Make the element fall and fade using the Move and Opacity&#xA;effects in parallel. Once the effect has completed, the&#xA;element will be hidden with MochiKit.Style.hideElement and&#xA;the original element position and opacity will be restored." ilk="function" name="dropOut" signature="dropOut(element [, options])" />
+          <scope doc="Shake an element from left to right using a sequence of six&#xA;Move effects. Once the effect has completed, the original&#xA;element position will be restored." ilk="function" name="shake" signature="shake(element [, options])" />
+          <scope doc="Slide an element down using the Scale effect. The element&#xA;must have a fixed height and contain a single child." ilk="function" name="slideDown" signature="slideDown(element [, options])" />
+          <scope doc="Slide an element up using the Scale effect. The element must&#xA;have a fixed height and contain a single child." ilk="function" name="slideUp" signature="slideUp(element [, options])" />
+          <scope doc="Reduce the horizontal and vertical sizes at the same time&#xA;using a single Scale effect. The result is similar to the&#xA;shrink effect with a top-left value for the direction&#xA;option." ilk="function" name="squish" signature="squish(element [, options])" />
+          <scope doc="Grows an element size using Scale, Move and Opacity effects&#xA;in parallel. The element should have fixed width, height and&#xA;top-left position." ilk="function" name="grow" signature="grow(element [, options])" />
+          <scope doc="Shrinks an element using Scale, Move and Opacity effects in&#xA;parallel. The element should have fixed width, height and&#xA;top-left position." ilk="function" name="shrink" signature="shrink(element [, options])" />
+          <scope doc="Switches the element visibility using a pulsating Opacity&#xA;effect. The effect both starts and ends with a 0 opacity&#xA;value." ilk="function" name="pulsate" signature="pulsate(element [, options])" />
+          <scope doc="Reduce first the element vertical size, and then the&#xA;horizontal size using two Scale effects in sequence. The&#xA;element should have both fixed width and height." ilk="function" name="fold" signature="fold(element [, options])" />
+          <variable doc="Default transition functions available for all effects. A&#xA;transition function adjusts the current position value&#xA;between 0 and 1 in order to achieve a non-linear sequence of&#xA;position values for the effect." name="Transitions" />
+          <variable doc="Default options for all effects. Note that all effects&#xA;inherit the Base class and thereby also support a number of&#xA;events that can be specified as callback functions among the&#xA;effect options." name="DefaultOptions" />
+          <scope doc="Base class to all effects. Define a basic looping service,&#xA;use it for creating new effects." ilk="function" name="Base" signature="Base()" />
+          <scope doc="Launch a list of effects in parallel. effects: An array of&#xA;instantiated effect objects." ilk="function" name="Parallel" signature="Parallel(effects [, options])" />
+          <scope doc="Launch a list of effects in sequence, one after the other.&#xA;effects: An array of instantiated effect objects." ilk="function" name="Sequence" signature="Sequence(effects [, options])" />
+          <scope doc="Change the opacity of an element progressively. element: An&#xA;element ID string or a DOM node (see&#xA;MochiKit.DOM.getElement)." ilk="function" name="Opacity" signature="Opacity(element [, options])" />
+          <scope doc="Changes the (top left) position of an element in small&#xA;steps, creating a moving effect. element: An element ID&#xA;string or a DOM node (see MochiKit.DOM.getElement)." ilk="function" name="Move" signature="Move(element [, options])" />
+          <scope doc="Changes the size of an element. element: An element ID&#xA;string or a DOM node (see MochiKit.DOM.getElement)." ilk="function" name="Scale" signature="Scale(element, percent [, options])" />
+          <scope doc="Highlights an element by flashing the background color. The&#xA;color is first set to the startcolor and is then slowly&#xA;morphed into the endcolor, normally the original background&#xA;color of the element." ilk="function" name="Highlight" signature="Highlight(element [, options])" />
+          <scope doc="Scroll the window to the position of the given element. Note&#xA;that this effect only scrolls the top window and not any&#xA;parent elements with scrollbars due to &quot;overflow: auto&quot;&#xA;style." ilk="function" name="ScrollTo" signature="ScrollTo(element [, options])" />
+          <scope doc="Make a transformation to the given element. It&apos;s called with&#xA;the option style with an array holding the styles to change." ilk="function" name="Morph" signature="Morph(element [, options])" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Visual.roundClass" name="roundClass" />
+      <variable citdl="MochiKit.Visual.roundElement" name="roundElement" />
+      <variable citdl="MochiKit.Visual.toggle" name="toggle" />
+      <variable citdl="MochiKit.Visual.tagifyText" name="tagifyText" />
+      <variable citdl="MochiKit.Visual.multiple" name="multiple" />
+      <variable citdl="MochiKit.Visual.fade" name="fade" />
+      <variable citdl="MochiKit.Visual.appear" name="appear" />
+      <variable citdl="MochiKit.Visual.puff" name="puff" />
+      <variable citdl="MochiKit.Visual.blindUp" name="blindUp" />
+      <variable citdl="MochiKit.Visual.blindDown" name="blindDown" />
+      <variable citdl="MochiKit.Visual.switchOff" name="switchOff" />
+      <variable citdl="MochiKit.Visual.dropOut" name="dropOut" />
+      <variable citdl="MochiKit.Visual.shake" name="shake" />
+      <variable citdl="MochiKit.Visual.slideDown" name="slideDown" />
+      <variable citdl="MochiKit.Visual.slideUp" name="slideUp" />
+      <variable citdl="MochiKit.Visual.squish" name="squish" />
+      <variable citdl="MochiKit.Visual.grow" name="grow" />
+      <variable citdl="MochiKit.Visual.shrink" name="shrink" />
+      <variable citdl="MochiKit.Visual.pulsate" name="pulsate" />
+      <variable citdl="MochiKit.Visual.fold" name="fold" />
+      <variable citdl="MochiKit.Visual.Transitions" name="Transitions" />
+      <variable citdl="MochiKit.Visual.DefaultOptions" name="DefaultOptions" />
+      <variable citdl="MochiKit.Visual.Base" name="Base" />
+      <variable citdl="MochiKit.Visual.Parallel" name="Parallel" />
+      <variable citdl="MochiKit.Visual.Sequence" name="Sequence" />
+      <variable citdl="MochiKit.Visual.Opacity" name="Opacity" />
+      <variable citdl="MochiKit.Visual.Move" name="Move" />
+      <variable citdl="MochiKit.Visual.Scale" name="Scale" />
+      <variable citdl="MochiKit.Visual.Highlight" name="Highlight" />
+      <variable citdl="MochiKit.Visual.ScrollTo" name="ScrollTo" />
+      <variable citdl="MochiKit.Visual.Morph" name="Morph" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Async.js">
+    <scope ilk="blob" lang="JavaScript" name="Async.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Async">
+          <variable doc="Thrown by a Deferred if .callback or .errback are called&#xA;more than once." name="AlreadyCalledError" />
+          <variable doc="Thrown when the JavaScript runtime is not capable of&#xA;performing the given function. Currently, this happens if&#xA;the browser does not support XMLHttpRequest." name="BrowserComplianceError" />
+          <variable doc="Thrown by a Deferred when it is cancelled, unless a&#xA;canceller is present and throws something else." name="CancelledError" />
+          <variable doc="Results passed to .fail or .errback of a Deferred are&#xA;wrapped by this Error if !(result instanceof Error)." name="GenericError" />
+          <variable doc="Thrown when an XMLHttpRequest does not complete successfully&#xA;for any reason. The req property of the error is the failed&#xA;XMLHttpRequest object, and for convenience the number&#xA;property corresponds to req.status." name="XMLHttpRequestError" />
+          <scope doc="Encapsulates a sequence of callbacks in response to a value&#xA;that may not yet be available. This is modeled after the&#xA;Deferred class from Twisted [3]." ilk="class" name="Deferred">
+            <scope attributes="__ctor__" doc="Encapsulates a sequence of callbacks in response to a value&#xA;that may not yet be available. This is modeled after the&#xA;Deferred class from Twisted [3]." ilk="function" name="Deferred" signature="Deferred()" />
+            <scope doc="Add the same function as both a callback and an errback as&#xA;the next element on the callback sequence. This is useful&#xA;for code that you want to guarantee to run, e.g." ilk="function" name="addBoth" signature="addBoth(func)" />
+            <scope doc="Add a single callback to the end of the callback sequence.&#xA;If additional arguments are given, then func will be&#xA;replaced with MochiKit.Base.partial.apply(null, arguments)." ilk="function" name="addCallback" signature="addCallback(func[, ...])" />
+            <scope doc="Add separate callback and errback to the end of the callback&#xA;sequence. Either callback or errback may be null, but not&#xA;both." ilk="function" name="addCallbacks" signature="addCallbacks(callback, errback)" />
+            <scope doc="Add a single errback to the end of the callback sequence. If&#xA;additional arguments are given, then func will be replaced&#xA;with MochiKit.Base.partial.apply(null, arguments)." ilk="function" name="addErrback" signature="addErrback(func)" />
+            <scope doc="Begin the callback sequence with a non-Error result. Result&#xA;may be any value except for a Deferred." ilk="function" name="callback" signature="callback([result])" />
+            <scope doc="Cancels a Deferred that has not yet received a value, or is&#xA;waiting on another Deferred as its value. If a canceller is&#xA;defined, the canceller is called." ilk="function" name="cancel" signature="cancel()" />
+            <scope doc="Begin the callback sequence with an error result. Result may&#xA;be any value except for a Deferred, but if !(result&#xA;instanceof Error), it will be wrapped with GenericError." ilk="function" name="errback" signature="errback([result])" />
+          </scope>
+          <scope doc="A lock for asynchronous systems. The locked property of a&#xA;DeferredLock will be true if it locked, false otherwise." ilk="class" name="DeferredLock">
+            <scope attributes="__ctor__" doc="A lock for asynchronous systems. The locked property of a&#xA;DeferredLock will be true if it locked, false otherwise." ilk="function" name="DeferredLock" signature="DeferredLock()" />
+            <scope doc="Attempt to acquire the lock. Returns a Deferred that fires&#xA;on lock acquisition with the DeferredLock as the value." ilk="function" name="acquire" signature="acquire()" />
+            <scope doc="Release the lock. If there is a waiting list, then the first&#xA;Deferred in that waiting list will be called back." ilk="function" name="release" signature="release()" />
+          </scope>
+          <scope doc="Combine a list of Deferred into one. Track the callbacks and&#xA;return a list of (success, result) tuples, &apos;success&apos; being a&#xA;boolean indicating whether result is a normal result or an&#xA;error." ilk="class" name="DeferredList">
+            <scope attributes="__ctor__" doc="Combine a list of Deferred into one. Track the callbacks and&#xA;return a list of (success, result) tuples, &apos;success&apos; being a&#xA;boolean indicating whether result is a normal result or an&#xA;error." ilk="function" name="DeferredList" signature="DeferredList(list, [fireOnOneCallback, fireOnOneErrback, consumeErrors, canceller])" />
+          </scope>
+          <scope doc="Call func(args...) after at least seconds seconds have&#xA;elapsed. This is a convenience method for: func =&#xA;partial.apply(extend(null, arguments, 1)); return&#xA;wait(seconds).addCallback(function (res) { return func() });&#xA;Returns a cancellable Deferred." ilk="function" name="callLater" signature="callLater(seconds, func[, args...])" />
+          <scope doc="Perform a customized XMLHttpRequest and wrap it with a&#xA;Deferred that may be cancelled. Note that only 200 (OK), 201&#xA;(CREATED), 204 (NO CONTENT) and 304 (NOT MODIFIED) are&#xA;considered success codes." ilk="function" name="doXHR" returns="Deferred" signature="doXHR(url[, {option: value, ...}]) =&gt; Deferred" />
+          <scope doc="Perform a simple XMLHttpRequest and wrap it with a Deferred&#xA;that may be cancelled. Note that only 200 (OK), 201&#xA;(CREATED), 204 (NO CONTENT) and 304 (NOT MODIFIED) are&#xA;considered success codes." ilk="function" name="doSimpleXMLHttpRequest" returns="Deferred" signature="doSimpleXMLHttpRequest(url[, queryArguments...]) =&gt; Deferred" />
+          <scope doc="Evaluate a JSON [4] XMLHttpRequest req: The request whose&#xA;.responseText property is to be evaluated. If the JSON is&#xA;wrapped in a comment, the comment will be stripped before&#xA;evaluation." ilk="function" name="evalJSONRequest" signature="evalJSONRequest(req)" />
+          <scope doc="Return a Deferred that has already had .errback(result)&#xA;called. See succeed documentation for rationale." ilk="function" name="fail" returns="Deferred" signature="fail([result]) =&gt; Deferred" />
+          <scope doc="A convenience function that returns a DeferredList from the&#xA;given Array of Deferred instances that will callback with an&#xA;Array of just results when they&apos;re available, or errback on&#xA;the first array." ilk="function" name="gatherResults" signature="gatherResults(deferreds)" />
+          <scope doc="Return an XMLHttpRequest compliant object for the current&#xA;platform." ilk="function" name="getXMLHttpRequest" returns="XMLHttpRequest" signature="getXMLHttpRequest() =&gt; XMLHttpRequest" />
+          <scope doc="Call a func with the given arguments and ensure the result&#xA;is a Deferred. func: The function to call." ilk="function" name="maybeDeferred" returns="Deferred" signature="maybeDeferred(func[, argument...]) =&gt; Deferred" />
+          <scope doc="Do a simple XMLHttpRequest to a URL and get the response as&#xA;a JSON [4] document. url: The URL to GET queryArguments: If&#xA;this function is called with more than one argument, a &quot;?&quot;&#xA;and the result of MochiKit.Base.queryString with the rest of&#xA;the arguments are appended to the URL." ilk="function" name="loadJSONDoc" returns="Deferred" signature="loadJSONDoc(url[, queryArguments...]) =&gt; Deferred" />
+          <scope doc="Set an onreadystatechange handler on an XMLHttpRequest&#xA;object and send it off. Will return a cancellable Deferred&#xA;that will callback on success." ilk="function" name="sendXMLHttpRequest" returns="Deferred" signature="sendXMLHttpRequest(req[, sendContent]) =&gt; Deferred" />
+          <scope doc="Return a Deferred that has already had .callback(result)&#xA;called. This is useful when you&apos;re writing synchronous code&#xA;to an asynchronous interface: i.e., some code is calling you&#xA;expecting a Deferred result, but you don&apos;t actually need to&#xA;do anything asynchronous." ilk="function" name="succeed" returns="Deferred" signature="succeed([result]) =&gt; Deferred" />
+          <scope doc="Return a new cancellable Deferred that will .callback(res)&#xA;after at least seconds seconds have elapsed." ilk="function" name="wait" signature="wait(seconds[, res])" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Async.AlreadyCalledError" name="AlreadyCalledError" />
+      <variable citdl="MochiKit.Async.BrowserComplianceError" name="BrowserComplianceError" />
+      <variable citdl="MochiKit.Async.CancelledError" name="CancelledError" />
+      <variable citdl="MochiKit.Async.GenericError" name="GenericError" />
+      <variable citdl="MochiKit.Async.XMLHttpRequestError" name="XMLHttpRequestError" />
+      <variable citdl="MochiKit.Async.Deferred" name="Deferred" />
+      <variable citdl="MochiKit.Async.addBoth" name="addBoth" />
+      <variable citdl="MochiKit.Async.addCallback" name="addCallback" />
+      <variable citdl="MochiKit.Async.addCallbacks" name="addCallbacks" />
+      <variable citdl="MochiKit.Async.addErrback" name="addErrback" />
+      <variable citdl="MochiKit.Async.callback" name="callback" />
+      <variable citdl="MochiKit.Async.cancel" name="cancel" />
+      <variable citdl="MochiKit.Async.errback" name="errback" />
+      <variable citdl="MochiKit.Async.DeferredLock" name="DeferredLock" />
+      <variable citdl="MochiKit.Async.acquire" name="acquire" />
+      <variable citdl="MochiKit.Async.release" name="release" />
+      <variable citdl="MochiKit.Async.DeferredList" name="DeferredList" />
+      <variable citdl="MochiKit.Async.callLater" name="callLater" />
+      <variable citdl="MochiKit.Async.doXHR" name="doXHR" />
+      <variable citdl="MochiKit.Async.doSimpleXMLHttpRequest" name="doSimpleXMLHttpRequest" />
+      <variable citdl="MochiKit.Async.evalJSONRequest" name="evalJSONRequest" />
+      <variable citdl="MochiKit.Async.fail" name="fail" />
+      <variable citdl="MochiKit.Async.gatherResults" name="gatherResults" />
+      <variable citdl="MochiKit.Async.getXMLHttpRequest" name="getXMLHttpRequest" />
+      <variable citdl="MochiKit.Async.maybeDeferred" name="maybeDeferred" />
+      <variable citdl="MochiKit.Async.loadJSONDoc" name="loadJSONDoc" />
+      <variable citdl="MochiKit.Async.sendXMLHttpRequest" name="sendXMLHttpRequest" />
+      <variable citdl="MochiKit.Async.succeed" name="succeed" />
+      <variable citdl="MochiKit.Async.wait" name="wait" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Selector.js">
+    <scope ilk="blob" lang="JavaScript" name="Selector.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Selector">
+          <scope doc="Performs a selection on the active document." ilk="function" name="findDocElements" signature="findDocElements(expression[, ...])" />
+          <scope doc="Traverses the child nodes of element and returns the subset&#xA;of those that match any of the selector expressions in&#xA;expressions. Each expression can be a combination of simple&#xA;expressions, by concatenating them with spaces or&#xA;combinators." ilk="function" name="findChildElements" signature="findChildElements(element, expressions)" />
+          <scope doc="An alias to findDocElements." ilk="function" name="$$" signature="$$(expression[, ...])" />
+          <scope doc="An object storing the parsed version of a simple CSS&#xA;selector expression and providing functions for executing&#xA;searches. Simple means that the expression is not a&#xA;combination of expressions, i.e." ilk="class" name="Selector">
+            <scope attributes="__ctor__" doc="An object storing the parsed version of a simple CSS&#xA;selector expression and providing functions for executing&#xA;searches. Simple means that the expression is not a&#xA;combination of expressions, i.e." ilk="function" name="Selector" signature="Selector(simpleExpression)" />
+            <scope doc="Performs a search on scope. The value of axis controls what&#xA;relatives of scope are considered." ilk="function" name="findElements" signature="findElements(scope[, axis=&quot;&quot;])" />
+          </scope>
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Selector.findDocElements" name="findDocElements" />
+      <variable citdl="MochiKit.Selector.findChildElements" name="findChildElements" />
+      <variable citdl="MochiKit.Selector.$$" name="$$" />
+      <variable citdl="MochiKit.Selector.Selector" name="Selector" />
+      <variable citdl="MochiKit.Selector.findElements" name="findElements" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Sortable.js">
+    <scope ilk="blob" lang="JavaScript" name="Sortable.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Sortable">
+          <variable doc="Observer for DragAndDrop object. You normally don&apos;t have to&#xA;access this, only for customization purpose." name="SortableObserver" />
+          <scope doc="Create a new Sortable. Usually you&apos;ll call it with a UL&#xA;element, but it can be customized with options to use&#xA;something else." ilk="function" name="create" signature="create(element [, options])" />
+          <scope doc="Destroy a previously created sortable. It prevents further&#xA;use of the Sortable functionnality on the element, unless&#xA;recreated." ilk="function" name="destroy" signature="destroy(element)" />
+          <scope doc="Serialize the content of a Sortable. Useful to send this&#xA;content through a XMLHTTPRequest." ilk="function" name="serialize" signature="serialize(element [, options])" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Sortable.SortableObserver" name="SortableObserver" />
+      <variable citdl="MochiKit.Sortable.create" name="create" />
+      <variable citdl="MochiKit.Sortable.destroy" name="destroy" />
+      <variable citdl="MochiKit.Sortable.serialize" name="serialize" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/LoggingPane.js">
+    <scope ilk="blob" lang="JavaScript" name="LoggingPane.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="LoggingPane">
+          <scope doc="A listener for a MochiKit.Logging logger with an interactive&#xA;DOM representation. If inline is true, then the LoggingPane&#xA;will be a DIV at the bottom of the document." ilk="class" name="LoggingPane">
+            <scope attributes="__ctor__" doc="A listener for a MochiKit.Logging logger with an interactive&#xA;DOM representation. If inline is true, then the LoggingPane&#xA;will be a DIV at the bottom of the document." ilk="function" name="LoggingPane" signature="LoggingPane(inline=false, logger=MochiKit.Logging.logger)" />
+            <scope doc="Close the LoggingPane (close the child window, or remove the&#xA;_MochiKit_LoggingPane DIV from the document)." ilk="function" name="closePane" signature="closePane()" />
+          </scope>
+          <scope doc="Create or return an existing LoggingPane for this document&#xA;with the given inline setting. This is preferred over using&#xA;LoggingPane directly, as only one LoggingPane should be&#xA;present in a given document." ilk="function" name="createLoggingPane" signature="createLoggingPane(inline=false)" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.LoggingPane.LoggingPane" name="LoggingPane" />
+      <variable citdl="MochiKit.LoggingPane.closePane" name="closePane" />
+      <variable citdl="MochiKit.LoggingPane.createLoggingPane" name="createLoggingPane" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/DOM.js">
+    <scope ilk="blob" lang="JavaScript" name="DOM.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="DOM">
+          <scope doc="An alias for getElement(id[, ...]) Availability: Available&#xA;in MochiKit 1.3.1+" ilk="function" name="$" signature="$(id[, ...])" />
+          <scope doc="Ensure that the given element has className set as part of&#xA;its class attribute. This will not disturb other class&#xA;names." ilk="function" name="addElementClass" signature="addElementClass(element, className)" />
+          <scope doc="Note that addLoadEvent can not be used in combination with&#xA;MochiKit.Signal if the onload event is connected. Once an&#xA;event is connected with MochiKit.Signal, no other APIs may&#xA;be used for that same event." ilk="function" name="addLoadEvent" signature="addLoadEvent(func)" />
+          <scope doc="Note that addToCallStack is not compatible with&#xA;MochiKit.Signal. Once an event is connected with&#xA;MochiKit.Signal, no other APIs may be used for that same&#xA;event." ilk="function" name="addToCallStack" signature="addToCallStack(target, path, func[, once])" />
+          <scope doc="Append children to a DOM element using the DOM Coercion&#xA;Rules. node: A reference to the DOM element to add children&#xA;to (if a string is given, getElement(node) will be used to&#xA;locate the node) childNode...: All additional arguments, if&#xA;any, will be coerced into DOM nodes that are appended as&#xA;children using the DOM Coercion Rules." ilk="function" name="appendChildNodes" signature="appendChildNodes(node[, childNode[, ...]])" />
+          <scope doc="Insert children into the DOM structure using the DOM&#xA;Coercion Rules. node: A reference to the DOM element you&#xA;want to insert children before (if a string is given,&#xA;getElement(node) will be used to locate the node)&#xA;siblingNode...: All additional arguments, if any, will be&#xA;coerced into DOM nodes that are inserted as siblings using&#xA;the DOM Coercion Rules." ilk="function" name="insertSiblingNodesBefore" signature="insertSiblingNodesBefore(node[, siblingNode[, ...]])" />
+          <scope doc="Insert children into the DOM structure using the DOM&#xA;Coercion Rules. node: A reference to the DOM element you&#xA;want to insert children after (if a string is given,&#xA;getElement(node) will be used to locate the node)&#xA;siblingNode...: All additional arguments, if any, will be&#xA;coerced into DOM nodes that are inserted as siblings using&#xA;the DOM Coercion Rules." ilk="function" name="insertSiblingNodesAfter" signature="insertSiblingNodesAfter(node[, siblingNode[, ...]])" />
+          <scope doc="Create a DOM fragment in a really convenient manner, much&#xA;like Nevow`s [1] stan [2]. Partially applied versions of&#xA;this function for common tags are available as aliases: A&#xA;BUTTON BR CANVAS DD DIV DL DT FIELDSET FORM H1 H2 H3 H4 H5&#xA;H6 HR IMG INPUT LABEL LEGEND LI OL OPTGROUP OPTION P PRE&#xA;SELECT SPAN STRONG TABLE TBODY TD TEXTAREA TFOOT TH THEAD TR&#xA;TT UL See Creating DOM Element Trees for a comprehensive&#xA;example." ilk="function" name="createDOM" signature="createDOM(name[, attrs[, node[, ...]]])" />
+          <scope doc="Convenience function to create a partially applied createDOM&#xA;function. You&apos;d want to use this if you add additional&#xA;convenience functions for creating tags, or if you find&#xA;yourself creating a lot of tags with a bunch of the same&#xA;attributes or contents." ilk="function" name="createDOMFunc" returns="createDOM" signature="createDOMFunc(tag[, attrs[, node[, ...]]]) =&gt; createDOM" />
+          <scope doc="Return the current document DOM Context. This will always be&#xA;the same as the global document unless withDocument or&#xA;withWindow is currently executing." ilk="function" name="currentDocument" signature="currentDocument()" />
+          <scope doc="Return the current window DOM Context. This will always be&#xA;the same as the global window unless withWindow is currently&#xA;executing." ilk="function" name="currentWindow" signature="currentWindow()" />
+          <scope doc="Convert a DOM tree to an Array of HTML string fragments.&#xA;This should be used for debugging/testing purposes only." ilk="function" name="emitHTML" signature="emitHTML(dom[, lst])" />
+          <scope doc="Make a string safe for HTML, converting the usual suspects&#xA;(&lt;, &gt;, &quot;, &amp;) to their HTML character entity equivalents." ilk="function" name="escapeHTML" signature="escapeHTML(s)" />
+          <scope doc="Note that focusOnLoad can not be used in combination with&#xA;MochiKit.Signal if the onload event is connected. Once an&#xA;event is connected with MochiKit.Signal, no other APIs may&#xA;be used for that same event." ilk="function" name="focusOnLoad" signature="focusOnLoad(element)" />
+          <scope doc="Search the DOM tree, starting at elem, for any elements with&#xA;a name and value attribute. Return a 2-element Array of&#xA;names and values suitable for use with&#xA;MochiKit.Base.queryString." ilk="function" name="formContents" signature="formContents(elem=document.body)" />
+          <scope doc="A small quick little function to encapsulate the&#xA;getElementById method. It includes a check to ensure we can&#xA;use that method." ilk="function" name="getElement" signature="getElement(id[, ...])" />
+          <scope doc="Returns an array of elements in parent that match the tag&#xA;name and class name provided. If parent is a string, it will&#xA;be looked up with getElement." ilk="function" name="getElementsByTagAndClassName" returns="Array" signature="getElementsByTagAndClassName(tagName, className, parent=document) =&gt; Array" />
+          <scope doc="Return the first element in parent that matches the tag name&#xA;and class name provided. If parent is a string, it will be&#xA;looked up with getElement." ilk="function" name="getFirstElementByTagAndClassName" signature="getFirstElementByTagAndClassName(tagName, className, parent=document)" />
+          <scope doc="Returns the first parent of elem that matches the tag name&#xA;and class name provided. If elem is a string, it will be&#xA;looked up using getElement." ilk="function" name="getFirstParentByTagAndClassName" signature="getFirstParentByTagAndClassName(elem, tagName=&apos;*&apos;, className=null)" />
+          <scope doc="Get the value of the given attribute for a DOM element&#xA;without ever raising an exception (will return null on&#xA;exception). node: A reference to the DOM element to update&#xA;(if a string is given, getElement(node) will be used to&#xA;locate the node) attr: The name of the attribute Note that&#xA;it will do the right thing for IE, so don&apos;t do the class -&gt;&#xA;className hack yourself." ilk="function" name="getNodeAttribute" signature="getNodeAttribute(node, attr)" />
+          <scope doc="Return true if className is found on the element. element is&#xA;looked up with getElement, so string identifiers are also&#xA;acceptable." ilk="function" name="hasElementClass" returns="Boolean" signature="hasElementClass(element, className[, ...]) =&gt; Boolean" />
+          <scope doc="Determine whether node is a child node or decendant node of&#xA;maybeParent. Returns true if so, and false if not." ilk="function" name="isChildNode" signature="isChildNode(node, maybeParent)" />
+          <scope doc="Register an adapter to convert objects that match check(obj,&#xA;ctx) to a DOM element, or something that can be converted to&#xA;a DOM element (i.e. number, bool, string, function,&#xA;iterable)." ilk="function" name="registerDOMConverter" signature="registerDOMConverter(name, check, wrap[, override])" />
+          <scope doc="Remove and return node from a DOM tree." ilk="function" name="removeElement" signature="removeElement(node)" />
+          <scope doc="Ensure that the given element does not have className set as&#xA;part of its class attribute. This will not disturb other&#xA;class names." ilk="function" name="removeElementClass" signature="removeElementClass(element, className)" />
+          <scope doc="Remove all text node children that contain only whitespace&#xA;from node. Useful in situations where such empty text nodes&#xA;can interfere with DOM traversal." ilk="function" name="removeEmptyTextNodes" signature="removeEmptyTextNodes(node)" />
+          <scope doc="Remove all children from the given DOM element, then append&#xA;any given childNodes to it (by calling appendChildNodes).&#xA;node: A reference to the DOM element to add children to (if&#xA;a string is given, getElement(node) will be used to locate&#xA;the node) childNode...: All additional arguments, if any,&#xA;will be coerced into DOM nodes that are appended as children&#xA;using the DOM Coercion Rules." ilk="function" name="replaceChildNodes" signature="replaceChildNodes(node[, childNode[, ...]])" />
+          <scope doc="Walk a DOM tree in-order and scrape all of the text out of&#xA;it as a string. If asArray is true, then an Array will be&#xA;returned with each individual text node." ilk="function" name="scrapeText" signature="scrapeText(node[, asArray=false])" />
+          <scope doc="Set the entire class attribute of element to className.&#xA;element is looked up with getElement, so string identifiers&#xA;are also acceptable." ilk="function" name="setElementClass" signature="setElementClass(element, className)" />
+          <scope doc="Set the value of the given attribute for a DOM element&#xA;without ever raising an exception (will return null on&#xA;exception). If setting more than one attribute, you should&#xA;use updateNodeAttributes." ilk="function" name="setNodeAttribute" signature="setNodeAttribute(node, attr, value)" />
+          <scope doc="Replace dest in a DOM tree with src, returning src. dest: a&#xA;DOM element (or string id of one) to be replaced src: the&#xA;DOM element (or string id of one) to replace it with, or&#xA;null if dest is to be removed (replaced with nothing)." ilk="function" name="swapDOM" signature="swapDOM(dest, src)" />
+          <scope doc="If fromClass is set on element, replace it with toClass.&#xA;This will not disturb other classes on that element." ilk="function" name="swapElementClass" signature="swapElementClass(element, fromClass, toClass)" />
+          <scope doc="Toggle the presence of a given className in the class&#xA;attribute of all given elements. All elements will be looked&#xA;up with getElement, so string identifiers are acceptable." ilk="function" name="toggleElementClass" signature="toggleElementClass(className[, element[, ...]])" />
+          <scope doc="Convert a DOM tree to a HTML string using emitHTML. This&#xA;should be used for debugging/testing purposes only." ilk="function" name="toHTML" signature="toHTML(dom)" />
+          <scope doc="Update the attributes of a DOM element from a given object.&#xA;node: A reference to the DOM element to update (if a string&#xA;is given, getElement(node) will be used to locate the node)&#xA;attrs: An object whose properties will be used to set the&#xA;attributes (e.g." ilk="function" name="updateNodeAttributes" signature="updateNodeAttributes(node, attrs)" />
+          <scope doc="Call func with the window DOM Context set to win and the&#xA;document DOM Context set to win.document. When func()&#xA;returns or throws an error, the DOM Context will be restored&#xA;to its previous state." ilk="function" name="withWindow" signature="withWindow(win, func)" />
+          <scope doc="Call func with the doc DOM Context set to doc. When func()&#xA;returns or throws an error, the DOM Context will be restored&#xA;to its previous state." ilk="function" name="withDocument" signature="withDocument(doc, func)" />
+          <scope doc="Looks up a CSS property for the given element. The element&#xA;can be specified as either a string with the element&apos;s ID or&#xA;the element object itself." ilk="function" name="computedStyle" signature="computedStyle(htmlElement, cssProperty, mozillaEquivalentCSS)" />
+          <scope doc="Return the absolute pixel width and height (including&#xA;padding and border, but not margins) of element as an object&#xA;with w and h properties, or undefined if element is not in&#xA;the document. element may be specified as a string to be&#xA;looked up with getElement, a DOM element, or trivially as an&#xA;object with w and/or h properties." ilk="function" name="elementDimensions" signature="elementDimensions(element)" />
+          <scope doc="Return the absolute pixel position of element in the&#xA;document as an object with x and y properties, or undefined&#xA;if element is not in the document. element may be specified&#xA;as a string to be looked up with getElement, a DOM element,&#xA;or trivially as an object with x and/or y properties." ilk="function" name="elementPosition" signature="elementPosition(element[, relativeTo={x: 0, y: 0}])" />
+          <scope doc="Return the pixel width and height of the viewport as an&#xA;object with w and h properties. element is looked up with&#xA;getElement, so string identifiers are also acceptable." ilk="function" name="getViewportDimensions" signature="getViewportDimensions()" />
+          <scope doc="Partial form of setDisplayForElement, specifically:&#xA;partial(setDisplayForElement, &quot;none&quot;) For information about&#xA;the caveats of using a style.display based show/hide&#xA;mechanism, and a CSS based alternative, see Element&#xA;Visibility." ilk="function" name="hideElement" signature="hideElement(element, ...)" />
+          <scope doc="Ensure that element.style.overflow = &apos;hidden&apos;. If element is&#xA;a string, then it will be looked up with getElement." ilk="function" name="makeClipping" signature="makeClipping(element)" />
+          <scope doc="Ensure that element.style.position is set to &quot;relative&quot; if&#xA;it is not set or is &quot;static&quot;. If element is a string, then&#xA;it will be looked up with getElement." ilk="function" name="makePositioned" signature="makePositioned(element)" />
+          <scope doc="Sets the dimensions of element in the document from an&#xA;object with w and h properties." ilk="function" name="setElementDimensions" signature="setElementDimensions(element, dimensions[, units=&apos;px&apos;])" />
+          <scope doc="Sets the absolute position of element in the document from&#xA;an object with x and y properties." ilk="function" name="setElementPosition" signature="setElementPosition(element, position[, units=&apos;px&apos;])" />
+          <scope doc="Change the style.display for the given element(s). Usually&#xA;used as the partial forms: showElement(element, ...)&#xA;hideElement(element, ...) Elements are looked up with&#xA;getElement, so string identifiers are acceptable." ilk="function" name="setDisplayForElement" signature="setDisplayForElement(display, element[, ...])" />
+          <scope doc="Sets opacity for element. Valid opacity values range from 0&#xA;(invisible) to 1 (opaque)." ilk="function" name="setOpacity" signature="setOpacity(element, opacity)" />
+          <scope doc="Partial form of setDisplayForElement, specifically:&#xA;partial(setDisplayForElement, &quot;block&quot;) For information about&#xA;the caveats of using a style.display based show/hide&#xA;mechanism, and a CSS based alternative, see Element&#xA;Visibility." ilk="function" name="showElement" signature="showElement(element, ...)" />
+          <scope doc="Restore the setting of element.style.overflow set by&#xA;makeClipping(element). If element is a string, then it will&#xA;be looked up with getElement." ilk="function" name="undoClipping" signature="undoClipping(element, overflow)" />
+          <scope doc="Restore the setting of element.style.position set by&#xA;makePositioned(element). If element is a string, then it&#xA;will be looked up with getElement." ilk="function" name="undoPositioned" signature="undoPositioned(element)" />
+          <scope doc="Constructs an object with x and y properties. obj.toString()&#xA;returns something like {x: 0, y: 42} for debugging." ilk="function" name="Coordinates" signature="Coordinates(x, y)" />
+          <scope doc="Constructs an object with w and h properties. obj.toString()&#xA;returns something like {w: 0, h: 42} for debugging." ilk="function" name="Dimensions" signature="Dimensions(w, h)" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.DOM.$" name="$" />
+      <variable citdl="MochiKit.DOM.addElementClass" name="addElementClass" />
+      <variable citdl="MochiKit.DOM.addLoadEvent" name="addLoadEvent" />
+      <variable citdl="MochiKit.DOM.addToCallStack" name="addToCallStack" />
+      <variable citdl="MochiKit.DOM.appendChildNodes" name="appendChildNodes" />
+      <variable citdl="MochiKit.DOM.insertSiblingNodesBefore" name="insertSiblingNodesBefore" />
+      <variable citdl="MochiKit.DOM.insertSiblingNodesAfter" name="insertSiblingNodesAfter" />
+      <variable citdl="MochiKit.DOM.createDOM" name="createDOM" />
+      <variable citdl="MochiKit.DOM.createDOMFunc" name="createDOMFunc" />
+      <variable citdl="MochiKit.DOM.currentDocument" name="currentDocument" />
+      <variable citdl="MochiKit.DOM.currentWindow" name="currentWindow" />
+      <variable citdl="MochiKit.DOM.emitHTML" name="emitHTML" />
+      <variable citdl="MochiKit.DOM.escapeHTML" name="escapeHTML" />
+      <variable citdl="MochiKit.DOM.focusOnLoad" name="focusOnLoad" />
+      <variable citdl="MochiKit.DOM.formContents" name="formContents" />
+      <variable citdl="MochiKit.DOM.getElement" name="getElement" />
+      <variable citdl="MochiKit.DOM.getElementsByTagAndClassName" name="getElementsByTagAndClassName" />
+      <variable citdl="MochiKit.DOM.getFirstElementByTagAndClassName" name="getFirstElementByTagAndClassName" />
+      <variable citdl="MochiKit.DOM.getFirstParentByTagAndClassName" name="getFirstParentByTagAndClassName" />
+      <variable citdl="MochiKit.DOM.getNodeAttribute" name="getNodeAttribute" />
+      <variable citdl="MochiKit.DOM.hasElementClass" name="hasElementClass" />
+      <variable citdl="MochiKit.DOM.isChildNode" name="isChildNode" />
+      <variable citdl="MochiKit.DOM.registerDOMConverter" name="registerDOMConverter" />
+      <variable citdl="MochiKit.DOM.removeElement" name="removeElement" />
+      <variable citdl="MochiKit.DOM.removeElementClass" name="removeElementClass" />
+      <variable citdl="MochiKit.DOM.removeEmptyTextNodes" name="removeEmptyTextNodes" />
+      <variable citdl="MochiKit.DOM.replaceChildNodes" name="replaceChildNodes" />
+      <variable citdl="MochiKit.DOM.scrapeText" name="scrapeText" />
+      <variable citdl="MochiKit.DOM.setElementClass" name="setElementClass" />
+      <variable citdl="MochiKit.DOM.setNodeAttribute" name="setNodeAttribute" />
+      <variable citdl="MochiKit.DOM.swapDOM" name="swapDOM" />
+      <variable citdl="MochiKit.DOM.swapElementClass" name="swapElementClass" />
+      <variable citdl="MochiKit.DOM.toggleElementClass" name="toggleElementClass" />
+      <variable citdl="MochiKit.DOM.toHTML" name="toHTML" />
+      <variable citdl="MochiKit.DOM.updateNodeAttributes" name="updateNodeAttributes" />
+      <variable citdl="MochiKit.DOM.withWindow" name="withWindow" />
+      <variable citdl="MochiKit.DOM.withDocument" name="withDocument" />
+      <variable citdl="MochiKit.DOM.computedStyle" name="computedStyle" />
+      <variable citdl="MochiKit.DOM.elementDimensions" name="elementDimensions" />
+      <variable citdl="MochiKit.DOM.elementPosition" name="elementPosition" />
+      <variable citdl="MochiKit.DOM.getViewportDimensions" name="getViewportDimensions" />
+      <variable citdl="MochiKit.DOM.hideElement" name="hideElement" />
+      <variable citdl="MochiKit.DOM.makeClipping" name="makeClipping" />
+      <variable citdl="MochiKit.DOM.makePositioned" name="makePositioned" />
+      <variable citdl="MochiKit.DOM.setElementDimensions" name="setElementDimensions" />
+      <variable citdl="MochiKit.DOM.setElementPosition" name="setElementPosition" />
+      <variable citdl="MochiKit.DOM.setDisplayForElement" name="setDisplayForElement" />
+      <variable citdl="MochiKit.DOM.setOpacity" name="setOpacity" />
+      <variable citdl="MochiKit.DOM.showElement" name="showElement" />
+      <variable citdl="MochiKit.DOM.undoClipping" name="undoClipping" />
+      <variable citdl="MochiKit.DOM.undoPositioned" name="undoPositioned" />
+      <variable citdl="MochiKit.DOM.Coordinates" name="Coordinates" />
+      <variable citdl="MochiKit.DOM.Dimensions" name="Dimensions" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Base.js">
+    <scope ilk="blob" lang="JavaScript" name="Base.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Base">
+          <variable doc="A singleton error raised when no suitable adapter is found&#xA;Availability: Available in MochiKit 1.3.1+" name="NotFound" />
+          <scope doc="A registry to facilitate adaptation. All check/wrap function&#xA;pairs in a given registry should take the same number of&#xA;arguments." ilk="class" name="AdapterRegistry">
+            <scope doc="name: a unique identifier used to identify this adapter so&#xA;that it may be unregistered. check: function that should&#xA;return true if the given arguments are appropriate for the&#xA;wrap function." ilk="function" name="register" signature="register(name, check, wrap[, override])" />
+            <scope doc="Find an adapter for the given arguments by calling every&#xA;check function until one returns true. If no suitable&#xA;adapter is found, throws NotFound." ilk="function" name="match" signature="match(obj[, ...])" />
+            <scope doc="Remove a named adapter from the registry Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="unregister" signature="unregister(name)" />
+          </scope>
+          <scope doc="Convenience constructor for creating new errors (e.g." ilk="class" name="NamedError" />
+          <scope doc="Compare the arrays self and arr for equality using compare&#xA;on each element. Uses a fast-path for length differences." ilk="function" name="arrayEqual" signature="arrayEqual(self, arr)" />
+          <scope doc="This function is an alias of mean()." ilk="function" name="average" signature="average(lst[, ...])" />
+          <scope doc="Return a copy of func bound to self. This means whenever and&#xA;however the returned function is called, this will always&#xA;reference the given self." ilk="function" name="bind" signature="bind(func, self[, arg, ...])" />
+          <scope doc="Alternate version of bind that uses late lookup of the func&#xA;parameter in self. I.e, the self[func] function lookup will&#xA;occur on each call to the returned function, not when&#xA;bindLate is called." ilk="function" name="bindLate" signature="bindLate(func, self[, arg, ...])" />
+          <scope doc="Replace all functions meth on self with bind(meth, self).&#xA;This emulates Python&apos;s bound instance methods, where there&#xA;is no need to worry about preserving this when the method is&#xA;used as a callback." ilk="function" name="bindMethods" signature="bindMethods(self)" />
+          <scope doc="Converts hyphenated strings to camelCase: assert( camelize&#xA;(&quot;border-left&quot;) == &quot;borderLeft&quot; ); Availability: Available&#xA;in MochiKit 1.4+" ilk="function" name="camelize" signature="camelize(str)" />
+          <scope doc="Return a new object using obj as its prototype. Use this if&#xA;you want to return a mutable object (e.g." ilk="function" name="clone" returns="Object" signature="clone(obj) =&gt; Object" />
+          <scope doc="Compare two objects in a sensible manner. Currently this is:&#xA;undefined and null compare equal to each other undefined and&#xA;null are less than anything else If JavaScript says a == b,&#xA;then we trust it comparators registered with&#xA;registerComparator are used to find a good comparator." ilk="function" name="compare" signature="compare(a, b)" />
+          <scope doc="Return a new function as the combination of the given&#xA;function arguments, equivalent to f1(f2(arguments))." ilk="function" name="compose" returns="Function" signature="compose(f1, f2, ..., fN) =&gt; Function" />
+          <scope doc="Concatenates all given Array-like arguments and returns a&#xA;new Array: var lst = concat([&quot;1&quot;,&quot;3&quot;,&quot;5&quot;], [&quot;2&quot;,&quot;4&quot;,&quot;6&quot;]);&#xA;assert( lst.toString() == &quot;1,3,5,2,4,6&quot; ); Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="concat" signature="concat(lst[, ...])" />
+          <scope doc="Returns a function that will return a number one greater&#xA;than the previous returned value, starting at n. For&#xA;example: nextId = counter() assert( nextId() == 1 ) assert(&#xA;nextId() == 2 ) For an iterator with this behavior, see&#xA;MochiKit.Iter.count." ilk="function" name="counter" returns="Function" signature="counter(n=1) =&gt; Function" />
+          <scope doc="Mutate the array self by extending it with an Array-like&#xA;obj, starting from index skip. If null is given as the&#xA;initial array, a new one will be created." ilk="function" name="extend" signature="extend(self, obj, skip=0)" />
+          <scope doc="Unserialize a JSON [1] represenation of an object. Note that&#xA;this uses the eval function of the interpreter, and&#xA;therefore trusts the contents of aJSONString to be safe." ilk="function" name="evalJSON" signature="evalJSON(aJSONString)" />
+          <scope doc="Returns a new Array composed of all elements from lst where&#xA;fn(lst[i]) returns a true value. If fn is null,&#xA;operator.truth will be used." ilk="function" name="filter" returns="Array" signature="filter(fn, lst) =&gt; Array" />
+          <scope doc="Finds the index of value in the Array-like object lst using&#xA;compare. The search starts at the index start, and ends at&#xA;the index end - 1." ilk="function" name="findValue" signature="findValue(lst, value, start=0, end=lst.length)" />
+          <scope doc="Finds the index of value in the Array-like object lst using&#xA;the === operator. The search starts at the index start, and&#xA;ends at the index end - 1." ilk="function" name="findIdentical" signature="findIdentical(lst, value, start=0, end=lst.length)" />
+          <scope doc="Given a bunch of arguments, return a single Array containing&#xA;all of those arguments." ilk="function" name="flattenArguments" signature="flattenArguments(arg[, ...])" />
+          <scope doc="Return a new Array consisting of every item in lst with&#xA;Array items expanded in-place recursively. This differs from&#xA;flattenArguments in that it only takes one argument and it&#xA;only flattens items that are instanceof Array." ilk="function" name="flattenArray" returns="Array" signature="flattenArray(lst) =&gt; Array" />
+          <scope doc="Returns a function that forwards a method call to&#xA;this.name(...) Availability: Available in MochiKit 1.3.1+" ilk="function" name="forwardCall" returns="Function" signature="forwardCall(name) =&gt; Function" />
+          <scope doc="Returns true if all given arguments are Array-like (have a&#xA;.length property and typeof(obj) == &apos;object&apos;) Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="isArrayLike" returns="Boolean" signature="isArrayLike(obj[, ...]) =&gt; Boolean" />
+          <scope doc="Returns true if all given arguments are Date-like (have a&#xA;.getTime() method) Availability: Available in MochiKit&#xA;1.3.1+" ilk="function" name="isDateLike" returns="Boolean" signature="isDateLike(obj[, ...]) =&gt; Boolean" />
+          <scope doc="Returns true if all the given Array-like or string arguments&#xA;are empty (obj.length == 0) Availability: Available in&#xA;MochiKit 1.3.1+" ilk="function" name="isEmpty" returns="Boolean" signature="isEmpty(obj[, ...]) =&gt; Boolean" />
+          <scope doc="Returns true if all the given Array-like or string arguments&#xA;are not empty (obj.length &gt; 0) Availability: Available in&#xA;MochiKit 1.3.1+" ilk="function" name="isNotEmpty" returns="Boolean" signature="isNotEmpty(obj[, ...]) =&gt; Boolean" />
+          <scope doc="Returns true if all arguments are null." ilk="function" name="isNull" returns="Boolean" signature="isNull(obj[, ...]) =&gt; Boolean" />
+          <scope doc="Returns true if all arguments are undefined or null&#xA;Availability: Available in MochiKit 1.3.1+" ilk="function" name="isUndefinedOrNull" returns="Boolean" signature="isUndefinedOrNull(obj[, ...]) =&gt; Boolean" />
+          <scope doc="Returns a function(obj) that returns obj[name] Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="itemgetter" signature="itemgetter(name)" />
+          <scope doc="Return an Array of [propertyName, propertyValue] pairs for&#xA;the given obj (in the order determined by for propName in&#xA;obj)." ilk="function" name="items" returns="Array" signature="items(obj) =&gt; Array" />
+          <scope doc="A comparator factory that compares a[key] with b[key]." ilk="function" name="keyComparator" signature="keyComparator(key[, ...])" />
+          <scope doc="Return an Array of the property names of an object (in the&#xA;order determined by for propName in obj)." ilk="function" name="keys" returns="Array" signature="keys(obj) =&gt; Array" />
+          <scope doc="Return the largest element of an Array-like object, as&#xA;determined by compare. This is a special form of listMinMax,&#xA;specifically partial(listMinMax, 1)." ilk="function" name="listMax" signature="listMax(lst)" />
+          <scope doc="Return the smallest element of an Array-like object, as&#xA;determined by compare. This is a special form of listMinMax,&#xA;specifically partial(listMinMax, -1)." ilk="function" name="listMin" signature="listMin(lst)" />
+          <scope doc="If which == -1 then it will return the smallest element of&#xA;the Array-like lst. This is also available as listMin(lst)." ilk="function" name="listMinMax" signature="listMinMax(which, lst)" />
+          <scope doc="Return a new array composed of the results of fn(x) for&#xA;every x in lst. If fn is null, and only one sequence&#xA;argument is given the identity function is used." ilk="function" name="map" returns="Array" signature="map(fn, lst[, ...]) =&gt; Array" />
+          <scope doc="Returns the arithmetic mean (average) of the argument list,&#xA;or an array. This function applies flattenArguments() to the&#xA;argument list." ilk="function" name="mean" signature="mean(lst[, ...])" />
+          <scope doc="Returns the median of the argument list, or an array. This&#xA;function applies flattenArguments() to the argument list." ilk="function" name="median" signature="median(lst[, ...])" />
+          <scope doc="Create a new instance of Object that contains every property&#xA;from all given objects. If a property is defined on more&#xA;than one of the objects, the last property is used." ilk="function" name="merge" signature="merge(obj[, ...])" />
+          <scope doc="Alternate form of bind that takes the object before the&#xA;function." ilk="function" name="method" signature="method(self, func, ...)" />
+          <scope doc="Return a new function that calls a method on its argument,&#xA;for example: lst = map(methodcaller(&quot;toLowerCase&quot;), [&quot;THIS&quot;,&#xA;&quot;is&quot;, &quot;LoWeRCaSe&quot;]); assert( lst.join(&quot; &quot;) == &quot;this is&#xA;lowercase&quot; ); Availability: Available in MochiKit 1.4+" ilk="function" name="methodcaller" returns="Function" signature="methodcaller(name[, args...]) =&gt; Function" />
+          <scope doc="Given a namespace (object or function) with a NAME property,&#xA;find all methods in it and give them nice NAME properties&#xA;too (for use with repr)." ilk="function" name="nameFunctions" signature="nameFunctions(namespace)" />
+          <scope doc="A function that performs no operation. Use this where you&#xA;would otherwise use (function () {}) in order to avoid&#xA;Internet Explorer cyclic garbage leakage." ilk="function" name="noop" signature="noop()" />
+          <scope doc="Return true if compare(a, b) == 0 Availability: Available in&#xA;MochiKit 1.3.1+" ilk="function" name="objEqual" returns="Boolean" signature="objEqual(a, b) =&gt; Boolean" />
+          <scope doc="Non-recursive generic node walking function (e.g. for a&#xA;DOM)." ilk="function" name="nodeWalk" signature="nodeWalk(node, visitor)" />
+          <scope doc="Return the maximum object according to compare out of the&#xA;given arguments. This is similar to listMax, except is uses&#xA;the arguments instead of a given Array-like." ilk="function" name="objMax" signature="objMax(obj[, ...])" />
+          <scope doc="Return the minimum object according to compare out of the&#xA;given arguments. This is similar to listMin, except it uses&#xA;the arguments instead of a given Array-like." ilk="function" name="objMin" signature="objMin(obj[, ...])" />
+          <variable doc="A table of JavaScript&apos;s operators for usage with map,&#xA;filter, etc." name="operator" />
+          <scope doc="Parse a name=value pair URL query string into an object with&#xA;a property for each pair. e.g.: var args =&#xA;parseQueryString(&quot;foo=value%20one&amp;bar=two&quot;); assert(&#xA;args.foo == &quot;value one&quot; &amp;&amp; args.bar == &quot;two&quot; ); If you&#xA;expect that the query string will reuse the same name, then&#xA;give true as a second argument, which will use arrays to&#xA;store the values." ilk="function" name="parseQueryString" signature="parseQueryString(encodedString[, useArrays=false])" />
+          <scope doc="Return a partially applied function, e.g.: addNumbers =&#xA;function (a, b) { return a + b; } addOne =&#xA;partial(addNumbers, 1); assert(addOne(2) == 3); partial is a&#xA;special form of bind that does not alter the bound self (if&#xA;any). It is equivalent to calling: bind(func, undefined,&#xA;arg[, ...]); See the documentation for bind for more details&#xA;about this facility." ilk="function" name="partial" signature="partial(func, arg[, ...])" />
+          <scope doc="Creates a URL query string from a pair of Array-like objects&#xA;representing names and values. Each name=value pair will be&#xA;URL encoded by urlEncode." ilk="function" name="queryString" signature="queryString(names, values)" />
+          <scope doc="Register a comparator for use with compare. name: unique&#xA;identifier describing the comparator." ilk="function" name="registerComparator" signature="registerComparator(name, check, comparator[, override])" />
+          <scope doc="Register a simplifier function for use with serializeJSON.&#xA;name: unique identifier describing the serialization." ilk="function" name="registerJSON" signature="registerJSON(name, check, simplifier[, override])" />
+          <scope doc="Register a programmer representation function. repr&#xA;functions should take one argument and return a string&#xA;representation of it suitable for developers, primarily used&#xA;when debugging." ilk="function" name="registerRepr" signature="registerRepr(name, check, wrap[, override])" />
+          <scope doc="Return a programmer representation for obj. See the&#xA;Programmer Representation overview for more information&#xA;about this function." ilk="function" name="repr" signature="repr(obj)" />
+          <scope doc="A comparator factory that compares a[key] with b[key] in&#xA;reverse." ilk="function" name="reverseKeyComparator" signature="reverseKeyComparator(key)" />
+          <scope doc="Serialize anObject in the JSON [1] format, see JSON&#xA;Serialization for the coercion rules. For unserializable&#xA;objects (functions that do not have an adapter, __json__&#xA;method, or json method), this will return undefined." ilk="function" name="serializeJSON" signature="serializeJSON(anObject)" />
+          <scope doc="Mutate self by adding all properties from other object(s)&#xA;that it does not already have set. If self is null, a new&#xA;Object instance will be created and returned." ilk="function" name="setdefault" signature="setdefault(self, obj[, ...])" />
+          <scope doc="Given a set of types (as string arguments), returns a&#xA;function(obj[, ...]) that will return true if the types of&#xA;the given arguments are all members of that set." ilk="function" name="typeMatcher" signature="typeMatcher(typ[, ...])" />
+          <scope doc="Mutate self by replacing its key:value pairs with those from&#xA;other object(s). Key:value pairs from later objects will&#xA;overwrite those from earlier objects." ilk="function" name="update" signature="update(self, obj[, ...])" />
+          <scope doc="Mutate self by replacing its key:value pairs with those from&#xA;other object(s). If a given key has an object value in both&#xA;self and obj, then this function will be called recursively,&#xA;updating instead of replacing that object." ilk="function" name="updatetree" signature="updatetree(self, obj[, ...])" />
+          <scope doc="Converts unencoded into a URL-encoded string. In this&#xA;implementation, spaces are converted to %20 instead of &quot;+&quot;." ilk="function" name="urlEncode" signature="urlEncode(unencoded)" />
+          <scope doc="Return an Array of the property values of an object (in the&#xA;order determined by for propName in obj)." ilk="function" name="values" returns="Array" signature="values(obj) =&gt; Array" />
+          <scope doc="Returns a new Array composed of the arguments where fn(obj)&#xA;returns a true value. If fn is null, operator.truth will be&#xA;used." ilk="function" name="xfilter" returns="Array" signature="xfilter(fn, obj[, ...]) =&gt; Array" />
+          <scope doc="Return a new Array composed of fn(obj) for every obj given&#xA;as an argument. If fn is null, operator.identity is used." ilk="function" name="xmap" returns="Array" signature="xmap(fn, obj[, ...) =&gt; Array" />
+          <scope doc="Returns an array where the n-th element is an array of the&#xA;n-th elements from each of the arrays p, q, ... This is&#xA;equivalent to calling map(fn, p, q, ...) with null as the&#xA;first argument." ilk="function" name="zip" returns="Array" signature="zip(p, q, ...) =&gt; Array" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Base.NotFound" name="NotFound" />
+      <variable citdl="MochiKit.Base.AdapterRegistry" name="AdapterRegistry" />
+      <variable citdl="MochiKit.Base.register" name="register" />
+      <variable citdl="MochiKit.Base.match" name="match" />
+      <variable citdl="MochiKit.Base.unregister" name="unregister" />
+      <variable citdl="MochiKit.Base.NamedError" name="NamedError" />
+      <variable citdl="MochiKit.Base.arrayEqual" name="arrayEqual" />
+      <variable citdl="MochiKit.Base.average" name="average" />
+      <variable citdl="MochiKit.Base.bind" name="bind" />
+      <variable citdl="MochiKit.Base.bindLate" name="bindLate" />
+      <variable citdl="MochiKit.Base.bindMethods" name="bindMethods" />
+      <variable citdl="MochiKit.Base.camelize" name="camelize" />
+      <variable citdl="MochiKit.Base.clone" name="clone" />
+      <variable citdl="MochiKit.Base.compare" name="compare" />
+      <variable citdl="MochiKit.Base.compose" name="compose" />
+      <variable citdl="MochiKit.Base.concat" name="concat" />
+      <variable citdl="MochiKit.Base.counter" name="counter" />
+      <variable citdl="MochiKit.Base.extend" name="extend" />
+      <variable citdl="MochiKit.Base.evalJSON" name="evalJSON" />
+      <variable citdl="MochiKit.Base.filter" name="filter" />
+      <variable citdl="MochiKit.Base.findValue" name="findValue" />
+      <variable citdl="MochiKit.Base.findIdentical" name="findIdentical" />
+      <variable citdl="MochiKit.Base.flattenArguments" name="flattenArguments" />
+      <variable citdl="MochiKit.Base.flattenArray" name="flattenArray" />
+      <variable citdl="MochiKit.Base.forwardCall" name="forwardCall" />
+      <variable citdl="MochiKit.Base.isArrayLike" name="isArrayLike" />
+      <variable citdl="MochiKit.Base.isDateLike" name="isDateLike" />
+      <variable citdl="MochiKit.Base.isEmpty" name="isEmpty" />
+      <variable citdl="MochiKit.Base.isNotEmpty" name="isNotEmpty" />
+      <variable citdl="MochiKit.Base.isNull" name="isNull" />
+      <variable citdl="MochiKit.Base.isUndefinedOrNull" name="isUndefinedOrNull" />
+      <variable citdl="MochiKit.Base.itemgetter" name="itemgetter" />
+      <variable citdl="MochiKit.Base.items" name="items" />
+      <variable citdl="MochiKit.Base.keyComparator" name="keyComparator" />
+      <variable citdl="MochiKit.Base.keys" name="keys" />
+      <variable citdl="MochiKit.Base.listMax" name="listMax" />
+      <variable citdl="MochiKit.Base.listMin" name="listMin" />
+      <variable citdl="MochiKit.Base.listMinMax" name="listMinMax" />
+      <variable citdl="MochiKit.Base.map" name="map" />
+      <variable citdl="MochiKit.Base.mean" name="mean" />
+      <variable citdl="MochiKit.Base.median" name="median" />
+      <variable citdl="MochiKit.Base.merge" name="merge" />
+      <variable citdl="MochiKit.Base.method" name="method" />
+      <variable citdl="MochiKit.Base.methodcaller" name="methodcaller" />
+      <variable citdl="MochiKit.Base.nameFunctions" name="nameFunctions" />
+      <variable citdl="MochiKit.Base.noop" name="noop" />
+      <variable citdl="MochiKit.Base.objEqual" name="objEqual" />
+      <variable citdl="MochiKit.Base.nodeWalk" name="nodeWalk" />
+      <variable citdl="MochiKit.Base.objMax" name="objMax" />
+      <variable citdl="MochiKit.Base.objMin" name="objMin" />
+      <variable citdl="MochiKit.Base.operator" name="operator" />
+      <variable citdl="MochiKit.Base.parseQueryString" name="parseQueryString" />
+      <variable citdl="MochiKit.Base.partial" name="partial" />
+      <variable citdl="MochiKit.Base.queryString" name="queryString" />
+      <variable citdl="MochiKit.Base.registerComparator" name="registerComparator" />
+      <variable citdl="MochiKit.Base.registerJSON" name="registerJSON" />
+      <variable citdl="MochiKit.Base.registerRepr" name="registerRepr" />
+      <variable citdl="MochiKit.Base.repr" name="repr" />
+      <variable citdl="MochiKit.Base.reverseKeyComparator" name="reverseKeyComparator" />
+      <variable citdl="MochiKit.Base.serializeJSON" name="serializeJSON" />
+      <variable citdl="MochiKit.Base.setdefault" name="setdefault" />
+      <variable citdl="MochiKit.Base.typeMatcher" name="typeMatcher" />
+      <variable citdl="MochiKit.Base.update" name="update" />
+      <variable citdl="MochiKit.Base.updatetree" name="updatetree" />
+      <variable citdl="MochiKit.Base.urlEncode" name="urlEncode" />
+      <variable citdl="MochiKit.Base.values" name="values" />
+      <variable citdl="MochiKit.Base.xfilter" name="xfilter" />
+      <variable citdl="MochiKit.Base.xmap" name="xmap" />
+      <variable citdl="MochiKit.Base.zip" name="zip" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Iter.js">
+    <scope ilk="blob" lang="JavaScript" name="Iter.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Iter">
+          <variable doc="The singleton MochiKit.Base.NamedError that signifies the&#xA;end of an iterator Availability: Available in MochiKit&#xA;1.3.1+" name="StopIteration" />
+          <scope doc="applymap(fun, seq) --&gt; fun.apply(self, seq0),&#xA;fun.apply(self, seq1), ..." ilk="function" name="applymap" signature="applymap(fun, seq[, self])" />
+          <scope doc="chain(p, q, ...) --&gt; p0, p1, ... plast, q0, q1, ..." ilk="function" name="chain" signature="chain(p, q[, ...])" />
+          <scope doc="count(n=0) --&gt; n, n + 1, n + 2, ..." ilk="function" name="count" signature="count(n=0)" />
+          <scope doc="cycle(p) --&gt; p0, p1, ... plast, p0, p1, ..." ilk="function" name="cycle" signature="cycle(p)" />
+          <scope doc="dropwhile(pred, seq) --&gt; seq[n], seq[n + 1], starting when&#xA;pred(seq[n]) fails Availability: Available in MochiKit&#xA;1.3.1+" ilk="function" name="dropwhile" signature="dropwhile(pred, seq)" />
+          <scope doc="Return true if func(item) is true for every item in&#xA;iterable." ilk="function" name="every" returns="Boolean" signature="every(iterable, func) =&gt; Boolean" />
+          <scope doc="Exhausts an iterable without saving the results anywhere,&#xA;like list(iterable) when you don&apos;t care what the output is." ilk="function" name="exhaust" signature="exhaust(iterable)" />
+          <scope doc="Call func for each item in iterable, and don&apos;t save the&#xA;results." ilk="function" name="forEach" signature="forEach(iterable, func[, self])" />
+          <scope doc="Make an iterator that returns consecutive keys and groups&#xA;from the iterable. The key is a function computing a key&#xA;value for each element." ilk="function" name="groupby" signature="groupby(iterable[, keyfunc])" />
+          <scope doc="Perform the same task as groupby(), except return an array&#xA;of arrays instead of an iterator of iterators." ilk="function" name="groupby_as_array" signature="groupby_as_array(iterable[, keyfunc])" />
+          <scope doc="Just like list(iterable), except it pushes results on lst&#xA;rather than creating a new one." ilk="function" name="iextend" signature="iextend(lst, iterable)" />
+          <scope doc="ifilter(pred, seq) --&gt; elements of seq where pred(elem) is&#xA;true Availability: Available in MochiKit 1.3.1+" ilk="function" name="ifilter" signature="ifilter(pred, seq)" />
+          <scope doc="ifilterfalse(pred, seq) --&gt; elements of seq where pred(elem)&#xA;is false Availability: Available in MochiKit 1.3.1+" ilk="function" name="ifilterfalse" signature="ifilterfalse(pred, seq)" />
+          <scope doc="imap(fun, p, q, ...) --&gt; fun(p0, q0, ...), fun(p1, q1, ...),&#xA;..." ilk="function" name="imap" signature="imap(fun, p, q[, ...])" />
+          <scope doc="islice(seq, [start,] stop[, step]) --&gt; elements from&#xA;seq[start:stop:step] (in Python slice syntax) Availability:&#xA;Available in MochiKit 1.3.1+" ilk="function" name="islice" signature="islice(seq, [start,] stop[, step])" />
+          <scope doc="Convert the given argument to an iterator (object&#xA;implementing .next()). If iterable is an iterator&#xA;(implements .next()), then it will be returned as-is." ilk="function" name="iter" signature="iter(iterable[, sentinel])" />
+          <scope doc="izip(p, q, ...) --&gt; [p0, q0, ...], [p1, q1, ...], ..." ilk="function" name="izip" signature="izip(p, q[, ...])" />
+          <scope doc="Convert iterable to a new Array Availability: Available in&#xA;MochiKit 1.3.1+" ilk="function" name="list" signature="list(iterable)" />
+          <scope doc="Return iterator.next() Availability: Available in MochiKit&#xA;1.3.1+" ilk="function" name="next" signature="next(iterator)" />
+          <scope doc="Return an iterator containing an arithmetic progression of&#xA;integers. range(i, j) returns iter([i, i + 1, i + 2, ..., j&#xA;- 1]) start (!) defaults to 0." ilk="function" name="range" signature="range([start,] stop[, step])" />
+          <scope doc="Apply fn(a, b) cumulatively to the items of an iterable from&#xA;left to right, so as to reduce the iterable to a single&#xA;value. For example: reduce(function (a, b) { return a + b;&#xA;}, [1, 2, 3, 4, 5]) calculates: ((((1 + 2) + 3) + 4) + 5)." ilk="function" name="reduce" signature="reduce(fn, iterable[, initial])" />
+          <scope doc="Register an iterator factory for use with the iter function.&#xA;check is a function(a) that returns true if a can be&#xA;converted into an iterator with iterfactory." ilk="function" name="registerIteratorFactory" signature="registerIteratorFactory(name, check, iterfactory[, override])" />
+          <scope doc="repeat(elem, [,n]) --&gt; elem, elem, elem, ..." ilk="function" name="repeat" signature="repeat(elem[, n])" />
+          <scope doc="Return a reversed array from iterable." ilk="function" name="reversed" signature="reversed(iterable)" />
+          <scope doc="Return true if func(item) is true for at least one item in&#xA;iterable." ilk="function" name="some" returns="Boolean" signature="some(iterable, func) =&gt; Boolean" />
+          <scope doc="Return a sorted array from iterable." ilk="function" name="sorted" signature="sorted(iterable[, cmp])" />
+          <scope doc="Returns the sum of a sequence of numbers plus the value of&#xA;parameter start (with a default of 0). When the sequence is&#xA;empty, returns start." ilk="function" name="sum" signature="sum(iterable, start=0)" />
+          <scope doc="takewhile(pred, seq) --&gt; seq[0], seq[1], ..." ilk="function" name="takewhile" signature="takewhile(pred, seq)" />
+          <scope doc="tee(it, n=2) --&gt; [it1, it2, it3, ..." ilk="function" name="tee" signature="tee(iterable, n=2)" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Iter.StopIteration" name="StopIteration" />
+      <variable citdl="MochiKit.Iter.applymap" name="applymap" />
+      <variable citdl="MochiKit.Iter.chain" name="chain" />
+      <variable citdl="MochiKit.Iter.count" name="count" />
+      <variable citdl="MochiKit.Iter.cycle" name="cycle" />
+      <variable citdl="MochiKit.Iter.dropwhile" name="dropwhile" />
+      <variable citdl="MochiKit.Iter.every" name="every" />
+      <variable citdl="MochiKit.Iter.exhaust" name="exhaust" />
+      <variable citdl="MochiKit.Iter.forEach" name="forEach" />
+      <variable citdl="MochiKit.Iter.groupby" name="groupby" />
+      <variable citdl="MochiKit.Iter.groupby_as_array" name="groupby_as_array" />
+      <variable citdl="MochiKit.Iter.iextend" name="iextend" />
+      <variable citdl="MochiKit.Iter.ifilter" name="ifilter" />
+      <variable citdl="MochiKit.Iter.ifilterfalse" name="ifilterfalse" />
+      <variable citdl="MochiKit.Iter.imap" name="imap" />
+      <variable citdl="MochiKit.Iter.islice" name="islice" />
+      <variable citdl="MochiKit.Iter.iter" name="iter" />
+      <variable citdl="MochiKit.Iter.izip" name="izip" />
+      <variable citdl="MochiKit.Iter.list" name="list" />
+      <variable citdl="MochiKit.Iter.next" name="next" />
+      <variable citdl="MochiKit.Iter.range" name="range" />
+      <variable citdl="MochiKit.Iter.reduce" name="reduce" />
+      <variable citdl="MochiKit.Iter.registerIteratorFactory" name="registerIteratorFactory" />
+      <variable citdl="MochiKit.Iter.repeat" name="repeat" />
+      <variable citdl="MochiKit.Iter.reversed" name="reversed" />
+      <variable citdl="MochiKit.Iter.some" name="some" />
+      <variable citdl="MochiKit.Iter.sorted" name="sorted" />
+      <variable citdl="MochiKit.Iter.sum" name="sum" />
+      <variable citdl="MochiKit.Iter.takewhile" name="takewhile" />
+      <variable citdl="MochiKit.Iter.tee" name="tee" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Format.js">
+    <scope ilk="blob" lang="JavaScript" name="Format.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Format">
+          <scope doc="Return a locale object for the given locale. locale may be&#xA;either a string, which is looked up in the&#xA;MochiKit.Format.LOCALE object, or a locale object." ilk="function" name="formatLocale" signature="formatLocale(locale=&quot;default&quot;)" />
+          <scope doc="Returns a string based on str with leading whitespace&#xA;stripped. If chars is given, then that expression will be&#xA;used instead of whitespace." ilk="function" name="lstrip" returns="String" signature="lstrip(str, chars=&quot;\s&quot;) =&gt; String" />
+          <scope doc="Return a function formatNumber(aNumber) that formats numbers&#xA;as a string according to the given pattern, placeholder and&#xA;locale. pattern is a string that describes how the numbers&#xA;should be formatted, for more information see Formatting&#xA;Numbers." ilk="function" name="numberFormatter" returns="Function" signature="numberFormatter(pattern, placeholder=&quot;&quot;, locale=&quot;default&quot;) =&gt; Function" />
+          <scope doc="Return a string representation of aNumber * 100, rounded to&#xA;a maximum precision of 2 fractional digits. Roughly&#xA;equivalent to: sprintf(&quot;%.2f%%&quot;, aNumber * 100) In new code,&#xA;you probably want to use: numberFormatter(&quot;#.##%&quot;)(aNumber)&#xA;instead." ilk="function" name="percentFormat" returns="String" signature="percentFormat(aNumber) =&gt; String" />
+          <scope doc="Return a string representation of aNumber, rounded to&#xA;precision digits with trailing zeros. This is similar to&#xA;Number.toFixed(aNumber, precision), but this has&#xA;implementation consistent rounding behavior (some versions&#xA;of Safari round 0.5 down!) and also includes preceding 0 for&#xA;numbers less than 1 (Safari, again)." ilk="function" name="roundToFixed" returns="String" signature="roundToFixed(aNumber, precision) =&gt; String" />
+          <scope doc="Returns a string based on str with trailing whitespace&#xA;stripped. If chars is given, then that expression will be&#xA;used instead of whitespace." ilk="function" name="rstrip" returns="String" signature="rstrip(str, chars=&quot;\s&quot;) =&gt; String" />
+          <scope doc="Returns a string based on str with leading and trailing&#xA;whitespace stripped (equivalent to lstrip(rstrip(str,&#xA;chars), chars)). If chars is given, then that expression&#xA;will be used instead of whitespace." ilk="function" name="strip" returns="String" signature="strip(str, chars=&quot;\s&quot;) =&gt; String" />
+          <scope doc="Return a string representation of aNumber, truncated to&#xA;precision digits with trailing zeros. This is similar to&#xA;aNumber.toFixed(precision), but this truncates rather than&#xA;rounds and has implementation consistent behavior for&#xA;numbers less than 1." ilk="function" name="truncToFixed" returns="String" signature="truncToFixed(aNumber, precision) =&gt; String" />
+          <scope doc="Calculate an average from a numerator and a denominator and&#xA;return it as a string rounded to a maximum precision of two&#xA;fractional digits (e.g. &quot;1.23&quot;)." ilk="function" name="twoDigitAverage" signature="twoDigitAverage(numerator, denominator)" />
+          <scope doc="Return a string representation of aNumber, rounded to a&#xA;maximum precision of 2 fractional digits. This is a&#xA;variation of roundToFixed(aNumber, 2) that removes trailing&#xA;zeros from the fractional part." ilk="function" name="twoDigitFloat" returns="String" signature="twoDigitFloat(aNumber) =&gt; String" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Format.formatLocale" name="formatLocale" />
+      <variable citdl="MochiKit.Format.lstrip" name="lstrip" />
+      <variable citdl="MochiKit.Format.numberFormatter" name="numberFormatter" />
+      <variable citdl="MochiKit.Format.percentFormat" name="percentFormat" />
+      <variable citdl="MochiKit.Format.roundToFixed" name="roundToFixed" />
+      <variable citdl="MochiKit.Format.rstrip" name="rstrip" />
+      <variable citdl="MochiKit.Format.strip" name="strip" />
+      <variable citdl="MochiKit.Format.truncToFixed" name="truncToFixed" />
+      <variable citdl="MochiKit.Format.twoDigitAverage" name="twoDigitAverage" />
+      <variable citdl="MochiKit.Format.twoDigitFloat" name="twoDigitFloat" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Style.js">
+    <scope ilk="blob" lang="JavaScript" name="Style.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Style">
+          <scope doc="Looks up a CSS property for the given element. The element&#xA;can be specified as either a string with the element&apos;s ID or&#xA;the element object itself." ilk="function" name="getStyle" signature="getStyle(element, cssSelector)" />
+          <scope doc="Set CSS properties on a the given element. The element can&#xA;be specified as either a string with the element&apos;s ID or the&#xA;element object itself." ilk="function" name="setStyle" signature="setStyle(element, styles)" />
+          <scope doc="Sets opacity for element. Valid opacity values range from 0&#xA;(invisible) to 1 (opaque)." ilk="function" name="setOpacity" signature="setOpacity(element, opacity)" />
+          <scope doc="Return the absolute pixel width and height of element as an&#xA;object with w and h properties, or undefined if element is&#xA;not in the document. The size will include padding and&#xA;border, but not margins, unless contentSize is set to true,&#xA;in which case the size will be only the content size,&#xA;without padding and border." ilk="function" name="getElementDimensions" signature="getElementDimensions(element[, contentSize=false])" />
+          <scope doc="Sets the dimensions of element in the document from an&#xA;object with w and h properties. Warning: IE in quirks-mode&#xA;seems to behave strange when you set the height off an&#xA;element containing text to 0." ilk="function" name="setElementDimensions" signature="setElementDimensions(element, dimensions[, units=&apos;px&apos;])" />
+          <scope doc="Return the absolute pixel position of element in the&#xA;document as an object with x and y properties, or undefined&#xA;if element is not in the document. element may be specified&#xA;as a string to be looked up with getElement, a DOM element,&#xA;or trivially as an object with x and/or y properties." ilk="function" name="getElementPosition" signature="getElementPosition(element[, relativeTo={x: 0, y: 0}])" />
+          <scope doc="Sets the absolute position of element in the document from&#xA;an object with x and y properties. element: A reference to&#xA;the DOM element to update (if a string is given,&#xA;getElement(node) will be used to locate the node) position:&#xA;An object with x and y properties." ilk="function" name="setElementPosition" signature="setElementPosition(element, position[, units=&apos;px&apos;])" />
+          <scope doc="Ensure that element.style.position is set to &quot;relative&quot; if&#xA;it is not set or is &quot;static&quot;. If element is a string, then&#xA;it will be looked up with getElement." ilk="function" name="makePositioned" signature="makePositioned(element)" />
+          <scope doc="Restore the setting of element.style.position set by&#xA;makePositioned(element). If element is a string, then it&#xA;will be looked up with getElement." ilk="function" name="undoPositioned" signature="undoPositioned(element)" />
+          <scope doc="Ensure that element.style.overflow = &apos;hidden&apos;. If element is&#xA;a string, then it will be looked up with getElement." ilk="function" name="makeClipping" signature="makeClipping(element)" />
+          <scope doc="Restore the setting of element.style.overflow set by&#xA;makeClipping(element). If element is a string, then it will&#xA;be looked up with getElement." ilk="function" name="undoClipping" signature="undoClipping(element, overflow)" />
+          <scope doc="Change the style.display for the given element(s). Usually&#xA;used as the partial forms: showElement(element, ...)&#xA;hideElement(element, ...) Elements are looked up with&#xA;getElement, so string identifiers are acceptable." ilk="function" name="setDisplayForElement" signature="setDisplayForElement(display, element[, ...])" />
+          <scope doc="Partial form of setDisplayForElement, specifically:&#xA;partial(setDisplayForElement, &quot;block&quot;) For information about&#xA;the caveats of using a style.display based show/hide&#xA;mechanism, and a CSS based alternative, see Element&#xA;Visibility." ilk="function" name="showElement" signature="showElement(element, ...)" />
+          <scope doc="Partial form of setDisplayForElement, specifically:&#xA;partial(setDisplayForElement, &quot;none&quot;) For information about&#xA;the caveats of using a style.display based show/hide&#xA;mechanism, and a CSS based alternative, see Element&#xA;Visibility." ilk="function" name="hideElement" signature="hideElement(element, ...)" />
+          <scope doc="Return the pixel width and height of the viewport as an&#xA;object with w and h properties." ilk="function" name="getViewportDimensions" signature="getViewportDimensions()" />
+          <scope doc="Return the pixel position of the viewport inside the window,&#xA;as a Coordinates object." ilk="function" name="getViewportPosition" signature="getViewportPosition()" />
+          <scope doc="Constructs an object with x and y properties. obj.toString()&#xA;returns something like {x: 0, y: 42} for debugging." ilk="function" name="Coordinates" signature="Coordinates(x, y)" />
+          <scope doc="Constructs an object with w and h properties. obj.toString()&#xA;returns something like {w: 0, h: 42} for debugging." ilk="function" name="Dimensions" signature="Dimensions(w, h)" />
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Style.getStyle" name="getStyle" />
+      <variable citdl="MochiKit.Style.setStyle" name="setStyle" />
+      <variable citdl="MochiKit.Style.setOpacity" name="setOpacity" />
+      <variable citdl="MochiKit.Style.getElementDimensions" name="getElementDimensions" />
+      <variable citdl="MochiKit.Style.setElementDimensions" name="setElementDimensions" />
+      <variable citdl="MochiKit.Style.getElementPosition" name="getElementPosition" />
+      <variable citdl="MochiKit.Style.setElementPosition" name="setElementPosition" />
+      <variable citdl="MochiKit.Style.makePositioned" name="makePositioned" />
+      <variable citdl="MochiKit.Style.undoPositioned" name="undoPositioned" />
+      <variable citdl="MochiKit.Style.makeClipping" name="makeClipping" />
+      <variable citdl="MochiKit.Style.undoClipping" name="undoClipping" />
+      <variable citdl="MochiKit.Style.setDisplayForElement" name="setDisplayForElement" />
+      <variable citdl="MochiKit.Style.showElement" name="showElement" />
+      <variable citdl="MochiKit.Style.hideElement" name="hideElement" />
+      <variable citdl="MochiKit.Style.getViewportDimensions" name="getViewportDimensions" />
+      <variable citdl="MochiKit.Style.getViewportPosition" name="getViewportPosition" />
+      <variable citdl="MochiKit.Style.Coordinates" name="Coordinates" />
+      <variable citdl="MochiKit.Style.Dimensions" name="Dimensions" />
+    </scope>
+  </file>
+  <file lang="JavaScript" path="MochiKit/Signal.js">
+    <scope ilk="blob" lang="JavaScript" name="Signal.js">
+      <variable citdl="Object" name="MochiKit">
+        <variable citdl="Object" name="Signal">
+          <scope doc="Connects a signal to a slot, and return a unique identifier&#xA;that can be used to disconnect that signal. src is the&#xA;object that has the signal." ilk="function" name="connect" signature="connect(src, signal, dest[, func])" />
+          <scope doc="To disconnect a signal, pass its ident returned by&#xA;connect(). This is similar to how the browser&apos;s setTimeout&#xA;and clearTimeout works." ilk="function" name="disconnect" signature="disconnect(ident)" />
+          <scope doc="Removes a set of signals from src, similar to calling&#xA;disconnect(ident) for each one. disconnectAll(src) removes&#xA;all signals from src." ilk="function" name="disconnectAll" signature="disconnectAll(src[, signal, ...])" />
+          <scope doc="Removes a set of signals connected to dest, similar to&#xA;calling disconnect(ident) for each one.&#xA;disconnectAllTo(dest) removes all signals connected to dest." ilk="function" name="disconnectAllTo" signature="disconnectAllTo(dest[, func])" />
+          <scope doc="This will signal a signal, passing whatever additional&#xA;parameters on to the connected slots. src and signal are the&#xA;same as for connect()." ilk="function" name="signal" signature="signal(src, signal, ...)" />
+          <scope ilk="class" name="Event">
+            <scope doc="The native event produced by the browser. You should not&#xA;need to use this." ilk="function" name="event" signature="event()" />
+            <scope doc="The element that this signal is connected to." ilk="function" name="src" signature="src()" />
+            <scope doc="The event type (&apos;click&apos;, &apos;mouseover&apos;, &apos;keypress&apos;, etc.) as a&#xA;string. Does not include the &apos;on&apos; prefix." ilk="function" name="type" signature="type()" />
+            <scope doc="The element that triggered the event. This may be a child of&#xA;src()." ilk="function" name="target" signature="target()" />
+            <scope doc="Returns {shift, ctrl, meta, alt, any}, where each property&#xA;is true if its respective modifier key was pressed, false&#xA;otherwise. any is true if any modifier is pressed, false&#xA;otherwise." ilk="function" name="modifier" signature="modifier()" />
+            <scope doc="Works like W3C&apos;s stopPropagation()." ilk="function" name="stopPropagation" signature="stopPropagation()" />
+            <scope doc="Works like W3C&apos;s preventDefault()." ilk="function" name="preventDefault" signature="preventDefault()" />
+            <scope doc="Shortcut that calls stopPropagation() and preventDefault()." ilk="function" name="stop" signature="stop()" />
+            <scope doc="Returns {code, string}. Use &apos;onkeydown&apos; and &apos;onkeyup&apos;&#xA;handlers to detect control characters such as &apos;KEY_F1&apos;." ilk="function" name="key" signature="key()" />
+            <scope doc="Properties for &apos;onmouse*&apos;, &apos;onclick&apos;, &apos;ondblclick&apos;, and&#xA;&apos;oncontextmenu&apos;: page is a MochiKit.Style.Coordinates object&#xA;that represents the cursor position relative to the HTML&#xA;document. Equivalent to pageX and pageY in Safari, Mozilla,&#xA;and Opera." ilk="function" name="mouse" signature="mouse()" />
+            <scope doc="Returns the document element that the mouse has moved to.&#xA;This is generated for &apos;onmouseover&apos; and &apos;onmouseout&apos; events." ilk="function" name="relatedTarget" signature="relatedTarget()" />
+            <scope doc="In browsers that support the &apos;onbeforeunload&apos; event (IE and&#xA;Firefox), calling this in the event handler will show a&#xA;dialog box that allows the user to confirm or cancel the&#xA;navigation away from the page." ilk="function" name="confirmUnload" signature="confirmUnload(msg)" />
+          </scope>
+        </variable>
+      </variable>
+      <variable citdl="MochiKit.Signal.connect" name="connect" />
+      <variable citdl="MochiKit.Signal.disconnect" name="disconnect" />
+      <variable citdl="MochiKit.Signal.disconnectAll" name="disconnectAll" />
+      <variable citdl="MochiKit.Signal.disconnectAllTo" name="disconnectAllTo" />
+      <variable citdl="MochiKit.Signal.signal" name="signal" />
+      <variable citdl="MochiKit.Signal.event" name="event" />
+      <variable citdl="MochiKit.Signal.src" name="src" />
+      <variable citdl="MochiKit.Signal.type" name="type" />
+      <variable citdl="MochiKit.Signal.target" name="target" />
+      <variable citdl="MochiKit.Signal.modifier" name="modifier" />
+      <variable citdl="MochiKit.Signal.stopPropagation" name="stopPropagation" />
+      <variable citdl="MochiKit.Signal.preventDefault" name="preventDefault" />
+      <variable citdl="MochiKit.Signal.stop" name="stop" />
+      <variable citdl="MochiKit.Signal.key" name="key" />
+      <variable citdl="MochiKit.Signal.mouse" name="mouse" />
+      <variable citdl="MochiKit.Signal.relatedTarget" name="relatedTarget" />
+      <variable citdl="MochiKit.Signal.confirmUnload" name="confirmUnload" />
+    </scope>
+  </file>
+</codeintel>

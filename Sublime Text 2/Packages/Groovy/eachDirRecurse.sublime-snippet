@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[eachDirRecurse {${1/(.+)/(?1: )/}${1:dir}${1/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>eadr</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>eachDirRecurse { … }</description>
+</snippet>

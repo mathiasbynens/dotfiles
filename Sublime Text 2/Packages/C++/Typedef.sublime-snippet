@@ -1,0 +1,6 @@
+<snippet>
+	<description>Typedef</description>
+    <content><![CDATA[typedef ${1:int} ${2:MyCustomType};]]></content>
+    <tabTrigger>td</tabTrigger>
+    <scope>source.c, source.objc, source.c++, source.objc++</scope>
+</snippet>

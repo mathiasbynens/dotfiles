@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>asp</string>
+	</array>
+	<key>foldingStartMarker</key>
+	<string>(&lt;(?i:(head|table|div|style|script|ul|ol|form|dl))\b.*?&gt;|\{)</string>
+	<key>foldingStopMarker</key>
+	<string>(&lt;/(?i:(head|table|div|style|script|ul|ol|form|dl))&gt;|\})</string>
+	<key>keyEquivalent</key>
+	<string>^~A</string>
+	<key>name</key>
+	<string>HTML (ASP)</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>begin</key>
+			<string>&lt;%=?</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.embedded.begin.asp</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>%&gt;</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.embedded.end.asp</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>source.asp.embedded.html</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.comment.asp</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(').*?(?=%&gt;)</string>
+					<key>name</key>
+					<string>comment.line.apostrophe.asp</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.asp</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>text.html.basic</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.html.asp</string>
+	<key>uuid</key>
+	<string>27798CC6-6B1D-11D9-B8FA-000D93589AF6</string>
+</dict>
+</plist>

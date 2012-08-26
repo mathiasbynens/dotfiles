@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[function(${1:x}) ${3:{$0\}}]]></content>
+    <tabTrigger>fun</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Function</description>
+</snippet>

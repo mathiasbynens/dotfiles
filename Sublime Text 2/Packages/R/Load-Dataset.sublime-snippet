@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[data(${1:name})]]></content>
+    <tabTrigger>dat</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Load Dataset</description>
+</snippet>

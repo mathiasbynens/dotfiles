@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[void setUp() {
+	$0
+}]]></content>
+    <tabTrigger>setup</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>setUp() { … }</description>
+</snippet>

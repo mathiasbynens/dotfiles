@@ -1,0 +1,98 @@
+[
+	// Basic drag select
+	{
+		"button": "button1", "count": 1,
+		"press_command": "drag_select"
+	},
+	{
+		// Select between selection and click location
+		"button": "button1", "modifiers": ["shift"],
+		"press_command": "drag_select",
+		"press_args": {"extend": true}
+	},
+	{
+		"button": "button1", "count": 1, "modifiers": ["super"],
+		"press_command": "drag_select",
+		"press_args": {"additive": true}
+	},
+	{
+		"button": "button1", "count": 1, "modifiers": ["shift", "super"],
+		"press_command": "drag_select",
+		"press_args": {"subtractive": true}
+	},
+
+	// Drag select by words
+	{
+		"button": "button1", "count": 2,
+		"press_command": "drag_select",
+		"press_args": {"by": "words"}
+	},
+	{
+		"button": "button1", "count": 2, "modifiers": ["super"],
+		"press_command": "drag_select",
+		"press_args": {"by": "words", "additive": true}
+	},
+	{
+		"button": "button1", "count": 2, "modifiers": ["shift", "super"],
+		"press_command": "drag_select",
+		"press_args": {"by": "words", "subtractive": true}
+	},
+
+	// Drag select by lines
+	{
+		"button": "button1", "count": 3,
+		"press_command": "drag_select",
+		"press_args": {"by": "lines"}
+	},
+	{
+		"button": "button1", "count": 3, "modifiers": ["super"],
+		"press_command": "drag_select",
+		"press_args": {"by": "lines", "additive": true}
+	},
+	{
+		"button": "button1", "count": 3, "modifiers": ["shift", "super"],
+		"press_command": "drag_select",
+		"press_args": {"by": "lines", "subtractive": true}
+	},
+
+	// Alt + Mouse 1 Column select
+	{
+		"button": "button1", "modifiers": ["alt"],
+		"press_command": "drag_select",
+		"press_args": {"by": "columns"}
+	},
+	{
+		"button": "button1", "modifiers": ["alt", "super"],
+		"press_command": "drag_select",
+		"press_args": {"by": "columns", "additive": true}
+	},
+	{
+		"button": "button1", "modifiers": ["alt", "shift", "super"],
+		"press_command": "drag_select",
+		"press_args": {"by": "columns", "subtractive": true}
+	},
+
+	// Mouse 3 column select
+	{
+		"button": "button3",
+		"press_command": "drag_select",
+		"press_args": {"by": "columns"}
+	},
+	{
+		"button": "button3", "modifiers": ["super"],
+		"press_command": "drag_select",
+		"press_args": {"by": "columns", "additive": true}
+	},
+	{
+		"button": "button3", "modifiers": ["shift", "super"],
+		"press_command": "drag_select",
+		"press_args": {"by": "columns", "subtractive": true}
+	},
+
+	// Switch files with buttons 4 and 5
+	{ "button": "button4", "modifiers": [], "command": "prev_view" },
+	{ "button": "button5", "modifiers": [], "command": "next_view" },
+
+	{ "button": "button2", "modifiers": [], "press_command": "context_menu" },
+	{ "button": "button1", "count": 1, "modifiers": ["ctrl"], "press_command": "context_menu" }
+]

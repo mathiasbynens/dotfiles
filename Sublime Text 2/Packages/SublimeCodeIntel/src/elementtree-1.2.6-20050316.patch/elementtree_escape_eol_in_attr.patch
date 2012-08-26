@@ -1,0 +1,20 @@
+diff
+
+Patch to elementtree's serialization to use XML entities for newline chars.
+Otherwise those newlines will be lost when that XML is read in.
+
+Index: elementtree/elementtree/ElementTree.py
+--- elementtree/elementtree/ElementTree.py.~1~	Fri Sep 22 12:35:40 2006
++++ elementtree/elementtree/ElementTree.py	Fri Sep 22 12:35:40 2006
+@@ -822,6 +822,8 @@
+         text = replace(text, "\"", "&quot;")
+         text = replace(text, "<", "&lt;")
+         text = replace(text, ">", "&gt;")
++        text = replace(text, "\n", "&#xA;")
++        text = replace(text, "\r", "&#xD;")
+         return text
+     except (TypeError, AttributeError):
+         _raise_serialization_error(text)
+End of Patch.
+
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Indentation Rules</string>
+	<key>scope</key>
+	<string>source.go</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>(?x)
+	    ^                            # start of line
+	        (.*\*/)?                 # skip comments if present
+             (					# three possibilities
+	           \s* \}                # whitespace and a closing curly brace
+	           (                     # capture:
+	             [^}{"']* \{        # anything other than curly braces or quotes, then open curly
+	           )?                    # (optional)
+	           [;\s]*?               # any whitespace or semicolons
+	         |
+                (?:\s* (case|default).*:)	# case statements pop back one indent
+              |
+                (?: \) (?&lt;! \( ) )    # closing braces not preceded by opening braces
+             )
+	        (//.*|/\*.*\*/\s*)?      # skip any comments (optional)
+	    $                            # end of line
+	</string>
+		<key>increaseIndentPattern</key>
+		<string>(?x)
+	    ^ 
+          (?: .* \*/ )?				# skip any comments
+          (?:
+           (.* \{ [^}"'\n]*)		# lines containing an open curly but no quotes or close curly
+           |						# OR
+           (?:\s* (case|default).*:)	# case statements
+           |						# OR
+           (.* \( [^)"'\n]*)		# lines containing an open brace but no quotes or close brace
+          )
+	     (//.*|/\*.*\*/\s*)?		# skip any comments (optional)
+         $
+	</string>
+        <!--
+		<key>indentNextLinePattern</key>
+		<string>(?x)^
+	    (?! .* [;:{}]                    # do not indent when line ends with ;, :, {, or }
+	        \s* (//|/[*] .* [*]/ \s* $)  #  …account for potential trailing comment
+	    )
+	</string>
+        -->
+		<key>unIndentedLinePattern</key>
+		<string>^\s*((/\*|\*/|//|import\b.*|package\b.*).*)?$</string>
+	</dict>
+	<key>uuid</key>
+	<string>160118A4-208D-4422-AFF0-0C21B5B78AAF</string>
+</dict>
+</plist>

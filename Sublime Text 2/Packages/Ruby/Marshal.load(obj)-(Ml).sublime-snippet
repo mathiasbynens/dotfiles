@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[File.open(${1:"${2:path/to/file}.dump"}, "rb") { |${3:file}| Marshal.load(${3:file}) }]]></content>
+    <tabTrigger>Ml</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>Marshal.load(obj)</description>
+</snippet>

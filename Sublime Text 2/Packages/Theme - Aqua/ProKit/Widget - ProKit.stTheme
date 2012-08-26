@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>A widget theme for the UI components of the ProKit theme.</string>
+	<key>name</key>
+	<string>ProKit - Widget Theme</string>
+	<key>settings</key>
+	<array>
+		<dict>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#181818</string>
+				<key>caret</key>
+				<string>#B4B4B4</string>
+				<key>foreground</key>
+				<string>#B4B4B4</string>
+				<key>invisibles</key>
+				<string>#4B4E55</string>
+				<key>lineHighlight</key>
+				<string>#333333</string>
+				<key>selection</key>
+				<string>#223F63</string>
+                <key>inactiveSelection</key>
+                <string>#565656</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

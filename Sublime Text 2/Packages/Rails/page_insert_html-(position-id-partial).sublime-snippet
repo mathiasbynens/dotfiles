@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[page.insert_html :${1:top}, ${2:"${3:id}"}, :${4:partial => "${5:template}"}]]></content>
+    <tabTrigger>ins</tabTrigger>
+    <scope>source.ruby.rails.rjs</scope>
+    <description>page.insert_html (position, id, partial)</description>
+</snippet>

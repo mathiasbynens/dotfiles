@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[eachDirMatch(${1:filter}) {${2/(.+)/(?1: )/}${2:dir}${2/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>eadm</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>eachDirMatch { … }</description>
+</snippet>

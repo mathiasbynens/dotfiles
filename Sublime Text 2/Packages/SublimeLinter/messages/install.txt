@@ -1,0 +1,39 @@
+SublimeLinter
+=============
+
+SublimeLinter is a plugin that supports "lint" programs (known as "linters"). SublimeLinter highlights
+lines of code the linter deems to contain (potential) errors. It also
+supports highlighting special annotations (for example: TODO) so that they
+can be quickly located.
+
+SublimeLinter has built in linters for the following languages:
+
+* CoffeeScript - lint via `coffee -s -l`
+* CSS - lint via built-in [csslint](http://csslint.net)
+* Git Commit Messages - lint via built-in module based on [A Note About Git Commit Messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+* Haml - lint via `haml -c`
+* Java - lint via `javac -Xlint`
+* Javascript - lint via built in [jshint](http://jshint.org), [jslint](http://jslint.com), or the [closure linter (gjslint)](https://developers.google.com/closure/utilities/docs/linter_howto) (if installed)
+* Objective-J - lint via built-in [capp_lint](https://github.com/aparajita/capp_lint)
+* Perl - lint via [Perl:Critic](http://perlcritic.com/) or syntax+deprecation checking via `perl -c`
+* PHP - syntax checking via `php -l`
+* Python - native, moderately-complete lint
+* Puppet - syntax checking via `puppet parser validate`
+* Ruby - syntax checking via `ruby -wc`
+
+
+For more information:
+---------------------
+Please take the time to read the documentation:
+
+* Online - https://github.com/SublimeLinter/SublimeLinter
+* Sublime Text - Select Preferences->Package Settings->SublimeLinter->README
+
+
+IMPORTANT
+
+Do NOT edit the default SublimeLinter settings. Your changes will be lost
+when SublimeLinter is updated. ALWAYS edit the user SublimeLinter settings
+by selecting "Preferences->Package Settings->SublimeLinter->Settings - User".
+Note that individual settings you include in your user settings will **completely**
+replace the corresponding default setting, so you must provide that setting in its entirety.

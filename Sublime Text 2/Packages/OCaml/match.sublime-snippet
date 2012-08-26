@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[match ${1:value} with
+| ${2:patt} -> ${3:expr}
+| ${4:_} -> ${5:expr2}]]></content>
+    <tabTrigger>match</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>match</description>
+</snippet>

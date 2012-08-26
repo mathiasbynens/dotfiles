@@ -1,0 +1,32 @@
+Index: src/LexFlagship.cxx
+===================================================================
+--- src/LexFlagship.cxx	(revision 31007)
++++ src/LexFlagship.cxx	(working copy)
+@@ -63,6 +63,7 @@
+ 	styler.StartAt(startPos);
+ 
+ 	int visibleChars = 0;
++	char closeStringChar = 0;
+ 
+ 	StyleContext sc(startPos, length, initStyle, styler);
+ 
+@@ -92,7 +93,7 @@
+ 		} else if (sc.state == SCE_FS_STRING) {
+ 			// VB doubles quotes to preserve them, so just end this string
+ 			// state now as a following quote will start again
+-			if (sc.ch == '\"') {
++			if (sc.ch == closeStringChar) {
+ 				if (tolower(sc.chNext) == 'c') {
+ 					sc.Forward();
+ 				}
+@@ -132,8 +133,9 @@
+ 			//	sc.SetState(SCE_FS_COMMENT); // old code
+ 			} else if (sc.Match('/', '/')) { // New code
+ 				sc.SetState(SCE_FS_COMMENTLINE);
+-			} else if (sc.ch == '\"') {
++			} else if (sc.ch == '\"' || sc.ch == '\'') {
+ 				sc.SetState(SCE_FS_STRING);
++				closeStringChar = sc.ch;
+ 			} else if (sc.ch == '#' && visibleChars == 0) {
+ 				// Preprocessor commands are alone on their line
+ 				sc.SetState(SCE_FS_PREPROCESSOR);

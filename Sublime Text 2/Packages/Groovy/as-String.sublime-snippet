@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[as String]]></content>
+    <tabTrigger>as</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>as String</description>
+</snippet>

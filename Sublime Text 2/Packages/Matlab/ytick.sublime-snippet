@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[set(gca,'YTick',${1:[${2}]});]]></content>
+    <tabTrigger>yti</tabTrigger>
+    <scope>source.matlab , source.octave</scope>
+    <description>ytick</description>
+</snippet>

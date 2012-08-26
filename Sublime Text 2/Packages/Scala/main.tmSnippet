@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>def main(args: Array[String]): Unit = {
+  $1
+}
+</string>
+	<key>name</key>
+	<string>main</string>
+	<key>scope</key>
+	<string>source.scala</string>
+	<key>tabTrigger</key>
+	<string>main</string>
+	<key>uuid</key>
+	<string>6CCA6D38-8C03-4D29-97BD-45CED52713FB</string>
+</dict>
+</plist>

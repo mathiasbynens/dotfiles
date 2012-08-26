@@ -1,0 +1,13 @@
+<snippet>
+	<description>Read File Into Vector</description>
+    <content><![CDATA[std::vector<char> v;
+if (FILE${TM_C_POINTER: *}fp = fopen(${1:"filename"}, "r"))
+{
+	char buf[1024];
+	while (size_t len = fread(buf, 1, sizeof(buf), fp))
+		v.insert(v.end(), buf, buf + len);
+	fclose(fp);
+}]]></content>
+    <tabTrigger>readfile</tabTrigger>
+    <scope>source.c++, source.objc++</scope>
+</snippet>

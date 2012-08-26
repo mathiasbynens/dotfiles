@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[returning ${1:variable} do${2/(^(?<var>\s*[a-z_][a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1: |)/}${2:v}${2/(^(?<var>\s*[a-z_][a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1:|)/}
+	$0
+end]]></content>
+    <tabTrigger>returning</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>returning do |variable| … end</description>
+</snippet>

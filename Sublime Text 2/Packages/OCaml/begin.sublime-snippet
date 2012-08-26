@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[begin
+	$0
+end]]></content>
+    <tabTrigger>begin</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>begin</description>
+</snippet>

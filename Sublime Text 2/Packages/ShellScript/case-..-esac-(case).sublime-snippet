@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[case ${1:word} in
+	${2:pattern} )
+		$0;;
+esac]]></content>
+    <tabTrigger>case</tabTrigger>
+    <scope>source.shell</scope>
+    <description>case … esac</description>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[eval {
+	${1:# do something risky...}
+};
+if (\$@) {
+	${2:# handle failure...}
+}
+]]></content>
+    <tabTrigger>eval</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Try/Except</description>
+</snippet>

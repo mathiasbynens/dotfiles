@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[eachKey {${1/(.+)/(?1: )/}${1:key}${1/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>eak</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>eachKey { … }</description>
+</snippet>

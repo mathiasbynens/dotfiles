@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Method / Constructor</string>
+	<key>scope</key>
+	<string>source.d meta.definition.method, source.d meta.definition.constructor, source.d meta.definition.destructor</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>0</integer>
+		<key>symbolTransformation</key>
+		<string>
+      s/^\s*([^\)]+)/ $1/;  # pad</string>
+	</dict>
+	<key>uuid</key>
+	<string>A6BCFD4A-B6CC-49C6-93F9-FEB979CC679E</string>
+</dict>
+</plist>

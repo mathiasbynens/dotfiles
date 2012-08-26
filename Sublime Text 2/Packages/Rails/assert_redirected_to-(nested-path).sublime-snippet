@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_redirected_to ${2:${12:parent}_${13:child}_path(${14:@}${15:${12}}, ${16:@}${17:${13}})}]]></content>
+    <tabTrigger>artnp</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>assert_redirected_to (nested path)</description>
+</snippet>

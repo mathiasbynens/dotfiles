@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[class ${1:${TM_FILENAME/(?:\A|_)([A-Za-z0-9]+)(?:\.rb)?/(?2::\u$1)/g}}
+	$0
+end]]></content>
+    <tabTrigger>cla</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>class .. end</description>
+</snippet>

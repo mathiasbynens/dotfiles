@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[assert_difference "${1:Model}.${2:count}", ${3:1} do
+  $0
+end]]></content>
+    <tabTrigger>asd</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_difference</description>
+</snippet>

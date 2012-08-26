@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[/**
+ * ${4:undocumented function}
+ *
+ * @return ${5:void}
+ * @author ${PHPDOC_AUTHOR:$TM_FULLNAME}$6
+ **/
+$1function $2($3);$0]]></content>
+    <tabTrigger>doc_s</tabTrigger>
+    <scope>source.php</scope>
+    <description>Function Signature</description>
+</snippet>

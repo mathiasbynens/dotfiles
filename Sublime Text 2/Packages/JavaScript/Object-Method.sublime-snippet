@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[${1:method_name}: function(${3:attribute}){
+	$0
+}${10:,}]]></content>
+    <tabTrigger>:f</tabTrigger>
+    <scope>source.js</scope>
+    <description>Object Method</description>
+</snippet>

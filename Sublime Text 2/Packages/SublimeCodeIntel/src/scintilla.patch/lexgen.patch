@@ -1,0 +1,14 @@
+diff -u -r1.14 src/LexGen.py
+--- src/LexGen.py	30 Dec 2007 22:03:23 -0000	1.14
++++ src/LexGen.py	21 May 2008 21:00:17 -0000
+@@ -119,8 +119,8 @@
+         out.write(updated.encode('utf-8'))
+         out.close()
+         print("Changed %s " % filename)
+-    #~ else:
+-        #~ print "Unchanged", filename
++    else:
++        print("Unchanged", filename)
+ 
+ def Generate(inpath, outpath, commentPrefix, eolType, *lists):
+     """Generate 'outpath' from 'inpath'.

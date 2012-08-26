@@ -1,0 +1,750 @@
+.code_default
+{
+    FONT-FAMILY: "Courier New", Courier, monospace;
+    FONT-SIZE: 10pt;
+}
+
+/* CSS */
+  
+.css_class
+{
+    color: #900000;
+}
+
+.css_comment
+{
+    color: green;
+    font-style: italic;
+}
+
+.css_default
+{
+}
+
+.css_directive
+{
+    color: #009000;
+    font-weight: bold;
+}
+
+.css_doublestring
+{
+    color: navy;
+}
+
+.css_id
+{
+    color: #900000;
+}
+
+.css_identifier
+{
+    color: black;
+}
+
+.css_important
+{
+    color: blue;
+}
+
+.css_operator
+{
+    color: #000090;
+    font-weight: bold;
+}
+
+.css_pseudoclass
+{
+    color: #900000;
+}
+
+.css_singlestring
+{
+    color: navy;
+}
+
+.css_identifier2
+{
+    color: black;
+}
+
+.css_attribute
+{
+    color: #800000;
+}
+
+.css_tag
+{
+    color: #900000;
+    font-weight: bold;
+}
+
+.css_unknown_identifier
+{
+    color: red;
+}
+
+.css_unknown_pseudoclass
+{
+    color: #ff0000;
+}
+
+.css_value
+{
+    color: navy;
+}
+
+/* C/C++/JavaScript */
+
+.c_character
+{
+    color: olive;
+}
+
+.c_comment
+{
+    color: green;
+    font-style: italic;
+}
+
+.c_commentdoc
+{
+    color: green;
+    font-style: italic;
+}
+
+.c_commentdockeyword
+{
+    color: navy;
+    font-weight: bold;
+}
+
+.c_commentdockeyworderror
+{
+    color: red;
+    font-weight: bold;
+}
+
+.c_commentline
+{
+    color: green;
+    font-style: italic;
+}
+
+.c_commentlinedoc
+{
+    color: green;
+    font-style: italic;
+}
+
+.c_default
+{
+}
+
+.c_identifier
+{
+    color: black;
+}
+
+.c_number
+{
+    color: #009999;
+}
+
+.c_operator
+{
+    color: black;
+}
+
+.c_preprocessor
+{
+    color: navy;
+    font-weight: bold;
+}
+
+.c_regex
+{
+    color: olive;
+}
+
+.c_string
+{
+    color: olive;
+}
+
+.c_stringeol
+{
+    color: olive;
+}
+
+.c_uuid
+{
+    color: olive;
+}
+
+.c_verbatim
+{
+    color: olive;
+}
+
+.c_word
+{
+    color: navy;
+    font-weight: bold;
+}
+
+.c_word2
+{
+    color: navy;
+    font-weight: bold;
+}
+
+/* HTML (incomplete) */
+  
+.h_asp
+{
+    color: #ffff00;
+}
+
+.h_aspat
+{
+    color: #ffdf00;
+}
+
+.h_attribute
+{
+    color: #008080;
+}
+
+.h_attributeunknown
+{
+    color: #ff0000;
+}
+
+.h_cdata
+{
+    color: #ffdf00;
+}
+
+.h_comment
+{
+    color: #808000;
+}
+
+.h_default
+{
+}
+
+.h_doublestring
+{
+    color: olive;
+}
+
+.h_entity
+{
+    color: #800080;
+}
+
+.h_number
+{
+    color: #009999;
+}
+
+.h_other
+{
+    color: #800080;
+}
+
+.h_script
+{
+    color: #000080;
+}
+
+.h_singlestring
+{
+    color: olive;
+}
+
+.h_tag
+{
+    color: #000080;
+}
+
+.h_tagend
+{
+    color: #000080;
+}
+
+.h_tagunknown
+{
+    color: #ff0000;
+}
+
+.h_xmlend
+{
+    color: #0000ff;
+}
+
+.h_xmlstart
+{
+    color: #0000ff;
+}
+
+/* Perl */
+  
+.pl_array
+{
+    color: black;
+}
+
+.pl_backticks
+{
+    color: olive;
+}
+
+.pl_character
+{
+    color: olive;
+}
+
+.pl_commentline
+{
+    color: green;
+    font-style: italic;
+}
+
+.pl_datasection
+{
+    color: olive;
+}
+
+.pl_default
+{
+}
+
+.pl_error
+{
+    color: red;
+    font-style: bold;
+}
+
+.pl_hash
+{
+    color: black;
+}
+
+.pl_here_delim
+{
+    color: olive;
+}
+
+.pl_here_q
+{
+    color: olive;
+}
+
+.pl_here_qq
+{
+    color: olive;
+}
+
+.pl_here_qx
+{
+    color: olive;
+}
+
+.pl_identifier
+{
+    color: black;
+}
+
+.pl_longquote
+{
+    color: olive;
+}
+
+.pl_number
+{
+    color: #009999;
+}
+
+.pl_operator
+{
+    color: black;
+}
+
+.pl_pod
+{
+    color: black;
+    font-style: italic;
+}
+
+.pl_preprocessor
+{
+    color: navy;
+    font-weight: bold;
+}
+
+.pl_punctuation
+{
+    color: black;
+}
+
+.pl_regex
+{
+    color: olive;
+}
+
+.pl_regsubst
+{
+    color: olive;
+}
+
+.pl_scalar
+{
+    color: black;
+}
+
+.pl_string
+{
+    color: olive;
+}
+
+.pl_string_q
+{
+    color: olive;
+}
+
+.pl_string_qq
+{
+    color: olive;
+}
+
+.pl_string_qr
+{
+    color: olive;
+}
+
+.pl_string_qw
+{
+    color: olive;
+}
+
+.pl_string_qx
+{
+    color: olive;
+}
+
+.pl_symboltable
+{
+    color: black;
+}
+
+.pl_variable_indexer
+{
+    color: black;
+}
+
+.pl_word
+{
+    color: navy;
+    font-weight: bold;
+}
+
+.pl_pod_verb
+{
+    color: navy;
+    font-weight: bold;
+}
+
+/* PostScript */
+  
+.ps_default
+{
+    
+}
+    
+.ps_comment
+{
+    color: green;
+    font-style: italic;
+}
+
+ps_dsc_comment
+{
+    color: green;
+    font-style: italic;
+}
+
+.ps_dsc_value
+{
+    color: #009999;
+    font-weight: bold;
+}
+
+.ps_number
+{
+    color: #880000;
+}
+.ps_name
+{
+    color: blue;
+    font-weight: bold;
+}
+
+.ps_keyword
+{
+    color: navy;
+    font-weight: bold;
+}
+
+.ps_literal
+{
+    color: olive;
+}
+
+.ps_immeval
+{
+    color: black;
+}
+
+.ps_paren_array
+{
+    color: black;
+}
+
+.ps_paren_dict
+{
+    color: black;
+}
+
+.ps_paren_proc
+{
+    color: black;
+}
+
+.ps_text
+{
+    color: black;
+}
+
+.ps_hexstring
+{
+    color: black;
+}
+
+.ps_base85string
+{
+    color: black;
+}
+
+.ps_badstringchar
+{
+    color: red;
+}
+
+/* Python */
+
+.p_character
+{
+    color: olive;
+}
+
+.p_classname
+{
+    color: blue;
+    font-weight: bold;
+}
+
+.p_commentblock
+{
+    color: gray;
+    font-style: italic;
+}
+
+.p_commentline
+{
+    color: green;
+    font-style: italic;
+}
+
+.p_default
+{
+}
+
+.p_defname
+{
+    color: #009999;
+    font-weight: bold;
+}
+
+.p_identifier
+{
+    color: black;
+}
+
+.p_number
+{
+    color: #009999;
+}
+
+.p_operator
+{
+    color: black;
+}
+
+.p_string
+{
+    color: olive;
+}
+
+.p_stringeol
+{
+    color: olive;
+}
+
+.p_word2
+{
+    color: purple;
+}
+
+.p_decorator
+{
+    color: maroon;
+}
+
+.p_triple
+{
+    color: olive;
+}
+
+.p_tripledouble
+{
+    color: olive;
+}
+
+.p_word
+{
+    color: navy;
+    font-weight: bold;
+}
+
+/* Verilog */
+
+.v_default
+{
+    
+}
+
+.v_comment
+{
+    color: gray;
+    font-style: italic;    
+}
+
+.v_commentline
+{
+    color: red;
+    font-style: italic;    
+}
+
+.v_commentlinebang
+{
+    color: red;
+    font-style: italic;    
+}
+
+.v_number
+{
+    color: #009999;
+    font-style: italic;    
+}
+
+.v_word
+{
+    color: navy;
+    font-weight: bold;    
+}
+
+.v_string
+{
+    color: olive;
+}
+
+.v_word2
+{
+    color: green;
+    font-weight: bold;    
+}
+
+.v_word3
+{
+    color: navy;
+    font-weight: bold;    
+}
+
+.v_preprocessor
+{
+    color: #009999;
+}
+
+.v_operator
+{
+    color: black;
+}
+
+.v_identifier
+{
+    color: black;
+}
+
+.v_stringeol
+{
+    color: olive;
+}
+
+.v_user
+{
+    color: blue;
+    font-weight: bold;
+}
+
+/* YAML */
+
+.yaml_comment
+{
+    color: #008800;
+    font-style: italic;
+}
+
+.yaml_default
+{
+}
+
+.yaml_document
+{
+    color: #808080;
+    font-style: italic;
+}
+
+.yaml_identifier
+{
+    color: navy;
+    font-weight: bold;
+}
+
+.yaml_keyword
+{
+    color: #880088;
+}
+
+.yaml_number
+{
+    color: #880000;
+}
+
+.yaml_reference
+{
+    color: #008888;
+}
+

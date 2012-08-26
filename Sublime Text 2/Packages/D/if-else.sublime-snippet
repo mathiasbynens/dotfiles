@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[if(${1:condition}) {
+	$2
+}
+else {
+	$0
+}]]></content>
+    <tabTrigger>ife</tabTrigger>
+    <scope>source.d</scope>
+    <description>if … else</description>
+</snippet>

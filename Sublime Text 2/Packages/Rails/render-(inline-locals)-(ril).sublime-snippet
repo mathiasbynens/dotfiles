@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[render :inline => "${1:<%= 'hello' %>}", :locals => { ${2::name} => "${3:value}"$4 }]]></content>
+    <tabTrigger>ril</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (inline, locals)</description>
+</snippet>

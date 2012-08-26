@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[named_scope :name${1:, :joins => :${2:table}}, :conditions => ${3:['${4:${5:field} = ?}', ${6:true}]}
+]]></content>
+    <tabTrigger>nc</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>named_scope</description>
+</snippet>

@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[try {
+	$0
+}
+catch(${1:Exception} e) {
+	$2
+}
+
+]]></content>
+    <tabTrigger>try</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>try … catch</description>
+</snippet>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>import scala.collection.{ mutable, immutable, generic }</string>
+	<key>name</key>
+	<string>import mutable/immutable</string>
+	<key>scope</key>
+	<string>source.scala</string>
+	<key>tabTrigger</key>
+	<string>impc</string>
+	<key>uuid</key>
+	<string>F38BFF4F-BE1D-4CE2-8BE8-8BEDF5EB7277</string>
+</dict>
+</plist>

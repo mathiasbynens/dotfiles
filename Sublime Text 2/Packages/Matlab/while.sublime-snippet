@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[while ${1:condition}
+	${2:body}
+end
+]]></content>
+    <tabTrigger>whi</tabTrigger>
+    <scope>source.matlab , source.octave</scope>
+    <description>while</description>
+</snippet>

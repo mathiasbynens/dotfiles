@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[private ]]></content>
+    <tabTrigger>pr</tabTrigger>
+    <scope>source.java</scope>
+    <description>private</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_redirected_to ${2:${12:model}_path(${13:@}${14:${12}})}]]></content>
+    <tabTrigger>artp</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>assert_redirected_to (path)</description>
+</snippet>

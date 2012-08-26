@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[reverse_each { |${1:e}| $0 }]]></content>
+    <tabTrigger>reve</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>reverse_each { |e| .. }</description>
+</snippet>

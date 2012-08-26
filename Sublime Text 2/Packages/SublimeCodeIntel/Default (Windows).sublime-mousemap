@@ -1,0 +1,3 @@
+[
+	{ "button": "button1", "modifiers": ["alt"], "command": "goto_python_definition", "press_command": "drag_select" }
+]

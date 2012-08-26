@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[\\item[${1:description}] ${0:item}]]></content>
+    <tabTrigger>itd</tabTrigger>
+    <scope>text.tex.latex meta.function.environment.list</scope>
+    <description>\item[description]</description>
+</snippet>

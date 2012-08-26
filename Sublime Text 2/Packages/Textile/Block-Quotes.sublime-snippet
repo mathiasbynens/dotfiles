@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[bq. ${1:A quote...}
+
+$0]]></content>
+    <tabTrigger>bq</tabTrigger>
+    <scope>text.html.textile</scope>
+    <description>Block Quote</description>
+</snippet>

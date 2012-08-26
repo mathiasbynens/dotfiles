@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[(let ((${1:variable} ${2:value}))
+	($0))]]></content>
+    <tabTrigger>let1</tabTrigger>
+    <scope>source.lisp</scope>
+    <description>let1</description>
+</snippet>

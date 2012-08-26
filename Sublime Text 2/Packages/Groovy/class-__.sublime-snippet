@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[$1${1/(.+)/(?1: )/}class ${2:${TM_FILENAME/(.*?)(\..+)/$1/}} ${3:extends ${4:Parent} }${5:implements ${6:Interface} }{
+
+	$0
+
+}]]></content>
+    <tabTrigger>cl</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>class { … }</description>
+</snippet>

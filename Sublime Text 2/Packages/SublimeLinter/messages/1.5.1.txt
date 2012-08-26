@@ -1,0 +1,85 @@
+SublimeLinter 1.5.1 changelog
+
+Please restart Sublime Text 2 after reading this.
+
+NEW FEATURES
+
+- SublimeLinter keeps its settings in its own settings file now:
+  SublimeLinter.sublime-settings. You will need to copy your
+  user settings to this file. To do so, follow these steps:
+
+  1. Select "Preferences->Settings - User" in one tab/window.
+     The title of this tab should be "Preferences.sublime-settings".
+  2. Open another tab/window and select "Preferences->Package Settings->
+     SublimeLinter->Settings - User". The title of this window should be
+     "SublimeLinter.sublime-settings".
+  3. Copy/cut any of the following settings from Preferences.sublime-settings
+     to SublimeLinter.sublime-settings:
+
+     sublimelinter
+     sublimelinter_executable_map
+     sublimelinter_syntax_map
+     sublimelinter_disable
+     sublimelinter_delay
+     sublimelinter_fill_outlines
+     sublimelinter_gutter_marks
+     sublimelinter_wrap_find
+     sublimelinter_popup_errors_on_save
+     javascript_linter
+     jshint_options
+     pep8_ignore
+     pyflakes_ignore
+     pyflakes_ignore_import_*
+     sublimelinter_objj_check_ascii
+
+  4. Save SublimeLinter.sublime-settings. The changes may not take
+     effect until you restart Sublime Text.
+
+  When changes are made to the user SublimeLinter settings, they
+  are immediately reloaded into every open view. Note that this will
+  override any temporary changes you may have made to the settings in
+  a given view.
+
+- The google closure Javascript linter (gjslint) is now supported
+  (https://developers.google.com/closure/utilities/docs/linter_howto).
+  There is a new setting, "javascript_linter", which determines which
+  linter to use, jshint or gjslinter. You may also customize gjslint
+  behavior with the "gjslint_options" and "gjslint_ignore" settings.
+  Please select "Preferences->Package Settings->SublimeLinter->Settings - Default"
+  for more information on these settings.
+
+- The color theme names have been changed to avoid clashes with
+  built in names.
+
+    Old                     New
+    ---------------------   -----------------------------
+    sublimelinter.<type>    sublimelinter.outline.<type>
+    invalid.<type>          sublimelinter.underline.<type>
+
+  You will have to update your color themes accordingly. Please select
+  "Preferences->Package Settings->SublimeLinter->README" and search
+  for "Customizing colors" for more information.
+
+- When selecting an error from the popup error list, the view is centered
+  on the error line.
+
+
+CHANGES/FIXES
+
+- The PHP error regex has been updated to work with PHP 5.3.8 on Mac OS X.
+
+- The popup error list will no longer choke on non-ASCII text.
+
+- Selecting an error from the popup error list no longer attempts to go
+  directly to the point of an error as this could not be done reliably.
+  It will jump to the first non-whitespace character of the error's line.
+
+- Go to next/previous error works correctly when an error line has no underlines.
+
+- If an exception is thrown by jshint (e.g. too many errors), the errors
+  captured up to that point are displayed.
+
+- The built in jshint has been updated from the master jshint.
+
+- Fixed errors that would occur with the popup error list when there was
+  more than error on a line.

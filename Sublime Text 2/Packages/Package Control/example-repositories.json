@@ -1,0 +1,60 @@
+{
+	"schema_version": "1.2",
+	"repositories": [
+		"http://sublime.wbond.net/packages.json",
+		"https://github.com/buymeasoda/soda-theme",
+		"https://github.com/SublimeText"
+	],
+	"package_name_map": {
+		"soda-theme": "Theme - Soda"
+	},
+	"renamed_packages": {
+		"old-name": "New Name"
+	},
+	"packages": {
+		"http://sublime.wbond.net/packages.json": [
+			{
+				"name": "GitHub Example",
+				"description": "An example from GitHub, be sure to use the zipball URL",
+				"author": "John Smith",
+				"homepage": "http://example.com",
+				"platforms": {
+					"*": [
+						{
+							"version": "1.1",
+							"url": "http://nodeload.github.com/john_smith/github_example/zipball/master"
+						}
+					]
+				}
+			},
+			{
+				"name": "BitBucket Example",
+				"description": "An example from BitBucket, be sure to use the zip URL",
+				"author": "John Smith",
+				"homepage": "http://example.com",
+				"platforms": {
+					"*": [
+						{
+							"version": "1.0",
+							"url": "https://bitbucket.org/john_smith/bitbucket_example/get/tip.zip"
+						}
+					]
+				}
+			},
+			{
+				"name": "Tortoise",
+				"description": "Keyboard shortcuts and menu entries to execute TortoiseSVN, TortoiseHg and TortoiseGit commands",
+				"author": "Will Bond",
+				"homepage": "http://sublime.wbond.net",
+				"platforms": {
+					"windows": [
+						{
+							"version": "1.0",
+							"url": "http://sublime.wbond.net/Tortoise.sublime-package"
+						}
+					]
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,9 @@
+<snippet>
+	<description>If Condition</description>
+    <content><![CDATA[if (${1:/* condition */})
+{
+	${0:/* code */}
+}]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.c, source.objc, source.c++, source.objc++</scope>
+</snippet>

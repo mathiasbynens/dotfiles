@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_in_delta(${1:expected_float}, ${2:actual_float}, ${0:2 ** -20})]]></content>
+    <tabTrigger>asid</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_in_delta(..)</description>
+</snippet>

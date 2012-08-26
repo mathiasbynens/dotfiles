@@ -1,0 +1,20 @@
+SublimeLinter 1.6.1 changelog
+
+CHANGES/FIXES
+
+- Fixed an issue (#141) with JSLint running in Node.js
+
+- Updated CSSLint, JSLint, JSHint to latest stable releases.
+
+- Added additional debugging output (in Sublime console) when
+  errors occur running linters written in Javascript.
+
+
+IMPORTANT
+
+Due to an issue (#133) with SublimeLinter v1.5.1, some users
+have corrupt versions of SublimeLinter installed. Please check
+to see if you have multiple listings for `SublimeLinter` in
+`Preferences -> Package Settings`. If you do see 2 listings,
+please run `Package Control: Upgrade/Overwrite All Packages`
+from the Command Palette (`Tools -> Command Palette`).

@@ -1,0 +1,10 @@
+<!-- See http://www.sublimetext.com/docs/snippets for more information -->
+<snippet>
+    <tabTrigger>while</tabTrigger>
+    <scope>source.python</scope>
+    <description>While Loop</description>
+	<content><![CDATA[
+while ${1:$SELECTION}:
+	${0:pass}
+]]></content>
+</snippet>

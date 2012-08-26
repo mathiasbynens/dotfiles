@@ -1,0 +1,809 @@
+[
+    {
+        "caption": "File",
+        "mnemonic": "F",
+        "id": "file",
+        "children":
+        [
+            { "command": "new_file", "caption": "New File", "mnemonic": "N" },
+
+            { "command": "prompt_open_file", "caption": "Open File…", "mnemonic": "O", "platform": "!OSX" },
+            { "command": "prompt_open_folder", "caption": "Open Folder…", "platform": "!OSX" },
+            { "command": "prompt_open", "caption": "Open…", "platform": "OSX" },
+
+            {
+                "caption": "Open Recent",
+                "mnemonic": "R",
+                "children":
+                [
+                    { "command": "reopen_last_file", "caption": "Reopen Closed File" },
+                    { "caption": "-" },
+                    { "command": "open_recent_file", "args": {"index": 0 } },
+                    { "command": "open_recent_file", "args": {"index": 1 } },
+                    { "command": "open_recent_file", "args": {"index": 2 } },
+                    { "command": "open_recent_file", "args": {"index": 3 } },
+                    { "command": "open_recent_file", "args": {"index": 4 } },
+                    { "command": "open_recent_file", "args": {"index": 5 } },
+                    { "command": "open_recent_file", "args": {"index": 6 } },
+                    { "command": "open_recent_file", "args": {"index": 7 } },
+                    { "caption": "-" },
+                    { "command": "open_recent_folder", "args": {"index": 0 } },
+                    { "command": "open_recent_folder", "args": {"index": 1 } },
+                    { "command": "open_recent_folder", "args": {"index": 2 } },
+                    { "command": "open_recent_folder", "args": {"index": 3 } },
+                    { "command": "open_recent_folder", "args": {"index": 4 } },
+                    { "command": "open_recent_folder", "args": {"index": 5 } },
+                    { "command": "open_recent_folder", "args": {"index": 6 } },
+                    { "command": "open_recent_folder", "args": {"index": 7 } },
+                    { "caption": "-" },
+                    { "command": "clear_recent_files", "caption": "Clear Items" }
+                ]
+            },
+            {
+                "caption": "Reopen with Encoding",
+                "children":
+                [
+                    { "caption": "UTF-8", "command": "reopen", "args": {"encoding": "utf-8" } },
+                    { "caption": "UTF-16 LE", "command": "reopen", "args": {"encoding": "utf-16 le" } },
+                    { "caption": "UTF-16 BE", "command": "reopen", "args": {"encoding": "utf-16 be" } },
+                    { "caption": "-" },
+                    { "caption": "Western (Windows 1252)", "command": "reopen", "args": {"encoding": "Western (Windows 1252)" } },
+                    { "caption": "Western (ISO 8859-1)", "command": "reopen", "args": {"encoding": "Western (ISO 8859-1)" } },
+                    { "caption": "Western (ISO 8859-3)", "command": "reopen", "args": {"encoding": "Western (ISO 8859-3)" } },
+                    { "caption": "Western (ISO 8859-15)", "command": "reopen", "args": {"encoding": "Western (ISO 8859-15)" } },
+                    { "caption": "Western (Mac Roman)", "command": "reopen", "args": {"encoding": "Western (Mac Roman)" } },
+                    { "caption": "DOS (CP 437)", "command": "reopen", "args": {"encoding": "DOS (CP 437)" } },
+                    { "caption": "Arabic (Windows 1256)", "command": "reopen", "args": {"encoding": "Arabic (Windows 1256)" } },
+                    { "caption": "Arabic (ISO 8859-6)", "command": "reopen", "args": {"encoding": "Arabic (ISO 8859-6)" } },
+                    { "caption": "Baltic (Windows 1257)", "command": "reopen", "args": {"encoding": "Baltic (Windows 1257)" } },
+                    { "caption": "Baltic (ISO 8859-4)", "command": "reopen", "args": {"encoding": "Baltic (ISO 8859-4)" } },
+                    { "caption": "Celtic (ISO 8859-14)", "command": "reopen", "args": {"encoding": "Celtic (ISO 8859-14)" } },
+                    { "caption": "Central European (Windows 1250)", "command": "reopen", "args": {"encoding": "Central European (Windows 1250)" } },
+                    { "caption": "Central European (ISO 8859-2)", "command": "reopen", "args": {"encoding": "Central European (ISO 8859-2)" } },
+                    { "caption": "Cyrillic (Windows 1251)", "command": "reopen", "args": {"encoding": "Cyrillic (Windows 1251)" } },
+                    { "caption": "Cyrillic (Windows 866)", "command": "reopen", "args": {"encoding": "Cyrillic (Windows 866)" } },
+                    { "caption": "Cyrillic (ISO 8859-5)", "command": "reopen", "args": {"encoding": "Cyrillic (ISO 8859-5)" } },
+                    { "caption": "Cyrillic (KOI8-R)", "command": "reopen", "args": {"encoding": "Cyrillic (KOI8-R)" } },
+                    { "caption": "Cyrillic (KOI8-U)", "command": "reopen", "args": {"encoding": "Cyrillic (KOI8-U)" } },
+                    { "caption": "Estonian (ISO 8859-13)", "command": "reopen", "args": {"encoding": "Estonian (ISO 8859-13)" } },
+                    { "caption": "Greek (Windows 1253)", "command": "reopen", "args": {"encoding": "Greek (Windows 1253)" } },
+                    { "caption": "Greek (ISO 8859-7)", "command": "reopen", "args": {"encoding": "Greek (ISO 8859-7)" } },
+                    { "caption": "Hebrew (Windows 1255)", "command": "reopen", "args": {"encoding": "Hebrew (Windows 1255)" } },
+                    { "caption": "Hebrew (ISO 8859-8)", "command": "reopen", "args": {"encoding": "Hebrew (ISO 8859-8)" } },
+                    { "caption": "Nordic (ISO 8859-10)", "command": "reopen", "args": {"encoding": "Nordic (ISO 8859-10)" } },
+                    { "caption": "Romanian (ISO 8859-16)", "command": "reopen", "args": {"encoding": "Romanian (ISO 8859-16)" } },
+                    { "caption": "Turkish (Windows 1254)", "command": "reopen", "args": {"encoding": "Turkish (Windows 1254)" } },
+                    { "caption": "Turkish (ISO 8859-9)", "command": "reopen", "args": {"encoding": "Turkish (ISO 8859-9)" } },
+                    { "caption": "Vietnamese (Windows 1258)", "command": "reopen", "args": {"encoding": "Vietnamese (Windows 1258)" } },
+                    { "caption": "-" },
+                    { "caption": "Hexadecimal", "command": "reopen", "args": {"encoding": "Hexadecimal" } }
+                ]
+            },
+            { "command": "clone_file", "caption": "New View into File", "mnemonic": "e" },
+            { "command": "save", "caption": "Save", "mnemonic": "S" },
+            {
+                "caption": "Save with Encoding",
+                "children":
+                [
+                    { "caption": "UTF-8", "command": "save", "args": {"encoding": "utf-8" } },
+                    { "caption": "UTF-8 with BOM", "command": "save", "args": {"encoding": "utf-8 with bom" } },
+                    { "caption": "UTF-16 LE", "command": "save", "args": {"encoding": "utf-16 le" } },
+                    { "caption": "UTF-16 LE with BOM", "command": "save", "args": {"encoding": "utf-16 le with bom" } },
+                    { "caption": "UTF-16 BE", "command": "save", "args": {"encoding": "utf-16 be" } },
+                    { "caption": "UTF-16 BE with BOM", "command": "save", "args": {"encoding": "utf-16 be with bom" } },
+                    { "caption": "-" },
+                    { "caption": "Western (Windows 1252)", "command": "save", "args": {"encoding": "Western (Windows 1252)" } },
+                    { "caption": "Western (ISO 8859-1)", "command": "save", "args": {"encoding": "Western (ISO 8859-1)" } },
+                    { "caption": "Western (ISO 8859-3)", "command": "save", "args": {"encoding": "Western (ISO 8859-3)" } },
+                    { "caption": "Western (ISO 8859-15)", "command": "save", "args": {"encoding": "Western (ISO 8859-15)" } },
+                    { "caption": "Western (Mac Roman)", "command": "save", "args": {"encoding": "Western (Mac Roman)" } },
+                    { "caption": "DOS (CP 437)", "command": "save", "args": {"encoding": "DOS (CP 437)" } },
+                    { "caption": "Arabic (Windows 1256)", "command": "save", "args": {"encoding": "Arabic (Windows 1256)" } },
+                    { "caption": "Arabic (ISO 8859-6)", "command": "save", "args": {"encoding": "Arabic (ISO 8859-6)" } },
+                    { "caption": "Baltic (Windows 1257)", "command": "save", "args": {"encoding": "Baltic (Windows 1257)" } },
+                    { "caption": "Baltic (ISO 8859-4)", "command": "save", "args": {"encoding": "Baltic (ISO 8859-4)" } },
+                    { "caption": "Celtic (ISO 8859-14)", "command": "save", "args": {"encoding": "Celtic (ISO 8859-14)" } },
+                    { "caption": "Central European (Windows 1250)", "command": "save", "args": {"encoding": "Central European (Windows 1250)" } },
+                    { "caption": "Central European (ISO 8859-2)", "command": "save", "args": {"encoding": "Central European (ISO 8859-2)" } },
+                    { "caption": "Cyrillic (Windows 1251)", "command": "save", "args": {"encoding": "Cyrillic (Windows 1251)" } },
+                    { "caption": "Cyrillic (Windows 866)", "command": "save", "args": {"encoding": "Cyrillic (Windows 866)" } },
+                    { "caption": "Cyrillic (ISO 8859-5)", "command": "save", "args": {"encoding": "Cyrillic (ISO 8859-5)" } },
+                    { "caption": "Cyrillic (KOI8-R)", "command": "save", "args": {"encoding": "Cyrillic (KOI8-R)" } },
+                    { "caption": "Cyrillic (KOI8-U)", "command": "save", "args": {"encoding": "Cyrillic (KOI8-U)" } },
+                    { "caption": "Estonian (ISO 8859-13)", "command": "save", "args": {"encoding": "Estonian (ISO 8859-13)" } },
+                    { "caption": "Greek (Windows 1253)", "command": "save", "args": {"encoding": "Greek (Windows 1253)" } },
+                    { "caption": "Greek (ISO 8859-7)", "command": "save", "args": {"encoding": "Greek (ISO 8859-7)" } },
+                    { "caption": "Hebrew (Windows 1255)", "command": "save", "args": {"encoding": "Hebrew (Windows 1255)" } },
+                    { "caption": "Hebrew (ISO 8859-8)", "command": "save", "args": {"encoding": "Hebrew (ISO 8859-8)" } },
+                    { "caption": "Nordic (ISO 8859-10)", "command": "save", "args": {"encoding": "Nordic (ISO 8859-10)" } },
+                    { "caption": "Romanian (ISO 8859-16)", "command": "save", "args": {"encoding": "Romanian (ISO 8859-16)" } },
+                    { "caption": "Turkish (Windows 1254)", "command": "save", "args": {"encoding": "Turkish (Windows 1254)" } },
+                    { "caption": "Turkish (ISO 8859-9)", "command": "save", "args": {"encoding": "Turkish (ISO 8859-9)" } },
+                    { "caption": "Vietnamese (Windows 1258)", "command": "save", "args": {"encoding": "Vietnamese (Windows 1258)" } },
+                    { "caption": "-" },
+                    { "caption": "Hexadecimal", "command": "save", "args": {"encoding": "Hexadecimal" } }
+                ]
+            },
+            { "command": "prompt_save_as", "caption": "Save As…", "mnemonic": "A" },
+            { "command": "save_all", "caption": "Save All", "mnemonic": "l" },
+            { "caption": "-", "id": "window" },
+            { "command": "new_window", "caption": "New Window", "mnemonic": "W" },
+            { "command": "close_window", "caption": "Close Window" },
+            { "caption": "-", "id": "close" },
+            { "command": "close", "caption": "Close File", "mnemonic": "C" },
+            { "command": "revert", "caption": "Revert File", "mnemonic": "v" },
+            { "command": "close_all", "caption": "Close All Files" },
+            { "caption": "-", "id": "exit" },
+            { "command": "exit", "mnemonic": "x" }
+        ]
+    },
+    {
+        "caption": "Edit",
+        "mnemonic": "E",
+        "id": "edit",
+        "children":
+        [
+            { "command": "undo", "mnemonic": "U" },
+            { "command": "redo_or_repeat", "mnemonic": "R" },
+            {
+                "caption": "Undo Selection",
+                "children":
+                [
+                    { "command": "soft_undo" },
+                    { "command": "soft_redo" }
+                ]
+            },
+            { "caption": "-", "id": "clipboard" },
+            { "command": "copy", "mnemonic": "C" },
+            { "command": "cut", "mnemonic": "n" },
+            { "command": "paste", "mnemonic": "P" },
+            { "command": "paste_and_indent", "mnemonic": "I" },
+            { "caption": "-" },
+            {
+                "caption": "Line", "mnemonic": "L",
+                "id": "line",
+                "children":
+                [
+                    { "command": "indent" },
+                    { "command": "unindent" },
+                    { "command": "reindent", "args": {"single_line": true} },
+                    { "command": "swap_line_up" },
+                    { "command": "swap_line_down" },
+                    { "command": "duplicate_line" },
+                    { "command": "run_macro_file", "args": {"file": "Packages/Default/Delete Line.sublime-macro"}, "caption": "Delete Line" },
+                    { "command": "join_lines" }
+                ]
+            },
+            {
+                "caption": "Comment", "mnemonic": "m",
+                "id": "comment",
+                "children":
+                [
+                    { "command": "toggle_comment", "args": {"block": false}, "caption": "Toggle Comment" },
+                    { "command": "toggle_comment", "args": {"block": true}, "caption": "Toggle Block Comment" }
+                ]
+            },
+            {
+                "caption": "Text", "mnemonic": "T",
+                "id": "text",
+                "children":
+                [
+                    { "command": "run_macro_file", "args": {"file": "Packages/Default/Add Line Before.sublime-macro"}, "caption": "Insert Line Before" },
+                    { "command": "run_macro_file", "args": {"file": "Packages/Default/Add Line.sublime-macro"}, "caption": "Insert Line After" },
+                    { "caption": "-" },
+                    { "command": "delete_word", "args": { "forward": true }, "caption": "Delete Word Forward" },
+                    { "command": "delete_word", "args": { "forward": false }, "caption": "Delete Word Backward" },
+                    { "command": "run_macro_file", "args": {"file": "Packages/Default/Delete Line.sublime-macro"}, "caption": "Delete Line" },
+                    { "command": "run_macro_file", "args": {"file": "Packages/Default/Delete to Hard EOL.sublime-macro"}, "caption": "Delete to End" },
+                    { "command": "run_macro_file", "args": {"file": "Packages/Default/Delete to Hard BOL.sublime-macro"}, "caption": "Delete to Beginning" },
+                    { "caption": "-" },
+                    { "command": "transpose" }
+                ]
+            },
+            {
+                "caption": "Tag",
+                "id": "tag",
+                "children":
+                [
+                    { "command": "close_tag" },
+                    { "command": "expand_selection", "args": {"to": "tag"}, "caption": "Expand Selection to Tag" },
+                    { "command": "insert_snippet", "args": { "name": "Packages/XML/long-tag.sublime-snippet" }, "caption": "Wrap Selection With Tag" }
+                ]
+            },
+            {
+                "caption": "Mark",
+                "id": "mark",
+                "children":
+                [
+                    { "command": "set_mark" },
+                    { "command": "select_to_mark" },
+                    { "command": "delete_to_mark" },
+                    { "command": "swap_with_mark" },
+                    { "command": "clear_bookmarks", "args": {"name": "mark"}, "caption": "Clear Mark" },
+                    { "caption": "-" },
+                    { "command": "yank" }
+                ]
+            },
+            {
+                "caption": "Code Folding",
+                "id": "fold",
+                "children":
+                [
+                    { "command": "fold" },
+                    { "command": "unfold" },
+                    { "command": "unfold_all", "caption": "Unfold All" },
+                    { "caption": "-" },
+                    { "caption": "Fold All", "command": "fold_by_level", "args": {"level": 1} },
+                    { "caption": "Fold Level 2", "command": "fold_by_level", "args": {"level": 2} },
+                    { "caption": "Fold Level 3", "command": "fold_by_level", "args": {"level": 3} },
+                    { "caption": "Fold Level 4", "command": "fold_by_level", "args": {"level": 4} },
+                    { "caption": "Fold Level 5", "command": "fold_by_level", "args": {"level": 5} },
+                    { "caption": "Fold Level 6", "command": "fold_by_level", "args": {"level": 6} },
+                    { "caption": "Fold Level 7", "command": "fold_by_level", "args": {"level": 7} },
+                    { "caption": "Fold Level 8", "command": "fold_by_level", "args": {"level": 8} },
+                    { "caption": "Fold Level 9", "command": "fold_by_level", "args": {"level": 9} },
+                    { "caption": "-" },
+                    { "command": "fold_tag_attributes", "caption": "Fold Tag Attributes" }
+                ]
+            },
+            {
+                "caption": "Convert Case", "mnemonic": "a",
+                "id": "convert_case",
+                "children":
+                [
+                    { "command": "title_case", "caption": "Title Case" },
+                    { "command": "upper_case", "caption": "Upper Case" },
+                    { "command": "lower_case", "caption": "Lower Case" },
+                    { "command": "swap_case", "caption": "Swap Case" }
+                ]
+            },
+            {
+                "caption": "Wrap",
+                "id": "wrap",
+                "children":
+                [
+                    { "command": "wrap_lines", "caption": "Wrap Paragraph at Ruler" },
+                    { "command": "wrap_lines", "args": {"width": 70}, "caption": "Wrap paragraph at 70 characters" },
+                    { "command": "wrap_lines", "args": {"width": 78}, "caption": "Wrap paragraph at 78 characters" },
+                    { "command": "wrap_lines", "args": {"width": 80}, "caption": "Wrap paragraph at 80 characters" },
+                    { "command": "wrap_lines", "args": {"width": 100}, "caption": "Wrap paragraph at 100 characters" },
+                    { "command": "wrap_lines", "args": {"width": 120}, "caption": "Wrap paragraph at 120 characters" }
+                ]
+            },
+            { "command": "auto_complete", "caption": "Show Completions" },
+            { "caption": "-", "id": "permute" },
+
+            { "command": "sort_lines", "args": {"case_sensitive": false}, "caption": "Sort Lines", "mnemonic": "S" },
+            { "command": "sort_lines", "args": {"case_sensitive": true}, "caption": "Sort Lines (Case Sensitive)" },
+            {
+                "caption": "Permute Lines",
+                "children":
+                [
+                    { "command": "permute_lines", "args": {"operation": "reverse"}, "caption": "Reverse" },
+                    { "command": "permute_lines", "args": {"operation": "unique"}, "caption": "Unique" },
+                    { "command": "permute_lines", "args": {"operation": "shuffle"}, "caption": "Shuffle" }
+                ]
+            },
+            {
+                "caption": "Permute Selections",
+                "children":
+                [
+                    { "command": "sort_selection", "args": {"case_sensitive": false}, "caption": "Sort" },
+                    { "command": "sort_selection", "args": {"case_sensitive": true}, "caption": "Sort (Case Sensitive)" },
+                    { "command": "permute_selection", "args": {"operation": "reverse"}, "caption": "Reverse" },
+                    { "command": "permute_selection", "args": {"operation": "unique"}, "caption": "Unique" },
+                    { "command": "permute_selection", "args": {"operation": "shuffle"}, "caption": "Shuffle" }
+                ]
+            },
+            { "caption": "-", "id": "end" }
+        ]
+    },
+    {
+        "caption": "Selection",
+        "mnemonic": "S",
+        "id": "selection",
+        "children":
+        [
+            { "command": "split_selection_into_lines", "caption": "Split into Lines" },
+            { "command": "select_lines", "args": {"forward": false}, "caption": "Add Previous Line" },
+            { "command": "select_lines", "args": {"forward": true}, "caption": "Add Next Line" },
+            { "command": "single_selection" },
+            { "caption": "-" },
+            { "command": "select_all" },
+            { "command": "expand_selection", "args": {"to": "line"}, "caption": "Expand Selection to Line" },
+            { "command": "find_under_expand", "caption": "Expand Selection to Word" },
+            { "command": "expand_selection_to_paragraph", "caption": "Expand Selection to Paragraph" },
+            { "command": "expand_selection", "args": {"to": "scope"}, "caption": "Expand Selection to Scope" },
+            { "command": "expand_selection", "args": {"to": "brackets"}, "caption": "Expand Selection to Brackets" },
+            { "command": "expand_selection", "args": {"to": "indentation"}, "caption": "Expand Selection to Indentation" },
+            { "command": "expand_selection", "args": {"to": "tag"}, "caption": "Expand Selection to Tag" }
+        ]
+    },
+    {
+        "caption": "Find",
+        "mnemonic": "i",
+        "id": "find",
+        "children":
+        [
+            { "command": "show_panel", "args": {"panel": "find"}, "caption": "Find…" },
+            { "command": "find_next" },
+            { "command": "find_prev", "caption": "Find Previous" },
+            { "command": "show_panel", "args": {"panel": "incremental_find", "reverse": false}, "caption": "Incremental Find" },
+            { "caption": "-" },
+            { "command": "show_panel", "args": {"panel": "replace"}, "caption": "Replace…" },
+            { "command": "replace_next" },
+            { "caption": "-" },
+            { "command": "find_under", "caption": "Quick Find" },
+            { "command": "find_all_under", "caption": "Quick Find All" },
+            { "command": "find_under_expand", "caption": "Quick Add Next" },
+            { "command": "find_under_expand_skip", "caption": "Quick Skip Next", "platform": "!OSX" },
+            { "caption": "-" },
+            { "command": "slurp_find_string", "caption": "Use Selection for Find" },
+            { "command": "slurp_replace_string", "caption": "Use Selection for Replace" },
+            { "caption": "-" },
+            { "command": "show_panel", "args": {"panel": "find_in_files"}, "caption": "Find in Files…" },
+            {
+                "caption": "Find Results",
+                "mnemonic": "R",
+                "children":
+                [
+                    { "command": "show_panel", "args": {"panel": "output.find_results"}, "caption": "Show Results Panel" },
+                    { "command": "next_result" },
+                    { "command": "prev_result", "caption": "Previous Result" }
+                ]
+            }
+        ]
+    },
+    {
+        "caption": "View",
+        "mnemonic": "V",
+        "id": "view",
+        "children":
+        [
+            {
+                "caption": "Side Bar",
+                "id": "side_bar",
+                "children":
+                [
+                    { "command": "toggle_side_bar" },
+                    { "caption": "-" },
+                    { "command": "toggle_show_open_files" }
+                ]
+            },
+            { "command": "toggle_minimap" },
+            { "command": "toggle_tabs" },
+            { "command": "toggle_status_bar" },
+            { "command": "toggle_menu" },
+            { "command": "show_panel", "args": {"panel": "console", "toggle": true} },
+            { "caption": "-", "id": "full_screen" },
+            { "command": "toggle_full_screen" },
+            { "command": "toggle_distraction_free" },
+            { "caption": "-", "id": "groups" },
+            {
+                "caption": "Layout",
+                "mnemonic": "L",
+                "id": "layout",
+                "children":
+                [
+                    {
+                        "caption": "Single",
+                        "command": "set_layout",
+                        "args":
+                        {
+                            "cols": [0.0, 1.0],
+                            "rows": [0.0, 1.0],
+                            "cells": [[0, 0, 1, 1]]
+                        }
+                    },
+                    {
+                        "caption": "Columns: 2",
+                        "command": "set_layout",
+                        "args":
+                        {
+                            "cols": [0.0, 0.5, 1.0],
+                            "rows": [0.0, 1.0],
+                            "cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+                        }
+                    },
+                    {
+                        "caption": "Columns: 3",
+                        "command": "set_layout",
+                        "args":
+                        {
+                            "cols": [0.0, 0.33, 0.66, 1.0],
+                            "rows": [0.0, 1.0],
+                            "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
+                        }
+                    },
+                    {
+                        "caption": "Columns: 4",
+                        "command": "set_layout",
+                        "args":
+                        {
+                            "cols": [0.0, 0.25, 0.5, 0.75, 1.0],
+                            "rows": [0.0, 1.0],
+                            "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [3, 0, 4, 1]]
+                        }
+                    },
+                    {
+                        "caption": "Rows: 2",
+                        "command": "set_layout",
+                        "args":
+                        {
+                            "cols": [0.0, 1.0],
+                            "rows": [0.0, 0.5, 1.0],
+                            "cells": [[0, 0, 1, 1], [0, 1, 1, 2]]
+                        }
+                    },
+                    {
+                        "caption": "Rows: 3",
+                        "command": "set_layout",
+                        "args":
+                        {
+                            "cols": [0.0, 1.0],
+                            "rows": [0.0, 0.33, 0.66, 1.0],
+                            "cells": [[0, 0, 1, 1], [0, 1, 1, 2], [0, 2, 1, 3]]
+                        }
+                    },
+                    {
+                        "caption": "Grid: 4",
+                        "command": "set_layout",
+                        "args":
+                        {
+                            "cols": [0.0, 0.5, 1.0],
+                            "rows": [0.0, 0.5, 1.0],
+                            "cells":
+                            [
+                                [0, 0, 1, 1], [1, 0, 2, 1],
+                                [0, 1, 1, 2], [1, 1, 2, 2]
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "caption": "Focus Group",
+                "mnemonic": "F",
+                "children":
+                [
+                    { "command": "focus_group", "args": {"group": 0}, "caption": "Group 1" },
+                    { "command": "focus_group", "args": {"group": 1}, "caption": "Group 2" },
+                    { "command": "focus_group", "args": {"group": 2}, "caption": "Group 3" },
+                    { "command": "focus_group", "args": {"group": 3}, "caption": "Group 4" }
+                ]
+            },
+            {
+                "caption": "Move File To Group",
+                "mnemonic": "M",
+                "children":
+                [
+                    { "command": "move_to_group", "args": {"group": 0}, "caption": "Group 1" },
+                    { "command": "move_to_group", "args": {"group": 1}, "caption": "Group 2" },
+                    { "command": "move_to_group", "args": {"group": 2}, "caption": "Group 3" },
+                    { "command": "move_to_group", "args": {"group": 3}, "caption": "Group 4" }
+                ]
+            },
+            { "caption": "-" },
+            {
+                "caption": "Syntax",
+                "mnemonic": "S",
+                "id": "syntax",
+                "children": [ { "command": "$file_types" } ]
+            },
+            {
+                "caption": "Indentation",
+                "mnemonic": "I",
+                "id": "indentation",
+                "children":
+                [
+                    { "command": "toggle_setting", "args": {"setting": "translate_tabs_to_spaces"}, "caption": "Indent Using Spaces", "checkbox": true },
+                    { "caption": "-" },
+                    { "command": "set_setting", "args": {"setting": "tab_size", "value": 1}, "caption": "Tab Width: 1", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "tab_size", "value": 2}, "caption": "Tab Width: 2", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "tab_size", "value": 3}, "caption": "Tab Width: 3", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "tab_size", "value": 4}, "caption": "Tab Width: 4", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "tab_size", "value": 5}, "caption": "Tab Width: 5", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "tab_size", "value": 6}, "caption": "Tab Width: 6", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "tab_size", "value": 7}, "caption": "Tab Width: 7", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "tab_size", "value": 8}, "caption": "Tab Width: 8", "checkbox": true },
+                    { "caption": "-" },
+                    { "command": "detect_indentation", "caption": "Guess Settings From Buffer" },
+                    { "caption": "-" },
+                    { "command": "expand_tabs", "caption": "Convert Indentation to Spaces", "args": {"set_translate_tabs": true} },
+                    { "command": "unexpand_tabs", "caption": "Convert Indentation to Tabs", "args": {"set_translate_tabs": true} }
+                ]
+            },
+            {
+                "caption": "Line Endings",
+                "mnemonic": "n",
+                "id": "line_endings",
+                "children":
+                [
+                    { "command": "set_line_ending", "args": {"type": "windows"}, "caption": "Windows", "checkbox": true },
+                    { "command": "set_line_ending", "args": {"type": "unix"}, "caption": "Unix", "checkbox": true },
+                    { "command": "set_line_ending", "args": {"type": "cr"}, "caption": "Mac OS 9", "checkbox": true }
+                ]
+            },
+            { "caption": "-", "id": "settings" },
+            { "command": "toggle_setting", "args": {"setting": "word_wrap"}, "caption": "Word Wrap", "mnemonic": "w", "checkbox": true },
+            {
+                "caption": "Word Wrap Column",
+                "children":
+                [
+                    { "command": "set_setting", "args": {"setting": "wrap_width", "value": 0}, "caption": "Automatic", "checkbox": true },
+                    { "caption": "-" },
+                    { "command": "set_setting", "args": {"setting": "wrap_width", "value": 70}, "caption": "70", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "wrap_width", "value": 78}, "caption": "78", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "wrap_width", "value": 80}, "caption": "80", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "wrap_width", "value": 100}, "caption": "100", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "wrap_width", "value": 120}, "caption": "120", "checkbox": true }
+                ]
+            },
+            {
+                "caption": "Ruler",
+                "children":
+                [
+                    { "command": "set_setting", "args": {"setting": "rulers", "value": []}, "caption": "None", "checkbox": true },
+                    { "caption": "-" },
+                    { "command": "set_setting", "args": {"setting": "rulers", "value": [70]}, "caption": "70", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "rulers", "value": [78]}, "caption": "78", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "rulers", "value": [80]}, "caption": "80", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "rulers", "value": [100]}, "caption": "100", "checkbox": true },
+                    { "command": "set_setting", "args": {"setting": "rulers", "value": [120]}, "caption": "120", "checkbox": true }
+                ]
+            },
+            { "caption": "-" },
+            { "command": "toggle_setting", "args": {"setting": "spell_check"}, "caption": "Spell Check", "checkbox": true },
+            { "command": "next_misspelling" },
+            { "command": "prev_misspelling" },
+            {
+                "caption": "Dictionary",
+                "children": [ { "command": "$dictionaries" } ]
+            }
+        ]
+    },
+    {
+        "caption": "Goto",
+        "mnemonic": "G",
+        "id": "goto",
+        "children":
+        [
+            { "command": "show_overlay", "args": {"overlay": "goto", "show_files": true}, "caption": "Goto Anything…", "mnemonic": "A" },
+            { "caption": "-" },
+            { "command": "show_overlay", "args": {"overlay": "goto", "text": "@"}, "caption": "Goto Symbol…" },
+            // { "command": "show_overlay", "args": {"overlay": "goto", "text": "#"}, "caption": "Goto Word…" },
+            { "command": "show_overlay", "args": {"overlay": "goto", "text": ":"}, "caption": "Goto Line…" },
+            { "caption": "-" },
+            {
+                "caption": "Switch File",
+                "mnemonic": "t",
+                "id": "switch_file",
+                "children":
+                [
+                    { "command": "next_view", "caption": "Next File" },
+                    { "command": "prev_view", "caption": "Previous File" },
+                    { "caption": "-" },
+                    { "command": "next_view_in_stack", "caption": "Next File in Stack" },
+                    { "command": "prev_view_in_stack", "caption": "Previous File in Stack" },
+                    { "caption": "-" },
+                    { "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "h", "ipp", "inl", "m", "mm"]}, "caption": "Switch Header/Implementation", "mnemonic": "H" },
+                    { "caption": "-" },
+                    { "command": "select_by_index", "args": { "index": 0 } },
+                    { "command": "select_by_index", "args": { "index": 1 } },
+                    { "command": "select_by_index", "args": { "index": 2 } },
+                    { "command": "select_by_index", "args": { "index": 3 } },
+                    { "command": "select_by_index", "args": { "index": 4 } },
+                    { "command": "select_by_index", "args": { "index": 5 } },
+                    { "command": "select_by_index", "args": { "index": 6 } },
+                    { "command": "select_by_index", "args": { "index": 7 } },
+                    { "command": "select_by_index", "args": { "index": 8 } },
+                    { "command": "select_by_index", "args": { "index": 9 } }
+                ]
+            },
+            { "caption": "-" },
+            {
+                "caption": "Scroll",
+                "mnemonic": "S",
+                "id": "scroll",
+                "children":
+                [
+                    { "command": "show_at_center", "caption": "Scroll to Selection" },
+                    { "command": "scroll_lines", "args": {"amount": 1.0 }, "caption": "Line Up" },
+                    { "command": "scroll_lines", "args": {"amount": -1.0 }, "caption": "Line Down" }
+                ]
+            },
+            {
+                "caption": "Bookmarks",
+                "mnemonic": "b",
+                "id": "bookmarks",
+                "children":
+                [
+                    { "command": "toggle_bookmark" },
+                    { "command": "next_bookmark" },
+                    { "command": "prev_bookmark" },
+                    { "command": "clear_bookmarks" },
+                    { "command": "select_all_bookmarks" },
+                    { "caption": "-" },
+                    { "command": "select_bookmark", "args": {"index": 0} },
+                    { "command": "select_bookmark", "args": {"index": 1} },
+                    { "command": "select_bookmark", "args": {"index": 2} },
+                    { "command": "select_bookmark", "args": {"index": 3} },
+                    { "command": "select_bookmark", "args": {"index": 4} },
+                    { "command": "select_bookmark", "args": {"index": 5} },
+                    { "command": "select_bookmark", "args": {"index": 6} },
+                    { "command": "select_bookmark", "args": {"index": 7} },
+                    { "command": "select_bookmark", "args": {"index": 8} },
+                    { "command": "select_bookmark", "args": {"index": 9} },
+                    { "command": "select_bookmark", "args": {"index": 10} },
+                    { "command": "select_bookmark", "args": {"index": 11} },
+                    { "command": "select_bookmark", "args": {"index": 12} },
+                    { "command": "select_bookmark", "args": {"index": 13} },
+                    { "command": "select_bookmark", "args": {"index": 14} },
+                    { "command": "select_bookmark", "args": {"index": 15} }
+                ]
+            },
+            { "caption": "-" },
+            { "command": "move_to", "args": {"to": "brackets"}, "caption": "Jump to Matching Bracket" }
+        ]
+    },
+    {
+        "caption": "Tools",
+        "mnemonic": "T",
+        "id": "tools",
+        "children":
+        [
+            { "command": "show_overlay", "args": {"overlay": "command_palette"}, "caption": "Command Palette…" },
+            { "command": "show_overlay", "args": {"overlay": "command_palette", "text": "Snippet: "}, "caption": "Snippets…" },
+            { "caption": "-", "id": "build" },
+            {
+                "caption": "Build System",
+                "mnemonic": "u",
+                "children":
+                [
+                    { "command": "set_build_system", "args": { "file": "" }, "caption": "Automatic", "checkbox": true },
+                    { "caption": "-" },
+                    { "command": "set_build_system", "args": {"index": 0}, "checkbox": true },
+                    { "command": "set_build_system", "args": {"index": 1}, "checkbox": true },
+                    { "command": "set_build_system", "args": {"index": 2}, "checkbox": true },
+                    { "command": "set_build_system", "args": {"index": 3}, "checkbox": true },
+                    { "command": "set_build_system", "args": {"index": 4}, "checkbox": true },
+                    { "command": "set_build_system", "args": {"index": 5}, "checkbox": true },
+                    { "command": "set_build_system", "args": {"index": 6}, "checkbox": true },
+                    { "command": "set_build_system", "args": {"index": 7}, "checkbox": true },
+                    { "command": "$build_systems" },
+                    { "caption": "-" },
+                    { "command": "new_build_system", "caption": "New Build System…" }
+                ]
+            },
+            { "command": "build", "mnemonic": "B" },
+            { "command": "build", "args": {"variant": "Run"}, "mnemonic": "R" },
+            { "command": "exec", "args": {"kill": true}, "caption": "Cancel Build", "mnemonic": "C" },
+            {
+                "caption": "Build Results",
+                "mnemonic": "R",
+                "children":
+                [
+                    { "command": "show_panel", "args": {"panel": "output.exec"}, "caption": "Show Build Results", "mnemonic": "S" },
+                    { "command": "next_result", "mnemonic": "N" },
+                    { "command": "prev_result", "caption": "Previous Result", "mnemonic": "P" }
+                ]
+            },
+            { "command": "toggle_save_all_on_build", "caption": "Save All on Build", "mnemonic": "A", "checkbox": true },
+            { "caption": "-", "id": "macros" },
+            { "command": "toggle_record_macro", "mnemonic": "M" },
+            { "command": "run_macro", "caption": "Playback Macro", "mnemonic": "P" },
+            { "command": "save_macro", "caption": "Save Macro…", "mnemonic": "v" },
+            {
+                "caption": "Macros",
+                "children": [ { "command": "$macros" } ]
+            },
+            { "caption": "-" },
+            { "command": "new_plugin", "caption": "New Plugin…" },
+            { "command": "new_snippet", "caption": "New Snippet…" },
+            { "caption": "-", "id": "end" }
+        ]
+    },
+    {
+        "caption": "Project",
+        "mnemonic": "P",
+        "id": "project",
+        "children":
+        [
+            { "command": "prompt_open_project", "caption": "Open Project…", "mnemonic": "O" },
+            {
+                "caption": "Recent Projects",
+                "mnemonic": "R",
+                "children":
+                [
+                    { "command": "open_recent_project", "args": {"index": 0 } },
+                    { "command": "open_recent_project", "args": {"index": 1 } },
+                    { "command": "open_recent_project", "args": {"index": 2 } },
+                    { "command": "open_recent_project", "args": {"index": 3 } },
+                    { "command": "open_recent_project", "args": {"index": 4 } },
+                    { "command": "open_recent_project", "args": {"index": 5 } },
+                    { "command": "open_recent_project", "args": {"index": 6 } },
+                    { "command": "open_recent_project", "args": {"index": 7 } },
+                    { "caption": "-" },
+                    { "command": "clear_recent_projects", "caption": "Clear Items" }
+                ]
+            },
+            { "caption": "-" },
+            { "command": "prompt_select_project", "caption": "Switch Project in Window…", "mnemonic": "S" },
+            { "command": "save_project_as", "caption": "Save Project As…", "mnemonic": "A" },
+            { "command": "close_project", "mnemonic": "C" },
+            { "command": "open_file", "args": {"file": "${project}"}, "caption": "Edit Project" },
+            { "caption": "-" },
+            { "command": "prompt_add_folder", "caption": "Add Folder to Project…", "mnemonic": "d" },
+            { "command": "close_folder_list", "caption": "Remove all Folders from Project", "mnemonic": "m" },
+            { "command": "refresh_folder_list", "caption": "Refresh Folders", "mnemonic": "e" },
+            { "caption": "-" },
+            { "caption": "-", "id": "end" }
+        ]
+    },
+    {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            { "command": "open_dir", "args": {"dir": "$packages"}, "caption": "Browse Packages…", "mnemonic": "B" },
+            { "caption": "-" },
+            { "command": "open_file", "args": {"file": "${packages}/Default/Preferences.sublime-settings"}, "caption": "Settings – Default" },
+            { "command": "open_file", "args": {"file": "${packages}/User/Preferences.sublime-settings"}, "caption": "Settings – User" },
+            {
+                "caption": "Settings – More",
+                "children":
+                [
+                    { "command": "open_file_settings", "caption": "Syntax Specific – User" },
+                    { "command": "open_file", "args": {"file": "${packages}/User/Distraction Free.sublime-settings"}, "caption": "Distraction Free – User" }
+                ]
+            },
+            { "caption": "-" },
+            {
+                "command": "open_file", "args":
+                {
+                    "file": "${packages}/Default/Default ($platform).sublime-keymap"
+                },
+                "caption": "Key Bindings – Default"
+            },
+            {
+                "command": "open_file", "args":
+                {
+                    "file": "${packages}/User/Default ($platform).sublime-keymap"
+                },
+                "caption": "Key Bindings – User"
+            },
+            { "caption": "-" },
+            {
+                "caption": "Font",
+                "children":
+                [
+                    { "command": "increase_font_size", "caption": "Larger" },
+                    { "command": "decrease_font_size", "caption": "Smaller" },
+                    { "caption": "-" },
+                    { "command": "reset_font_size", "caption": "Reset" }
+                ]
+            },
+            {
+                "caption": "Color Scheme",
+                "children": [ { "command": "$color_schemes" } ]
+            }
+        ]
+    },
+    {
+        "caption": "Help",
+        "mnemonic": "H",
+        "id": "help",
+        "children":
+        [
+            { "command": "open_url", "args": {"url": "http://www.sublimetext.com/docs/2/"}, "caption": "Documentation" },
+            { "command": "open_url", "args": {"url": "http://twitter.com/sublimehq"}, "caption": "Twitter" },
+            { "caption": "-" },
+            { "command": "purchase_license"},
+            { "command": "show_license_window", "caption": "Enter License" },
+            { "command": "remove_license"},
+            { "caption": "-" },
+            { "command": "show_about_window", "caption": "About Sublime Text 2", "mnemonic": "A" }
+        ]
+    }
+]

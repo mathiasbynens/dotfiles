@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[(function
+| ${1:patt1} -> ${2:expr1}
+| ${3:patt2} -> ${4:expr2})]]></content>
+    <tabTrigger>func</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>function alt</description>
+</snippet>

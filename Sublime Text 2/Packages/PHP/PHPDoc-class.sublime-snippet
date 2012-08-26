@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[/**
+ * ${3:undocumented class}
+ *
+ * @package ${4:default}
+ * @author ${PHPDOC_AUTHOR:$TM_FULLNAME}
+ **/
+$1class $2
+{$0
+} // END $1class $2]]></content>
+    <tabTrigger>doc_c</tabTrigger>
+    <scope>source.php</scope>
+    <description>Class</description>
+</snippet>

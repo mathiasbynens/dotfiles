@@ -1,0 +1,3 @@
+[
+	{ "caption": "Diff Files…", "command": "diff_files", "args": {"files": []} }
+]

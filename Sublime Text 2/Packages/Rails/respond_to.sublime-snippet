@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[respond_to do |wants|
+	wants.${1:html}${2: { $0 \}}
+end]]></content>
+    <tabTrigger>rest</tabTrigger>
+    <scope>meta.rails.controller</scope>
+    <description>respond_to</description>
+</snippet>

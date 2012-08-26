@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[desc "${1:Task description}"
+task :${2:${3:task_name} => ${4:[:${5:dependent, :tasks}]}} do
+	$0
+end]]></content>
+    <tabTrigger>tas</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>task :task_name =&gt; [:dependent, :tasks] do .. end</description>
+</snippet>

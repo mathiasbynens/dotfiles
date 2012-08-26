@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[find(:all${1:, :conditions => ['${2:${3:field} = ?}', ${5:true}]})]]></content>
+    <tabTrigger>fina</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>find(:all)</description>
+</snippet>

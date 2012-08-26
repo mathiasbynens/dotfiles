@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[sort(${1:x})]]></content>
+    <tabTrigger>sor</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Sort</description>
+</snippet>

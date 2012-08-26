@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[disp('${1:Text}');]]></content>
+    <tabTrigger>disp</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>disp</description>
+</snippet>

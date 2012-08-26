@@ -1,0 +1,41 @@
+diff
+
+Fix http://bugs.activestate.com/show_bug.cgi?id=52747
+"ElementTree serialization differs for strings containing non-ascii chars"
+
+Specifically the alternate code path for escaping of unicode chars missed out
+on escaping EOL chars added in "elementtree_escape_eol_in_attr.patch".
+
+Index: elementtree/elementtree/ElementTree.py
+--- elementtree/elementtree/ElementTree.py.~1~	Wed Sep 27 18:08:15 2006
++++ elementtree/elementtree/ElementTree.py	Wed Sep 27 18:08:15 2006
+@@ -751,14 +751,18 @@
+ 
+ if sys.version[:3] == "1.5":
+     _escape = re.compile(r"[&<>\"\x80-\xff]+") # 1.5.2
++    _escape_attrib_pat = re.compile(r"[&<>\"\n\r\x80-\xff]+") # 1.5.2
+ else:
+     _escape = re.compile(eval(r'u"[&<>\"\u0080-\uffff]+"'))
++    _escape_attrib_pat = re.compile(eval(r'u"[&<>\"\n\r\u0080-\uffff]+"'))
+ 
+ _escape_map = {
+     "&": "&amp;",
+     "<": "&lt;",
+     ">": "&gt;",
+     '"': "&quot;",
++    "\n": "&#xA;",
++    "\r": "&#xD;",
+ }
+ 
+ _namespace_map = {
+@@ -816,7 +820,7 @@
+             try:
+                 text = _encode(text, encoding)
+             except UnicodeError:
+-                return _encode_entity(text)
++                return _encode_entity(text, _escape_attrib_pat)
+         text = replace(text, "&", "&amp;")
+         text = replace(text, "'", "&apos;") # FIXME: overkill
+         text = replace(text, "\"", "&quot;")
+End of Patch.
+

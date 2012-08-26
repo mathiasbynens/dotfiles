@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[.asImmutable()]]></content>
+    <tabTrigger>.as</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>asImmutable()</description>
+</snippet>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Indent rules</string>
+	<key>scope</key>
+	<string>source.ocaml</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>^\s*(end|done|with|in|else)\b|^\s*;;|^[^\("]*\)</string>
+		<key>increaseIndentPattern</key>
+		<string>^.*(\([^)"\n]*|begin)$|\bobject\s*$|\blet [a-zA-Z0-9_-]+( [^ ]+)+ =\s*$|method[ \t]+.*=[ \t]*$|-&gt;[ \t]*$|\b(for|while)[ \t]+.*[ \t]+do[ \t]*$|(\btry$|\bif\s+.*\sthen$|\belse|[:=]\s*sig|=\s*struct)\s*$</string>
+		<key>indentNextLinePattern</key>
+		<string>(?!\bif.*then.*(else.*|(;|[ \t]in)[ \t]*$))\bif|\bthen[ \t]*$|\belse[ \t]*$$</string>
+	</dict>
+	<key>uuid</key>
+	<string>AD257FE4-8F09-4FE6-A0C3-CD5E15F75C5D</string>
+</dict>
+</plist>

@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[/**
+* $1
+*/
+class ${2:ClassName}${3: extends ${4:AnotherClass}}
+{
+	$5
+	function ${6:__construct}(${7:argument})
+	{
+		${0:# code...}
+	}
+}
+]]></content>
+    <tabTrigger>class</tabTrigger>
+    <scope>source.php</scope>
+    <description>class …</description>
+</snippet>

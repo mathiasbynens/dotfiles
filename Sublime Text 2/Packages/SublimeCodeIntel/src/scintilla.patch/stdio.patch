@@ -1,0 +1,109 @@
+diff -u -r1.73 LexCPP.cxx
+--- src/LexPython.cxx	23 Apr 2007 01:19:47 -0000	1.46
++++ src/LexPython.cxx	2 Oct 2007  17:16:35 -0000
+@@ -24,8 +24,40 @@
+ using namespace Scintilla;
+ #endif
+ 
++// Should be used in the non-komodo-specific code as well.
++
++static int actual_style(int style) {
++	return style & 0x1f; // 31
++}
++
++// KOMODO  see if a style is one of our IO styles
++static inline bool IsIOStyle(int style) {
++	return style == SCE_P_STDIN ||
++		style == SCE_P_STDOUT ||
++		style == SCE_P_STDERR;
++}
++
++// KOMODO -- interactive shell colorizing
++static int prevNonEmptyLineIsStdio(int line,
++				   Accessor &styler) {
++	if (line <= 0) return false;
++	int lineStart = styler.LineStart(line);
++	if (lineStart == 0) return false;
++	// Move to the previous line
++	int pos = lineStart - 1;
++	for (; pos > 0; --pos) {
++		char ch = styler.SafeGetCharAt(pos);
++		if (ch == '\n' || ch == '\r') {
++			break;
++		}
++	}
++	if (pos == 0) return false;
++	return IsIOStyle(actual_style(styler.StyleAt(pos)));
++}
++
++
+ /* kwCDef, kwCTypeName only used for Cython */
+ enum kwType { kwOther, kwClass, kwDef, kwImport, kwCDef, kwCTypeName };
+ 
+ static const int indicatorWhitespace = 1;
+ 
+@@ -103,7 +135,11 @@
+ 	// Backtrack to previous line in case need to fix its tab whinging
+ 	int lineCurrent = styler.GetLine(startPos);
+ 	if (startPos > 0) {
+-		if (lineCurrent > 0) {
++		// KOMODO
++		if (prevNonEmptyLineIsStdio(lineCurrent, styler)) {
++			initStyle = SCE_P_DEFAULT;
++		// Don't do anything else
++		} else if (lineCurrent > 0) {
+ 			lineCurrent--;
+ 			// Look for backslash-continued lines
+ 			while (lineCurrent > 0) {
+@@ -133,8 +169,36 @@
+ 	bool indentGood = true;
+ 	int startIndicator = sc.currentPos;
+ 	bool inContinuedString = false;
+ 
++	
++	// KOMODO
++	// reset the style of the first character.  This will either set it to the same
++	// style it already is, or will force it to default and cause colourise to start
++	// fresh at this position.
++	sc.SetState(initStyle);
++	
+ 	for (; sc.More(); sc.Forward()) {
++		
++		// KOMODO
++		// first, if the NEXT style is IO, then skip forward until the NEXT
++		// style IS NOT an IO style.  Then, if the current style is an IO
++		// style, reset it to the default style so colourise works correctly.
++		// this works fine if IO styles end at EOL, but *might* have slight
++		// artifacts if IO styles are mixed in with non IO styles on the same line.
++
++		// Fix bug 58648 by avoiding reading past edge of buffer
++		int nextStyle = (sc.currentPos < endPos - 1
++				 ? styler.StyleAt(sc.currentPos + 1)
++				 : SCE_P_DEFAULT);
++		if (IsIOStyle(nextStyle)) {
++			//leave the style whatever it was
++			sc.SetState(nextStyle);
++			continue;
++		} else if (IsIOStyle(sc.state)) {
++			if (sc.atLineEnd) {
++				sc.SetState(SCE_P_DEFAULT);
++			}
++		}
+ 
+ 		if (sc.atLineStart) {
+ 			styler.IndentAmount(lineCurrent, &spaceFlags, IsPyComment);
+@@ -293,6 +357,14 @@
+ 			}
+ 		}
+ 	}
++	if (sc.state == SCE_P_IDENTIFIER && sc.currentPos == (unsigned int) styler.Length()) {
++		/* Fix Komodo bug http://bugs.activestate.com/show_bug.cgi?id=44006 */
++		char s[100];
++		sc.GetCurrent(s, sizeof(s));
++		if (keywords.InList(s) || (kwLast == kwImport && strcmp(s, "as") == 0)) {
++			sc.ChangeState(SCE_P_WORD);
++		}
++	}
+ 	styler.IndicatorFill(startIndicator, sc.currentPos, indicatorWhitespace, 0);
+ 	sc.Complete();
+ }

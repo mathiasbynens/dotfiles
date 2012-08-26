@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>textile</string>
+	</array>
+	<key>firstLineMatch</key>
+	<string>textile</string>
+	<key>keyEquivalent</key>
+	<string>^~T</string>
+	<key>name</key>
+	<string>Textile</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>begin</key>
+			<string>(^h[1-6]([&lt;&gt;=()]+)?)(\([^)]*\)|{[^}]*})*(\.)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.heading.textile</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.textile</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.heading.textile</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>markup.heading.textile</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#inline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>text.html.basic</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(^bq([&lt;&gt;=()]+)?)(\([^)]*\)|{[^}]*})*(\.)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.blockquote.textile</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.textile</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.blockquote.textile</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>markup.quote.textile</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#inline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>text.html.basic</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(^fn[0-9]+([&lt;&gt;=()]+)?)(\([^)]*\)|{[^}]*})*(\.)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.footnote.textile</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.textile</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.footnote.textile</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>markup.other.footnote.textile</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#inline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>text.html.basic</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(^table([&lt;&gt;=()]+)?)(\([^)]*\)|{[^}]*})*(\.)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.footnote.textile</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.textile</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.footnote.textile</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>markup.other.table.textile</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#inline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>text.html.basic</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(?=\S)</string>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>meta.paragraph.textile</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.tag.paragraph.textile</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.textile</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.tag.paragraph.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(^p([&lt;&gt;=()]+)?)(\([^)]*\)|{[^}]*})*(\.)</string>
+					<key>name</key>
+					<string>entity.name.section.paragraph.textile</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>text.html.basic</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Since html is valid in Textile include the html patterns</string>
+			<key>include</key>
+			<string>text.html.basic</string>
+		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
+		<key>inline</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>&amp; is handled automagically by textile, so we match it to avoid text.html.basic from flagging it</string>
+					<key>match</key>
+					<string>&amp;(?![A-Za-z0-9]+;)</string>
+					<key>name</key>
+					<string>text.html.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>^\*+(\([^)]*\)|{[^}]*})*(\s+|$)</string>
+					<key>name</key>
+					<string>markup.list.unnumbered.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>^#+(\([^)]*\)|{[^}]*})*\s+</string>
+					<key>name</key>
+					<string>markup.list.numbered.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.title.textile</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.description.title.textile</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>constant.other.reference.link.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?x)
+								"								# Start name, etc
+									(?:							# Attributes
+										# I swear, this is how the language is defined,
+										# couldnt make it up if I tried.
+										(?:\([^)]+\))?(?:\{[^}]+\})?(?:\[[^\]]+\])?
+											# Class, Style, Lang
+									  | (?:\{[^}]+\})?(?:\[[^\]]+\])?(?:\([^)]+\))?
+											# Style, Lang, Class
+									  | (?:\[[^\]]+\])?(?:\{[^}]+\})?(?:\([^)]+\))?
+											# Lang, Style, Class
+									)?
+									([^"]+?)					# Link name
+									\s?							# Optional whitespace
+									(?:\(([^)]+?)\))?
+								":								# End name
+								(\w[-\w_]*)						# Linkref
+								(?=[^\w\/;]*?(&lt;|\s|$))			# Catch closing punctuation
+																#  and end of meta.link
+					</string>
+					<key>name</key>
+					<string>meta.link.reference.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.title.textile</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.description.title.textile</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>markup.underline.link.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?x)
+								"								# Start name, etc
+									(?:							# Attributes
+										# I swear, this is how the language is defined,
+										# couldnt make it up if I tried.
+										(?:\([^)]+\))?(?:\{[^}]+\})?(?:\[[^\]]+\])?
+											# Class, Style, Lang
+									  | (?:\{[^}]+\})?(?:\[[^\]]+\])?(?:\([^)]+\))?
+											# Style, Lang, Class
+									  | (?:\[[^\]]+\])?(?:\{[^}]+\})?(?:\([^)]+\))?
+											# Lang, Style, Class
+									)?
+									([^"]+?)					# Link name
+									\s?							# Optional whitespace
+									(?:\(([^)]+?)\))?
+								":								# End Name
+								(\S*?(?:\w|\/|;))				# URL
+								(?=[^\w\/;]*?(&lt;|\s|$))			# Catch closing punctuation
+																#  and end of meta.link
+					</string>
+					<key>name</key>
+					<string>meta.link.inline.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>markup.underline.link.image.textile</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.description.textile</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>markup.underline.link.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?x)
+								\!										# Open image
+								(\&lt;|\=|\&gt;)?								# Optional alignment
+								(?:										# Attributes
+									# I swear, this is how the language is defined,
+									# couldnt make it up if I tried.
+									(?:\([^)]+\))?(?:\{[^}]+\})?(?:\[[^\]]+\])?
+										# Class, Style, Lang
+								  | (?:\{[^}]+\})?(?:\[[^\]]+\])?(?:\([^)]+\))?
+										# Style, Lang, Class
+								  | (?:\[[^\]]+\])?(?:\{[^}]+\})?(?:\([^)]+\))?
+										# Lang, Style, Class
+								)?
+								(?:\.[ ])?            					# Optional
+								([^\s(!]+?)         					# Image URL
+								\s?                						# Optional space
+								(?:\(((?:[^\(\)]|\([^\)]+\))+?)\))?   	# Optional title
+								\!										# Close image
+								(?:
+									:
+									(\S*?(?:\w|\/|;))					# URL
+									(?=[^\w\/;]*?(&lt;|\s|$))				# Catch closing punctuation
+								)?
+					</string>
+					<key>name</key>
+					<string>meta.image.inline.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\|(\([^)]*\)|{[^}]*})*(\\\||.)+\|</string>
+					<key>name</key>
+					<string>markup.other.table.cell.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\B(\*\*?)((\([^)]*\)|{[^}]*}|\[[^]]+\]){0,3})(\S.*?\S|\S)\1\B</string>
+					<key>name</key>
+					<string>markup.bold.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\B-((\([^)]*\)|{[^}]*}|\[[^]]+\]){0,3})(\S.*?\S|\S)-\B</string>
+					<key>name</key>
+					<string>markup.deleted.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\B\+((\([^)]*\)|{[^}]*}|\[[^]]+\]){0,3})(\S.*?\S|\S)\+\B</string>
+					<key>name</key>
+					<string>markup.inserted.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?:\b|\s)_((\([^)]*\)|{[^}]*}|\[[^]]+\]){0,3})(\S.*?\S|\S)_(?:\b|\s)</string>
+					<key>name</key>
+					<string>markup.italic.textile</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.textile</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\B([@\^~%]|\?\?)((\([^)]*\)|{[^}]*}|\[[^]]+\]){0,3})(\S.*?\S|\S)\1</string>
+					<key>name</key>
+					<string>markup.italic.phrasemodifiers.textile</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Footnotes</string>
+					<key>match</key>
+					<string>(?&lt;!w)\[[0-9+]\]</string>
+					<key>name</key>
+					<string>entity.name.tag.textile</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>scopeName</key>
+	<string>text.html.textile</string>
+	<key>uuid</key>
+	<string>68F0B1A5-3274-4E85-8B3A-A481C5F5B194</string>
+</dict>
+</plist>

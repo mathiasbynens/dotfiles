@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[find(${1:id})]]></content>
+    <tabTrigger>fini</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>find(id)</description>
+</snippet>

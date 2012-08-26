@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[do${1/(^.+$)|^$/(?1: |)/}${1:variable}${1/(^.+$)|^$/(?1:|)/}
+	$0
+end]]></content>
+    <tabTrigger>dob</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>Insert do |variable| … end</description>
+</snippet>

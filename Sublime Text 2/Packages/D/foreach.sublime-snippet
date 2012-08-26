@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[foreach(${1:e}; $0) {
+	
+}]]></content>
+    <tabTrigger>fe</tabTrigger>
+    <scope>source.d</scope>
+    <description>foreach(e; …) { … }</description>
+</snippet>

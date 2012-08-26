@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[#!/usr/bin/perl -w
+
+use strict;
+use Test::More tests => ${1:1};
+use ${2:ModuleName};
+
+ok(${3:assertion});
+]]></content>
+    <tabTrigger>test</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Test</description>
+</snippet>

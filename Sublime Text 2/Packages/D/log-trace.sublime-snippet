@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[log.trace("$1");]]></content>
+    <tabTrigger>logt</tabTrigger>
+    <scope>source.d</scope>
+    <description>log.trace(…)</description>
+</snippet>

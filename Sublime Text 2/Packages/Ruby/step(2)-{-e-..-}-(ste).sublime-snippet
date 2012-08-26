@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[step(${1:2}) { ${2/(^(?<var>\s*(?:\*|\*?[a-z_])[a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1:|)/}${2:n}${2/(^(?<var>\s*(?:\*|\*?[a-z_])[a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1:| )/}$0 }]]></content>
+    <tabTrigger>ste</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>step(2) { |e| .. }</description>
+</snippet>

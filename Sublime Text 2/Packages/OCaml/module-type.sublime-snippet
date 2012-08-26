@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[module type ${1:Name} = sig
+	$0
+end]]></content>
+    <tabTrigger>mtype</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>module type</description>
+</snippet>

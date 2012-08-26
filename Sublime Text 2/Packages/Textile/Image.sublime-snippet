@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[!${1:http://site.com/image}(${2:Title})!]]></content>
+    <tabTrigger>img</tabTrigger>
+    <scope>text.html.textile</scope>
+    <description>Image</description>
+</snippet>

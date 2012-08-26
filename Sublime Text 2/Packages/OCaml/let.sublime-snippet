@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[let ${1:var(s)} = ${0:expr}]]></content>
+    <tabTrigger>let</tabTrigger>
+    <scope>source.ocaml</scope>
+    <description>let</description>
+</snippet>

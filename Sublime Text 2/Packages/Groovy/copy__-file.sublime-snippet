@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[copy(file:"${1:sourceFile}", tofile:"${2:targetFile}")]]></content>
+    <tabTrigger>copy</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>copy(file: …, tofile: …) </description>
+</snippet>

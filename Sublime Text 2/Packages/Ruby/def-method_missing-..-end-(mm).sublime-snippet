@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[def method_missing(meth, *args, &blk)
+	$0
+end]]></content>
+    <tabTrigger>defmm</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>def method_missing .. end</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[until ${1:condition}
+	$0
+end]]></content>
+    <tabTrigger>until</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>until ... end</description>
+</snippet>

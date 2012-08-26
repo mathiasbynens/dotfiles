@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[withWriter(${1:charset}) {${2/(.+)/(?1: )/}${2:writer}${2/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>with</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>withWriter(charset) { … }</description>
+</snippet>

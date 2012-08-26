@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Miscellaneous</string>
+	<key>scope</key>
+	<string>source.python</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>^\s*(elif|else|except|finally)\b.*:</string>
+		<key>increaseIndentPattern</key>
+		<string>^\s*(class|def|elif|else|except|finally|for|if|try|with|while)\b.*:\s*$</string>
+		<key>disableIndentNextLinePattern</key>
+		<string></string>
+		<key>shellVariables</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_START</string>
+				<key>value</key>
+				<string># </string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_LINE_TERMINATOR</string>
+				<key>value</key>
+				<string>:</string>
+			</dict>
+		</array>
+	</dict>
+	<key>uuid</key>
+	<string>33877934-69D3-4773-8786-9B5211012A9A</string>
+</dict>
+</plist>

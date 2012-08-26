@@ -1,0 +1,54 @@
+{
+	"schema_version": "1.2",
+	"packages": [
+		{
+			"name": "GitHub Example",
+			"description": "An example from GitHub, be sure to use the zipball URL",
+			"author": "John Smith",
+			"homepage": "http://example.com",
+			"last_modified": "2011-12-12 05:04:31",
+			"platforms": {
+				"*": [
+					{
+						"version": "1.1",
+						"url": "http://nodeload.github.com/john_smith/github_example/zipball/master"
+					}
+				]
+			}
+		},
+		{
+			"name": "BitBucket Example",
+			"description": "An example from BitBucket, be sure to use the zip URL",
+			"author": "John Smith",
+			"homepage": "http://example.com",
+			"last_modified": "2011-08-12 12:21:09",
+			"platforms": {
+				"*": [
+					{
+						"version": "1.0",
+						"url": "https://bitbucket.org/john_smith/bitbucket_example/get/tip.zip"
+					}
+				]
+			}
+		},
+		{
+			"name": "Tortoise",
+			"description": "Keyboard shortcuts and menu entries to execute TortoiseSVN, TortoiseHg and TortoiseGit commands",
+			"author": "Will Bond",
+			"homepage": "http://sublime.wbond.net",
+			"last_modified": "2011-11-30 22:55:52",
+			"platforms": {
+				"windows": [
+					{
+						"version": "1.0",
+						"url": "http://sublime.wbond.net/Tortoise.sublime-package"
+					}
+				]
+			}
+		}
+	],
+	"renamed_packages": {
+		"sublime-old-package": "NewPackage",
+		"OldPackage": "NewName"
+	}
+}

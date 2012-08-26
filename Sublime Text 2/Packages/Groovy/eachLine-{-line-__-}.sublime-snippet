@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[eachLine {${1/(.+)/(?1: )/}${1:line}${1/(.+)/(?1: ->)/}
+	$0
+}]]></content>
+    <tabTrigger>eal</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>eachLine { … }</description>
+</snippet>

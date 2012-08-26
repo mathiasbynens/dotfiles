@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[fprintf(${1:fid}, '${2:%s}\\n'${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}]]></content>
+    <tabTrigger>fpr</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>fprintf</description>
+</snippet>

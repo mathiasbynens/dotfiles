@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>properties</string>
+	</array>
+	<key>keyEquivalent</key>
+	<string>^~J</string>
+	<key>name</key>
+	<string>Java Properties</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.java-props</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>([#!])(.+)?$\n?</string>
+			<key>name</key>
+			<string>comment.line.number-sign.java-props</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>/\*</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.java-props</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\*/</string>
+			<key>name</key>
+			<string>comment.block.java-props</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.java-props</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.key-value.java-props</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Not compliant with the properties file spec, but this works for me, and I'm the one who counts around here.</string>
+			<key>match</key>
+			<string>^([^:=]+)([:=])(.*)$</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.java-props</string>
+	<key>uuid</key>
+	<string>2A28E50A-6B1D-11D9-8689-000D93589AF6</string>
+</dict>
+</plist>

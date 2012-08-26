@@ -1,0 +1,45 @@
+[
+    {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "Package Control",
+                        "children":
+                        [
+                            {
+                                "command": "open_file", "args":
+                                {
+                                    "file": "${packages}/Package Control/Package Control.sublime-settings"
+                                },
+                                "caption": "Settings – Default"
+                            },
+                            {
+                                "command": "open_file", "args":
+                                {
+                                    "file": "${packages}/User/Package Control.sublime-settings"
+                                },
+                                "caption": "Settings – User"
+                            },
+                            { "caption": "-" }
+                        ]
+                    }
+                ]
+            },
+            {
+                "caption": "Package Control",
+                "mnemonic": "C",
+                "command": "show_overlay",
+                "args": {"overlay": "command_palette", "text": "Package Control: "}
+            }
+        ]
+    }
+]

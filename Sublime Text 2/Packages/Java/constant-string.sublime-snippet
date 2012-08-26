@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[static public final String ${1:var} = "$2";$0]]></content>
+    <tabTrigger>cos</tabTrigger>
+    <scope>source.java</scope>
+    <description>constant string</description>
+</snippet>

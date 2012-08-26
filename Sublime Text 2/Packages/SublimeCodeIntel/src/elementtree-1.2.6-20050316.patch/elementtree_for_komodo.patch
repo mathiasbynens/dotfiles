@@ -1,0 +1,10 @@
+--- elementtree/elementtree/ElementTree.py.original	Wed Mar 21 17:24:41 2007
++++ elementtree/elementtree/ElementTree.py	Fri Apr 13 12:36:52 2007
+@@ -139,6 +139,7 @@
+ # TODO: add improved support for incremental parsing
+ 
+ VERSION = "1.2.6"
++_patched_for_komodo_ = True
+ 
+ ##
+ # Internal element class.  This class defines the Element interface,

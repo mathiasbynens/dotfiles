@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[#!/usr/bin/env ${1:${TM_SCOPE/(?:source|.*)\.(?:(shell)|(\w+)).*/(?1:bash:$2)/}}
+]]></content>
+    <tabTrigger>!env</tabTrigger>
+    <scope></scope>
+    <description>#!/usr/bin/env</description>
+</snippet>

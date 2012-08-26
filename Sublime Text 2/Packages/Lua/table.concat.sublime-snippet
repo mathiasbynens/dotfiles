@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[table.concat( ${1:tablename}${2:, ", "}${3:, start_index}${4:, end_index} )]]></content>
+    <tabTrigger>table.concat</tabTrigger>
+    <scope>source.lua</scope>
+    <description>table.concat</description>
+</snippet>

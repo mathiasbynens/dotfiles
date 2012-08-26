@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[/**
+ * $2
+ */
+${1:void} ${2:method}() {
+	${3}
+}]]></content>
+    <tabTrigger>me</tabTrigger>
+    <scope>source.d</scope>
+    <description>method … { … }</description>
+</snippet>

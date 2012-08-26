@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[render :action => "${1:action}"]]></content>
+    <tabTrigger>ra</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (action)</description>
+</snippet>

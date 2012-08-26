@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${TM_RAILS_TEMPLATE_START_RUBY_EXPR}f.label :${1:attribute}${2:, "${3:${1/[[:alpha:]]+|(_)/(?1: :\u$0)/g}}"}${TM_RAILS_TEMPLATE_END_RUBY_EXPR}]]></content>
+    <tabTrigger>f.</tabTrigger>
+    <scope>text.html.ruby, text.haml</scope>
+    <description>f.label (ffl)</description>
+</snippet>

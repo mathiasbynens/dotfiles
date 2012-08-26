@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[java.math.]]></content>
+    <tabTrigger>j.m</tabTrigger>
+    <scope>source.java</scope>
+    <description>java.math.</description>
+</snippet>

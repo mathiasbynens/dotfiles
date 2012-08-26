@@ -1,0 +1,347 @@
+SublimeLinter 1.5.1 changelog
+=============================
+NEW FEATURES
+
+- SublimeLinter keeps its settings in its own settings file now:
+  SublimeLinter.sublime-settings. You will need to copy your
+  user settings to this file. To do so, follow these steps:
+
+  1. Select "Preferences->Settings - User" in one tab/window.
+     The title of this tab should be "Preferences.sublime-settings".
+  2. Open another tab/window and select "Preferences->Package Settings->
+     SublimeLinter->Settings - User". The title of this window should be
+     "SublimeLinter.sublime-settings".
+  3. Copy/cut any of the following settings from Preferences.sublime-settings
+     to SublimeLinter.sublime-settings:
+
+     sublimelinter
+     sublimelinter_executable_map
+     sublimelinter_syntax_map
+     sublimelinter_disable
+     sublimelinter_delay
+     sublimelinter_fill_outlines
+     sublimelinter_gutter_marks
+     sublimelinter_wrap_find
+     sublimelinter_popup_errors_on_save
+     javascript_linter
+     jshint_options
+     pep8_ignore
+     pyflakes_ignore
+     pyflakes_ignore_import_*
+     sublimelinter_objj_check_ascii
+
+  4. Save SublimeLinter.sublime-settings. The changes may not take
+     effect until you restart Sublime Text.
+
+  When changes are made to the user SublimeLinter settings, they
+  are immediately reloaded into every open view. Note that this will
+  override any temporary changes you may have made to the settings in
+  a given view.
+
+- The google closure Javascript linter (gjslint) is now supported
+  (https://developers.google.com/closure/utilities/docs/linter_howto).
+  There is a new setting, "javascript_linter", which determines which
+  linter to use, jshint or gjslinter. You may also customize gjslint
+  behavior with the "gjslint_options" and "gjslint_ignore" settings.
+  Please select "Preferences->Package Settings->SublimeLinter->Settings - Default"
+  for more information on these settings.
+
+- The color theme names have been changed to avoid clashes with
+  built in names.
+
+    Old                     New
+    ---------------------   -----------------------------
+    sublimelinter.<type>    sublimelinter.outline.<type>
+    invalid.<type>          sublimelinter.underline.<type>
+
+  You will have to update your color themes accordingly. Please select
+  "Preferences->Package Settings->SublimeLinter->README" and search
+  for "Customizing colors" for more information.
+
+- When selecting an error from the popup error list, the view is centered
+  on the error line.
+
+
+CHANGES/FIXES
+
+- The PHP error regex has been updated to work with PHP 5.3.8 on Mac OS X.
+
+- The popup error list will no longer choke on non-ASCII text.
+
+- Selecting an error from the popup error list no longer attempts to go
+  directly to the point of an error as this could not be done reliably.
+  It will jump to the first non-whitespace character of the error's line.
+
+- Go to next/previous error works correctly when an error line has no underlines.
+
+- If an exception is thrown by jshint (e.g. too many errors), the errors
+  captured up to that point are displayed.
+
+- The built in jshint has been updated from the master jshint.
+
+- Fixed errors that would occur with the popup error list when there was
+  more than error on a line.
+
+
+SublimeLinter 1.5.2 changelog
+=============================
+CHANGES/FIXES
+
+- Fixed a problem with messages.json that prevented correct upgrading.
+
+
+IMPORTANT
+
+Please check to see if you have multiple listings for `SublimeLinter` in
+`Preferences -> Package Settings`. If you do see 2 listings, please run
+`Package Control: Upgrade/Overwrite All Packages` from the Command Palette
+(`Tools -> Command Palette`).
+
+
+SublimeLinter 1.5.3 changelog
+=============================
+CHANGES/FIXES
+
+- Annotations have been fixed.
+
+- Entries in "sublimelinter_syntax_map" take precedence over built in mappings.
+
+- Lint errors in PHP files will hopefully not be logged to the PHP log file.
+
+
+SublimeLinter 1.5.4 changelog
+=============================
+CHANGES/FIXES
+
+- jshint.js has been updated to the latest master version.
+
+- [issue #128] An "unsafe" option has been added to jshint. If set true,
+  any UTF-8 characters are allowed in the source.
+
+
+SublimeLinter 1.5.5 changelog
+=============================
+CHANGES/FIXES
+
+- This change log is available from the SublimeLinter preferences menu.
+
+
+SublimeLinter 1.5.6 changelog
+=============================
+CHANGES/FIXES
+
+- Fixed a problem with messages.json that prevented correct upgrading.
+
+
+IMPORTANT
+
+Please check to see if you have multiple listings for `SublimeLinter` in
+`Preferences -> Package Settings`. If you do see 2 listings, please run
+`Package Control: Upgrade/Overwrite All Packages` from the Command Palette
+(`Tools -> Command Palette`).
+
+
+SublimeLinter 1.5.7 changelog
+=============================
+CHANGES/FIXES
+
+- node.js is the preferred Javascript engine on Mac OS X and will be used if it is installed.
+  JavaScriptCore does not handle non-ASCII text correctly and you should install node.js
+  if possible.
+
+- If you imported BaseLinter.JSC_PATH, please change your linter to use the self.jsc_path()
+  method instead. JSC_PATH should no longer be considered public.
+
+
+SublimeLinter 1.6.0 changelog
+=============================
+NEW FEATURES
+
+- Simpler abstraction of Javascript engines for JS powered linters.
+
+  To leverage a JS linter, include a "linter.js" file; this file should
+  `require` the actual linter library file and export a `lint` function.
+  The `lint` function should return a list of errors back to the python
+  language handler file (via the `errors` parameter to the `parse_errors`
+  method).
+
+  Although "linter.js" should follow the Node.js api, the linter may also
+  be run via JavaScriptCore on OS X if Node.js is not installed. In the case
+  where JavaScriptCore is used, require + export are shimmed to keep things
+  consistent. However, it is important not to assume that a full Node.js
+  api is available. If you must know what JS engine you are using, you may
+  check for `USING_JSC` to be set as `true` when JavaScriptCore is used.
+
+  For examples of using the JS engines, see "csslint", "jslint", and
+  "jshint" in "SublimeLinter/sublimelinter/modules/libs" and the respective
+  python code of "css.py" and "javascript.py" in
+  "SublimeLinter/sublimelinter/modules".
+
+- Douglas Crockford's JSLint Javascript linter (jslint) is now supported
+  (http://jslint.com). To use JSLint set the "javascript_linter" setting
+  to "jslint". You may also customize jslint behavior with the
+  "jslint_options" setting. For more information about options available
+  to JSLint, see http://jslint.com/lint.html.
+
+- The CSSLint CSS linter (csslint) is now supported (http://csslint.net).
+  By default all CSSLint settings are turned on. You may customize csslint
+  behavior with the "csslint_options" setting. Please select
+  "Preferences->Package Settings->SublimeLinter->Settings - Default"
+  for more information on turning off or adjusting severity of tests.
+  For more information about options available to CSSLint, see
+  https://github.com/stubbornella/csslint/wiki/Rules.
+
+
+SublimeLinter 1.6.1 changelog
+=============================
+CHANGES/FIXES
+
+- Fixed an issue (#141) with JSLint running in Node.js
+
+- Updated CSSLint, JSLint, JSHint to latest stable releases.
+
+- Added additional debugging output (in Sublime console) when
+  errors occur running linters written in Javascript.
+
+
+SublimeLinter 1.6.2 changelog
+=============================
+CHANGES/FIXES
+
+- Replaced the default perl linter with Perl::Critic. The standard Perl syntax checker
+  can still be invoked by switching the "perl_linter" setting to "perl".
+
+- Added a LICENSE file to define appropriate usage of SublimeLinter and its source.
+
+- Converted README back to markdown.
+
+
+IMPORTANT
+
+Due to a vulnerability (issue #77) with the Perl linter, Perl syntax checking is no longer
+enabled by default. The default linter for Perl has been replaced by Perl::Critic.
+
+
+SublimeLinter 1.6.3 changelog
+=============================
+NEW FEATURES
+
+- Support for `.jshintrc` files. If using JSHint, SublimeLinter
+  will recursively search the directory tree (from the file location
+  to the file-system root directory). This functionality is
+  specified in the JSHint README.
+  https://github.com/jshint/node-jshint/#within-your-projects-directory-tree
+
+
+CHANGES/FIXES
+
+- Fixed README reference in the menu.
+
+- Updated CoffeeScript module to be compatible with the updated
+  coffee command in version 1.3.
+
+
+IMPORTANT
+
+If you are using the CoffeeScript linting, please upgrade
+the installed coffee-script NPM module to 1.3 or greater.
+
+    npm update -g coffee-script
+
+
+SublimeLinter 1.6.4 changelog
+=============================
+
+IMPORTANT!!
+
+Please note that the SublimeLinter repository has moved to:
+
+  https://github.com/SublimeLinter/SublimeLinter
+
+Issues and pull requests should be made there.
+
+
+NEW FEATURES
+
+- The Objective-J linter now catches spaces inside parentheses
+  and dependent clauses on the same line as a control structure.
+
+
+CHANGES/FIXES
+
+- The README has been reorganized to hopefully be clearer.
+
+- More explicit Node.js installation instructions have been provided.
+
+- The "pep8" setting is now recognized in SublimeLinter's settings.
+
+- When a minimum delay is specified with the "sublimelinter_delay" setting,
+  SublimeLinter will only lint the currently displayed file when the
+  queued linters run. This allows you to avoid linting of files as they
+  are selected in the choose file palette.
+
+
+SublimeLinter 1.6.5 changelog
+=============================
+
+NEW FEATURES
+
+- Added a (Ruby) Haml linter based on `haml -c`. For more information about
+  Haml, please see http://haml.info.
+
+- Added a simple Git commit message linter. This linter follows the rules as
+  defined by http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+
+CHANGES/FIXES
+
+- Updated several links to point to the SublimeLinter's new Github location.
+
+- "Ruby on Rails" syntax maps to "ruby" as part of the default settings.
+
+- Linter arguments are now consistently defined as arrays (instead of tuples).
+
+- Syntax map settings are no longer (sometimes) case-sensitive.
+
+
+SublimeLinter 1.6.6 changelog
+=============================
+
+CHANGES/FIXES
+
+- JSHint now shows underlines at the appropriate character positions when
+  using tabs for indentation.
+
+- Upgrading CSSLint to the latest version (v0.9.8). This adds support for the
+  latest "Compatibility" options: "Disallow star hack" and "Disallow
+  underscore hack".
+
+- Annotation highlighting is working again.
+
+- Git Commit Message linting now ignores `git --diff` output in messages.
+  These lines are automatically generated and inserted when running
+  `git commit -v`.
+
+
+SublimeLinter 1.6.7 changelog
+=============================
+
+NEW FEATURES
+
+- Puppet linting is now supported via `puppet parser validate`.
+
+- Added an option for more granular control of outline decorations. Set the
+  value of "sublimelinter_mark_style" to "outline", "fill", or "none" in
+  the user settings.
+
+
+CHANGES/FIXES
+
+- Repaired the built-in CSS linter (CSSLint). This was broken with with the
+  last update.
+
+- Added missing documentation for "save-only" linting in the settings file.
+
+- Adjusted ambiguous/misleading documentation for the
+  "sublimelinter_executable_map" setting.
+

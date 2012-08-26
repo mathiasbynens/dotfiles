@@ -1,0 +1,5 @@
+[
+    {"command": "expand_selection", "args": {"to": "line"}},
+    {"command": "add_to_kill_ring", "args": {"forward": true}},
+    {"command": "left_delete"}
+]

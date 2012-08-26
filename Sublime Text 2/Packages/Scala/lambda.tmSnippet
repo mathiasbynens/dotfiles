@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleUUID</key>
+	<string>452017E8-0065-49EF-AB9D-7849B27D9367</string>
+	<key>content</key>
+	<string>($1) =&gt; ${2:{${3:}\}}</string>
+	<key>name</key>
+	<string>lambda</string>
+	<key>scope</key>
+	<string>source.scala</string>
+	<key>tabTrigger</key>
+	<string>lam</string>
+	<key>uuid</key>
+	<string>92B4042E-2409-466F-A0B6-80A46B36679F</string>
+</dict>
+</plist>

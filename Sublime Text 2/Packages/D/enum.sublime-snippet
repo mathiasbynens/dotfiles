@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[enum ${1:name}() { $3 }]]></content>
+    <tabTrigger>en</tabTrigger>
+    <scope>source.d</scope>
+    <description>enum … { … }</description>
+</snippet>

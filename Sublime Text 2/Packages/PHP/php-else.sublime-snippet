@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[<?${TM_PHP_OPEN_TAG:php} else: ?>]]></content>
+    <tabTrigger>else</tabTrigger>
+    <scope>text.html - source</scope>
+    <description>&lt;?php else: ?&gt;</description>
+</snippet>

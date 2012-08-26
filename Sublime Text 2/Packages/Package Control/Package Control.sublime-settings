@@ -1,0 +1,99 @@
+{
+	// A list of URLs that each contain a JSON file with a list of repositories.
+	// The repositories from these channels are placed in order after the
+	// repositories from the "repositories" setting
+	"repository_channels": [
+		"https://sublime.wbond.net/repositories.json"
+	],
+	
+	// A list of URLs that contain a packages JSON file. These repositories
+	// are placed in order before repositories from the "repository_channels"
+	// setting
+	"repositories": [],
+
+	"certs": {
+		"sublime.wbond.net": ["7f4f8622b4fd001c7f648e09aae7edaa", ""]
+	},
+
+	// This helps solve naming issues where a repository it not named the
+	// same as the package should be. This is primarily only useful for
+	// GitHub and BitBucket repositories. This mapping will override the
+	// mapping that is retrieved from the repository channels.
+	"package_name_map": {},
+
+	// If package install, upgrade and removal info should be submitted to
+	// the channel for aggregated statistics
+	"submit_usage": true,
+
+	// The URL to post install, upgrade and removal notices to 
+	"submit_url": "https://sublime.wbond.net/submit",
+
+	// If packages should be automatically upgraded when ST2 starts
+	"auto_upgrade": true,
+
+	// The minimum frequency in hours in which to check for automatic upgrades,
+	// setting this to 0 will always check for automatic upgrades
+	"auto_upgrade_frequency": 1,
+
+	// Packages to not auto upgrade
+	"auto_upgrade_ignore": [],
+
+	// Timeout for downloading channels, repositories and packages
+	"timeout": 30,
+
+	// The number of seconds to cache repository and package info for
+	"cache_length": 300,
+
+	// An HTTP proxy server to use for requests
+	"http_proxy": "",
+	// An HTTPS proxy server to use for requests - if not specified, but
+	// http_proxy is, http_proxy will be used for https_proxy also
+	"https_proxy": "",
+
+	// Setting this to true will cause Package Control to ignore all git
+	// and hg repositories - this may help if trying to list packages to install
+	// hangs
+	"ignore_vcs_packages": false,
+
+	// Custom paths to VCS binaries for when they can't be automatically
+	// found on the system and a package includes a VCS metadata directory
+	"git_binary": "",
+	"git_update_command": ["pull", "origin", "master", "--ff", "--commit"],
+	
+	"hg_binary": "",
+	
+	// Be sure to keep the remote name as the last argument
+	"hg_update_command": ["pull", "--update", "default"],
+
+	// Directories to ignore when creating a package
+	"dirs_to_ignore": [
+		".hg", ".git", ".svn", "_darcs", "CVS"
+	],
+
+	// Files to ignore when creating a package
+	"files_to_ignore": [
+		".hgignore", ".gitignore", ".bzrignore", "*.pyc", "*.sublime-project",
+		"*.sublime-workspace", "*.tmTheme.cache"
+	],
+
+	// Files to include, even if they match a pattern in files_to_ignore
+	"files_to_include": [],
+
+	// Files to ignore when creating a binary package. By default binary
+	// packages ship with .pyc files instead of .py files. If an __init__.py
+	// file exists, it will always be included, even if it matches one of
+	// these patterns.
+	"files_to_ignore_binary": [
+		".hgignore", ".gitignore", ".bzrignore", "*.py", "*.sublime-project",
+		"*.sublime-workspace", "*.tmTheme.cache"
+	],
+
+	// Files to include for a binary package, even if they match a pattern i
+	// files_to_ignore_binary
+	"files_to_include_binary": [
+		"__init__.py"
+	],
+
+	// When a package is created, copy it to this folder - defaults to Desktop 
+	"package_destination": ""
+}

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[foreach (\$${1:variable} as \$${2:key}${3: => \$${4:value}}) {
+	${0:# code...}
+}]]></content>
+    <tabTrigger>foreach</tabTrigger>
+    <scope>source.php</scope>
+    <description>foreach …</description>
+</snippet>

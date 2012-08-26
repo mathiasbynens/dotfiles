@@ -1,0 +1,18 @@
+{
+    "install": "messages/install.txt",
+    "1.5.1": "messages/1.5.1.txt",
+    "1.5.2": "messages/1.5.2.txt",
+    "1.5.3": "messages/1.5.3.txt",
+    "1.5.4": "messages/1.5.4.txt",
+    "1.5.5": "messages/1.5.5.txt",
+    "1.5.6": "messages/1.5.6.txt",
+    "1.5.7": "messages/1.5.7.txt",
+    "1.6.0": "messages/1.6.0.txt",
+    "1.6.1": "messages/1.6.1.txt",
+    "1.6.2": "messages/1.6.2.txt",
+    "1.6.3": "messages/1.6.3.txt",
+    "1.6.4": "messages/1.6.4.txt",
+    "1.6.5": "messages/1.6.5.txt",
+    "1.6.6": "messages/1.6.6.txt",
+    "1.6.7": "messages/1.6.7.txt"
+}

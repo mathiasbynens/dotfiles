@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[public static void main(String[] args) {
+	$0
+}]]></content>
+    <tabTrigger>main</tabTrigger>
+    <scope>source.java</scope>
+    <description>method (main)</description>
+</snippet>

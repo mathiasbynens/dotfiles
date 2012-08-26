@@ -1,0 +1,41 @@
+/*
+    SublimeCodeIntel default settings
+*/
+{
+    /*
+        Sets the mode in which SublimeCodeIntel runs:
+
+        true - Enabled (the default).
+        false - Disabled.
+    */
+    "codeintel": true,
+
+    // An array of language names which are disabled.
+    "codeintel_disabled_languages":
+    [
+    ],
+
+    /*
+        Sets the mode in which SublimeCodeIntel's live autocomplete runs:
+
+        true - Autocomplete popups as you type (the default).
+        false - Autocomplete popups only when you request it.
+    */
+    "codeintel_live": true,
+
+    // An array of language names to disable.
+    "codeintel_live_disabled_languages":
+    [
+    ],
+
+    /*
+        Maps syntax names to languages. This allows variations on a syntax
+        (for example "Python (Django)") to be used. The key is
+        the base filename of the .tmLanguage syntax files, and the value
+        is the syntax it maps to.
+    */
+    "codeintel_syntax_map":
+    {
+        "Python Django": "Python"
+    }
+}

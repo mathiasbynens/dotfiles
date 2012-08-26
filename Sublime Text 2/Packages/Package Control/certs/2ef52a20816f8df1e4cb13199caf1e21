@@ -1,0 +1,241 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 769 (0x301)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=US, O=The Go Daddy Group, Inc., OU=Go Daddy Class 2 Certification Authority
+        Validity
+            Not Before: Nov 16 01:54:37 2006 GMT
+            Not After : Nov 16 01:54:37 2026 GMT
+        Subject: C=US, ST=Arizona, L=Scottsdale, O=GoDaddy.com, Inc., OU=http://certificates.godaddy.com/repository, CN=Go Daddy Secure Certification Authority/serialNumber=07969287
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (2048 bit)
+                Modulus (2048 bit):
+                    00:c4:2d:d5:15:8c:9c:26:4c:ec:32:35:eb:5f:b8:
+                    59:01:5a:a6:61:81:59:3b:70:63:ab:e3:dc:3d:c7:
+                    2a:b8:c9:33:d3:79:e4:3a:ed:3c:30:23:84:8e:b3:
+                    30:14:b6:b2:87:c3:3d:95:54:04:9e:df:99:dd:0b:
+                    25:1e:21:de:65:29:7e:35:a8:a9:54:eb:f6:f7:32:
+                    39:d4:26:55:95:ad:ef:fb:fe:58:86:d7:9e:f4:00:
+                    8d:8c:2a:0c:bd:42:04:ce:a7:3f:04:f6:ee:80:f2:
+                    aa:ef:52:a1:69:66:da:be:1a:ad:5d:da:2c:66:ea:
+                    1a:6b:bb:e5:1a:51:4a:00:2f:48:c7:98:75:d8:b9:
+                    29:c8:ee:f8:66:6d:0a:9c:b3:f3:fc:78:7c:a2:f8:
+                    a3:f2:b5:c3:f3:b9:7a:91:c1:a7:e6:25:2e:9c:a8:
+                    ed:12:65:6e:6a:f6:12:44:53:70:30:95:c3:9c:2b:
+                    58:2b:3d:08:74:4a:f2:be:51:b0:bf:87:d0:4c:27:
+                    58:6b:b5:35:c5:9d:af:17:31:f8:0b:8f:ee:ad:81:
+                    36:05:89:08:98:cf:3a:af:25:87:c0:49:ea:a7:fd:
+                    67:f7:45:8e:97:cc:14:39:e2:36:85:b5:7e:1a:37:
+                    fd:16:f6:71:11:9a:74:30:16:fe:13:94:a3:3f:84:
+                    0d:4f
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier:
+            FD:AC:61:32:93:6C:45:D6:E2:EE:85:5F:9A:BA:E7:76:99:68:CC:E7
+            X509v3 Authority Key Identifier:
+            keyid:D2:C4:B0:D2:91:D4:4C:11:71:B3:61:CB:3D:A1:FE:DD:A8:6A:D4:E3
+
+            X509v3 Basic Constraints: critical
+            CA:TRUE, pathlen:0
+            Authority Information Access:
+            OCSP - URI:http://ocsp.godaddy.com
+
+            X509v3 CRL Distribution Points:
+            URI:http://certificates.godaddy.com/repository/gdroot.crl
+
+            X509v3 Certificate Policies:
+            Policy: 2.5.29.32.0
+              CPS: http://certificates.godaddy.com/repository
+
+            X509v3 Key Usage: critical
+            Certificate Sign, CRL Sign
+    Signature Algorithm: sha1WithRSAEncryption
+        d2:86:c0:ec:bd:f9:a1:b6:67:ee:66:0b:a2:06:3a:04:50:8e:
+        15:72:ac:4a:74:95:53:cb:37:cb:44:49:ef:07:90:6b:33:d9:
+        96:f0:94:56:a5:13:30:05:3c:85:32:21:7b:c9:c7:0a:a8:24:
+        a4:90:de:46:d3:25:23:14:03:67:c2:10:d6:6f:0f:5d:7b:7a:
+        cc:9f:c5:58:2a:c1:c4:9e:21:a8:5a:f3:ac:a4:46:f3:9e:e4:
+        63:cb:2f:90:a4:29:29:01:d9:72:2c:29:df:37:01:27:bc:4f:
+        ee:68:d3:21:8f:c0:b3:e4:f5:09:ed:d2:10:aa:53:b4:be:f0:
+        cc:59:0b:d6:3b:96:1c:95:24:49:df:ce:ec:fd:a7:48:91:14:
+        45:0e:3a:36:6f:da:45:b3:45:a2:41:c9:d4:d7:44:4e:3e:b9:
+        74:76:d5:a2:13:55:2c:c6:87:a3:b5:99:ac:06:84:87:7f:75:
+        06:fc:bf:14:4c:0e:cc:6e:c4:df:3d:b7:12:71:f4:e8:f1:51:
+        40:22:28:49:e0:1d:4b:87:a8:34:cc:06:a2:dd:12:5a:d1:86:
+        36:64:03:35:6f:6f:77:6e:eb:f2:85:50:98:5e:ab:03:53:ad:
+        91:23:63:1f:16:9c:cd:b9:b2:05:63:3a:e1:f4:68:1b:17:05:
+        35:95:53:ee
+-----BEGIN CERTIFICATE-----
+MIIE3jCCA8agAwIBAgICAwEwDQYJKoZIhvcNAQEFBQAwYzELMAkGA1UEBhMCVVMx
+ITAfBgNVBAoTGFRoZSBHbyBEYWRkeSBHcm91cCwgSW5jLjExMC8GA1UECxMoR28g
+RGFkZHkgQ2xhc3MgMiBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTAeFw0wNjExMTYw
+MTU0MzdaFw0yNjExMTYwMTU0MzdaMIHKMQswCQYDVQQGEwJVUzEQMA4GA1UECBMH
+QXJpem9uYTETMBEGA1UEBxMKU2NvdHRzZGFsZTEaMBgGA1UEChMRR29EYWRkeS5j
+b20sIEluYy4xMzAxBgNVBAsTKmh0dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5j
+b20vcmVwb3NpdG9yeTEwMC4GA1UEAxMnR28gRGFkZHkgU2VjdXJlIENlcnRpZmlj
+YXRpb24gQXV0aG9yaXR5MREwDwYDVQQFEwgwNzk2OTI4NzCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMQt1RWMnCZM7DI161+4WQFapmGBWTtwY6vj3D3H
+KrjJM9N55DrtPDAjhI6zMBS2sofDPZVUBJ7fmd0LJR4h3mUpfjWoqVTr9vcyOdQm
+VZWt7/v+WIbXnvQAjYwqDL1CBM6nPwT27oDyqu9SoWlm2r4arV3aLGbqGmu75RpR
+SgAvSMeYddi5Kcju+GZtCpyz8/x4fKL4o/K1w/O5epHBp+YlLpyo7RJlbmr2EkRT
+cDCVw5wrWCs9CHRK8r5RsL+H0EwnWGu1NcWdrxcx+AuP7q2BNgWJCJjPOq8lh8BJ
+6qf9Z/dFjpfMFDniNoW1fho3/Rb2cRGadDAW/hOUoz+EDU8CAwEAAaOCATIwggEu
+MB0GA1UdDgQWBBT9rGEyk2xF1uLuhV+auud2mWjM5zAfBgNVHSMEGDAWgBTSxLDS
+kdRMEXGzYcs9of7dqGrU4zASBgNVHRMBAf8ECDAGAQH/AgEAMDMGCCsGAQUFBwEB
+BCcwJTAjBggrBgEFBQcwAYYXaHR0cDovL29jc3AuZ29kYWRkeS5jb20wRgYDVR0f
+BD8wPTA7oDmgN4Y1aHR0cDovL2NlcnRpZmljYXRlcy5nb2RhZGR5LmNvbS9yZXBv
+c2l0b3J5L2dkcm9vdC5jcmwwSwYDVR0gBEQwQjBABgRVHSAAMDgwNgYIKwYBBQUH
+AgEWKmh0dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20vcmVwb3NpdG9yeTAO
+BgNVHQ8BAf8EBAMCAQYwDQYJKoZIhvcNAQEFBQADggEBANKGwOy9+aG2Z+5mC6IG
+OgRQjhVyrEp0lVPLN8tESe8HkGsz2ZbwlFalEzAFPIUyIXvJxwqoJKSQ3kbTJSMU
+A2fCENZvD117esyfxVgqwcSeIaha86ykRvOe5GPLL5CkKSkB2XIsKd83ASe8T+5o
+0yGPwLPk9Qnt0hCqU7S+8MxZC9Y7lhyVJEnfzuz9p0iRFEUOOjZv2kWzRaJBydTX
+RE4+uXR21aITVSzGh6O1mawGhId/dQb8vxRMDsxuxN89txJx9OjxUUAiKEngHUuH
+qDTMBqLdElrRhjZkAzVvb3du6/KFUJheqwNTrZEjYx8WnM25sgVjOuH0aBsXBTWV
+U+4=
+-----END CERTIFICATE-----
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 269 (0x10d)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: L=ValiCert Validation Network, O=ValiCert, Inc., OU=ValiCert Class 2 Policy Validation Authority, CN=http://www.valicert.com//emailAddress=info@valicert.com
+        Validity
+            Not Before: Jun 29 17:06:20 2004 GMT
+            Not After : Jun 29 17:06:20 2024 GMT
+        Subject: C=US, O=The Go Daddy Group, Inc., OU=Go Daddy Class 2 Certification Authority
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (2048 bit)
+                Modulus (2048 bit):
+                    00:de:9d:d7:ea:57:18:49:a1:5b:eb:d7:5f:48:86:
+                    ea:be:dd:ff:e4:ef:67:1c:f4:65:68:b3:57:71:a0:
+                    5e:77:bb:ed:9b:49:e9:70:80:3d:56:18:63:08:6f:
+                    da:f2:cc:d0:3f:7f:02:54:22:54:10:d8:b2:81:d4:
+                    c0:75:3d:4b:7f:c7:77:c3:3e:78:ab:1a:03:b5:20:
+                    6b:2f:6a:2b:b1:c5:88:7e:c4:bb:1e:b0:c1:d8:45:
+                    27:6f:aa:37:58:f7:87:26:d7:d8:2d:f6:a9:17:b7:
+                    1f:72:36:4e:a6:17:3f:65:98:92:db:2a:6e:5d:a2:
+                    fe:88:e0:0b:de:7f:e5:8d:15:e1:eb:cb:3a:d5:e2:
+                    12:a2:13:2d:d8:8e:af:5f:12:3d:a0:08:05:08:b6:
+                    5c:a5:65:38:04:45:99:1e:a3:60:60:74:c5:41:a5:
+                    72:62:1b:62:c5:1f:6f:5f:1a:42:be:02:51:65:a8:
+                    ae:23:18:6a:fc:78:03:a9:4d:7f:80:c3:fa:ab:5a:
+                    fc:a1:40:a4:ca:19:16:fe:b2:c8:ef:5e:73:0d:ee:
+                    77:bd:9a:f6:79:98:bc:b1:07:67:a2:15:0d:dd:a0:
+                    58:c6:44:7b:0a:3e:62:28:5f:ba:41:07:53:58:cf:
+                    11:7e:38:74:c5:f8:ff:b5:69:90:8f:84:74:ea:97:
+                    1b:af
+                Exponent: 3 (0x3)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier:
+            D2:C4:B0:D2:91:D4:4C:11:71:B3:61:CB:3D:A1:FE:DD:A8:6A:D4:E3
+            X509v3 Authority Key Identifier:
+            DirName:/L=ValiCert Validation Network/O=ValiCert, Inc./OU=ValiCert Class 2 Policy Validation Authority/CN=http://www.valicert.com//emailAddress=info@valicert.com
+            serial:01
+
+            X509v3 Basic Constraints: critical
+            CA:TRUE
+            Authority Information Access:
+            OCSP - URI:http://ocsp.godaddy.com
+
+            X509v3 CRL Distribution Points:
+            URI:http://certificates.godaddy.com/repository/root.crl
+
+            X509v3 Certificate Policies:
+            Policy: 2.5.29.32.0
+              CPS: http://certificates.godaddy.com/repository
+
+            X509v3 Key Usage: critical
+            Certificate Sign, CRL Sign
+    Signature Algorithm: sha1WithRSAEncryption
+        b5:40:f9:a7:1d:f6:ea:fe:a4:1a:42:5a:44:f7:15:d4:85:46:
+        89:c0:be:9e:e3:e3:eb:c5:e3:58:89:8f:92:9f:57:a8:71:2c:
+        48:d1:81:b2:79:1f:ac:06:35:19:b0:4e:0e:58:1b:14:b3:98:
+        81:d1:04:1e:c8:07:c9:83:9f:78:44:0a:18:0b:98:dc:76:7a:
+        65:0d:0d:6d:80:c4:0b:01:1c:cb:ad:47:3e:71:be:77:4b:cc:
+        06:77:d0:f4:56:6b:1f:4b:13:9a:14:8a:88:23:a8:51:f0:83:
+        4c:ab:35:bf:46:7e:39:dc:75:a4:ae:e8:29:fb:ef:39:8f:4f:
+        55:67
+-----BEGIN CERTIFICATE-----
+MIIE+zCCBGSgAwIBAgICAQ0wDQYJKoZIhvcNAQEFBQAwgbsxJDAiBgNVBAcTG1Zh
+bGlDZXJ0IFZhbGlkYXRpb24gTmV0d29yazEXMBUGA1UEChMOVmFsaUNlcnQsIElu
+Yy4xNTAzBgNVBAsTLFZhbGlDZXJ0IENsYXNzIDIgUG9saWN5IFZhbGlkYXRpb24g
+QXV0aG9yaXR5MSEwHwYDVQQDExhodHRwOi8vd3d3LnZhbGljZXJ0LmNvbS8xIDAe
+BgkqhkiG9w0BCQEWEWluZm9AdmFsaWNlcnQuY29tMB4XDTA0MDYyOTE3MDYyMFoX
+DTI0MDYyOTE3MDYyMFowYzELMAkGA1UEBhMCVVMxITAfBgNVBAoTGFRoZSBHbyBE
+YWRkeSBHcm91cCwgSW5jLjExMC8GA1UECxMoR28gRGFkZHkgQ2xhc3MgMiBDZXJ0
+aWZpY2F0aW9uIEF1dGhvcml0eTCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgC
+ggEBAN6d1+pXGEmhW+vXX0iG6r7d/+TvZxz0ZWizV3GgXne77ZtJ6XCAPVYYYwhv
+2vLM0D9/AlQiVBDYsoHUwHU9S3/Hd8M+eKsaA7Ugay9qK7HFiH7Eux6wwdhFJ2+q
+N1j3hybX2C32qRe3H3I2TqYXP2WYktsqbl2i/ojgC95/5Y0V4evLOtXiEqITLdiO
+r18SPaAIBQi2XKVlOARFmR6jYGB0xUGlcmIbYsUfb18aQr4CUWWoriMYavx4A6lN
+f4DD+qta/KFApMoZFv6yyO9ecw3ud72a9nmYvLEHZ6IVDd2gWMZEewo+YihfukEH
+U1jPEX44dMX4/7VpkI+EdOqXG68CAQOjggHhMIIB3TAdBgNVHQ4EFgQU0sSw0pHU
+TBFxs2HLPaH+3ahq1OMwgdIGA1UdIwSByjCBx6GBwaSBvjCBuzEkMCIGA1UEBxMb
+VmFsaUNlcnQgVmFsaWRhdGlvbiBOZXR3b3JrMRcwFQYDVQQKEw5WYWxpQ2VydCwg
+SW5jLjE1MDMGA1UECxMsVmFsaUNlcnQgQ2xhc3MgMiBQb2xpY3kgVmFsaWRhdGlv
+biBBdXRob3JpdHkxITAfBgNVBAMTGGh0dHA6Ly93d3cudmFsaWNlcnQuY29tLzEg
+MB4GCSqGSIb3DQEJARYRaW5mb0B2YWxpY2VydC5jb22CAQEwDwYDVR0TAQH/BAUw
+AwEB/zAzBggrBgEFBQcBAQQnMCUwIwYIKwYBBQUHMAGGF2h0dHA6Ly9vY3NwLmdv
+ZGFkZHkuY29tMEQGA1UdHwQ9MDswOaA3oDWGM2h0dHA6Ly9jZXJ0aWZpY2F0ZXMu
+Z29kYWRkeS5jb20vcmVwb3NpdG9yeS9yb290LmNybDBLBgNVHSAERDBCMEAGBFUd
+IAAwODA2BggrBgEFBQcCARYqaHR0cDovL2NlcnRpZmljYXRlcy5nb2RhZGR5LmNv
+bS9yZXBvc2l0b3J5MA4GA1UdDwEB/wQEAwIBBjANBgkqhkiG9w0BAQUFAAOBgQC1
+QPmnHfbq/qQaQlpE9xXUhUaJwL6e4+PrxeNYiY+Sn1eocSxI0YGyeR+sBjUZsE4O
+WBsUs5iB0QQeyAfJg594RAoYC5jcdnplDQ1tgMQLARzLrUc+cb53S8wGd9D0Vmsf
+SxOaFIqII6hR8INMqzW/Rn453HWkrugp++85j09VZw==
+-----END CERTIFICATE-----
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: L=ValiCert Validation Network, O=ValiCert, Inc., OU=ValiCert Class 2 Policy Validation Authority, CN=http://www.valicert.com//emailAddress=info@valicert.com
+        Validity
+            Not Before: Jun 26 00:19:54 1999 GMT
+            Not After : Jun 26 00:19:54 2019 GMT
+        Subject: L=ValiCert Validation Network, O=ValiCert, Inc., OU=ValiCert Class 2 Policy Validation Authority, CN=http://www.valicert.com//emailAddress=info@valicert.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:ce:3a:71:ca:e5:ab:c8:59:92:55:d7:ab:d8:74:
+                    0e:f9:ee:d9:f6:55:47:59:65:47:0e:05:55:dc:eb:
+                    98:36:3c:5c:53:5d:d3:30:cf:38:ec:bd:41:89:ed:
+                    25:42:09:24:6b:0a:5e:b3:7c:dd:52:2d:4c:e6:d4:
+                    d6:7d:5a:59:a9:65:d4:49:13:2d:24:4d:1c:50:6f:
+                    b5:c1:85:54:3b:fe:71:e4:d3:5c:42:f9:80:e0:91:
+                    1a:0a:5b:39:36:67:f3:3f:55:7c:1b:3f:b4:5f:64:
+                    73:34:e3:b4:12:bf:87:64:f8:da:12:ff:37:27:c1:
+                    b3:43:bb:ef:7b:6e:2e:69:f7
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha1WithRSAEncryption
+        3b:7f:50:6f:6f:50:94:99:49:62:38:38:1f:4b:f8:a5:c8:3e:
+        a7:82:81:f6:2b:c7:e8:c5:ce:e8:3a:10:82:cb:18:00:8e:4d:
+        bd:a8:58:7f:a1:79:00:b5:bb:e9:8d:af:41:d9:0f:34:ee:21:
+        81:19:a0:32:49:28:f4:c4:8e:56:d5:52:33:fd:50:d5:7e:99:
+        6c:03:e4:c9:4c:fc:cb:6c:ab:66:b3:4a:21:8c:e5:b5:0c:32:
+        3e:10:b2:cc:6c:a1:dc:9a:98:4c:02:5b:f3:ce:b9:9e:a5:72:
+        0e:4a:b7:3f:3c:e6:16:68:f8:be:ed:74:4c:bc:5b:d5:62:1f:
+        43:dd
+-----BEGIN CERTIFICATE-----
+MIIC5zCCAlACAQEwDQYJKoZIhvcNAQEFBQAwgbsxJDAiBgNVBAcTG1ZhbGlDZXJ0
+IFZhbGlkYXRpb24gTmV0d29yazEXMBUGA1UEChMOVmFsaUNlcnQsIEluYy4xNTAz
+BgNVBAsTLFZhbGlDZXJ0IENsYXNzIDIgUG9saWN5IFZhbGlkYXRpb24gQXV0aG9y
+aXR5MSEwHwYDVQQDExhodHRwOi8vd3d3LnZhbGljZXJ0LmNvbS8xIDAeBgkqhkiG
+9w0BCQEWEWluZm9AdmFsaWNlcnQuY29tMB4XDTk5MDYyNjAwMTk1NFoXDTE5MDYy
+NjAwMTk1NFowgbsxJDAiBgNVBAcTG1ZhbGlDZXJ0IFZhbGlkYXRpb24gTmV0d29y
+azEXMBUGA1UEChMOVmFsaUNlcnQsIEluYy4xNTAzBgNVBAsTLFZhbGlDZXJ0IENs
+YXNzIDIgUG9saWN5IFZhbGlkYXRpb24gQXV0aG9yaXR5MSEwHwYDVQQDExhodHRw
+Oi8vd3d3LnZhbGljZXJ0LmNvbS8xIDAeBgkqhkiG9w0BCQEWEWluZm9AdmFsaWNl
+cnQuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDOOnHK5avIWZJV16vY
+dA757tn2VUdZZUcOBVXc65g2PFxTXdMwzzjsvUGJ7SVCCSRrCl6zfN1SLUzm1NZ9
+WlmpZdRJEy0kTRxQb7XBhVQ7/nHk01xC+YDgkRoKWzk2Z/M/VXwbP7RfZHM047QS
+v4dk+NoS/zcnwbNDu+97bi5p9wIDAQABMA0GCSqGSIb3DQEBBQUAA4GBADt/UG9v
+UJSZSWI4OB9L+KXIPqeCgfYrx+jFzug6EILLGACOTb2oWH+heQC1u+mNr0HZDzTu
+IYEZoDJJKPTEjlbVUjP9UNV+mWwD5MlM/Mtsq2azSiGM5bUMMj4QssxsodyamEwC
+W/POuZ6lcg5Ktz885hZo+L7tdEy8W9ViH0Pd
+-----END CERTIFICATE-----

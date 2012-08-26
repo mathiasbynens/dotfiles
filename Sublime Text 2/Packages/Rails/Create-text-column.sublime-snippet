@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[t.text :${1:title}
+$0]]></content>
+    <tabTrigger>tct</tabTrigger>
+    <scope>meta.rails.migration.create_table, meta.rails.migration.change_table</scope>
+    <description>Table column text</description>
+</snippet>

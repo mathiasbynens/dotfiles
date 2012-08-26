@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[while ${2:[[ ${1:condition} ]]}; do
+	${0:#statements}
+done]]></content>
+    <tabTrigger>while</tabTrigger>
+    <scope>source.shell</scope>
+    <description>while … done</description>
+</snippet>

@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[require "test/unit"
+
+require "tc_${1:test_case_file}"
+require "tc_${2:test_case_file}"
+]]></content>
+    <tabTrigger>ts</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>require "tc_.." ..</description>
+</snippet>

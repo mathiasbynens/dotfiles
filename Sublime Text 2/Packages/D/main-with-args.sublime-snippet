@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[int main(char[][] args) {
+	$1
+	return 0;
+}]]></content>
+    <tabTrigger>maina</tabTrigger>
+    <scope>source.d</scope>
+    <description>int main(char[][] args) { … }</description>
+</snippet>

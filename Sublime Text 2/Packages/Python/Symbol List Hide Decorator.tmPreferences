@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Hide Decorator</string>
+	<key>scope</key>
+	<string>source.python meta.function.decorator.python entity.name.function.decorator.python</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>0</integer>
+	</dict>
+	<key>uuid</key>
+	<string>F5CE4B1B-6167-4693-A49B-021D97C18F5A</string>
+</dict>
+</plist>

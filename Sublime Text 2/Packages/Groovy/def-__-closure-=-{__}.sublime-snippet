@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[def ${1:closureName} = { ${2:args} ->
+	$0
+}]]></content>
+    <tabTrigger>cv</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>closure = { … } </description>
+</snippet>

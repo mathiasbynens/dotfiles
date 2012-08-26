@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[namespace :${1:${TM_FILENAME/\.\w+//}} do
+	$0
+end]]></content>
+    <tabTrigger>nam</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>namespace :.. do .. end</description>
+</snippet>

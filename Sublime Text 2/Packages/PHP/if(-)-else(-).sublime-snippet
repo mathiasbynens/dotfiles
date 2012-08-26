@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[if (${1:condition}) {
+	${2:# code...}
+} else {
+	${3:# code...}
+}
+$0]]></content>
+    <tabTrigger>ifelse</tabTrigger>
+    <scope>source.php</scope>
+    <description>if … else …</description>
+</snippet>

@@ -1,0 +1,16 @@
+Package Control 1.3.0 Changelog:
+
+Please be sure to restart Sublime Text 2 to start using this new version.
+
+New Features
+ - Added tracking of usage (install, upgrade, remove) statistics. Go to
+   Preferences > Package Settings > Package Control > Settings - User and
+   set the key "submit_usage" to false.
+
+ - Added local tracking of installed packages in
+   User/Package Control.sublime-settings via the "installed_packages" key.
+   This allows distributing a settings file that will automatically install
+   packages.
+
+ - repositories.json schema version was increased to 1.1 and the
+   "last_modified" key was added.

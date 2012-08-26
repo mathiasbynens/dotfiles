@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[read.table("${1:filename}"${2:, header = ${3:TRUE},  sep = "${4:\t}",  stringsAsFactors = ${5:FALSE}})]]></content>
+    <tabTrigger>rea</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Read From File</description>
+</snippet>

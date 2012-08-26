@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${1:map}.${2:connect} '${3::controller/:action/:id}']]></content>
+    <tabTrigger>map</tabTrigger>
+    <scope>meta.rails.routes</scope>
+    <description>map.named_route</description>
+</snippet>

@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[proc ${1:name} {${2:args}} \\
+{
+	${3}
+}
+]]></content>
+    <tabTrigger>proc</tabTrigger>
+    <scope>source.tcl</scope>
+    <description>proc...</description>
+</snippet>

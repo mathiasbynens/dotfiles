@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[case $1:
+	$2
+$0]]></content>
+    <tabTrigger>cs</tabTrigger>
+    <scope>source.java</scope>
+    <description>case</description>
+</snippet>

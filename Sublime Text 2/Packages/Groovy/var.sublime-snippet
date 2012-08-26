@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${1:def} ${2:var}${3: = ${0:null}}]]></content>
+    <tabTrigger>v</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>var</description>
+</snippet>

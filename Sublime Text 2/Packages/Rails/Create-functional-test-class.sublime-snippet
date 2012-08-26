@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[require File.dirname(__FILE__) + '/../test_helper'
+
+class ${1:Model}ControllerTest < ActionController::TestCase
+	deft$0
+end
+]]></content>
+    <tabTrigger>cla</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>Create functional test class</description>
+</snippet>

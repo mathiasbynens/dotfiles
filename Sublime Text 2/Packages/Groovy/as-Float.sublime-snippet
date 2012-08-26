@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[as Float]]></content>
+    <tabTrigger>as</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>as Float</description>
+</snippet>

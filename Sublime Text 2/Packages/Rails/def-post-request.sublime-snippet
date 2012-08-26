@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[def test_should_post_${1:action}
+	${3:@$2 = ${4:$2s}(:${5:fixture_name})
+	}post :${1}${6:, :id => @$2.to_param}, :${2:model} => { $0 }
+	assert_response :redirect
+
+end]]></content>
+    <tabTrigger>deftp</tabTrigger>
+    <scope>meta.rails.functional_test</scope>
+    <description>def test_should_post_action</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[validates_presence_of :${1:attribute}${2:, :on => :${3:create}, :message => "${4:can't be blank}"}]]></content>
+    <tabTrigger>vp</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>validates_presence_of</description>
+</snippet>

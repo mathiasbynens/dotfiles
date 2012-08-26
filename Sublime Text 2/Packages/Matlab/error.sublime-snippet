@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[error('${1:Description}');]]></content>
+    <tabTrigger>error</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>error</description>
+</snippet>

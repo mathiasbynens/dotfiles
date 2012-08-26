@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[redirect_to(${2:${12:model}_path(${13:@}${14:${12}})})]]></content>
+    <tabTrigger>rep</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>redirect_to (path)</description>
+</snippet>

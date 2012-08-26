@@ -1,0 +1,12 @@
+--- cElementTree/cElementTree.c.orig	2007-03-19 13:09:30.000000000 -0700
++++ cElementTree/cElementTree.c	2007-03-19 13:09:47.000000000 -0700
+@@ -2864,6 +2864,7 @@
+         "cElementTree.VERSION = '" VERSION "'\n"
+         "cElementTree.__version__ = '" VERSION "'\n"
+         "cElementTree.XMLParserError = SyntaxError\n"
++        "cElementTree._patched_for_komodo_ = True\n"
+ 
+        );
+ 
+End of Patch.
+

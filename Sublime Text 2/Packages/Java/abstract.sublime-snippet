@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[abstract ]]></content>
+    <tabTrigger>ab</tabTrigger>
+    <scope>source.java</scope>
+    <description>abstract</description>
+</snippet>

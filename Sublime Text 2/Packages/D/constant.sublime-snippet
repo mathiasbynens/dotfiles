@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[private static final ${1:char[]} ${2:name} = ${4:"${3:value}"};]]></content>
+    <tabTrigger>ps</tabTrigger>
+    <scope>source.d</scope>
+    <description>constant (private static final)</description>
+</snippet>

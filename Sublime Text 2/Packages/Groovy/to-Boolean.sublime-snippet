@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[toBoolean()]]></content>
+    <tabTrigger>to</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>to Boolean</description>
+</snippet>

@@ -1,0 +1,28 @@
+Note: This is already fixed in the latest Scintilla sources.
+
+Index: /home/toddw/as/komodo-devel_clean/src/scintilla/src/LexMarkdown.cxx
+===================================================================
+--- src/LexMarkdown.cxx	(revision 60708)
++++ src/LexMarkdown.cxx	(working copy)
+@@ -95,19 +95,19 @@
+     }
+     sc.SetState(SCE_MARKDOWN_LINE_BEGIN);
+ }
+ 
+ // Does the previous line have more than spaces and tabs?
+ static bool HasPrevLineContent(StyleContext &sc) {
+     int i = 0;
+     // Go back to the previous newline
+-    while ((--i + sc.currentPos) && !IsNewline(sc.GetRelative(i))) 
++    while ((--i + (int)sc.currentPos) >= 0 && !IsNewline(sc.GetRelative(i)))
+         ;
+-    while (--i + sc.currentPos) {
++    while ((--i + (int)sc.currentPos) >= 0) {
+         if (IsNewline(sc.GetRelative(i)))
+             break;
+         if (!IsASpaceOrTab(sc.GetRelative(i)))
+             return true;
+     }
+     return false;
+ }
+ 

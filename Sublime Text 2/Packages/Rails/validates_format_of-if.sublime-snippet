@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[validates_format_of :${1:attribute}, :with => /${2:^[${3:\w\d}]+\$}/${4:, :on => :${5:create}, :message => "${6:is invalid}"}, :if => proc { |obj| ${7:obj.condition?} }}]]></content>
+    <tabTrigger>vfif</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>validates_format_of if</description>
+</snippet>

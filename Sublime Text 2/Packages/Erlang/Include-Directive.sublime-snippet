@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[-include ("${1:file}").]]></content>
+    <tabTrigger>inc</tabTrigger>
+    <scope>source.erlang</scope>
+    <description>Include Directive</description>
+</snippet>

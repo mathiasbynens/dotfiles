@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[for (( i = 0; i < ${1:10}; i++ )); do
+	${0:#statements}
+done]]></content>
+    <tabTrigger>for</tabTrigger>
+    <scope>source.shell</scope>
+    <description>for … done</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[before_validation_on_create ]]></content>
+    <tabTrigger>befvoc</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>before_validation_on_create</description>
+</snippet>

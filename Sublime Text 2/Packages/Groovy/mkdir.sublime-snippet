@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[mkdir(dir:"${1:dirName}")]]></content>
+    <tabTrigger>mkdir</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>mkdir(dir: …)</description>
+</snippet>

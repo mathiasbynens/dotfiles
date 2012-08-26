@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>class ${1:Class}(${2/(\S+\s*:)/val $1/g}) {
+  override def hashCode = 0 ${2/(\S+)\s*:[^,]+(,?)/+ $1.##/g}
+  override def equals(other: Any) = $1.unapply(this) == $1.unapply(other)
+  override def canEqual(other: Any) = other.isInstanceOf[$1]
+}
+
+object $1 {
+  def apply(${2:arguments}): $1 = new $1(${2/(\S+)\s*:[^,]+/$1/g})
+  def unapply(other: Any) = other match {
+    case x: $1 =&gt; import x._ ; Some(${2/(\S+)\s*:[^,]+/$1/g})
+    case _     =&gt; None
+  }
+}
+</string>
+	<key>name</key>
+	<string>case class scaffolding</string>
+	<key>scope</key>
+	<string>source.scala</string>
+	<key>tabTrigger</key>
+	<string>ccc</string>
+	<key>uuid</key>
+	<string>CC643A92-5A38-4998-AB95-041EAF15ECF9</string>
+</dict>
+</plist>

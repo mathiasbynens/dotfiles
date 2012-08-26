@@ -1,0 +1,221 @@
+diff -ruN SilverCity.orig/Lib/Src/BufferAccessor.cxx SilverCity/Lib/Src/BufferAccessor.cxx
+--- SilverCity.orig/Lib/Src/BufferAccessor.cxx	2006-11-22 03:26:53.000000000 -0600
++++ SilverCity/Lib/Src/BufferAccessor.cxx	2011-06-02 04:27:35.000000000 -0500
+@@ -9,7 +9,7 @@
+ 
+ #include "Platform.h"
+ 
+-#include "PropSet.h"
++#include "PropSetSimple.h"
+ #include "SVector.h"
+ #include "Accessor.h"
+ #include "BufferAccessor.h"
+@@ -20,7 +20,7 @@
+ BufferAccessor::BufferAccessor(const char * charBuf_,
+                                int bufLen_,
+                                char * styleBuf_,
+-                               PropSet &props_) : 
++                               PropSetSimple &props_) : 
+ 	Accessor(), props(props_), charBuf(charBuf_), bufLen(bufLen_), styleBuf(styleBuf_),
+     chFlags(0), chWhile(0)
+     
+@@ -136,6 +136,9 @@
+     return lv[line].lineState;
+ }
+ 
++void BufferAccessor::IndicatorFill(int start, int end, int indicator, int value) {
++}
++
+ int BufferAccessor::SetLineState(int line, int state) {
+ 	int stateOld = lv[line].lineState;
+ 	lv[line].lineState = state;
+diff -ruN SilverCity.orig/Lib/Src/BufferAccessor.h SilverCity/Lib/Src/BufferAccessor.h
+--- SilverCity.orig/Lib/Src/BufferAccessor.h	2006-11-22 03:26:53.000000000 -0600
++++ SilverCity/Lib/Src/BufferAccessor.h	2011-06-02 04:27:35.000000000 -0500
+@@ -14,7 +14,7 @@
+ 	char stylingMask;
+ 	int endStyled;
+ 
+-	PropSet &props;
++	PropSetSimple &props;
+     LineVector lv;
+ 	int bufLen;
+     const char * charBuf;
+@@ -30,7 +30,7 @@
+     BufferAccessor(const char * charBuf_,
+                    int bufLen_,
+                    char * styleBuf,
+-                   PropSet &props_);
++                   PropSetSimple &props_);
+ 	~BufferAccessor();
+ 
+ 	bool Match(int pos, const char *s);
+@@ -57,5 +57,6 @@
+ 	void ColourTo(unsigned int pos, int chAttr);
+ 	void SetLevel(int line, int level);
+ 	int IndentAmount(int line, int *flags, PFNIsCommentLeader pfnIsCommentLeader = 0);
++	void IndicatorFill(int start, int end, int indicator, int value);
+ };
+ 
+diff -ruN SilverCity.orig/PySilverCity/SilverCity/Lexer.py SilverCity/PySilverCity/SilverCity/Lexer.py
+--- SilverCity.orig/PySilverCity/SilverCity/Lexer.py	2006-11-22 03:26:56.000000000 -0600
++++ SilverCity/PySilverCity/SilverCity/Lexer.py	2011-06-02 04:29:47.000000000 -0500
+@@ -1,5 +1,7 @@
+ class Lexer:
+     def tokenize_by_style(self, buffer, call_back = None):
++        if isinstance(buffer, unicode):
++            buffer = buffer.encode('utf8')
+         if call_back is not None:
+             return self._lexer.tokenize_by_style(
+                     buffer,
+diff -ruN SilverCity.orig/PySilverCity/Src/PyLexerModule.cxx SilverCity/PySilverCity/Src/PyLexerModule.cxx
+--- SilverCity.orig/PySilverCity/Src/PyLexerModule.cxx	2006-11-22 03:26:55.000000000 -0600
++++ SilverCity/PySilverCity/Src/PyLexerModule.cxx	2011-06-02 04:27:35.000000000 -0500
+@@ -96,7 +96,7 @@
+ {
+     PyObject * pyWordLists = NULL;
+     WordList ** wordLists = NULL;
+-    PropSet * propset = NULL;
++    PropSetSimple * propset = NULL;
+     PyObject * pyPropSet = NULL;
+     PyObject * pyTokenList = NULL;
+     PyObject * pyToken = NULL;
+diff -ruN SilverCity.orig/PySilverCity/Src/PyLexerModule.h SilverCity/PySilverCity/Src/PyLexerModule.h
+--- SilverCity.orig/PySilverCity/Src/PyLexerModule.h	2006-11-22 03:26:55.000000000 -0600
++++ SilverCity/PySilverCity/Src/PyLexerModule.h	2011-06-02 04:27:35.000000000 -0500
+@@ -8,7 +8,7 @@
+ #include <Python.h>
+ 
+ #include <Accessor.h>
+-#include <PropSet.h>
++#include <PropSetSimple.h>
+ #include <KeyWords.h>
+ 
+ extern PyTypeObject PyLexerModuleType;
+diff -ruN SilverCity.orig/PySilverCity/Src/PyPropSet.cxx SilverCity/PySilverCity/Src/PyPropSet.cxx
+--- SilverCity.orig/PySilverCity/Src/PyPropSet.cxx	2006-11-22 03:26:55.000000000 -0600
++++ SilverCity/PySilverCity/Src/PyPropSet.cxx	2011-06-02 04:27:35.000000000 -0500
+@@ -27,7 +27,7 @@
+         return NULL;
+     }
+ 
+-    pyPropSet->propSet = new PropSet();
++    pyPropSet->propSet = new PropSetSimple();
+ 
+     if (pyPropertyMap != NULL) {
+         if (PyPropSet_set_from_map(pyPropSet, pyPropertyMap) == -1) {
+@@ -50,7 +50,7 @@
+ static PyObject *
+ PyPropSet_subscript(PyPropSet *self, PyObject *key)
+ {
+-    SString     value;
++    const char *value;
+ 
+     if (!PyString_Check(key)) {
+         PyErr_Format(PyExc_TypeError, "expected string, %.200s found",
+@@ -59,7 +59,7 @@
+     }
+     
+     value = self->propSet->Get(PyString_AS_STRING(key));
+-    return Py_BuildValue("s#", value.c_str(), value.length());
++    return Py_BuildValue("s#", value, strlen(value));
+ }
+ 
+ static int
+@@ -184,12 +184,12 @@
+         return NULL;
+     }
+ 
+-    get = self->propSet->GetFirst(&key, &value);
+-    while (get) {
++    mapss *props = static_cast<mapss *>(self->propSet->impl);
++    for (mapss::const_iterator it=props->begin(); it != props->end(); it++) {
+         if (want_key) {
+-            item = PyString_FromString(key);
++            item = PyString_FromString(it->first.c_str());
+         } else {
+-            item = PyString_FromString(value);
++            item = PyString_FromString(it->second.c_str());
+         }
+ 
+         if (item == NULL) {
+@@ -201,7 +201,6 @@
+         }
+ 
+         Py_DECREF(item);
+-        get = self->propSet->GetNext(&key, &value);
+     }
+ 
+     return list;
+diff -ruN SilverCity.orig/PySilverCity/Src/PyPropSet.h SilverCity/PySilverCity/Src/PyPropSet.h
+--- SilverCity.orig/PySilverCity/Src/PyPropSet.h	2006-11-22 03:26:55.000000000 -0600
++++ SilverCity/PySilverCity/Src/PyPropSet.h	2011-06-02 04:27:35.000000000 -0500
+@@ -7,13 +7,13 @@
+ 
+ #include <Python.h>
+ 
+-#include <PropSet.h>
++#include <PropSetSimple.h>
+ 
+ extern PyTypeObject PyPropSetType;
+ 
+ typedef struct {
+     PyObject_HEAD
+-    PropSet * propSet;
++    PropSetSimple * propSet;
+ } PyPropSet;
+ 
+ #define PyPropSet_Check(op) ((op)->ob_type == &PyPropSetType)
+diff -ruN SilverCity.orig/PySilverCity/Src/PyWordList.h SilverCity/PySilverCity/Src/PyWordList.h
+--- SilverCity.orig/PySilverCity/Src/PyWordList.h	2006-11-22 03:26:55.000000000 -0600
++++ SilverCity/PySilverCity/Src/PyWordList.h	2011-06-02 04:27:35.000000000 -0500
+@@ -7,7 +7,8 @@
+ 
+ #include <Python.h>
+ 
+-#include <PropSet.h>
++#include <PropSetSimple.h>
++#include <KeyWords.h>
+ 
+ extern PyTypeObject PyWordListType;
+ 
+diff -ruN SilverCity.orig/setup.py SilverCity/setup.py
+--- SilverCity.orig/setup.py	2006-11-23 01:03:16.000000000 -0600
++++ SilverCity/setup.py	2011-06-02 04:27:35.000000000 -0500
+@@ -37,15 +37,23 @@
+     )
+ 
+ # Add Scintilla support files
+-scintilla_scr = 'scintilla/src'
+-scintilla_include = 'scintilla/include'
++scintilla_candidates = [os.path.join(os.pardir, 'scintilla'), 'scintilla']
++for candidate in scintilla_candidates:
++    if os.path.exists(os.path.join(candidate, 'src')):
++        scintilla_scr = os.path.join(candidate, 'src')
++        scintilla_include = os.path.join(candidate, 'include')
++        break
++else:
++    raise OSError("couldn't find scintilla src and include dirs: '%s'"
++                  % "', '".join(scintilla_candidates))
+ src_files.extend(
+         [os.path.join(scintilla_scr, file) for file in
+             ["KeyMap.cxx",
+             "KeyWords.cxx",
+             "PropSet.cxx",
+             "StyleContext.cxx",
+-            "UniConversion.cxx"]
++            "UniConversion.cxx",
++            "CharClassify.cxx"]
+         ]
+     )
+ 
+@@ -61,7 +69,7 @@
+                 'Lib/Src']
+ 
+ data_files = ['CSS/default.css']
+-libraries = []
++libraries = ['pcre']
+ defines = []
+ 
+ scripts = [os.path.join('PySilverCity','Scripts', script) for script in
+

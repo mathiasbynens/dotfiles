@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[fun
+	(${1:pattern})${2: when ${3:guard}} ->
+		${4:body}
+end]]></content>
+    <tabTrigger>fun</tabTrigger>
+    <scope>source.erlang</scope>
+    <description>Fun Expression</description>
+</snippet>

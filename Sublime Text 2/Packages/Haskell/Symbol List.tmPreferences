@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List</string>
+	<key>scope</key>
+	<string>source.haskell entity.name.function - entity.name.function.infix</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<string>1</string>
+	</dict>
+	<key>uuid</key>
+	<string>0C39B945-E2C0-4E43-8A5B-332F6FA73C67</string>
+</dict>
+</plist>

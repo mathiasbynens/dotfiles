@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[flash[:${1:notice}] = "${2:Successfully created...}"$0]]></content>
+    <tabTrigger>flash</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>flash[…]</description>
+</snippet>

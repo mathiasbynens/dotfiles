@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Indentation Rules</string>
+	<key>scope</key>
+	<string>source.c, source.c++, source.objc, source.objc++</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>(?x)
+	    ^ (.*\*/)? \s* \} .* $
+	|   ^ \s* (public|private|protected): \s* $
+	|   ^ \s* @(public|private|protected) \s* $
+	</string>
+		<key>increaseIndentPattern</key>
+		<string>(?x)
+	    ^ .* \{ [^}"']* $
+	|   ^ \s* (public|private|protected): \s* $
+	|   ^ \s* @(public|private|protected) \s* $
+	</string>
+
+		<key>bracketIndentNextLinePattern</key>
+		<string>(?x)
+		^ \s* \b(if|while|else)\b [^;]* $
+		| ^ \s* \b(for)\b .* $
+		</string>
+
+		<key>unIndentedLinePattern</key>
+		<string>^\s*((/\*|.*\*/|//|#|template\b.*?&gt;(?!\(.*\))|@protocol|@interface(?!.*\{)|@implementation|@end).*)?$</string>
+
+		<key>indentSquareBrackets</key>
+		<true/>
+
+	</dict>
+	<key>uuid</key>
+	<string>02EB44C6-9203-4F4C-BFCB-7E3360B12812</string>
+</dict>
+</plist>

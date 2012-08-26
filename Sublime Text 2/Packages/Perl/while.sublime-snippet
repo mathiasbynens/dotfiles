@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[while ($1) {
+	${2:# body...}
+}
+]]></content>
+    <tabTrigger>while</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Loop</description>
+</snippet>

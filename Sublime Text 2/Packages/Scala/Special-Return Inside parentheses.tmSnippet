@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>
+	$0
+</string>
+	<key>keyEquivalent</key>
+	<string></string>
+	<key>name</key>
+	<string>Special: Return Inside parentheses</string>
+	<key>scope</key>
+	<string>meta.parentheses.scala</string>
+	<key>uuid</key>
+	<string>E364F26E-C766-4068-BAAF-C010FA1F5F92</string>
+</dict>
+</plist>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[render :partial => "${1:item}", :object => ${2:@$1}]]></content>
+    <tabTrigger>rpo</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (partial, object)</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[-import (${1:module}, [${2:function}/${3:arity}]).]]></content>
+    <tabTrigger>imp</tabTrigger>
+    <scope>source.erlang</scope>
+    <description>Import Directive</description>
+</snippet>

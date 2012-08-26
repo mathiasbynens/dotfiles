@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[eachWithIndex { ${1:obj}, ${2:i} ->
+	$0 
+}]]></content>
+    <tabTrigger>eawi</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>eachWithIndex { … }</description>
+</snippet>

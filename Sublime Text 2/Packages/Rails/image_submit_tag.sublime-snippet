@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${TM_RAILS_TEMPLATE_START_RUBY_EXPR}image_submit_tag("${1:agree.png}"${2:${3:, :id => "${4:${1/^(\w+)(\.\w*)?$/$1/}}"}${5:, :name => "${6:${1/^(\w+)(\.\w*)?$/$1/}}"}${7:, :class => "${8:${1/^(\w+)(\.\w*)?$/$1/}-button}"}${9:, :disabled => ${10:false}}})${TM_RAILS_TEMPLATE_END_RUBY_EXPR}]]></content>
+    <tabTrigger>ist</tabTrigger>
+    <scope>text.html.ruby, text.haml</scope>
+    <description>image_submit_tag</description>
+</snippet>

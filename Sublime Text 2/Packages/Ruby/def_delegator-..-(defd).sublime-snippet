@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[def_delegator :${1:@del_obj}, :${2:del_meth}, :${3:new_name}]]></content>
+    <tabTrigger>defd</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>def_delegator ..</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[has_many :${1:object}s${2:, :class_name => "${1}", :foreign_key => "${4:reference}_id"}]]></content>
+    <tabTrigger>hm</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>has_many</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[after_validation ]]></content>
+    <tabTrigger>aftv</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>after_validation</description>
+</snippet>

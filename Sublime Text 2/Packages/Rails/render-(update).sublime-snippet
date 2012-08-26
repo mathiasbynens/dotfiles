@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[render :update do |${2:page}|
+	$2.$0
+end]]></content>
+    <tabTrigger>ru</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>render (update)</description>
+</snippet>

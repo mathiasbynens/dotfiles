@@ -1,0 +1,46 @@
+SublimeLinter 1.6.0 changelog
+
+NEW FEATURES
+
+- Simpler abstraction of Javascript engines for JS powered linters.
+
+  To leverage a JS linter, include a "linter.js" file; this file should
+  `require` the actual linter library file and export a `lint` function.
+  The `lint` function should return a list of errors back to the python
+  language handler file (via the `errors` parameter to the `parse_errors`
+  method).
+
+  Although "linter.js" should follow the Node.js api, the linter may also
+  be run via JavaScriptCore on OS X if Node.js is not installed. In the case
+  where JavaScriptCore is used, require + export are shimmed to keep things
+  consistent. However, it is important not to assume that a full Node.js
+  api is available. If you must know what JS engine you are using, you may
+  check for `USING_JSC` to be set as `true` when JavaScriptCore is used.
+
+  For examples of using the JS engines, see "csslint", "jslint", and
+  "jshint" in "SublimeLinter/sublimelinter/modules/libs" and the respective
+  python code of "css.py" and "javascript.py" in
+  "SublimeLinter/sublimelinter/modules".
+
+- Douglas Crockford's JSLint Javascript linter (jslint) is now supported
+  (http://jslint.com). To use JSLint set the "javascript_linter" setting
+  to "jslint". You may also customize jslint behavior with the
+  "jslint_options" setting. For more information about options available
+  to JSLint, see http://jslint.com/lint.html.
+
+- The CSSLint CSS linter (csslint) is now supported (http://csslint.net).
+  By default all CSSLint settings are turned on. You may customize csslint
+  behavior with the "csslint_options" setting. Please select
+  "Preferences->Package Settings->SublimeLinter->Settings - Default"
+  for more information on turning off or adjusting severity of tests.
+  For more information about options available to CSSLint, see
+  https://github.com/stubbornella/csslint/wiki/Rules.
+
+
+IMPORTANT
+
+Do NOT edit the default SublimeLinter settings. Your changes will be lost
+when SublimeLinter is updated. ALWAYS edit the user SublimeLinter settings
+by selecting "Preferences->Package Settings->SublimeLinter->Settings - User".
+Note that individual settings you include in your user settings will **completely**
+replace the corresponding default setting, so you must provide that setting in its entirety.

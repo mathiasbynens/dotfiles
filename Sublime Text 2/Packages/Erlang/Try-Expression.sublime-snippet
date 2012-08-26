@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[try${1: ${2:expression}${3: of
+	${4:pattern}${5: when ${6:guard}} ->
+		${7:body}}}
+${8:catch
+	${9:pattern}${10: when ${11:guard}} ->
+		${12:body}}
+${13:after
+	${14:body}}
+end]]></content>
+    <tabTrigger>try</tabTrigger>
+    <scope>source.erlang</scope>
+    <description>Try Expression</description>
+</snippet>

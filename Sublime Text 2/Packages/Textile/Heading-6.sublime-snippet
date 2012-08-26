@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[h6. ${1:Text...}
+
+$0]]></content>
+    <tabTrigger>h6</tabTrigger>
+    <scope>text.html.textile</scope>
+    <description>Heading 6</description>
+</snippet>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Variants</string>
+	<key>scope</key>
+	<string>entity.name.type.variant.ocaml | entity.name.type.variant.polymorphic.ocaml</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>0</integer>
+	</dict>
+	<key>uuid</key>
+	<string>A40FC961-E731-454E-AEB3-0B7307EF17E0</string>
+</dict>
+</plist>

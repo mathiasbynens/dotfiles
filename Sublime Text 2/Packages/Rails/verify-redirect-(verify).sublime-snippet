@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[verify :only => [:$1], :session => :user, :params => :id, :redirect_to => {:action => '${2:index}'}
+]]></content>
+    <tabTrigger>verify</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>verify — redirect</description>
+</snippet>

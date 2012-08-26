@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>firstLineMatch</key>
+	<string>^Format:\s*(?i:complete)\s*$</string>
+	<key>foldingStartMarker</key>
+	<string>(?x)
+		(&lt;(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)\b.*?&gt;
+		|&lt;!--(?!.*--&gt;)
+		|\{\s*($|\?&gt;\s*$|//|/\*(.*\*/\s*$|(?!.*?\*/)))
+		)</string>
+	<key>foldingStopMarker</key>
+	<string>(?x)
+		(&lt;/(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)&gt;
+		|^\s*--&gt;
+		|(^|\s)\}
+		)</string>
+	<key>keyEquivalent</key>
+	<string>^~M</string>
+	<key>name</key>
+	<string>MultiMarkdown</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>begin</key>
+			<string>^([A-Za-z0-9]+)(:)\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.multimarkdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.key-value.multimarkdown</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^$|^(?=[A-Za-z0-9]+:)</string>
+			<key>name</key>
+			<string>meta.header.multimarkdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>The reason for not setting scopeName = "string.unquoted" 
+						(for the parent rule) is that we do not want
+						newlines to be marked as string.unquoted</string>
+					<key>match</key>
+					<string>.+</string>
+					<key>name</key>
+					<string>string.unquoted.multimarkdown</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(?!=[A-Za-z0-9]+:)</string>
+			<key>end</key>
+			<string>^(?=not)possible$</string>
+			<key>name</key>
+			<string>meta.content.multimarkdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>text.html.markdown</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.html.markdown.multimarkdown</string>
+	<key>uuid</key>
+	<string>F5E04BF4-69A9-45AE-9205-B3F3C2B00130</string>
+</dict>
+</plist>

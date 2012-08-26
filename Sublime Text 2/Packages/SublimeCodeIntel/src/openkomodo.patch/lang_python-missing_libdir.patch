@@ -1,0 +1,11 @@
+--- openkomodo/src/codeintel/lib/codeintel2/lang_python.py
++++ openkomodo/src/codeintel/lib/codeintel2/lang_python.py
+@@ -539,7 +539,7 @@ class PythonLangIntel(CitadelLangIntel, ParenStyleCalltipIntelMixin,
+             paths_from_libname = {"sitelib": [], "envlib": [], "stdlib": []}
+             canon_sitelibdir = sitelibdir and normcase(sitelibdir) or None
+             canon_prefix = prefix and normcase(prefix) or None
+-            canon_libdir = normcase(libdir)
++            canon_libdir = libdir and normcase(libdir) or ""
+             canon_libdir_plat_prefix = normcase(join(libdir, "plat-"))
+             canon_libdir_lib_prefix = normcase(join(libdir, "lib-"))
+             for dir in sys_path:

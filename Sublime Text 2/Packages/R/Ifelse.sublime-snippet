@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[ifelse(${1:test}, ${2:yes}, ${3:no})]]></content>
+    <tabTrigger>ife</tabTrigger>
+    <scope>source.r, source.rd.console</scope>
+    <description>Ifelse</description>
+</snippet>

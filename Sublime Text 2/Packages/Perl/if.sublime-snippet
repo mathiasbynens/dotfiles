@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[if ($1) {
+	${2:# body...}
+}
+]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.perl</scope>
+    <description>Conditional</description>
+</snippet>

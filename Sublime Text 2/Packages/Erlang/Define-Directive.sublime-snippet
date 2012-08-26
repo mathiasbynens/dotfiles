@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[-define (${1:macro}${2: (${3:param})}, ${4:body}).]]></content>
+    <tabTrigger>def</tabTrigger>
+    <scope>source.erlang</scope>
+    <description>Define Directive</description>
+</snippet>

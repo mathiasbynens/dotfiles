@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>object ${1:MyEnumeration} extends Enumeration {
+  type $1 = Value
+  val ${2:${3:MyEnumeration1}, ${4:MyEnumeration2}} = Value
+}
+
+${5:import $1._}
+${0}</string>
+	<key>name</key>
+	<string>enumeration</string>
+	<key>tabTrigger</key>
+	<string>enumeration</string>
+	<key>scope</key>
+	<string>source.scala</string>
+	<key>uuid</key>
+	<string>0097F60C-0AAC-4CC0-8815-C6BA0E77606F</string>
+</dict>
+</plist>

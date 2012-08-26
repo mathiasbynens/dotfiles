@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[line(${1:xvector},${2:yvector}${3:,'Color','${4:b}','LineWidth',${5:1},'LineStyle','${6:-}'})
+]]></content>
+    <tabTrigger>line</tabTrigger>
+    <scope>source.matlab, source.octave</scope>
+    <description>line</description>
+</snippet>

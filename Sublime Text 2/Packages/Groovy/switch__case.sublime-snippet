@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[switch(${1:value}) {
+	case ${2:CASE}:
+		$3
+	break$0
+}]]></content>
+    <tabTrigger>switch</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>switch … case</description>
+</snippet>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>#!/bin/sh
+  exec scala "\$0" "\$@"
+!#
+
+$1</string>
+	<key>name</key>
+	<string>script header</string>
+	<key>tabTrigger</key>
+	<string>script</string>
+	<key>scope</key>
+	<string>source.scala</string>
+	<key>uuid</key>
+	<string>11D5086B-FD25-4B33-92E3-4DEADCF4119D</string>
+</dict>
+</plist>

@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[named_scope :name, lambda { |${1:param}| { :conditions => ${3:['${4:${5:field} = ?}', ${6:$1}]} } }
+]]></content>
+    <tabTrigger>ncl</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>named_scope lambda</description>
+</snippet>

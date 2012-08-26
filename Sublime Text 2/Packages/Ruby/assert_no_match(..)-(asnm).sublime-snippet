@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_no_match(/${1:unexpected_pattern}/, ${0:actual_string})]]></content>
+    <tabTrigger>asnm</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_no_match(..)</description>
+</snippet>

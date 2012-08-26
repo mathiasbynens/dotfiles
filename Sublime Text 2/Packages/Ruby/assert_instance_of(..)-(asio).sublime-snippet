@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[assert_instance_of(${1:ExpectedClass}, ${0:actual_instance})]]></content>
+    <tabTrigger>asio</tabTrigger>
+    <scope>source.ruby</scope>
+    <description>assert_instance_of(..)</description>
+</snippet>

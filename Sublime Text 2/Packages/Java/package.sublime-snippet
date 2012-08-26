@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[package ]]></content>
+    <tabTrigger>pa</tabTrigger>
+    <scope>source.java</scope>
+    <description>package</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[for ${1:i}${2/.+/ in /}${2:words}; do
+	${0:#statements}
+done]]></content>
+    <tabTrigger>forin</tabTrigger>
+    <scope>source.shell</scope>
+    <description>for … in … done</description>
+</snippet>

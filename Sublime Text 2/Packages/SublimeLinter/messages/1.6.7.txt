@@ -1,0 +1,20 @@
+SublimeLinter 1.6.7 changelog
+
+NEW FEATURES
+
+- Puppet linting is now supported via `puppet parser validate`.
+
+- Added an option for more granular control of outline decorations. Set the
+  value of "sublimelinter_mark_style" to "outline", "fill", or "none" in
+  the user settings.
+
+
+CHANGES/FIXES
+
+- Repaired the built-in CSS linter (CSSLint). This was broken with with the
+  last update.
+
+- Added missing documentation for "save-only" linting in the settings file.
+
+- Adjusted ambiguous/misleading documentation for the
+  "sublimelinter_executable_map" setting.

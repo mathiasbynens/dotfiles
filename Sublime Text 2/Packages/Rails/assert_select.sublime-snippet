@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[assert_select '${1:path}'${2:, :${3:text} => ${4:'${5:inner_html}'}}${6: do
+	$0
+end}]]></content>
+    <tabTrigger>ass</tabTrigger>
+    <scope>source.ruby.rails</scope>
+    <description>assert_select</description>
+</snippet>

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[${1:String} ${2:var}${3: = ${0:null}};]]></content>
+    <tabTrigger>v</tabTrigger>
+    <scope>source.java</scope>
+    <description>variable</description>
+</snippet>

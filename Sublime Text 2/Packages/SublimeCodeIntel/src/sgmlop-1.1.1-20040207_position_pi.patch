@@ -1,0 +1,63 @@
+diff -ruN sgmlop-1.1.1-20040207/sgmlop.c sgmlop/sgmlop.c
+--- sgmlop/sgmlop.c	2011-06-10 09:26:05.000000000 -0500
++++ sgmlop/sgmlop.c	2011-06-10 09:24:59.000000000 -0500
+@@ -732,12 +732,12 @@
+ fastfeed(FastParserObject* self)
+ {
+     CHAR_T *end; /* tail */
+-    CHAR_T *p, *q, *s; /* scanning pointers */
++    CHAR_T *p, *q, *s, *pos; /* scanning pointers */
+     CHAR_T *b, *t, *e; /* token start/end */
+ 
+     int token;
+ 
+-    s = q = p = (CHAR_T*) self->buffer;
++    pos = s = q = p = (CHAR_T*) self->buffer;
+     end = (CHAR_T*) (self->buffer + self->bufferlen);
+ 
+     while (p < end) {
+@@ -807,7 +807,7 @@
+                         goto eot;
+                     }
+                 }
+-            } else if (*p == '?') {
++            } else if (*p == '?' || *p == '%') {
+                 token = PI;
+                 if (++p >= end)
+                     goto eol;
+@@ -984,7 +984,7 @@
+                 if (self->finish_endtag) {
+                     PyObject* res;
+                     res = PyObject_CallFunction(
+-                        self->finish_endtag, "s#", b, t-b
++                        self->finish_endtag, "s#i", b, t-b, b-pos
+                         );
+                     if (!res)
+                         return -1;
+@@ -996,7 +996,7 @@
+                 if (self->handle_special) {
+                     PyObject* res;
+                     res = PyObject_CallFunction(
+-                        self->handle_special, "s#", b, e-b
++                        self->handle_special, "s#i", b, e-b, token
+                         );
+                     if (!res)
+                         return -1;
+@@ -1030,7 +1030,7 @@
+                     if (!attr)
+                         return -1;
+                     res = PyObject_CallFunction(
+-                        self->finish_starttag, "s#O", b, len, attr
++                        self->finish_starttag, "s#Oii", b, len, attr, b-pos, b-pos+len
+                         );
+                     Py_DECREF(attr);
+                     if (!res)
+@@ -1042,7 +1042,7 @@
+                             ))
+                             return -1;
+                         res = PyObject_CallFunction(
+-                            self->finish_endtag, "s#", b, len
++                            self->finish_endtag, "s#i", b, len, b-pos+len
+                             );
+                         if (!res)
+                             return -1;

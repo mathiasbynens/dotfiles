@@ -1,0 +1,24 @@
+# https://sourceforge.net/tracker/?func=detail&atid=305470&aid=1538691&group_id=5470
+--- cElementTree/cElementTree.c.~1~	Thu Sep 21 16:30:01 2006
++++ cElementTree/cElementTree.c	Thu Sep 21 16:30:01 2006
+@@ -2533,6 +2533,19 @@
+         sprintf(buffer, "Expat %d.%d.%d", XML_MAJOR_VERSION,
+                 XML_MINOR_VERSION, XML_MICRO_VERSION);
+         return PyString_FromString(buffer);
++    } else if (name[0] == 'C') {
++	/* taken (almost) verbatim from pyexpat.c. */
++        if (strcmp(name, "CurrentLineNumber") == 0)
++            return PyInt_FromLong((long)
++                                  EXPAT(GetCurrentLineNumber)(self->parser));
++        if (strcmp(name, "CurrentColumnNumber") == 0)
++            return PyInt_FromLong((long)
++                                  EXPAT(GetCurrentColumnNumber)(self->parser));
++        if (strcmp(name, "CurrentByteIndex") == 0)
++            return PyInt_FromLong((long)
++                                  EXPAT(GetCurrentByteIndex)(self->parser));
++        PyErr_SetString(PyExc_AttributeError, name);
++        return NULL;
+     } else {
+         PyErr_SetString(PyExc_AttributeError, name);
+         return NULL;
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Symbol List: Functions</string>
+	<key>scope</key>
+	<string>source.matlab meta.function.with-arguments, source.matlab meta.function.without-arguments</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>1</integer>
+		<key>symbolTransformation</key>
+		<string>
+	s/^\s*function\s+//;
+	s/(?&gt;.*=)\s*//; # remove output args 
+    </string>
+	</dict>
+	<key>uuid</key>
+	<string>5EC2B9C8-1311-4C27-A421-A7982E6418AA</string>
+</dict>
+</plist>

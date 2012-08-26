@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[page.show ${1:"${2:id(s)}"}]]></content>
+    <tabTrigger>show</tabTrigger>
+    <scope>source.ruby.rails.rjs</scope>
+    <description>page.show (*ids)</description>
+</snippet>

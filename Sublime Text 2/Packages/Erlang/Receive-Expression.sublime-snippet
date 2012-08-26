@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[receive
+${1:	${2:pattern}${3: when ${4:guard}} ->
+		${5:body}
+}${6:after
+	${7:expression} ->
+		${8:body}
+}end]]></content>
+    <tabTrigger>rcv</tabTrigger>
+    <scope>source.erlang</scope>
+    <description>Receive Expression</description>
+</snippet>

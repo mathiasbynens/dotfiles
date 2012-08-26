@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[do {
+	${0:# code...}
+} while (${1:$a <= 10});]]></content>
+    <tabTrigger>do</tabTrigger>
+    <scope>source.php</scope>
+    <description>do … while …</description>
+</snippet>

@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[\subsubsection{${1:subsubsection name}} % (fold)
+\label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3)/g}}}
+${0:$TM_SELECTED_TEXT}
+% subsubsection $2 (end)]]></content>
+    <tabTrigger>subs</tabTrigger>
+    <scope>text.tex.latex</scope>
+    <description>Sub Sub Section</description>
+</snippet>

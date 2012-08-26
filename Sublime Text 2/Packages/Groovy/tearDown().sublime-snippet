@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[void tearDown() {
+	$0
+}]]></content>
+    <tabTrigger>tear</tabTrigger>
+    <scope>source.groovy</scope>
+    <description>tearDown() { … }</description>
+</snippet>
