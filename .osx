@@ -372,6 +372,8 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
+# Enable Webkit Developer Tools in the Mac App Store (Lion and below) - http://sut.tl/PtWntR 
+defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 ###############################################################################
 # iTunes                                                                      #
 ###############################################################################
