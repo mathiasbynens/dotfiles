@@ -87,6 +87,9 @@ systemsetup -setrestartfreeze on
 # Never go into computer sleep mode
 systemsetup -setcomputersleep Off > /dev/null
 
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
