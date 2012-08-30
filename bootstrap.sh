@@ -24,12 +24,22 @@ unset doIt
 # git config
 
 #make "ci" alias for "commit"
-git config alias.ci commit
+git config --global alias.ci commit
 #make "co" alias for checkout
-git config alias.co checkout
+git config --global alias.co checkout
 #make "br" alias for branch
-git config alias.br branch
+git config --global alias.br branch
 #make "st" alias for status
-git config alias.st status
+git config --global alias.st status
+
+# config name and mail
+git config --global user.name "Bruno Germano"
+git config --global user.email bruno.germano@gmail.com
+
+# colorize git
+git config --global color.branch auto
+git config --global color.diff auto
+git config --global color.interactive auto
+git config --global color.status auto
 
 source ~/.bash_profile
