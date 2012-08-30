@@ -20,4 +20,16 @@ else
 	fi
 fi
 unset doIt
+
+# git config
+
+#make "ci" alias for "commit"
+git config alias.ci commit
+#make "co" alias for checkout
+git config alias.co checkout
+#make "br" alias for branch
+git config alias.br branch
+#make "st" alias for status
+git config alias.st status
+
 source ~/.bash_profile
