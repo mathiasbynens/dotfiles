@@ -8,13 +8,13 @@ alias -- -="cd -"
 
 # Shortcuts
 alias d="cd ~/Dropbox"
-alias p="cd ~/Projects"
+alias s="cd ~/Sites"
 alias g="git"
 alias h="history"
 alias j="jobs"
 alias v="vim"
 alias m="mate ."
-alias s="subl ."
+alias subl="sublime ."
 alias o="open"
 alias oo="open ."
 
@@ -31,7 +31,7 @@ fi
 alias l="ls -l ${colorflag}"
 
 # List all files colorized in long format, including dot files
-alias la="ls -la ${colorflag}"
+alias ll="ls -la ${colorflag}"
 
 # List only directories
 alias lsd='ls -l ${colorflag} | grep "^d"'
