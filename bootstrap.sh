@@ -1,5 +1,9 @@
 #!/bin/bash
 cd "$(dirname "$0")"
+
+# install git and bash-completion 
+brew install git bash-completion git
+
 git pull
 function doIt() {
 	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -av . ~
