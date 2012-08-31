@@ -1,5 +1,5 @@
 # Set the default editor
-if [ -f /usr/local/bin/subl ]; then
+if [ -f /usr/local/bin/sublime ]; then
     export EDITOR='subl -w'
 elif [ -f /usr/local/bin/mate ]; then
     export EDITOR='mate'
