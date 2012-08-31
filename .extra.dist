@@ -8,6 +8,9 @@ do
 done
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
+# add in path rvm
+export PATH=$PATH:/Users/brunogermano/.rvm/bin/rvm
+
 # Git credentials
 GIT_AUTHOR_NAME="Bruno Germano"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
