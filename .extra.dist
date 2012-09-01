@@ -9,7 +9,12 @@ done
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # add in path rvm
-export PATH=$PATH:/Users/brunogermano/.rvm/bin/rvm
+# export PATH=/Users/brunogermano/.rvm/bin/rvm:$PATH
+source /Users/brunogermano/.rvm/scripts/rvm
+rvm install 1.9.3
+rvm use 1.9.3
+rvm rubygems latest
+
 
 # Git credentials
 GIT_AUTHOR_NAME="Bruno Germano"
