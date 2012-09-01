@@ -23,4 +23,4 @@ export PGHOST=/tmp
 # no ._ files in archives please
 export COPYFILE_DISABLE=true
 
-export TZ='America/Sao_Paulo'
+export TZ='Americas/Sao_Paulo'
