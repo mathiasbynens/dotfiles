@@ -326,8 +326,8 @@ ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app ~/Appl
 #defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
 # Hot corners
-# Top right left screen corner → Nothing
-defaults write com.apple.dock wvous-tl-corner -int 1
+# Top right left screen corner → Launchpad
+defaults write com.apple.dock wvous-tl-corner -int 11
 defaults write com.apple.dock wvous-tl-modifier -int 0
 # Top right righ screen corner → Start screen saver
 defaults write com.apple.dock wvous-tr-corner -int 5
