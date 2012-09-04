@@ -50,7 +50,7 @@ function parse_git_branch() {
 # in the title bar using the command sequence
 # \[\e]2;[bash]   \h::\]$PWD\[\a\]
 
-# Put the penultimate and current directory 
+# Put the penultimate and current directory
 # in the iterm tab
 # \[\e]1;\]$(basename $(dirname $PWD))/\W\[\a\]
 
