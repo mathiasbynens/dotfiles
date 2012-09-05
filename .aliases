@@ -6,7 +6,7 @@ alias -- -="cd -"
 
 # ssh!
 alias shh='ssh aurgasm@aurgasm.us'
-alias shhve='ssh paul@javascriptbattle.com'
+alias shhve='ssh paul@ve.hsh6wjwx.vesrv.com'
 
 # programs
 alias slt='open -a "Sublime Text 2"'
