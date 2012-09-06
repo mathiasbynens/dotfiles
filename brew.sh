@@ -8,7 +8,7 @@ brew upgrade
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
 # Install Bash 4
@@ -23,13 +23,38 @@ brew install homebrew/dupes/grep
 brew tap     josegonzalez/homebrew-php
 brew install php54
 
+chmod -R ug+w /usr/local/Cellar/php54/5.4.6/lib/php
+pear config-set php_ini /usr/local/etc/php/5.4/php.ini
+
 # databases
 brew install mysql
+
+unset TMPDIR
+mysql_install_db --verbose --user=`brunogermano` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+
+mkdir -p ~/Library/LaunchAgents
+cp /usr/local/Cellar/mysql/5.5.27/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+#setting a password root:root
+echo "Setting mysql password root/root."
+$(brew --prefix mysql)/bin/mysqladmin -u root password root
+
+echo "Start mysql"
+mysql.server start
+
 brew install mongodb
+
+mkdir -p ~/Library/LaunchAgents
+cp /usr/local/Cellar/mongodb/2.2.0-x86_64/homebrew.mxcl.mongodb.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+
+echo "Start mongodb"
+mongod run --config /usr/local/etc/mongod.conf
 
 # Install everything else
 brew install git
-brew install graphicmagick
+brew install graphicsmagick
 brew install node
 
 # install git and bash-completion 
