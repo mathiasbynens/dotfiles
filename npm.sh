@@ -1,6 +1,4 @@
 
-export PATH=/usr/local/share/npm/bin:$PATH
-
 npm update
 
 # install tools
