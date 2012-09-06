@@ -60,7 +60,8 @@ echo "    LoadModule php5_module    /usr/local/Cellar/php54/5.4.6/libexec/apache
 sublime -w /etc/apache2/httpd.conf 
 
 sudo apachectl restart
-brew install xdebug
+brew install xdebug php54-xdebug
+brew insatll php54-mcrypt
 
 # Install everything else
 brew install git
