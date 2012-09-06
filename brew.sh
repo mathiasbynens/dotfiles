@@ -20,18 +20,6 @@ brew install wget --enable-iri
 # Install more recent versions of some OS X tools
 brew tap     homebrew/dupes
 brew install homebrew/dupes/grep
-brew tap     josegonzalez/homebrew-php
-brew install php54
-
-chmod -R ug+w /usr/local/Cellar/php54/5.4.6/lib/php
-pear config-set php_ini /usr/local/etc/php/5.4/php.ini
-
-echo "To enable PHP in Apache add the following to httpd.conf and restart Apache:"
-echo "    LoadModule php5_module    /usr/local/Cellar/php54/5.4.6/libexec/apache2/libphp5.so"
-
-sublime -w /etc/apache2/httpd.conf 
-
-sudo apachectl restart
 
 # databases
 brew install mysql
@@ -58,6 +46,21 @@ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
 
 echo "Start mongodb"
 mongod run --config /usr/local/etc/mongod.conf
+
+#php
+brew tap     josegonzalez/homebrew-php
+brew install php54 --without-apache --with-mysql
+
+chmod -R ug+w /usr/local/Cellar/php54/5.4.6/lib/php
+pear config-set php_ini /usr/local/etc/php/5.4/php.ini
+
+echo "To enable PHP in Apache add the following to httpd.conf and restart Apache:"
+echo "    LoadModule php5_module    /usr/local/Cellar/php54/5.4.6/libexec/apache2/libphp5.so"
+
+sublime -w /etc/apache2/httpd.conf 
+
+sudo apachectl restart
+brew install xdebug
 
 # Install everything else
 brew install git
