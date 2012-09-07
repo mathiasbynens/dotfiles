@@ -18,7 +18,7 @@
 #   root @ server in ~/projects/dotfiles/ on master [↑]
 #   $
 #
-#   {BOLD}{RED}root{WHITE} @ {ORANGE}server{WHITE} in {PURPLE}~/projects/dotfiles {WHITE} on {RED|YELLOW|GREEN} master [↑]
+#   {BOLD}{RED}root{WHITE} at {ORANGE}server{WHITE} in {PURPLE}~/projects/dotfiles {WHITE} on {RED|YELLOW|GREEN} master [↑]
 #   {RESET}$
 #
 # EXAMPLE 2:
@@ -26,7 +26,7 @@
 #   root @ server in ~/projects
 #   $
 #
-#   {BOLD}{RED}root{WHITE} @ {ORANGE}server{WHITE} in {PURPLE}~/projects
+#   {BOLD}{RED}root{WHITE} at {ORANGE}server{WHITE} in {PURPLE}~/projects
 #   {RESET}$
 #
 # AUTHOR:
@@ -125,7 +125,7 @@ function get_git_branch_name() {
 	fi
 
 	# Set the final branch string.
-	echo "${WHITE} on ${local_state}${branch_name}${remote_state}${RESET} "
+	echo "${WHITE} on ${local_state}${branch_name}${remote_state} "
 }
 function get_branch_name() {
 	if is_git_repository ; then
@@ -133,5 +133,5 @@ function get_branch_name() {
 	fi
 	echo ""
 }
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$(get_branch_name)\n\$ \[$RESET\]"
+export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$PURPLE\]\w\$(get_branch_name)\n\[$RESET\]\$ "
 export PS2="\[$ORANGE\]→ \[$RESET\]"
