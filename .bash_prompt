@@ -1,6 +1,42 @@
-# @gf3’s Sexy Bash Prompt, inspired by “Extravagant Zsh Prompt”
-# Shamelessly copied from https://github.com/gf3/dotfiles
-# Screenshot: http://i.imgur.com/s0Blh.png
+#!/bin/bash
+#
+# DESCRIPTION:
+#
+#   Set the bash prompt according to:
+#    * the branch/status of the current git repository
+#    * the branch of the current subversion repository
+#    * the return value of the previous command
+#
+# USAGE:
+#
+#   1. Save this file as ~/.bash_prompt
+#   2. Add the following line to the end of your ~/.profile or ~/.bash_profile:
+#        . ~/.bash_prompt
+#
+# EXAMPLE 1:
+#
+#   root @ server in ~/projects/dotfiles/ on master [↑]
+#   $
+#
+#   {BOLD}{RED}root{WHITE} at {ORANGE}server{WHITE} in {PURPLE}~/projects/dotfiles {WHITE} on {RED|YELLOW|GREEN} master [↑]
+#   {RESET}$
+#
+# EXAMPLE 2:
+#
+#   root @ server in ~/projects
+#   $
+#
+#   {BOLD}{RED}root{WHITE} at {ORANGE}server{WHITE} in {PURPLE}~/projects
+#   {RESET}$
+#
+# AUTHOR:
+#
+#   Rob Taylor <manix84@gmail.com>
+#
+#   Based on work by halbtuerke, lakiolen and Scott Woods (https://gist.github.com/31967)
+#   @gf3’s Sexy Bash Prompt, inspired by “Extravagant Zsh Prompt”
+#   Shamelessly copied from https://github.com/gf3/dotfiles
+#   Screenshot: http://i.imgur.com/s0Blh.png
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
 	export TERM=gnome-256color
@@ -13,13 +49,15 @@ if tput setaf 1 &> /dev/null; then
 	if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
 		MAGENTA=$(tput setaf 9)
 		ORANGE=$(tput setaf 172)
-		GREEN=$(tput setaf 190)
+		GREEN=$(tput setaf 82)
+		YELLOW=$(tput setaf 226)
 		PURPLE=$(tput setaf 141)
 		WHITE=$(tput setaf 256)
 	else
 		MAGENTA=$(tput setaf 5)
 		ORANGE=$(tput setaf 4)
 		GREEN=$(tput setaf 2)
+		YELLOW=$(tput setaf 3)
 		PURPLE=$(tput setaf 1)
 		WHITE=$(tput setaf 7)
 	fi
@@ -29,6 +67,7 @@ else
 	MAGENTA="\033[1;31m"
 	ORANGE="\033[1;33m"
 	GREEN="\033[1;32m"
+	YELLOW="\033[1;32m"
 	PURPLE="\033[1;35m"
 	WHITE="\033[1;37m"
 	BOLD=""
@@ -38,18 +77,61 @@ fi
 export MAGENTA
 export ORANGE
 export GREEN
+export YELLOW
 export PURPLE
 export WHITE
 export BOLD
 export RESET
 
-function parse_git_dirty() {
-	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+# Detect whether the current directory is a git repository.
+function is_git_repository {
+	git branch > /dev/null 2>&1
 }
 
-function parse_git_branch() {
-	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
+# Determine the branch/state information for this git repository.
+function get_git_branch_name() {
+	# Capture the output of the "git status" command.
+	git_status="$(git status 2> /dev/null)"
 
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+	# Set color based on clean/staged/dirty.
+	if [[ ${git_status} =~ "working directory clean" ]]; then
+		local_state="${GREEN}"
+	elif [[ ${git_status} =~ "Changes to be committed" ]]; then
+		local_state="${YELLOW}"
+	else
+		local_state="${MAGENTA}"
+	fi
+
+	# Set arrow icon based on status against remote.
+	remote_pattern="# Your branch is (.*) of"
+	if [[ ${git_status} =~ ${remote_pattern} ]]; then
+		if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
+			remote_state="[↑]"
+		else
+			remote_state="[↓]"
+		fi
+	else
+		remote_state=""
+	fi
+	diverge_pattern="# Your branch and (.*) have diverged"
+	if [[ ${git_status} =~ ${diverge_pattern} ]]; then
+		remote_state="[↕]"
+	fi
+
+	# Get the name of the branch.
+	branch_pattern="^# On branch ([^${IFS}]*)"
+	if [[ ${git_status} =~ ${branch_pattern} ]]; then
+		branch_name=${BASH_REMATCH[1]}
+	fi
+
+	# Set the final branch string.
+	echo "${WHITE} on ${local_state}${branch_name}${remote_state} "
+}
+function get_branch_name() {
+	if is_git_repository ; then
+		echo $(get_git_branch_name)
+	fi
+	echo ""
+}
+export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\H \[$WHITE\]in \[$PURPLE\]\w\$(get_branch_name)\n\[$RESET\]\$ "
 export PS2="\[$ORANGE\]→ \[$RESET\]"
