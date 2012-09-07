@@ -133,5 +133,5 @@ function get_branch_name() {
 	fi
 	echo ""
 }
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$PURPLE\]\w\$(get_branch_name)\n\[$RESET\]\$ "
+export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\H \[$WHITE\]in \[$PURPLE\]\w\$(get_branch_name)\n\[$RESET\]\$ "
 export PS2="\[$ORANGE\]→ \[$RESET\]"
