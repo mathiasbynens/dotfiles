@@ -1,6 +1,8 @@
-# Paul's dotfiles.. a fork of mathias's..
+# Paul's dotfiles.
 
-[mathias's readme](https://github.com/mathiasbynens/dotfiles/) is awesome. go read it. this repo is mostly for me but you're welcome to make suggestions. But Mathias's is the project to fork.  I'm mostly catching up to @mathiasbynens, @cowboy, and @gf3.
+[mathias's readme](https://github.com/mathiasbynens/dotfiles/) is awesome. go read it.
+
+This repo is mostly for me but you're welcome to make suggestions. Mathias's is the project to fork.  I'm mostly catching up to him, @cowboy, and @gf3.
 
 ## Installation
 
@@ -34,7 +36,7 @@ export PATH
 
 ## Syntax highlighting
 
-Is really important. even for these files.
+…Is really important. even for these files.
 
 add the below to this file: `~/Library/Application Support/Sublime Text 2/Packages/ShellScript/Shell-Unix-Generic.tmLanguage`
 
@@ -68,7 +70,7 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 
 ## Similar projects
 
-I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/master/.jshintrc) and [`.editorconfig`])(http://editorconfig.org/) defined for all your projects.
+I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/master/.jshintrc) and [`.editorconfig`](http://editorconfig.org/) defined for all your projects.
 
 
 
