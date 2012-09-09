@@ -39,3 +39,9 @@ ln -s ~/Dropbox/Public/Photo\ Booth/ ~/Pictures/Photo\ Booth
 # now you can record photobooth videos quickly and they upload to dropbox DURING RECORDING
 # then you grab public URL and send off your video message in a heartbeat.
 
+
+
+
+# chrome canary as default
+# on a mac you can set chrome canary as your default inside of Safari preferences :)
+
