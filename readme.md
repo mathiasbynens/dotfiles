@@ -31,6 +31,30 @@ PATH=$PATH:~/code/git-friendly
 export PATH
 ```
 
+## Syntax highlighting
+
+Is really important. even for these files.
+
+add the below to this file: `~/Library/Application Support/Sublime Text 2/Packages/ShellScript/Shell-Unix-Generic.tmLanguage`
+
+```xml
+<string>.aliases</string>
+<string>.bash_profile</string>
+<string>.bash_prompt</string>
+<string>.bashrc</string>
+<string>.brew</string>
+<string>.exports</string>
+<string>.functions</string>
+<string>.git</string>
+<string>.gitattributes</string>
+<string>.gitconfig</string>
+<string>.gitignore</string>
+<string>.inputrc</string>
+<string>.osx</string>
+<string>.vim</string>
+<string>.vimrc</string>
+```
+
 
 
 ### Sensible OS X defaults
