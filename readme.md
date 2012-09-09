@@ -1,6 +1,6 @@
 # Paul's dotfiles.. a fork of mathias's..
 
-[mathias's readme](https://github.com/mathiasbynens/dotfiles/) is awesome. go read it. this repo is mostly for me but you're welcome to make suggestions. I'm mostly catching up to @mathiasbynens, @cowboy, and @gf3.
+[mathias's readme](https://github.com/mathiasbynens/dotfiles/) is awesome. go read it. this repo is mostly for me but you're welcome to make suggestions. But Mathias's is the project to fork.  I'm mostly catching up to @mathiasbynens, @cowboy, and @gf3.
 
 ## Installation
 
@@ -66,9 +66,12 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 ./.osx
 ```
 
-## upstream
+## Similar projects
 
-Suggestions/improvements [welcome back upstream](https://github.com/mathiasbynens/dotfiles/issues)!
+I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/master/.jshintrc) and [`.editorconfig`])(http://editorconfig.org/) defined for all your projects.
+
+
+
 
 
 ## overview of files
