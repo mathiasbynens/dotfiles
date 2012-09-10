@@ -6,10 +6,6 @@ alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
-# ssh!
-alias shh='ssh aurgasm@aurgasm.us'
-alias shhve='ssh paul@ve.hsh6wjwx.vesrv.com'
-
 # programs
 alias slt='open -a "Sublime Text 2"'
 # also/or do this:
