@@ -94,7 +94,7 @@ I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/m
 * `.gitconfig`
 * `.gitignore`
 
-* `.inputrc` - tbh i have no idea.
+* `.inputrc` - config for bash readline
 
 
 ## Installation
