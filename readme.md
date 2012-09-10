@@ -4,14 +4,6 @@
 
 This repo is mostly for me but you're welcome to make suggestions. Mathias's is the project to fork.  I'm mostly catching up to him, @cowboy, and @gf3.
 
-## Installation
-
-```bash
-git clone https://github.com/paulirish/dotfiles.git && cd dotfiles && ./sync.sh
-```
-
-To update later on, just run the sync again.
-
 ## install the neccessary apps
 
 My basic setup is captured in `install-deps.sh` which adds homebrew, z, nave, etc.
@@ -36,7 +28,7 @@ export PATH
 
 ## Syntax highlighting
 
-…Is really important. even for these files.
+…is really important. even for these files.
 
 add the below to this file: `~/Library/Application Support/Sublime Text 2/Packages/ShellScript/Shell-Unix-Generic.tmLanguage`
 
@@ -89,10 +81,11 @@ I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/m
 * `.bashrc`
 * `.exports`
 * `.functions`
+* `.extra` - not included, explained above
 
 #### manual run
 * `install-deps.sh` - random apps i need installed
-* `.osx`
+* `.osx` - run on a fresh osx machine
 * `.brew` - homebrew intialization
 
 #### git, brah
@@ -103,3 +96,11 @@ I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/m
 
 * `.inputrc` - tbh i have no idea.
 
+
+## Installation
+
+```bash
+git clone https://github.com/paulirish/dotfiles.git && cd dotfiles && ./sync.sh
+```
+
+To update later on, just run the sync again.
