@@ -16,7 +16,7 @@ npm install -g nave
 
 
 # homebrew!
-# you need the code CLI tools YOU FOOL. (TODO: i wanna try kennethreitz's gcc osx installer isntead..)
+# you need the code CLI tools YOU FOOL.
 ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)
 
 
