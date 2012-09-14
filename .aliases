@@ -71,6 +71,9 @@ command -v hd > /dev/null || alias hd="hexdump -C"
 # OS X has no `md5sum`, so use `md5` as a fallback
 command -v md5sum > /dev/null || alias md5sum="md5"
 
+# OS X has no `sha1sum`, so use `openssl sha1` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="openssl sha1"
+
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
 
