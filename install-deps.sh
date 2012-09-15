@@ -31,6 +31,10 @@ chmod +x ~/code/z/z.sh
 #   . ~/code/z/z.sh
 
 
+cd ~/code
+git clone git://github.com/dronir/SpotifyControl.git
+
+
 
 # my magic photobooth symlink -> dropbox. I love it.
 # first move Photo Booth folder out of Pictures and into dropbox/public

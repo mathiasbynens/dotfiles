@@ -11,11 +11,13 @@ alias slt='open -a "Sublime Text 2"'
 # also/or do this:
 # ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 
+
 # be nice
 alias please=sudo
 
 # handy things
 alias bunyip='node ~/code/bunyip/cli.js'
+alias spotify="osascript ~/code/SpotifyControl/SpotifyControl.scpt"
 
 
 # Detect which `ls` flavor is in use
