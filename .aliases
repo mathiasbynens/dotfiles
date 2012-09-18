@@ -46,8 +46,8 @@ alias sudo='sudo '
 # Gzip-enabled `curl`
 alias gurl="curl --compressed"
 
-# Get OS X Software Updates, and update Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; npm update npm -g; npm update -g'
+# Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; npm update npm -g; npm update -g; sudo gem update'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
