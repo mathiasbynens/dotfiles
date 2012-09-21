@@ -39,6 +39,6 @@ if [ -f /usr/local/etc/bash_completion ]; then
   . /usr/local/etc/bash_completion
 fi
 
-if [-f ~/.ssh/id_rsa ]; then
+if [ -f ~/.ssh/id_rsa ]; then
     ssh-add ~/.ssh/id_rsa
 fi
