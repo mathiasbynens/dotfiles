@@ -345,3 +345,35 @@ CHANGES/FIXES
 - Adjusted ambiguous/misleading documentation for the
   "sublimelinter_executable_map" setting.
 
+
+SublimeLinter 1.6.8 changelog
+=============================
+
+NEW FEATURES
+
+- HTML5 linting support via `tidy`. This linter will not run unless you have
+  a version of tidy with HTML5 support. To use this linter, please see:
+  https://github.com/w3c/tidy-html5
+
+- XML linting via `xmllint`.
+
+
+CHANGES/FIXES
+
+- Made significant progress on issue (#181). However, SublimeLinter still
+  throws with some linter types on Windows 7 when a user has non-ascii
+  characters in the path (to the SL plugin).
+
+- Updated PEP8 to v1.1
+
+- Updated Pyflakes to v0.5.0
+
+- Updated JSHint to latest stable (r11).
+
+- Reverted a fix for accurate (JSHint) error column positions (when using tab
+  indentation) due to a regression with the `"white": true` option. You may
+  still manually fix error positions by setting `"indent": 1`.
+
+- Changed (the default) background linting delay to a more sane 2 seconds.
+  This reduces memory usage, cpu processing, and visual noise while you are
+  actively writing code.

@@ -53,45 +53,43 @@ CONFIG = {
     'language': 'Python'
 }
 
+class PythonLintError(pyflakes.messages.Message):
 
-class Pep8Error(pyflakes.messages.Message):
-    message = 'PEP 8 (%s): %s'
+    def __init__(self, filename, loc, level, message, message_args, offset=None, text=None):
+        super(PythonLintError, self).__init__(filename, loc)
+        self.level = level
+        self.message = message
+        self.message_args = message_args
+        if offset is not None: self.offset = offset
+        if text is not None: self.text = text
 
-    def __init__(self, filename, loc, code, text):
+
+class Pep8Error(PythonLintError):
+
+    def __init__(self, filename, loc, offset, code, text):
         # PEP 8 Errors are downgraded to "warnings"
-        pyflakes.messages.Message.__init__(self, filename, loc, level='W', message_args=(code, text))
-        self.text = text
+        super(Pep8Error, self).__init__(filename, loc, 'W', '[W] PEP 8 (%s): %s', (code, text),
+                                        offset=offset, text=text)
 
 
-class Pep8Warning(pyflakes.messages.Message):
-    message = 'PEP 8 (%s): %s'
+class Pep8Warning(PythonLintError):
 
-    def __init__(self, filename, loc, code, text):
+    def __init__(self, filename, loc, offset, code, text):
         # PEP 8 Warnings are downgraded to "violations"
-        pyflakes.messages.Message.__init__(self, filename, loc, level='V', message_args=(code, text))
-        self.text = text
+        super(Pep8Warning, self).__init__(filename, loc, 'V', '[V] PEP 8 (%s): %s', (code, text),
+                                          offset=offset, text=text)
 
 
-class OffsetError(pyflakes.messages.Message):
-    message = '%r at column %r'
+class OffsetError(PythonLintError):
 
     def __init__(self, filename, loc, text, offset):
-        pyflakes.messages.Message.__init__(self, filename, loc, level='E', message_args=(text, offset + 1))
-        self.text = text
-        self.offset = offset
+        super(OffsetError, self).__init__(filename, loc, 'E', '[E] %r', (text,), offset=offset + 1, text=text)
 
 
-class PythonError(pyflakes.messages.Message):
-    message = '%r'
+class PythonError(PythonLintError):
 
     def __init__(self, filename, loc, text):
-        pyflakes.messages.Message.__init__(self, filename, loc, level='E', message_args=(text,))
-        self.text = text
-
-
-class Dict2Obj:
-    def __init__(self, **kwargs):
-        self.__dict__.update(kwargs)
+        super(PythonError, self).__init__(filename, loc, 'E', '[E] %r', (text,), text=text)
 
 
 class Linter(BaseLinter):
@@ -110,9 +108,9 @@ class Linter(BaseLinter):
                 # unknown.
                 if msg.startswith('duplicate argument'):
                     arg = msg.split('duplicate argument ', 1)[1].split(' ', 1)[0].strip('\'"')
-                    error = pyflakes.messages.DuplicateArgument(filename, value, arg)
+                    error = pyflakes.messages.DuplicateArgument(filename, lineno, arg)
                 else:
-                    error = PythonError(filename, value, msg)
+                    error = PythonError(filename, lineno, msg)
             else:
                 line = text.splitlines()[-1]
 
@@ -120,9 +118,9 @@ class Linter(BaseLinter):
                     offset = offset - (len(text) - len(line))
 
                 if offset is not None:
-                    error = OffsetError(filename, value, msg, offset)
+                    error = OffsetError(filename, lineno, msg, offset)
                 else:
-                    error = PythonError(filename, value, msg)
+                    error = PythonError(filename, lineno, msg)
             return [error]
         except ValueError, e:
             return [PythonError(filename, 0, e.args[0])]
@@ -131,9 +129,12 @@ class Linter(BaseLinter):
             if ignore is not None:
                 old_magic_globals = pyflakes._MAGIC_GLOBALS
                 pyflakes._MAGIC_GLOBALS += ignore
+
             w = pyflakes.Checker(tree, filename)
+
             if ignore is not None:
                 pyflakes._MAGIC_GLOBALS = old_magic_globals
+
             return w.messages
 
     def pep8_check(self, code, filename, ignore=None):
@@ -148,9 +149,9 @@ class Linter(BaseLinter):
                 if pep8.ignore_code(code):
                     return
                 elif code.startswith('E'):
-                    messages.append(Pep8Error(filename, Dict2Obj(lineno=line_number, col_offset=offset), code, msg))
+                    messages.append(Pep8Error(filename, line_number, offset, code, msg))
                 else:
-                    messages.append(Pep8Warning(filename, Dict2Obj(lineno=line_number, col_offset=offset), code, msg))
+                    messages.append(Pep8Warning(filename, line_number, offset, code, msg))
 
             pep8.Checker.report_error = report_error
             _ignore = ignore + pep8.DEFAULT_IGNORE.split(',')
@@ -163,6 +164,7 @@ class Linter(BaseLinter):
             pep8.options = FakeOptions()
             pep8.options.physical_checks = pep8.find_checks('physical_line')
             pep8.options.logical_checks = pep8.find_checks('logical_line')
+            pep8.options.max_line_length = pep8.MAX_LINE_LENGTH
             pep8.options.counters = dict.fromkeys(pep8.BENCHMARK_KEYS, 0)
             good_lines = [l + '\n' for l in _lines]
             good_lines[-1] = good_lines[-1].rstrip('\n')
@@ -172,8 +174,8 @@ class Linter(BaseLinter):
 
             try:
                 pep8.Checker(filename, good_lines).check_all()
-            except:
-                pass
+            except Exception, e:
+                print "An exception occured when running pep8 checker: %s" % e
 
         return messages
 
@@ -214,13 +216,17 @@ class Linter(BaseLinter):
         ignoreImportStar = view.settings().get('pyflakes_ignore_import_*', True)
 
         for error in errors:
-            if error.level == 'E':
+            try:
+                error_level = error.level
+            except AttributeError:
+                error_level = 'W'
+            if error_level == 'E':
                 messages = errorMessages
                 underlines = errorUnderlines
-            elif error.level == 'V':
+            elif error_level == 'V':
                 messages = violationMessages
                 underlines = violationUnderlines
-            elif error.level == 'W':
+            elif error_level == 'W':
                 messages = warningMessages
                 underlines = warningUnderlines
 
@@ -229,10 +235,7 @@ class Linter(BaseLinter):
 
             self.add_message(error.lineno, lines, str(error), messages)
 
-            if isinstance(error, (Pep8Error, Pep8Warning)):
-                self.underline_range(view, error.lineno, error.col, underlines)
-
-            elif isinstance(error, OffsetError):
+            if isinstance(error, (Pep8Error, Pep8Warning, OffsetError)):
                 self.underline_range(view, error.lineno, error.offset, underlines)
 
             elif isinstance(error, (pyflakes.messages.RedefinedWhileUnused,
@@ -241,19 +244,19 @@ class Linter(BaseLinter):
                                     pyflakes.messages.UndefinedLocal,
                                     pyflakes.messages.RedefinedFunction,
                                     pyflakes.messages.UnusedVariable)):
-                underline_word(error.lineno, error.name, underlines)
+                underline_word(error.lineno, error.message, underlines)
 
             elif isinstance(error, pyflakes.messages.ImportShadowedByLoopVar):
-                underline_for_var(error.lineno, error.name, underlines)
+                underline_for_var(error.lineno, error.message, underlines)
 
             elif isinstance(error, pyflakes.messages.UnusedImport):
-                underline_import(error.lineno, error.name, underlines)
+                underline_import(error.lineno, error.message, underlines)
 
             elif isinstance(error, pyflakes.messages.ImportStarUsed):
                 underline_import(error.lineno, '*', underlines)
 
             elif isinstance(error, pyflakes.messages.DuplicateArgument):
-                underline_duplicate_argument(error.lineno, error.name, underlines)
+                underline_duplicate_argument(error.lineno, error.message, underlines)
 
             elif isinstance(error, pyflakes.messages.LateFutureImport):
                 pass

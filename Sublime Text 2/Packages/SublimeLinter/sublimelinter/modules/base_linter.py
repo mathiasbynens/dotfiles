@@ -65,7 +65,7 @@ CONFIG = {
     'input_method': INPUT_METHOD_STDIN
 }
 
-TEMPFILES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.tempfiles'))
+TEMPFILES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__.encode('utf-8')), u'..', u'.tempfiles'))
 
 JSON_MULTILINE_COMMENT_RE = re.compile(r'\/\*[\s\S]*?\*\/')
 JSON_SINGLELINE_COMMENT_RE = re.compile(r'\/\/[^\n\r]*')
@@ -88,7 +88,7 @@ class BaseLinter(object):
 
     JSC_PATH = '/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc'
 
-    LIB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'libs'))
+    LIB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__.encode('utf-8')), u'libs'))
 
     JAVASCRIPT_ENGINES = ['node', 'jsc']
     JAVASCRIPT_ENGINE_NAMES = {'node': 'node.js', 'jsc': 'JavaScriptCore'}
@@ -159,7 +159,7 @@ class BaseLinter(object):
                 args = settings.get('lint_args', [])
                 lintArgs.extend(args)
 
-                cwd = settings.get('working_directory')
+                cwd = settings.get('working_directory').encode('utf-8')
 
                 if cwd and os.path.isabs(cwd) and os.path.isdir(cwd):
                     os.chdir(cwd)
@@ -180,7 +180,7 @@ class BaseLinter(object):
             if filename:
                 filename = os.path.basename(filename)
             else:
-                filename = 'view{0}'.format(view.id())
+                filename = u'view{0}'.format(view.id())
 
             tempfilePath = os.path.join(TEMPFILES_DIR, filename)
 
@@ -188,14 +188,14 @@ class BaseLinter(object):
                 f.write(code)
 
             args.extend(self._get_lint_args(view, code, tempfilePath))
-            code = ''
+            code = u''
 
         elif self.input_method == INPUT_METHOD_FILE:
             args.extend(self._get_lint_args(view, code, filename))
-            code = ''
+            code = u''
 
         else:
-            return ''
+            return u''
 
         try:
             process = subprocess.Popen(args,
@@ -327,7 +327,7 @@ class BaseLinter(object):
     def find_file(self, filename, view):
         '''Find a file with the given name, starting in the view's directory,
            then ascending the file hierarchy up to root.'''
-        path = view.file_name()
+        path = view.file_name().encode('utf-8')
 
         # quit if the view is temporary
         if not path:

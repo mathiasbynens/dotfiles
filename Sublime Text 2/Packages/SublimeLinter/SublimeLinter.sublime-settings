@@ -13,8 +13,8 @@
     "sublimelinter": true,
 
     /*
-        Maps language names (which should be all lowercase) to executables
-        for non-built in linters. If the executable is not in the default system path,
+        Maps language names **as listed at the beginning of the README** (but all lowercase)
+        to executables for non-built in linters. If the executable is not in the default system path,
         or on posix systems is not in /usr/local/bin or ~/bin, then you must specify
         the full path to the executable. Note that paths in Windows must use double
         backslashes, for example "C:\\Program Files (x86)\\nodejs\\node.exe".
@@ -38,8 +38,10 @@
     /*
         Maps syntax names to linters. This allows variations on a syntax
         (for example "Python (Django)") to be linted. The key is
-        the base filename of the .tmLanguage syntax file, and the value
-        is the linter name (lowercase) the syntax maps to.
+        the name of the syntax **as it appears in the syntax list
+        at the bottom right of the window**, and the value
+        is the linter name **as listed in the README** (all lowercase)
+        that the syntax maps to.
     */
     "sublimelinter_syntax_map":
     {
@@ -60,7 +62,7 @@
         errors are erased when the file is modified, since the assumption is
         you don't want to see errors while you type.
     */
-    "sublimelinter_delay": 0,
+    "sublimelinter_delay": 2,
 
     /*
         Selects the way the lines with errors or warnings are marked; "outline"
@@ -98,7 +100,10 @@
     // By deault, eval is allowed.
     "jshint_options":
     {
-        "indent": 1,
+        // To fix column positions for JSHint errors you may want to add `"indent": 1` to your
+        // **User** "jshint_options". This issue affects users with tabs for indentation.
+        // This fix was reverted due to a conflict with using the `"white": true` option.
+        // "indent": 1,
         "evil": true,
         "regexdash": true,
         "browser": true,

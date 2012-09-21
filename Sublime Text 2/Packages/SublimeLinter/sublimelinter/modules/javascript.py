@@ -27,7 +27,7 @@ class Linter(BaseLinter):
         elif (self.linter == 'gjslint'):
             try:
                 path = self.get_mapped_executable(view, 'gjslint')
-                subprocess.call([path, '--help'], startupinfo=self.get_startupinfo())
+                subprocess.call([path, u'--help'], startupinfo=self.get_startupinfo())
                 self.input_method = INPUT_METHOD_TEMP_FILE
                 return (True, path, 'using gjslint')
             except OSError:
@@ -40,7 +40,7 @@ class Linter(BaseLinter):
             args = []
             gjslint_options = view.settings().get("gjslint_options", [])
             args.extend(gjslint_options)
-            args.extend(['--nobeep', filename])
+            args.extend([u'--nobeep', filename])
             return args
         elif (self.linter in ('jshint', 'jslint')):
             return self.get_javascript_args(view, self.linter, code)

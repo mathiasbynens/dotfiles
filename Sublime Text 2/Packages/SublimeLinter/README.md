@@ -12,6 +12,7 @@ SublimeLinter has built in linters for the following languages:
 * CSS - lint via built-in [csslint](http://csslint.net)
 * Git Commit Messages - lint via built-in module based on [A Note About Git Commit Messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 * Haml - lint via `haml -c`
+* HTML - lint via `tidy` (actually [tidy for HTML5](http://w3c.github.com/tidy-html5/))
 * Java - lint via `javac -Xlint`
 * Javascript - lint via built in [jshint](http://jshint.org), [jslint](http://jslint.com), or the [closure linter (gjslint)](https://developers.google.com/closure/utilities/docs/linter_howto) (if installed)
 * Objective-J - lint via built-in [capp_lint](https://github.com/aparajita/capp_lint)
@@ -20,6 +21,7 @@ SublimeLinter has built in linters for the following languages:
 * Puppet - syntax checking via `puppet parser validate`
 * Python - native, moderately-complete lint
 * Ruby - syntax checking via `ruby -wc`
+* XML - syntax checking via `xmllint`
 
 
 Installing
@@ -83,6 +85,8 @@ Following are notes specific to individual linters that you should be aware of:
 * **CSS** - This linter runs [csslint](http://csslint.net). This linter requires a Javascript engine (like Node.js) to be installed (see notes above for the JavaScript linters: "jshint" or "jslint").
 
   By default all CSSLint settings are turned on. You may customize CSSLint behavior with the "csslint_options" setting. Please select `Preferences->Package Settings->SublimeLinter->Settings - Default` for more information on turning off or adjusting severity of tests. For more information about options available to CSSLint, see https://github.com/stubbornella/csslint/wiki/Rules.
+
+* **HTML** - This linter will not run unless you have a version of tidy with HTML5 support. To use this linter, please see: https://github.com/w3c/tidy-html5
 
 * **perl** - Due to a vulnerability (issue [#77](https://github.com/SublimeLinter/SublimeLinter/issues/77)) with the Perl linter, Perl syntax checking is no longer enabled by default. The default linter for Perl has been replaced by Perl::Critic. The standard Perl syntax checker can still be invoked by switching the "perl_linter" setting to "perl".
 
@@ -320,6 +324,8 @@ While editing a file, you can quickly move to the next/previous lint error with 
 By default the search will wrap. You can turn wrapping off with the user setting:
 
     "sublimelinter_wrap_find": false
+
+Please note: these key commands may conflict with other important cmds (such as generating the € character - this was discussed in issue [#182](https://github.com/SublimeLinter/SublimeLinter/issues/182)). If these controls are problematic, you may always adjust your settings by copying the defaults stored in `Preferences->Package Settings->SublimeLinter->Key Bindings - Default` into `Preferences->Key Bindings - User` and then modifying the values appropriately.
 
 Troubleshooting
 ---------------
