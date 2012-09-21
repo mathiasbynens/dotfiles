@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[service \{ "$1":
+    enable => true,
+	ensure => running,
+	#hasrestart => true,
+	#hasstatus => true,
+	#require => Class["config"],
+\}
+]]></content>
+    <tabTrigger>service</tabTrigger>
+    <scope>source.puppet</scope>
+    <description>service</description>
+</snippet>

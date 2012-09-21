@@ -1,0 +1,51 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+
+# Numerous always-ignore extensions
+###################
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+
+*.sass-cache
+# Folders to ignore
+###################
+.hg
+.svn
+.CVS
+# OS or Editor folders
+###################
+.DS_Store
+Icon?
+Thumbs.db
+ehthumbs.db
+nbproject
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+# Dreamweaver added files
+###################
+_notes
+dwsync.xml
+# Komodo
+###################
+*.komodoproject
+.komodotools
+*.cache

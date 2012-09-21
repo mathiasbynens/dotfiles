@@ -1,0 +1,6 @@
+{
+    "cmd": [ "puppet", "parser", "validate", "--color=false", "--confdir=/tmp", "--vardir=/tmp", "$file" ],
+    "working_dir": "${project_path:${folder:${file_path}}}",
+    "selector": "source.pp",
+    "path": "/opt/local/bin:$PATH"
+}
