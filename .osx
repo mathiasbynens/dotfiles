@@ -466,6 +466,14 @@ defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 defaults write com.apple.DiskUtility advanced-image-options -bool true
 
 ###############################################################################
+# Google Chrome & Google Chrome Canary                                        #
+###############################################################################
+
+# Allow installing user scripts via GitHub or gists
+defaults write com.google.Chrome ExtensionInstallSources -array "https://*.github.com/*"
+defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://*.github.com/*"
+
+###############################################################################
 # SizeUp.app                                                                  #
 ###############################################################################
 
