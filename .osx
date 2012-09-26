@@ -400,6 +400,9 @@ defaults write com.apple.iTunes disableRadio -bool true
 # for `kHiddenMenuItemTargetSearch`.
 defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
 
+# Enable iTunes pop up notification
+defaults write com.apple.dock itunes-notifications -bool true
+
 ###############################################################################
 # Mail                                                                        #
 ###############################################################################
