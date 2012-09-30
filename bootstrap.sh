@@ -2,7 +2,7 @@
 cd "$(dirname "$0")"
 git pull
 function doIt() {
-    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -av . ~
+    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "init" --exclude "Sublime Text 2" -av . ~
     if [ -f ~/.extra ]; then
         echo "These changes have been made in the .extra.dist file, please handle these manually"
         diff .extra.dist ~/.extra
