@@ -1,0 +1,95 @@
+[
+    {
+        "keys": ["ctrl+shift+b", "ctrl+shift+b"],
+        "command": "bracket_highlighter_key",
+        "args": {"lines": true}
+    },
+    {
+        "keys": ["alt+up"],
+        "command": "bracket_highlighter_key",
+        "args":
+        {
+            "lines" : true,
+            "plugin":
+            {
+                "type": ["quote","bracket","tag"],
+                "command": "bracket_plugins.select_bracket",
+                "args": {"select": "left"}
+            }
+        }
+    },
+    {
+        "keys": ["alt+down"],
+        "command": "bracket_highlighter_key",
+        "args":
+        {
+            "lines" : true,
+            "plugin":
+            {
+                "type": ["quote","bracket","tag"],
+                "command": "bracket_plugins.select_bracket",
+                "args": {"select": "right"}
+            }
+        }
+    },
+    {
+        "keys": ["ctrl+shift+b","ctrl+shift+s"],
+        "command": "bracket_highlighter_key",
+        "args":
+        {
+            "lines" : true,
+            "plugin":
+            {
+                "type": ["quote","bracket","tag"],
+                "command": "bracket_plugins.select_bracket"
+            }
+        }
+    },
+    {
+        "keys": ["ctrl+shift+b","ctrl+shift+t"],
+        "command": "bracket_highlighter_key",
+        "args":
+        {
+            "ignore": ["quote"],
+            "plugin":
+            {
+                "type": ["tag"],
+                "command": "bracket_plugins.select_tag"
+            }
+        }
+    },
+    {
+        "keys": ["ctrl+shift+b","ctrl+shift+n"],
+        "command": "bracket_highlighter_key",
+        "args":
+        {
+            "ignore": ["quote"],
+            "plugin":
+            {
+                "type": ["tag"],
+                "command": "bracket_plugins.select_attr",
+                "args": {"direction": "right"}
+            }
+        }
+    },
+    {
+        "keys": ["ctrl+shift+b","ctrl+shift+q"],
+        "command": "bracket_highlighter_key",
+        "args":
+        {
+            "plugin": {"type": ["quote"],"command" : "bracket_plugins.swap_quotes"}
+        }
+    },
+    {
+        "keys": ["ctrl+shift+b","ctrl+shift+j"],
+        "command": "swap_brackets"
+    },
+    {
+        "keys": ["ctrl+shift+b","ctrl+shift+["],
+        "command": "bracket_highlighter_key",
+        "args":
+        {
+            "plugin": {"type": ["quote", "tag", "bracket"],"command" : "bracket_plugins.fold_bracket"}
+        }
+    }
+]

@@ -1,7 +1,8 @@
 {
-	"auto_upgrade_last_run": 1347995063,
+	"auto_upgrade_last_run": 1349006335,
 	"installed_packages":
 	[
+		"BracketHighlighter",
 		"Package Control",
 		"SublimeCodeIntel",
 		"SublimeLinter",

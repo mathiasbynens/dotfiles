@@ -1,6 +1,7 @@
 {
     "bold_folder_labels": true,
     "color_scheme": "Packages/Theme - Aqua/Color Schemes/Tomorrow Aqua.tmTheme",
+    "font_face": "Source Code Pro",
     "draw_white_space": "all",
     "ensure_newline_at_eof_on_save": true,
     "file_exclude_patterns":
