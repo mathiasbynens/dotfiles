@@ -14,7 +14,12 @@ dictionary for later use.
 '''
 import re
 
-start_tag = r'<([\w\:\-]+)((?:\s+[\w\-:]+(?:\s*=\s*(?:(?:"[^"]*")|(?:\'[^\']*\')|[^>\s]+))?)*)\s*(\/?)>'
+html_start_tag = [r'<([\w\:\-]+)((?:\s+[\w\-:]+(?:\s*=\s*(?:(?:"[^"]*")|(?:\'[^\']*\')|[^>\s]+))?)*)\s*(\/?)>']
+cf_start_tag = [
+    r'<([\w\:\-]+)((?:\s+[\w\-\.:]+(?:\s*=\s*(?:(?:"[^"]*")|(?:\'[^\']*\')|[^>\s]+))?)*)\s*(\/?)>',
+    r'(?i)<(cfif|cfelseif)((?:[^>]+))\s*(\/?)>'
+]
+start_tag = html_start_tag
 end_tag = r'<\/([\w\:\-]+)[^>]*>'
 attr = r'([\w\-:]+)(?:\s*=\s*(?:(?:"((?:\\.|[^"])*)")|(?:\'((?:\\.|[^\'])*)\')|([^>\s]+)))?'
 
@@ -26,13 +31,18 @@ last_match = {
     'end_ix': -1
 }
 
-cur_mode = 'xhtml'
 "Current matching mode"
+cur_mode = 'xhtml'
+detect_self_closing = False
 
 
-def set_mode(new_mode):
+def set_mode(new_mode, find_self_closing=False):
     global cur_mode
-    if new_mode != 'html':
+    global start_tag
+    global detect_self_closing
+    detect_self_closing = bool(find_self_closing)
+    start_tag = cf_start_tag if new_mode == 'cfml' else html_start_tag
+    if new_mode not in ['html', 'cfml']:
         new_mode = 'xhtml'
     cur_mode = new_mode
 
@@ -48,6 +58,7 @@ def make_map(elems):
             obj[elem] = True
 
     return obj
+
 
 # Empty Elements - HTML 4.01
 empty = make_map("area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed")
@@ -86,12 +97,19 @@ class Tag():
         self.full_tag = match.group(0)
         self.start = ix
         self.end = ix + len(self.full_tag)
+
         self.unary = (
             (len(match.groups()) > 2 and bool(match.group(3))) or
-            (name in empty and cur_mode == 'html')
+            (name in empty and (cur_mode in ['html', 'cfml']))
         )
         self.type = 'tag'
-        self.close_self = (name in close_self and cur_mode == 'html')
+        self.close_self = (
+            (
+                (name in close_self and cur_mode == 'html') or
+                (name.lower().startswith("cf") and cur_mode == 'cfml')
+            ) and
+            detect_self_closing
+        )
 
 
 class Comment():
@@ -148,24 +166,24 @@ def save_match(opening_tag=None, closing_tag=None, ix=0):
     )
 
 
-def match(html, start_ix, mode='xhtml', use_threshold=True, search_thresh=2000):
+def match(html, start_ix, mode='xhtml', find_self_closing=False, use_threshold=True, search_thresh=2000):
     """
     Search for matching tags in <code>html</code>, starting from
     <code>start_ix</code> position. The result is automatically saved
     in <code>last_match</code> property
     """
-    return _find_pair(html, start_ix, use_threshold, search_thresh, mode, save_match)
+    return _find_pair(html, start_ix, find_self_closing, use_threshold, search_thresh, mode, save_match)
 
 
-def find(html, start_ix, mode='xhtml', use_threshold=True, search_thresh=2000):
+def find(html, start_ix, mode='xhtml', find_self_closing=False, use_threshold=True, search_thresh=2000):
     """
     Search for matching tags in <code>html</code>, starting from
     <code>start_ix</code> position.
     """
-    return _find_pair(html, start_ix, use_threshold, search_thresh, mode)
+    return _find_pair(html, start_ix, find_self_closing, use_threshold, search_thresh, mode)
 
 
-def get_tags(html, start_ix, mode='xhtml', use_threshold=True, search_thresh=2000):
+def get_tags(html, start_ix, mode='xhtml', find_self_closing=False, use_threshold=True, search_thresh=2000):
     """
     Search for matching tags in <code>html</code>, starting from
     <code>start_ix</code> position. The difference between
@@ -177,17 +195,22 @@ def get_tags(html, start_ix, mode='xhtml', use_threshold=True, search_thresh=200
     return _find_pair(
         html,
         start_ix,
+        find_self_closing,
         use_threshold,
         search_thresh, mode,
         lambda op, cl=None, ix=0: (op, cl) if op and op.type == 'tag' else None
     )
 
 
-def is_tag(substr):
-    return (re.match(start_tag, substr) or re.match(end_tag, substr))
+def is_tag(substr, cf_enable=False):
+    found_tag = False
+    patterns = cf_start_tag if cf_enable else html_start_tag
+    for pattern in patterns:
+        found_tag |= bool(re.match(pattern, substr) or re.match(end_tag, substr))
+    return found_tag
 
 
-def _find_pair(html, start_ix, use_threshold, search_threshold, mode='xhtml', action=make_range):
+def _find_pair(html, start_ix, find_self_closing, use_threshold, search_threshold, mode='xhtml', action=make_range):
     """
     Search for matching tags in <code>html</code>, starting from
     <code>start_ix</code> position
@@ -213,7 +236,7 @@ def _find_pair(html, start_ix, use_threshold, search_threshold, mode='xhtml', ac
     closing_tag = None
     html_len = len(html)
 
-    set_mode(mode)
+    set_mode(mode, find_self_closing)
 
     def has_match(substr, start=None):
         if start is None:
@@ -252,7 +275,10 @@ def _find_pair(html, start_ix, use_threshold, search_threshold, mode='xhtml', ac
                 else:
                     backward_stack.append(tmp_tag)
             else:
-                m = re.match(start_tag, check_str)
+                for pattern in start_tag:
+                    m = re.match(pattern, check_str)
+                    if m:
+                        break
                 if m:  # found opening tag
                     tmp_tag = Tag(m, ix)
                     if tmp_tag.unary:
@@ -261,12 +287,18 @@ def _find_pair(html, start_ix, use_threshold, search_threshold, mode='xhtml', ac
                             tmp_tag.end > start_ix
                         ):
                             return action(tmp_tag, None, start_ix)
-                    elif (
+                    elif (  # Match sub tag
                         backward_stack and
                         backward_stack[-1].name == tmp_tag.name
                     ):
                         backward_stack.pop()
-                    else:  # found nearest unclosed tag
+                    elif (  # Pass over self-closing tag
+                        tmp_tag.close_self and
+                        closing_tag and
+                        closing_name != tmp_tag.name
+                    ):
+                        pass
+                    elif len(backward_stack) == 0:  # found nearest unclosed tag
                         opening_tag = tmp_tag
                         opening_name = tmp_tag.name
                         break
@@ -290,11 +322,17 @@ def _find_pair(html, start_ix, use_threshold, search_threshold, mode='xhtml', ac
             if (use_threshold == True):
                 search_threshold -= 1
                 if(search_threshold < 0):
-                    return action(None)
+                    if opening_tag.close_self:
+                        return action(opening_tag, None, start_ix)
+                    else:
+                        return action(None)
             ch = html[ix]
             if ch == '<':
                 check_str = html[ix:]
-                m = re.match(start_tag, check_str)
+                for pattern in start_tag:
+                    m = re.match(pattern, check_str)
+                    if m:
+                        break
                 if m:  # found opening tag
                     tmp_tag = Tag(m, ix)
                     if not tmp_tag.unary:
@@ -303,12 +341,31 @@ def _find_pair(html, start_ix, use_threshold, search_threshold, mode='xhtml', ac
                     m = re.match(end_tag, check_str)
                     if m:  # found closing tag
                         tmp_tag = Tag(m, ix)
-                        if (
-                            forward_stack and
-                            forward_stack[-1].name == tmp_tag.name
-                        ):
-                            forward_stack.pop()
-                        else:  # found matched closing tag
+                        # Navigate stack to match the sub tag
+                        # and/or remove sub tags that are optionally self-closing.
+                        if forward_stack:
+                            if forward_stack[-1].name == tmp_tag.name:
+                                # Normal tag match
+                                forward_stack.pop()
+                            else:
+                                # Stack probably has self closing tags in on top
+                                # Pop off tags that are self-closing (assume they weren't matched)
+                                found_in_stack = False
+                                while forward_stack and forward_stack[-1].close_self:
+                                    forward_stack.pop()
+                                    # Check if the the next element matches the sub tag
+                                    if forward_stack and forward_stack[-1].name == tmp_tag.name:
+                                        # Found match, no need to look further in the stack
+                                        forward_stack.pop()
+                                        found_in_stack = True
+                                        break
+                                # If no match was found, and the stack is empty,
+                                # it can be assumed that this tag is the main match
+                                if not found_in_stack and len(forward_stack) == 0:
+                                    closing_tag = tmp_tag
+                                    closing_name = tmp_tag.name
+                                    break
+                        elif len(forward_stack) == 0:  # found matched closing tag
                             closing_tag = tmp_tag
                             closing_name = tmp_tag.name
                             break
@@ -323,5 +380,8 @@ def _find_pair(html, start_ix, use_threshold, search_threshold, mode='xhtml', ac
 
             ix += 1
     if(opening_name != closing_name):
-        return action(None)
+        if opening_tag.close_self:
+            return action(opening_tag, None, start_ix)
+        else:
+            return action(None)
     return action(opening_tag, closing_tag, start_ix)

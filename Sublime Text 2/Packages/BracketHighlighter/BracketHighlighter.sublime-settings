@@ -5,6 +5,7 @@
     "round_enable" : true,
     "square_enable": true,
     "angle_enable" : true,
+
     // Higlight tags if tag is selected. angle_enable must be true for tags to work
     // if you would like to ignore non tags then set ignore_non_tags to true
     "tag_enable"   : true,
@@ -68,7 +69,10 @@
     // Higlight brackets of tag only instead of entire tag
     "tag_brackets_only" : false,
 
-    // Type of tag selection? (html/xhtml)
+    // Detect self closing tags (experimental)
+    "detect_self_closing_tags": true,
+
+    // Type of tag selection? (html|xhtml|cfml) (experimental:cfml)
     "tag_type" : "html",
 
     // Threshold distance to search

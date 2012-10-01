@@ -116,6 +116,7 @@ class BracketHighlighter(object):
         self.brackets_only = bool(self.settings.get('tag_brackets_only', False))
         self.ignore_angle = bool(self.settings.get('ignore_non_tags', False))
         self.tag_type = self.settings.get('tag_type', 'html')
+        self.detect_self_closing_tags = self.settings.get('detect_self_closing_tags', False)
 
         # String Options
         self.match_string_brackets = bool(self.settings.get('match_string_brackets', True))
@@ -123,7 +124,7 @@ class BracketHighlighter(object):
         self.ignore_string_bracket_parent = bool(self.settings.get('highlight_string_brackets_only', False))
 
     def init_brackets(self):
-        quote_open = "r ' \""
+        quote_open = "r u ' \""
         quote_close = "' \""
         return {
             'bh_curly':  self.get_bracket_settings('curly', '{', '}'),
@@ -400,7 +401,7 @@ class BracketHighlighter(object):
                 # Find tags if required
                 if (
                     self.tag_enable and
-                    is_tag(self.view.substr(sublime.Region(left, right + 1)))
+                    is_tag(self.view.substr(sublime.Region(left, right + 1)), (self.tag_type == 'cfml'))
                 ):
                     # Found tag; quit
                     if self.match_tags(left, right, sel):
@@ -517,6 +518,7 @@ class BracketHighlighter(object):
             bufferText,
             curPosition,
             self.tag_type,
+            self.detect_self_closing_tags,
             self.tag_use_threshold,
             self.search_left
         )
@@ -815,7 +817,7 @@ class BracketHighlighter(object):
     def check_special_strings_start(self, char, begin, view_size):
         quote = None
         pt = begin + 1
-        if char == 'r':
+        if char in ('r', 'u'):
             if self.view.score_selector(begin, 'source.python'):
                 # Python raw string support
                 if pt <= view_size:

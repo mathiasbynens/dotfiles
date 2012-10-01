@@ -22,6 +22,7 @@ This is a fork of pyparadigm's SublimeBrackets and SublimeTagmatcher (both are n
 - Configurable custom gutter icons
 - Highlight brackets within strings
 - Toggle bracket escape mode for string brackets (regex|string)
+- Experimental CFML support (read below for more info)
 
 # Included Plugins
 - bracketselect: move cursor to opening bracket or closing bracket or select all content between brackets
@@ -36,86 +37,114 @@ This is a fork of pyparadigm's SublimeBrackets and SublimeTagmatcher (both are n
 - Change the scope, highlight style, icon for bracket types, which brackets to match, set search thresholds, etc.
 - Save the file and your options should take effect immediately.
 
+# CFML support
+CFML support is currently experimental.  In order to enable it, you must add the CFML lanugage name to the whitelist (or exclude it from the list if using blacklist).  If using the ColdFusion from https://github.com/SublimeText/ColdFusion, you can follow the example below:
+
+```js
+"angle_language_list" : ["HTML","HTML 5","XML","PHP", "ColdFusion", "ColdFusionCFC"],
+"tag_language_list"   : ["HTML","HTML 5","XML","PHP", "ColdFusion", "ColdFusionCFC"],
+```
+
+After that, you must make sure ```tag_type``` is set to ```cmfl``` like below:
+
+```js
+"tag_type" : "cfml",
+```
+
+It is also good to make sure that self-closing detection is enalbed (this is also experimental):
+
+```js
+"detect_self_closing_tags": true,
+```
+
 #Changing Colors
 The color is based on the scope you assign to the highlight. The color of the scope is defined by your theme file.  By default, the scope is "entity.name.class", but you could change it to "keyword" or any other scope in your theme.
 
-    //Scope? (Defined in theme files.)
-    //Examples: (keyword|string|number)
-    "quote_scope" : "entity.name.class",
-    "curly_scope" : "entity.name.class",
-    "round_scope" : "entity.name.class",
-    "square_scope": "entity.name.class",
-    "angle_scope" : "entity.name.class",
-    "tag_scope"   : "entity.name.class",
+```js
+//Scope? (Defined in theme files.)
+//Examples: (keyword|string|number)
+"quote_scope" : "entity.name.class",
+"curly_scope" : "entity.name.class",
+"round_scope" : "entity.name.class",
+"square_scope": "entity.name.class",
+"angle_scope" : "entity.name.class",
+"tag_scope"   : "entity.name.class",
+```
 
 If you want more control of the colors, you can define your own scopes.
 
+```xml
+<dict>
+    <key>name</key>
+    <string>Bracket Tag</string>
+    <key>scope</key>
+    <string>brackethighlighter.tag</string>
+    <key>settings</key>
     <dict>
-        <key>name</key>
-        <string>Bracket Tag</string>
-        <key>scope</key>
-        <string>bracket.tag</string>
-        <key>settings</key>
-        <dict>
-            <key>foreground</key>
-            <string>#FD971F</string>
-        </dict>
+        <key>foreground</key>
+        <string>#FD971F</string>
     </dict>
+</dict>
+<dict>
+    <key>name</key>
+    <string>Bracket Curly</string>
+    <key>scope</key>
+    <string>brackethighlighter.curly</string>
+    <key>settings</key>
     <dict>
-        <key>name</key>
-        <string>Bracket Curly</string>
-        <key>scope</key>
-        <string>bracket.curly</string>
-        <key>settings</key>
-        <dict>
-            <key>foreground</key>
-            <string>#66D9EF</string>
-        </dict>
+        <key>foreground</key>
+        <string>#66D9EF</string>
     </dict>
+</dict>
+<dict>
+    <key>name</key>
+    <string>Bracket Round</string>
+    <key>scope</key>
+    <string>brackethighlighter.round</string>
+    <key>settings</key>
     <dict>
-        <key>name</key>
-        <string>Bracket Round</string>
-        <key>scope</key>
-        <string>bracket.round</string>
-        <key>settings</key>
-        <dict>
-            <key>foreground</key>
-            <string>#F92672</string>
-        </dict>
+        <key>foreground</key>
+        <string>#F92672</string>
     </dict>
+</dict>
+<dict>
+    <key>name</key>
+    <string>Bracket Square</string>
+    <key>scope</key>
+    <string>brackethighlighter.square</string>
+    <key>settings</key>
     <dict>
-        <key>name</key>
-        <string>Bracket Square</string>
-        <key>scope</key>
-        <string>bracket.square</string>
-        <key>settings</key>
-        <dict>
-            <key>foreground</key>
-            <string>#A6E22E</string>
-        </dict>
+        <key>foreground</key>
+        <string>#A6E22E</string>
     </dict>
+</dict>
+<dict>
+    <key>name</key>
+    <string>Bracket Angle</string>
+    <key>scope</key>
+    <string>brackethighlighter.angle</string>
+    <key>settings</key>
     <dict>
-        <key>name</key>
-        <string>Bracket Angle</string>
-        <key>scope</key>
-        <string>bracket.angle</string>
-        <key>settings</key>
-        <dict>
-            <key>foreground</key>
-            <string>#AE81FF</string>
-        </dict>
+        <key>foreground</key>
+        <string>#AE81FF</string>
     </dict>
+</dict>
+<dict>
+    <key>name</key>
+    <string>Bracket Quote</string>
+    <key>scope</key>
+    <string>brackethighlighter.quote</string>
+    <key>settings</key>
     <dict>
-        <key>name</key>
-        <string>Bracket Quote</string>
-        <key>scope</key>
-        <string>bracket.quote</string>
-        <key>settings</key>
-        <dict>
-            <key>foreground</key>
-            <string>#FAF60A</string>
-        </dict>
+        <key>foreground</key>
+        <string>#FAF60A</string>
     </dict>
+</dict>
+```
+
+# Version 1.9.0
+- Add experimental CFML support (defaulted off)
+- Add auto-detection of self-closing tags (defaulted on)
 
 # Version 1.8.0
 - Add new commands: "Show Bracket String Escape Mode" and "Toggle Bracket String Escape Mode".  Default is "regex"

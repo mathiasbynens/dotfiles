@@ -13,7 +13,11 @@ class select_bracket(bracket_plugin.BracketPluginCommand):
                 last = content.a
         elif select == 'right':
             if bh_type == "tag":
-                first, last = (content.end() + 1, content.end() + 1)
+                if content.end() < bracket.end():
+                    first, last = (content.end() + 1, content.end() + 1)
+                else:
+                    # There is no second tag, so just select the first
+                    first, last = (bracket.begin() + 1, bracket.begin() + 1)
             else:
                 first = content.b
         self.attr.set_selection([sublime.Region(first, last)])
