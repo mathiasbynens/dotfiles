@@ -400,8 +400,12 @@ defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\\U21a9"
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
-defaults write com.apple.terminal "Default Window Settings" -string "Homebrew"
-defaults write com.apple.terminal "Startup Window Settings" -string "Homebrew"
+# Use a modified version of the Homebrew theme by default in Terminal.app
+open "$HOME/init/thanpolas.terminal"
+sleep 1 # Wait a bit to make sure the theme is loaded
+
+defaults write com.apple.terminal "Default Window Settings" -string "thanpolas"
+defaults write com.apple.terminal "Startup Window Settings" -string "thanpolas"
 
 # Enable “focus follows mouse” for Terminal.app and all X11 apps
 # i.e. hover over a window and start typing in it without clicking first
