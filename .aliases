@@ -27,6 +27,12 @@ else # OS X `ls`
 	colorflag="-G"
 fi
 
+
+# programs
+alias slt='open -a "Sublime Text 2"'
+# also do this:
+# ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+
 # List all files colorized in long format
 alias l="ls -l ${colorflag}"
 
