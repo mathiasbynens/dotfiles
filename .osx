@@ -12,6 +12,12 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX                                                               #
 ###############################################################################
 
+########################
+# Disable Mountain Lion's Gatekeeper
+#########################
+
+sudo spctl --master-disable
+
 # Set computer name (as done via System Preferences → Sharing)
 sudo scutil --set ComputerName "Thor"
 sudo scutil --set HostName "Thor"
