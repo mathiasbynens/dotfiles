@@ -73,4 +73,4 @@
 	insteadOf = "gist:"
 
 [credential]
-	helper = git-credential-osxkeychain
+	helper = osxkeychain
