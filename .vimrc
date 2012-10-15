@@ -146,12 +146,13 @@ if &term == "xterm-ipad"
 endif
 
 " Remap keys for auto-completion, disable arrow keys
-inoremap <expr>  <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr>  <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr>  <Down>     pumvisible() ? "\<C-n>" : "\<NOP>"
-inoremap <expr>  <Up>       pumvisible() ? "\<C-p>" : "\<NOP>"
-inoremap <Left>  <NOP>
-inoremap <Right> <NOP>
+" I still need these cuz im nub. so nub.
+" inoremap <expr>  <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+" inoremap <expr>  <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+" inoremap <expr>  <Down>     pumvisible() ? "\<C-n>" : "\<NOP>"
+" inoremap <expr>  <Up>       pumvisible() ? "\<C-p>" : "\<NOP>"
+" inoremap <Left>  <NOP>
+" inoremap <Right> <NOP>
 
 " Indent/unident block (,]) (,[)
 nnoremap <leader>] >i{<CR>
