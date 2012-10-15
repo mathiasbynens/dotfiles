@@ -1,0 +1,12 @@
+difference
+index
+intersection
+join
+map-invert
+project
+rename
+rename-keys
+select
+subset?
+superset?
+union

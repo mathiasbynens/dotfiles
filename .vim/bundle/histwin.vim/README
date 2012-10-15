@@ -1,0 +1,277 @@
+*histwin.txt*  Plugin to browse the undo-tree
+
+Version: 0.12 Tue, 04 May 2010 22:42:22 +0200
+Author:  Christian Brabandt <cb@256bit.org>
+Copyright: (c) 2009, 2010 by Christian Brabandt             *histwin-copyright*
+           The VIM LICENSE applies to histwin.vim and histwin.txt
+           (see |copyright|) except use histwin instead of "Vim".
+           NO WARRANTY, EXPRESS OR IMPLIED.  USE AT-YOUR-OWN-RISK.
+
+==============================================================================
+1. Contents                                                  *histwin-contents*
+
+1. Contents.................................................|histwin-contents|
+2. Functionality............................................|histwin-plugin|
+   Opening the Undo-Tree Window.............................|histwin-browse|
+3. Keybindings..............................................|histwin-keys|
+4. Configuration............................................|histwin-config|
+   Configuraion Variables...................................|histwin-var|
+   Color Configuration......................................|histwin-color|
+5. Feedback.................................................|histwin-feedback|
+6. History..................................................|histwin-history|
+
+==============================================================================
+                                                              *histwin-plugin*
+2. Functionality
+
+This plugin was written to allow an easy way of browsing the |undo-tree|, that
+is available with Vim. This allows to go back to any change that has been made
+previously, because these states are remembered by Vim within a branch in the
+undo-history. You can use |g-| or |g+| to move in Vim within the different
+undo-branches.
+
+Unfortunately, going back to any state isn't very comfortable and you always
+need to remember at what time you did that change. Therefore the histwin-Plugin
+allows to easily view the available states and branch back to any of these
+states. It opens a new window, which contains all available states and using
+this plugin allows you to tag a previous change or go back to a particular
+state.
+
+                                                        *histwin-browse* *:UB*
+2.1 Opening the Undo-Tree Window
+
+By default you can open the Undo-Tree Window by issuing :UB (Mnemonic:
+UndoBrowse). If you do this the first time, you will see a window that looks
+like this:
+
++------------------------------------------------------+
+|Undo-Tree: FILENAME           |#!/bin/bash            |
+|======================        |                       |
+|                              |                       |
+|" actv. keys in this window   |if [ $# -ne 2 ];  the  |
+|" I toggles help screen       |    echo "Name: $0: arg|
+|" <Enter> goto undo branch    |    echo               |
+|" <C-L>   Update view         |    exit 1             |
+|" T       Tag sel. branch     |fi                     |
+|" P       Toggle view         |                       |
+|" D       Diff sel. branch    |if true; then          |
+|" R       Replay sel. branch  |    dir="${1%/*}"      |
+|" C       Clear all tags      |    file="${1##*/}"    |
+|" Q       Quit window         |    target="${2}/${di  |
+|"                             |    if [ ! -e "${targ  |
+|" Undo-Tree, v0.9             |        mkdir -p "$ta  |
+|                              |        mv "$1" "$tar  |
+|Nr   Time    Tag              |                       |
+|1) 00:00:00 /Start Editing/   |                       |
+|2) 22:50:43 /First draft/     |                       |
+|3) 23:01:22                   |                       |
+|4) 23:02:57                   |                       |
+|5) 23:05:04                   |                       |
++------------------------------------------------------+
+
+This shows an extract of a sample file on the right side. The window on the
+left side, contains an overview of all available states that are known for
+this buffer or that have been tagged to remember that change.
+
+The first line contains 'Undo-Tree: filename' so that the user knows, for
+which file this window shows the available undo-branches. This is the heading.
+
+Following the heading is a small information banner, that contains the most
+important key combinations, that are available in this window. 
+
+After that list, all available undo-changes are displayed. This is a list,
+that contains the number, the time this change was made, the change-number to
+use with the |:undo| command (this is by default not shown), and the tags,
+that have been entered. A bar shows the selected undo-branch that is active on
+the right side.
+
+Please note, that the Time for start-editing will always be shown as 00:00:00,
+because currently there is no way to retrieve this time from within vim.
+
+==============================================================================
+                                                                *histwin-keys*
+3. Keybindings
+
+By default, the following keys are active in Normal mode in the Undo-Tree
+window:
+
+'Enter'  Go to the branch, on which is selected with the cursor. By default,
+         if switching to an older branch, the buffer will be set to
+         'nomodifiable'. If you don't want that, you need to set the
+         g:undo_tree_nomod variable to off (see |histwin-var|).
+'<C-L>'  Update the window
+'T'      Tag the branch, that is selected. You'll be prompted for a tag.
+'P'      Toggle view (the change-number will be displayed). You can use this
+         number to go directly to that change (see |:undo|)
+'D'      Start diff mode with the branch that is selected by the cursor.
+         (see |08.7|)
+'R'      Replay all changes, that have been made from the beginning.
+         (see |histwin-config| for adjusting the speed)
+'C'      Clear all tags.
+'Q'      Quit window
+
+==============================================================================
+                                                *histwin-var* *histwin-config*
+4.1 Configuration variables
+
+You can adjust several parameters for the Undo-Tree window, by setting some
+variables in your .vimrc file.
+
+------------------------------------------------------------------------------
+
+4.1.1 Disable printing the help
+
+To always show only a small information banner, set this in your .vimrc
+(by default this variable is 1) >
+
+    :let g:undo_tree_help = 0
+
+------------------------------------------------------------------------------
+
+4.1.2 Include the Changenr in the window
+
+To have the Change number always included, set the g:undo_tree_dtl=0:
+(by default, this variable is 1) >
+
+    :let g:undo_tree_dtl = 0
+
+------------------------------------------------------------------------------
+
+4.1.3 Customize the replay speed
+
+The speed with which to show each change, when replaying a undo-branch can be
+adjusted by setting to a value in milliseconds. If not specified, this is
+100ms. >
+
+    :let g:undo_tree_speed=200
+
+------------------------------------------------------------------------------
+
+4.1.4 Adjust the window size.
+
+You can adjust the windows size by setting g:undo_tree_wdth to the number of
+columns you like. By default this is considered 30. When the change number is
+included in the list (see above), this value will increase by 10. >
+
+    :let g:undo_tree_wdth=40
+
+This will change the width of the window to 40 or 50, if the change number
+is included.
+
+------------------------------------------------------------------------------
+
+4.1.5 Read-only and writable buffer states
+
+By default, old buffer states are set read only and you cannot modify these.
+This was done, since the author of the plugin started browsing the undo
+branches and started changing older versions over and over again. This is
+really confusing, since you start creating even more branches and you might
+end up fixing old bugs over and over.
+
+This is what happened to the author of this plugin, so now there is a
+configuration available that will set old buffers to be only read-only.
+Currently, this works, by detecting, if the cursor was on the last branch in
+the histwin window, and if the cursor was not on the last branch, the buffer
+will be set 'nomodifiable'. You can always set the buffer to be modifiable by
+issuing: >
+    :setl modifiable
+
+The default is to set the buffer read only. To disable this, you can set the
+g:undo_tree_nomod variable in your |.vimrc| like this: >
+
+    :let g:undo_tree_nomod = 0
+
+------------------------------------------------------------------------------
+
+                                                               *histwin-color*
+4.2 Color configuration
+
+If you want to customize the colors, you can simply change the following
+groups, that are defined by the Undo-Tree Browser:
+
+UBTitle   this defines the color of the title file-name. By default this links
+          to Title (see |hl-Title|)
+UBInfo    this defines how the information banner looks like. By default this
+          links to Comment.
+UBList    this group defines the List items at the start e.g. 1), 2), This
+          links  to Identifier.
+UBTime    this defines, how the time is displayed. This links to Underlined.
+UBTag     This defines, how the tag should be highlighted. By default this
+          links to Special
+UBDelim   This group defines the look of the delimiter for the tag. By default
+          this links to Ignore
+UBActive  This group defines how the active selection is displayed. By default
+          this links to PmenuSel (see |hl-PmenuSel|)
+UBKey     This group defines, how keys are displayed within the information
+          banner. By default, this links to SpecialKey (see |hl-SpecialKey|)
+
+Say you want to change the color for the Tag values and you think, it should
+look like |IncSerch|, so you can do this in your .vimrc file:
+
+:hi link UBTag IncSearch
+
+==============================================================================
+                                                            *histwin-feedback*
+5. Feedback
+
+Feedback is always welcome. If you like the plugin, please rate it at the
+vim-page:
+http://www.vim.org/scripts/script.php?script_id=2932
+
+You can also follow the development of the plugin at github:
+http://github.com/chrisbra/histwin.vim
+
+Please don't hesitate to report any bugs to the maintainer, mentioned in the
+third line of this document.
+
+==============================================================================
+                                                             *histwin-history*
+6. histwin History
+
+0.12    - Small extension to the help file
+        - generate help file with 'et' set, so the README at github looks
+          better
+        - Highlight the key binding using |hl-SpecialKey|
+        - The help tag for the color configuration was wrong.
+0.11    - Set old buffers read only (disable the setting via the 
+          g:undo_tree_nomod variable
+        - Make sure, Warning Messages are really displayed using :unsilent
+0.10    - Fixed annoying Resizing bug
+        - linebreak tags, if they are too long
+        - dynamically grow the histwin window, for longer tags (up
+          to a maximum)
+        - Bugfix: Always indicate the correct branch
+        - Added a few try/catch statements and some error handling
+0.9     - Error handling for Replaying (it may not work always)
+        - Documentation
+        - Use syntax highlighting
+        - Tagging finally works
+0.8     - code cleanup
+        - make speed of the replay adjustable. Use g:undo_tree_speed to set
+          time in milliseconds
+0.7.2   - make sure, when switching to a different undo-branch, the undo-tree will be reloaded
+        - check 'undolevel' settings  
+0.7.1   - fixed a problem with mapping the keys which broke the Undo-Tree keys
+          (I guess I don't fully understand, when to use s: and <sid>)
+0.7     - created autoloadPlugin (patch by Charles Campbell) Thanks!
+        - enabled GLVS (patch by Charles Campbell) Thanks!
+        - cleaned up old comments
+        - deleted :noautocmd which could cause trouble with other plugins
+        - small changes in coding style (<sid> to s:, fun instead of fu)
+        - made Plugin available as histwin.vba
+        - Check for availability of :UB before defining it
+          (could already by defined Blockquote.vim does for example)
+0.6     - fix missing bufname() when creating the undo_tree window
+        - make undo_tree window a little bit smaller
+          (size is adjustable via g:undo_tree_wdth variable)
+0.5     - add missing endif (which made version 0.4 unusuable)
+0.4     - Allow diffing with selected branch
+        - highlight current version
+        - Fix annoying bug, that displays 
+          --No lines in buffer--
+0.3     - Use changenr() to determine undobranch
+        - <C-L> updates view
+        - allow switching to initial load state, before
+          buffer was edited
+==============================================================================
+vim:tw=78:ts=8:ft=help:et

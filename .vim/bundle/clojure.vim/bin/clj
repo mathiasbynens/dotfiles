@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Copyright (c) Stephen C. Gilardi. All rights reserved.  The use and
+# distribution terms for this software are covered by the Eclipse Public
+# License 1.0 (http://opensource.org/licenses/eclipse-1.0.php) which can be
+# found in the file epl-v10.html at the root of this distribution.  By
+# using this software in any fashion, you are agreeing to be bound by the
+# terms of this license.  You must not remove this notice, or any other,
+# from this software.
+#
+# clj-env-dir Launches Clojure, passing along command line arguments. This
+#             launcher can be configured using environment variables and
+#             makes it easy to include directories full of classpath roots
+#             in CLASSPATH.
+#
+# scgilardi (gmail)
+# Created 7 January 2009
+#
+# Modified to read in an optional .clojure file in the current directory
+# naming further items for the CLASSPATH.
+#
+# Meikel Brandmeyer (mb ? kotka ! de)
+# Frankfurt am Main, 21.08.2009
+#
+# Environment variables (optional):
+#
+#  CLOJURE_EXT  Colon-delimited list of paths to directories whose top-level
+#               contents are (either directly or as symbolic links) jar
+#               files and/or directories whose paths will be in Clojure's
+#               classpath. The value of the CLASSPATH environment variable
+#               for Clojure will include these top-level paths followed by
+#               the previous value of CLASSPATH (if any).
+#               default:
+#               example: /usr/local/share/clojure/ext:$HOME/.clojure.d/ext
+#
+#  CLOJURE_JAVA The command to launch a JVM instance for Clojure
+#               default: java
+#               example: /usr/local/bin/java6
+#
+#  CLOJURE_OPTS Java options for this JVM instance
+#               default:
+#               example:"-Xms32M -Xmx128M -server"
+#
+#  CLOJURE_MAIN The Java class to launch
+#               default: clojure.main
+#               example: clojure.contrib.repl_ln
+
+set -o errexit
+#set -o nounset
+#set -o xtrace
+
+if [ -n "${CLOJURE_EXT:-}" ]; then
+    OLD="$IFS"
+    IFS=":"
+    EXT="$(find -H ${CLOJURE_EXT} -mindepth 1 -maxdepth 1 -print0 | tr \\0 \:)"
+    IFS="$OLD"
+    if [ -n "${CLASSPATH:-}" ]; then
+        CLASSPATH="${EXT}${CLASSPATH}"
+    else
+        CLASSPATH="${EXT%:}"
+    fi
+fi
+
+if [ -f .clojure ]; then
+    for path in `cat .clojure`; do
+        if [ -n "${CLASSPATH:-}" ]; then
+            CLASSPATH="${path}:${CLASSPATH}"
+        else
+            CLASSPATH="${path%:}"
+        fi
+    done
+fi
+
+export CLASSPATH
+
+JAVA=${CLOJURE_JAVA:-java}
+OPTS=${CLOJURE_OPTS:-}
+MAIN=${CLOJURE_MAIN:-clojure.main}
+
+exec ${JAVA} ${OPTS} ${MAIN} "$@"

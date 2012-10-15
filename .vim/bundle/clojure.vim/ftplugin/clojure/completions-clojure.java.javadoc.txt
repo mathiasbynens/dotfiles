@@ -1,0 +1,8 @@
+*core-java-api*
+*feeling-lucky*
+*feeling-lucky-url*
+*local-javadocs*
+*remote-javadocs*
+add-local-javadoc
+add-remote-javadoc
+javadoc

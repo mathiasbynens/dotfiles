@@ -1,0 +1,30 @@
+# CSS Site Header
+snippet css
+	/*
+		Site: ${1:Title}
+		Date: `system("date '+%B %d, %Y'")`
+		Author: Gianni Chiappetta
+		Description: Base style sheet for $1
+		Author Notes: ${2:Notes}
+
+		WEB COLOURS USED FOR THIS SITE
+		---------------------------------------------------------------------
+		#000000   Colour      Used for: 
+		#000000   Colour      Used for: 
+		#000000   Colour      Used for:   
+		---------------------------------------------------------------------
+	*/
+	${3}
+# CSS Comment
+snippet com
+	/* ------------------------------ ${1:Title} ------------------------------ */
+# Border radius
+snippet radius
+	   -moz-border-radius: ${1:Amount};
+	-webkit-border-radius: $1;
+	        border-radius: $1;${2}
+# Box Shadow
+snippet shadow
+	   -moz-box-shadow: ${1:inset} ${2:X} ${3:Y} ${4:Blur} ${5:rgba(0,0,0, .6)}; /* FF3.5+ */
+	-webkit-box-shadow: $1 $2 $3 $4 $5; /* Saf3.0+, Chrome */
+	        box-shadow: $1 $2 $3 $4 $5; /* Opera 10.5, IE 9.0 */

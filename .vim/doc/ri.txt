@@ -1,0 +1,225 @@
+*ri.txt*     by Jonas Fonseca <fonseca@diku.dk>	    Last change: Nov 27th 2002
+
+
+			RI INTERFACE REFERENCE
+
+Ri Interface					*ri-interface* *ri-browser*
+
+1. Installation		|ri-installation|
+2. Terms		|ri-terms|
+3. Options		|ri-options|
+4. Events		|ri-events|
+5. Mappings		|ri-mappings|
+   5.1 Prompting	|ri-prompting|
+   5.2 Cursorwords	|ri-cursorwords|
+6. Bugs			|ri-bugs|
+7. Todo			|ri-todo|
+8. Credits		|ri-credits|
+
+==============================================================================
+1. Installation						*ri-installation*
+
+For instructions on installing this file, type >
+
+	:help add-local-help
+
+inside Vim.
+
+The Ri interface consists of 3 files: >
+
+	ftplugin/ri.vim
+	syntax/ri.vim
+	doc/ri.txt
+
+With those in you vim directory add something like >
+
+	" Load ri interface
+	source path/to/ftplugin/ri.vim
+
+to your ftplugin/ruby.vim to load it when editing ruby files.
+
+==============================================================================
+2. Terms						*ri-terms*
+
+|ri-class-buffer|					*ri-class-buffer*
+
+	A Ri class/module buffer is a buffer showing all the methods belonging
+	to a class or modul. Example: typing >
+
+		:Ri Hash
+
+<	followed by enter in normal mode will open the 'Hash' class buffer.
+
+==============================================================================
+3. Options						*ri-options*
+
+To set an option simply put >
+
+	let <option> = <value>
+
+in your vimrc file. Example: to turn on unfolding when lookups return
+multiple matches put >
+
+	let ri_unfold_nonunique = 'on'
+
+in your vimrc file.
+
+Note: For all string/bool options goes that setting them to anything different
+      from the default will result in the opposite behaviour.
+
+						*ri_split_orientation*
+|ri_split_orientation|	(type: string/bool)	(default: 'horizontal')
+
+	Controls the split orientation when creating the Ri buffer.
+
+						*ri_nonprompt_history*
+|ri_nonprompt_history|	(type: string/bool)	(default: 'add')
+
+	Controls wether lookups derived from word under the cursor should be
+	added to the input history so it is available in later when doing a
+	prompting lookup.
+
+						*ri_unfold_nonunique*
+|ri_unfold_nonunique|	(type: string/bool)	(default: 'off')
+
+	Controls wether to unfold and thereby vertically line up all
+	possibilities when doing non-unique method lookups. This can make it
+	easier to locate methods.
+
+						*ri_add_foldmarkers*
+|ri_add_foldmarkers|	(type: string/bool)	(default: 'on')
+
+	Will add foldmarkers to a buffer containing the result from doing a
+	non-unique method lookup. This option is only available when
+	ri_unfold_nonunique_matches is set to 'on'.
+
+	Note: Syntax coloring may not work optimal for big searches.
+
+						*ri_check_expansion*
+|ri_check_expansion|	(type: string/bool)	(default: 'on')
+
+	Controls wether to abandon expansion when the search term's first
+	character is uppercase (In Ruby this indicates a class or module name)
+	to avoid bogus lookups like 'Array#Hash'. Only affects lookups done in
+	a Ri class/module buffer (|ri-class-buffer|).
+
+	Provided as an option since lookups like 'Kernel#Array' are valid
+	although this should not be important since this will result in the
+	same lookup as with checking enabled.  (see also impact on <M-[>
+	mapping below)
+
+						*ri_prompt_complete*
+|ri_prompt_complete|	(type: string/bool)	(default: 'off')
+
+	With this option enabled extra attempts will be made to try and find a
+	class or module name to completion. First the <cWORD> under the cursor
+	is tested, then the first line of the buffer (where ri titles the
+	current lookup) and finally the current line is searched.
+
+	NOTE: This is kind of hacked - but could be useful.
+
+==============================================================================
+4. Events						*ri-events*
+
+It's possible to define autocommands to be run when a Ri buffer has
+been created. For instance, the following could be added to vimrc
+to provide a 'q' mapping to quit a Ri buffer: >
+
+	augroup Ri
+	  au Ri RiBufferCreated silent! nmap <unique> <buffer> q:bwipeout<cr> 
+	augroup END
+
+==============================================================================
+5. Mappings						*ri-mappings*
+
+Below are a description of the default mappings that are defined.
+User-defined mappings can be used instead by mapping to <Plug>CommandName,
+for instance: >
+
+	nnoremap ,ri <Plug>Ri
+
+The following command names are available:
+
+					*ri-commands* *:Ri* *:RiExpand*
+:Ri		Takes the word to look up as argument. Example: >
+
+			:Ri Array#each
+
+:RiExpand	Takes the word to look up as argument but also prepends
+		class/module if invoked in |ri-class-buffer| before promption
+		for word. Example: in the Array class buffer 'Array#' will be
+		prepended to the given word so invoking >
+
+			:RiExpand each
+
+<		would lookup 'Array#each'.
+
+
+4.1 Prompting						*ri-prompting*
+
+<M-i>		Clean prompting for lookup word.
+<M-I>		Initializes the prompting word to the class or module name if
+		invoked in |ri-class-buffer| (ex: to 'Array#' when in Array
+		class buffer)
+
+<Leader>ri	Same as <M-i>
+<Leader>rx	Same as <M-I>
+
+4.2 Cursorwords						*ri-cursorwords*
+
+When using the words under the cursor |WUC| trailing characters like
+punctuation dots, commas and parenthesis are removed before Ri is called.
+
+<M-]>		Gready expansion of WUC. This will work for both the
+		'Array.new', 'Hash#each' and 'Kernel::block_given?' way of
+		specifying a method.
+
+<M-[>		Not so gready expansion of WUC. This will try to extract the
+		exact keyword under the cursor. Example: when the cursor is
+		positioned on 'new' on the sequence 'Array.new.first' the
+		keyword 'new' will be matched. After a match has been found
+		the class or module name will be completed but only when in a
+		|ri-class-buffer|. This makes it possible to lookup
+		'Array#each' by placing cursor on 'each' in the 'Array' class
+		buffer.	
+		
+		Note that when the option |ri_check_expansion| is not 'on'
+		('on' being the default) this can result in bogus lookups like
+		'Float#Marshall'.
+
+==============================================================================
+6. Bugs							*ri-bugs*
+
+The following bugs are currently featured. ;)
+
+* Frases containing the characters ~ and ' cases error when setting up the ri
+  buffer.
+
+==============================================================================
+7. Todo							*ri-todo*
+
+Still some rough edges to work on but quite usefull already. This is my first
+plugin so please send comments. Anyway here some possible futuristic
+improvements:
+
+* Present multiple choices when prompting like: >
+
+	[1] Array | [2] Array#each | [3] each : Choose [1/2/3]
+
+	[1: Array / 2: Array#each / 3: each] : Choose [1/2/3]
+
+* History: Could be buffer history but also class/module buffer history.
+  Maybe use the preview window instead.
+  Luckily Vim takes care of prompting history. :)
+
+==============================================================================
+8. Credits						*ri-credits*
+
+The ri plugin is inspired by the ri stuff at RubyGarden's VimExtension page
+<URL:http://www.rubygarden.org/ruby?VimExtensions>
+
+Credits to vimscript #90 <URL:http://www.vim.org/script.php?script_id=90>
+for much of the lovely code.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:

@@ -1,0 +1,2 @@
+*open-url-script*
+browse-url
