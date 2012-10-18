@@ -91,7 +91,7 @@ systemsetup -setcomputersleep Off > /dev/null
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 ###############################################################################
-# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+# Trackpad, mouse, keyboard, SuperDrive, Bluetooth accessories, and input     #
 ###############################################################################
 
 # Trackpad: enable tap to click for this user and for the login screen
@@ -119,6 +119,9 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+#Enable the Macbook Air SuperDrive on any Mac (Macbook Pro, and Mac Pro)
+sudo nvram boot-args=”mbasd=1″
 
 # Enable access for assistive devices
 echo -n 'a' | sudo tee /private/var/db/.AccessibilityAPIEnabled > /dev/null 2>&1
