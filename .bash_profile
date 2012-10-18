@@ -1,5 +1,8 @@
 # Add `~/bin` and brew folders to the `$PATH`
-export PATH="$HOME/bin:/usr/local/sbin:/Users/thanpolas/.rvm/bin:$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/sbin:$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+
+# Run rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
