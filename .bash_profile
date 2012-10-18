@@ -11,11 +11,6 @@ unset file
 # init rvm
 source ~/.rvm/scripts/rvm
 
-# timestamps for bash history. www.debian-administration.org/users/rossen/weblog/1
-# saved for later analysis
-HISTTIMEFORMAT='%F %T '
-export HISTTIMEFORMAT
-
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 
