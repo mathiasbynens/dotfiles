@@ -1,7 +1,5 @@
 # Add `~/bin` and brew folders to the `$PATH`
-export PATH="$HOME/bin:/usr/local/sbin:$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
-
-/usr/local/Cellar/php54/5.4.7
+export PATH="$HOME/bin:/usr/local/sbin:/Users/thanpolas/.rvm/bin:$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
