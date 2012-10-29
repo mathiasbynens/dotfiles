@@ -29,7 +29,7 @@ fi
 
 # Merge tool
 alias extMerge="/Applications/p4merge.app/Contents/MacOS/p4merge $*"
-alias extDiff="[ $# -eq 7 ] && /usr/local/bin/extMerge \"$2\" \"$5\""
+alias extDiff="[ $# -eq 7 ] && extMerge \"$2\" \"$5\""
 
 # programs
 alias slt='open -a "Sublime Text 2"'

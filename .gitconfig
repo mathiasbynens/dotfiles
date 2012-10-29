@@ -89,8 +89,8 @@
 [mergetool "extMerge"]
   cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
   trustExitCode = false
-[diff]
-  external = extDiff
+#[diff]
+  #external = extDiff
 
 
 # Use `origin` as the default remote on the `master` branch in all cases

@@ -47,3 +47,6 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 # Run Z
 . ~/code/z/z.sh
+
+# Git autocomplete
+source .git-completion.bash
