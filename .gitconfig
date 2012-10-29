@@ -84,7 +84,14 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 	# My weapon of choise
-	tool = meld
+	tool = extMerge
+
+[mergetool "extMerge"]
+  cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  trustExitCode = false
+[diff]
+  external = extDiff
+
 
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
