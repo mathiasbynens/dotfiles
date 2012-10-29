@@ -50,9 +50,6 @@
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
 
-
-
-
 [apply]
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
@@ -66,8 +63,6 @@
 
   editor = vi
   # autocrlf = input
-
-
 
 [color]
 	# Use colors in Git commands that are capable of colored output when outputting to the terminal
@@ -88,6 +83,8 @@
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	# My weapon of choise
+	tool = meld
 
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
