@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"i
+ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 
 # Make sure we’re using the latest Homebrew
 brew update
