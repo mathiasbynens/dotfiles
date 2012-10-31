@@ -299,7 +299,7 @@ class BaseLinter(object):
             lang = self.language.lower()
 
             if lang in map:
-                return map[lang]
+		return map[lang].encode('utf-8')
 
         return default
 
@@ -384,7 +384,7 @@ class BaseLinter(object):
                 if engine == 'node':
                     try:
                         path = self.get_mapped_executable(view, 'node')
-                        subprocess.call([path, '-v'], startupinfo=self.get_startupinfo())
+			subprocess.call([path, u'-v'], startupinfo=self.get_startupinfo())
                         self.js_engine = {
                             'name': engine,
                             'path': path,

@@ -8,20 +8,22 @@ can be quickly located.
 
 SublimeLinter has built in linters for the following languages:
 
+* C/C++ - lint via `cppcheck`
 * CoffeeScript - lint via `coffee -s -l`
 * CSS - lint via built-in [csslint](http://csslint.net)
 * Git Commit Messages - lint via built-in module based on [A Note About Git Commit Messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
-* Haml - lint via `haml -c`
+* Haml - syntax check via `haml -c`
 * HTML - lint via `tidy` (actually [tidy for HTML5](http://w3c.github.com/tidy-html5/))
 * Java - lint via `javac -Xlint`
 * Javascript - lint via built in [jshint](http://jshint.org), [jslint](http://jslint.com), or the [closure linter (gjslint)](https://developers.google.com/closure/utilities/docs/linter_howto) (if installed)
+* Lua - syntax check via `luac`
 * Objective-J - lint via built-in [capp_lint](https://github.com/aparajita/capp_lint)
-* Perl - lint via [Perl:Critic](http://perlcritic.com/) or syntax+deprecation checking via `perl -c`
-* PHP - syntax checking via `php -l`
-* Puppet - syntax checking via `puppet parser validate`
+* Perl - lint via [Perl:Critic](http://perlcritic.com/) or syntax+deprecation check via `perl -c`
+* PHP - syntax check via `php -l`
+* Puppet - syntax check via `puppet parser validate`
 * Python - native, moderately-complete lint
-* Ruby - syntax checking via `ruby -wc`
-* XML - syntax checking via `xmllint`
+* Ruby - syntax check via `ruby -wc`
+* XML - lint via `xmllint`
 
 
 Installing
@@ -74,6 +76,30 @@ Do **NOT** edit the default SublimeLinter settings. Your changes will be lost wh
 ### Linter-specific notes
 Following are notes specific to individual linters that you should be aware of:
 
+* **C/C++** - The default C/C++ linter is [cppcheck](http://cppcheck.sourceforge.net/), however Google's [cpplint.py](http://google-styleguide.googlecode.com/svn/trunk/cpplint/) is also supported.
+
+  To swap `cppcheck` out for `cpplint.py` you will need to adjust `sublimelinter_syntax_map` and possibly `sublimelinter_executable_map` also. First change the _linter language_ for `C` and `C++` to `c_cpplint` via `sublimelinter_syntax_map`. If `cpplint.py` is not on your system `PATH`, then add an entry for `c_cpplint` into `sublimelinter_executable_map` with the path to the file. As usual add these adjustments to the SublimeLinter **User Settings** file. An example:
+
+      "sublimelinter_syntax_map":
+      {
+	"Python Django": "python",
+	"Ruby on Rails": "ruby",
+	"C++": "c_cpplint",
+	"C": "c_cpplint"
+      },
+      "sublimelinter_executable_map":
+      {
+	"c_cpplint": "/Users/[my username]/Desktop/cpplint.py"
+      }
+
+* **CSS** - This linter runs [csslint](http://csslint.net). This linter requires a Javascript engine (like Node.js) to be installed (see notes above for the JavaScript linters: "jshint" or "jslint").
+
+  By default all CSSLint settings are turned on. You may customize CSSLint behavior with the "csslint_options" setting. Please select `Preferences->Package Settings->SublimeLinter->Settings - Default` for more information on turning off or adjusting severity of tests. For more information about options available to CSSLint, see https://github.com/stubbornella/csslint/wiki/Rules.
+
+* **HTML** - This linter will not run unless you have a version of tidy with HTML5 support. To use this linter, please see: https://github.com/w3c/tidy-html5
+
+* **Java** - Because it uses `javac` to do linting, each time you run the linter the entire dependency graph of the current file will be checked. Depending on the number of classes you import, this can be **extremely** slow. Also note that you **must** provide the `-sourcepath`, `-classpath`, `-Xlint` and `{filename}` arguments to `javac` in your per-project settings. See "Per-project settings" below for more information.
+
 * **JavaScript** - If the "javascript_linter" setting is "jshint" or "jslint", this linter runs [jshint](http://jshint.org) (or [jslint](http://jslint.com) respectively) using Node.js. See "Javascript-based linters" above for information on how to install Node.js.
 
   If the "javascript_linter" setting is "gjslint", this linter runs the [closure linter (gjslint)](https://developers.google.com/closure/utilities/docs/linter_howto). After installation, if gjslint cannot be found by SublimeLinter, you may have to set the path to gjslint in the "sublimelinter\_executable\_map" setting.
@@ -82,17 +108,9 @@ Following are notes specific to individual linters that you should be aware of:
 
   SublimeLinter supports `.jshintrc` files. If using JSHint, SublimeLinter will recursively search the directory tree (from the file location to the file-system root directory). This functionality is specified in the [JSHint README](https://github.com/jshint/node-jshint/#within-your-projects-directory-tree).
 
-* **CSS** - This linter runs [csslint](http://csslint.net). This linter requires a Javascript engine (like Node.js) to be installed (see notes above for the JavaScript linters: "jshint" or "jslint").
+* **Perl** - Due to a vulnerability (issue [#77](https://github.com/SublimeLinter/SublimeLinter/issues/77)) with the Perl linter, Perl syntax checking is no longer enabled by default. The default linter for Perl has been replaced by Perl::Critic. The standard Perl syntax checker can still be invoked by switching the "perl_linter" setting to "perl".
 
-  By default all CSSLint settings are turned on. You may customize CSSLint behavior with the "csslint_options" setting. Please select `Preferences->Package Settings->SublimeLinter->Settings - Default` for more information on turning off or adjusting severity of tests. For more information about options available to CSSLint, see https://github.com/stubbornella/csslint/wiki/Rules.
-
-* **HTML** - This linter will not run unless you have a version of tidy with HTML5 support. To use this linter, please see: https://github.com/w3c/tidy-html5
-
-* **perl** - Due to a vulnerability (issue [#77](https://github.com/SublimeLinter/SublimeLinter/issues/77)) with the Perl linter, Perl syntax checking is no longer enabled by default. The default linter for Perl has been replaced by Perl::Critic. The standard Perl syntax checker can still be invoked by switching the "perl_linter" setting to "perl".
-
-* **ruby** - If you are using rvm or rbenv, you will probably have to specify the full path to the ruby you are using in the "sublimelinter_executable_map" setting. See "Configuring" below for more info.
-
-* **java** - Because it uses `javac` to do linting, each time you run the linter the entire dependency graph of the current file will be checked. Depending on the number of classes you import, this can be **extremely** slow. Also note that you **must** provide the `-sourcepath`, `-classpath`, `-Xlint` and `{filename}` arguments to `javac` in your per-project settings. See "Per-project settings" below for more information.
+* **Ruby** - If you are using rvm or rbenv, you will probably have to specify the full path to the ruby you are using in the "sublimelinter_executable_map" setting. See "Configuring" below for more info.
 
 ### Per-project settings
 SublimeLinter supports per-project/per-language settings. This is useful if a linter requires path configuration on a per-project basis. To edit your project settings, select the menu item `Project->Edit Project`. If there is no "settings" object at the top level, add one and then add a "SublimeLinter" sub-object, like this:
@@ -374,3 +392,7 @@ If you wish to create a new linter to support a new language, SublimeLinter make
 
 
 If your linter has more complex requirements, see the comments for CONFIG in base\_linter.py, and use the existing linters as guides.
+
+Beta
+----
+The SublimeLinter Beta package is available via Package Control. The beta version is considered unstable and should only be used for testing the next release. If you like living on the edge, please report any bugs you find on the [SublimeLinter issues](https://github.com/SublimeLinter/SublimeLinter/issues) page.

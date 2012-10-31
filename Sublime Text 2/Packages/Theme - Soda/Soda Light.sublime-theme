@@ -664,6 +664,7 @@
     // Quick panel background
     {
         "class": "overlay_control",
+	"settings": ["!soda_retina_fix"],
         "layer0.texture": "Theme - Soda/Soda Light/quick-panel-background.png",
         "layer0.inner_margin": [12, 6, 12, 15],
         "layer0.opacity": 1.0,
@@ -671,6 +672,14 @@
         "layer1.inner_margin": [12, 40, 12, 19],
         "layer1.opacity": 1.0,
         "content_margin": [11, 8, 11, 17]
+    },
+    // Quick panel background (Retina fix)
+    {
+	"class": "overlay_control",
+	"settings": ["soda_retina_fix"],
+	"layer0.tint": [238, 238, 238],
+	"layer0.opacity": 1.0,
+	"content_margin": [6, 8, 6, 6]
     },
 
 //
@@ -698,26 +707,20 @@
         "class": "quick_panel_label",
         "fg": [50, 50, 50, 255],
         "match_fg": [0, 0, 0, 255],
-        "bg": [245, 245, 245, 255],
         "selected_fg": [25, 25, 25, 255],
-        "selected_match_fg": [0, 0, 0, 255],
-        "selected_bg": [225, 225, 225, 255]
+	"selected_match_fg": [0, 0, 0, 255]
     },
     {
         "class": "quick_panel_path_label",
         "fg": [150, 150, 150, 255],
         "match_fg": [90, 90, 90, 255],
-        "bg": [245, 245, 245, 255],
         "selected_fg": [120, 120, 120, 255],
-        "selected_match_fg": [90, 90, 90, 255],
-        "selected_bg": [225, 225, 225, 255]
+	"selected_match_fg": [90, 90, 90, 255]
     },
     {
         "class": "quick_panel_score_label",
         "fg": [72, 139, 211, 255],
-        "bg": [245, 245, 245, 255],
-        "selected_fg": [72, 139, 211, 255],
-        "selected_bg": [225, 225, 225, 255]
+	"selected_fg": [72, 139, 211, 255]
     },
 
 //

@@ -46,7 +46,8 @@
     "sublimelinter_syntax_map":
     {
         "Python Django": "python",
-        "Ruby on Rails": "ruby"
+	"Ruby on Rails": "ruby",
+	"C++": "c"
     },
 
     // An array of linter names to disable. Names should be lowercase.

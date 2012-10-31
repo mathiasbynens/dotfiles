@@ -2,7 +2,7 @@ SublimeLinter 1.6.7 changelog
 
 NEW FEATURES
 
-- Puppet linting is now supported via `puppet parser validate`.
+- Puppet syntax checking is now supported via `puppet parser validate`.
 
 - Added an option for more granular control of outline decorations. Set the
   value of "sublimelinter_mark_style" to "outline", "fill", or "none" in

@@ -377,3 +377,21 @@ CHANGES/FIXES
 - Changed (the default) background linting delay to a more sane 2 seconds.
   This reduces memory usage, cpu processing, and visual noise while you are
   actively writing code.
+
+
+SublimeLinter 1.6.9 changelog
+=============================
+
+NEW FEATURES
+
+- C/C++ lint via `cppcheck`. Also added alternative (hidden) support for
+  `cpplint.py`. Please see README for more info.
+
+- Lua syntax check via `luac`.
+
+
+CHANGES/FIXES
+
+- Adding a 'beta' channel for SublimeLinter into Package Control. This
+  branch will act as a more formal method for testing new features and
+  fixes before a release.
