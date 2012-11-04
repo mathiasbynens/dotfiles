@@ -43,12 +43,61 @@ export WHITE
 export BOLD
 export RESET
 
-function parse_git_dirty() {
-	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+is_git_repo() {
+    git rev-parse --is-inside-work-tree &> /dev/null
 }
-
-function parse_git_branch() {
-	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+ 
+get_git_branch() {
+    local branch_name
+ 
+    # Get the short symbolic ref
+    branch_name=$(git symbolic-ref --quiet --short HEAD 2> /dev/null) ||
+    # If HEAD isn't a symbolic ref, get the short SHA
+    branch_name=$(git rev-parse --short HEAD 2> /dev/null) ||
+    # Otherwise, just give up
+    branch_name="(unknown)"
+ 
+    echo $branch_name
+}
+ 
+# Git status information
+function prompt_git() {
+    local git_info git_state uc us ut st
+ 
+    if ! is_git_repo; then
+        return 1
+    fi
+ 
+    git_info=$(get_git_branch)
+ 
+    # Check for uncommitted changes in the index
+    if ! `git diff --quiet --ignore-submodules --cached`; then
+        uc="+"
+    fi
+ 
+    # Check for unstaged changes
+    if ! `git diff-files --quiet --ignore-submodules --`; then
+        us="!"
+    fi
+ 
+    # Check for untracked files
+    if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+        ut="?"
+    fi
+ 
+    # Check for stashed files
+    if `git rev-parse --verify refs/stash &>/dev/null`; then
+        st="$"
+    fi
+ 
+    git_state=$uc$us$ut$st
+ 
+    # Combine the branch name and state information
+    if [[ $git_state ]]; then
+        git_info="$git_info[$git_state]"
+    fi
+ 
+    echo -ne "${SOLAR_WHITE} on ${style_branch}${git_info}"
 }
 
 export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
