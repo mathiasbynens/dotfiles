@@ -80,5 +80,5 @@ $ rsync -avz --existing --exclude ".DS_Store" ~/ ./dotfiles/
 And you can test the sync before doing anything adding -n argument
 
 ```bash
-$ rsync -avzn --existing --exclude ".DS_Store" ~ ./dotfiles/
+$ rsync -avzn --existing --exclude ".DS_Store" ~/ ./dotfiles/
 ```
