@@ -80,6 +80,20 @@ When setting up a new Mac, you may want to install some common Homebrew formulae
 ./.brew
 ```
 
+### Reverse dotfiles directory update
+
+If you've updated the files after execute ./bootstrap.sh you will be able to sync your changes using rsync.
+
+```bash
+$ rsync -avz --existing --exclude ".DS_Store" ~ ./dotfiles/
+```
+
+And you can test the sync before doing anything adding -n argument
+
+```bash
+$ rsync -avzn --existing --exclude ".DS_Store" ~ ./dotfiles/
+```
+
 ## Feedback
 
 Suggestions/improvements
