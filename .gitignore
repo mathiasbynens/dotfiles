@@ -1,3 +1,6 @@
+# Sublime files
+*.sublime*
+
 # Compiled Python files
 *.pyc
 

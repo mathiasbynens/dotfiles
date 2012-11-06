@@ -1,6 +1,9 @@
 # Use shell-style glob syntax
 syntax: glob
 
+# Sublime files
+*.sublime*
+
 # Compiled Python files
 *.pyc
 

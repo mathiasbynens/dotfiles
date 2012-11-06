@@ -1,0 +1,10 @@
+export PYTHONSTARTUP="$HOME/.pythonrc"
+export NODE_PATH=/usr/local/lib/node_modules
+
+# RVM
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
+
+# Virtualenv
+PATH=$PATH:/usr/local/share/python
+source /usr/local/bin/virtualenvwrapper.sh

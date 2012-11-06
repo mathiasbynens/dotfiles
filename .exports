@@ -1,5 +1,5 @@
-# Make vim the default editor
-export EDITOR="vim"
+# Make Sublime the default editor
+export EDITOR='sublime -w'
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 # Highlight section titles in manual pages
