@@ -1,6 +1,11 @@
 # Create a new directory and enter it
-function mkd() {
+function md() {
 	mkdir -p "$@" && cd "$@"
+}
+
+# Copy w/ progress
+function cp_p() {
+  rsync -WavP --human-readable --progress $1 $2
 }
 
 # Determine size of a file or total size of a directory
@@ -18,12 +23,31 @@ function fs() {
 }
 
 # Use Git’s colored diff when available
-hash git &>/dev/null
-if [ $? -eq 0 ]; then
-	function diff() {
-		git diff --no-index --color-words "$@"
-	}
-fi
+## hash git &>/dev/null
+## if [ $? -eq 0 ]; then
+## 	function diff() {
+## 		git diff --no-index --color-words "$@"
+## 	}
+## fi
+
+# take this repo and copy it to somewhere else minus the .git stuff.
+function gitexport() {
+	mkdir -p "$1"
+	git archive master | tar -x -C "$1"
+}
+
+# git log with per-commit cmd-clickable GitHub URLs (iTerm)
+function gf() {
+  local remote="$(git remote -v | awk '/^origin.*\(push\)$/ {print $2}')"
+  [[ "$remote" ]] || return
+  local user_repo="$(echo "$remote" | perl -pe 's/.*://;s/\.git$//')"
+  git log $* --name-status --color | awk "$(cat <<AWK
+    /^.*commit [0-9a-f]{40}/ {sha=substr(\$2,1,7)}
+    /^[MA]\t/ {printf "%s\thttps://github.com/$user_repo/blob/%s/%s\n", \$1, sha, \$2; next}
+    /.*/ {print \$0}
+AWK
+  )" | less -F
+}
 
 # Create a data URL from a file
 function dataurl() {

@@ -38,7 +38,6 @@ set number
 syntax on
 " Make tabs as wide as two spaces
 set tabstop=4
-set list
 " Highlight searches
 set hlsearch
 " Ignore case of searches
