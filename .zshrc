@@ -32,4 +32,4 @@ for file in ~/.{exports,aliases,functions,extra}; do
 done
 unset file
 
-. ~/code/z/z.sh
+. ~/bin/z.sh
