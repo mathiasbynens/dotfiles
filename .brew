@@ -20,5 +20,8 @@ brew install wget --enable-iri
 # git
 brew install git
 
+# nmap
+brew install nmap
+
 # Remove outdated versions from the cellar
 brew cleanup
