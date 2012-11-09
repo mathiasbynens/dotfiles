@@ -23,5 +23,8 @@ brew install git
 # nmap
 brew install nmap
 
+# wget
+brew install wget
+
 # Remove outdated versions from the cellar
 brew cleanup
