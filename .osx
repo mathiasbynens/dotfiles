@@ -287,6 +287,10 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
 
+# Remove all persistent (Default) apps from the Dock
+# Negates the need for indicator lights and assumes you don't use the Dock to launch apps
+# defaults write com.apple.dock persistent-apps -array
+
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
 
