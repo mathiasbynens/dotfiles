@@ -97,7 +97,7 @@ function prompt_git() {
         git_info="$git_info$git_state"
     fi
  
-    echo -ne " on ${PURPLE}${git_info}"
+    printf " on ${PURPLE}${git_info}"
 }
 
 export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$(prompt_git)\[$WHITE\]\n\$ \[$RESET\]"
