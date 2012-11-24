@@ -77,25 +77,26 @@ function prompt_git() {
     #
     # Check for uncommitted changes in the index
     if ! `command git diff --quiet --ignore-submodules --cached`; then
-        uc=""
+        uc="" # Suggestion: "+"
     fi
  
     # Check for unstaged changes
     if ! `command git diff-files --quiet --ignore-submodules --`; then
-        us="*"
+        us="*" # Suggestion: "*"
     fi
  
     # Check for untracked files
     if [ -n "$(command git ls-files --others --exclude-standard)" ]; then
-        ut=""
+        ut="" # Suggestion: "?"
     fi
  
     # Check for stashed files
     if `command git rev-parse --verify refs/stash &>/dev/null`; then
-        st=""
+        st="" # Suggestion: "$"
     fi
  
     # Now we combine all possible symbols to make the "state" string
+    # If you followed the suggestions and all cases match it would say: "+*?$"
     git_state=$uc$us$ut$st
  
     # Combine the branch name and state information
