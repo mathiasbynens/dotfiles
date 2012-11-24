@@ -70,6 +70,11 @@ function prompt_git() {
  
     git_info=$(get_git_branch)
  
+    # The following checks can print a character if a condition matches.
+    # By default, only a dirty branch will show a star.
+    # If you want more info in your prompt, just assign a character to it below.
+    # Keep in mind that the checks are not exclusive, all 4 could be true.
+    #
     # Check for uncommitted changes in the index
     if ! `command git diff --quiet --ignore-submodules --cached`; then
         uc=""
@@ -90,6 +95,7 @@ function prompt_git() {
         st=""
     fi
  
+    # Now we combine all possible symbols to make the "state" string
     git_state=$uc$us$ut$st
  
     # Combine the branch name and state information
