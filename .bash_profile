@@ -1,5 +1,8 @@
 # Add `~/bin` and brew folders to the `$PATH`
-export PATH="$HOME/bin:/usr/local/sbin:$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+# and python's path: https://github.com/mxcl/homebrew/wiki/Homebrew-and-Python
+export PATH="/usr/local/share/python:$HOME/bin:/usr/local/sbin:$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+
+
 
 # Run rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
