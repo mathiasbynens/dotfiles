@@ -72,33 +72,33 @@ function prompt_git() {
  
     # Check for uncommitted changes in the index
     if ! `git diff --quiet --ignore-submodules --cached`; then
-        uc="+"
+        uc=""
     fi
  
     # Check for unstaged changes
     if ! `git diff-files --quiet --ignore-submodules --`; then
-        us="!"
+        us="*"
     fi
  
     # Check for untracked files
     if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-        ut="?"
+        ut=""
     fi
  
     # Check for stashed files
     if `git rev-parse --verify refs/stash &>/dev/null`; then
-        st="$"
+        st=""
     fi
  
     git_state=$uc$us$ut$st
  
     # Combine the branch name and state information
     if [[ $git_state ]]; then
-        git_info="$git_info[$git_state]"
+        git_info="$git_info$git_state"
     fi
  
-    echo -ne "${SOLAR_WHITE} on ${style_branch}${git_info}"
+    echo -ne " on ${PURPLE}${git_info}"
 }
 
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$(prompt_git)\[$WHITE\]\n\$ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
