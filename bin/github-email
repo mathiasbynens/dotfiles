@@ -1,0 +1,12 @@
+#!/bin/bash
+# Created by Sindre Sorhus
+# Magically retrieves a GitHub users email even though it's not publicly shown
+
+[ "$1" = "" ] && echo "usage: $0 <GitHub username> [<repo>]" && exit 1
+
+[ "$2" = "" ] && repo=`curl "https://api.github.com/users/$1/repos?type=owner&sort=updated" -s | sed -En 's|"name": "(.+)",|\1|p' | tr -d ' ' | head -n 1` || repo=$2
+
+curl "https://api.github.com/repos/$1/$repo/commits?author=$1" -s | sed -En 's|"(email\|name)": "(.+)",?|\2|p' | tr -s ' ' | paste - - | sort | awk '!x[$1]++'
+
+# `paste - -`   remove every other linebreak
+# `awk '!x[$1]++'`   only show unique lines based on first field (email)
