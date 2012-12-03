@@ -3,7 +3,8 @@
 	ls = log --pretty=oneline -n 20 --graph
 
 	# View the short SHA, short date and graph history of the latest 30 commits
-	l = log --pretty=format:\"%C(yellow)%h %Cblue%ad %Creset%s\" --date=short -n 30 --graph
+  # optionally define the number of latest commits
+	l = "!x() { git log --pretty=format:\"%C(yellow)%h %Cblue%ad %Creset%s\" --date=short -n ${1:-30} --graph; }; x"
 
 	# View the current working tree status using the short format
 	s = status -s
