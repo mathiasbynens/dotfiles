@@ -391,7 +391,7 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 ###############################################################################
-# iTunes                                                                      #
+# iTunes (pre-iTunes 11 only)                                                 #
 ###############################################################################
 
 # Disable the iTunes store link arrows
