@@ -144,3 +144,14 @@ function unquarantine() {
 		xattr -r -d "$attribute" "$@"
 	done
 }
+
+# git commit & push for both blog repos
+function gblog() {
+	git commit -am "$@"
+	git push
+	cd _site_git
+	git add .
+	git commit -am "$@"
+	git push
+}
+
