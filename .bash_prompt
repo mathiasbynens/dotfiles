@@ -3,8 +3,6 @@
 
 default_username='paulirish'
 
-
-
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
 	export TERM=gnome-256color
 elif infocmp xterm-256color >/dev/null 2>&1; then
@@ -38,9 +36,9 @@ else
 	RESET="\033[m"
 fi
 
-
+# Fastest possible way to check if repo is dirty. a savior for the WebKit repo.
 function parse_git_dirty() {
-	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+   git diff --quiet --ignore-submodules HEAD 2>/dev/null; [ $? -eq 1 ] && echo '*'
 }
 
 function parse_git_branch() {
