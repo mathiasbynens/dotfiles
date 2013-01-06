@@ -334,6 +334,15 @@ ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app /Appli
 #defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
 # Hot corners
+# 0  : noop
+# 2  : mission_control
+# 3  : application_windows
+# 4  : desktop
+# 5  : start_screen_saver
+# 6  : disable_screen_saver
+# 7  : dashboard
+# 10 : put_display_to_sleep
+# 11 : launchpad
 # Top left screen corner → Mission Control
 defaults write com.apple.dock wvous-tl-corner -int 2
 defaults write com.apple.dock wvous-tl-modifier -int 0
