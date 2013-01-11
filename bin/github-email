@@ -6,7 +6,7 @@
 
 [ "$2" = "" ] && repo=`curl "https://api.github.com/users/$1/repos?type=owner&sort=updated" -s | sed -En 's|"name": "(.+)",|\1|p' | tr -d ' ' | head -n 1` || repo=$2
 
-curl "https://api.github.com/repos/$1/$repo/commits?author=$1" -s | sed -En 's|"(email\|name)": "(.+)",?|\2|p' | tr -s ' ' | paste - - | sort | awk '!x[$1]++'
+curl "https://api.github.com/repos/$1/$repo/commits" -s | sed -En 's|"(email\|name)": "(.+)",?|\2|p' | tr -s ' ' | paste - - | sort -u -k 1,1
 
-# `paste - -`   remove every other linebreak
-# `awk '!x[$1]++'`   only show unique lines based on first field (email)
+# `paste - -`      remove every other linebreak
+# `sort -u -k1,1`  only show unique lines based on first column (email)
