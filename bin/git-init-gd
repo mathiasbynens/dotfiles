@@ -1,0 +1,15 @@
+#!/bin/sh
+current_dir=`pwd`
+repo_name=`basename "$current_dir"`
+
+# Init bare remote repoository in Google Drive
+cd $HOME/Google\ Drive
+mkdir -p "git/$repo_name"
+cd "git/$repo_name"
+git init --bare
+remote_repo=`pwd`
+
+# Init local git herepository and set remote
+cd "$current_dir"
+git init
+git remote add origin "file://$remote_repo"
