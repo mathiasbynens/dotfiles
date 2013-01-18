@@ -455,18 +455,8 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 # Spotlight                                                                   #
 ###############################################################################
 
-# Disable indexing of root-volume, turns out to be a bad idea,
-# keeping here for reference
-#mdutil -i off /
-# Clean index from the root-volume, useful to resolve issues...
-#mdutil -E /
-# Disable Spotlight service (replace 'unload' with 'load' to re-enable),
-# again, bad idea, good reference…
-# http://osxdaily.com/2011/12/10/disable-or-enable-spotlight-in-mac-os-x-lion/
-#launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
-
 # Hide Spotlight tray-icon (and subsequent helper)
-chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+#chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 # Disable Spotlight indexing for any Volume that gets mounted and has not yet
 # been indexed before.
 # Use 'sudo mdutil -i off /Volumes/Backup\ Drive' to cleanup any volume
