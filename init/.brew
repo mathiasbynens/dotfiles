@@ -48,7 +48,7 @@ brew install git
 echo "Installing imagemagick"
 brew install imagemagick
 
-echo "Installinging node"
+echo "Installing node"
 brew install node
 # Make sure the global npm prefix is on the path
 [[ `which npm` ]] && export PATH=$(npm config get prefix)/bin:$PATH
