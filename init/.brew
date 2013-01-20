@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # install brew if it does not exists
-if [ -n `type -P brew &>/dev/null && echo "" || echo "notfound"` ]; then
+var=`type brew &>/dev/null && echo "" || echo "notfound"`
+if [ -n "$var" ]; then
   # brew not found, ask user if we should install it
   echo "Homebrew was not found in the system, To install Homebrew, this command needs be executed:"
   echo 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
