@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# install brew if it does not exists
+if [ -n `type -P brew &>/dev/null && echo "" || echo "notfound"` ]; then
+  # brew not found, ask user if we should install it
+  echo "Homebrew was not found in the system, To install Homebrew, this command needs be executed:"
+  echo 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
+  read -p "Do you want me to install it? (y/n)" -n 1
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Ok, then, installing Homebrew"
+    ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+  else
+    echo "aborting"
+    exit 2
+  fi
+fi
+
+# Make sure the global brew prefix is on the path
+[[ `which brew` ]] && export PATH=$(brew --prefix)/bin:$PATH
+
+echo "Make sure we’re using the latest Homebrew"
+brew update
+
+echo "Upgrading already-installed formulae"
+brew upgrade
+
+echo "Installing GNU core utilities (those that come with OS X are outdated)"
+brew install coreutils
+echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+
+echo "Installing GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed"
+brew install findutils
+
+echo "Installing Bash 4"
+brew install bash
+
+echo "Installing wget"
+brew install wget
+
+echo "Installing more recent versions of some OS X tools"
+brew tap homebrew/dupes
+brew install homebrew/dupes/grep
+
+echo "Installing git"
+brew install git
+
+echo "Installing imagemagick"
+brew install imagemagick
+
+echo "Installinging node"
+brew install node
+# Make sure the global npm prefix is on the path
+[[ `which npm` ]] && export PATH=$(npm config get prefix)/bin:$PATH
+
+echo "Removing outdated versions from the cellar"
+brew cleanup

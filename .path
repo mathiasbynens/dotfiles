@@ -1,0 +1,5 @@
+#Mysql
+PATH=/usr/local/bin:/usr/local/sbin:/opt/mvim:/usr/local/mysql/bin/:$PATH
+
+#Android platform
+PATH=$PATH:'~/development/sdks/android-sdk-macosx/tools':'~/development/sdks/android-sdk-macosx/platform-tools'
