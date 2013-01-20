@@ -42,7 +42,7 @@ alias aproff='apachectl -k stop'
 alias apres='apachectl -k restart'
 
 # List all files colorized in long format
-alias ll="ls -l ${colorflag}"
+alias ll="ls -la ${colorflag}"
 
 # List all files colorized in long format, including dot files
 alias la="ls -la ${colorflag}"
