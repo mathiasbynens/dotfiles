@@ -55,7 +55,7 @@ brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
 echo "Installing git"
-brew install git
+brew install git bash-completion
 
 echo "Installing imagemagick"
 brew install imagemagick
