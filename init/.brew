@@ -67,4 +67,5 @@ echo "Removing outdated versions from the cellar"
 brew cleanup
 
 echo "Done"
+
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
