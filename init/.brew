@@ -1,19 +1,32 @@
 #!/bin/bash
 
 # install brew if it does not exists
-var=`type brew &>/dev/null && echo "" || echo "notfound"`
-if [ -n "$var" ]; then
+
+app_name="Homebrew"
+app_cmd="brew"
+app_install_cmd='ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
+check_app_installation=`type $app_cmd &>/dev/null && echo "" || echo "notfound"`
+
+
+if [ -n "$check_app_installation" ]; then
   # brew not found, ask user if we should install it
-  echo "Homebrew was not found in the system, To install Homebrew, this command needs be executed:"
-  echo 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
+  echo "$app_name was not found in the system, To install it, this command needs be executed:"
+  echo $app_install_cmd
+
   read -p "Do you want me to install it? (y/n)" -n 1
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Ok, then, installing Homebrew"
-    ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+    echo "Ok, installing $app_name"
+    eval $app_install_cmd
   else
-    echo "aborting"
-    exit 2
+    echo
+    echo "Aborting"
+    return 2
   fi
+
+else
+  echo "$app_name is already installed"
+  echo `$app_cmd --version` 
+  return 0
 fi
 
 # Make sure the global brew prefix is on the path
@@ -27,7 +40,6 @@ brew upgrade
 
 echo "Installing GNU core utilities (those that come with OS X are outdated)"
 brew install coreutils
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 
 echo "Installing GNU 'find', 'locate', 'updatedb', and 'xargs', g-prefixed"
 brew install findutils
@@ -43,15 +55,16 @@ brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
 echo "Installing git"
-brew install git
+brew install git bash-completion
 
 echo "Installing imagemagick"
 brew install imagemagick
 
 echo "Installing node"
 brew install node
-# Make sure the global npm prefix is on the path
-[[ `which npm` ]] && export PATH=$(npm config get prefix)/bin:$PATH
 
 echo "Removing outdated versions from the cellar"
 brew cleanup
+
+echo "Done"
+echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."

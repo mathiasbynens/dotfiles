@@ -1,5 +1,20 @@
-#Mysql
-PATH=/usr/local/bin:/usr/local/sbin:/opt/mvim:/usr/local/mysql/bin/:$PATH
+# default path
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 
-#Android platform
-PATH=$PATH:'~/development/sdks/android-sdk-macosx/tools':'~/development/sdks/android-sdk-macosx/platform-tools'
+# Add `~/bin` to the `$PATH`
+PATH=$HOME/bin:$PATH
+
+# brew
+PATH=$(brew --prefix)/bin:$(brew --prefix coreutils)/libexec/gnubin:$PATH
+
+# node 
+[[ `which npm` ]] && export PATH=$PATH:$(npm config get prefix)/bin
+
+# rvm
+PATH=$PATH:~/.rvm/bin
+
+# Mysql
+PATH=$PATH:/usr/local/mysql/bin
+
+# Android platform
+# PATH=$PATH:~/development/sdks/android-sdk-macosx/tools:~/development/sdks/android-sdk-macosx/platform-tools

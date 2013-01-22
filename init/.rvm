@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# install rvm if it does not exists
+app_name="Ruby Version Manager"
+app_cmd="rvm"
+app_install_cmd="\curl -L https://get.rvm.io | bash -s stable"
+check_app_installation=`type $app_cmd &>/dev/null && echo "" || echo "notfound"`
+
+if [ -n "$check_app_installation" ]; then
+  # brew not found, ask user if we should install it
+  echo "$app_name was not found in the system, To install it, this command needs be executed:"
+  echo $app_install_cmd
+
+  read -p "Do you want me to install it? (y/n)" -n 1
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Ok, installing $app_name"
+    eval $app_install_cmd
+  else
+    echo
+    echo "Aborting"
+    return 2
+  fi
+
+else
+  echo "$app_name is already installed"
+  echo `$app_cmd --version` 
+  return 0
+fi
+
