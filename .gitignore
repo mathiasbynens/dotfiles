@@ -51,6 +51,7 @@ publish
 #
 *.esproj
 .cache
+Desktop.ini
 .DS_Store
 .tmproj
 
