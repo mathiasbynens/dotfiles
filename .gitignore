@@ -53,6 +53,7 @@ publish
 .cache
 .DS_Store
 .tmproj
+Desktop.ini
 
 # Thumbnail cache files
 Thumbs.db
