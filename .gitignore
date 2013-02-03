@@ -2,8 +2,8 @@
 # Numerous always-ignore
 #
 *.err
-*.orig
 *.log
+*.orig
 *.rej
 *.sass-cache
 *.swo
@@ -18,9 +18,9 @@
 *.pyc
 
 # Folders to ignore
+.CVS
 .hg
 .svn
-.CVS
 intermediate
 publish
 
@@ -30,8 +30,8 @@ publish
 *.com
 *.exe
 *.so
-*.java
 *.jar
+*.java
 
 # Archives
 *.7z
@@ -42,8 +42,8 @@ publish
 # Images
 *.bmp
 *.gif
-*.jpg
 *.jpeg
+*.jpg
 *.png
 
 #
@@ -56,8 +56,8 @@ publish
 Desktop.ini
 
 # Thumbnail cache files
-Thumbs.db
 ._*
+Thumbs.db
 
 # Files that might appear on external disks
 .Spotlight-V100
