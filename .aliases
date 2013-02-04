@@ -20,6 +20,9 @@ alias s="subl ."
 alias o="open"
 alias oo="open ."
 
+# Fetch latest headlines from all hacker sites
+alias news="wget -O - hackurls.com/ascii |more"
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"

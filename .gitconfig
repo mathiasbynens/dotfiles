@@ -88,13 +88,18 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 	# My weapon of choise
-	tool = extMerge
+	tool = diffmerge
 
 [mergetool "extMerge"]
   cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
   trustExitCode = false
-#[diff]
-  #external = extDiff
+
+[mergetool "diffmerge"]
+        cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+        trustExitCode = true
+
+[difftool "diffmerge"]
+	cmd = "diffmerge $LOCAL $REMOTE"
 
 
 # Use `origin` as the default remote on the `master` branch in all cases
