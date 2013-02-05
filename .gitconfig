@@ -78,3 +78,7 @@
 
 [push]
 	default = simple
+
+[user]
+	name = Jamie Chung
+	email = me@jamiechung.me
