@@ -12,4 +12,5 @@ PATH=$PATH:/usr/local/share/python
 # PHP
 PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
-
+# NPM
+PATH=$PATH:/usr/local/share/npm/bin

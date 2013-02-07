@@ -4,6 +4,9 @@
 # Compiled Python files
 *.pyc
 
+# Intellij idea
+.idea
+
 # Folder view configuration files
 .DS_Store
 Desktop.ini

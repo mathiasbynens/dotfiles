@@ -1,3 +1,8 @@
+# run Chrome from the command line
+function chrome () {
+	/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome $* 2>&1 &
+}
+
 # Create a new directory and enter it
 function md() {
 	mkdir -p "$@" && cd "$@"

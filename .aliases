@@ -9,6 +9,10 @@ alias v="vim"
 alias o="open"
 alias oo="open ."
 
+# dev version of Chrome
+#--disable-web-security
+alias chromex="chrome --user-data-dir=/tmp -–allow-running-insecure-content"
+
 # git
 alias gmm="git merge --no-ff"
 alias glol="git log --graph --decorate --pretty=oneline --abbrev-commit"
