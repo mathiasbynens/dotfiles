@@ -2,47 +2,68 @@
 
 # Make sure we’re using the latest Homebrew
 brew update
+brew install git
 
 # Upgrade any already-installed formulae
 brew upgrade
 
+# Taps
+brew tap josegonzalez/homebrew-php
+brew tap homebrew/dupes
+
+# Doctor ?
+brew doctor
+
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
-# Install Bash 4
+
+# Install Bash 4 and tmux
 brew install bash
+brew install bash-completion
+brew install grc
+brew install tmux
 
-# Install wget with IRI support
-brew install wget --enable-iri
-
-# Install RingoJS and Narwhal
-# Note that the order in which these are installed is important; see http://git.io/brew-narwhal-ringo.
-brew install ringojs
-brew install narwhal
+# NodeJS
+brew install node
 
 # Install more recent versions of some OS X tools
-brew tap homebrew/dupes
 brew install homebrew/dupes/grep
-brew tap josegonzalez/homebrew-php
-brew install php54
-
-# These two formulae didn’t work well last time I tried them:
-#brew install homebrew/dupes/vim
-#brew install homebrew/dupes/screen
+# brew install homebrew/dupes/screen
+brew install vim
+brew install wget --enable-iri
 
 # Install everything else
 brew install ack
-#brew install exiv2
-brew install git
-#brew install imagemagick
+brew install gibo
+brew install curl
+# brew install exiv2
+brew install ffmpeg
+# brew install imagemagick
 brew install lynx
-brew install node
 brew install rename
-brew install rhino
 brew install tree
-brew install webkit2png
+brew install unrar
+brew install watch
+#brew install webkit2png
+brew install youtube-dl
+
+# Developper tools
+# brew install apple-gcc42
+# brew install cmake
+# brew install ctags
+# brew install gdb
+# brew install haskell-platform
+# brew install llvm --with-clang, --rtti, --all-targets, --shared
+# brew install mongodb
+# brew install narwhal
+# brew install php54
+# brew install pyside
+# brew install python
+# brew install rhino
+# brew install ringojs
 
 # Remove outdated versions from the cellar
 brew cleanup

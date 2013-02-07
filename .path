@@ -1,0 +1,9 @@
+# PATH additions
+
+# Default Homebrew scheme
+HOMEBREW=`brew --prefix`
+export PATH="$HOMEBREW/bin:$PATH"
+export PATH="$HOMEBREW/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$HOMEBREW/share/python:$PATH"
+export PATH="$HOMEBREW/share/npm/bin:$PATH"
+export PATH="$HOME/.cabal/bin:$PATH"
