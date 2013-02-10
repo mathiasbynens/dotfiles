@@ -1,6 +1,3 @@
-[submodule ".grunt-init/grunt-init-node"]
-	path = .grunt-init/grunt-init-node
-	url = git@github.com:gruntjs/grunt-init-node.git
 [submodule ".grunt-init/gruntfile"]
 	path = .grunt-init/gruntfile
 	url = git@github.com:gruntjs/grunt-init-gruntfile.git
