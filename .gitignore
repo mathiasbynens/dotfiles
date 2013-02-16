@@ -31,7 +31,7 @@ publish
 *.exe
 *.so
 *.jar
-*.java
+*.class
 
 # Archives
 *.7z
