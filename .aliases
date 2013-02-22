@@ -19,6 +19,8 @@ alias m="mate ."
 alias s="subl ."
 alias o="open"
 alias oo="open ."
+# View line endings
+alias newline="od -c"
 
 # Fetch latest headlines from all hacker sites
 alias news="wget -O - hackurls.com/ascii |more"
@@ -29,6 +31,11 @@ if ls --color > /dev/null 2>&1; then # GNU `ls`
 else # OS X `ls`
 	colorflag="-G"
 fi
+
+# Replace supervisor, no more CPU eating.
+# https://github.com/isaacs/node-supervisor/issues/71#issuecomment-12208228
+#
+alias supervise='watchmedo auto-restart -d . -p "*.node;*.js;*.coffee"'
 
 # Merge tool
 alias extMerge="/Applications/p4merge.app/Contents/MacOS/p4merge $*"
