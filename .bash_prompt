@@ -43,6 +43,59 @@ export WHITE
 export BOLD
 export RESET
 
+# ANSI CODES - SEPARATE MULTIPLE VALUES WITH ;
+#
+#  0  reset          4  underline
+#  1  bold           7  inverse
+#
+# FG  BG  COLOR     FG  BG  COLOR
+# 30  40  black     34  44  blue
+# 31  41  red       35  45  magenta
+# 32  42  green     36  46  cyan
+# 33  43  yellow    37  47  white
+
+if [[ ! "${prompt_colors[@]}" ]]; then
+  prompt_colors=(
+    "36" # information color
+    "37" # bracket color
+    "31" # error color
+  )
+
+  if [[ "$SSH_TTY" ]]; then
+    # connected via ssh
+    prompt_colors[0]="32"
+  elif [[ "$USER" == "root" ]]; then
+    # logged in as root
+    prompt_colors[0]="35"
+  fi
+fi
+
+# Inside a prompt function, run this alias to setup local $c0-$c9 color vars.
+alias prompt_getcolors='prompt_colors[9]=; local i; for i in ${!prompt_colors[@]}; do local c$i="\[\e[0;${prompt_colors[$i]}m\]"; done'
+
+
+# Git status.
+function prompt_git() {
+  prompt_getcolors
+  local status output flags
+  status="$(git status 2>/dev/null)"
+  [[ $? != 0 ]] && return;
+  output="$(echo "$status" | awk '/# Initial commit/ {print "(init)"}')"
+  [[ "$output" ]] || output="$(echo "$status" | awk '/# On branch/ {print $4}')"
+  [[ "$output" ]] || output="$(git branch | perl -ne '/^\* (.*)/ && print $1')"
+  flags="$(
+    echo "$status" | awk 'BEGIN {r=""} \
+      /^# Changes to be committed:$/        {r=r "+"}\
+      /^# Changes not staged for commit:$/  {r=r "!"}\
+      /^# Untracked files:$/                {r=r "?"}\
+      END {print r}'
+  )"
+  if [[ "$flags" ]]; then
+    output="$output$c1:$c0$flags"
+  fi
+  echo "$c1[$c0$output$c1]$c9"
+}
+
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
@@ -51,5 +104,13 @@ function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
-export PS2="\[$ORANGE\]→ \[$RESET\]"
+export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$"
+export PS1="$PS1([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")"
+# git: [branch:flags]
+export PS1="$PS1$(prompt_git)\n"
+#export PS1="$PS1\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n"
+ # date: [HH:MM:SS]
+export PS1="$PS1$c1[$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]$c9 \$ \[$RESET\]"
+
+export PS2="\[$ORANGE\]→ \[$RESET\][$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]"
+
