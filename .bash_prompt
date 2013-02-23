@@ -76,13 +76,16 @@ alias prompt_getcolors='prompt_colors[9]=; local i; for i in ${!prompt_colors[@]
 
 # Git status.
 function prompt_git() {
-  prompt_getcolors
-  local status output flags
+  #prompt_getcolors
+  local status output flags zz
   status="$(git status 2>/dev/null)"
+
   [[ $? != 0 ]] && return;
+
   output="$(echo "$status" | awk '/# Initial commit/ {print "(init)"}')"
   [[ "$output" ]] || output="$(echo "$status" | awk '/# On branch/ {print $4}')"
   [[ "$output" ]] || output="$(git branch | perl -ne '/^\* (.*)/ && print $1')"
+
   flags="$(
     echo "$status" | awk 'BEGIN {r=""} \
       /^# Changes to be committed:$/        {r=r "+"}\
@@ -90,6 +93,7 @@ function prompt_git() {
       /^# Untracked files:$/                {r=r "?"}\
       END {print r}'
   )"
+
   if [[ "$flags" ]]; then
     output="$output$c1:$c0$flags"
   fi
@@ -104,10 +108,10 @@ function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$"
-export PS1="$PS1([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")"
+export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]"
+export PS1="$PS1\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")"
 # git: [branch:flags]
-export PS1="$PS1$(prompt_git)\n"
+export PS1="$PS1\$(prompt_git)\n"
 #export PS1="$PS1\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n"
  # date: [HH:MM:SS]
 export PS1="$PS1$c1[$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]$c9 \$ \[$RESET\]"
