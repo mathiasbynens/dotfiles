@@ -76,8 +76,8 @@ alias prompt_getcolors='prompt_colors[9]=; local i; for i in ${!prompt_colors[@]
 
 # Git status.
 function prompt_git() {
-  #prompt_getcolors
-  local status output flags zz
+  prompt_getcolors
+  local status output flags
   status="$(git status 2>/dev/null)"
 
   [[ $? != 0 ]] && return;
@@ -95,9 +95,9 @@ function prompt_git() {
   )"
 
   if [[ "$flags" ]]; then
-    output="$output$c1:$c0$flags"
+    output="$output:$flags"
   fi
-  echo "$c1[$c0$output$c1]$c9"
+  echo $output
 }
 
 function parse_git_dirty() {
@@ -108,13 +108,14 @@ function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]"
-export PS1="$PS1\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")"
+PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]"
+PS1="$PS1\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")"
 # git: [branch:flags]
-export PS1="$PS1\$(prompt_git)\n"
-#export PS1="$PS1\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n"
+PS1="$PS1\[$ORANGE\][\[$GREEN\]\$(prompt_git)\[$ORANGE\]]\[$WHITE\]"
+PS1="$PS1\n"
+#PS1="$PS1\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n"
  # date: [HH:MM:SS]
-export PS1="$PS1$c1[$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]$c9 \$ \[$RESET\]"
+export PS1="$PS1\[$ORANGE\][\[$WHITE\]$(date +"%H$c1:$c0%M$c1:$c0%S")\[$ORANGE\]]\[$WHITE\] \$ \[$RESET\]"
 
 export PS2="\[$ORANGE\]→ \[$RESET\][$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]"
 

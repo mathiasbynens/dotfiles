@@ -35,7 +35,7 @@ fi
 # Replace supervisor, no more CPU eating.
 # https://github.com/isaacs/node-supervisor/issues/71#issuecomment-12208228
 #
-alias supervise='watchmedo auto-restart -d ./ --recursive --patterns "*.js"'
+alias supervise='watchmedo auto-restart -d ./ --recursive -p "*.js"'
 
 # Merge tool
 alias extMerge="/Applications/p4merge.app/Contents/MacOS/p4merge $*"
