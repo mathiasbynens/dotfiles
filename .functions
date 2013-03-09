@@ -197,3 +197,10 @@ function unquarantine() {
 		xattr -r -d "$attribute" "$@"
 	done
 }
+
+# Install grunt tasks and add to package.json
+# Usage: gi sass contrib-uglify
+function gi() {
+	local IFS=,
+	eval npm install --save-dev grunt-{"$*"}
+}
