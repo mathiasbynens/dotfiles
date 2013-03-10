@@ -1,8 +1,59 @@
-# Compiled Python files
+#
+# Numerous always-ignore
+#
+*.err
+*.log
+*.orig
+*.rej
+*.sass-cache
+*.swo
+*.swp
+*.vi
+*~
+
+# Generated files (that can be reconstructed)
+*.diff
+*.patch
+*.phar
 *.pyc
 
-# Folder view configuration files
+# Folders to ignore
+.CVS
+.hg
+.svn
+intermediate
+publish
+
+#
+# Binary files
+#
+*.com
+*.exe
+*.so
+*.jar
+*.class
+
+# Archives
+*.7z
+*.rar
+*.tar
+*.zip
+
+# Images
+*.bmp
+*.gif
+*.jpeg
+*.jpg
+*.png
+
+#
+# OS files and folders
+#
+*.esproj
+.cache
+Desktop.ini
 .DS_Store
+.tmproj
 Desktop.ini
 
 # Thumbnail cache files
@@ -12,3 +63,37 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+
+#
+# Editor or IDE files and folders
+#
+
+# Dreamweaver
+_notes
+dwsync.xml
+
+# Eclipse
+.project
+.settings
+
+# Idea / phpStorm
+.idea
+
+# Komodo
+*.komodoproject
+.komodotools
+
+# Netbeans
+nbproject
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+ 
+#
+# never ignore a .gitignore
+# (prevents Git ignoring empty directories by placing
+# an empty .gitignore file in them)
+#
+!.gitignore
+
