@@ -10,8 +10,11 @@ alias o="open"
 alias oo="open ."
 
 # dev version of Chrome
-#--disable-web-security
-alias chromex="chrome --user-data-dir=/tmp -–allow-running-insecure-content"
+#--user-data-dir=/tmp
+#--disable-web-security -- CORS
+#-–allow-file-access-from-files -- use local files by ajax calls
+#-–allow-running-insecure-content
+alias chromex="chrome --profile-directory="Profile 1" --disable-web-security -–allow-file-access-from-files"
 
 # git
 alias gmm="git merge --no-ff"
