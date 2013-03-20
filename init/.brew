@@ -54,8 +54,8 @@ echo "Installing more recent versions of some OS X tools"
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
-echo "Installing git"
-brew install git bash-completion
+echo "Installing git & git-flow"
+brew install git bash-completion git-flow
 
 echo "Installing imagemagick"
 brew install imagemagick
