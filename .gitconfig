@@ -28,6 +28,7 @@
 [core]
   excludesfile = /Users/ricky/.gitignore_global
   editor = subl -w
+  mergeoptions = --no-ff --no-commit
   
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -44,11 +45,13 @@
 [alias]
   co = checkout -B
   go = checkout
-  branches = branch -a
-  remotes = remote -v
+  br = branch
+  brs = branch -a
+  re = remote 
+  res = remote -v
   tags = tag -l
   s = status -s
-  re = rebase
+  rb = rebase
   sq = squash
   cm = commit
   cmm = commit -m
@@ -62,3 +65,4 @@
 
 [push]
   default=simple
+
