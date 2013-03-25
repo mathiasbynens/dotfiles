@@ -53,3 +53,7 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 # Git autocomplete
 source ~/.git-completion.bash
+
+
+# Grunt autocomplete
+eval "$(grunt --completion=bash)"
