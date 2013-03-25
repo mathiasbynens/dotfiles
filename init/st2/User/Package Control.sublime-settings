@@ -1,0 +1,22 @@
+{
+	"auto_upgrade_last_run": null,
+	"installed_packages":
+	[
+		"Alignment",
+		"ApacheConf.tmLanguage",
+		"ASCII Decorator",
+		"Backbone.js",
+		"CoffeeLint",
+		"CoffeeScript",
+		"ColorPicker",
+		"Emmet",
+		"JsFormat",
+		"JSLint",
+		"Markdown Preview",
+		"Package Control",
+		"Sass",
+		"SCSS",
+		"SideBarEnhancements",
+		"sublime-better-coffeescript"
+	]
+}

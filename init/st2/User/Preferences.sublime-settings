@@ -1,0 +1,12 @@
+{
+	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
+	"font_face": "Monaco",
+	"font_size": 12.0,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"preview_on_click": true,
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true
+}
