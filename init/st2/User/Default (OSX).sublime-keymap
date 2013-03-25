@@ -1,0 +1,3 @@
+[
+	{ "keys": ["super+k", "super+m"], "command": "toggle_minimap" }
+]
