@@ -575,6 +575,14 @@ defaults write com.twitter.twitter-mac ShowFullNames -bool true
 defaults write com.twitter.twitter-mac HideInBackground -bool true
 
 ###############################################################################
+# Spotlight                                                                   #
+###############################################################################
+
+# Stop Spotlight from indexing computer (good for if you use other launcher like Quicksilver or Alfred').
+# Can be turned back on again with `on` instead of `off`
+sudo mdutil -a -i off
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
