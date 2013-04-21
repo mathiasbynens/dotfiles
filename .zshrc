@@ -30,7 +30,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(apache2-macports autojump bundler capistrano cloudapp coffee command-not-found cp debian dircycle dirpersist encode64 extract fasd gem git git-extras gitfast github git-remote-branch gnu-utils heroku history history-substring-search jira last-working-dir lol mysql-macports nanoc node npm nyan pass per-directory-history perl pj python rails rails3 rake rbenv rsync ruby rvm screen ssh-agent sublime terminitor themes urltools)
+plugins=(tmux apache2-macports autojump bundler capistrano cloudapp coffee command-not-found cp debian dircycle dirpersist encode64 extract fasd gem git git-extras gitfast github git-remote-branch gnu-utils heroku history history-substring-search jira last-working-dir lol mysql-macports nanoc node npm nyan pass per-directory-history perl pj python rails rails3 rake rbenv rsync ruby rvm screen ssh-agent sublime terminitor themes urltools)
 
 source $ZSH/oh-my-zsh.sh
 
