@@ -133,3 +133,33 @@ done
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+
+# Show human friendly numbers and colors
+alias df='df -h'
+alias ll='ls -alGh'
+alias ls='ls -Gh'
+alias du='du -h -d 2'
+
+# Common shell functions
+alias less='less -r'
+alias tf='tail -f'
+alias l='less'
+alias lh='ls -alt | head' # see the last modified files
+alias screen='TERM=screen screen'
+alias cl='clear'
+
+# Zippin
+alias gz='tar -zcvf'
+
+# Ruby
+alias c='rails c' # Rails 3
+alias co='script/console --irb=pry' # Rails 2
+alias ts='thin start'
+alias ms='mongrel_rails start'
+alias tfdl='tail -f log/development.log'
+alias tftl='tail -f log/test.log'
+
+alias ka9='killall -9'
+alias k9='kill -9'
+
+
