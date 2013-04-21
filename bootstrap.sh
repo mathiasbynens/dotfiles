@@ -1,17 +1,23 @@
 #!/bin/bash
 cd "$(dirname "${BASH_SOURCE}")"
 git pull origin master
-function doIt() {
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -av . ~
+function update() {
+	files=$(find .* -type f -maxdepth 0)
+	for filename in $files 
+	do
+		rm ~/"$filename"
+		ln -s "$(pwd)/$filename" ~
+	done
 }
+
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt
+	update
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt
+		update
 	fi
 fi
+
 unset doIt
-source ~/.bash_profile
