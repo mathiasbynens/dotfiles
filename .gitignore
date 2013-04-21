@@ -12,7 +12,3 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
-
-# Nodejs related files
-bin/npm-debug.log
-npm-debug.log
