@@ -1,14 +1,37 @@
-# Compiled Python files
-*.pyc
-
-# Folder view configuration files
+# OSX       taken from: https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+# ----------------------------------------------------------------------------------------------
 .DS_Store
-Desktop.ini
-
-# Thumbnail cache files
+# Thumbnails
 ._*
-Thumbs.db
-
-# Files that might appear on external disks
+# Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+# Windows   taken from: https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
+# ----------------------------------------------------------------------------------------------
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Tags      taken from: https://github.com/github/gitignore/blob/master/Global/Tags.gitignore
+# ----------------------------------------------------------------------------------------------
+# Ignore tags created by etags and ctags
+TAGS
+tags
+
+# Vim       taken from: https://github.com/github/gitignore/blob/master/Global/vim.gitignore
+# ----------------------------------------------------------------------------------------------
+.*.sw[a-z]
+*.un~
+Session.vim
+
+# SASS
+# ----------------------------------------------------------------------------------------------
+.sass-cache
+
+# Compiled Python files
+# ----------------------------------------------------------------------------------------------
+*.pyc
+
