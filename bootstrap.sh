@@ -5,7 +5,7 @@ function update() {
 	files=$(find .* -type f -maxdepth 0)
 	for filename in $files 
 	do
-		rm ~/"$filename"
+		rm -f ~/"$filename"
 		ln -s "$(pwd)/$filename" ~
 	done
 }
