@@ -72,6 +72,8 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; npm update n
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
+# add a second IP
+alias addip="sudo ifconfig en1 inet 192.168.254.1 netmask 255.255.255.0 alias"
 
 # Enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
