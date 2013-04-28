@@ -32,6 +32,9 @@
 	branches = branch -a
 	remotes = remote -v
 
+  # Cancel last commit
+  cancel = reset --soft HEAD~1
+
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
