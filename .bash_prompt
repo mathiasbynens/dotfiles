@@ -34,13 +34,20 @@
 # 7 – White
 if [[ ! "${prompt_colors[@]}" ]]; then
   prompt_colors=(
-    "$(tput setaf 4)" # host and base color
-    "$(tput setaf 9)" # username color
-    "$(tput setaf 190)" # directory color
-    "$(tput setaf 172)" # bracket color
-    "$(tput setaf 1)" # error color
-    "$(tput setaf 5)" # Time bracket color
-    "$(tput setaf 46)" # Time content color
+    # "$(tput setaf 4)" # host and base color
+    # "$(tput setaf 9)" # username color
+    # "$(tput setaf 190)" # directory color
+    # "$(tput setaf 172)" # bracket color
+    # "$(tput setaf 1)" # error color
+    # "$(tput setaf 5)" # Time bracket color
+    # "$(tput setaf 46)" # Time content color
+    "34" # host and base color (blue)
+    "31" # username color (red)
+    "33" # directory color (yellow)
+    "35" # bracket color (orange)
+    "31" # error color (red)
+    "35" # Time bracket color (magenda)
+    "32" # Time content color (green)
   )
 
   if [[ "$SSH_TTY" ]]; then
@@ -53,10 +60,10 @@ if [[ ! "${prompt_colors[@]}" ]]; then
 fi
 
 # Inside a prompt function, run this alias to setup local $c0-$c9 color vars.
-# alias prompt_getcolors='prompt_colors[9]=; local i; for i in ${!prompt_colors[@]}; do local c$i="\[\e[0;${prompt_colors[$i]}m\]"; done'
+alias prompt_getcolors='prompt_colors[9]=; local i; for i in ${!prompt_colors[@]}; do local c$i="\[\e[0;${prompt_colors[$i]}m\]"; done'
 
 # Use tput
-alias prompt_getcolors='prompt_colors[9]=; local i; for i in ${!prompt_colors[@]}; do local c$i=${prompt_colors[$i]}; done'
+# alias prompt_getcolors='prompt_colors[9]=; local i; for i in ${!prompt_colors[@]}; do local c$i=${prompt_colors[$i]}; done'
 
 # Exit code of previous command.
 function prompt_exitcode() {
@@ -136,7 +143,7 @@ function prompt_command() {
   PS1="$PS1$c3[$c6$(date +"%H:%M:%S")$c3]$c9"
   # exit code: 127
   PS1="$PS1$(prompt_exitcode "$exit_code")"
-  PS1="$PS1 \$ $(tput sgr0)"
+  PS1="$PS1 \$ "
 }
 
 PROMPT_COMMAND="prompt_command"

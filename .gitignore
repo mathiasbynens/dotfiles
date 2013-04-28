@@ -21,3 +21,6 @@ Thumbs.db
 
 # Ignore npm ignore file
 .npmignore
+
+# Temp folder
+temp
