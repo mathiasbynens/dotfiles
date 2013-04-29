@@ -26,6 +26,20 @@ function cdf() { # short for `cdfinder`
 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
 
+# Create a .tar.gz archive, using `zopfli` or `gzip` for compression
+function targz() {
+	if zopfli > /dev/null 2>&1; then
+		cmd="zopfli"
+	else
+		cmd="gzip"
+	fi
+	local tmpFile="${1}.tar"
+	tar -cvf "${tmpFile}" "${1}" &&
+	"${cmd}" "${tmpFile}" &&
+	rm "${tmpFile}" &&
+	echo "${tmpFile}.gz created successfully (compressed using \`${cmd}\`)."
+}
+
 # Determine size of a file or total size of a directory
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
