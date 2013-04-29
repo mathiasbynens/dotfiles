@@ -36,7 +36,7 @@ function targz() {
 	local tmpFile="${1}.tar"
 	tar -cvf "${tmpFile}" "${1}" &&
 	"${cmd}" "${tmpFile}" &&
-	rm "${tmpFile}" &&
+	rm "${tmpFile}" 2> /dev/null &&
 	echo "${tmpFile}.gz created successfully (compressed using \`${cmd}\`)."
 }
 
