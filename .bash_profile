@@ -7,6 +7,9 @@ export D8_PATH="$HOME/bin/node-tools"
 # Run rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+# Run nvm node manager
+source ~/.nvm/nvm.sh
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
