@@ -1,6 +1,6 @@
 # Add `~/bin` and brew folders to the `$PATH`
 # and python's path: https://github.com/mxcl/homebrew/wiki/Homebrew-and-Python
-export PATH="/usr/local/bin:/usr/local/share/python:$HOME/bin:$HOME/bin/node-tools:/usr/local/sbin:$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/share/python:$HOME/bin:$HOME/npm-global/bin:$HOME/bin/node-tools:/usr/local/sbin:$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 export D8_PATH="$HOME/bin/node-tools"
 
 
