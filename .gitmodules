@@ -7,3 +7,6 @@
 [submodule ".grunt-init/node"]
 	path = .grunt-init/node
 	url = git@github.com:gruntjs/grunt-init-node.git
+[submodule ".nvm"]
+	path = .nvm
+	url = git@github.com:creationix/nvm.git
