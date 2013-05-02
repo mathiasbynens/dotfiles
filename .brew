@@ -32,7 +32,7 @@ brew install php54
 #brew install homebrew/dupes/vim
 #brew install homebrew/dupes/screen
 
-# Install everything else
+# Install other useful binaries
 brew install ack
 #brew install exiv2
 brew install git
@@ -48,6 +48,31 @@ brew install zopfli
 
 brew tap homebrew/versions
 brew install lua52
+
+# Install native apps
+brew tap phinze/homebrew-cask
+brew install brew-cask
+
+function installcask() {
+	if brew cask info "${@}" | grep "Not installed" > /dev/null; then
+		brew cask install "${@}"
+	else
+		echo "${@} is already installed."
+	fi
+}
+
+installcask google-chrome
+installcask google-chrome-canary
+installcask iterm2
+installcask macvim
+installcask miro-video-converter
+installcask sublime-text
+installcask the-unarchiver
+installcask tor-browser
+installcask transmission
+installcask ukelele
+installcask virtualbox
+installcask vlc
 
 # Remove outdated versions from the cellar
 brew cleanup
