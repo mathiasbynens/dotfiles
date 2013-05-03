@@ -49,9 +49,6 @@ If `~/.extra` exists, it will be sourced along with the other files. You can use
 My `~/.extra` looks something like this:
 
 ```bash
-# PATH additions
-export PATH="~/bin:$PATH"
-
 # Git credentials
 # Not in the repository, to prevent people from accidentally committing under my name
 GIT_AUTHOR_NAME="Mathias Bynens"
@@ -74,7 +71,7 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 
 ### Install Homebrew formulae
 
-When setting up a new Mac, you may want to install some common Homebrew formulae (after installing Homebrew, of course):
+When setting up a new Mac, you may want to install some common [Homebrew](http://brew.sh/) formulae (after installing Homebrew, of course):
 
 ```bash
 ./.brew
