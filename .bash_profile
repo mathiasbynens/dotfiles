@@ -4,7 +4,7 @@ export PATH="$HOME/bin:$PATH"
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+for file in ~/.{colors,path,bash_prompt,exports,aliases,functions,extra,private}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file
@@ -40,3 +40,19 @@ which grunt > /dev/null && eval "$(grunt --completion=bash)"
 
 # If possible, add tab completion for many more commands
 [ -f /etc/bash_completion ] && source /etc/bash_completion
+
+# To set trap to intercept the non-zero return code of last program
+EC() { echo -e '\e[1;33m'code $?'\e[m\n'; }
+trap EC ERR
+
+# This will change your title to the last command run, and make sure your history file is always up-to-date
+export HISTCONTROL=ignoreboth
+export HISTIGNORE='history*'
+export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";'
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Auto "cd" when entering just a path
+shopt -s autocd
