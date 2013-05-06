@@ -7,19 +7,19 @@
 You can clone the repository wherever you want. (I like to keep it in `~/projects/dotfiles`) The bootstrapper script will pull in the latest version and symlink the dotfiles to your home folder.
 
 ```bash
-git clone https://github.com/vishaltelangre/dotfiles.git && cd dotfiles && ./bootstrap.sh
+git clone https://github.com/vishaltelangre/dotfiles.git && cd dotfiles && ./sync
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
 
 ```bash
-./bootstrap.sh
+./sync
 ```
 
 Alternatively, to update while avoiding the confirmation prompt:
 
 ```bash
-set -- -f; ./bootstrap.sh
+set -- -f; ./sync
 ```
 
 ### Git-free install
@@ -27,7 +27,7 @@ set -- -f; ./bootstrap.sh
 To install these dotfiles without Git:
 
 ```bash
-cd; curl -#L https://github.com/vishaltelangre/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh}
+cd; curl -#L https://github.com/vishaltelangre/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,sync}
 ```
 
 To update later on, just run that command again.

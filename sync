@@ -1,0 +1,51 @@
+#!/bin/bash
+
+#TODO: write logic to commit local changes and push those to remote git repo
+
+# Constants
+
+DOTFILES_PATH="$(pwd)"
+
+# lOGIC
+
+if hash update-dotfiles 2>/dev/null; then
+	# do nothing
+  echo "hee-haw!"
+else
+	# global command isn't set yet
+  echo "Setting up nice global command for this task (sudo password needed):"
+	sudo ln -s "$(pwd)/${0##*/}" /usr/local/bin/update-dotfiles
+	echo "Afterwards use 'update-dotfiles' command to easily sync dotfiles!"
+fi
+
+cd "$DOTFILES_PATH"
+
+echo "Pulling latest changes from remote git branch."
+git pull origin master
+
+function update() {
+  files=$(find .* -type f -maxdepth 0)
+  echo "Removing existing dotfiles from home directory"
+  echo "and symlinking updated dotfiles into home directory"
+  for filename in $files 
+	do
+		rm -f ~/"$filename"
+		ln -s "$(pwd)/$filename" ~
+	done
+}
+
+if [ "$1" == "--force" -o "$1" == "-f" ]; then
+  update
+else
+  read -p "This will overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+  	update
+  fi
+fi
+
+unset update
+
+echo "All done, Great!"
+
+fortune -s
