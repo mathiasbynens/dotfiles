@@ -4,7 +4,7 @@
 
 # Constants
 
-DOTFILES_PATH="$(pwd)"
+DOTFILES_PATH=~/projects/dotfiles
 
 # lOGIC
 
