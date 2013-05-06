@@ -211,3 +211,11 @@ function unquarantine() {
 		xattr -r -d "$attribute" "$@"
 	done
 }
+
+
+# grep for a process
+function psg {
+  FIRST=`echo $1 | sed -e 's/^\(.\).*/\1/'`
+  REST=`echo $1 | sed -e 's/^.\(.*\)/\1/'`
+  ps aux | grep "[$FIRST]$REST"
+}
