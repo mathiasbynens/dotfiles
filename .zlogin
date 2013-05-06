@@ -26,3 +26,9 @@ fi
 
 # Load custom/extra initializations (specific for each system)
 source ~/.extra
+
+# Load tumuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+$EDITOR=subl
+# $SHELL=/bin/zsh
