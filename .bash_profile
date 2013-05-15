@@ -11,7 +11,7 @@ export D8_PATH="$HOME/bin/node-tools"
 source ~/.nvm/nvm.sh
 
 # Use 0.10
-nvm use 0.10
+# nvm use 0.10
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
