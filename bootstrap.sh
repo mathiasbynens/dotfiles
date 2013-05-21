@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 cd "$(dirname "${BASH_SOURCE}")"
+
+CURRENT_BOOTSTRAP=$(md5sum $BASH_SOURCE)
 git pull origin master
+NEW_BOOTSTRAP=$(md5sum $BASH_SOURCE)
+
+if [ ! "$CURRENT_BOOTSTRAP" = "$NEW_BOOTSTRAP" ]; then
+    echo "$BASH_SOURCE has changed. Please run the script again."
+    exit 0
+fi
+
+
 function doIt() {
 	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
 		--exclude "README.md" --exclude "LICENSE-GPL.txt" \
