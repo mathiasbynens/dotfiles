@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Make sure we’re using the latest Homebrew
+brew update
+
+# Upgrade any already-installed formulae
+brew upgrade
+
+# Install Bash 4
+brew install bash
+
+brew install git
+
+# Remove outdated versions from the cellar
+brew cleanup

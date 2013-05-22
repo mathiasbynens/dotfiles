@@ -1,0 +1,13 @@
+# git credentials
+GIT_AUTHOR_NAME="Yuanliang Xie"
+GIT_COMMITER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="pstinghua@gmail.com"
+GIT_COMMITER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+# brew completion
+source /usr/local/Library/Contributions/brew_bash_completion.sh
+
+# git completion
+source /usr/local/etc/bash_completion.d/git-completion.bash
