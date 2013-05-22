@@ -8,7 +8,7 @@ NEW_BOOTSTRAP=$(md5sum $SCRIPTNAME)
 
 if [ ! "$CURRENT_BOOTSTRAP" = "$NEW_BOOTSTRAP" ]; then
     echo "$SCRIPTNAME has changed. Please run the script again."
-    exit 0
+    return 0
 fi
 
 
