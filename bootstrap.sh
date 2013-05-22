@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 cd "$(dirname "${BASH_SOURCE}")"
 
-CURRENT_BOOTSTRAP=$(md5sum $BASH_SOURCE)
+SCRIPTNAME=$(basename $BASH_SOURCE)
+CURRENT_BOOTSTRAP=$(md5sum $SCRIPTNAME)
 git pull origin master
-NEW_BOOTSTRAP=$(md5sum $BASH_SOURCE)
+NEW_BOOTSTRAP=$(md5sum $SCRIPTNAME)
 
 if [ ! "$CURRENT_BOOTSTRAP" = "$NEW_BOOTSTRAP" ]; then
-    echo "$BASH_SOURCE has changed. Please run the script again."
+    echo "$SCRIPTNAME has changed. Please run the script again."
     exit 0
 fi
 
