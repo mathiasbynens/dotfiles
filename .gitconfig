@@ -51,3 +51,10 @@
 	pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
+
+[instaweb]
+       local = true
+       httpd = apache2
+       port = 4321
+       browser = google-chrome
+       modulepath = /usr/lib/apache2/modules
