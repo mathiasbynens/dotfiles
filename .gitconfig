@@ -1,6 +1,7 @@
 [user]
 	name = Artem Vitiuk
 	email = artem@devart.in.ua
+
 [alias]
 	# View the SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph
@@ -21,19 +22,12 @@
 	remotes = remote -v
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-	# Undo a `git push`
-	undopush = push -f origin HEAD^:master
-
-# Detect whitespace errors when applying a patch (is not safe)
-## [apply]
-##	whitespace = fix
 
 [core]
 	# Use custom `.gitignore` and `.gitattributes`
 	editor = vim
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-##	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
 
 [color]
 	# Use colors in Git commands that are capable of colored output when outputting to the terminal

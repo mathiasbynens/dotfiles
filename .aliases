@@ -10,11 +10,20 @@ alias o="open"
 alias oo="open ."
 
 # dev version of Chrome
-#--user-data-dir=/tmp
+#--user-data-dir=/tmp -- hack fix profile locking issue
 #--disable-web-security -- CORS
 #-–allow-file-access-from-files -- use local files by ajax calls
 #-–allow-running-insecure-content
-alias chromex="chrome --profile-directory="Profile 1" --disable-web-security -–allow-file-access-from-files"
+#--disable-restore-session-state -- localstorage
+  # --disable-prompt-on-repost,
+  # --disable-metrics,
+  # --disable-metrics-reporting,
+  # --no-default-browser-check,
+  # --temp-profile,
+  # --no-first-run,
+  # --disable-popup-blocking,
+
+alias chromex="chrome --user-data-dir=/tmp --temp-profile --no-default-browser-check --no-first-run --disable-web-security -–allow-file-access-from-files"
 
 # git
 alias gmm="git merge --no-ff"

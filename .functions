@@ -1,5 +1,6 @@
 # run Chrome from the command line
 function chrome () {
+	#open -a Google\ Chrome --args $*
 	/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome $* 2>&1 &
 }
 
@@ -11,6 +12,11 @@ function md() {
 # Copy w/ progress
 function cp_p() {
   rsync -WavP --human-readable --progress $1 $2
+}
+
+# cd into whatever is the forefront Finder window.
+cdf() {  # short for cdfinder
+  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
 }
 
 # Determine size of a file or total size of a directory
