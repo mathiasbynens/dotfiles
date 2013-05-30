@@ -20,19 +20,18 @@ if [ -n "$check_app_installation" ]; then
   else
     echo
     echo "Aborting"
-    return 2
+    exit 2
   fi
 
 else
   echo "$app_name is already installed"
   echo `$app_cmd --version` 
-  return 0
 fi
 
 # Make sure the global brew prefix is on the path
 [[ `which brew` ]] && export PATH=$(brew --prefix)/bin:$PATH
 
-echo "Make sure we’re using the latest Homebrew"
+echo "Update homebrew to make sure we’re using the latest version"
 brew update
 
 echo "Upgrading already-installed formulae"
