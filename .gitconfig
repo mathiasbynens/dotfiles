@@ -43,19 +43,23 @@
   whitespace = fix
   
 [alias]
-  co = checkout -B
-  go = checkout
-  br = branch
-  brs = branch -a
-  re = remote 
-  res = remote -v
-  tags = tag -l
+  co = checkout
+  cr = checkout -b
+  cb = checkout --
+  b = branch
+  ba = branch -a
+  r = remote 
+  ra = remote -v
+  t = tag -l
   s = status -s
-  rb = rebase
-  sq = squash
-  cm = commit
-  cmm = commit -m
-  l = log --pretty=format:\"%h %an %ar - %s\" --graph
+  r = rebase
+  sq = rebase -i
+  c = commit
+  cm = commit -m
+  cma = commit -am
+  l = log --pretty=format:\"%h %an %ar - %s\"
+  lg = log --prety=format:\"%h %an %ar - %s\" --graph
+
   unstage = reset HEAD
   #show changes
   wc = whatchanged -p --abbrev-commit --pretty=medium
