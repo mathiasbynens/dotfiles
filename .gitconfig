@@ -48,8 +48,13 @@
   cb = checkout --
   b = branch
   ba = branch -a
-  r = remote 
-  ra = remote -v
+  re = remote
+  rea = remote -a
+  rb = rebase
+  rbi = rebase -i
+  rbc = rebase --continue
+  rba = rebase --abort
+  rbs = rebase --skip
   t = tag -l
   s = status -s
   ss = status
