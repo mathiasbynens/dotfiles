@@ -59,7 +59,7 @@
   cma = commit -am
   l = log --pretty=format:\"%h %an %ar - %s\"
   lg = log --prety=format:\"%h %an %ar - %s\" --graph
-
+  tracked = git for-each-ref --format='%(refname:short)' refs/heads/* | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo "$b -> $r/${m##*/}"; fi; done
   unstage = reset HEAD
   #show changes
   wc = whatchanged -p --abbrev-commit --pretty=medium
