@@ -1,12 +1,14 @@
 {
 	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
-	"font_face": "Monaco",
-	"font_size": 12.0,
+	"font_face": "Inconsolata",
+	"font_size": 14,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
 	"preview_on_click": true,
-	"tab_size": 2,
-	"translate_tabs_to_spaces": true
+	"tab_size": 4,
+	"translate_tabs_to_spaces": true,
+	"theme": "Soda Dark.sublime-theme",
+	"soda_folder_icons": true
 }
