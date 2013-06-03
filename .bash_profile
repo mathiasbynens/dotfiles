@@ -22,6 +22,9 @@ for option in autocd globstar; do
 	shopt -s "$option" 2> /dev/null
 done
 
+# rbenv
+eval "$(rbenv init -)"
+
 # # Load RVM into a shell session *as a function*
 # if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
 #   # First try to load from a user install
