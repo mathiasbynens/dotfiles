@@ -49,7 +49,7 @@
   b = branch
   ba = branch -a
   re = remote
-  rea = remote -a
+  rea = remote -v
   rb = rebase
   rbi = rebase -i
   rbc = rebase --continue
