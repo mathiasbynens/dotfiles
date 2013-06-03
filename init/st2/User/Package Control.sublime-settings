@@ -17,16 +17,19 @@
 		"Haml",
 		"Handlebars",
 		"Http Requester",
+		"JavaScript Snippets",
 		"JsFormat",
 		"JSLint",
 		"Markdown Preview",
 		"Package Control",
+		"Pretty JSON",
 		"Ruby on Rails snippets",
 		"Sass",
 		"SCSS",
 		"SideBarEnhancements",
 		"SublimeCodeIntel",
 		"SublimeLinter",
-		"Theme - Soda"
+		"Theme - Soda",
+		"Underscore.js Snippets",
 	]
 }
