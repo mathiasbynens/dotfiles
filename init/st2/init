@@ -1,9 +1,9 @@
-#!/bin/bash
+  #!/bin/bash
 
 ################################################
 # CONSTANTS
 CURRENTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-st2_user_packages_folder_path="$CURRENTDIR/st2/User"
+st2_user_packages_folder_path="$CURRENTDIR/User"
 
 st2_base_path="$HOME/Library/Application Support/Sublime Text 2"
 st2_packages_path="$st2_base_path/Packages"
@@ -38,6 +38,7 @@ function checkSymlinkUserPackages() {
       # Directory command goes here.
       mv "$user_packages_path" "$user_packages_path.bak"
       echo "Made a backup of the User packages in $user_packages_path.bak"
+      symlinkUserPackages
   elif [[ -L "$user_packages_path" ]] ; then
       echo "User packages folder is already a symlink, redoing"
       
