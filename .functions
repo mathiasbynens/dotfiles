@@ -251,3 +251,21 @@ function gi() {
 	local IFS=,
 	eval npm install --save-dev grunt-{"$*"}
 }
+
+# Compare two urls
+# Usage: `urldiff http://beta.example.com http://www.example.com`
+function urldiff () {
+	local file
+	local files=""
+	for url in "$@"
+	do
+		file="urldiff-"${url//[^a-zA-Z0-9]/}
+		files=$files" "$file
+		echo "downloading $url > $file"
+		lwp-request -m 'GET' $url > $file
+	done
+	echo "diff $files"
+	diff $files
+	echo "cleanup $files"
+	rm $files
+}
