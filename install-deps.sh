@@ -33,9 +33,15 @@ chmod +x ~/code/z/z.sh
 #   . ~/code/z/z.sh
 
 
+# https://github.com/dronir/SpotifyControl
+# Spotify Controll Script
 cd ~/code
 git clone git://github.com/dronir/SpotifyControl.git
 
+# https://github.com/jeroenbegyn/VLCControl
+# VLC Controll Script
+cd ~/code
+git clone git://github.com/jeroenbegyn/VLCControl.git
 
 
 # my magic photobooth symlink -> dropbox. I love it.
