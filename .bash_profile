@@ -13,6 +13,9 @@ source ~/.nvm/nvm.sh
 # Use 0.10
 # nvm use 0.10
 
+# Raise the limit of open files
+ulimit -n 5000
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
