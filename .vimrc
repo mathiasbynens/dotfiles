@@ -25,6 +25,11 @@ set directory=~/.vim/swaps
 if exists("&undodir")
 	set undodir=~/.vim/undo
 endif
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
 
 " Respect modeline in files
 set modeline
@@ -32,17 +37,19 @@ set modelines=4
 " Enable per-directory .vimrc files and disable unsafe commands in them
 set exrc
 set secure
-" Enable line numbers
-set number
 " Enable syntax highlighting
 syntax on
 " Highlight current line
 set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
-" Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
+
+" Use spaces instead of tabs
+set expandtab
+" Be smart when using tabs ;)
+set smarttab
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
 " Highlight searches
 set hlsearch
 " Ignore case of searches
@@ -53,12 +60,8 @@ set incsearch
 set laststatus=2
 " Enable mouse in all modes
 set mouse=a
-" Disable error bells
-set noerrorbells
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
-" Show the cursor position
-set ruler
 " Don’t show the intro message when starting Vim
 set shortmess=atI
 " Show the current mode
@@ -67,11 +70,6 @@ set showmode
 set title
 " Show the (partial) command as it’s being typed
 set showcmd
-" Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
@@ -86,6 +84,13 @@ endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+if has("mac") || has("macunix")
+  nmap <D-j> <M-j>
+  nmap <D-k> <M-k>
+  vmap <D-j> <M-j>
+  vmap <D-k> <M-k>
+endif
 
 " Automatic commands
 if has("autocmd")
