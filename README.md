@@ -4,7 +4,7 @@
 
 This repo is mostly for me but you're welcome to make suggestions. Mathias's is the project to fork.  I'm mostly catching up to him, @cowboy, and @gf3.
 
-## install the neccessary apps
+## install the necessary apps
 
 My basic setup is captured in `install-deps.sh` which adds homebrew, z, nave, etc.
 
@@ -55,7 +55,7 @@ I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/m
 * `.ackrc` - for ack (better than grep)
 * `.vimrc`, `.vim` - vim config, obv.
 
-#### shell environement
+#### shell environment
 * `.aliases`
 * `.bash_profile`
 * `.bash_prompt`
@@ -67,7 +67,7 @@ I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/m
 #### manual run
 * `install-deps.sh` - random apps i need installed
 * `.osx` - run on a fresh osx machine
-* `.brew` - homebrew intialization
+* `.brew` - homebrew initialization
 
 #### git, brah
 * `.git`
