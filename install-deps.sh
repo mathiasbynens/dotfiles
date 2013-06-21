@@ -23,14 +23,12 @@ ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)
 
 # https://github.com/rupa/z
 # z, oh how i love you
-mkdir -p ~/code/z
-curl https://raw.github.com/rupa/z/master/z.sh > ~/code/z/z.sh
+cd ~/code
+git clone https://github.com/rupa/z.git
 chmod +x ~/code/z/z.sh
 # also consider moving over your current .z file if possible. it's painful to rebuild :)
 
-
-# add this to the bash_profile file if it aint there.
-#   . ~/code/z/z.sh
+# z binary is already referenced from .bash_profile
 
 
 # https://github.com/dronir/SpotifyControl
