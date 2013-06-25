@@ -1,24 +1,21 @@
 {
 	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
 	"font_face": "Inconsolata",
-	"font_size": 15.0,
+	"font_size": 14.0,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
-	// Soda theme options
-	"theme": "Soda Light.sublime-theme",
-	"soda_folder_icons": true,
-    // Valid values are "system", "enabled" and "disabled"
 	"overlay_scroll_bars": "enabled",
-	// Preview file contents when clicking on a file in the side bar. Double
-    // clicking or editing the preview will open the file and assign it a tab.
 	"preview_on_click": true,
-	// The number of spaces a tab is considered equal to
+	"rulers":
+	[
+		80,
+		100
+	],
+	"soda_folder_icons": true,
 	"tab_size": 4,
-	// Set to true to insert spaces when tab is pressed
-	"translate_tabs_to_spaces": true,
-	// Columns in which to display vertical rulers
-    "rulers": [80, 100]
+	"theme": "Soda Light.sublime-theme",
+	"translate_tabs_to_spaces": true
 }
