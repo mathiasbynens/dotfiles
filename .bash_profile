@@ -35,3 +35,5 @@ eval "$(rbenv init -)"
 # else
 #   printf "ERROR: An RVM installation was not found.\n"
 # fi
+
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
