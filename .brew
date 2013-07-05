@@ -20,19 +20,18 @@ brew install bash curl git
 #brew install autoconf automake apple-gcc42 libtool pkg-config openssl readline libyaml sqlite libxml2 libxslt libksba
 brew apple-gcc42 openssl
 
-
 # Actually install ruby now
 brew install rbenv
 brew install ruby-build
 brew update
-brew tap homebrew/homebrew-dupes 
+brew tap homebrew/homebrew-dupes
 brew install apple-gcc42
 
 # Install wget with IRI support
 brew install wget --enable-iri
 
 # Install everything else
-brew install git
-
+yuicompressor
+jsmin
 # Remove outdated versions from the cellar
 brew cleanup
