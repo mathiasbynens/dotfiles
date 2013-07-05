@@ -31,7 +31,9 @@ brew install apple-gcc42
 brew install wget --enable-iri
 
 # Install everything else
-yuicompressor
-jsmin
+brew install yuicompressor
+brew install jsmin
+brew install bash-completion
+
 # Remove outdated versions from the cellar
 brew cleanup
