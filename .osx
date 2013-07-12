@@ -18,6 +18,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #sudo scutil --set LocalHostName "MathBook-Pro"
 #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "MathBook-Pro"
 
+# add /usr/local/lib/node_modules to the Time Machine exclusions to try to proactively avoid problems.
+# http://blog.wanderview.com/blog/2013/01/15/time-machine-and-npm/
+tmutil addexclusion /usr/local/lib/node_modules
+
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
