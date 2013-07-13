@@ -32,6 +32,18 @@ brew install ack
 brew install git
 brew install rename
 brew install tree
+brew install redis
+brew install freetype
+brew install mcrypt
+brew install imagemagick
+brew install mongodb
+brew install wget
+brew install zlib
+brew install sqlite
+brew install python
+brew install mysql
+brew install phantomjs
+
 
 # Remove outdated versions from the cellar
 brew cleanup
