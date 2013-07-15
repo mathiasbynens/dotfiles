@@ -129,8 +129,8 @@
   helper = osxkeychain
 
 [push]
-        default = simple
+  default = simple
 [user]
-        name = Thanasis Polychronakis
-        email = thanpolas@gmail.com
+  name = Thanasis Polychronakis
+  email = thanpolas@gmail.com
         
