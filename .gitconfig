@@ -130,3 +130,7 @@
 
 [push]
         default = simple
+[user]
+        name = Thanasis Polychronakis
+        email = thanpolas@gmail.com
+        
