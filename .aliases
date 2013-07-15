@@ -19,6 +19,7 @@ alias m="mate ."
 alias s="subl ."
 alias o="open"
 alias oo="open ."
+
 # View line endings
 alias newline="od -c"
 
@@ -151,3 +152,5 @@ alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 # Closure Library helpers
 alias cl="ln -s ~/Projects/libs/google-closure-library"
 
+# Git helpers
+alias gp="git config remote.origin.push HEAD"
