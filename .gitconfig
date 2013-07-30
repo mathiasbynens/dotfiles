@@ -48,6 +48,7 @@
   cb = checkout --
   b = branch
   ba = branch -a
+  bd = branch -d
   re = remote
   rea = remote -v
   rb = rebase
