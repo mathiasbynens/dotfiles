@@ -1,78 +1,229 @@
+####################################
+# Global configuration file for Git.
+####################################
+
+# A lot of aliases to speed up full-time usage of git from command line.
+# Long flag names are used for readability wherever possible.
+# Short flags are meant for writing on the command line.
 [alias]
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-	# View the current working tree status using the short format
-	s = status -s
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull; git submodule foreach git pull origin master"
-	# Clone a repository including all submodules
-	c = clone --recursive
-	# Commit all changes
-	ca = !git add -A && git commit -av
-	# Switch to a branch, creating it if necessary
-	go = checkout -B
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
-	branches = branch -a
-	remotes = remote -v
+	# Shorthand for add
+	a = add
+
+	# Adds all unstaged (including untracked) files.
+	# See`git help add`
+	aa = add --all
+
+	# Interactive add. Used for patching.
+	# See`git help add`
+	ai = add --interactive
+
+	# Amends the currently staged files to the last commit
+	# See`git help commit`
+	amend = commit --amend --reuse-message=HEAD
+
+	# Shorthand for branch
+	b = branch
+
+	# Deletes a branch only if it is merged in the current branch.
+	# See`git help branch`
+	bd = branch --delete
+
+	# Shorthand for commit
+	c = commit
+
+	# Checkouts a branch. Creates it if id doesn't exist
+	# See`git help checkout`
+	ch = checkout -B
+
+	# Deletes all untracked files and directories.
+	# See`git help clean`
+	cleanit = clean -fd
+
+	# Shorthand for config
+	# See`git help config` for config options
+	cn = config
+
+	# Shorthand for global config
+	cng = config --global
+
+	# List contributors with number of commits
+	# See`git help shortlog`
+	contributors = shortlog --summary --numbered
+	
 	# Credit an author on the latest commit
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+	credit = "!f() { git commit --amend --author \"$1 <$2>\" --reuse-message=HEAD; }; f"
+	
+	# Diff working tree to HEAD (a.k.a last commit).
+	# Using difftool.tool for visualising diffs.
+	# Does not prompt for each file. Use --prompt to override.
+	d = difftool --no-prompt
+
+	# Diff staging area (a.k.a index) to HEAD (a.k.a last commit).
+	# Using difftool.tool for visualising diffs.
+	# Does not prompt for each file. Use --prompt to override.
+	dc = difftool --cached --no-prompt
+
+	# Shorthand for fetch
+	f = fetch
+
+	# Shorthand for help
+	h = help
+
+	# Pretty log of commits. Supports options of git log
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+	# Shorthand for merge
+	m = merge
+
+	# Show the not merged branches compared to the current branch
+	nm = branch --no-merged
+
+	# Show the not merged branches compared to the master branch
+	nmm = branch --no-merged master
+
+	# Shorthand for push
+	p = push
+
+	# Shorthand for pull
+	pl = pull
+
+	# Shorthand for remote
+	r = remote
+
 	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
+	ri = "!r() { git rebase --interactive HEAD~$1; }; r"
+	
+	# Updates all remotes
+	ru = remote update
+
+	# Shorthand for rebase
+	rb = rebase
+
+	# Shorthand for reset
+	rs = reset
+	
+	# View the current working tree status using the short format
+	# Shows the current branch as well
+	# See`git help status`
+	s = status --short --branch
+
+	# Shorthand for show
+	sh = show
+
+	# Shorthand for shortlog
+	shl = shortlog
+
+	# Shorthand for stash
+	st = stash
+
+	# Shorthand for tag
+	t = tag
 
 [apply]
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
-
-[core]
-	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
-	whitespace = space-before-tab,indent-with-non-tab,trailing-space
-
-[color]
-	# Use colors in Git commands that are capable of colored output when outputting to the terminal
-	ui = auto
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
-[merge]
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true
 
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master
 
+[color]
+	# Use colors when it's possible and outputting to the terminal.
+	ui = auto
+
+[color "branch"]
+	# Highlight current. Yellow local branches; Green remotes.
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	# Yellow meta; Magenta line info; Red for deleltions; Green for additions.
+	# Bold everything.
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	# Yellow for changed files; Green for staged; Cyan for new files.
+	added = green
+	changed = yellow
+	untracked = cyan
+
+[core]
+	# Default editor for commit messages and other
+	editor=vim
+
+	# Global `.gitignore`
+	excludesfile = ~/.gitignore
+
+	# Global `.gitattributes`
+	attributesfile = ~/.gitattributes
+	
+	# Treat
+	#  - spaces before tabs,
+	#  - lines that are indented with 8 or more spaces,
+	#  - all kinds of trailing whitespace
+	# as an error.
+	whitespace = space-before-tab,indent-with-non-tab,trailing-space
+
+[diff]
+	# Diff will detect both renames and copies.
+	renames = copies
+
+[difftool]
+	# Defaults to vimdiff for visualising diffs.
+	# Override with --tool=<tool> in difftool
+	# See`git help difftool`
+	# If `vimdiff` is not in your $PATH, override with difftool.vimdiff.path
+	# See`git help config` and search for "diff.tool"
+	tool=vimdiff
+
+	# Difftool will not prompt for every file.
+	# Use --prompt to override.
+	prompt = false
+
+[help]
+	# Automatically correct and execute mistyped commands
+	autocorrect = 1
+
+[merge]
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
+
+[mergetool]
+	# No .orig files left when using mergetool.
+	keepBackup = false
+
+[pager]
+	# Use colors when paging regardless of default color setting.
+	color = true
+
+[push]
+	# See `git help config` and search for push.default
+	# for more information on different options of the below setting.
+	# Setting to git 2.0 default to surpress warning message
+	# If you use branches with different remote name, use "upstream"
+	default = simple
+
 # URL shorthands
+# See `git help config` and search for url.<base>
+# 
+# gh: is a shorthand for git@github.com
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "git://github.com/"
+# github: is a shorthand for git://github.com/
 [url "git://github.com/"]
 	insteadOf = "github:"
+# gst: is a shorthand for git://gist.github.com/
 [url "git@gist.github.com:"]
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
+# gist: is a shofthand for git://gist.github.com/
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
-
-[push]
-	default = matching
