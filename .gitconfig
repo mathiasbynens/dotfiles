@@ -2,7 +2,7 @@
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 	# View the current working tree status using the short format
-	s = status -s
+	s = status -sb
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
@@ -34,6 +34,7 @@
 	attributesfile = ~/.gitattributes
 	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
 	whitespace = space-before-tab,indent-with-non-tab,trailing-space
+	editor = subl -n -w
 
 [color]
 	# Use colors in Git commands that are capable of colored output when outputting to the terminal
@@ -55,6 +56,9 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+[branch]
+	autosetuprebase = always
+
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
 	remote = origin
@@ -75,7 +79,7 @@
 	insteadOf = "gist:"
 
 [push]
-	default = matching
+	default = tracking
 
 [user]
 	name = Marcus Stade

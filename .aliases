@@ -20,6 +20,10 @@ alias -- -="cd -"
 # alias o="open"
 # alias oo="open ."
 
+# git
+alias gs="git s"
+alias gl="git l"
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
