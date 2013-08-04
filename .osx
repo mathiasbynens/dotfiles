@@ -13,10 +13,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "MathBook Pro"
-sudo scutil --set HostName "MathBook Pro"
-sudo scutil --set LocalHostName "MathBook-Pro"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "MathBook-Pro"
+sudo scutil --set ComputerName "Haralan Dobrev's MacBook Air"
+sudo scutil --set HostName "Haralan Dobrev's MacBook Air"
+sudo scutil --set LocalHostName "Haralan-Dobrev-MacBook-Air"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Haralan-Dobrev-MacBook-Air"
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
@@ -28,7 +28,7 @@ sudo nvram SystemAudioVolume=" "
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
 # Menu bar: show remaining battery time (on pre-10.8); hide percentage
-defaults write com.apple.menuextra.battery ShowPercent -string "NO"
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 defaults write com.apple.menuextra.battery ShowTime -string "YES"
 
 # Menu bar: hide the useless Time Machine and Volume icons
@@ -41,7 +41,7 @@ defaults write NSGlobalDomain AppleHighlightColor -string '0.764700 0.976500 0.5
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
 # Always show scrollbars
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
 
 # Disable smooth scrolling
@@ -127,7 +127,7 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSw
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
 
 # Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
@@ -168,7 +168,7 @@ defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 # Set the timezone; see `systemsetup -listtimezones` for other values
-systemsetup -settimezone "Europe/Brussels" > /dev/null
+systemsetup -settimezone "Europe/Sofia" > /dev/null
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -308,8 +308,8 @@ file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
-# Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+# Set the icon size of Dock items to 60 pixels
+defaults write com.apple.dock tilesize -int 60
 
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -385,7 +385,7 @@ defaults write com.apple.dock wvous-tl-modifier -int 0
 defaults write com.apple.dock wvous-tr-corner -int 4
 defaults write com.apple.dock wvous-tr-modifier -int 0
 # Bottom left screen corner → Start screen saver
-defaults write com.apple.dock wvous-bl-corner -int 5
+defaults write com.apple.dock wvous-bl-corner -int 0
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
 ###############################################################################
@@ -472,8 +472,9 @@ defaults write com.apple.spotlight orderedItems -array \
 	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
 	'{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
 	'{"enabled" = 1;"name" = "DIRECTORIES";}' \
-	'{"enabled" = 1;"name" = "PDF";}' \
-	'{"enabled" = 1;"name" = "FONTS";}' \
+	'{"enabled" = 1;"name" = "MOVIES";}' \
+	'{"enabled" = 0;"name" = "PDF";}' \
+	'{"enabled" = 0;"name" = "FONTS";}' \
 	'{"enabled" = 0;"name" = "DOCUMENTS";}' \
 	'{"enabled" = 0;"name" = "MESSAGES";}' \
 	'{"enabled" = 0;"name" = "CONTACT";}' \
@@ -481,7 +482,6 @@ defaults write com.apple.spotlight orderedItems -array \
 	'{"enabled" = 0;"name" = "IMAGES";}' \
 	'{"enabled" = 0;"name" = "BOOKMARKS";}' \
 	'{"enabled" = 0;"name" = "MUSIC";}' \
-	'{"enabled" = 0;"name" = "MOVIES";}' \
 	'{"enabled" = 0;"name" = "PRESENTATIONS";}' \
 	'{"enabled" = 0;"name" = "SPREADSHEETS";}' \
 	'{"enabled" = 0;"name" = "SOURCE";}'
@@ -500,10 +500,10 @@ sudo mdutil -E /
 defaults write com.apple.terminal StringEncodings -array 4
 
 # Use a modified version of the Pro theme by default in Terminal.app
-open "$HOME/init/Mathias.terminal"
-sleep 1 # Wait a bit to make sure the theme is loaded
-defaults write com.apple.terminal "Default Window Settings" -string "Mathias"
-defaults write com.apple.terminal "Startup Window Settings" -string "Mathias"
+# open "$HOME/init/Mathias.terminal"
+# sleep 1 # Wait a bit to make sure the theme is loaded
+# defaults write com.apple.terminal "Default Window Settings" -string "Mathias"
+# defaults write com.apple.terminal "Startup Window Settings" -string "Mathias"
 
 # Enable “focus follows mouse” for Terminal.app and all X11 apps
 # i.e. hover over a window and start typing in it without clicking first
