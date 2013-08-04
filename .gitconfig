@@ -31,9 +31,12 @@
 	# Shorthand for commit
 	c = commit
 
+	# Shorthand for checkout
+	ch = checkout
+
 	# Checkouts a branch. Creates it if id doesn't exist
 	# See`git help checkout`
-	ch = checkout -B
+	chb = checkout -B
 
 	# Deletes all untracked files and directories.
 	# See`git help clean`
