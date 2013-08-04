@@ -76,3 +76,7 @@
 
 [push]
 	default = matching
+
+[user]
+	name = Marcus Stade
+	email = marcus@stade.se

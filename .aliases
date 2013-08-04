@@ -7,18 +7,18 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias p="cd ~/Projects"
-alias g="git"
-alias h="history"
-alias j="jobs"
-alias v="vim"
-alias m="mate ."
-alias s="subl ."
-alias o="open"
-alias oo="open ."
+# alias d="cd ~/Documents/Dropbox"
+# alias dl="cd ~/Downloads"
+# alias dt="cd ~/Desktop"
+# alias p="cd ~/Projects"
+# alias g="git"
+# alias h="history"
+# alias j="jobs"
+# alias v="vim"
+# alias m="mate ."
+# alias s="subl ."
+# alias o="open"
+# alias oo="open ."
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -89,7 +89,7 @@ alias c="tr -d '\n' | pbcopy"
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # ROT13-encode text. Works for decoding, too! ;)
-alias rot13='tr a-zA-Z n-za-mN-ZA-M'
+# alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 
 # Empty the Trash on all mounted volumes and the main HDD
 # Also, clear Apple’s System Logs to improve shell startup speed
@@ -138,4 +138,4 @@ command -v grunt > /dev/null && alias grunt="grunt --stack"
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
-alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+# alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
