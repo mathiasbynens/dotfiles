@@ -147,9 +147,15 @@
 	new = green bold
 
 [color "status"]
-	# Yellow for changed files; Green for staged; Cyan for new files.
+	# Changed files are yellow.
+	# Staged files are green.
+	# New (untracked) files are cyan.
+	# Headers are gray (white dimmed)
+	# Branch is always green even in headers
 	added = green
+	branch = green
 	changed = yellow
+	header = white dim
 	untracked = cyan
 
 [core]
