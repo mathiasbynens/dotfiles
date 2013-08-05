@@ -179,10 +179,6 @@
 	whitespace = space-before-tab,indent-with-non-tab,trailing-space
 
 [diff]
-	# Diff will detect both renames and copies.
-	renames = copies
-
-[difftool]
 	# Defaults to vimdiff for visualising diffs.
 	# Override with --tool=<tool> in difftool
 	# See`git help difftool`
@@ -190,6 +186,10 @@
 	# See`git help config` and search for "diff.tool"
 	tool=vimdiff
 
+	# Diff will detect both renames and copies.
+	renames = copies
+
+[difftool]
 	# Difftool will not prompt for every file.
 	# Use --prompt to override.
 	prompt = false
