@@ -41,6 +41,7 @@ install bfg
 #install exiv2
 install foremost
 install git
+install hub
 install hashpump
 install imagemagick --with-webp
 install lynx
