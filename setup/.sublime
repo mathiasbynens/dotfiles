@@ -1,0 +1,24 @@
+#! /bin/bash
+
+install() {
+  if [[ -d "$2" ]]; then
+    echo "$2 already exists; ignoring..."
+  else
+    echo "Installing $2"
+    git clone "$1" "$2"
+  fi
+}
+
+RESTART=$(killall Sublime\ Text\ 2)
+USER="$(dirname "${BASH_SOURCE}")/sublime-user"
+PACKAGES="$HOME/Library/Application Support/Sublime Text 2/Packages"
+
+install https://github.com/buymeasoda/soda-theme/ "$PACKAGES/Theme - Soda"
+install https://github.com/wbond/sublime_package_control.git "$PACKAGES/Package Control"
+
+mkdir -p "$PACKAGES/User"
+cp -Rf "$USER/" "$PACKAGES/User"
+
+[[ "$RESTART" -eq 0 ]] && subl
+
+echo && echo "Sublime Text preferences and packages installed!" && echo
