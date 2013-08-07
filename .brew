@@ -64,14 +64,14 @@ function installcask() {
 installcask imagealpha
 installcask imageoptim
 # installcask iterm2
-# installcask macvim
+installcask macvim
 # installcask miro-video-converter
 # installcask sublime-text
 installcask the-unarchiver
 installcask tor-browser
 # installcask transmission
 # installcask ukelele
-# installcask virtualbox
+installcask virtualbox
 # installcask vlc
 installcask u-torrent
 installcask sequel-pro
