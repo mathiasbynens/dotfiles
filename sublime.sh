@@ -1,5 +1,7 @@
 # Sublime config folders
 
+echo 'I already have the Sublime Text config folder in my Dropbox'
+
 rm -r ~/Library/Application\ Support/Sublime\ Text\ 2/Backup
 rm -r ~/Library/Application\ Support/Sublime\ Text\ 2/Installed\ Packages
 rm -r ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
