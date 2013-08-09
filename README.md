@@ -31,3 +31,14 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 ```bash
 ./.osx
 ```
+
+### Sublime Text Config Files
+I have many mac to dev, to sync configs of Sublime I use a [Dropbox](http://dropbox.com).
+
+To do this you will need to create some folders (Backup, Installed Packages, Packages, Pristine Packages, Settings) in your Dropbox, edit ```sublime.sh``` with your corret folder. 
+
+And run this:
+
+```bash
+./sublime.sh
+```
