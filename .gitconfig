@@ -69,7 +69,7 @@
   pl = pull
   l = log --pretty=format:\"%h %an %ar - %s\"
   lg = log --pretty=format:\"%h %an %ar - %s\" --graph
-  tracked = !"d() { git for-each-ref --format='%(refname:short)' refs/heads/* | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo \"$b -> $r/${m##*/}\"; fi; done } ; d"
+  tracked = !"d() { git for-each-ref --format='%(refname:short)' refs/heads/ | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo \"$b -> $r/${m##*/}\"; fi; done } ; d"
   unstage = reset HEAD
   #show changes
   wc = whatchanged -p --abbrev-commit --pretty=medium
