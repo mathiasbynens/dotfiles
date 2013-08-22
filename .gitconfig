@@ -68,6 +68,7 @@
   stp = stash pop
   sts = "!f() { git stash show stash@{$1}; }; f"
   std = "!f() { git stash show stash@{$1} -U5; }; f"
+  strm = "!f() { git stash drop stash@{$1} -U5; }; f"
   c = commit
   cm = commit -m
   cma = commit -am
