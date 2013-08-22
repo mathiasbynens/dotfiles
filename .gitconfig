@@ -49,6 +49,8 @@
   b = branch
   ba = branch -a
   bd = branch -d
+  bD = branch -D
+  bm = branch -m
   re = remote
   rea = remote -v
   rb = rebase
@@ -60,7 +62,12 @@
   s = status -s
   ss = status
   r = rebase
-  sq = rebase -i
+  squash = "!f() { git rebase -i HEAD~$1; }; f"
+  st = stash
+  stl = stash list
+  stp = stash pop
+  sts = "!f() { git stash show stash@{$1}; }; f"
+  std = "!f() { git stash show stash@{$1} -U5; }; f"
   c = commit
   cm = commit -m
   cma = commit -am
