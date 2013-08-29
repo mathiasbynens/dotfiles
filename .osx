@@ -21,6 +21,9 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
 
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
@@ -557,6 +560,13 @@ defaults write com.apple.appstore ShowDebugMenu -bool true
 # Allow installing user scripts via GitHub or Userscripts.org
 defaults write com.google.Chrome ExtensionInstallSources -array "https://*.github.com/*" "http://userscripts.org/*"
 defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://*.github.com/*" "http://userscripts.org/*"
+
+###############################################################################
+# GPGMail 2                                                                   #
+###############################################################################
+
+# Disable signing emails by default
+defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault -bool false
 
 ###############################################################################
 # SizeUp.app                                                                  #

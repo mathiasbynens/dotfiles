@@ -28,13 +28,13 @@ else # OS X `ls`
 fi
 
 # List all files colorized in long format
-alias l="ls -l ${colorflag}"
+alias l="ls -lF ${colorflag}"
 
 # List all files colorized in long format, including dot files
-alias la="ls -la ${colorflag}"
+alias la="ls -laF ${colorflag}"
 
 # List only directories
-alias lsd='ls -l ${colorflag} | grep "^d"'
+alias lsd='ls -lF ${colorflag} | grep "^d"'
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
@@ -48,6 +48,9 @@ alias gurl='curl --compressed'
 
 # Get week number
 alias week='date +%V'
+
+# Stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
@@ -136,3 +139,7 @@ command -v grunt > /dev/null && alias grunt="grunt --stack"
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
