@@ -45,7 +45,5 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # Installed by brew in this location
 [ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
 
-# If hub is installed enabled hub completion if available
-if [ type hub >/dev/null 2>&1 -a -f /usr/local/etc/bash_completion.d/hub.bash_completion.sh ]; then
-	source /usr/local/etc/bash_completion.d/hub.bash_completion.sh
-fi
+# Enable hub completion if available
+[ -f $HOME/src/hub/etc/hub.bash_completion.sh ] &&  source $HOME/src/hub/etc/hub.bash_completion.sh
