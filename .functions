@@ -251,3 +251,12 @@ function gi() {
 	local IFS=,
 	eval npm install --save-dev grunt-{"$*"}
 }
+
+# . with no arguments traverses up directory, otherwise acts as `.`
+function .() {
+	if [ $# -eq 0 ]; then
+		..
+	else
+		. "$@"
+	fi
+}
