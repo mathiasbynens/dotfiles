@@ -251,3 +251,11 @@ function gi() {
 	local IFS=,
 	eval npm install --save-dev grunt-{"$*"}
 }
+
+# `tre` is a convenient function for viewing directory contents. It's `tree` on
+# Miracle-Gro. `tree` with dotfiles, color, ignoring `.git` directory, listing
+# directories first, and piped into less with options to preserve color, line
+# numbers, unless the output is small enough for one screen.
+function tre() {
+  tree -aC -I ".git" --dirsfirst "$@" | less -FRNX
+}
