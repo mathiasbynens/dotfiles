@@ -1,2 +1,36 @@
-# Disable the startup message
 startup_message off
+shell ${SHELL}
+shelltitle ""
+nethack on
+vbell off
+hardstatus alwayslastline
+hardstatus string "%{= kG}%-Lw%{= kW}%100> %n%f* %t%{= kG}%+Lw%< %-=%{= kG}%H %{= kB}%Y-%m-%d %{kB}%c:%s%{-}"
+defwrap on
+altscreen on
+defscrollback 10000
+
+
+# Keybindings to make things more friendly
+# Inspiration from byobu
+bindkey -k k1 kill                                      # F1  | Kill
+bindkey -k k2 eval 'screen' 'title ""'                                 # F2  | Create new window
+bindkey -k k3 eval 'prev' 'fit'                         # F3  | Previous Window
+bindkey -k k4 eval 'next' 'fit'                         # F4  | Next Window
+# Mac
+bindkey "^[[H"  eval 'prev' 'fit'                       # fn-shift-left | Previous Window
+bindkey "^[[F"  eval 'next' 'fit'                       # fn-shift-right | Next Window
+# Unix
+bindkey "^[[1;6D" eval 'prev' 'fit'                     # ctrl-shift-left  | Previous Window
+bindkey "^[[1;6C" eval 'next' 'fit'                     # ctrl-shift-right  | Next Window
+
+
+bindkey -k k5 eval 'split' 'focus up' 'screen' 'fit'    # F5 | split horizontal
+bindkey "^[[25~" eval 'remove' 'focus up' 'fit'         # shift-F5 | close split
+bindkey -k k6 eval 'resize -1' 'fit'                    # F6 | resize up
+bindkey -k k7 eval 'resize +1' 'fit'                    # F7 | resize down
+
+
+bindkey "^[[5~" eval 'focus up'                         # fn-shift-up | Focus Up
+bindkey "^[[6~" eval 'focus down'                       # fn-shift-down | Focus Down
+
+bindkey -k k8 title                                     # F8  | Re-title a Window 
