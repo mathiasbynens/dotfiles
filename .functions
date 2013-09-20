@@ -251,3 +251,12 @@ function gi() {
 	local IFS=,
 	eval npm install --save-dev grunt-{"$*"}
 }
+
+# `g` with no arguments is `git status` and with arguments acts like `git`
+function g() {
+  if [ $# -eq 0 ]; then
+    git status
+  else
+    git "$@"
+  fi
+}
