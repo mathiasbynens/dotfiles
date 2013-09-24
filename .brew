@@ -27,6 +27,7 @@ brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 brew tap josegonzalez/homebrew-php
 brew install php55
+brew install ocaml
 
 # These two formulae didn’t work well last time I tried them:
 #brew install homebrew/dupes/vim
@@ -67,6 +68,11 @@ installcask the-unarchiver
 installcask virtualbox
 installcask u-torrent
 installcask sequel-pro
+
+installcask x-quartz
+
+brew install gtk+3
+brew install swi-prolog
 
 # Remove outdated versions from the cellar
 brew cleanup
