@@ -68,6 +68,7 @@ installcask macvim
 installcask the-unarchiver
 installcask virtualbox
 installcask u-torrent
+installcask skype
 installcask sequel-pro
 
 installcask x-quartz
