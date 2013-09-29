@@ -44,8 +44,9 @@
   
 [alias]
   co = checkout
-  cr = checkout -b
-  cb = checkout --
+  cb = checkout -b
+  ct = checkout -t
+  cr = checkout --
   b = branch
   ba = branch -a
   bd = branch -d
