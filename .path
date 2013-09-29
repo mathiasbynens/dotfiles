@@ -7,6 +7,10 @@ PATH=/usr/local/sbin:$PATH
 # Add `~/bin` to the `$PATH`
 PATH=$HOME/bin:$PATH
 
+# If there is bin folder in the current location, it takes preference
+# Usefull for binstubs in rails
+PATH=./bin:$PATH
+
 # brew
 PATH=$(brew --prefix)/bin:$(brew --prefix coreutils)/libexec/gnubin:$PATH
 
