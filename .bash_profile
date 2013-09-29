@@ -25,6 +25,9 @@ done
 # rbenv
 eval "$(rbenv init -)"
 
+# z script
+. `brew --prefix`/etc/profile.d/z.sh
+
 # # Load RVM into a shell session *as a function*
 # if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
 #   # First try to load from a user install
