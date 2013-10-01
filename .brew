@@ -49,6 +49,7 @@ brew install tree
 brew install webkit2png
 brew install zopfli
 brew install htop-osx
+brew install mplayershell
 
 brew tap homebrew/versions
 # brew install lua52
