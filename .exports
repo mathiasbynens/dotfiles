@@ -1,5 +1,5 @@
-# Make vim the default editor
-export EDITOR="vim"
+# Make textmate the default editor
+export EDITOR="/usr/local/bin/mate -w"
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
