@@ -48,6 +48,7 @@ brew install rename
 brew install tree
 brew install webkit2png
 brew install zopfli
+brew install htop-osx
 
 brew tap homebrew/versions
 # brew install lua52
