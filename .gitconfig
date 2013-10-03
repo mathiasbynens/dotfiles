@@ -197,9 +197,16 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+	# opendiff opens FileMerge
+	tool = opendiff
+
 [mergetool]
 	# No .orig files left when using mergetool.
 	keepBackup = false
+
+	# Mergetool will not prompt for every file.
+	# Use --prompt to override.
+	prompt = false
 
 [pager]
 	# Use colors when paging regardless of default color setting.
