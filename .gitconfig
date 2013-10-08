@@ -179,7 +179,7 @@
 	# See`git help difftool`
 	# If `vimdiff` is not in your $PATH, override with difftool.vimdiff.path
 	# See`git help config` and search for "diff.tool"
-	tool=vimdiff
+	tool=opendiff
 
 	# Diff will detect both renames and copies.
 	renames = copies
