@@ -154,3 +154,7 @@ alias cl="ln -s ~/Projects/libs/google-closure-library"
 
 # Git helpers
 alias gp="git config remote.origin.push HEAD"
+
+# PostgreSQL start stop
+alias pg-start="pg_ctl -D /usr/local/var/postgres start"
+alias pg-stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
