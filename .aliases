@@ -14,6 +14,15 @@ alias o="open"
 alias oo="open ."
 alias t="thor"
 
+# If the hub utility is installed, make an alias
+# for git
+hubCmd=`type hub 2> /dev/null`
+
+if [ ! -z "$hubCmd" ]; then
+	alias git="hub"
+fi
+
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
