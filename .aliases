@@ -7,20 +7,22 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents"
+alias d="cd ~/dotfiles"
+alias dc="cd ~/Documents"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias g="hub"
 alias gs="git status --short --branch"
+alias gd="git d"
 alias h="history"
 alias j="jobs"
 alias v="vim"
-alias m="mate ."
+alias m="man"
 alias s="subl ."
 alias o="open"
 alias oo="open ."
-alias br="brew"
+alias b="brew"
 alias vag="vagrant"
 
 # Enable git command  autocompletion for 'g' as well
