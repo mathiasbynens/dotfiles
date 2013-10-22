@@ -251,3 +251,45 @@ function gi() {
 	local IFS=,
 	eval npm install --save-dev grunt-{"$*"}
 }
+
+# `s` with no arguments opens the current directory in Sublime Text, otherwise
+# opens the given location
+function s() {
+	if [ $# -eq 0 ]; then
+		subl .
+	else
+		subl "$@"
+	fi
+}
+
+# `v` with no arguments opens the current directory in Vim, otherwise opens the
+# given location
+function v() {
+	if [ $# -eq 0 ]; then
+		vim .
+	else
+		vim "$@"
+	fi
+}
+
+# `o` with no arguments opens current directory, otherwise opens the given
+# location
+function o() {
+	if [ $# -eq 0 ]; then
+		open .
+	else
+		open "$@"
+	fi
+}
+
+# `np` with an optional argument `patch`/`minor`/`major`/`<version>`
+# defaults to `patch`
+function np() {
+	git pull --rebase && \
+	npm install && \
+	npm test && \
+	npm version ${1:=patch} && \
+	npm publish && \
+	git push origin master && \
+	git push origin master --tags
+}
