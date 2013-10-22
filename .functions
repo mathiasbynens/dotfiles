@@ -291,3 +291,8 @@ function o() {
 		open "$@"
 	fi
 }
+
+# `np` with an optional argument patch/minor/major/<version>, with default being `patch`
+function np() {
+	git pull --rebase && npm install && npm test && npm version ${1:=patch} && npm publish && git push origin master && git push origin master --tags
+}
