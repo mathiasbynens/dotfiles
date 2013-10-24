@@ -35,7 +35,7 @@ defaults write com.apple.menuextra.battery ShowTime -string "YES"
 defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
 # Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string '0.764700 0.976500 0.568600'
+defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
@@ -176,7 +176,7 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Save screenshots to the desktop
-defaults write com.apple.screencapture location -string "$HOME/Desktop"
+defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
@@ -293,7 +293,7 @@ chflags nohidden ~/Library
 
 # Remove Dropbox’s green checkmark icons in Finder
 file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
-[ -e "$file" ] && mv -f "$file" "$file.bak"
+[ -e "${file}" ] && mv -f "${file}" "${file}.bak"
 
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
@@ -480,7 +480,7 @@ sudo mdutil -E /
 defaults write com.apple.terminal StringEncodings -array 4
 
 # Use a modified version of the Pro theme by default in Terminal.app
-open "$HOME/init/Mathias.terminal"
+open "${HOME}/init/Mathias.terminal"
 sleep 1 # Wait a bit to make sure the theme is loaded
 defaults write com.apple.terminal "Default Window Settings" -string "Mathias"
 defaults write com.apple.terminal "Startup Window Settings" -string "Mathias"
@@ -622,6 +622,6 @@ defaults write com.twitter.twitter-mac HideInBackground -bool true
 for app in "Address Book" "Calendar" "Contacts" "Dashboard" "Dock" "Finder" \
 	"Mail" "Messages" "Safari" "SizeUp" "SystemUIServer" "Terminal" \
 	"Transmission" "Twitter" "iCal"; do
-	killall "$app" > /dev/null 2>&1
+	killall "${app}" > /dev/null 2>&1
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
