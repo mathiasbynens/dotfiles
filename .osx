@@ -167,6 +167,9 @@ systemsetup -settimezone "Europe/Brussels" > /dev/null
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Disable default iTunes behavior with media keys
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
+
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
