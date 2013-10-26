@@ -13,4 +13,5 @@ chmod +x ~/bin/z.sh
 # also consider moving over your current .z file if possible. it's painful to rebuild :)
 
 # CLI syntax highlight
-sudo easy_install Pygments
+sudo easy_install pip
+sudo pip install pygments
