@@ -19,5 +19,3 @@ Thumbs.db
 # Ignore .svn files
 .svn
 
-# Ignore npm ignore file
-.npmignore
