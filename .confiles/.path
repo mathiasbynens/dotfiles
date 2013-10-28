@@ -20,9 +20,6 @@ PATH=$(brew --prefix)/bin:$(brew --prefix coreutils)/libexec/gnubin:$PATH
 # Mysql
 PATH=$PATH:/usr/local/mysql/bin
 
-# Android platform
-# PATH=$PATH:~/development/sdks/android-sdk-macosx/tools:~/development/sdks/android-sdk-macosx/platform-tools
-
 # rbenv
 PATH=~/.rbenv/bin:$PATH
 PATH=./bin:$PATH:
