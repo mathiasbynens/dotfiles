@@ -1,26 +1,10 @@
-# Easier navigation: .., ..., ...., ....., ~ and -
-alias ..="cd .."
-alias -- -="cd -"
-
-# Shortcuts
-alias d="cd ~/Documents/Dropbox"
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias p="cd ~/development"
-alias g="git"
-alias m="mate ."
-alias s="subl ."
-alias o="open"
-alias oo="open ."
-alias t="thor"
-
 # If the hub utility is installed, make an alias
 # for git
 hubCmd=`type hub 2> /dev/null`
-
-if [ ! -z "$hubCmd" ]; then
+if [ ! -z $hubCmd ]; then
 	alias git="hub"
 fi
+unset hubCmd
 
 
 # Detect which `ls` flavor is in use
@@ -31,11 +15,11 @@ else # OS X `ls`
 fi
 
 # Bundler Commands
-alias be='bundle exec'
-alias bi='bundle install'
-alias bl='bundle list'
-alias bu='bundle update'
-alias bp='bundle package'
+# alias be='bundle exec'
+# alias bi='bundle install'
+# alias bl='bundle list'
+# alias bu='bundle update'
+# alias bp='bundle package'
 
 # Postgre SQL
 alias pgon='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'

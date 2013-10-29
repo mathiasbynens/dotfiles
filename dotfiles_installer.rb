@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-require 'thor'
+require 'fileutils'
 
 class FileRsyncer
     @@rsync_args ="-av"
@@ -28,34 +28,32 @@ class FileRsyncer
     end
 end
 
-class Dotfiles < Thor
+class DotfilesInstaller
 
-    desc 'install_all', 'Installs all'
+    # Installs all things
     def install_all
-        install_homebrew
-        install_oh_my_zsh
+        #install_homebrew
+        #install_oh_my_zsh
         copy_confiles
         copy_dotfiles
-        install_plugins
+        add_shellrc_data
+        install_fonts
         set_osx_defaults
     end
 
-    desc 'copy_confiles', 'Copies configuration files to the home directory'
+    # desc 'copy_confiles', 'Copies configuration files to the home directory'
     def copy_confiles
 
         pwd = `pwd`.chomp
 
-
         FileRsyncer.new("#{pwd}/.confiles", "~/").rsync_files
-        # FileUtils.rm_rf("#{ENV['HOME']}/.confiles")
-        # FileUtils.mv("#{ENV['HOME']}/confiles", "#{ENV['HOME']}/.confiles")
 
         puts    
         puts "Finished"
     end
 
-    desc "add_shellrc_data", "Adds initialization data in the shell rc file"
-    def shellrc_data
+    # desc "add_shellrc_data", "Adds initialization data in the shell rc file"
+    def add_shellrc_data
 
         pwd = `pwd`.chomp
         shell_rcfile = `echo $SHELL`.chomp =~ /[zsh]/ ? "#{pwd}/.zshrc" : "#{pwd}/.bash_profile"
@@ -67,7 +65,7 @@ class Dotfiles < Thor
         puts "Finished"
     end
     
-    desc 'copy_dotfiles', 'Copies dotfiles to the home directory and references it in the shell'
+    # desc 'copy_dotfiles', 'Copies dotfiles to the home directory and references it in the shell'
     def copy_dotfiles        
         FileRsyncer.new("dotfiles/", "~/").rsync_files
 
@@ -76,7 +74,7 @@ class Dotfiles < Thor
     end
 
     # https://github.com/robbyrussell/oh-my-zsh
-    desc 'install_oh_my_zsh', 'Also installs oh my zsh'
+    # desc 'install_oh_my_zsh', 'Also installs oh my zsh'
     def install_oh_my_zsh
 
         # Clone the repository
@@ -87,18 +85,21 @@ class Dotfiles < Thor
 
         # Set zsh as system shell
         system 'chsh -s /bin/zsh'
-
-        install_plugins
     end
 
-    desc 'install_osx_defaults', 'Sets my personal OSX configuration defaults'
+    # desc 'install_osx_defaults', 'Sets my personal OSX configuration defaults'
     def set_osx_defaults
         system './defaults/osx/init'
     end
 
-    desc 'install_homebrew', 'Installs homebrew and sets some optional repositories'
+    # desc 'install_homebrew', 'Installs homebrew and sets some optional repositories'
     def install_homebrew
         system './defaults/brew/init'
+    end
+
+
+    def install_fonts
+        FileRsyncer.new('./fonts/', "#{ENV['HOME']}/Library/Fonts/").rsync_files
     end
 
 end

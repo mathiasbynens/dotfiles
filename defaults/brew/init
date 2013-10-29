@@ -7,6 +7,10 @@ app_cmd="brew"
 app_install_cmd='ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
 check_app_installation=`type $app_cmd &>/dev/null && echo "" || echo "notfound"`
 
+echo "---------------------------------------------------------------------------------"
+echo "This script install the Homebrew if it is not installed"
+echo "Also updates Homebrew to the lastest version and all the formulaes"
+echo "---------------------------------------------------------------------------------"
 
 if [ -n "$check_app_installation" ]; then
   # brew not found, ask user if we should install it
