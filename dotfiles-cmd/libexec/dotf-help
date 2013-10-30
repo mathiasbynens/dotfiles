@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+set -e
+
+print_summaries() {
+  local commands=()
+  local summaries=()
+  local longest_command=0
+  local command
+
+  for command in $(dotf-commands); do
+    local file="$(command_path "$command")"
+    if [ ! -h "$file" ]; then
+      local summary="$(summary "$file")"
+      if [ -n "$summary" ]; then
+        commands["${#commands[@]}"]="$command"
+        summaries["${#summaries[@]}"]="$summary"
+
+        if [ "${#command}" -gt "$longest_command" ]; then
+          longest_command="${#command}"
+        fi
+      fi
+    fi
+  done
+
+  local index
+  local columns="$(tput cols)"
+  local summary_length=$(( $columns - $longest_command - 5 ))
+
+  for (( index=0; index < ${#commands[@]}; index++ )); do
+    printf "   %-${longest_command}s  %s\n" "${commands[$index]}" \
+      "$(truncate "$summary_length" "${summaries[$index]}")"
+  done
+}
+
+print_help() {
+  local file="$1"
+  local usage="$(usage "$file")"
+
+  if [ -n "$usage" ]; then
+    echo "$usage"
+
+    local help="$(help "$file")"
+    [ -n "$help" ] && echo && echo "$help"
+  else
+    echo "Sorry, this command isn't documented yet."
+  fi
+}
+
+command_path() {
+  command -v "dotf-$command" || command -v "dotf-sh-$command" || true
+}
+
+summary() {
+  sed -n "s/^# Summary: \(.*\)/\1/p" "$1"
+}
+
+usage() {
+  sed -n "s/^# \(Usage: .*\)/\1/p" "$1"
+}
+
+help() {
+  awk '/^[^#]/{p=0} /^# Help:/{p=1} p' "$1" | sed "s/^# Help: //;s/^# //;s/^#//"
+}
+
+truncate() {
+  local max_length="$1"
+  local string="$2"
+
+  if [ "${#string}" -gt "$max_length" ]; then
+    local length=$(( $max_length - 3 ))
+    echo "${string:0:$length}..."
+  else
+    echo "$string"
+  fi
+}
+
+# Provide dotf completions
+if [ "$1" = "--complete" ]; then
+  exec "dotf-commands"
+  exit
+fi
+
+command="$1"
+case "$command" in
+"") echo "Usage: dotf <command> [<args>]
+
+Some useful dotf commands are:
+$(print_summaries)
+
+See 'dotf help <command>' for information on a specific command."
+;;
+*)
+  file="$(command_path "$command")"
+
+  if [ -n "$file" ]; then
+    print_help "$file"
+  else
+    echo "dotf: no such command \`$command'" >&2
+    exit 1
+  fi
+esac

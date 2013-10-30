@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Usage: dotf commands
+# Summary: List all dotf commands
+# Help: This command is mostly used for autocompletion in various shells, and for `dotf help`.
+# Also, this command helps find commands that are named the same as potentially builtin shell commands (which, cd, etc)
+
+set -e
+
+# Provide dotf completions
+if [ "$1" = "--complete" ]; then
+  echo --sh
+  echo --no-sh
+  exit
+fi
+
+if [ "$1" = "--sh" ]; then
+  sh=1
+  shift
+elif [ "$1" = "--no-sh" ]; then
+  nosh=1
+  shift
+fi
+
+shopt -s nullglob
+
+{ for path in ${PATH//:/$'\n'}; do
+    for command in "${path}/dotf-"*; do
+      command="${command##*dotf-}"
+      if [ -n "$sh" ]; then
+        if [ ${command:0:3} = "sh-" ]; then
+          echo ${command##sh-}
+        fi
+      elif [ -n "$nosh" ]; then
+        if [ ${command:0:3} != "sh-" ]; then
+          echo ${command##sh-}
+        fi
+      else
+        echo ${command##sh-}
+      fi
+    done
+  done
+} | sort | uniq

@@ -30,16 +30,6 @@ end
 
 class DotfilesInstaller
 
-    # Installs all things
-    def install_all
-        #install_homebrew
-        #install_oh_my_zsh
-        copy_confiles
-        copy_dotfiles
-        add_shellrc_data
-        install_fonts
-        set_osx_defaults
-    end
 
     # desc 'copy_confiles', 'Copies configuration files to the home directory'
     def copy_confiles
@@ -50,6 +40,7 @@ class DotfilesInstaller
 
         puts    
         puts "Finished"
+
     end
 
     # desc "add_shellrc_data", "Adds initialization data in the shell rc file"
@@ -100,6 +91,10 @@ class DotfilesInstaller
 
     def install_fonts
         FileRsyncer.new('./fonts/', "#{ENV['HOME']}/Library/Fonts/").rsync_files
+    end
+
+    def install_themes
+        FileRsyncer.new('./themes/', '~/.oh-my-zsh/themes').rsync_files
     end
 
 end

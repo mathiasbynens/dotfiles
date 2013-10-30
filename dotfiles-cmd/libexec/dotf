@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -e
+
+resolve_link() {
+  $(type -p greadlink readlink | head -1) "$1"
+}
+
+abs_dirname() {
+  local cwd="$(pwd)"
+  local path="$1"
+
+  while [ -n "$path" ]; do
+    cd "${path%/*}"
+    local name="${path##*/}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  pwd
+  cd "$cwd"
+}
+
+libexec_path="$(abs_dirname "$0")"
+
+export _DOTF_ROOT="$(abs_dirname "$libexec_path")"
+export PATH="${libexec_path}:$PATH"
+
+command="$1"
+case "$command" in
+"" | "-h" | "--help" )
+  exec dotf-help
+  ;;
+* )
+  command_path="$(command -v "dotf-$command" || true)"
+  if [ ! -x "$command_path" ]; then
+    echo "dotf: no such command \`$command'" >&2
+    exit 1
+  fi
+
+  shift
+  exec "$command_path" "$@"
+  ;;
+esac

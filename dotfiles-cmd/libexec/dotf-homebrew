@@ -1,0 +1,78 @@
+#!/usr/bin/ruby
+
+# Usage: dotf homebrew
+# Summary: Installs homebrew and some packages
+# Help: This will install homebrew and the packages defined in the 
+# file config/brew
+
+# install brew if it does not exists
+doUpgrade = (ARGV.include?('--upgrade') || ARGV.include?('-u'))
+
+app_name = "Homebrew"
+app_cmd = "brew"
+app_install_cmd = 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
+check_app_installation = `type $app_cmd &>/dev/null`.empty?
+
+puts "---------------------------------------------------------------------------------"
+puts "This script installs #{app_name} if it is not installed"
+puts "---------------------------------------------------------------------------------"
+
+unless %x(command #{app_cmd} 2> /dev/null)
+  # brew not found, ask user if we should install it
+  puts "#{app_name} was not found in the system, To install it, this command needs be executed:"
+  puts app_install_cmd
+
+  puts "Do you want me to install it? (y/n)"
+
+  if gets.chomp =~ /^[Yy]/
+    puts "Ok, installing #{app_name}"
+    system app_install_cmd
+  else
+    puts "Aborting"
+    exit 2
+  end
+
+else
+  puts "#{app_name} is already installed: version #{%x(#{app_cmd} --version)}"
+
+end
+
+puts "Update homebrew to make sure we’re using the latest version"
+system('brew update')
+
+
+puts "Installing GNU core utilities (those that come with OS X are outdated)"
+system('brew install coreutils')
+
+puts "Installing GNU 'find', 'locate', 'updatedb', and 'xargs', g-prefixed"
+system('brew install findutils')
+
+puts "Installing Bash 4"
+system('brew install bash')
+
+puts "Installing wget"
+system('brew install wget')
+
+puts "Installing more recent versions of some OS X tools"
+system('brew tap homebrew/dupes')
+system('brew install homebrew/dupes/grep')
+
+puts "Installing git & git-flow"
+system('brew install git')
+
+puts "Installing imagemagick"
+system('brew install imagemagick')
+
+puts "Installing node"
+system('brew install node')
+
+puts "Removing outdated versions from the cellar"
+system('brew cleanup')
+
+if (doUpgrade)
+    puts "Upgrading already-installed formulae"
+    system('brew upgrade')
+end 
+
+puts "Done"
+puts "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
