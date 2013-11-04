@@ -74,10 +74,5 @@ installcask u-torrent
 installcask skype
 installcask sequel-pro
 
-installcask x-quartz
-
-brew install gtk+3
-brew install swi-prolog
-
 # Remove outdated versions from the cellar
 brew cleanup
