@@ -63,6 +63,7 @@ function installcask() {
 }
 
 installcask google-chrome
+installcask vagrant
 installcask imagealpha
 installcask imageoptim
 installcask macvim
