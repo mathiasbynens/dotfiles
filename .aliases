@@ -24,7 +24,7 @@ alias s="subl ."
 alias o="open"
 alias oo="open ."
 alias b="brew"
-alias vag="vagrant"
+alias vg="vagrant"
 
 # Enable git command  autocompletion for 'g' as well
 complete -o default -o nospace -F _git g
