@@ -36,15 +36,11 @@ brew install ocaml
 
 # Install other useful binaries
 brew install ack
-#brew install exiv2
 brew install git
 brew install hub
-#brew install imagemagick
-# brew install lynx
 brew install node
 brew install pigz
 brew install rename
-# brew install rhino
 brew install tree
 brew install webkit2png
 brew install zopfli
@@ -52,27 +48,6 @@ brew install htop-osx
 brew install mplayershell
 
 brew tap homebrew/versions
-# brew install lua52
-
-# Install native apps
-brew tap phinze/homebrew-cask
-brew install brew-cask
-
-function installcask() {
-	brew cask install "${@}" 2> /dev/null
-}
-
-installcask google-chrome
-installcask vagrant
-installcask imagealpha
-installcask imageoptim
-installcask macvim
-# installcask sublime-text
-installcask the-unarchiver
-installcask virtualbox
-installcask u-torrent
-installcask skype
-installcask sequel-pro
 
 # Remove outdated versions from the cellar
 brew cleanup
