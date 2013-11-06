@@ -36,11 +36,22 @@ complete -W "NSGlobalDomain" defaults
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
 
 # If possible, add tab completion for many more commands
-[ -f /etc/bash_completion ] && source /etc/bash_completion
+if [ -f /etc/bash_completion ]; then
+	source /etc/bash_completion
+fi
+
+# Add bash completion for brew installed formuale
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+	source $(brew --prefix)/etc/bash_completion
+fi
 
 # If available use git completion
 # Installed by brew in this location
-[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
+if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
+	source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+fi
 
 # Enable hub completion if available
-[ -f $HOME/src/hub/etc/hub.bash_completion.sh ] &&  source $HOME/src/hub/etc/hub.bash_completion.sh
+if [ -f $HOME/src/hub/etc/hub.bash_completion.sh ]; then
+	source $HOME/src/hub/etc/hub.bash_completion.sh
+fi
