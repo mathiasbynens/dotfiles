@@ -1,5 +1,5 @@
-# Add `~/bin` and coreutils to the `$PATH`
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
+# Add `~/bin` and `$(brew --prefix)/bin` to the `$PATH`
+export PATH="$HOME/bin:$(brew --prefix)/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
