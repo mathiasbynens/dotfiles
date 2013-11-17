@@ -1,1 +1,2 @@
-dotfiles-cmd/bin/dotf
+#!/bin/bash
+./dotfiles-cmd/bin/dotf "$@"
