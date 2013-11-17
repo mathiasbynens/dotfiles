@@ -40,20 +40,15 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(battery brew bundle colorize fasd gem gitfast jira jump node npm rbenv taskwarrior thor vagrant zeus)
+plugins=(battery brew bundler colorize fasd gem gitfast jira node npm rbenv thor vagrant zeus)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/Users/ricky/.rbenv/shims:./bin:/Users/ricky/.rbenv/bin:./bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/Users/ricky/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:/usr/local/mysql/bin:
-
 RPROMPT='$(battery_pct_prompt)'
 
 # load configuration files
-for file in ~/.confiles/.{aliases,exports,functions,path}; do
+for file in ~/.confiles/.*; do
     [ -r "$file" ] && source "$file"
 done
 unset file
-
-# load sp utils completions
-eval "$($HOME/.sp-utils/bin/sp init -)"

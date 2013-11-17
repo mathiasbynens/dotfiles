@@ -1,0 +1,13 @@
+#!/usr/bin/ruby
+
+require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
+
+puts "---------------------------------------------------------------------------------"
+puts 'Copying files to user font folder'
+puts "---------------------------------------------------------------------------------"
+
+
+FileRsync.new('./fonts/', "#{ENV['HOME']}/Library/Fonts/").rsync_files
+
+exit 0
+    

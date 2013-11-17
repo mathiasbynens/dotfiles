@@ -1,0 +1,18 @@
+#!/usr/bin/ruby
+
+require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
+
+puts "---------------------------------------------------------------------------------"
+puts 'Copy configuration files in home folder'
+puts "---------------------------------------------------------------------------------"
+
+puts "Some files in your home directory could be overwritten. Continue? (y/n)"
+unless gets.chomp =~ /^[Yy]/
+    puts 'Aborting...'
+    exit 2
+end
+
+FileRsync.new("./.confiles", "~/").rsync_files
+FileRsync.new("./.dotfiles/", "~/").rsync_files
+
+exit 0

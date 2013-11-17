@@ -1,8 +1,12 @@
 #!/bin/bash
+echo "---------------------------------------------------------------------------------"
+echo "Setting personal OSX defaults"
+echo "---------------------------------------------------------------------------------"
 
 # ~/.osx — http://mths.be/osx
 
 # Ask for the administrator password upfront
+echo "I need administration privileges to change some system defaults:"
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished

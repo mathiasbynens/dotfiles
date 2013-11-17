@@ -1,0 +1,35 @@
+#!/usr/bin/ruby
+puts "---------------------------------------------------------------------------------"
+puts "Installing zshell and oh my zsh"
+puts "---------------------------------------------------------------------------------"
+
+require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
+
+puts "Do you want me to install zsh as the default shell? (y/n)"
+unless gets.chomp =~ /^[Yy]/
+    puts 'Aborting...'
+    exit 2
+end
+
+puts
+puts  "Cloning the oh-my-zsh repository into the users's folder"
+system 'git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh'
+
+
+if File.exists? '~/.zshrc'
+    puts 'Found and existing zshrc file. Making a backup called .zshrc.orig'
+    FileUtils.cp('~/.zshrc','~/.zshrc.orig')
+end
+
+puts
+puts "Installing custom oh-my-zhs themes"
+FileRsync.new('./themes/', '~/.oh-my-zsh/themes').rsync_files
+
+puts
+puts "Setting zsh as system shell"
+
+result = system 'chsh -s /bin/zsh'
+exit result unless result == 0
+
+puts 'All operations completed. Open a new shell to see the changes'
+exit 0
