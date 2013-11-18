@@ -40,6 +40,16 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
+
+# load configuration files
+for file in ~/.confiles/.*; do
+    [ -r "$file" ] && source "$file"
+done
+unset file
+
+# rbenv
+eval "$(rbenv init -)"
+
 plugins=(battery brew bundler colorize fasd gem gitfast jira node npm rbenv thor vagrant zeus)
 
 source $ZSH/oh-my-zsh.sh
@@ -47,8 +57,4 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 RPROMPT='$(battery_pct_prompt)'
 
-# load configuration files
-for file in ~/.confiles/.*; do
-    [ -r "$file" ] && source "$file"
-done
-unset file
+

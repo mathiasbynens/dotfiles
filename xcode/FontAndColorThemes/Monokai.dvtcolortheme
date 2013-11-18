@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DVTConsoleDebuggerInputTextColor</key>
+	<string>0.995968 0.995968 0.995968 1</string>
+	<key>DVTConsoleDebuggerInputTextFont</key>
+	<string>Menlo-Bold - 11.0</string>
+	<key>DVTConsoleDebuggerOutputTextColor</key>
+	<string>0.995968 0.995968 0.995968 1</string>
+	<key>DVTConsoleDebuggerOutputTextFont</key>
+	<string>Menlo-Regular - 11.0</string>
+	<key>DVTConsoleDebuggerPromptTextColor</key>
+	<string>0.269583 0.704479 0.84096 1</string>
+	<key>DVTConsoleDebuggerPromptTextFont</key>
+	<string>Menlo-Bold - 11.0</string>
+	<key>DVTConsoleExectuableInputTextColor</key>
+	<string>0.995968 0.995968 0.995968 1</string>
+	<key>DVTConsoleExectuableInputTextFont</key>
+	<string>Menlo-Regular - 11.0</string>
+	<key>DVTConsoleExectuableOutputTextColor</key>
+	<string>0.995968 0.995968 0.995968 1</string>
+	<key>DVTConsoleExectuableOutputTextFont</key>
+	<string>Menlo-Bold - 11.0</string>
+	<key>DVTConsoleTextBackgroundColor</key>
+	<string>0.138326 0.138352 0.13832 1</string>
+	<key>DVTConsoleTextInsertionPointColor</key>
+	<string>0 0 0 1</string>
+	<key>DVTConsoleTextSelectionColor</key>
+	<string>0.891972 0.635291 1 1</string>
+	<key>DVTDebuggerInstructionPointerColor</key>
+	<string>0.705792 0.8 0.544 1</string>
+	<key>DVTSourceTextBackground</key>
+	<string>0.153735 0.158026 0.134656 1</string>
+	<key>DVTSourceTextBlockDimBackgroundColor</key>
+	<string>0.5 0.5 0.5 1</string>
+	<key>DVTSourceTextInsertionPointColor</key>
+	<string>1 1 1 1</string>
+	<key>DVTSourceTextInvisiblesColor</key>
+	<string>0.5 0.5 0.5 1</string>
+	<key>DVTSourceTextSelectionColor</key>
+	<string>0.201812 0.194131 0.212308 1</string>
+	<key>DVTSourceTextSyntaxColors</key>
+	<dict>
+		<key>xcode.syntax.attribute</key>
+		<string>0.978146 0.148575 0.445249 1</string>
+		<key>xcode.syntax.character</key>
+		<string>0.680619 0.503594 0.999973 1</string>
+		<key>xcode.syntax.comment</key>
+		<string>0.459445 0.442009 0.369169 1</string>
+		<key>xcode.syntax.comment.doc</key>
+		<string>0.459445 0.442009 0.369169 1</string>
+		<key>xcode.syntax.comment.doc.keyword</key>
+		<string>0.459445 0.442009 0.369169 1</string>
+		<key>xcode.syntax.identifier.class</key>
+		<string>0.652603 0.888057 0.181576 1</string>
+		<key>xcode.syntax.identifier.class.system</key>
+		<string>0.652603 0.888057 0.181576 1</string>
+		<key>xcode.syntax.identifier.constant</key>
+		<string>0.680619 0.503594 0.999973 1</string>
+		<key>xcode.syntax.identifier.constant.system</key>
+		<string>0.680619 0.503594 0.999973 1</string>
+		<key>xcode.syntax.identifier.function</key>
+		<string>0.993407 0.591746 0.120865 1</string>
+		<key>xcode.syntax.identifier.function.system</key>
+		<string>0.993407 0.591746 0.120865 1</string>
+		<key>xcode.syntax.identifier.macro</key>
+		<string>0.680619 0.503594 0.999973 1</string>
+		<key>xcode.syntax.identifier.macro.system</key>
+		<string>0.680619 0.503594 0.999973 1</string>
+		<key>xcode.syntax.identifier.type</key>
+		<string>0.993407 0.591746 0.120865 1</string>
+		<key>xcode.syntax.identifier.type.system</key>
+		<string>0.993407 0.591746 0.120865 1</string>
+		<key>xcode.syntax.identifier.variable</key>
+		<string>0.401493 0.851756 0.935755 1</string>
+		<key>xcode.syntax.identifier.variable.system</key>
+		<string>0.401493 0.851756 0.935755 1</string>
+		<key>xcode.syntax.keyword</key>
+		<string>0.978146 0.148575 0.445249 1</string>
+		<key>xcode.syntax.number</key>
+		<string>0.680619 0.503594 0.999973 1</string>
+		<key>xcode.syntax.plain</key>
+		<string>0.91194 0.888054 0.872512 1</string>
+		<key>xcode.syntax.preprocessor</key>
+		<string>0.680619 0.503594 0.999973 1</string>
+		<key>xcode.syntax.string</key>
+		<string>0.904044 0.861174 0.455933 1</string>
+		<key>xcode.syntax.url</key>
+		<string>0.978146 0.148575 0.445249 1</string>
+	</dict>
+	<key>DVTSourceTextSyntaxFonts</key>
+	<dict>
+		<key>xcode.syntax.attribute</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.character</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.comment</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.comment.doc</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.comment.doc.keyword</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.class</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.class.system</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.constant</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.constant.system</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.function</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.function.system</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.macro</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.macro.system</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.type</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.type.system</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.variable</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.identifier.variable.system</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.keyword</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.number</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.plain</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.preprocessor</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.string</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+		<key>xcode.syntax.url</key>
+		<string>InconsolataForPowerline-dz - 13.0</string>
+	</dict>
+</dict>
+</plist>
