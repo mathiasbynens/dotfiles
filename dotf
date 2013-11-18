@@ -1,2 +1,4 @@
 #!/bin/bash
+
+# shim to dotf command
 ./dotfiles-cmd/bin/dotf "$@"
