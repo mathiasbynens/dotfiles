@@ -37,7 +37,7 @@ else
 
 end
 
-puts "Update homebrew to make sure we’re using the latest version"
+puts "Updating homebrew to make sure we’re using the latest version"
 system('brew update')
 
 
