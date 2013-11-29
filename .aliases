@@ -8,6 +8,7 @@ alias -- -="cd -"
 
 # Shortcuts
 alias b="brew"
+alias c="composer"
 alias d="cd ~/dotfiles"
 alias dc="cd ~/Documents"
 alias dl="cd ~/Downloads"
