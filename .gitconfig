@@ -175,6 +175,11 @@
 	whitespace = space-before-tab,indent-with-non-tab,trailing-space
 
 [diff]
+	# Use more time to create better diffs.
+	# E.g. matching opening/closing braces from neighbour functions.
+	# See "`git help diff` --patience" and "`git help merge` recursive".
+	algorithm = patience
+
 	# Diff will detect both renames and copies.
 	renames = copies
 
