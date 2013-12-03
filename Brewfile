@@ -24,11 +24,10 @@ install narwhal
 install vim --override-system-vi
 tap homebrew/dupes
 install homebrew/dupes/grep
+install homebrew/dupes/screen
+
 tap josegonzalez/homebrew-php
 install php55
-
-# This formula didn’t work well last time I tried it:
-#install homebrew/dupes/screen
 
 # Install other useful binaries
 install ack
