@@ -139,11 +139,10 @@
 
 [color "diff"]
 	# Yellow meta; Magenta line info; Red for deleltions; Green for additions.
-	# Bold everything.
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+	meta = yellow
+	frag = magenta
+	old = red
+	new = green
 
 [color "status"]
 	# Changed files are yellow.
