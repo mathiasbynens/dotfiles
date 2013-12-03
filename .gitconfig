@@ -90,6 +90,9 @@
 	# Shorthand for pull
 	pl = pull
 
+	# Create a new remote branch with the same name and track it.
+	publish = "!p() { [ -z \"$1\" ] && remote=\"origin\" || remote=$1; git push --set-upstream $2 $3 $4 $remote HEAD; }; p"
+
 	# Shorthand for remote
 	r = remote
 
