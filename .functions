@@ -197,6 +197,26 @@ function getcertnames() {
 	fi
 }
 
+# git: Find branches containing commit
+function gfb() {
+    git branch -a --contains "$@"
+}
+
+# git: Find tags containing commit
+function gft() {
+    git describe --always --contains "$@"
+}
+
+# git: Find commits by sourcecode
+function gfc() {
+    git log --pretty=format:"%h - %an, %ar : %s" -S"$@"
+}
+
+# git: Find commits by commit message
+function gfm() {
+    git log --pretty=format:"%C(yellow)%h %ad%Cred%d %Creset%s%Cblue [%cn]" --decorate --date=short --grep="$@"
+}
+
 # Add note to Notes.app (OS X 10.8)
 # Usage: `note 'title' 'body'` or `echo 'body' | note`
 # Title is optional
