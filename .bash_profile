@@ -55,4 +55,4 @@ export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]
 shopt -s checkwinsize
 
 # Auto "cd" when entering just a path
-shopt -s autocd
+# shopt -s autocd
