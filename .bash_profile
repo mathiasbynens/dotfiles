@@ -48,7 +48,7 @@ trap EC ERR
 # This will change your title to the last command run, and make sure your history file is always up-to-date
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='history*'
-export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";'
+# export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
