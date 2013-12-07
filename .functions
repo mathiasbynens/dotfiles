@@ -311,3 +311,14 @@ function np() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
 }
+
+# sanitize filename: lowercase, no other characters than letters, digits, dash, underscore and dot
+function sanitize() {
+	for file in *; do
+		file_clean=`echo $file | tr '[:upper:]' '[:lower:]' | tr -cd "[:alnum:]-_."`
+		if [ "${file}" != "${file_clean}" ]; then
+			echo "$file > $file_clean"
+			mv "$file" "$file_clean"
+		fi
+	done
+}
