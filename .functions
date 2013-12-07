@@ -314,6 +314,7 @@ function tre() {
 
 # sanitize filename: lowercase, no other characters than letters, digits, dash, underscore and dot
 function sanitize() {
+	local file
 	for file in *; do
 		local file_clean=$(echo $file | tr '[:upper:]' '[:lower:]' | tr -cd "[:alnum:]-_.")
 		if [ "${file}" != "${file_clean}" ]; then
