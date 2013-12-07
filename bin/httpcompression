@@ -2,8 +2,21 @@
 
 # Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL
 
-declare -r hUA="Mozilla/5.0 Gecko"
+# Useful Links:
+#
+# - HTTP/1.1 (RFC 2616) - Content Codings:
+#   http://tools.ietf.org/html/rfc2616#section-3.5
+#
+# - SDCH Specification:
+#   http://www.blogs.zeenor.com/wp-content/uploads/2011/01/Shared_Dictionary_Compression_over_HTTP.pdf
+
+# Usage:
+#
+#   httpcompression URL
+
 declare -r hAE="Accept-Encoding: gzip, deflate, sdch"
+declare -r hCC="Cache-Control: no-cache"
+declare -r hUA="Mozilla/5.0 Gecko"
 declare -r maxConTime=15
 declare -r maxTime=30
 
@@ -11,13 +24,14 @@ declare availDicts="" dict="" dictClientID="" dicts="" headers="" i="" \
         indent="" url="" encoding="" urlHeaders=""
 
 headers="$( curl --connect-timeout $maxConTime \
-                 -A "$hUA"    `# Send a fake UA string for sites
-                               # that sniff it instead of using
-                               # the Accept-Encoding header` \
+                 -A "$hUA"    `# Send a fake UA string for sites that sniff it
+                               # instead of using the Accept-Encoding header` \
                  -D -         `# Get response headers` \
                  -H "$hAE"     \
-                 -L           `# If the page was moved to a different
-                               # location, redo the request` \
+                 -H "$hCC"    `# Prevent intermediate proxies from caching the
+                               # response` \
+                 -L           `# If the page was moved to a different location,
+                               # redo the request` \
                  -m $maxTime   \
                  -s           `# Don\'t show the progress meter` \
                  -S           `# Show error messages` \
