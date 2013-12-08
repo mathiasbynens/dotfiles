@@ -23,7 +23,8 @@
 	"highlight_modified_tabs": true,
 	"hot_exit": false,
 	"line_padding_bottom": 6,
-	"matchBracketsAngle": true,
+	"match_brackets": true,
+	"match_brackets_angle": true,
 	"remember_open_files": false,
 	"rulers":
 	[
