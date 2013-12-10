@@ -28,6 +28,10 @@
 	# See`git help branch`
 	bd = branch --delete
 
+	# Shorthand for browse
+	# See`hub help browse`
+	br = browse
+
 	# Shorthand for commit
 	c = commit
 
@@ -37,6 +41,9 @@
 	# Checkouts a branch. Creates it if id doesn't exist
 	# See`git help checkout`
 	chb = checkout -B
+
+	# Shorthand for clone
+	cl = clone
 
 	# Deletes all untracked files and directories.
 	# See`git help clean`
@@ -77,6 +84,9 @@
 
 	# Shorthand for merge
 	m = merge
+
+	# Shorthand for mergetool
+	mt = mergetool
 
 	# Show the not merged branches compared to the current branch
 	nm = branch --no-merged
