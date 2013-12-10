@@ -2,14 +2,14 @@
 # Global configuration file for Git.
 ####################################
 
-# A lot of aliases to speed up full-time usage of git from command line.
+# A lot of aliases to speed up full-time usage of Git from command line.
 # Long flag names are used for readability wherever possible.
 # Short flags are meant for writing on the command line.
 [alias]
 	# Shorthand for add
 	a = add
 
-	# Adds all unstaged (including untracked) files.
+	# Add all unstaged (including untracked) files.
 	# See`git help add`
 	aa = add --all
 
@@ -17,14 +17,14 @@
 	# See`git help add`
 	ai = add --interactive
 
-	# Amends the currently staged files to the last commit
+	# Amend the currently staged files to the last commit
 	# See`git help commit`
 	amend = commit --amend --reuse-message=HEAD
 
 	# Shorthand for branch
 	b = branch
 
-	# Deletes a branch only if it is merged in the current branch.
+	# Delete a branch only if it is merged in the current branch.
 	# See`git help branch`
 	bd = branch --delete
 
@@ -38,14 +38,14 @@
 	# Shorthand for checkout
 	ch = checkout
 
-	# Checkouts a branch. Creates it if id doesn't exist
+	# Checkout a branch. Create it if it doesn't exist
 	# See`git help checkout`
 	chb = checkout -B
 
 	# Shorthand for clone
 	cl = clone
 
-	# Deletes all untracked files and directories.
+	# Delete all untracked files and directories.
 	# See`git help clean`
 	cleanit = clean -fd
 
@@ -65,12 +65,12 @@
 	
 	# Diff working tree to HEAD (a.k.a last commit).
 	# Using difftool.tool for visualising diffs.
-	# Does not prompt for each file. Use --prompt to override.
+	# Do not prompt for each file. Use --prompt to override.
 	d = difftool --no-prompt
 
 	# Diff staging area (a.k.a index) to HEAD (a.k.a last commit).
 	# Using difftool.tool for visualising diffs.
-	# Does not prompt for each file. Use --prompt to override.
+	# Do not prompt for each file. Use --prompt to override.
 	dc = difftool --cached --no-prompt
 
 	# Shorthand for fetch
@@ -101,6 +101,8 @@
 	pl = pull
 
 	# Create a new remote branch with the same name and track it.
+	# First argument is remote name. Defaults to "origin".
+	# Second, third and fourth argument are passed to `git push`.
 	publish = "!p() { [ -z \"$1\" ] && remote=\"origin\" || remote=$1; git push --set-upstream $2 $3 $4 $remote HEAD; }; p"
 
 	# Shorthand for remote
@@ -109,7 +111,7 @@
 	# Interactive rebase with the given number of latest commits
 	ri = "!r() { git rebase --interactive HEAD~$1; }; r"
 	
-	# Updates all remotes
+	# Update all remotes
 	ru = remote update
 
 	# Shorthand for rebase
@@ -119,7 +121,7 @@
 	rs = reset
 	
 	# View the current working tree status using the short format
-	# Shows the current branch as well
+	# Show the current branch as well
 	# See`git help status`
 	s = status --short --branch
 
@@ -170,7 +172,8 @@
 	untracked = cyan
 
 [core]
-	# Default editor for commit messages and other
+	# Default editor for commit messages and other inputs
+	# Even when EDITOR is set to something else
 	editor=vim
 
 	# Global `.gitignore`
@@ -195,7 +198,7 @@
 	# Diff will detect both renames and copies.
 	renames = copies
 
-	# Defaults to vimdiff for visualising diffs.
+	# Default to vimdiff for visualising diffs.
 	# Override with --tool=<tool> in difftool
 	# See`git help difftool`
 	# If `vimdiff` is not in your $PATH, override with difftool.vimdiff.path
@@ -219,7 +222,7 @@
 	tool = opendiff
 
 [mergetool]
-	# No .orig files left when using mergetool.
+	# No *.orig files left when using mergetool.
 	keepBackup = false
 
 	# Mergetool will not prompt for every file.
@@ -231,28 +234,32 @@
 	color = true
 
 [push]
-	# See `git help config` and search for push.default
+	# See `git help config` and search for "push.default"
 	# for more information on different options of the below setting.
-	# Setting to git 2.0 default to surpress warning message
+	# Setting to Git 2.0 default to surpress warning message
 	# If you use branches with different remote name, use "upstream"
 	default = simple
 
 # URL shorthands
-# See `git help config` and search for url.<base>
+# 
+# See `git help config` and search for "url.<base>"
 # 
 # gh: is a shorthand for git@github.com
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "git://github.com/"
+
 # github: is a shorthand for git://github.com/
 [url "git://github.com/"]
 	insteadOf = "github:"
+
 # gst: is a shorthand for git://gist.github.com/
 [url "git@gist.github.com:"]
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
+
 # gist: is a shofthand for git://gist.github.com/
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
