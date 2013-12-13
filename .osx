@@ -443,6 +443,13 @@ defaults write com.apple.Safari HomePage -string "about:blank"
 # Prevent Safari from opening ‘safe’ files automatically after downloading
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
+# Disable AutoFill in Safari.
+defaults write com.apple.Safari AllowBypassOfAutocompleteOff -int 0
+defaults write com.apple.Safari AutoFillFromAddressBook -int 0
+defaults write com.apple.Safari AutoFillPasswords -int 0
+defaults write com.apple.Safari AutoFillCreditCardData -int 0
+defaults write com.apple.Safari AutoFillMiscellaneousForms -int 0
+
 # Allow hitting the Backspace key to go to the previous page in history
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
 
