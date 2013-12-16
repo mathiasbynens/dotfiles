@@ -1,23 +1,30 @@
 # Install native apps
 brew tap phinze/homebrew-cask
 brew install brew-cask
+brew tap caskroom/versions
 
 function installcask() {
 	brew cask install "${@}" 2> /dev/null
 }
 
 installcask dropbox
+installcask google-drive
+installcask onepassword
+installcask alfred
 installcask google-chrome
-installcask google-chrome-canary
-installcask imagealpha
-installcask imageoptim
 installcask iterm2
-installcask macvim
-installcask miro-video-converter
-installcask sublime-text
 installcask the-unarchiver
-installcask tor-browser
-installcask transmission
-installcask ukelele
 installcask virtualbox
+installcask vagrant
+installcask usb-overdrive
 installcask vlc
+installcask spotify
+installcask skype
+installcask crashplan
+installcask dash
+installcask daisydisk
+installcask fantastical
+installcask spotify
+installcask sublime-text-3
+installcask forklift
+installcask sourcetree
