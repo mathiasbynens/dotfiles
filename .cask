@@ -21,3 +21,7 @@ installcask transmission
 installcask ukelele
 installcask virtualbox
 installcask vlc
+
+# Install useful Quick Look plugins for developers
+# See https://github.com/sindresorhus/quick-look-plugins
+brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql webp-quicklook suspicious-package && qlmanage -r
