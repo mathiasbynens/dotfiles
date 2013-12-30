@@ -1,53 +1,53 @@
 #!/usr/bin/env bash
 
 # Make sure we’re using the latest Homebrew
-brew update
+update
 
 # Upgrade any already-installed formulae
-brew upgrade
+upgrade
 
 # Install GNU core utilities (those that come with OS X are outdated)
-brew install coreutils
+install coreutils
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-brew install findutils
+install findutils
 # Install Bash 4
-brew install bash
+install bash
 
 # Install wget with IRI support
-brew install wget --enable-iri
+install wget --enable-iri
 
 # Install RingoJS and Narwhal
 # Note that the order in which these are installed is important; see http://git.io/brew-narwhal-ringo.
-# brew install ringojs
-# brew install narwhal
+# install ringojs
+# install narwhal
 
 # Install more recent versions of some OS X tools
-brew tap homebrew/dupes
-brew install homebrew/dupes/grep
-brew tap josegonzalez/homebrew-php
-brew install php55
-brew install php55-xdebug
-brew install ocaml
+tap homebrew/dupes
+install homebrew/dupes/grep
+tap josegonzalez/homebrew-php
+install php55
+install php55-xdebug
+install ocaml
 
 # These two formulae didn’t work well last time I tried them:
-#brew install homebrew/dupes/vim
-#brew install homebrew/dupes/screen
+#install homebrew/dupes/vim
+#install homebrew/dupes/screen
 
 # Install other useful binaries
-brew install ack
-brew install git
-brew install hub
-brew install node
-brew install pigz
-brew install rename
-brew install tree
-brew install webkit2png
-brew install zopfli
-brew install htop-osx
-brew install mplayershell
+install ack
+install git
+install hub
+install node
+install pigz
+install rename
+install tree
+install webkit2png
+install zopfli
+install htop-osx
+install mplayershell
 
-brew tap homebrew/versions
+tap homebrew/versions
 
 # Remove outdated versions from the cellar
-brew cleanup
+cleanup
