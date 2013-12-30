@@ -45,6 +45,7 @@ installcask google-chrome
 installcask google-chrome-canary
 installcask sublime-text
 installcask vlc
+installcask slate
 
 # Remove outdated versions from the cellar
 brew cleanup
