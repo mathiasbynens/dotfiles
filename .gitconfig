@@ -59,10 +59,10 @@
 	# List contributors with number of commits
 	# See`git help shortlog`
 	contributors = shortlog --summary --numbered
-	
+
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" --reuse-message=HEAD; }; f"
-	
+
 	# Diff working tree to HEAD (a.k.a last commit).
 	# Using difftool.tool for visualising diffs.
 	# Do not prompt for each file. Use --prompt to override.
@@ -73,8 +73,23 @@
 	# Do not prompt for each file. Use --prompt to override.
 	dc = difftool --cached --no-prompt
 
+	# Remove branches that have already been merged with master
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
 	# Shorthand for fetch
 	f = fetch
+
+	# Find branches containing commit
+	fb = "!f() { git branch -a --contains $1; }; f"
+
+	# Find commits by source code
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
+	# Find commits by commit message
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+	# Find tags containing commit
+	ft = "!f() { git describe --always --contains $1; }; f"
 
 	# Shorthand for help
 	h = help
@@ -110,7 +125,7 @@
 
 	# Interactive rebase with the given number of latest commits
 	ri = "!r() { git rebase --interactive HEAD~$1; }; r"
-	
+
 	# Update all remotes
 	ru = remote update
 
@@ -119,7 +134,7 @@
 
 	# Shorthand for reset
 	rs = reset
-	
+
 	# View the current working tree status using the short format
 	# Show the current branch as well
 	# See`git help status`
@@ -172,6 +187,9 @@
 	untracked = cyan
 
 [core]
+	# Global `.gitattributes`
+	attributesfile = ~/.gitattributes
+
 	# Default editor for commit messages and other inputs
 	# Even when EDITOR is set to something else
 	editor=vim
@@ -179,9 +197,10 @@
 	# Global `.gitignore`
 	excludesfile = ~/.gitignore
 
-	# Global `.gitattributes`
-	attributesfile = ~/.gitattributes
-	
+	# Make `git rebase` safer on OS X
+	# More info: http://www.git-tower.com/blog/make-git-rebase-safe-on-osx
+	trustctime = false
+
 	# Treat
 	#  - spaces before tabs,
 	#  - lines that are indented with 8 or more spaces,
