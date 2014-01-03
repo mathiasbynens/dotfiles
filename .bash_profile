@@ -3,7 +3,6 @@
 export PATH="/usr/local/bin:/usr/local/share/python:$HOME/Projects/myStash/bin:$HOME/npm-global/bin:$HOME/bin/node-tools:/usr/local/sbin:$(brew --prefix josegonzalez/php/php54)/bin:$HOME/Projects/libs/depot_tools:$HOME//Projects/libs/AWS-ElasticBeanstalk-CLI-2.5.1/eb/macosx/python2.7:$PATH"
 export D8_PATH="$HOME/bin/node-tools"
 
-
 # Run rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
