@@ -464,10 +464,9 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-# Enable Continuous Spellchecking and Disabled Auto-correction
+# Enable Continuous Spellchecking and Disabled Auto-correct
 defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
 defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
-
 
 ###############################################################################
 # Mail                                                                        #
