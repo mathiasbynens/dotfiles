@@ -296,6 +296,7 @@ function o() {
 # defaults to `patch`
 function np() {
 	git pull --rebase && \
+	rm -rf node_modules && \
 	npm install && \
 	npm test && \
 	npm version ${1:=patch} && \
