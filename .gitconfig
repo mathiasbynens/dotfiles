@@ -28,6 +28,9 @@
 	# See`git help branch`
 	bd = branch --delete
 
+	# Shorthand for branch --merged
+	bm = branch --merged
+
 	# Shorthand for browse
 	# See`hub help browse`
 	br = browse
