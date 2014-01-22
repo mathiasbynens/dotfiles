@@ -31,6 +31,8 @@
 	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
 	# Find commits by commit message
 	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+	# Remove branches that have already been merged with master
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
 [apply]
 	# Detect whitespace errors when applying a patch
