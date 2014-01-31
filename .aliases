@@ -33,6 +33,10 @@ else # OS X `ls`
 	colorflag="-G"
 fi
 
+# Open chrome
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias chromeCanary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
+
 # Replace supervisor, no more CPU eating.
 # https://github.com/isaacs/node-supervisor/issues/71#issuecomment-12208228
 #
