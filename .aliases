@@ -159,6 +159,7 @@ alias cl="ln -s ~/Projects/libs/google-closure-library"
 # Git helpers
 alias gp="git config remote.origin.push HEAD"
 alias gh="git push heroku master"
+alias gundo="git reset --soft 'HEAD^'"
 # Git wiki push
 alias gw="git commit -am "updates";git push"
 
