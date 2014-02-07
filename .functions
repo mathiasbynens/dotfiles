@@ -252,6 +252,13 @@ function gi() {
 	eval npm install --save-dev grunt-{"$*"}
 }
 
+# Install Yeoman generators
+# Usage: `yi webapp gruntfile backbone`
+function yi() {
+	local IFS=,
+	eval npm install -g generator-{"$*"}
+}
+
 # `m` with no arguments opens the current directory in TextMate, otherwise
 # opens the given location
 function m() {
