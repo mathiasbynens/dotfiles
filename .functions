@@ -246,10 +246,17 @@ function unquarantine() {
 }
 
 # Install Grunt plugins and add them as `devDependencies` to `package.json`
-# Usage: `gi contrib-watch contrib-uglify zopfli`
-function gi() {
+# Usage: `gti contrib-watch contrib-uglify zopfli`
+function gti() {
 	local IFS=,
 	eval npm install --save-dev grunt-{"$*"}
+}
+
+# Install Gulp plugins and add them as `devDependencies` to `package.json`
+# Usage: `gpi autoprefixer clean coffee`
+function gpi() {
+	local IFS=,
+	eval npm install --save-dev gulp-{"$*"}
 }
 
 # `m` with no arguments opens the current directory in TextMate, otherwise
