@@ -34,7 +34,7 @@ install php55
 install ack
 #install exiv2
 install git
-#install imagemagick
+install imagemagick --with-webp
 install lynx
 install node
 install pigz
