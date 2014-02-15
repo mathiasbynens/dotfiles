@@ -1,3 +1,6 @@
+[user]
+	email = randito@gmail.com
+	name = Randy Pond
 [alias]
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
