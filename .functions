@@ -301,7 +301,7 @@ function p() {
 	ip2regex='^[0-9]+[.][0-9]+$'
 	ip1regex='^[0-9]+$'
 	host=$@
-	if [ $# -eq 0 ]; then
+	if [[ $# == 0 ]]; then
 		host="8.8.8.8"
 	elif [[ $@ =~ $ip4regex ]]; then
 		host="$@"
