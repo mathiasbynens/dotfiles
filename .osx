@@ -220,6 +220,9 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 # Enable HiDPI display modes (requires restart)
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
+# Set wallpaper
+# osascript -e "tell application \"System Events\" to set picture of every desktop to \"~/Dropbox/wallpapers/example.jpg\""
+
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
