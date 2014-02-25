@@ -7,7 +7,7 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
@@ -19,7 +19,8 @@ alias m="mate ."
 alias s="subl ."
 alias o="open"
 alias oo="open ."
-
+alias copypathh='echo -n $PWD|pbcopy|echo "current path copied to clipboard"'
+alias br=". ~/.bash_profile"
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"

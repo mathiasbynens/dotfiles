@@ -251,3 +251,8 @@ function gi() {
 	local IFS=,
 	eval npm install --save-dev grunt-{"$*"}
 }
+
+#Install and save npm module locally and add to package.json
+function npminstallocal(){
+	npm install $1 --save
+}
