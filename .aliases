@@ -19,7 +19,7 @@ alias m="mate ."
 alias s="subl ."
 alias o="open"
 alias oo="open ."
-alias copypathh='echo -n $PWD|pbcopy|echo "current path copied to clipboard"'
+alias copypath='echo -n $PWD|pbcopy|echo "current path copied to clipboard"'
 alias br=". ~/.bash_profile"
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`

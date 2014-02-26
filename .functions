@@ -272,4 +272,9 @@ function npmrmloc(){
 	npm uninstall $1 --save-dev
 }
 
+#run jasmine-node with watch and auto test with coffee script
+function jasminecoffeetest(){
+	jasmine-node --autotest --watch --coffee $1
+}
+
 
