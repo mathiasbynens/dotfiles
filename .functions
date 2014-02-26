@@ -252,7 +252,24 @@ function gi() {
 	eval npm install --save-dev grunt-{"$*"}
 }
 
+#Install and save npm module locally and add as 'devDependencies' to 'package.json'
+function npmlocdev(){
+	npm install $1 --save-dev
+}
+
 #Install and save npm module locally and add to package.json
-function npminstallocal(){
+function npmloc(){
 	npm install $1 --save
 }
+
+#UnInstall npm module and update 'package.json'
+function npmrmloc(){
+	npm uninstall $1 --save
+}
+
+#UnInstall npm dev module and update 'package.json'
+function npmrmloc(){
+	npm uninstall $1 --save-dev
+}
+
+
