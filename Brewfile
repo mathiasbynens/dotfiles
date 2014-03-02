@@ -34,6 +34,7 @@ install php55
 
 # Install other useful binaries
 install ack
+install pv
 #install exiv2
 install git
 install imagemagick --with-webp
