@@ -268,13 +268,13 @@ function npmrmloc(){
 }
 
 #UnInstall npm dev module and update 'package.json'
-function npmrmloc(){
+function npmrmlocdev(){
 	npm uninstall $1 --save-dev
 }
 
 #run jasmine-node with watch and auto test with coffee script
 function jasminecoffeetest(){
-	jasmine-node --autotest --watch --coffee $1
+	jasmine-node $1 --autotest --watch --coffee
 }
 
 
