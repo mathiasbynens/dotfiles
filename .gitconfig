@@ -47,7 +47,7 @@
 	# [default] trailing-space: looks for spaces at the end of a line
 	# [default] space-before-tab: looks for spaces before tabs at the beginning of
 	# a line
-	whitespace = space-before-tab,indent-with-non-tab,trailing-space
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 	# Make `git rebase` safer on OS X
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
 	trustctime = false
