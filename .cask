@@ -15,7 +15,7 @@ installcask macvim
 installcask miro-video-converter
 installcask opera
 installcask caskroom/versions/opera-developer
-installcask caskroom/versions/opera-next
+installcask opera-next
 installcask sublime-text
 installcask the-unarchiver
 installcask tor-browser
