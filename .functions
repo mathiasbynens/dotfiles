@@ -292,10 +292,10 @@ function o() {
 	fi
 }
 
-# `p` with no arguments ping the IP 8.8.8.8 (usefull for basic internet connection test), 
+# `pg` with no arguments ping the IP 8.8.8.8 (usefull for basic internet connection test), 
 # otherwise ping the given IP. If the IP is incomplete, it is concat with the default 
 # prefix 192.168.1 allowing easy local ping (eg ping 3.12 => 192.168.3.12)
-function p() {
+function pg() {
 	ip4regex='^[0-9]+[.][0-9]+[.][0-9]+[.][0-9]+$'
 	ip3regex='^[0-9]+[.][0-9]+[.][0-9]+$'
 	ip2regex='^[0-9]+[.][0-9]+$'
