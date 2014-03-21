@@ -154,6 +154,7 @@
 
 	# Shorthand for tag
 	t = tag
+	mylog = !git log --author=\"$(git config user.name)\"
 
 [apply]
 	# Detect whitespace errors when applying a patch
