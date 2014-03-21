@@ -210,7 +210,7 @@
 	#  - lines that are indented with 8 or more spaces,
 	#  - all kinds of trailing whitespace
 	# as an error.
-	whitespace = space-before-tab,indent-with-non-tab,trailing-space
+	whitespace = space-before-tab,trailing-space
 
 [diff]
 	# Use more time to create better diffs.
