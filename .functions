@@ -85,6 +85,15 @@ function dataurl() {
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
+# Create a git.io short URL
+function gitio() {
+	if [ -z "${1}" -o -z "${2}" ]; then
+		echo "Usage: \`gitio slug url\`"
+		return 1
+	fi
+	curl -i http://git.io/ -F "url=${2}" -F "code=${1}"
+}
+
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
 	local port="${1:-8000}"
@@ -241,4 +250,75 @@ function unquarantine() {
 function gi() {
 	local IFS=,
 	eval npm install --save-dev grunt-{"$*"}
+}
+
+# `m` with no arguments opens the current directory in TextMate, otherwise
+# opens the given location
+function m() {
+	if [ $# -eq 0 ]; then
+		mate .
+	else
+		mate "$@"
+	fi
+}
+
+# `s` with no arguments opens the current directory in Sublime Text, otherwise
+# opens the given location
+function s() {
+	if [ $# -eq 0 ]; then
+		subl .
+	else
+		subl "$@"
+	fi
+}
+
+# `a` with no arguments opens the current directory in Atom Editor, otherwise
+# opens the given location
+function a() {
+	if [ $# -eq 0 ]; then
+		atom .
+	else
+		atom "$@"
+	fi
+}
+
+# `v` with no arguments opens the current directory in Vim, otherwise opens the
+# given location
+function v() {
+	if [ $# -eq 0 ]; then
+		vim .
+	else
+		vim "$@"
+	fi
+}
+
+# `o` with no arguments opens current directory, otherwise opens the given
+# location
+function o() {
+	if [ $# -eq 0 ]; then
+		open .
+	else
+		open "$@"
+	fi
+}
+
+# `np` with an optional argument `patch`/`minor`/`major`/`<version>`
+# defaults to `patch`
+function np() {
+	git pull --rebase && \
+	rm -rf node_modules && \
+	npm install && \
+	npm test && \
+	npm version ${1:=patch} && \
+	npm publish && \
+	git push origin master && \
+	git push origin master --tags
+}
+
+# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
+# the `.git` directory, listing directories first. The output gets piped into
+# `less` with options to preserve color and line numbers, unless the output is
+# small enough for one screen.
+function tre() {
+	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
 }
