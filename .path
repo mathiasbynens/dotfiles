@@ -1,5 +1,14 @@
 # Load GNU coreutils into PATH
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
+# Load binaries globally installed via Composer
+export PATH="$PATH:$HOME/.composer/vendor/bin"
+
+# Add `$(brew --prefix)/bin` and `$(brew --prefix)/sbin` to the `$PATH`
+export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
+
+# Add `$(npm --global prefix)/bin` to the `$PATH`
+export PATH="$(npm --global prefix)/bin:$PATH"
+
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
