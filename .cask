@@ -6,19 +6,13 @@ function installcask() {
 	brew cask install "${@}" 2> /dev/null
 }
 
-installcask android-studio
-installcask appcleaner
 installcask ccleaner
-installcask droplr
 installcask github
 installcask google-chrome
-installcask google-chrome-canary
 installcask google-hangouts
 installcask imagealpha
 installcask imageoptim
-installcask iterm2
 installcask lastpass-universal
-installcask macvim
 installcask mplayerx
 installcask rescue-time
 installcask sequel-pro
@@ -27,10 +21,7 @@ installcask spotify
 installcask sublime-text
 installcask subtitles
 installcask the-unarchiver
-installcask tor-browser
-installcask transmission
 installcask u-torrent
-installcask ukelele
 installcask vagrant
 installcask virtualbox
 installcask vlc
