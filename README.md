@@ -82,7 +82,7 @@ brew bundle ~/Brewfile
 You could also install native apps with [`brew cask`](https://github.com/phinze/homebrew-cask):
 
 ```bash
-./.cask
+brew bundle ~/Caskfile
 ```
 
 ## Feedback
