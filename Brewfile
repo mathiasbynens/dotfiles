@@ -12,8 +12,10 @@ upgrade
 install coreutils
 # Install some other useful utilities like `sponge`
 install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 install findutils
+# Install GNU `sed`, overwriting the built-in `sed`
+install gnu-sed --default-names
 # Install Bash 4
 install bash
 
