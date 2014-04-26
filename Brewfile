@@ -52,6 +52,7 @@ install rhino
 install sqlmap
 install tree
 install webkit2png
+install xpdf
 install zopfli
 
 install homebrew/versions/lua52
