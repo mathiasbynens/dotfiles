@@ -66,15 +66,21 @@
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" --reuse-message=HEAD; }; f"
 
+	# Diff working tree to HEAD (a.k.a last commit)
+	d = diff
+
+	# Diff staging area (a.k.a index) to HEAD (a.k.a last commit)
+	dc = diff --cached
+
 	# Diff working tree to HEAD (a.k.a last commit).
 	# Using difftool.tool for visualising diffs.
 	# Do not prompt for each file. Use --prompt to override.
-	d = difftool --no-prompt
+	dt = difftool --no-prompt
 
 	# Diff staging area (a.k.a index) to HEAD (a.k.a last commit).
 	# Using difftool.tool for visualising diffs.
 	# Do not prompt for each file. Use --prompt to override.
-	dc = difftool --cached --no-prompt
+	dtc = difftool --cached --no-prompt
 
 	# Remove branches that have already been merged with master
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
