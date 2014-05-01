@@ -1,5 +1,5 @@
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH"
+export PATH="/usr/local/bin:$HOME/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -37,3 +37,10 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 # If possible, add tab completion for many more commands
 [ -f /etc/bash_completion ] && source /etc/bash_completion
+
+
+#my extra source files
+source "/Users/nolly00/.git-completion.bash"  # Added by git-convenience
+source "/Users/nolly00/.git-prompt.sh"  # Added by git-convenience
+source "/Users/nolly00/.terminal-prefs.sh"  # Added by git-convenience
+source "/Users/nolly00/.git-shortcuts.sh"  # Added by git-convenience

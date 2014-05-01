@@ -46,17 +46,14 @@ install mongodb
 install nmap
 install ucspi-tcp # `tcpserver` et al.
 install node
-install p7zip
 install pigz
 install phantomjs
 install pv
 install rename
-install rhino
 install sqlmap
 install tree
-install webkit2png
+install webkit2png #usage webkit2png http://www.google.com/
 install xpdf
-install zopfli
 
 
 # install homebrew/versions/lua52
