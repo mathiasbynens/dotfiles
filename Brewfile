@@ -42,11 +42,13 @@ install foremost
 install git
 install imagemagick --with-webp
 install lynx
+install mongodb
 install nmap
 install ucspi-tcp # `tcpserver` et al.
 install node
 install p7zip
 install pigz
+install phantomjs
 install pv
 install rename
 install rhino
@@ -56,7 +58,8 @@ install webkit2png
 install xpdf
 install zopfli
 
-install homebrew/versions/lua52
+
+# install homebrew/versions/lua52
 
 # Remove outdated versions from the cellar
 cleanup
