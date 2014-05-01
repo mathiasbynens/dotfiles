@@ -53,10 +53,10 @@ My `~/.extra` looks something like this:
 ```bash
 # Git credentials
 # Not in the repository, to prevent people from accidentally committing under my name
-GIT_AUTHOR_NAME="Mathias Bynens"
+GIT_AUTHOR_NAME="Ashley Nolan"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 git config --global user.name "$GIT_AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="mathias@mailinator.com"
+GIT_AUTHOR_EMAIL="contact@dragongraphics.co.uk"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 ```
@@ -82,13 +82,13 @@ When setting up a new Mac, you may want to install some common [Homebrew](http:/
 ## Feedback
 
 Suggestions/improvements
-[welcome](https://github.com/mathiasbynens/dotfiles/issues)!
+[welcome](https://github.com/ashleynolan/dotfiles/issues)!
 
 ## Author
 
-| [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/mathias "Follow @mathias on Twitter") |
+| [![twitter/AshNolan_]](http://twitter.com/AshNolan_ "Follow @AshNolan_ on Twitter") |
 |---|
-| [Mathias Bynens](http://mathiasbynens.be/) |
+| [Ashley Nolan](http://ashleynolan.co.uk/) |
 
 ## Thanks to…
 
@@ -100,8 +100,9 @@ Suggestions/improvements
 * [Jan Moesen](http://jan.moesen.nu/) and his [ancient `.bash_profile`](https://gist.github.com/1156154) + [shiny _tilde_ repository](https://github.com/janmoesen/tilde)
 * [Lauri ‘Lri’ Ranta](http://lri.me/) for sharing [loads of hidden preferences](http://lri.me/osx.html#hidden-preferences)
 * [Matijs Brinkhuis](http://hotfusion.nl/) and his [dotfiles repository](https://github.com/matijs/dotfiles)
+* [Mathias Bynens](http://mathiasbynens.be/) and his [dotfiles repository](https://github.com/mathiasbynens/dotfiles)
 * [Nicolas Gallagher](http://nicolasgallagher.com/) and his [dotfiles repository](https://github.com/necolas/dotfiles)
 * [Sindre Sorhus](http://sindresorhus.com/)
 * [Tom Ryder](http://blog.sanctum.geek.nz/) and his [dotfiles repository](https://github.com/tejr/dotfiles)
 
-* anyone who [contributed a patch](https://github.com/mathiasbynens/dotfiles/contributors) or [made a helpful suggestion](https://github.com/mathiasbynens/dotfiles/issues)
+* anyone who [contributed a patch](https://github.com/ashleynolan/dotfiles/contributors) or [made a helpful suggestion](https://github.com/ashleynolan/dotfiles/issues)

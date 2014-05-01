@@ -13,12 +13,25 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias g="git"
 alias h="history"
-alias j="jobs"
-alias v="vim"
-alias m="mate ."
-alias s="subl ."
+alias sublime="subl ."
 alias o="open"
 alias oo="open ."
+
+#search history
+alias hist='history | grep '
+
+# npm
+alias npmp="sudo npm publish"
+alias npma="sudo npm adduser"
+alias npmi="sudo npm install"
+alias npmg="sudo npm install -g"
+alias npmu="sudo npm update"
+alias npmr="sudo npm uninstall"
+alias npmrg="sudo npm uninstall -g"
+alias npmui="npm-check-updates -u && sudo npm install"
+
+# Edit hosts file
+alias hosts="sudo nano /private/etc/hosts"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -54,6 +67,9 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
+
+#upgrade homebrew
+alias brewup='brew update && brew upgrade && brew cleanup'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
