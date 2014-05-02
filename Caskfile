@@ -70,12 +70,3 @@ cask install vmware-fusion 2> /dev/null
 cask install vlc 2> /dev/null
 echo "Install Window Magnet"
 echo "Install Xcode from app store"
-
-
-
-
-
-
-
-
-
