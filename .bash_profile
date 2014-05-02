@@ -40,7 +40,7 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 
 #my extra source files
-source "/Users/nolly00/.git-completion.bash"  # Added by git-convenience
-source "/Users/nolly00/.git-prompt.sh"  # Added by git-convenience
-source "/Users/nolly00/.terminal-prefs.sh"  # Added by git-convenience
-source "/Users/nolly00/.git-shortcuts.sh"  # Added by git-convenience
+source "/Users/ashleynolan/.git-completion.bash"  # Added by git-convenience
+source "/Users/ashleynolan/.git-prompt.sh"  # Added by git-convenience
+source "/Users/ashleynolan/.terminal-prefs.sh"  # Added by git-convenience
+source "/Users/ashleynolan/.git-shortcuts.sh"  # Added by git-convenience

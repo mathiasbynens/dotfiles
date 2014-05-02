@@ -30,7 +30,7 @@ install narwhal
 # Install more recent versions of some OS X tools
 install vim --override-system-vi
 install homebrew/dupes/grep
-install homebrew/homebrew-php/php55 --with-gmp
+# install homebrew/homebrew-php/php55 --with-gmp
 
 # This formula didn’t work well last time I tried it:
 #install homebrew/dupes/screen
@@ -39,7 +39,7 @@ install homebrew/homebrew-php/php55 --with-gmp
 install ack
 #install exiv2
 install foremost
-install git
+#install git
 install imagemagick --with-webp
 install lynx
 install mongodb
@@ -52,7 +52,8 @@ install pv
 install rename
 install sqlmap
 install tree
-install webkit2png #usage webkit2png http://www.google.com/
+install webkit2png
+# usage webkit2png http://www.google.com/
 install xpdf
 
 
