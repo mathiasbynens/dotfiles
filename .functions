@@ -91,7 +91,7 @@ function gitio() {
 		echo "Usage: \`gitio slug url\`"
 		return 1
 	fi
-	curl -i http://git.io/ -F "url=${2}" -F "code=${1}"
+	curl --silent --include http://git.io/ --form "url=${2}" --form "code=${1}" | grep "Location: " | awk '{print $2}'
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
