@@ -1,90 +1,312 @@
+####################################
+# Global configuration file for Git.
+####################################
+
+# A lot of aliases to speed up full-time usage of Git from command line.
+# Long flag names are used for readability wherever possible.
+# Short flags are meant for writing on the command line.
 [alias]
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-	# View the current working tree status using the short format
-	s = status -s
+	# Shorthand for add
+	a = add
+
+	# Add all unstaged (including untracked) files.
+	# See`git help add`
+	aa = add --all
+
+	# Interactive add. Used for patching.
+	# See`git help add`
+	ai = add --interactive
+
+	# Amend the currently staged files to the last commit
+	# See`git help commit`
+	amend = commit --amend --reuse-message=HEAD
+
+	# Shorthand for branch
+	b = branch
+
+	# Delete a branch only if it is merged in the current branch.
+	# See`git help branch`
+	bd = branch --delete
+
+	# Shorthand for branch --merged
+	bm = branch --merged
+
+	# Shorthand for browse
+	# See`hub help browse`
+	br = browse
+
+	# Show verbose output about branches
+	branches = branch -a
+
+	# Shorthand for commit
+	c = commit
+
+	# Shorthand for checkout
+	ch = checkout
+
+	# Checkout a branch. Create it if it doesn't exist
+	# See`git help checkout`
+	chb = checkout -B
+
+	# Clone a repository including all submodules
+	cl = clone -- recursive
+
+	# Delete all untracked files and directories.
+	# See`git help clean`
+	cleanit = clean -fd
+
+	# Shorthand for config
+	# See`git help config` for config options
+	cn = config
+
+	# Shorthand for global config
+	cng = config --global
+
+	# List contributors with number of commits
+	# See`git help shortlog`
+	contributors = shortlog --summary --numbered
+
+	# Credit an author on the latest commit
+	credit = "!f() { git commit --amend --author \"$1 <$2>\" --reuse-message=HEAD; }; f"
+
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull; git submodule foreach git pull origin master"
-	# Clone a repository including all submodules
-	c = clone --recursive
-	# Commit all changes
-	ca = !git add -A && git commit -av
-	# Switch to a branch, creating it if necessary
-	go = checkout -B
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
-	branches = branch -a
-	remotes = remote -v
-	# Credit an author on the latest commit
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+	# Remove branches that have already been merged with master
+	# a.k.a. delete merged
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+	# Diff working tree to HEAD (a.k.a last commit).
+	# Using difftool.tool for visualising diffs.
+	# Do not prompt for each file. Use --prompt to override.
+	dt = difftool --no-prompt
+
+	# Diff staging area (a.k.a index) to HEAD (a.k.a last commit).
+	# Using difftool.tool for visualising diffs.
+	# Do not prompt for each file. Use --prompt to override.
+	dtc = difftool --cached --no-prompt
+
+	# Shorthand for fetch
+	f = fetch
+
 	# Find branches containing commit
 	fb = "!f() { git branch -a --contains $1; }; f"
-	# Find tags containing commit
-	ft = "!f() { git describe --always --contains $1; }; f"
+
 	# Find commits by source code
 	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
 	# Find commits by commit message
 	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-	# Remove branches that have already been merged with master
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+	# Find tags containing commit
+	ft = "!f() { git describe --always --contains $1; }; f"
+
+	# Switch to a branch, creating it if necessary
+	# Same as chb - left for BC.
+	go = checkout -B
+
+	# Shorthand for help
+	h = help
+
+	# Pretty log of commits. Supports options of git log
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+	# Shorthand for merge
+	m = merge
+
+	# Shorthand for mergetool
+	mt = mergetool
+
+	# Show the not merged branches compared to the current branch
+	nm = branch --no-merged
+
+	# Show the not merged branches compared to the master branch
+	nmm = branch --no-merged master
+
+	# Shorthand for push
+	p = push
+
+	# Pull in remote changes for the current repository and all its submodules
+	pl = !"git pull; git submodule foreach git pull origin master"
+
+	# Create a new remote branch with the same name and track it.
+	# First argument is remote name. Defaults to "origin".
+	# Second, third and fourth argument are passed to `git push`.
+	publish = "!p() { [ -z \"$1\" ] && remote=\"origin\" || remote=$1; git push --set-upstream $2 $3 $4 $remote HEAD; }; p"
+
+	# Shorthand for remote
+	r = remote
+
+	# Interactive rebase with the given number of latest commits
+	# Same as ri - left for BC.
+	reb = "!r() { git rebase --interactive HEAD~$1; }; r"
+
+	# Show verbose output about remotes
+	remotes = remote -v
+
+	# Interactive rebase with the given number of latest commits
+	ri = "!r() { git rebase --interactive HEAD~$1; }; r"
+
+	# Update all remotes
+	ru = remote update
+
+	# Shorthand for rebase
+	rb = rebase
+
+	# Shorthand for reset
+	rs = reset
+
+	# View the current working tree status using the short format
+	# Show the current branch as well
+	# See`git help status`
+	s = status --short --branch
+
+	# Shorthand for show
+	sh = show
+
+	# Shorthand for shortlog
+	shl = shortlog
+
+	# Shorthand for stash
+	st = stash
+
+	# Shorthand for tag
+	t = tag
+
+	# Show verbose output about tags
+	tags = tag -l
 
 [apply]
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
 
-[core]
-	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
-	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of
-	# a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-	# Make `git rebase` safer on OS X
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
-
 [color]
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
 	ui = auto
+
 [color "branch"]
+	# Highlight current. Yellow local branches; Green remotes.
 	current = yellow reverse
 	local = yellow
 	remote = green
+
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+	# Yellow meta; Magenta line info; Red for deleltions; Green for additions.
+	meta = yellow
+	frag = magenta
+	old = red
+	new = green
+
 [color "status"]
-	added = yellow
-	changed = green
+	# Changed files are yellow.
+	# Staged files are green.
+	# New (untracked) files are cyan.
+	# Headers are gray (white dimmed)
+	# Branch is always green even in headers
+	added = green
+	branch = green
+	changed = yellow
+	header = white dim
 	untracked = cyan
+
+[core]
+	# Global `.gitattributes`
+	attributesfile = ~/.gitattributes
+
+	# Default editor for commit messages and other inputs
+	# Even when EDITOR is set to something else
+	editor=vim
+
+	# Global `.gitignore`
+	excludesfile = ~/.gitignore
+
+	# Make `git rebase` safer on OS X
+	# More info: http://www.git-tower.com/blog/make-git-rebase-safe-on-osx
+	trustctime = false
+
+	# Treat
+	#  - spaces before tabs,
+	#  - all kinds of trailing whitespace
+	# as an error.
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+[diff]
+	# Use more time to create better diffs.
+	# E.g. matching opening/closing braces from neighbour functions.
+	# See "`git help diff` --patience" and "`git help merge` recursive".
+	algorithm = patience
+
+	# Diff will detect both renames and copies.
+	renames = copies
+
+	# Default to opendiff for visualising diffs.
+	# opendiff opens FileMerge
+	# Override with --tool=<tool> in difftool
+	# See`git help difftool`
+	# If `opendiff` is not in your $PATH, override with difftool.opendiff.path
+	# See`git help config` and search for "diff.tool"
+	tool=opendiff
+
+[difftool]
+	# Difftool will not prompt for every file.
+	# Use --prompt to override.
+	prompt = false
+
+[help]
+	# Automatically correct and execute mistyped commands
+	autocorrect = 1
+
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+	# opendiff opens FileMerge
+	tool = opendiff
+
+[mergetool]
+	# No *.orig files left when using mergetool.
+	keepBackup = false
+
+	# Mergetool will not prompt for every file.
+	# Use --prompt to override.
+	prompt = false
+
+[pager]
+	# Use colors when paging regardless of default color setting.
+	color = true
+
+[push]
+	# See `git help config` and search for "push.default"
+	# for more information on different options of the below setting.
+	# Setting to Git 2.0 default to surpress warning message
+	# If you use branches with different remote name, use "upstream"
+	default = simple
+
 # URL shorthands
+# 
+# See `git help config` and search for "url.<base>"
+# 
+# gh: is a shorthand for git@github.com
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "git://github.com/"
+
+# github: is a shorthand for git://github.com/
 [url "git://github.com/"]
 	insteadOf = "github:"
+
+# gst: is a shorthand for git://gist.github.com/
 [url "git@gist.github.com:"]
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
+
+# gist: is a shofthand for git://gist.github.com/
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
 
-[push]
-	default = matching
