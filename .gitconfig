@@ -14,12 +14,7 @@
 	# Commit all changes
 	ca = !git add -A && git commit -av
 	# Switch to a branch, creating it if necessary
-	go = "!g() { \
-		if (( $(git br | grep $1 | wc -l) == 1 )); then \
-			git checkout $1; \
-		else \
-			git checkout -B $1; \
-		fi }; g"
+	go = git checkout -b "$1" || git checkout "$1"
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
 	branches = branch -a
