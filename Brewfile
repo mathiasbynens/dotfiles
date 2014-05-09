@@ -40,6 +40,7 @@ install ack
 #install exiv2
 install foremost
 install git
+install grc
 install imagemagick --with-webp
 install lynx
 install nmap
