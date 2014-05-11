@@ -40,10 +40,10 @@ install ack
 #install exiv2
 install foremost
 install git
+install hashpump
 install imagemagick --with-webp
 install lynx
 install nmap
-install ucspi-tcp # `tcpserver` et al.
 install node
 install p7zip
 install pigz
@@ -52,6 +52,7 @@ install rename
 install rhino
 install sqlmap
 install tree
+install ucspi-tcp # `tcpserver` et al.
 install webkit2png
 install xpdf
 install zopfli
