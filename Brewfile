@@ -17,6 +17,7 @@ install findutils
 # Install GNU `sed`, overwriting the built-in `sed`
 install gnu-sed --default-names
 # Install Bash 4
+# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before running `chsh`.
 install bash
 install bash-completion
 
