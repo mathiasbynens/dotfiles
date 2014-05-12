@@ -42,6 +42,16 @@ Here’s an example `~/.path` file that adds `~/utils` to the `$PATH`:
 export PATH="$HOME/utils:$PATH"
 ```
 
+### Link instead of copy files
+
+```$ bootstrap -l```
+
+or using ```source```
+
+```bash
+set -- -l; source bootstrap.sh
+```
+
 ### Add custom commands without creating a new fork
 
 If `~/.extra` exists, it will be sourced along with the other files. You can use this to add a few custom commands without the need to fork this entire repository, or to add commands you don’t want to commit to a public repository.
