@@ -321,3 +321,9 @@ function np() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
 }
+
+# Search command line history
+qh() {
+    grep --color=always "$*" "$HISTFILE" | less -RX
+    #           └─ enable colors for pipe
+}
