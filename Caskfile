@@ -17,7 +17,7 @@ cask install opera-developer 2> /dev/null
 cask install opera-next 2> /dev/null
 cask install sublime-text 2> /dev/null
 cask install the-unarchiver 2> /dev/null
-cask install tor-browser 2> /dev/null
+cask install torbrowser 2> /dev/null
 cask install transmission 2> /dev/null
 cask install ukelele 2> /dev/null
 cask install virtualbox 2> /dev/null
