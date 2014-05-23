@@ -1,9 +1,9 @@
 # Make sublime the default editor
-if command -v subl > /dev/null 2>&1; then # Sublime installed
-    export EDITOR="subl"
-else #
+#if command -v subl > /dev/null 2>&1; then # Sublime installed
+#    export EDITOR="subl"
+#else #
     export EDITOR="pico"
-fi
+#fi
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
