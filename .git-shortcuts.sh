@@ -32,11 +32,11 @@ function gc {
 alias gb='git branch'
 #show remote branches
 alias gbr='git branch -r'
+#create new branch
+alias gbn='git checkout -b'
 
 #checkout branch
-function ck {
-	git checkout "$1"
-}
+alias gck='git checkout'
 
 #remove local branch
 function gbdel {
@@ -60,7 +60,10 @@ alias gclean='git gc --prune=now && git remote prune origin'
 alias glog='git log --graph --oneline --all --decorate'
 
 #reset to head
-alias gitreset='git clean -d -x -f; git reset --hard'
+alias gitreset='git reset --hard'
+# reset to head and remove all untracked files (including npm installs)
+alias gitreseteverything='git clean -d -x -f; git reset --hard'
+
 
 
 if type git-up -t > /dev/null 2>&1; then
