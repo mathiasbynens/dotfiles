@@ -6,7 +6,8 @@ alias gss='git status -s'
 #add all files
 alias gaa='git add -A'
 
-# git pull and push aliases
+
+#git pull and push aliases
 alias gp='git pull'
 alias gph='git push'
 
@@ -62,6 +63,7 @@ alias glog='git log --graph --oneline --all --decorate'
 alias gitreset='git reset --hard'
 # reset to head and remove all untracked files (including npm installs)
 alias gitreseteverything='git clean -d -x -f; git reset --hard'
+
 
 
 if type git-up -t > /dev/null 2>&1; then
