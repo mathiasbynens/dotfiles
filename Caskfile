@@ -14,7 +14,6 @@ cask install boxer 2> /dev/null
 cask install charles 2> /dev/null
 cask install cord 2> /dev/null
 cask install cornerstone 2> /dev/null
-echo "Install Disk Tools Pro"
 cask install dropbox 2> /dev/null
 cask install evernote 2> /dev/null
 cask install filezilla 2> /dev/null
@@ -26,16 +25,12 @@ cask install ghostlab 2> /dev/null
 cask install google-chrome 2> /dev/null
 cask install google-chrome-canary 2> /dev/null
 cask install handbrake 2> /dev/null
-echo "Install IA Writer from the app store"
 cask install imagealpha 2> /dev/null
 cask install imageoptim 2> /dev/null
 cask install iterm2 2> /dev/null
 cask install itunesscrobbler 2> /dev/null
-echo "Install JPEG Mini"
 cask install kaleidoscope 2> /dev/null
-echo "Install Keynote from the app store"
 cask install lastfm 2> /dev/null
-echo "Install MAMP Pro"
 cask install miro-video-converter 2> /dev/null
 cask install mou 2> /dev/null
 cask install musicmanager 2> /dev/null
@@ -43,30 +38,38 @@ cask install onepassword 2> /dev/null
 cask install onyx 2> /dev/null
 cask install opera-mobile-emulator 2> /dev/null
 cask install opera 2> /dev/null
-echo "Install Pages from the app store"
-echo "Install Pngyu"
-echo "Install Residual VM"
 cask install scrivener 2> /dev/null
 cask install scummvm 2> /dev/null
 cask install sequel-pro 2> /dev/null
 cask install skype 2> /dev/null
 cask install slack 2> /dev/null
 cask install snippets 2> /dev/null
-echo "Install Sofa Control"
 cask install sourcetree 2> /dev/null
 cask install spotify 2> /dev/null
 cask install steam 2> /dev/null
-echo "Install Stickies"
 cask install sublime-text 2> /dev/null
-echo "Install Switch"
 cask install the-unarchiver 2> /dev/null
-echo "Install Trello"
-echo "Install Tuneup"
 cask install tunnelblick 2> /dev/null
-echo "Install Tweetbot from app store"
 cask install unity3d 2> /dev/null
 cask install utorrent 2> /dev/null
 cask install vmware-fusion 2> /dev/null
 cask install vlc 2> /dev/null
-echo "Install Window Magnet"
-echo "Install Xcode from app store"
+
+
+
+# echo "Install Disk Tools Pro"
+# echo "Install IA Writer from the app store"
+# echo "Install JPEG Mini"
+# echo "Install Keynote from the app store"
+# echo "Install MAMP Pro"
+# echo "Install Pages from the app store"
+# echo "Install Pngyu"
+# echo "Install Residual VM"
+# echo "Install Sofa Control"
+# echo "Install Stickies"
+# echo "Install Switch"
+# echo "Install Trello"
+# echo "Install Tuneup"
+# echo "Install Tweetbot from app store"
+# echo "Install Window Magnet"
+# echo "Install Xcode from app store"
