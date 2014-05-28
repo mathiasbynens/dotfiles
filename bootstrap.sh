@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 cd "$(dirname "${BASH_SOURCE}")"
+
+SCRIPTNAME=$(basename $BASH_SOURCE)
+CURRENT_BOOTSTRAP=$(md5sum $SCRIPTNAME)
 git pull origin master
+NEW_BOOTSTRAP=$(md5sum $SCRIPTNAME)
+
+if [ ! "$CURRENT_BOOTSTRAP" = "$NEW_BOOTSTRAP" ]; then
+    echo "$SCRIPTNAME has changed. Please run the script again."
+    return 0
+fi
+
+
 function doIt() {
 	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
 		--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~
