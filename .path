@@ -11,3 +11,9 @@ PVM=$(command -v pvm 2> /dev/null);
 if [[ $? -eq 0 ]]; then
 	PATH="$(PVM -p 2> /dev/null):$PATH"
 fi
+
+# prepend php54 via homebrew
+PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+
+# prepend homebrew
+PATH="/usr/local/bin:$PATH"
