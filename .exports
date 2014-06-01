@@ -11,3 +11,16 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+
+# JAVA
+# OSX recommendations https://developer.apple.com/library/mac/qa/qa1170/_index.html
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export JRE_HOME=$JAVA_HOME
+
+# Maven
+# http://maven.apache.org/download.cgi#Installation
+export M2_HOME=$(brew --prefix maven)/libexec/
+export M2=$M2_HOME/bin
+
+# Add $M2 to path
+# export PATH=$M2:$PATH
