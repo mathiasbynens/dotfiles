@@ -32,7 +32,9 @@
 	# Find commits by commit message
 	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 	# Remove branches that have already been merged with master
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	dm = !"git branch --merged | ack -v '(\\*|^\\s*master$|^\\s*dev)' | xargs -n 1 git branch -d"
+	# Delete merged REMOTE branches, except master and develop
+	dmr = !"git branch -r --merged | grep origin | grep -v '>' | grep -v master | grep -v develop | sed 's/origin\\///' | xargs -n 1 git push --delete origin"
 
 [apply]
 	# Detect whitespace errors when applying a patch
