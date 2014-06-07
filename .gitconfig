@@ -29,6 +29,9 @@
 	branches = branch -a
 	remotes = remote -v
 
+	# Amend the currently staged files to the latest commit
+	amend = commit --amend --reuse-message=HEAD
+
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
@@ -48,7 +51,11 @@
 	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 
 	# Remove branches that have already been merged with master
+	# a.k.a. ‘delete merged’
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+	# List contributors with number of commits
+	contributors = shortlog --summary --numbered
 
 [apply]
 
@@ -61,10 +68,9 @@
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
+	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of
-	# a line
+	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
 	# Make `git rebase` safer on OS X
@@ -86,15 +92,25 @@
 [color "diff"]
 
 	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+	frag = magenta bold # line info
+	old = red bold # deletions
+	new = green bold # additions
 
 [color "status"]
 
 	added = yellow
 	changed = green
 	untracked = cyan
+
+[diff]
+
+	# Detect copies as well as renames
+	renames = copies
+
+[help]
+
+	# Automatically correct and execute mistyped commands
+	autocorrect = 1
 
 [merge]
 
@@ -125,4 +141,4 @@
 
 [push]
 
-	default = matching
+	default = simple
