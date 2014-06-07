@@ -1,2 +1,6 @@
 # Disable the startup message
 startup_message off
+defscrollback 32000
+
+# fancy footer
+caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
