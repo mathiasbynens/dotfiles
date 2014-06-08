@@ -93,8 +93,8 @@
 
 	meta = yellow bold
 	frag = magenta bold # line info
-	old = red bold # deletions
-	new = green bold # additions
+	old = red # deletions
+	new = green # additions
 
 [color "status"]
 
