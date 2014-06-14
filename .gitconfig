@@ -117,6 +117,14 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+[push]
+
+	# Git 1.x default to work on legacy machines
+	# Use `simple` in your fork
+	# Or: `git config --global push.default simple` in your `.extra` file
+	# See http://git.io/mMah-w
+	default = matching
+
 # URL shorthands
 
 [url "git@github.com:"]
