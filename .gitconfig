@@ -117,6 +117,13 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+[push]
+
+	# Use the Git 1.x.x default to avoid errors on machines with old Git
+	# installations. To use `simple` instead, add this to your `~/.extra` file:
+	# `git config --global push.default simple`. See http://git.io/mMah-w.
+	default = matching
+
 # URL shorthands
 
 [url "git@github.com:"]
