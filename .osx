@@ -13,10 +13,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "Ash's MacBook Pro"
-sudo scutil --set HostName "Ash's MacBook Pro"
-sudo scutil --set LocalHostName "Ashs–MacBook-Pro"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Ashs-MacBook-Pro"
+#sudo scutil --set ComputerName "Ash's MacBook Pro"
+#sudo scutil --set HostName "Ash's MacBook Pro"
+#sudo scutil --set LocalHostName "Ashs–MacBook-Pro"
+#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Ashs-MacBook-Pro"
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
@@ -25,7 +25,7 @@ sudo pmset -a standbydelay 86400
 sudo nvram SystemAudioVolume=" "
 
 # Menu bar: disable transparency
-defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
+defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool true
 
 # Menu bar: hide the Time Machine, Volume, User, and Bluetooth icons
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
@@ -40,15 +40,21 @@ defaults write com.apple.systemuiserver menuExtras -array \
 	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
 	"/System/Library/CoreServices/Menu Extras/Clock.menu"
 
-# Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
+# Set highlight color to a color of your choice
+# blue by default on mavericks
+# this will change it to green
+# defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
 
-# Set sidebar icon size to medium
+# Set Finder sidebar icon size to:
+# 1 = small
+# 2 = medium
+# 3 = large
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
 # Always show scrollbars
-defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+
 
 # Disable smooth scrolling
 # (Uncomment if you’re on an older Mac that messes up the animation)
@@ -56,45 +62,51 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 
 
 # Increase window resize speed for Cocoa applications
-defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+# Default speed is 0.2 seconds
+# This makes the speed 0.001 (or instantly visible):
+#defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-# Expand save panel by default
+# Expand the save panel by default in all applications
+# OSX has this set to false by default, which shows the compressed state
+# http://hints.macworld.com/article.php?story=20061106184904899
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
-# Expand print panel by default
+# Expand print panel by default in all applications
+# OSX has this set to false by default, which shows the compressed state
+# http://hints.macworld.com/article.php?story=20071109163914940
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 # Save to disk (not to iCloud) by default
+# http://apple.stackexchange.com/questions/61871/how-do-i-remove-the-icloud-first-behavior-in-mountain-lion
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 # Disable the “Are you sure you want to open this application?” dialog
+# http://www.cultofmac.com/138746/turn-off-file-download-quarantining-os-x-tips/
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Display ASCII control characters using caret notation in standard text views
 # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
-# Disable Resume system-wide
-# defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+# Enable Resume system-wide
+# http://www.defaults-write.com/disable-resume-system-wide/#.U5rnthaRj1o
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
 
 # Disable automatic termination of inactive apps
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
 # Disable the crash reporter
-#defaults write com.apple.CrashReporter DialogType -string "none"
+# http://www.yourdailymac.net/2012/02/how-to-disable-the-mac-os-x-crash-reporter-snow-leopard-lion/
+defaults write com.apple.CrashReporter DialogType -string "none"
 
 # Set Help Viewer windows to non-floating mode
+# otherwise, they are permanently poisitioned in front of all other windows
 defaults write com.apple.helpviewer DevMode -bool true
-
-# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
-# Commented out, as this is known to cause problems in various Adobe apps :(
-# See https://github.com/mathiasbynens/dotfiles/issues/237
-#echo "0x08000100:0" > ~/.CFUserTextEncoding
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
@@ -104,19 +116,22 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 systemsetup -setrestartfreeze on
 
 # Never go into computer sleep mode
-systemsetup -setcomputersleep Off > /dev/null
+# systemsetup -setcomputersleep Off > /dev/null
 
 # Check for software updates daily, not just once per week
+# integer is set in days
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
-# Disable Notification Center and remove the menu bar icon
+# Disable Notification Center and remove the menu bar icon from the top right corner
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
 # Disable smart quotes as they’re annoying when typing code
+# http://derflounder.wordpress.com/2014/02/01/disabling-smart-quotes-in-mavericks/
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 # Disable smart dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
 
 ###############################################################################
 # SSD-specific tweaks                                                         #
@@ -137,6 +152,7 @@ sudo chflags uchg /Private/var/vm/sleepimage
 
 # Disable the sudden motion sensor as it’s not useful for SSDs
 sudo pmset -a sms 0
+
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -226,10 +242,10 @@ defaults write com.apple.finder QuitMenuItem -bool true
 # Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
 
-# Set Desktop as the default location for new Finder windows
+# Set home user folder as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
-# defaults write com.apple.finder NewWindowTarget -string "PfDe"
-# defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
+defaults write com.apple.finder NewWindowTarget -string "PfLo"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -243,7 +259,7 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-# Finder: show status bar
+# Finder: show status bar (the grey bar at the bottom of a Finder window)
 defaults write com.apple.finder ShowStatusBar -bool true
 
 # Finder: show path bar
@@ -265,12 +281,15 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 
 # Remove the spring loading delay for directories
+# The delay when you hover an item over a folder or application to change view
 defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
 # Avoid creating .DS_Store files on network volumes
+# http://support.apple.com/kb/ht1629
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Disable disk image verification
+# http://en.kioskea.net/faq/12888-macos-disable-disk-image-verification
 defaults write com.apple.frameworks.diskimages skip-verify -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
@@ -293,22 +312,27 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
-# Increase grid spacing for icons on the desktop and in other icon views
+# Set grid spacing for icons on the desktop and in other icon views
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 60" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 60" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 60" ~/Library/Preferences/com.apple.finder.plist
 
-# Increase the size of icons on the desktop and in other icon views
+# Set the size of icons on the desktop and in other icon views
+# Can also do this by hitting Cmd + J when focus is on desktop
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
 
-# Use list view in all Finder windows by default
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`, "Nlsv"
+# Use column view in all Finder windows by default
+# Four-letter codes for the other view modes:
+# `icnv` = Icon View
+# `clmv` = column view
+# `Flwv` = Flow View
+# "Nlsv" = List View
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 
 # Disable the warning before emptying the Trash
-defaults write com.apple.finder WarnOnEmptyTrash -bool false
+# defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 # Empty Trash securely by default
 defaults write com.apple.finder EmptyTrashSecurely -bool true
@@ -319,12 +343,8 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 # Enable the MacBook Air SuperDrive on any Mac
 sudo nvram boot-args="mbasd=1"
 
-# Show the ~/Library folder
+# Show the ~/Library folder - by default it is a hidden folder
 chflags nohidden ~/Library
-
-# Remove Dropbox’s green checkmark icons in Finder
-# file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
-# [ -e "$file" ] && mv -f "$file" "$file.bak"
 
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
@@ -338,17 +358,27 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
-# Enable highlight hover effect for the grid view of a stack (Dock)
-defaults write com.apple.dock mouse-over-hilite-stack -bool true
+# Enable highlight hover effect for the grid view of a stack (Dock) - uncomment to use
+# defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 # Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+defaults write com.apple.dock tilesize -int 42
 
-# Change minimize/maximize window effect
-defaults write com.apple.dock mineffect -string "scale"
+# Check minimize/maximize window effect is set to genie
+defaults write com.apple.dock mineffect -string "genie"
 
-# Minimize windows into their application’s icon
-defaults write com.apple.dock minimize-to-application -bool false
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+# Make the speed of the delay to show/hide the dock faster
+# http://www.macosxtips.co.uk/index_files/hidden-settings-adjust-dock-animations.php
+defaults write com.apple.Dock autohide-delay -float 0
+# Spped up the animation when hiding/showing the Dock
+defaults write com.apple.dock autohide-time-modifier -float 0.75
+
+# enable dock magnification by default and set size to be 80 (can be anything though)
+defaults write com.apple.dock magnification -boolean true
+defaults write com.apple.dock largesize -int 80
 
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -361,15 +391,17 @@ defaults write com.apple.dock show-process-indicators -bool true
 # the Dock to launch apps.
 #defaults write com.apple.dock persistent-apps -array ""
 
-# Don’t animate opening applications from the Dock
-defaults write com.apple.dock launchanim -bool false
+# Animate bounce when opening applications from the Dock
+defaults write com.apple.dock launchanim -bool true
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.15
 
-# Don’t group windows by application in Mission Control
-# (i.e. use the old Exposé behavior instead)
-# defaults write com.apple.dock expose-group-by-app -bool false
+# Allow spaces to span multiple displays, so applications can go across screens
+defaults write com.apple.spaces spans-displays -bool true
+
+# Group windows by application in Mission Control
+defaults write com.apple.dock expose-group-by-app -bool true
 
 # Disable Dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
@@ -380,33 +412,17 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
-# Remove the auto-hiding Dock delay
-defaults write com.apple.dock autohide-delay -float 0
-# Remove the animation when hiding/showing the Dock
-# defaults write com.apple.dock autohide-time-modifier -float 0
-
-# Enable the 2D Dock
-#defaults write com.apple.dock no-glass -bool true
-
-# Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
-
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
-# Make Dock more transparent
-defaults write com.apple.dock hide-mirror -bool true
+# Make Dock less transparent
+defaults write com.apple.dock hide-mirror -bool false
 
 # Reset Launchpad, but keep the desktop wallpaper intact
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
 # Add iOS Simulator to Launchpad
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app" "/Applications/iOS Simulator.app"
-
-# Add a spacer to the left side of the Dock (where the applications are)
-#defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-# Add a spacer to the right side of the Dock (where the Trash is)
-#defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
 # Hot corners
 # Possible values:
@@ -500,10 +516,12 @@ defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnab
 
 # Hide Spotlight tray-icon (and subsequent helper)
 #sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+
 # Disable Spotlight indexing for any volume that gets mounted and has not yet
 # been indexed before.
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+#sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+
 # Change indexing order and disable some file types
 defaults write com.apple.spotlight orderedItems -array \
 	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
@@ -536,19 +554,12 @@ sudo mdutil -E / > /dev/null
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
-# Use a modified version of the Pro theme by default in Terminal.app
-open "$HOME/init/Homebrew.terminal"
-sleep 1 # Wait a bit to make sure the theme is loaded
-defaults write com.apple.terminal "Default Window Settings" -string "Ash"
-defaults write com.apple.terminal "Startup Window Settings" -string "Ash"
+# Set the default style of Terminal windows to be Homebrew
+defaults write com.apple.terminal "Default Window Settings" -string "Homebrew"
+defaults write com.apple.terminal "Startup Window Settings" -string "Homebrew"
 
-# Enable “focus follows mouse” for Terminal.app and all X11 apps
-# i.e. hover over a window and start typing in it without clicking first
-#defaults write com.apple.terminal FocusFollowsMouse -bool true
-#defaults write org.x.X11 wm_ffm -bool true
-
-# Install pretty iTerm colors
-open "${HOME}/init/Mathias.itermcolors"
+# Move cursor by using Option + Click
+defaults write com.apple.Terminal OptionClickToMoveCursor -boolean true
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false

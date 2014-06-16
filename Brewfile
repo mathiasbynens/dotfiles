@@ -39,7 +39,6 @@ install homebrew/dupes/grep
 install ack
 #install exiv2
 install foremost
-#install git
 install imagemagick --with-webp
 install lynx
 install mongodb
@@ -56,8 +55,6 @@ install webkit2png
 # usage webkit2png http://www.google.com/
 install xpdf
 
-
-# install homebrew/versions/lua52
 
 # Remove outdated versions from the cellar
 cleanup

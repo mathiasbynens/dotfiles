@@ -14,8 +14,6 @@ cask install boxer 2> /dev/null
 cask install charles 2> /dev/null
 cask install cord 2> /dev/null
 cask install cornerstone 2> /dev/null
-cask install dropbox 2> /dev/null
-cask install evernote 2> /dev/null
 cask install filezilla 2> /dev/null
 cask install firefox 2> /dev/null
 cask install flash-player 2> /dev/null
@@ -42,12 +40,10 @@ cask install scrivener 2> /dev/null
 cask install scummvm 2> /dev/null
 cask install sequel-pro 2> /dev/null
 cask install skype 2> /dev/null
-cask install slack 2> /dev/null
 cask install snippets 2> /dev/null
 cask install sourcetree 2> /dev/null
 cask install spotify 2> /dev/null
 cask install steam 2> /dev/null
-cask install sublime-text 2> /dev/null
 cask install the-unarchiver 2> /dev/null
 cask install tunnelblick 2> /dev/null
 cask install unity3d 2> /dev/null
@@ -58,15 +54,17 @@ cask install vlc 2> /dev/null
 
 
 # echo "Install Disk Tools Pro"
-# echo "Install IA Writer from the app store"
+# echo "Install Dropbox"
+# echo "Install Evernote (from App store)"
+# echo "Install IA Writer from the app store (from App store)"
 # echo "Install JPEG Mini"
-# echo "Install Keynote from the app store"
-# echo "Install MAMP Pro"
-# echo "Install Pages from the app store"
-# echo "Install Pngyu"
-# echo "Install Residual VM"
+# echo "Install Keynote (from App store)"
+# echo "Install MAMP Pro – http://www.mamp.info/en/downloads/older-versions/"
+# echo "Install Pages (from App store)"
+# echo "Install Pngyu – http://nukesaq88.github.io/Pngyu/"
+# echo "Install Slack (from App store)"
 # echo "Install Sofa Control"
-# echo "Install Stickies"
+# echo "install Sublime Text 3 – http://www.sublimetext.com/3"
 # echo "Install Switch"
 # echo "Install Trello"
 # echo "Install Tuneup"

@@ -13,7 +13,6 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
 alias h="history"
-alias sublime="subl ."
 
 #search history
 alias hist='history | grep '
