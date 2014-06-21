@@ -9,7 +9,7 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
 	export TERM='xterm-256color';
 fi;
 
-# Parse SVN Info
+# Parse SVN Info. Inspired by @cowboy's prompt: https://github.com/cowboy/dotfiles
 prompt_svn() {
   # Store output of 'svn info' in $info variable
   local info="$(svn info . 2> /dev/null)"
