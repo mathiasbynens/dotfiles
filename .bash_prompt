@@ -17,7 +17,7 @@ prompt_svn() {
   # Check if 'svn info' returned anything
   if [[ "$info" ]]; then
     # Parse the branch/tag/trunk name using awk, & return the last part only
-    branchName="$(echo "$info" | awk -F / '/URL:/ {print $NF}')"
+    branchName="$(echo "$info" | awk -F / '/Working Copy Root Path:/ {print $NF}')"
     # Get last and current revision #s
     last="$(echo "$info" | awk '/Last Changed Rev:/ {print $4}')"
     current="$(echo "$info" | awk '/Revision:/ {print $2}')"
