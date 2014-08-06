@@ -503,6 +503,12 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 # Disable automatic spell checking
 defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
 
+# Disable sound for incoming mail
+defaults write com.apple.mail MailSound -string ""
+
+# Disable sound for other mail actions
+defaults write com.apple.mail PlayMailSounds -bool false
+
 ###############################################################################
 # Spotlight                                                                   #
 ###############################################################################
