@@ -13,3 +13,4 @@ alias thxclean="cd /th/thx/repo/juice-database/db && rm -R * && echo 'Database c
 alias thx-up="cd /th/thx/repo/config/Launchers/osx/launch_iterm2 && ./launch_thx.sh"
 alias one-up="cd /th/thx/repo/config/Launchers/osx/launch_iterm2 && ./launch_thx_one.sh"
 alias all-for-one="cd /th/one/repo && mvn clean install -DskipITs -DskipTests && cd /th/thx/repo && mvn clean install -DskipITs -DskipTests && cd /th/thx/repo/config/Scripts/mac_launchers/launch_iterm2 && ./launch_thx_one.sh"
+alias thx-actions-integration="cd /th/thx/repo/juice-test/juice-test-behaviour &&  mvn clean install -Dtest.uri=https://www.thxcloud.com -Dtest.contextView=false -Dstory.folder=individuals/dataAdapters -Dstory.filter=editAdapter.story"
