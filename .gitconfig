@@ -56,6 +56,9 @@
 
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
+	
+	# Open all merge conflicts in default editor
+        fix = "!f() { ${EDITOR} `git diff --name-only`; }; f"
 
 [apply]
 
