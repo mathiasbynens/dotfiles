@@ -9,6 +9,9 @@
 	# View the current working tree status using the short format
 	s = status -s
 
+	# Show branches sorted by recent commits
+	latest = for-each-ref --sort=-committerdate refs/heads/
+
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
 
@@ -136,4 +139,8 @@
 [user]
   name = thanpolas
   email = thanpolas@gmail.com
+        
+[filter "media"]
+        clean = git-media-clean %f
+        smudge = git-media-smudge %f
         
