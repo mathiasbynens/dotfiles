@@ -145,3 +145,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[user]
+	name = Gustavo Hingel Morada
+	email = gusmorada@gmail.com
