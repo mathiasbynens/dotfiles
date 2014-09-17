@@ -1,0 +1,36 @@
+source $HOME/.amazonrc
+source $HOME/.git-completion.bash
+alias limpyc='find ./ -name "*.pyc" | xargs rm -v'
+alias rprune='git remote prune origin'
+
+export AWS_ELB_HOME="$HOME/Amazon/ElasticLoadBalancing"
+export AWS_IAM_HOME="$HOME/Amazon/IAMCli"
+export EC2_HOME="$HOME/Amazon/ec2-api-tools"
+export AWS_AUTO_SCALING_HOME="$HOME/Amazon/AutoScaling"
+export AWS_RDS_HOME="$HOME/Amazon/RDSCli"
+
+export PATH="$PATH:$EC2_HOME/bin:$AWS_AUTO_SCALING_HOME/bin:$AWS_ELB_HOME/bin:$AWS_RDS_HOME/bin:$AWS_IAM_HOME/bin"
+export JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
+
+function set_project() {
+    export CERTMAN_HOME="/Users/gustavo/workspace/virtualenvs/certman"
+    export CERTMAN_S3CFG="$HOME/Amazon/$1/gustavo.morada@myfreecomm.com.br.s3cfg"
+
+    export EC2_PRIVATE_KEY="$HOME/Amazon/$1/gustavo.morada@myfreecomm.com.br.key"
+    export EC2_CERT="$HOME/Amazon/$1/gustavo.morada@myfreecomm.com.br.crt"
+    export AWS_CREDENTIAL_FILE="$HOME/Amazon/$1/gustavo.morada@myfreecomm.com.br.aws-credential-file"
+
+    export CERTMAN_KEYS_BUCKET=$2
+    export CERTMAN_PROJECT_BUCKET=$3
+    export CERTMAN_SSH_KEY_NAME=$4
+
+    rm -Rf "$HOME/.aws-credential-file"
+    cp -rf $AWS_CREDENTIAL_FILE "$HOME/.aws-credential-file"
+
+    rm -Rf "$HOME/.s3cfg"
+    cp -rf $CERTMAN_S3CFG "$HOME/.s3cfg"
+}
+
+function set_remora() {
+    set_project "remora" 'remora-keys-1vdmvctou0ksq' 'remora-packages-15jb5zztl4m97' 'myfreecomm-AWS-US-East'
+}
