@@ -1,0 +1,14 @@
+# Apache Maven
+export M2_HOME=/th/apps/apache-maven-3.1.0
+export MAVEN_OPTS="-Xmx1024M -XX:MaxPermSize=1024M -Djava.awt.headless=true"
+PATH=${M2_HOME}/bin:${PATH}
+
+# Apache Ant
+export ANT_HOME=/th/apps/apache-ant-1.9.2
+PATH=${ANT_HOME}/bin:${PATH}
+
+# JDK7
+export JAVA_HOME=/th/apps/java/jdk7
+PATH=${JAVA_HOME}/bin:${PATH}
+
+export PATH

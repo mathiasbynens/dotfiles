@@ -1,0 +1,28 @@
+# Thunderhead Projects
+alias mci="mvn clean install"
+alias mcix="mvn clean install -DskipTests"
+alias one="cd /th/one/repo"
+alias oneapp="cd /th/one/repo/one-ui/src/main/web/app"
+alias onemci="cd /th/one/repo && mvn clean install"
+alias onemcix="cd /th/one/repo && mvn clean install -DskipITs -DignoreCoverage -T 4C"
+alias thx="cd /th/thx/repo"
+alias thxapp="cd /th/thx/repo/juice-site/juice-site-ui/src/main/web/app"
+alias thxmci="cd /th/thx/repo && mvn clean install"
+alias thxmcix="cd /th/thx/repo && mvn clean install -DskipITs -DignoreCoverage -T 4C"
+alias thxclean="cd /th/thx/repo/juice-database/db && rm -R * && echo 'Database cleaned'"
+alias thx-up="cd /th/thx/repo/config/Launchers/osx/launch_iterm2 && ./launch_thx.sh"
+alias one-up="cd /th/thx/repo/config/Launchers/osx/launch_iterm2 && ./launch_thx_one.sh"
+alias all-for-one="cd /th/one/repo && mvn clean install -DskipITs -DskipTests && cd /th/thx/repo && mvn clean install -DskipITs -DskipTests && cd /th/thx/repo/config/Scripts/mac_launchers/launch_iterm2 && ./launch_thx_one.sh"
+alias thx-go="thx && git pull && one && git pull && onemcix && thxmcix && thx-up"
+
+ #connect integrations
+alias thx-actions-integration="cd /th/thx/repo/juice-test/juice-test-behaviour &&  mvn clean install -Dtest.uri=https://www.thxcloud.com -Dtest.contextView=false -Dstory.folder=individuals/dataAdapters -Dstory.filter=editAdapter.story"
+alias thx-thirdnav-spaces-integration="cd /th/thx/repo/juice-test/juice-test-behaviour &&  mvn clean install -Dtest.uri=https://www.thxcloud.com -Dtest.contextView=false -Dstory.folder=individuals/spaces/unittest -Dstory.filter=*"
+alias thx-thirdnav-team-integration="cd /th/thx/repo/juice-test/juice-test-behaviour &&  mvn clean install -Dtest.uri=https://www.thxcloud.com -Dtest.contextView=false -Dstory.folder=individuals/team/unittest -Dstory.filter=*"
+
+#functions
+function thxUpdateRunConfigs(){
+	rm -rf /tmp/oldrunconfigs
+	mv /th/thx/repo/.idea/runConfigurations /tmp/oldrunconfigs
+	cp -r /th/thx/repo/config/JetBrains/IntelliJ/project/runConfigurations /th/thx/repo/.idea
+}

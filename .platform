@@ -1,0 +1,5 @@
+
+#platform
+alias platrepo="cd /th/platform"
+alias platmcix="cd /th/platform && mvn clean install -DskipITs -DskipTests -DignoreCoverage -T 4C"
+
