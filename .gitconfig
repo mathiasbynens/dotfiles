@@ -116,6 +116,13 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	tool = p4merge 
+
+[mergetool "p4merge"]
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	keepTemporaries = false
+	trustExitCode = false
+	keepBackup = false
 
 [push]
 
