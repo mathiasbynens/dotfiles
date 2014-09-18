@@ -20,3 +20,4 @@ cask install alfred 2> /dev/null
 cask install hipchat 2> /dev/null
 cask install spotify 2> /dev/null
 cask install adobe-reader 2> /dev/null
+cask install gitx 2> /dev/null
