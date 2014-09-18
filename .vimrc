@@ -1,7 +1,5 @@
 " Use the Solarized Dark theme
 set background=dark
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
 colorscheme solarized
 
 " Make Vim more useful
