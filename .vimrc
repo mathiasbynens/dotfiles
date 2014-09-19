@@ -1,6 +1,7 @@
 " Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
+"syntax enable
+"set background=light
+"colorscheme solarized
 
 " Make Vim more useful
 set nocompatible
