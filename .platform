@@ -1,6 +1,0 @@
-
-#platform
-alias platrepo="cd /th/platform"
-alias platmcix="cd /th/platform && mvn clean install -DskipITs -DskipTests -DignoreCoverage -T 4C"
-alias plat-ui="cd /th/platform/th-webapp-parent/th-webapp-ui/th-webapp-ui-platform"
-
