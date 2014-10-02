@@ -53,6 +53,7 @@ install pngcheck
 install sqlmap
 install tcpflow
 install tcpreplay
+install tcptrace
 install ucspi-tcp # `tcpserver` et al.
 install xpdf
 install xz
