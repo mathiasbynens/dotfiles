@@ -2,6 +2,12 @@
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=format:"%h%x09%an%x09%ad%x09%s" -n 20 --graph --abbrev-commit --date=short
+	
+	#add all current changes
+	a = add .
+
+	#commit short message
+	cm = commit -m
 
 	# View the current working tree status using the short format
 	s = status -s
