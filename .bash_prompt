@@ -12,7 +12,7 @@ fi;
 prompt_git() {
 	local s='';
 	local branchName='';
-	color=${violet};
+	color=${white};
 
 	# Check if the current directory is in a Git repository.
 	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
@@ -42,7 +42,7 @@ prompt_git() {
 
 			# Check for untracked files.
 			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-				color=${cyan}
+				color=${blue}
 			fi;
 
 			# Check for stashed files.
@@ -63,16 +63,16 @@ if tput setaf 1 &> /dev/null; then
 	bold=$(tput bold);
 	reset=$(tput sgr0);
 	# Solarized colors, taken from http://git.io/solarized-colors.
-	black=$(tput setaf 8);
+	black=$(tput setaf 0);
 	blue=$(tput setaf 33);
 	cyan=$(tput setaf 37);
-	green=$(tput setaf 2);
-	orange=$(tput setaf 172);
+	green=$(tput setaf 64);
+	orange=$(tput setaf 166);
 	purple=$(tput setaf 125);
 	red=$(tput setaf 124);
 	violet=$(tput setaf 61);
 	white=$(tput setaf 15);
-	yellow=$(tput setaf 3);
+	yellow=$(tput setaf 136);
 	gray=$(tput setaf 7);
 	user=$(tput setaf 172);
 	userAt=$(tput setaf 173);
