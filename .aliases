@@ -15,7 +15,7 @@ alias g="git"
 alias h="history"
 alias j="jobs"
 alias v="vim"
-alias m="mate ."
+alias m="mvim"
 alias s="subl ."
 alias o="open"
 alias oo="open ."
@@ -146,5 +146,34 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-# Faster npm for Europeans
-command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu/"
+
+
+###########Thunderhead aliases############
+
+# Thunderhead Projects
+alias mci="mvn clean install"
+alias mcix="mci -DskipITs -DignoreCoverage -DskipTests -DskipJSTests -T 4C"
+
+# Thunderhead ONE-UI
+alias one="cd /th/one/repo"
+alias oneapp="one && cd one-ui/src/main/web/app"
+alias onemci="one && mci"
+alias onemcix="one && mcix"
+
+# Thunderhead THX
+alias thx="cd /th/thx/repo"
+alias thxapp="thx && cd juice-site/juice-site-ui/src/main/web/app"
+alias thxmci="thx && mci"
+alias thxmcix="thx && mcix"
+
+# Thunderhead Analytics
+alias anl="cd /th/thx/repo/juice-reporting"
+alias anlapp="anl && cd analytics-ui/src/main/web/app"
+alias anlmci="anl && mci"
+alias anlmcix="anl && mcix"
+
+# Thunderhead utils
+alias thxclean="cd /th/thx/repo/juice-database/db && rm -R * && echo 'Database cleaned'"
+alias thx-up="cd /th/thx/repo/config/Launchers/osx/launch_iterm2 && ./launch_thx.sh"
+alias one-up="cd /th/thx/repo/config/Launchers/osx/launch_iterm2 && ./launch_thx_one.sh"
+alias all-for-one="one && mcix && thx && mcix && one-up"
