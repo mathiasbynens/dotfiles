@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 " Use the Solarized Dark theme
 "syntax enable
 "set background=light
