@@ -1,9 +1,9 @@
 execute pathogen#infect()
 
 " Use the Solarized Dark theme
-"syntax enable
-"set background=light
-"colorscheme solarized
+syntax enable
+set background=dark
+colorscheme solarized
 
 " Make Vim more useful
 set nocompatible
