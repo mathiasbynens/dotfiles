@@ -179,8 +179,10 @@ alias platmcix="plat && mcix"
 alias platenv="plat && cd th-local-env-maven-plugin"
 alias platrun="platenv && mvn th-local-env:platform-run -X -Pplatform"
 alias platuser="platenv && mvn th-local-env:register-user -X -Pplatform"
+
 # Thunderhead utils
 alias thxclean="cd /th/thx/repo/juice-database/db && rm -R * && echo 'Database cleaned'"
+alias platclean="platenv && mvn th-local-env:drop-dbs -X -Pplatform"
 alias thx-up="cd /th/thx/repo/config/Launchers/osx/launch_iterm2 && ./launch_thx.sh"
 alias one-up="cd /th/thx/repo/config/Launchers/osx/launch_iterm2 && ./launch_thx_one.sh"
 alias all-for-one="one && mcix && thx && mcix && one-up"
