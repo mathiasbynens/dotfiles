@@ -150,7 +150,6 @@ alias reload="exec $SHELL -l"
 
 ###########Thunderhead aliases############
 
-# Thunderhead Projects
 alias mci="mvn clean install"
 alias mcix="mci -DskipITs -DignoreCoverage -DskipTests -DskipJSTests -T 4C"
 
@@ -172,6 +171,14 @@ alias anlapp="anl && cd analytics-ui/src/main/web/app"
 alias anlmci="anl && mci"
 alias anlmcix="anl && mcix"
 
+# Thunderhead Platform
+alias plat="cd /th/platform/repo"
+alias platapp="plat && cd th-platform-ui/src/main/web/app"
+alias platmci="plat && mci"
+alias platmcix="plat && mcix"
+alias platenv="plat && cd th-local-env-maven-plugin"
+alias platrun="platenv && mvn th-local-env:platform-run -X -Pplatform"
+alias platuser="platenv && mvn th-local-env:register-user -X -Pplatform"
 # Thunderhead utils
 alias thxclean="cd /th/thx/repo/juice-database/db && rm -R * && echo 'Database cleaned'"
 alias thx-up="cd /th/thx/repo/config/Launchers/osx/launch_iterm2 && ./launch_thx.sh"
