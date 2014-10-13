@@ -613,9 +613,6 @@ defaults write com.apple.appstore ShowDebugMenu -bool true
 
 # Allow installing user scripts via GitHub Gist or Userscripts.org
 defaults write com.google.Chrome ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"
-defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"
-
-
 
 ###############################################################################
 # SizeUp.app                                                                  #
@@ -637,7 +634,6 @@ cp -r init/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ 
 ###############################################################################
 # Transmission.app                                                            #
 ###############################################################################
-
 
 # Don’t prompt for confirmation before downloading
 defaults write org.m0k.transmission DownloadAsk -bool false
