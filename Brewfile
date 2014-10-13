@@ -40,6 +40,7 @@ install tree
 install python
 install mongodb
 install mysql
+install redis
 
 # Remove outdated versions from the cellar
 cleanup
