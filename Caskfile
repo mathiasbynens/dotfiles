@@ -13,3 +13,7 @@ cask install the-unarchiver 2> /dev/null
 cask install torbrowser 2> /dev/null
 cask install transmission 2> /dev/null
 cask install vlc 2> /dev/null
+cask install p4merge 2> /dev/null
+cask install sizeup 2> /dev/null
+cask install mou 2> /dev/null
+cask install spotify 2> /dev/null
