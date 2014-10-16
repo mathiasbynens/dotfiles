@@ -39,7 +39,9 @@ install homebrew/php/php55 --with-gmp
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups
 install bfg
+install binutils
 install binwalk
+install cifer
 install dex2jar
 install dns2tcp
 install fcrackzip
