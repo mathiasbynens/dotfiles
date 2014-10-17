@@ -1,0 +1,16 @@
+# Files listed here will not be copied to your home directory.
+
+.git/
+
+.IGNORE
+bootstrap.sh
+
+README*
+LICENSE*
+
+.DS_Store
+Desktop.ini
+
+*~
+*.swp
+*.swo
