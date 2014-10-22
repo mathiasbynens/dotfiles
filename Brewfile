@@ -64,7 +64,9 @@ install xz
 install ack
 #install exiv2
 install git
+install gifsicle
 install imagemagick --with-webp
+install ffmpeg
 install lynx
 install node # This installs `npm` too using the recommended installation method
 install p7zip
