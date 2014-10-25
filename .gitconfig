@@ -44,15 +44,16 @@
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
+	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and
+	# all kinds of trailing whitespace as an error.
 	# [default] trailing-space: looks for spaces at the end of a line
 	# [default] space-before-tab: looks for spaces before tabs at the beginning of
 	# a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+	whitespace = space-before-tab,indent-with-non-tab,trailing-space
 	# Make `git rebase` safer on OS X
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
 	trustctime = false
-  ignorecase = false
+	ignorecase = false
 
 [color]
 	# Use colors in Git commands that are capable of colored output when
