@@ -27,18 +27,19 @@ install narwhal
 
 # Install more recent versions of some OS X tools
 install vim --override-system-vi
+tap homebrew/dupes
 install homebrew/dupes/grep
-install josegonzalez/homebrew-php/php55
+tap josegonzalez/homebrew-php
+install php55
 
 # This formula didn’t work well last time I tried it:
 #install homebrew/dupes/screen
 
 # Install other useful binaries
 install ack
-install pv
 #install exiv2
 install git
-install imagemagick --with-webp
+#install imagemagick
 install lynx
 install node
 install pigz
@@ -47,9 +48,9 @@ install rhino
 install tree
 install webkit2png
 install zopfli
-install p7zip
 
-install homebrew/versions/lua52
+tap homebrew/versions
+install lua52
 
 # Remove outdated versions from the cellar
 cleanup
