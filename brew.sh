@@ -32,7 +32,7 @@ brew install bash
 brew install bash-completion
 
 # Install `wget` with IRI support.
-brew install wget --enable-iri
+brew install wget --with-iri
 
 # Install RingoJS and Narwhal.
 # Note that the order in which these are installed is important;
