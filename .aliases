@@ -142,3 +142,6 @@ alias reload="exec $SHELL -l"
 
 # Faster npm for Europeans
 command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu/"
+
+# Open the web interface of the gateway/router
+alias router="command -v route && open http://$(route -n get default | grep gateway | awk -F ': ' '{ print $2 }')"
