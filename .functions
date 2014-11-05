@@ -18,7 +18,7 @@ function calc() {
 
 # Create a new directory and enter it
 function mkd() {
-	mkdir -p "$@" && cd "$@";
+	mkdir -p "$@" && cd "$_";
 }
 
 # Change working directory to the top-most Finder window location
