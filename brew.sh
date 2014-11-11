@@ -89,7 +89,7 @@ brew install zopfli
 # installation method.
 brew install node
 
-brew install homebrew/versions/lua52
+brew install lua
 
 # Remove outdated versions from the cellar.
 brew cleanup
