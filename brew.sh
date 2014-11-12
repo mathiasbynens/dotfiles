@@ -75,6 +75,7 @@ brew install ack
 #brew install exiv2
 brew install git
 brew install imagemagick --with-webp
+brew install lua
 brew install lynx
 brew install p7zip
 brew install pigz
@@ -88,8 +89,6 @@ brew install zopfli
 # Install Node.js. Note: this installs `npm` too, using the recommended
 # installation method.
 brew install node
-
-brew install homebrew/versions/lua52
 
 # Remove outdated versions from the cellar.
 brew cleanup
