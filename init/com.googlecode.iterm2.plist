@@ -9298,10 +9298,6 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
-	<key>NSColorPanelMode</key>
-	<string>6</string>
-	<key>NSColorPickerPageableNameListDefaults</key>
-	<string>1System</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles/init</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -9310,27 +9306,10 @@
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
-	<key>NSTableView Columns KeyBingingTable</key>
-	<array>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErATCG
-		</data>
-		<string>198</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErATGG
-		</data>
-		<string>302</string>
-	</array>
-	<key>NSTableView Hidden Columns KeyBingingTable</key>
-	<array/>
-	<key>NSTableView Sort Ordering KeyBingingTable</key>
-	<array/>
 	<key>NSWindow Frame Preferences</key>
-	<string>269 162 924 485 0 0 1280 778 </string>
+	<string>269 116 924 485 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 255 745 523 0 0 1280 800 </string>
+	<string>312 181 730 501 0 0 1440 900 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -9580,7 +9559,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string>unset $VIM_COLOR</string>
+			<string></string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -10312,7 +10291,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string>export VIM_COLOR=bluey</string>
+			<string></string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -11044,7 +11023,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string>export VIM_COLOR=outside</string>
+			<string></string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -11776,7 +11755,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string>export VIM_COLOR=smyck</string>
+			<string></string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -12262,7 +12241,7 @@
 			<string>/Users/MrMaksimize</string>
 		</dict>
 	</array>
-	<key>NoSyncNeverRemindPrefsChangesCopy</key>
+	<key>NoSyncNeverRemindPrefsChangesLost</key>
 	<true/>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
@@ -12328,7 +12307,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-10-28T20:27:52Z</date>
+	<date>2014-11-15T16:41:40Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -12374,6 +12353,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.0.0.20141022</string>
+	<string>2.0.0.20141103</string>
 </dict>
 </plist>
