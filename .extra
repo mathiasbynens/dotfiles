@@ -1,2 +1,9 @@
-alias ipy='ipython qtconsole --ConsoleWidget.font_family="Consolas" --ConsoleWidget.font_size=13 --colors=linux'
+# Setup ipython qtconsole
+alias ipy='ipython qtconsole --ConsoleWidget.font_family="Consolas" --ConsoleWidget.font_size=13 --colors=linux --matplotlib'
+
+# Setup commandline proxy
+alias ssledge="export http_proxy=http://127.0.0.1:16888 https_proxy=${http_proxy}"
+alias unproxy="unset http_proxy https_proxy"
+
+
 
