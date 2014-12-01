@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE}")";
 
-# git pull origin master;
+git pull origin master;
 
 RSYNC_EXCLUDE_LIST=('.git/' '.DS_Store' 'bootstrap.sh' 'README.md' 'init' 'brew.sh' 'LICENSE-MIT.txt')
 [ -f ~/.gitconfig ] && RSYNC_EXCLUDE_LIST+=('.gitconfig')
