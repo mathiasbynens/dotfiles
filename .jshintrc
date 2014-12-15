@@ -7,7 +7,6 @@
     "regexdash": true,
     "browser": true,
     "wsh": true,
-    "trailing": true,
     "sub": true,
     "curly": true,
     "eqeqeq": true,
