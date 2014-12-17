@@ -11,3 +11,5 @@ alias ll=la
 
 alias j=z
 . `brew --prefix`/etc/profile.d/z.sh
+
+alias todo="subl ~/Dropbox/todo.txt"
