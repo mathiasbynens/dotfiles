@@ -104,6 +104,8 @@
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
     trustctime = false
 
+    mergeoptions = --no-edit
+
 [color]
 
     # Use colors in Git commands that are capable of colored output when
