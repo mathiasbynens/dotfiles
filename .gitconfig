@@ -106,6 +106,8 @@
 
     mergeoptions = --no-edit
 
+    editor = subl -n -w
+
 [color]
 
     # Use colors in Git commands that are capable of colored output when
