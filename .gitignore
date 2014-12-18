@@ -4,6 +4,9 @@
 # Folder view configuration files
 .DS_Store
 Desktop.ini
+sass-cache
+node_modules
+bower-components
 
 # Thumbnail cache files
 ._*

@@ -244,3 +244,34 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+function github {
+  branch="$(git rev-parse --abbrev-ref HEAD)"
+  url="$(git config --get remote.origin.url)"
+  url=${url/git@github.com:/http://github.com/}
+  url=${url/.git/}
+  if [[ $1 != "" ]];
+  then
+    base=$1
+    if [[ $1 =~ "-c" ]];
+    then
+      action="compare"
+      base=""
+      if [[ $2 != "" ]]; then base="$2..."; fi
+    elif [[ $1 =~ "-p" ]];
+    then
+      action="pull"
+      base=""
+      if [[ $2 != "" ]]; then base="$2..."; fi
+    else
+      action="tree";
+      base=$1
+    fi
+  else
+    base="";
+    action="tree"
+  fi
+  url="${url}/${action}/${base}${branch}"
+
+  echo "Opening ${url} $(\open ${url})"
+}
