@@ -33,7 +33,7 @@ done;
 unset file;
 
 # setting up the sublime symlink
-ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+ln -sf "/Applications/Sublime Text2.app/Contents/SharedSupport/bin/subl" ~/bin/s
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
