@@ -89,6 +89,12 @@
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
 	trustctime = false
 
+	# Git and the Umlaut problem on Mac OS X
+	# Prevent showing files which filenames contains umlauts as unversioned
+	# Needs to be false since OS X 10.9.x
+	# See http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	precomposeunicode = false
+
 [color]
 
 	# Use colors in Git commands that are capable of colored output when
