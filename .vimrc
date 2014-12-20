@@ -4,6 +4,7 @@ execute pathogen#infect()
 syntax enable
 set background=dark
 colorscheme solarized
+let g:solarized_termtrans=1
 
 " Make Vim more useful
 set nocompatible

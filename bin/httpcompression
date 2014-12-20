@@ -5,7 +5,7 @@
 # Useful Links:
 #
 # - HTTP/1.1 (RFC 2616) - Content Codings:
-#   http://tools.ietf.org/html/rfc2616#section-3.5
+#   https://tools.ietf.org/html/rfc2616#section-3.5
 #
 # - SDCH Specification:
 #   http://www.blogs.zeenor.com/wp-content/uploads/2011/01/Shared_Dictionary_Compression_over_HTTP.pdf
