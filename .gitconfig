@@ -1,5 +1,6 @@
 [alias]
 
+    ci  = commit
     st  = status
     fs  = flow feature start
     ff  = flow feature finish
