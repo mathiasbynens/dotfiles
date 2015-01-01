@@ -20,6 +20,9 @@ alias j=z
 # todo
 alias todo="subl ~/Dropbox/todo.txt"
 
+# http://stackoverflow.com/a/26803738/94668
+alias prune="git branch --merged | grep -v "\*" | egrep -v "master|development" | xargs -n 1 git branch -d"
+
 # Larger bash history (default is 500)
 export HISTFILESIZE=10000
 export HISTSIZE=10000
