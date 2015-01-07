@@ -11,7 +11,7 @@ while getopts ":s" opt; do
   esac
 done
 
-declare -A TEXT_COLORS
+declare -A TEXT_COLORS;
 TEXT_COLORS=(
   [GREEN]="\033[0;32m"
   [ORANGE]="\033[0;33m"
@@ -21,7 +21,8 @@ TEXT_COLORS=(
 
 
 isValidTag() {
-  git rev-parse "$1" > /dev/null 2>&1 && echo 0 || echo 1;
+  git rev-parse "$1" > /dev/null 2>&1;
+  echo $?;
 }
 
 getSHAbyTag() {
@@ -31,8 +32,9 @@ getSHAbyTag() {
 printTagInfo() {
   local TAG="$1";
 
-  if [ $(isValidTag "$TAG") -ne 0 ]; then
-    echo "\"$TAG\" is not a valid ref.";
+  isValid=$(isValidTag "$TAG");
+  if [ $isValid -ne 0 ]; then
+    echo "\"$TAG\" is not a valid ref. (exit code: $isValid)";
     exit 1;
   fi
 
