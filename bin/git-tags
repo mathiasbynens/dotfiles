@@ -3,28 +3,40 @@
 TAG_MAX_LENGTH=20;
 OUTPUT_FORMAT="expanded";
 SHA_ONLY=false;
+
 while getopts ":sc" opt; do
   case $opt in
     s)
-      OUTPUT_FORMAT="small";
-      shift 1;
-      ;;
+    OUTPUT_FORMAT="small";
+    shift 1;
+    ;;
 
     c)
-      SHA_ONLY=true;
-      shift 1;
-      ;;
+    SHA_ONLY=true;
+    shift 1;
+    ;;
   esac
 done
 
-declare -A TEXT_COLORS;
-TEXT_COLORS=(
-  [GREEN]="\033[0;32m"
-  [ORANGE]="\033[0;33m"
-  [BLUE]="\033[0;34m"
-  [NORMAL]="\033[0m"
-)
+# declare -A TEXT_COLORS;
+# TEXT_COLORS=(
+#   [GREEN]="\033[0;32m"
+#   [ORANGE]="\033[0;33m"
+#   [BLUE]="\033[0;34m"
+#   [NORMAL]="\033[0m"
+# )
 
+# Define colors
+black='\033[0;30m'
+white='\033[0;37m'
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+orange='\033[0;33m'
+blue='\033[0;34m'
+magenta='\033[0;35m'
+cyan='\033[0;36m'
+normal='\033[0m'
 
 isValidTag() {
   git rev-parse "$1" > /dev/null 2>&1;
@@ -62,23 +74,22 @@ printTagInfo() {
     FORMATTED_TAG="$TAG";
   fi
 
-  printf "${TEXT_COLORS[GREEN]}%s${TEXT_COLORS[NORMAL]}" "$FORMATTED_TAG";
+  printf "${green}%s${normal}" "$FORMATTED_TAG";
   printf "%*.*s" $(($TAG_MAX_LENGTH + 2 - ${#FORMATTED_TAG}));
-  printf "${TEXT_COLORS[ORANGE]}%s${TEXT_COLORS[NORMAL]}\n" "$COMMIT_SHA";
+  printf "${orange}%s${normal}\n" "$COMMIT_SHA";
 
   if [ $OUTPUT_FORMAT == "expanded" ]; then
     printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
-    printf "${TEXT_COLORS[BLUE]}\"%s\"${TEXT_COLORS[NORMAL]}\n" "$COMMIT_MESSAGE";
-
+    printf "${blue}\"%s\"${normal}\n" "$COMMIT_MESSAGE";
 
     printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
-    printf "Author:";
-    printf "%*.*s" $((8 - $(expr length 'Author:')));
+    printf "Author: ";
+    # printf "%*.*s" $((8 - $(expr length 'Author:')));
     printf "%s\n" "$COMMIT_AUTHOR";
 
     printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
-    printf "Date:";
-    printf "%*.*s" $((8 - $(expr length 'Date:')));
+    printf "Date:   ";
+    # printf "%*.*s" $((8 - $(expr length 'Date:')));
     printf "%s\n\n" "$COMMIT_DATE";
   fi
 }
