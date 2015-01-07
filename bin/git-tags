@@ -4,27 +4,35 @@ TAG_MAX_LENGTH=20;
 OUTPUT_FORMAT="expanded";
 SHA_ONLY=false;
 
-while getopts ":sc" opt; do
+help() {
+  printf "usage: git tags [options] <tagname...>\n\n";
+  printf "Tags options\n"
+  printf "\t-h        show this message\n"
+  printf "\t-c        only output commit SHA\n"
+  printf "\t-s        smaller (one-line) output\n"
+}
+
+while getopts "sch" opt; do
   case $opt in
     s)
-    OUTPUT_FORMAT="small";
-    shift 1;
-    ;;
+      OUTPUT_FORMAT="small";
+      ;;
 
     c)
-    SHA_ONLY=true;
-    shift 1;
-    ;;
+      SHA_ONLY=true;
+      ;;
+
+    *|h)
+      help;
+      if [ $opt == "h" ]; then
+        exit 0;
+      else
+        exit 1;
+      fi
+      ;;
   esac
 done
-
-# declare -A TEXT_COLORS;
-# TEXT_COLORS=(
-#   [GREEN]="\033[0;32m"
-#   [ORANGE]="\033[0;33m"
-#   [BLUE]="\033[0;34m"
-#   [NORMAL]="\033[0m"
-# )
+shift $(($OPTIND - 1))
 
 # Define colors
 black='\033[0;30m'
@@ -84,18 +92,16 @@ printTagInfo() {
 
     printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
     printf "Author: ";
-    # printf "%*.*s" $((8 - $(expr length 'Author:')));
     printf "%s\n" "$COMMIT_AUTHOR";
 
     printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
     printf "Date:   ";
-    # printf "%*.*s" $((8 - $(expr length 'Date:')));
     printf "%s\n\n" "$COMMIT_DATE";
   fi
 }
 
 if [ $# -gt 0 ]; then
-  # Find commit-SHA for specific tag.
+  # Find commit-SHA for specific tag(s).
   for tag in $@; do
     printTagInfo "$tag";
   done
