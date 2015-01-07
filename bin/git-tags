@@ -2,11 +2,17 @@
 
 TAG_MAX_LENGTH=20;
 OUTPUT_FORMAT="expanded";
-while getopts ":s" opt; do
+SHA_ONLY=false;
+while getopts ":sc" opt; do
   case $opt in
     s)
-      OUTPUT_FORMAT="small"
-      shift 1
+      OUTPUT_FORMAT="small";
+      shift 1;
+      ;;
+
+    c)
+      SHA_ONLY=true;
+      shift 1;
       ;;
   esac
 done
@@ -39,6 +45,12 @@ printTagInfo() {
   fi
 
   local COMMIT_SHA=$(getSHAbyTag $TAG);
+
+  if [ $SHA_ONLY == true ]; then
+    echo "$COMMIT_SHA";
+    return;
+  fi
+
   local COMMIT_MESSAGE=$(git show -s --format=%s "$COMMIT_SHA");
   local COMMIT_AUTHOR=$(git --no-pager show -s --format='%an <%ae>' "$COMMIT_SHA");
   local COMMIT_DATE=$(git --no-pager show -s --format='%ci' "$COMMIT_SHA");
