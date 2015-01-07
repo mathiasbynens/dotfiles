@@ -85,7 +85,9 @@ printTagInfo() {
 
 if [ $# -gt 0 ]; then
   # Find commit-SHA for specific tag.
-  printTagInfo "$1";
+  for tag in $@; do
+    printTagInfo "$tag";
+  done
   exit 0;
 fi
 
