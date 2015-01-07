@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
-isValidTag() {
-  git rev-parse "$1" > /dev/null 2>&1 && echo 0 || echo 1;
-}
-
-getSHAbyTag() {
-  git rev-parse "$1";
-}
+TAG_MAX_LENGTH=20;
+OUTPUT_FORMAT="expanded";
+while getopts ":s" opt; do
+  case $opt in
+    s)
+      OUTPUT_FORMAT="small"
+      shift 1
+      ;;
+  esac
+done
 
 declare -A TEXT_COLORS
 TEXT_COLORS=(
@@ -16,9 +19,17 @@ TEXT_COLORS=(
   [NORMAL]="\033[0m"
 )
 
-TAG_MAX_LENGTH=20;
+
+isValidTag() {
+  git rev-parse "$1" > /dev/null 2>&1 && echo 0 || echo 1;
+}
+
+getSHAbyTag() {
+  git rev-parse "$1";
+}
+
 printTagInfo() {
-  local TAG=$1;
+  local TAG="$1";
 
   if [ $(isValidTag "$TAG") -ne 0 ]; then
     echo "\"$TAG\" is not a valid ref.";
@@ -41,27 +52,29 @@ printTagInfo() {
   printf "%*.*s" $(($TAG_MAX_LENGTH + 2 - ${#FORMATTED_TAG}));
   printf "${TEXT_COLORS[ORANGE]}%s${TEXT_COLORS[NORMAL]}\n" "$COMMIT_SHA";
 
-  printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
-  printf "${TEXT_COLORS[BLUE]}\"%s\"${TEXT_COLORS[NORMAL]}\n" "$COMMIT_MESSAGE";
+  if [ $OUTPUT_FORMAT == "expanded" ]; then
+    printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
+    printf "${TEXT_COLORS[BLUE]}\"%s\"${TEXT_COLORS[NORMAL]}\n" "$COMMIT_MESSAGE";
 
 
-  printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
-  printf "Author:";
-  printf "%*.*s" $((8 - $(expr length 'Author:')));
-  printf "%s\n" "$COMMIT_AUTHOR";
+    printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
+    printf "Author:";
+    printf "%*.*s" $((8 - $(expr length 'Author:')));
+    printf "%s\n" "$COMMIT_AUTHOR";
 
-  printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
-  printf "Date:";
-  printf "%*.*s" $((8 - $(expr length 'Date:')));
-  printf "%s\n\n" "$COMMIT_DATE";
+    printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
+    printf "Date:";
+    printf "%*.*s" $((8 - $(expr length 'Date:')));
+    printf "%s\n\n" "$COMMIT_DATE";
+  fi
 }
 
 if [ $# -gt 0 ]; then
   # Find commit-SHA for specific tag.
-  printTagInfo $1;
+  printTagInfo "$1";
   exit 0;
 fi
 
 for tag in $(git tag -l); do
-  printTagInfo $tag;
+  printTagInfo "$tag";
 done
