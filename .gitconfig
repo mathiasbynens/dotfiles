@@ -6,7 +6,7 @@
 	# Branch, commit & remote management
 	co = checkout
 	br = checkout -b
-	m = !"git checkout master && git pull"
+	mr = !"git checkout master && git pull"
 	pl = !"git pull; git submodule foreach git pull origin master"
 	cl = clone --recursive
 	lg = !"git --no-pager log --color --graph -n 20  --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
@@ -18,7 +18,7 @@
 	# Commiting
 	s = status -s
 	d = diff --color --color-words --abbrev
-	a = add . -u
+	a = add -A
 	c = commit -m
 	ca = !"git a && git c"
 	ph = push --tags origin HEAD
