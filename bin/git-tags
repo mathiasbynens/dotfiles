@@ -1,36 +1,35 @@
 #!/usr/bin/env bash
 
-TAG_MAX_LENGTH=20;
-OUTPUT_FORMAT="expanded";
-SHA_ONLY=false;
+tag_max_length=20;
+output_format="expanded";
 
 help() {
-  printf "usage: git tags [options] <tagname...>\n\n";
-  printf "Tags options\n"
-  printf "\t-h        show this message\n"
-  printf "\t-c        only output commit SHA\n"
-  printf "\t-s        smaller (one-line) output\n"
+	printf "usage: git tags [options] <tagname...>\n\n";
+	printf "Tags options\n"
+	printf "\t-h        show this message\n"
+	printf "\t-c        only output commit SHA\n"
+	printf "\t-s        smaller (one-line) output\n"
 }
 
 while getopts "sch" opt; do
-  case $opt in
-    s)
-      OUTPUT_FORMAT="small";
-      ;;
+	case $opt in
+		s)
+			output_format="small";
+			;;
 
-    c)
-      SHA_ONLY=true;
-      ;;
+		c)
+			output_format="sha-only";
+			;;
 
-    *|h)
-      help;
-      if [ $opt == "h" ]; then
-        exit 0;
-      else
-        exit 1;
-      fi
-      ;;
-  esac
+		*|h)
+			help;
+			if [ $opt == "h" ]; then
+				exit 0;
+			else
+				exit 1;
+			fi
+			;;
+	esac
 done
 shift $(($OPTIND - 1))
 
@@ -46,68 +45,103 @@ magenta='\033[0;35m'
 cyan='\033[0;36m'
 normal='\033[0m'
 
-isValidTag() {
-  git rev-parse "$1" > /dev/null 2>&1;
-  echo $?;
+br() {
+	printf "\n";
 }
 
-getSHAbyTag() {
-  git rev-parse "$1";
+color-echo() {
+	printf "${2}${1}${normal}";
 }
 
-printTagInfo() {
-  local TAG="$1";
+ellipsis_trim() {
+	local max_length="${!#}";
+	local output="${@:1:$(($#-1))}";
 
-  isValid=$(isValidTag "$TAG");
-  if [ $isValid -ne 0 ]; then
-    echo "\"$TAG\" is not a valid ref. (exit code: $isValid)";
-    exit 1;
-  fi
+	if [ ${#output} -gt $max_length ]; then
+		echo "${output:0:$(($max_length - 3))}...";
+	else
+		echo "$output";
+	fi
+}
 
-  local COMMIT_SHA=$(getSHAbyTag $TAG);
+indent() {
+	local width="$1";
+	local pre_indent_length="$2";
+	if [ "$#" -ge 2 ]; then
+		width=$(($width - $pre_indent_length));
+	fi
+	printf "%*.*s" $width;
+}
 
-  if [ $SHA_ONLY == true ]; then
-    echo "$COMMIT_SHA";
-    return;
-  fi
+is_valid_tag() {
+	git rev-parse "$1" > /dev/null 2>&1;
+	echo $?;
+}
 
-  local COMMIT_MESSAGE=$(git show -s --format=%s "$COMMIT_SHA");
-  local COMMIT_AUTHOR=$(git --no-pager show -s --format='%an <%ae>' "$COMMIT_SHA");
-  local COMMIT_DATE=$(git --no-pager show -s --format='%ci' "$COMMIT_SHA");
-  local FORMATTED_TAG;
+get_SHA_by_tag() {
+	git rev-parse "$1";
+}
 
-  if [ ${#TAG} -gt $TAG_MAX_LENGTH ]; then
-    FORMATTED_TAG="${TAG:0:(($TAG_MAX_LENGTH - 3))}...";
-  else
-    FORMATTED_TAG="$TAG";
-  fi
+print_tag_info() {
+	local tag="$1";
 
-  printf "${green}%s${normal}" "$FORMATTED_TAG";
-  printf "%*.*s" $(($TAG_MAX_LENGTH + 2 - ${#FORMATTED_TAG}));
-  printf "${orange}%s${normal}\n" "$COMMIT_SHA";
+	local is_valid=$(is_valid_tag "$tag");
+	if [ $is_valid -ne 0 ]; then
+		echo "\"$tag\" is not a valid ref. (exit code: $is_valid)";
+		exit 1;
+	fi
 
-  if [ $OUTPUT_FORMAT == "expanded" ]; then
-    printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
-    printf "${blue}\"%s\"${normal}\n" "$COMMIT_MESSAGE";
+	local commit_sha=$(get_SHA_by_tag $tag);
 
-    printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
-    printf "Author: ";
-    printf "%s\n" "$COMMIT_AUTHOR";
+	if [ $output_format == "sha-only" ]; then
+		echo "$commit_sha";
+		return;
+	fi
 
-    printf "%*.*s" $(($TAG_MAX_LENGTH + 2));
-    printf "Date:   ";
-    printf "%s\n\n" "$COMMIT_DATE";
-  fi
+	local commit_message=$(git show -s --format=%s "$commit_sha");
+	local commit_author=$(git --no-pager show -s --format='%an <%ae>' "$commit_sha");
+	local commit_date=$(git --no-pager show -s --format='%ci' "$commit_sha");
+
+	local formatted_tag=$(ellipsis_trim $tag $tag_max_length);
+
+	color-echo "$formatted_tag" $green;
+	indent $(($tag_max_length + 2)) ${#formatted_tag};
+	color-echo "$commit_sha" $orange;
+	br;
+
+	if [ $output_format == "expanded" ]; then
+		indent $(($tag_max_length + 2));
+		color-echo "$commit_message" $blue;
+		br;
+
+		indent $(($tag_max_length + 2));
+		printf "Author: ";
+		printf "%s" "$commit_author";
+		br;
+
+		indent $(($tag_max_length + 2));
+		printf "Date:   ";
+		printf "%s" "$commit_date";
+		br;
+	fi
+}
+
+print_tags() {
+	local last_tag=$(printf "$@" | tail -n 1);
+	for tag in $@; do
+		print_tag_info "$tag";
+		if \
+			[ $output_format == "expanded" ] 	&& \
+			[ $tag != $last_tag ];
+			then
+			br;
+		fi
+	done
 }
 
 if [ $# -gt 0 ]; then
-  # Find commit-SHA for specific tag(s).
-  for tag in $@; do
-    printTagInfo "$tag";
-  done
-  exit 0;
+	# Print meta data about passed tag(s).
+	print_tags $@;
+else
+	print_tags "$(git tag -l)";
 fi
-
-for tag in $(git tag -l); do
-  printTagInfo "$tag";
-done
