@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# Define colors
+black='\033[0;30m'
+white='\033[0;37m'
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+orange='\033[0;33m'
+blue='\033[0;34m'
+magenta='\033[0;35m'
+cyan='\033[0;36m'
+normal='\033[0m'
+
+br() {
+	printf "\n";
+}
+
+color-echo() {
+	printf "${2}${1}${normal}";
+}
+
+get_tracking() {
+	git rev-parse --abbrev-ref --symbolic-full-name @{upstream};
+}
+
+if $(get_tracking > /dev/null 2>&1); then
+	# Current branch is tracking.
+
+	LOCAL_BRANCH=$(git rev-parse --abbrev-ref HEAD);
+	TRACKING_BRANCH=$(get_tracking);
+	COMMITS_AHEAD=$(git log --oneline "${TRACKING_BRANCH}..${LOCAL_BRANCH}" | wc -l);
+	COMMITS_BEHIND=$(git log --oneline "${LOCAL_BRANCH}..${TRACKING_BRANCH}" | wc -l);
+
+	if [ $COMMITS_AHEAD -gt 0 ] || [ $COMMITS_BEHIND -gt 0 ]; then
+		if [ $COMMITS_AHEAD -gt 0 ]; then
+			color-echo "+$COMMITS_AHEAD" $green;
+		fi
+
+		if [ $COMMITS_BEHIND -gt 0 ]; then
+			if [ $COMMITS_AHEAD -gt 0 ]; then
+				printf " / ";
+			fi
+			color-echo "-$COMMITS_BEHIND" $red;
+		fi
+
+		if [ $(git status -s | wc -l) -gt 0 ]; then
+			br;
+			echo -n "---------------";
+		fi
+		br;
+	fi
+fi
+
+git status -s $@;
