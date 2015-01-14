@@ -1,3 +1,7 @@
+source ~/.profile
+
+source ~/.customEnvironmentVars
+
 # Add `~/bin` to the `$PATH`
 export PATH="/usr/local/bin:$HOME/bin:$PATH"
 
@@ -44,3 +48,5 @@ source "/Users/ashleynolan/.git-completion.bash"  # Added by git-convenience
 source "/Users/ashleynolan/.git-prompt.sh"  # Added by git-convenience
 source "/Users/ashleynolan/.terminal-prefs.sh"  # Added by git-convenience
 source "/Users/ashleynolan/.git-shortcuts.sh"  # Added by git-convenience
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

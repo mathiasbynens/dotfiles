@@ -169,6 +169,9 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightC
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
+# Enables both the two-finger tap and physical click in lower-right corner of the trackpad to perform a right click
+defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -boolean true
+
 # Disable “natural” (Lion-style) scrolling
 # defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
@@ -563,6 +566,17 @@ defaults write com.apple.Terminal OptionClickToMoveCursor -boolean true
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+
+###############################################################################
+# ITunes	                                                                  #
+###############################################################################
+
+# Arrows link to library instead of to the itunes store
+defaults write com.apple.iTunes invertStoreLinks -boolean true
+
+# Allow half star ratings
+defaults write com.apple.iTunes allow-half-stars -boolean true
 
 ###############################################################################
 # Time Machine                                                                #
