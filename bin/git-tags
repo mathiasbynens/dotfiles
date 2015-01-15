@@ -84,11 +84,17 @@ get_SHA_by_tag() {
 
 print_tag_info() {
 	local tag="$1";
+	local formatted_tag=$(ellipsis_trim $tag $tag_max_length);
 
 	local is_valid=$(is_valid_tag "$tag");
 	if [ $is_valid -ne 0 ]; then
-		echo "\"$tag\" is not a valid ref. (exit code: $is_valid)";
-		exit 1;
+		if [ $output_format != "sha-only" ]; then
+			color-echo "$formatted_tag" $red;
+			indent $(($tag_max_length + 2)) ${#formatted_tag};
+			color-echo "N/A" $red;
+			echo;
+		fi
+		return;
 	fi
 
 	local commit_sha=$(get_SHA_by_tag $tag);
@@ -101,8 +107,6 @@ print_tag_info() {
 	local commit_message=$(git show -s --format=%s "$commit_sha");
 	local commit_author=$(git --no-pager show -s --format='%an <%ae>' "$commit_sha");
 	local commit_date=$(git --no-pager show -s --format='%ci' "$commit_sha");
-
-	local formatted_tag=$(ellipsis_trim $tag $tag_max_length);
 
 	color-echo "$formatted_tag" $green;
 	indent $(($tag_max_length + 2)) ${#formatted_tag};
