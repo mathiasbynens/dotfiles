@@ -131,7 +131,7 @@ print_tag_info() {
 }
 
 print_tags() {
-	local last_tag=$(printf "$@" | tail -n 1);
+	local last_tag="${@: -1}";
 	for tag in $@; do
 		print_tag_info "$tag";
 		if \
@@ -147,5 +147,5 @@ if [ $# -gt 0 ]; then
 	# Print meta data about passed tag(s).
 	print_tags $@;
 else
-	print_tags "$(git tag -l)";
+	print_tags $(git tag -l);
 fi
