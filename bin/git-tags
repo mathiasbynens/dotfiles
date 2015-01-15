@@ -4,11 +4,11 @@ tag_max_length=20;
 output_format="expanded";
 
 help() {
-	printf "usage: git tags [options] <tagname...>\n\n";
-	printf "Tags options\n"
-	printf "\t-h        show this message\n"
-	printf "\t-c        only output commit SHA\n"
-	printf "\t-s        smaller (one-line) output\n"
+	printf "usage: git tags [options] [tagname ...]\n\n";
+	printf "Tags options\n";
+	printf "    -h        show this message\n";
+	printf "    -c        only output commit SHA\n";
+	printf "    -s        smaller (one-line) output\n";
 }
 
 while getopts "sch" opt; do
