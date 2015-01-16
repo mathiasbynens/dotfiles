@@ -7,6 +7,7 @@
 	co = checkout
 	br = checkout -b
 	mr = !"git checkout master && git pull"
+	sync = pull origin master
 	pl = !"git pull; git submodule foreach git pull origin master"
 	cl = clone --recursive
 	lg = !"git --no-pager log --color --graph -n 20  --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
