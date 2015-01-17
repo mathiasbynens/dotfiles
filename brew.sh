@@ -47,6 +47,12 @@ brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 brew install homebrew/php/php55 --with-gmp
 
+# Install font tools.
+brew tap bramstein/fonttools
+brew install sfnt2woff
+brew install sfnt2woff-zopfli
+brew install woff2
+
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 brew install bfg
 brew install binutils
