@@ -1,16 +1,32 @@
 #!/usr/bin/env bash
 
 usage() {
-	echo "usage: git compare [remote] [target_branch] [base_branch]";
+	echo "usage: git compare [options] [remote] [target_branch] [base_branch]";
 	echo;
-	echo "Defaults:";
+	echo "Compare options";
+	echo "    -h        show this message";
+	echo "    -o        one-line output";
+	echo "    -r        reverse. Use target_branch as base for comparison.";
+	echo;
+	echo "Default values:";
 	echo "    remote:          current tracking remote";
 	echo "    target_branch:   current tracking branch";
 	echo "    base_branch:     current branch";
 }
 
-while getopts "h" opt; do
+output_format="normal";
+reverse=false;
+
+while getopts "hor" opt; do
 	case $opt in
+		o)
+			output_format="oneline";
+			;;
+
+		r)
+			reverse=true;
+			;;
+
 		*|h)
 			usage;
 			if [ $opt == "h" ]; then
@@ -21,6 +37,7 @@ while getopts "h" opt; do
 			;;
 	esac
 done
+shift "$(($OPTIND - 1))"
 
 current_branch="$(git rev-parse --abbrev-ref HEAD)";
 
@@ -56,4 +73,15 @@ case $# in
 		;;
 esac
 
-git log "${target_branch}..${base_branch}";
+if [ "$reverse" == true ]; then
+	tmp="$base_branch";
+	base_branch="$target_branch";
+	target_branch="$tmp";
+	unset $tmp;
+fi
+
+if [ "$output_format" == "normal" ]; then
+	git log "${target_branch}..${base_branch}";
+elif [ "$output_format" == "oneline" ]; then
+	git log "${target_branch}..${base_branch}" --oneline;
+fi
