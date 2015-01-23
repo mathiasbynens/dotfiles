@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+usage() {
+	echo "usage: git compare [remote] [target_branch] [base_branch]";
+	echo;
+	echo "Defaults:";
+	echo "    remote:          current tracking remote";
+	echo "    target_branch:   current tracking branch";
+	echo "    base_branch:     current branch";
+}
+
+while getopts "h" opt; do
+	case $opt in
+		*|h)
+			usage;
+			if [ $opt == "h" ]; then
+				exit 0;
+			else
+				exit 1;
+			fi
+			;;
+	esac
+done
+
+current_branch="$(git rev-parse --abbrev-ref HEAD)";
+
+base_branch=;
+target_branch=;
+
+case $# in
+	0)
+		base_branch="$current_branch";
+		target_branch="$(git rev-parse --abbrev-ref --symbolic-full-name @{u})";
+		;;
+
+	1)
+		base_branch="$current_branch";
+		target_branch="$1/${base_branch}";
+		;;
+
+	2)
+		base_branch="$current_branch";
+		target_branch="$1/$2";
+		;;
+
+	3)
+		base_branch="$3";
+		target_branch="$1/$2";
+		;;
+
+	*)
+		echo "Not sure how to parse those arguments man.. RTFM!";
+		echo;
+		usage;
+		exit 1;
+		;;
+esac
+
+git log "${target_branch}..${base_branch}";
