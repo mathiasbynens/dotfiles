@@ -33,8 +33,16 @@ elif [ -f /etc/bash_completion ]; then
 fi;
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	complete -o default -o nospace -F _git g;
+if type _git &> /dev/null; then
+	if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+		complete -o default -o nospace -F _git g;
+	fi
+
+	# Add `git compare` completion
+	_git_compare() {
+		__gitcomp "$(git remote)";
+		__gitcomp "$(git for-each-ref --format='%(refname:short)' refs/heads)";
+	}
 fi;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards

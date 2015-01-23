@@ -77,7 +77,7 @@ if [ "$reverse" == true ]; then
 	tmp="$base_branch";
 	base_branch="$target_branch";
 	target_branch="$tmp";
-	unset $tmp;
+	unset tmp;
 fi
 
 if [ "$output_format" == "normal" ]; then
