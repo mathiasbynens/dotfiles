@@ -1,6 +1,7 @@
 " Use the Solarized Dark theme
 set background=dark
 colorscheme solarized
+let g:solarized_termtrans=1
 
 " Make Vim more useful
 set nocompatible
@@ -29,6 +30,9 @@ set directory=~/.vim/swaps
 if exists("&undodir")
 	set undodir=~/.vim/undo
 endif
+
+" Don’t create backups when editing files in certain directories
+set backupskip=/tmp/*,/private/tmp/*
 
 " Respect modeline in files
 set modeline
@@ -97,4 +101,6 @@ if has("autocmd")
 	filetype on
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+	" Treat .md files as Markdown
+	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif

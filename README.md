@@ -38,10 +38,10 @@ To update later on, just run that command again.
 
 If `~/.path` exists, it will be sourced along with the other files, before any feature testing (such as [detecting which version of `ls` is being used](https://github.com/mathiasbynens/dotfiles/blob/aff769fd75225d8f2e481185a71d5e05b76002dc/.aliases#L21-26)) takes place.
 
-Here’s an example `~/.path` file that adds `~/utils` to the `$PATH`:
+Here’s an example `~/.path` file that adds `/usr/local/bin` to the `$PATH`:
 
 ```bash
-export PATH="$HOME/utils:$PATH"
+export PATH="/usr/local/bin:$PATH"
 ```
 
 ### Add custom commands without creating a new fork
@@ -76,15 +76,7 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 When setting up a new Mac, you may want to install some common [Homebrew](http://brew.sh/) formulae (after installing Homebrew, of course):
 
 ```bash
-brew bundle ~/Brewfile
-```
-
-### Install native apps with `brew cask`
-
-You could also install native apps with [`brew cask`](https://github.com/phinze/homebrew-cask):
-
-```bash
-brew bundle ~/Caskfile
+./brew.sh
 ```
 
 ## Feedback
@@ -96,7 +88,7 @@ Suggestions/improvements
 
 | [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/mathias "Follow @mathias on Twitter") |
 |---|
-| [Mathias Bynens](http://mathiasbynens.be/) |
+| [Mathias Bynens](https://mathiasbynens.be/) |
 
 ## Thanks to…
 
@@ -111,7 +103,6 @@ Suggestions/improvements
 * [Nicolas Gallagher](http://nicolasgallagher.com/) and his [dotfiles repository](https://github.com/necolas/dotfiles)
 * [Sindre Sorhus](http://sindresorhus.com/)
 * [Tom Ryder](http://blog.sanctum.geek.nz/) and his [dotfiles repository](https://github.com/tejr/dotfiles)
-* [Kevin Suttle](http://kevinsuttle.com/) and his [dotfiles repository](https://github.com/kevinSuttle/dotfiles) and [OSXDefaults project](https://github.com/kevinSuttle/OSXDefaults), which aims to provide better documentation for [`~/.osx`](http://mths.be/osx)
+* [Kevin Suttle](http://kevinsuttle.com/) and his [dotfiles repository](https://github.com/kevinSuttle/dotfiles) and [OSXDefaults project](https://github.com/kevinSuttle/OSXDefaults), which aims to provide better documentation for [`~/.osx`](https://mths.be/osx)
 * [Haralan Dobrev](http://hkdobrev.com/)
-
 * anyone who [contributed a patch](https://github.com/mathiasbynens/dotfiles/contributors) or [made a helpful suggestion](https://github.com/mathiasbynens/dotfiles/issues)
