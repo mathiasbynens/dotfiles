@@ -2,6 +2,7 @@
 
     ci  = commit
     st  = status
+    pb  = publish-branch
     fs  = flow feature start
     ff  = flow feature finish
     fl  = flow feature list
