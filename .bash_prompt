@@ -13,11 +13,15 @@ fi;
 prompt_svn() {
   # Store output of 'svn info' in $info variable
   local info="$(svn info . 2> /dev/null)"
-  local last current branchName
+  local last current repoURL fullBranchPath branchName
   # Check if 'svn info' returned anything
   if [[ "$info" ]]; then
-    # Parse the branch/tag/trunk name using awk, & return the last part only
-    branchName="$(echo "$info" | awk -F / '/Working Copy Root Path:/ {print $NF}')"
+  	# Parse the repo root && full branch/tag/trunk path using awk
+  	repoURL="$(echo "$info" | awk '/Repository Root:/ {print $NF}')"
+  	repoURL="${repoURL//\//\\/}"
+    fullBranchPath="$(echo "$info" | awk '/URL:/ {print $NF}')"
+    # Replace full repo path with ^ (to get relative branch/tag/trunk path only)
+  	branchName="${fullBranchPath/${repoURL}/^}"
     # Get last and current revision #s
     last="$(echo "$info" | awk '/Last Changed Rev:/ {print $4}')"
     current="$(echo "$info" | awk '/Revision:/ {print $2}')"
