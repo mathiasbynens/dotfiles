@@ -7,6 +7,7 @@ usage() {
 	echo "    -h        show this message";
 	echo "    -s        one-line output";
 	echo "    -r        reverse. Use target_branch as base for comparison.";
+	echo "    -b        bare comparison. Compare current branch to specified ref."
 	echo;
 	echo "Default values:";
 	echo "    remote:          current tracking remote";
@@ -16,8 +17,9 @@ usage() {
 
 output_format="normal";
 reverse=false;
+bare_comp=false;
 
-while getopts "hsr" opt; do
+while getopts "hsrb" opt; do
 	case $opt in
 		s)
 			output_format="oneline";
@@ -25,6 +27,10 @@ while getopts "hsr" opt; do
 
 		r)
 			reverse=true;
+			;;
+
+		b)
+			bare_comp=true;
 			;;
 
 		*|h)
@@ -44,34 +50,39 @@ current_branch="$(git rev-parse --abbrev-ref HEAD)";
 base_branch=;
 target_branch=;
 
-case $# in
-	0)
-		base_branch="$current_branch";
-		target_branch="$(git rev-parse --abbrev-ref --symbolic-full-name @{u})";
-		;;
+if ! $bare_comp; then
+	case $# in
+		0)
+			base_branch="$current_branch";
+			target_branch="$(git rev-parse --abbrev-ref --symbolic-full-name @{u})";
+			;;
 
-	1)
-		base_branch="$current_branch";
-		target_branch="$1/${base_branch}";
-		;;
+		1)
+			base_branch="$current_branch";
+			target_branch="$1/${base_branch}";
+			;;
 
-	2)
-		base_branch="$current_branch";
-		target_branch="$1/$2";
-		;;
+		2)
+			base_branch="$current_branch";
+			target_branch="$1/$2";
+			;;
 
-	3)
-		base_branch="$3";
-		target_branch="$1/$2";
-		;;
+		3)
+			base_branch="$3";
+			target_branch="$1/$2";
+			;;
 
-	*)
-		echo "Not sure how to parse those arguments man.. RTFM!";
-		echo;
-		usage;
-		exit 1;
-		;;
-esac
+		*)
+			echo "Not sure how to parse those arguments man.. RTFM!";
+			echo;
+			usage;
+			exit 1;
+			;;
+	esac
+else
+	base_branch="$current_branch";
+	target_branch="$1";
+fi
 
 if [ "$reverse" == true ]; then
 	tmp="$base_branch";
