@@ -29,3 +29,82 @@ export HISTSIZE=10000
 
 # Misc settings
 export EDITOR='subl -w'
+
+alias clean='find . -name "*.pyc" -delete; find . -name ".DS_Store" -delete; if [ -d .git ]; then git clean -fdx -- tmp; fi;'
+
+### NOTICES ###
+# Notice title
+notice() { echo -e "\033[1;32m=> $1\033[0m"; }
+# Notice title
+msg() { echo -e "\033[1;34m=> $1\033[0m"; }
+# Error title
+error() { echo -e "\033[1;31m=> Error: $1\033[0m"; }
+# List item
+c_list() { echo -e "  \033[1;32m✔\033[0m $1"; }
+# Error list item
+e_list() { echo -e "  \033[1;31m✖\033[0m $1"; }
+
+# Update Helpers
+alias brup="brew update && brew upgrade && brew prune && brew cleanup"
+alias nup="npm update -g --quiet"
+alias dup=". ~/sandbox/git-repos/dotfiles/bootstrap.sh -f"
+alias gemup="gem update --system && rvm get stable"
+alias gup="gg ~/sandbox/git-repos/*"
+alias pup="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
+alias gst="gs ~/sandbox/git-repos/*"
+
+alias up="\
+  notice 'Software Update'; \
+  sudo softwareupdate -i -a; \
+  notice '~/sandbox/git-repos/* Update'; \
+  gup; \
+  notice 'Brew Update'; \
+  brup; \
+  notice 'NPM Update'; \
+  nup; \
+  notice 'Gem Update'; \
+  gemup; \
+  notice 'Pip Update'; \
+  pup; \
+  notice '~/.dotfiles Update'; \
+  dup; \
+"
+
+function gg() {
+  if [ $# -gt 0 ]; then
+    for i in $(echo $*); do
+      if [ -d ${i}/.git ]; then
+        ( msg "Pulling ${i}" && cd ${i} && git pull | grep -v "Already up-to-date." )
+        ( cd ${i} && git status -s )
+      fi
+    done
+  else
+    echo "usage: gg <git repo dir>"
+  fi
+}
+
+function gs() {
+  if [ $# -gt 0 ]; then
+    for i in $(echo $*); do
+      if [ -d ${i}/.git ]; then
+        ( msg "Status ${i}" && cd ${i}; git cherry -v origin/master | wc -l | grep -v ' 0'; git status -s )
+      fi
+    done
+  else
+    echo "usage: gst <git repo dir>"
+  fi
+}
+
+function gz() {
+  if [ $# -gt 0 ]; then
+    for i in $(echo $*); do
+      if [ -d ${i} ]; then
+        ( msg "Tarring into ~/sandbox/backups/${i%/}.$(date "+%Y-%m-%d-%H-%M-%S").tgz" && tar zcf ~/sandbox/backups/${i%/}.$(date "+%Y-%m-%d-%H-%M-%S").tgz ${i%/} )
+      fi
+    done
+  else
+    echo "usage: gz <dir name>"
+  fi
+}
+
+alias c="clear"
