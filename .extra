@@ -45,7 +45,7 @@ c_list() { echo -e "  \033[1;32m✔\033[0m $1"; }
 e_list() { echo -e "  \033[1;31m✖\033[0m $1"; }
 
 # Update Helpers
-alias brup="brew update && brew upgrade && brew prune && brew cleanup"
+alias brup="brew update; brew upgrade; brew cleanup; brew prune"
 alias nup="npm update -g --quiet"
 alias dup=". ~/sandbox/git-repos/dotfiles/bootstrap.sh -f"
 alias gemup="gem update --system && rvm get stable"
@@ -69,6 +69,7 @@ alias up="\
   notice '~/.dotfiles Update'; \
   dup; \
 "
+alias update="up"
 
 function gg() {
   if [ $# -gt 0 ]; then
