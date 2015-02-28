@@ -244,3 +244,27 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Show an IP address in reverse form, i.e. `revip 1.2.3.4` => "4.3.2.1".
+# For IPv6: @see https://gist.github.com/lsowen/4447d916fd19cbb7fce4
+function revip() {
+	if [[ $1 =~ ":" ]]; then
+		echo "$1" | awk -F: 'BEGIN {OFS=""; }{addCount = 9 - NF; for(i=1; i<=NF;i++){if(length($i) == 0){ for(j=1;j<=addCount;j++){$i = ($i "0000");} } else { $i = substr(("0000" $i), length($i)+5-4);}}; print}' | rev | sed -e 's/./&./g' -e 's/.$//'
+	else
+		echo $1 | awk -F. '{print $4"."$3"."$2"."$1}'
+	fi
+}
+
+# Show the ASN number and some other information about an IP address or FQDN
+function asn() {
+	local ip=$1
+	if [[ ! "$1" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+		ip=$(dig +short +answer $1 in aaaa | head -n 1)
+		if [[ -z "$ip" ]]; then
+			echo "DNS address lookup failed."
+			return 1
+		fi
+	fi
+
+	dig +short +answer $(revip $ip).origin.asn.spameatingmonkey.net in txt | sed -e 's/^\"//g' -e 's/\"$//g'
+}
