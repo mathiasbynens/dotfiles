@@ -1,6 +1,6 @@
 " Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
+" set background=dark
+" colorscheme blue
 
 " Make Vim more useful
 set nocompatible
@@ -41,6 +41,8 @@ set exrc
 set secure
 " Enable line numbers
 set number
+" Give color to line numbers
+highlight LineNr ctermfg=DarkGrey
 " Enable syntax highlighting
 syntax on
 " Highlight current line
