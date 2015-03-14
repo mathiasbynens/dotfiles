@@ -46,7 +46,7 @@ e_list() { echo -e "  \033[1;31m✖\033[0m $1"; }
 
 # Update Helpers
 alias brup="brew update; brew upgrade; brew cleanup; brew prune"
-alias nup="npm update -g --quiet"
+alias nup="npm install -g npm@latest; npm update -g --quiet"
 alias dup=". ~/sandbox/git-repos/dotfiles/bootstrap.sh -f"
 alias gemup="gem update --system && rvm get stable"
 alias gup="gg ~/sandbox/git-repos/*"
