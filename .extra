@@ -10,8 +10,8 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 git config --global push.default simple
 git config --global fetch.prune true # http://stackoverflow.com/a/8255687/94668
 
-export NVM_DIR="/Users/tomfuertes/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="/Users/tomfuertes/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # minor aliases
 alias ll=la
