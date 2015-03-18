@@ -13,6 +13,8 @@ git config --global fetch.prune true # http://stackoverflow.com/a/8255687/94668
 # export NVM_DIR="/Users/tomfuertes/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
+
 # minor aliases
 alias ll=la
 
