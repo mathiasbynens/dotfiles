@@ -54,6 +54,7 @@ brew install sfnt2woff-zopfli
 brew install woff2
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
+brew install aircrack-ng
 brew install bfg
 brew install binutils
 brew install binwalk
