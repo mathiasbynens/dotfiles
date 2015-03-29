@@ -54,6 +54,20 @@ function targz() {
 	echo "${tmpFile}.gz created successfully.";
 }
 
+# Cleans a OS X zipped file by removing __MACOSX and .DS_Store files
+function rezip() {
+  if [ -z "${1}" ]; then
+    echo "Usage: \`rezip file.zip\`";
+    return 1;
+  fi;
+  local filename="${@%/}";
+  if [ ${filename##*.} == "zip" ]; then
+    [ -f "${filename}" ] && echo Fixing ${filename} && zip -d ${filename} \*.DS_Store && zip -d ${filename} __MACOSX/
+  else
+    echo "Invalid file format";
+  fi
+}
+
 # Determine size of a file or total size of a directory
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
