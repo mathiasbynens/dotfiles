@@ -7,6 +7,7 @@
 	co = checkout
 	br = checkout -b
 	mr = !"git checkout master && git pull"
+	mbr = !"git mr && git br"
 	sync = pull origin master
 	pl = !"git pull; git submodule foreach git pull origin master"
 	cl = clone --recursive
@@ -25,6 +26,7 @@
 	ph = push --tags origin HEAD
 	fix = commit --amend --reuse-message=HEAD --no-edit
 	fixup = !git fix && git push origin HEAD --force
+	fixupa = !git a && git fixup
 
 	# UTILS
 	# Show verbose output about tags, branches or remotes
