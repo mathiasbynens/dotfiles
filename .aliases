@@ -126,6 +126,9 @@ done
 # Make Grunt print stack traces by default
 command -v grunt > /dev/null && alias grunt="grunt --stack"
 
+# Fix Homebrew permissions
+alias fixbrew='chown -R $(echo $USER):$(id -gn) $(brew --prefix)'
+
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
