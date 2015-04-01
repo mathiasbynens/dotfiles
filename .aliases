@@ -127,7 +127,7 @@ done
 command -v grunt > /dev/null && alias grunt="grunt --stack"
 
 # Fix Homebrew permissions
-alias fixbrew='chown -R `whoami`:admin $(brew --prefix)'
+alias fixbrew='sudo chown -R $(whoami):admin $(brew --prefix)'
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
