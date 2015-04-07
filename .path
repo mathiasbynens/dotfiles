@@ -1,0 +1,3 @@
+export PATH=$RBENV_HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=./bin:$PATH
+export PATH=$HOME/bin:$PATH
