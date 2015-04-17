@@ -93,7 +93,7 @@
 
 [user]
 	name = Ashley Nolan
-	email = (none)
+	email = nolly00@gmail.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
