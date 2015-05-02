@@ -6,14 +6,24 @@ alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
-# Shortcuts
-alias d="cd ~/Documents/Dropbox"
+# Directory Shortcuts
+alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
 alias h="history"
 alias j="jobs"
+alias cp='cd ~/Dropbox/Work/Tictrac/Projects/automated_insights/tictrac/tictrac_api/tictrac/insights'
+alias tests='./manage.py test tictrac/insights/tests'
+alias notes='cd ~/Dropbox/Home/Notes'
+alias dotfiles='cd ~/Dropbox/Home/dotfiles'
+
+# Files shortcuts
+alias vim='mvim -v'
+alias zh='vim ~/.zshrc'
+alias vimrc='vim ~/.vimrc'
+
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`

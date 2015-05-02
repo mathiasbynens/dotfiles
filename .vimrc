@@ -1,7 +1,7 @@
 " Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+" set background=dark
+" colorscheme solarized
+" let g:solarized_termtrans=1
 
 " Make Vim more useful
 set nocompatible
@@ -21,6 +21,8 @@ set gdefault
 set encoding=utf-8 nobomb
 " Change mapleader
 let mapleader=","
+" Remap Esc to jj
+:imap jj <Esc>
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
@@ -49,7 +51,8 @@ set cursorline
 " Make tabs as wide as two spaces
 set tabstop=2
 " Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set lcs=tab:▸\ ,trail:·,nbsp:_
+" set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
 " Highlight searches
 set hlsearch
