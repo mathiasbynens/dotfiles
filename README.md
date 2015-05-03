@@ -6,7 +6,15 @@
 
 ### Using Git and the bootstrap script
 
-You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
+You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder. To generate a symlink here is the command that you have to enter:
+
+```bash
+ln -sfhv ~/Dropbox/Home/dotfiles/.zshrc ~
+ln -sfhv ~/Dropbox/Home/dotfiles/.vimrc ~
+ln -sfhv ~/Dropbox/Home/dotfiles/.functions ~
+ln -sfhv ~/Dropbox/Home/dotfiles/.aliases ~
+ln -sfhv ~/Dropbox/Home/dotfiles/.exports ~
+```
 
 ```bash
 git clone https://github.com/mathiasbynens/dotfiles.git && cd dotfiles && source bootstrap.sh
