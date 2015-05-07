@@ -1,5 +1,5 @@
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+export PATH="node_modules/.bin:$HOME/bin:$PATH";
 
 # Make vim the default editor
 export EDITOR="vim";
