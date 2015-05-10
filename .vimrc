@@ -1,5 +1,5 @@
 " ========================================================================
-" Vundle & Plugins 
+" Vundle & Plugins
 " ========================================================================
 set nocompatible " Required by vundle
 filetype off     " Required by vundle
@@ -36,17 +36,119 @@ Plugin 'nanotech/jellybeans.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-"================================================================================
+"==============================================================================
 
 
 " ---------------------------------------------
-" Mapping
+" Mappings
 " ---------------------------------------------
 
-
-let mapleader=","   " Change mapleader
+let mapleader=","   " Set leader to ,
 " Remap Esc to jj
-:imap jj <Esc>      
+:imap jj <Esc>
+
+" -----------------------
+" Unmapped While Learning
+" -----------------------
+
+" No-op ^ and $ while learning H and L
+noremap ^ <nop>
+noremap $ <nop>
+nnoremap <leader>sc <nop>
+
+" ---------------
+" Regular Mappings
+" ---------------
+
+" Use ; for : in normal and visual mode, less keystrokes
+nnoremap ; :
+vnoremap ; :
+
+" Yank entire buffer with gy
+nnoremap gy :0,$ y<cr>
+
+" Select entire buffer
+nnoremap vy ggVG
+
+" Make Y behave like other capital commands.
+" Hat-tip http://vimbits.com/bits/11
+nnoremap Y y$
+
+" Just to beginning and end of lines easier. From http://vimbits.com/bits/16
+noremap H ^
+noremap L $
+
+" Create newlines without entering insert mode
+nnoremap go o<Esc>k
+nnoremap gO O<Esc>j
+
+" remap U to <C-r> for easier redo
+" from http://vimbits.com/bits/356
+nnoremap U <C-r>
+
+" ---------------
+" Window Movement
+" ---------------
+" nnoremap <silent> gh :WriteBufferIfNecessary<CR>:wincmd h<CR>
+" nnoremap <silent> gj :WriteBufferIfNecessary<CR>:wincmd j<CR>
+" nnoremap <silent> gk :WriteBufferIfNecessary<CR>:wincmd k<CR>
+" nnoremap <silent> <M-k> :wincmd k<CR>
+" nnoremap <silent> gl :WriteBufferIfNecessary<CR>:wincmd l<CR>
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+"   4 Window Splits
+"
+"   -----------------
+"   g1 | g2 | g3 | g4
+"   -----------------
+nnoremap <silent> g1 :WriteBufferIfNecessary<CR>:wincmd t<CR>
+nnoremap <silent> g2 :WriteBufferIfNecessary<CR>:wincmd t<bar>:wincmd l<CR>
+nnoremap <silent> g3 :WriteBufferIfNecessary<CR>:wincmd t<bar>:wincmd l<bar>
+      \:wincmd l<CR>
+nnoremap <silent> g4 :WriteBufferIfNecessary<CR>:wincmd b<CR>
+
+" Previous Window
+nnoremap <silent> gp :wincmd p<CR>
+" Equal Size Windows
+nnoremap <silent> g= :wincmd =<CR>
+" Swap Windows
+nnoremap <silent> gx :wincmd x<CR>
+
+" ---------------
+" Leader Mappings
+" ---------------
+
+" Clear search
+noremap <silent><leader>/ :nohls<CR>
+
+" Toggle spelling mode with ,s
+nnoremap <silent> <leader>s :set spell!<CR>
+
+" Quickly switch to last buffer
+nnoremap <leader>, :e#<CR>
+
+" Underline the current line with '-'
+nnoremap <silent> <leader>ul :t.\|s/./-/\|:nohls<cr>
+
+" Underline the current line with '='
+nnoremap <silent> <leader>uul :t.\|s/./=/\|:nohls<cr>
+
+" Surround the commented line with lines.
+"
+" Example:
+"          # Test 123
+"          becomes
+"          # --------
+"          # Test 123
+"          # --------
+nnoremap <silent> <leader>cul :normal "lyy"lpwvLr-^"lyyk"lP<cr>
+
+" Split window vertically or horizontally *and* switch to the new split!
+nnoremap <silent> <leader>hs :split<Bar>:wincmd j<CR>
+nnoremap <silent> <leader>vs :vsplit<Bar>:wincmd l<CR>
 
 " Using the built-in explore function
 map <leader>k :Explore<CR>
@@ -59,7 +161,7 @@ let g:newtr_liststyle=3
 " ---------------
 " Color
 " ---------------
-set background=dark
+" set background=dark
 colorscheme jellybeans
 " Force 256 color mode if available
 set t_Co=256
@@ -164,7 +266,7 @@ set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,
   \rake-pipeline-*
 
 " ---------------
-" Status Line 
+" Status Line
 " ---------------
 
 " Vim Airline config
@@ -216,7 +318,7 @@ set complete=.,w,b,u,U
 
 
 " ---------------------------------------------
-" Additional Useful commands 
+" Additional Useful commands
 " ---------------------------------------------
 
 " ---------------
