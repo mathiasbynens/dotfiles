@@ -16,7 +16,11 @@ plugins=(git)
 
 # Path configuration
 export PATH="/usr/local/bin:/usr/local/share/python:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin"
-export PATH=/Users/mickaellegal/Dropbox/.tools:$PATH
+export PATH=~/Dropbox/.tools:$PATH
+export WORKON_HOME=$HOME/.virtualenvs
+
+# Setting my default editor to vim
+export EDITOR=vim
 
 # Save a ton of history
 HISTSIZE=10000

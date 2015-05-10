@@ -18,6 +18,7 @@ alias cp='cd ~/Dropbox/Work/Tictrac/Projects/automated_insights/tictrac/tictrac_
 alias tests='./manage.py test tictrac/insights/tests'
 alias notes='cd ~/Dropbox/Home/Notes'
 alias dotfiles='cd ~/Dropbox/Home/dotfiles'
+alias kaggle='cd ~/Dropbox/Home/Data-Science/Kaggle'
 
 # Files shortcuts
 alias vim='mvim -v'

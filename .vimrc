@@ -18,8 +18,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
-Plugin 'ddollar/nerdcommenter'
+Plugin 'tomtom/tcomment_vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'plasticboy/vim-markdown'
@@ -28,9 +29,12 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'honza/vim-snippets'
+Plugin 'mileszs/ack.vim'
 
 " Colors
 Plugin 'nanotech/jellybeans.vim'
+
+colorscheme jellybeans
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -144,3 +148,49 @@ endif
 
 " Toggle NERDTree
 map <leader>n :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
+
+" Vim Airline config
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'jellybeans'
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+let g:airline_detect_modified = 1
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#hunks#enabled = 0
+" let g:airline_mode_map = {
+"       \ 'n'  : 'N',
+"       \ 'i'  : 'I',
+"       \ 'R'  : 'R',
+"       \ 'v'  : 'V',
+"       \ 'V'  : 'VL',
+"       \ 'c'  : 'CMD',
+"       \ '' : 'VB',
+"       \ }
+" Show the current working directory folder name
+let g:airline_section_b = '%{substitute(getcwd(), ".*\/", "", "g")} '
+" Just show the file name
+let g:airline_section_c = '%t'
+let g:airline_section_y = ''
+let g:airline_section_z = '%3p%% %#__accent_bold#%4l%#__restore__#:%3'
+let g:airline_section_z = '%3p%% %{substitute(line("."), "\\v(\\d)((\\d\\d\\d)+\\d@!)@=", "\\1,", "g")}|%{substitute(line("$"), "\\v(\\d)((\\d\\d\\d)+\\d@!)@=", "\\1,", "g")}'
+
