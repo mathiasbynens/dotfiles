@@ -1,0 +1,133 @@
+#!/bin/bash
+#
+# This is a git extension that merges a pull request or topic branch via
+# rebasing so as to avoid a merge commit.
+#
+# Copyright 2015 Bazaarvoice, Inc. Licensed under Apache 2.0
+# http://www.apache.org/licenses/LICENSE-2.0
+
+project_root=`echo $(git rev-parse --show-toplevel)`
+# This lockfile exists primarily so that other automation, such as file change
+# monitoring, can react to the fact that this process is running.
+lockfile=$project_root/.git-land-in-progress
+touch $lockfile
+
+function exit_and_cleanup() {
+  rm -f $lockfile
+  exit $1
+}
+
+function usage() {
+  echo "$1"
+  echo ""
+  echo "Usage: git land [<remote>] <pull request number>[:<target branch>]"
+  echo "       git land [<remote>] <branch>[:<target branch>]"
+  echo ""
+  echo " <remote>: the remote repo (default: origin)"
+  echo " <pull request number>: a pull request to merge and close"
+  echo " <branch>: a branch to merge and close"
+  echo " <target branch>: the branch to merge to (default: master)"
+  echo ""
+  echo "Examples:"
+  echo "  git land origin 23:master"
+  echo "  git land my-feature"
+  echo "  git land my-feature:target-branch"
+  echo ""
+  exit_and_cleanup 1
+}
+
+
+args=()
+# Parse args
+while [[ $# > 0 ]]; do
+  arg="$1"
+
+  case $arg in
+    *)
+      args[${#args[@]}]=$arg
+      shift
+      ;;
+  esac
+done
+
+# set upstream remote, defaulting to origin
+remote=$(git config git-land.remote)
+if [ -z "$remote" ]; then
+  remote='origin'
+fi
+
+# set target branch, defaulting to master
+target_branch=$(git config git-land.target)
+if [ -z "$target_branch" ]; then
+  target_branch='master'
+fi
+
+merge_branch=""
+
+case ${#args[@]} in
+  0)
+    usage "specified no args"
+    ;;
+  1)
+    merge_branch=${args[0]}
+    ;;
+  2)
+    remote=${args[0]}
+    merge_branch=${args[1]}
+    ;;
+  *)
+    usage "too many args"
+    ;;
+esac
+
+# the branch specifier is source:target, but you can also just say source for short,
+# in which case, target defaults to "master"
+if [[ $merge_branch =~ ^[^:]+:[^:]+$ ]]; then
+  branches=($(echo $arg | tr ':' '\n')) # split on ':' into an array
+  merge_branch=${branches[0]}
+  target_branch=${branches[1]}
+fi
+
+# set merge branch if merging a PR
+if [[ $merge_branch =~ ^[0-9]+$ ]]; then
+  pr=$merge_branch
+  merge_branch="$remote/pr/$pr"
+fi
+
+read -r -p "Are you sure you want to merge $merge_branch into $remote/$target_branch? [Y/n] " response
+if [[ ! ($response = '' || $response =~ ^([yY][eE][sS]|[yY])$) ]]; then
+  exit_and_cleanup 1
+fi
+
+# sync local $target_branch with latest on github
+if ! (git checkout $target_branch && git fetch $remote && git reset --hard $remote/$target_branch); then
+  echo "Could not sync local $target_branch with main repo"
+  exit_and_cleanup $?
+fi
+
+# rebase and squash
+if ! (git checkout $merge_branch && git rebase -i $target_branch); then
+  echo "Could not checkout or rebase $merge_branch on $target_branch"
+  exit_and_cleanup $?
+fi
+
+# append github tag to close PR if we can and the last commit message omits it
+if [ -n "$pr" ]; then
+  commit_message=$(git log -1 --pretty=%B)
+
+  if [[ ! $commit_message =~ \[closes?\ \#"$pr"\] ]]; then
+    if ! (git commit -n --amend -m "$commit_message"$'\n\n'"[close #$pr]"); then
+      echo "Could not append commit message tag to close #$pr"
+    fi
+  fi
+fi
+
+# merge the PR and push
+head=$(git rev-parse HEAD)
+if ! (git checkout $target_branch && git merge --ff-only $head); then
+  echo "Could not fast-forward merge $merge_branch into $target_branch"
+  exit_and_cleanup $?
+fi
+
+git push $remote $target_branch
+exit_and_cleanup $?
