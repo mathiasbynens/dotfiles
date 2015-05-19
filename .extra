@@ -1,5 +1,5 @@
 # Git credentials
-# Not in the repository
+# Not in the repository, to prevents others from accidentally using it
 GIT_AUTHOR_NAME="Jason Lea-Jones"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 git config --global user.name "$GIT_AUTHOR_NAME"
