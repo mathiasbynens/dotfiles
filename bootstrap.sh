@@ -5,8 +5,16 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin master;
 
 function doIt() {
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
-		--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
+	ls -a | awk '!/^.$/ && !/^..$/        \
+		&& !/^.git$/                      \
+		&& !/^.DS_Store$/                 \
+		&& !/^bootstrap.sh$/              \
+		&& !/^README.md$/                 \
+		&& !/^LICENSE-MIT.txt$/           \
+		' | xargs -I {} sh -c '           \
+			rm -rf ~/{} 2> /dev/null;
+			ln -s $(pwd)/{} ~/
+		'
 	source ~/.bash_profile;
 }
 
