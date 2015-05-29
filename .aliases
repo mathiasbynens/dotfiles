@@ -115,3 +115,4 @@ alias bowerprune="bower list | grep extraneous | sed -E 's/^.{4}//' | sed -E 's/
 alias gh=github
 alias onport="lsof -i -P | grep $1"
 
+alias up="g ph && gh -p"
