@@ -1,3 +1,5 @@
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
