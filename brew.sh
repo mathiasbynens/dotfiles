@@ -100,5 +100,19 @@ brew install tree
 brew install webkit2png
 brew install zopfli
 
+#install all programms
+#https://github.com/caskroom/homebrew-cask
+#brew install caskroom/cask/brew-cask
+#brew cask install google-chrome
+#brew cask firefox
+#brew cask virtualbox
+#brew cask vagrant-manager
+#brew cask keepassx
+#brew cask phpstorm
+#brew cask spotify
+#brew cask transmit
+#brew cask sublime-text
+#brew cask filezilla
+
 # Remove outdated versions from the cellar.
 brew cleanup
