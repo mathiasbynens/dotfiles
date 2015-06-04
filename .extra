@@ -1,5 +1,4 @@
 # Git credentials
-# Not in the repository, to prevent people from accidentally committing under my name
 GIT_AUTHOR_NAME="Jason Kühn"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 git config --global user.name "$GIT_AUTHOR_NAME"
