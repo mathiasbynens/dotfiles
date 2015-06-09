@@ -49,3 +49,6 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 # Run the git autocomplete script
 source ~/bin/git-completion.bash;
+
+# Add Drush to the PATH
+export PATH="$HOME/.composer/vendor/bin:$PATH"
