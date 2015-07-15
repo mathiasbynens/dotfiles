@@ -72,3 +72,9 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+if [ ! -d "$HOME/.nvm" ]; then
+	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+fi
+
+source ~/.nvm/nvm.sh
