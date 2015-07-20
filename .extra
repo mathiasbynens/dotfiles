@@ -2,10 +2,7 @@
 alias ipy='ipython qtconsole --ConsoleWidget.font_family="Consolas" --ConsoleWidget.font_size=13 --colors=linux --matplotlib'
 
 # Setup commandline proxy
-_proxy="127.0.0.1:16888"
-_noproxy="localhost,*.sina.com.cn"
+_proxy="http://127.0.0.1:16888"
+_noproxy="localhost,.sina.com.cn"
 alias ssledge="export http_proxy=${_proxy} https_proxy=${_proxy} no_proxy=${_noproxy}"
 alias unproxy="unset http_proxy https_proxy"
-
-
-
