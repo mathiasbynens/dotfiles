@@ -114,6 +114,12 @@ defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 # Disable Notification Center and remove the menu bar icon
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
+# Set banner notification time to ten seconds
+defaults write com.apple.notificationcenterui bannerTime 10
+
+# Reset banner notification time to system default
+#defaults delete com.apple.notificationcenterui bannerTime
+
 # Disable smart quotes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
@@ -226,6 +232,9 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
+
+# Don't show files and/or folders on desktop (they're still available via Finder and Desktop folder)
+#defaults write com.apple.finder CreateDesktop -bool false
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
@@ -344,13 +353,17 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
+# Enables two-finger gesture to display all windows which belong to an application
+# Usage: Swipe with two fingers (from bottom to top) over a Dock app icon to display miniatures of open app windows
+defaults write com.apple.dock scroll-to-open -bool true
+
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 # Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 36
 
-# Change minimize/maximize window effect
+# Change minimize/maximize window effect, possible values: suck, genie, scale
 defaults write com.apple.dock mineffect -string "scale"
 
 # Minimize windows into their application’s icon
@@ -402,6 +415,12 @@ defaults write com.apple.dock showhidden -bool true
 
 # Reset Launchpad, but keep the desktop wallpaper intact
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
+
+# Reset Launchpad to its defaults (basically the same as above)
+#defaults write com.apple.dock ResetLaunchPad -bool true
+
+# Reset Dock to its defaults
+#defaults delete com.apple.dock
 
 # Add iOS Simulator to Launchpad
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app" "/Applications/iOS Simulator.app"
@@ -680,6 +699,13 @@ defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 
 # Enable Debug Menu in the Mac App Store
 defaults write com.apple.appstore ShowDebugMenu -bool true
+
+###############################################################################
+# Dictionary                                                                  #
+###############################################################################
+
+# Opens single dictionary window (independently how many words were marked for look-up)
+defaults write com.apple.Dictionary ProhibitNewWindowForRequest -bool true
 
 ###############################################################################
 # Messages                                                                    #
