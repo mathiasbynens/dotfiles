@@ -244,3 +244,13 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+
+function update() {
+	local softwareupdate="softwareupdate -i -a;"
+	local brew="brew update; brew upgrade --all; brew cleanup;"
+	local npm="npm install npm -g; npm update -g;"
+	local gem="gem update --system; gem update;"
+	sudo sh -c "$softwareupdate"; sh -c "$brew$npm"; sudo sh -c "$gem"
+}
