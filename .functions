@@ -244,3 +244,16 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+
+function update() {
+	local softwareupdate="softwareupdate -i -a;"
+	local brew="brew update; brew upgrade --all; brew cleanup;"
+	local cask="brew cask update; brew cask cleanup;"
+	local n="n io latest; n latest;"
+	local npm="npm update -g;"
+	local pip="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U;"
+	local gem="gem update;"
+	sudo sh -c "$softwareupdate"; sh -c "$brew$cask$n$npm$pip"; sudo sh -c "$gem"
+}
