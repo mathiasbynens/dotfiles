@@ -250,10 +250,7 @@ function tre() {
 function update() {
 	local softwareupdate="softwareupdate -i -a;"
 	local brew="brew update; brew upgrade --all; brew cleanup;"
-	local cask="brew cask update; brew cask cleanup;"
-	local n="n io latest; n latest;"
-	local npm="npm update -g;"
-	local pip="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U;"
-	local gem="gem update;"
-	sudo sh -c "$softwareupdate"; sh -c "$brew$cask$n$npm$pip"; sudo sh -c "$gem"
+	local npm="npm install npm -g; npm update -g;"
+	local gem="gem update --system; gem update;"
+	sudo sh -c "$softwareupdate"; sh -c "$brew$npm"; sudo sh -c "$gem"
 }
