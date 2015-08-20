@@ -14,6 +14,9 @@ touch $lockfile
 
 function exit_and_cleanup() {
   rm -f $lockfile
+  if [[ $# == 2 ]]; then
+    printf "$2"
+  fi
   exit $1
 }
 
@@ -100,16 +103,15 @@ if [[ ! ($response = '' || $response =~ ^([yY][eE][sS]|[yY])$) ]]; then
 fi
 
 # sync local $target_branch with latest on github
-if ! (git checkout $target_branch && git fetch $remote && git reset --hard $remote/$target_branch); then
-  echo "Could not sync local $target_branch with main repo"
-  exit_and_cleanup $?
-fi
+(git checkout $target_branch && \
+  git fetch $remote && \
+  git reset --hard $remote/$target_branch) || \
+    exit_and_cleanup $? "Could not sync local $target_branch with main repo"
 
 # rebase and squash
-if ! (git checkout $merge_branch && git rebase -i $target_branch); then
-  echo "Could not checkout or rebase $merge_branch on $target_branch"
-  exit_and_cleanup $?
-fi
+(git checkout $merge_branch && \
+  git rebase -i $target_branch) || \
+    exit_and_cleanup $? "Could not checkout or rebase $merge_branch on $target_branch"
 
 # append github tag to close PR if we can and the last commit message omits it
 if [ -n "$pr" ]; then
@@ -124,10 +126,9 @@ fi
 
 # merge the PR and push
 head=$(git rev-parse HEAD)
-if ! (git checkout $target_branch && git merge --ff-only $head); then
-  echo "Could not fast-forward merge $merge_branch into $target_branch"
-  exit_and_cleanup $?
-fi
+(git checkout $target_branch && \
+  git merge --ff-only $head) || \
+    exit_and_cleanup $? "Could not fast-forward merge $merge_branch into $target_branch"
 
 git push $remote $target_branch
 exit_and_cleanup $?
