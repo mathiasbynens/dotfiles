@@ -139,3 +139,44 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+
+# CUSTOM SETTINGS
+alias bashconfig='mvim ~/.zshrc'
+alias vimconfig='mvim ~/.vimrc'
+
+#alias vim='mvim'
+alias tmux="TERM=screen-256color-bce tmux"
+alias tnew="tmux new -s "
+alias tls="tmux ls"
+alias ta="tmux a -t "
+alias tkill="tmux kill-session -t "
+
+#alias vim='mvim'
+
+# Programs shortcuts
+alias todo='mvim ~/Todo/work.org'
+alias sync_todo='rsync -azP ~/Todo/* samir@vps.samirboulil.com:~/Todo/'
+alias mongodb_start='brew services start mongodb'
+alias postgres_start='brew services start postgres'
+alias mysql_start='mysql.server start'
+
+# Servers
+#alias back01='ssh lengow@95.131.137.18'
+alias scron01='ssh lengow@95.131.141.171'
+alias ssh-index1='ssh lengow@95.131.141.169'
+alias ssh-index2='ssh lengow@95.131.141.170'
+
+alias arkade='ssh -p 2222 samirboulil@arkade.info -t tmux a'
+
+alias wks='cd /Users/samir.boulil/Workspace/'
+alias desk='cd /Users/samir.boulil/Desktop'
+alias pmp_3='cd /Users/samir.boulil/Workspace/pyMarketPlaces_3 && workon pmp_3'
+# V3
+alias pmp='cd /Users/samir.boulil/Workspace/pyMarketPlaces && workon pmp_4'
+alias sol='cd /Users/samir.boulil/Workspace/solution_v2/lengow'
+alias pma='cd /Users/samir.boulil/Workspace/pocketMoney/Api && workon PM'
+alias pmc='cd /Users/samir.boulil/Workspace/pocketMoney/Client'
+alias bing='cd /Users/samir.boulil/Workspace/bingShopping'
+
+
