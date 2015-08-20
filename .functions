@@ -244,3 +244,92 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+
+# Open mirakl reports of sync_products
+# url: http://localhost:8000/<marketplace>/feed/<feed_id>/reports/product/<import_id>/
+# usage: report <products|offers> <marketplace> <feed_id> <import_id>
+function mirakl_report () {
+    if [ $# -ne 4 ] ; then
+        echo "usage : report <products|offers> <marketplace> <feed_id> <import_id>"
+    fi
+    open "http://localhost:8000/$2/feed/$3/reports/$1/$4/"
+}
+
+# Bash utils
+function dl()
+{
+    for url in $@; do
+        date=`date +"%H-%M_%d-%m"`
+        filename="/Users/samir.boulil/Desktop/tmp_$count_$date"
+        curl -L "$url" -o "$filename"
+        if [ -e $filename ] ; then
+            vim $filename
+        fi
+    done
+}
+
+function cnt {
+    #echo "${${@/https/http}/com/local}" | pbcopy
+    open "${${@/https/http}/com/local}"
+}
+
+#
+# Defines transfer alias and provides easy command line file and folder sharing.
+#
+# Authors:
+#   Remco Verhoef <remco@dutchcoders.io>
+#
+#curl --version 2&>1 > /dev/null
+#if [ $? -ne 0 ]; then
+#  echo "Could not find curl."
+#  return 1
+#fi
+
+transfer() { 
+    # check arguments
+    if [ $# -eq 0 ]; 
+    then 
+        echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"
+        return 1
+    fi
+
+    # get temporarily filename, output is written to this file show progress can be showed
+    tmpfile=$( mktemp -t transferXXX )
+    
+    # upload stdin or file
+    file=$1
+
+    if tty -s; 
+    then 
+        basefile=$(basename "$file" | sed -e 's/[^a-zA-Z0-9._-]/-/g') 
+
+        if [ ! -e $file ];
+        then
+            echo "File $file doesn't exists."
+            return 1
+        fi
+        
+        if [ -d $file ];
+        then
+            # zip directory and transfer
+            zipfile=$( mktemp -t transferXXX.zip )
+            cd $(dirname $file) && zip -r -q - $(basename $file) >> $zipfile
+            curl --progress-bar --upload-file "$zipfile" "https://transfer.sh/$basefile.zip" >> $tmpfile
+            rm -f $zipfile
+        else
+            # transfer file
+            curl --progress-bar --upload-file "$file" "https://transfer.sh/$basefile" >> $tmpfile
+        fi
+    else 
+        # transfer pipe
+        curl --progress-bar --upload-file "-" "https://transfer.sh/$file" >> $tmpfile
+    fi
+   
+    # cat output link
+    cat $tmpfile
+
+    # cleanup
+    rm -f $tmpfile
+}
+
