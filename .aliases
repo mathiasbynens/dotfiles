@@ -173,7 +173,7 @@ alias wks='cd /Users/samir.boulil/Workspace/'
 alias desk='cd /Users/samir.boulil/Desktop'
 alias pmp_3='cd /Users/samir.boulil/Workspace/pyMarketPlaces_3 && workon pmp_3'
 # V3
-alias pmp='cd /Users/samir.boulil/Workspace/pyMarketPlaces && workon pmp_4'
+alias pmp_4='cd /Users/samir.boulil/Workspace/pyMarketPlaces && workon pmp_4'
 alias sol='cd /Users/samir.boulil/Workspace/solution_v2/lengow'
 alias pma='cd /Users/samir.boulil/Workspace/pocketMoney/Api && workon PM'
 alias pmc='cd /Users/samir.boulil/Workspace/pocketMoney/Client'
