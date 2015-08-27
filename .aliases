@@ -146,7 +146,7 @@ alias bashconfig='mvim ~/.zshrc'
 alias vimconfig='mvim ~/.vimrc'
 
 #alias vim='mvim'
-alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="TERM=screen-256color tmux"
 alias tnew="tmux new -s "
 alias tls="tmux ls"
 alias ta="tmux a -t "
@@ -180,3 +180,4 @@ alias pmc='cd /Users/samir.boulil/Workspace/pocketMoney/Client'
 alias bing='cd /Users/samir.boulil/Workspace/bingShopping'
 
 
+alias m='./manage.py'
