@@ -12,6 +12,9 @@ set mark-symlinked-directories on
 "\e[B": history-search-forward
 "\e[A": history-search-backward
 
+# Allow deleting to previous slash using Ctrl+b
+C-b:unix-filename-rubout
+
 # Do not autocomplete hidden files unless the pattern explicitly begins with a dot
 set match-hidden-files off
 
