@@ -2,11 +2,26 @@
 
 # ~/.osx — https://mths.be/osx
 
-# Ask for the administrator password upfront
-sudo -v
+# Exit at first command with a non-zero status
+#set -e
 
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+# Display commands
+#set -x
+
+# If script executed as the superuser (assumption: using sudo), ...
+if [ "$UID" -ne 0 ]; then
+    # ... keep-alive: update existing `sudo` time stamp until `.osx` has finished
+    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+fi
+
+# Skip items requiring sudo if script not executed as the superuser
+sudo() {
+    if [ "$UID" -ne 0 ]; then
+        echo "Dropping command 'sudo $@'. Execute as the superuser - using sudo - in order not to drop command." >&2
+    else
+        "$@"
+    fi
+}
 
 ###############################################################################
 # General UI/UX                                                               #
