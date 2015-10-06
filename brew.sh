@@ -31,6 +31,9 @@ brew install gnu-sed --with-default-names
 brew install bash
 brew tap homebrew/versions
 brew install bash-completion2
+# Adding Bash 4 to shell
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+chsh -s /usr/local/bin/bash
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
