@@ -22,6 +22,35 @@ else # OS X `ls`
 	colorflag="-G"
 fi
 
+# Unix octal permision table, just a reminder.
+# if you intend to mix your own, just be careful
+# of who can write and execute file
+   # rwx 7
+   # rw- 6
+   # r-x 5
+   # r-- 4
+   # -wx 3
+   # -w- 2
+   # --x 1
+   # --- 0
+# Change ownership and permission of the current directory recusively
+alias myfiles="chown -R  `whoami` ./ && chmod -R 700 ./"
+
+#ghost files, sudo you will need sudo to reset permission 
+alias goshfiles="chmod -R 000"
+
+# change files or directory permission mode to to all read and ececute
+# permission good for scripts
+alias xxxfiles="chmod -R 755"
+
+# change files or directory permission mode to all read 
+alias rrrfiles="chmod -R 744"
+
+# change files or directory permission mode to to all read and
+# also allowing the file ower group to write
+alias rwrfiles="chmod -R 764"
+
+
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
 
