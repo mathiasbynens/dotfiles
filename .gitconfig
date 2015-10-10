@@ -149,6 +149,13 @@
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
+[user]
+	name = Ryan McDermott
+	email = ryantmcdermott@gmail.com
+[credential]
+	helper = osxkeychain
+
+
 # URL shorthands
 
 [url "git@github.com:"]
