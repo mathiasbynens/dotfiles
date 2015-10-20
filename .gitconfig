@@ -1,9 +1,13 @@
 [alias]
+  # Branch shorthand
+  br = branch
 
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	# log shorthand for hist pretty format with date and graph
+	# (This is original) View abbreviated SHA, description, and history graph of the latest 20 commits
+  # l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  l = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
-	# View the current working tree status using the short format
+	# Status shorthand
 	s = status -s
 
 	# Show the diff between the latest commit and the current state
@@ -18,8 +22,13 @@
 	# Clone a repository including all submodules
 	c = clone --recursive
 
-	# Commit all changes
+	# Commit all changes shorthand
 	ca = !git add -A && git commit -av
+  # Commit specific change shorthand
+  co = commit
+
+  # Checkout branch shorthand
+  ch = checkout
 
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -140,6 +149,8 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+[http]
+
 [push]
 
 	# Use the Git 1.x.x default to avoid errors on machines with old Git
@@ -170,3 +181,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[user]
+	name = Ryan Goodwin
+	email = ryan.goodwin@ge.com

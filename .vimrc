@@ -46,6 +46,8 @@ set number
 syntax on
 " Highlight current line
 set cursorline
+" Set paste mode on
+set paste
 " Make tabs as wide as two spaces
 set tabstop=2
 " Show “invisible” characters

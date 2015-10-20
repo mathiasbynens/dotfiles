@@ -1,5 +1,5 @@
 # Make vim the default editor.
-export EDITOR='vim';
+export EDITOR=atom
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY_FILE=~/.node_history;
@@ -15,6 +15,7 @@ export HISTCONTROL='ignoreboth';
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
+export LC_CTYPE='en_US.UTF-8';
 
 # Highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}";
@@ -24,3 +25,25 @@ export MANPAGER='less -X';
 
 # Always enable colored `grep` output.
 export GREP_OPTIONS='--color=auto';
+
+# Java home declaration
+export JAVA_HOME=/Library/Java/Home
+
+# Proxy exports for GE
+export http_proxy="http://http-proxy.corporate.ge.com:80"
+export https_proxy="http://http-proxy.corporate.ge.com:80"
+export no_proxy="10.*, 127.0.0.1, localhost, .ge.com"
+export all_proxy=$http_proxy
+
+# Unset all GE proxies
+  #export http_proxy=
+  #export https_proxy=
+  #export no_proxy=
+  #export all_proxy=
+
+# Exports for development environment setup @GE
+export DYLD_INSERT_LIBRARIES=""
+
+# Custom exports for chef cookbook development
+export USERNAME_ALIAS="goody"
+export USER_EMAIL="ryan.goodwin@ge.com"
