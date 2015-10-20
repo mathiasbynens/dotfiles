@@ -8,7 +8,7 @@
   l = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
 	# Status shorthand
-	s = status -s
+	st = status -s
 
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -22,7 +22,7 @@
 	# Clone a repository including all submodules
 	c = clone --recursive
 
-	# Commit all changes shorthand
+	# Add all changes and commit shorthand
 	ca = !git add -A && git commit -av
   # Commit specific change shorthand
   co = commit
