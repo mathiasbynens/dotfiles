@@ -246,7 +246,7 @@ function tre() {
 }
 
 # clear proxy parameters
-function clearproxy(){
+function proxyclear(){
 	export http_proxy=
 	export HTTP_PROXY=
 	export https_proxy=
@@ -256,7 +256,7 @@ function clearproxy(){
 }
 
 # set proxy per GE environment
-function geproxy(){
+function proxyge(){
 	export http_proxy="http://http-proxy.corporate.ge.com:80"
 	export HTTP_PROXY="http://http-proxy.corporate.ge.com:80"
 	export https_proxy="http://http-proxy.corporate.ge.com:80"
