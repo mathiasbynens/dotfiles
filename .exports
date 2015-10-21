@@ -29,21 +29,9 @@ export GREP_OPTIONS='--color=auto';
 # Java home declaration
 export JAVA_HOME=/Library/Java/Home
 
-# Proxy exports for GE
-export http_proxy="http://http-proxy.corporate.ge.com:80"
-export https_proxy="http://http-proxy.corporate.ge.com:80"
-export no_proxy="10.*, 127.0.0.1, localhost, .ge.com"
-export all_proxy=$http_proxy
-
-# Unset all GE proxies
-  #export http_proxy=
-  #export https_proxy=
-  #export no_proxy=
-  #export all_proxy=
-
 # Exports for development environment setup @GE
 export DYLD_INSERT_LIBRARIES=""
 
-# Custom exports for chef cookbook development
+# Custom exports for GE chef cookbook development
 export USERNAME_ALIAS="goody"
 export USER_EMAIL="ryan.goodwin@ge.com"

@@ -245,7 +245,7 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
-# set proxy per environment
+# clear proxy parameters
 function clearproxy(){
 	export http_proxy=
 	export HTTP_PROXY=
@@ -253,4 +253,14 @@ function clearproxy(){
 	export HTTPS_PROXY=
 	export no_proxy=
 	export all_proxy=
+}
+
+# set proxy per GE environment
+function geproxy(){
+	export http_proxy="http://http-proxy.corporate.ge.com:80"
+	export HTTP_PROXY="http://http-proxy.corporate.ge.com:80"
+	export https_proxy="http://http-proxy.corporate.ge.com:80"
+	export HTTPS_PROXY="http://http-proxy.corporate.ge.com:80"
+	export no_proxy="10.*, 127.0.0.1, localhost, .ge.com"
+	export all_proxy=$http_proxy
 }
