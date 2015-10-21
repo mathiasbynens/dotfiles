@@ -244,3 +244,13 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# set proxy per environment
+function clearproxy(){
+	export http_proxy=
+	export HTTP_PROXY=
+	export https_proxy=
+	export HTTPS_PROXY=
+	export no_proxy=
+	export all_proxy=
+}

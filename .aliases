@@ -22,10 +22,10 @@ else # OS X `ls`
 	colorflag="-G"
 fi
 
-# Source zsh
-alias zshconfig="atom ~/.zshrc"
-alias zshsource="source ~/.zshrc"
- #alias ohmyzsh="mate ~/.oh-my-zsh"
+# zsh and dotfiles
+alias zshc="a ~/.zshrc"
+alias zshs="source ~/.zshrc"
+alias dotfiles="a ~/projects/dotfiles/"
 
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
