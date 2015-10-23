@@ -170,3 +170,6 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[gitreview]
+	username = bertdiwa
