@@ -143,3 +143,16 @@ alias reload="exec $SHELL -l"
 # Easily switch between `io.js` and `Node.js`
 alias use-iojs="brew unlink node && brew link --force iojs"
 alias use-node="brew unlink iojs && brew link --force node"
+
+# My Dev specific aliases
+alias tetc="tox -e test_cases "
+alias temt="tox -e meta_tests"
+
+# My git alias overrides
+alias gs="git status -s"
+alias ga="git add "
+alias gb="git branch "
+alias gd="git diff "
+alias gco="git checkout "
+alias gta="git ta"
+alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'

@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+
+echo "Setting up vim dotfile and plugins"
+
+dotfiles_repo=$HOME/projects/dotfiles
+
+vimrc_source_path=$dotfiles_repo/vim/vimrc
+vimrc_symlink_path=$HOME/.vimrc
+vimrc_backup_path=$HOME/.vimrc_old
+
+if ! [ "$(readlink $vimrc_symlink_path)" = "$vimrc_source_path" ]; then
+
+    if [ -e $vimrc_symlink_path ]; then
+        echo "Moving current $vimrc_symlink_path to $vimrc_backup_path"
+        mv $vimrc_symlink_path $vimrc_backup_path
+    fi
+
+    echo "Symlinking $vimrc_symlink_path to $vimrc_source_path"
+    ln -s $vimrc_source_path $vimrc_symlink_path
+fi
+
+echo "Ensuring vim plugins and docs"
+
+dotvim_path=$HOME/.vim
+bundle_path=$dotvim_path/bundle
+autoload_path=$dotvim_path/autoload
+mkdir -p $bundle_path $autoload_path
+
+# Install pathogen (plugin manager)
+
+pathogen_path=$autoload_path/pathogen.vim
+
+if ! [ -f $pathogen_path ]; then
+    echo "Installing pathogen"
+    curl -LSso $pathogen_path https://tpo.pe/pathogen.vim
+fi
+
+
+# ctrlp plugin
+
+plugin_path=$bundle_path/ctrlp.vim
+
+if ! [ -d $plugin_path ]; then
+    echo "Installing ctrlp"
+    git clone https://github.com/kien/ctrlp.vim.git $plugin_path
+fi
+
+
+# NERDTree plugin
+
+plugin_path=$bundle_path/nerdtree
+
+if ! [ -d $plugin_path ]; then
+    echo "Installing NERDTree"
+    git clone https://github.com/scrooloose/nerdtree.git $plugin_path
+fi
+
+
+# vim-flake8 plugin
+
+plugin_path=$bundle_path/vim-flake8
+
+if ! [ -d $plugin_path ]; then
+    echo "Installing vim-flake8"
+    git clone https://github.com/nvie/vim-flake8 $plugin_path
+fi
+
+pip list | grep flake8 > /dev/null
+
+if [ $? == 1 ]; then
+    echo "Installing flake8"
+    pip install flake8
+fi
+
+
+# Ag plugin
+
+plugin_path=$bundle_path/ag.vim
+
+if ! [ -d $plugin_path ]; then
+    echo "Installing ag.vim"
+    git clone https://github.com/rking/ag.vim $plugin_path
+fi
+
+
+# vim-rpsec plugin
+
+plugin_path=$bundle_path/vim-rspec
+
+if ! [ -d $plugin_path ]; then
+    echo "Installing vim-rspec"
+    git clone https://github.com/thoughtbot/vim-rspec $plugin_path
+fi
+
+
+# surround plugin
+
+plugin_path=$bundle_path/vim-surround
+
+if ! [ -d $plugin_path ]; then
+    echo "Installing vim-surround"
+    git clone https://github.com/tpope/vim-surround $plugin_path
+fi
+
+
+# tagbar plugin
+
+plugin_path=$bundle_path/tagbar
+
+if ! [ -d $plugin_path ]; then
+    echo "Installing tagbar"
+    git clone https://github.com/majutsushi/tagbar $plugin_path
+fi
+
+
+# colorshemes plugin
+
+plugin_path=$bundle_path/vim-colorschemes
+
+if ! [ -d $plugin_path ]; then
+    echo "Installing vim-colorschemes"
+    git clone https://github.com/relaxdiego/vim-colorschemes $plugin_path
+fi
+
+
+
+# Generate the docs for all plugins
+echo "Running 'Helptags' command"
+vim +Helptags +q
