@@ -12,7 +12,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 brew update
 
 # Upgrade any already-installed formulae.
-brew upgrade
+brew upgrade --all
 
 # Install GNU core utilities (those that come with OS X are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
@@ -29,7 +29,8 @@ brew install gnu-sed --with-default-names
 # Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
 # running `chsh`.
 brew install bash
-brew install bash-completion
+brew tap homebrew/versions
+brew install bash-completion2
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
@@ -54,6 +55,7 @@ brew install sfnt2woff-zopfli
 brew install woff2
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
+brew install aircrack-ng
 brew install bfg
 brew install binutils
 brew install binwalk
@@ -66,6 +68,7 @@ brew install hashpump
 brew install hydra
 brew install john
 brew install knock
+brew install netpbm
 brew install nmap
 brew install pngcheck
 brew install socat
@@ -79,8 +82,10 @@ brew install xz
 
 # Install other useful binaries.
 brew install ack
+brew install dark-mode
 #brew install exiv2
 brew install git
+brew install git-lfs
 brew install imagemagick --with-webp
 brew install lua
 brew install lynx
@@ -90,16 +95,10 @@ brew install pv
 brew install rename
 brew install rhino
 brew install speedtest_cli
+brew install ssh-copy-id
 brew install tree
 brew install webkit2png
 brew install zopfli
-
-# Install Node.js. Note: this installs `npm` too, using the recommended
-# installation method.
-brew install node
-
-# Install io.js
-brew install iojs
 
 # Remove outdated versions from the cellar.
 brew cleanup
