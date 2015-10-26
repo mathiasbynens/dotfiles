@@ -60,6 +60,13 @@
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
 
+	# Jim Weirich suggested aliases
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+    t = log --graph --pretty=oneline --abbrev-commit --decorate --color
+    ta = log --graph --pretty=oneline --abbrev-commit --decorate --color --all
+
 	# Merge GitHub pull request on top of the `master` branch
 	mpr = "!f() { \
 		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
