@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+echo "Setting up tmuxinator"
+
+dotfiles_repo=$HOME/dotfiles
+
+source_path=$dotfiles_repo/tmuxinator/yamls
+symlink_path=$HOME/.tmuxinator
+backup_path=$HOME/.tmuxinator_old
+
+if ! [ "$(readlink $symlink_path)" = "$source_path" ]; then
+
+    if [ -e $symlink_path ]; then
+        echo "Moving current $symlink_path to $backup_path"
+        mv $symlink_path $backup_path
+    fi
+
+    echo "Symlinking $symlink_path to $source_path"
+    ln -s $source_path $symlink_path
+fi
+
+gem list | grep tmuxinator > /dev/null
+
+if [ $? == 1 ]; then
+    echo "Installing tmuxinator"
+    gem install tmuxinator
+fi
+
+

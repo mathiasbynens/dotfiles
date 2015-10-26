@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+tmux/setup
+tmuxinator/setup
+ag/setup
+ctags/setup
+vim/setup

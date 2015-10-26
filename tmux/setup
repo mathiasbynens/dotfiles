@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+echo "Setting up tmux"
+
+dotfiles_repo=$HOME/dotfiles
+
+source_path=$dotfiles_repo/tmux/tmux.conf
+symlink_path=$HOME/.tmux.conf
+backup_path=$HOME/.tmux.conf_old
+
+if ! [ "$(readlink $symlink_path)" = "$source_path" ]; then
+
+    if [ -e $symlink_path ]; then
+        echo "Moving current $symlink_path to $backup_path"
+        mv $symlink_path $backup_path
+    fi
+
+    echo "Symlinking $symlink_path to $source_path"
+    ln -s $source_path $symlink_path
+fi

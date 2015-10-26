@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+echo "Setting up Ag (Silver Searcher)"
+
+if ! hash ag 2>/dev/null; then
+
+    echo "Installing Ag"
+
+    platform='unknown'
+    unamestr=$(uname)
+    if [[ "$unamestr" == 'Darwin' ]]; then
+        if hash brew 1>&2>/dev/null; then
+            brew install the_silver_searcher
+        elif hash port 1>&2>/dev/null; then
+            port install the_silver_searcher
+        else
+            echo "ERROR: I don't know what package manager you're using!"
+            exit 1
+        fi
+    elif [[ "$unamestr" == 'Linux' ]]; then
+        if hash apt-get 1>&2>/dev/null; then
+            sudo apt-get -y install silversearcher-ag
+        elif hash yum 1>&2>/dev/null; then
+            sudo yum -y install the_silver_searcher
+        else
+            echo "ERROR: I don't know what package manager you're using!"
+            exit 1
+        fi
+    else
+        echo "ERROR: I don't support installation for this OS yet!"
+        exit 1
+    fi
+
+fi
