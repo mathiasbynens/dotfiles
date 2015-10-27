@@ -5,7 +5,7 @@
 	# log shorthand for hist pretty format with date and graph
 	# (This is original) View abbreviated SHA, description, and history graph of the latest 20 commits
   # l = log --pretty=oneline -n 20 --graph --abbrev-commit
-  # (This is my adaptation for git log)
+  # (This is my personal adaptation for git log taken from git training)
   l = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
 	# Status shorthand
