@@ -24,6 +24,7 @@
 
 	# Add all changes and commit shorthand
 	ca = !git add -A && git commit -av
+
   # Commit specific change shorthand
   co = commit
 
