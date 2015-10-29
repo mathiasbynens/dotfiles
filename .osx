@@ -481,6 +481,13 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 ###############################################################################
+# iTunes                                                                      #
+###############################################################################
+
+# Disable automatic device syncing
+defaults write com.apple.iTunes dontAutomaticallySyncIPods -bool true
+
+###############################################################################
 # Mail                                                                        #
 ###############################################################################
 
