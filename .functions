@@ -264,3 +264,8 @@ function proxyge(){
 	export no_proxy="10.*, 127.0.0.1, localhost, .ge.com"
 	export all_proxy=$http_proxy
 }
+
+# kitchen.local.yml
+function lkl(){
+	cp ~/bin/.kitchen.local.yml .
+}

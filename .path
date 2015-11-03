@@ -1,5 +1,5 @@
 # PATH
-export PATH=$HOME/.gem/ruby/2.2.2/bin:$HOME/.rubies/ruby-2.2.2/lib/ruby/gems/2.2.0/bin:$HOME/.rubies/ruby-2.2.2/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:$HOME/bin:
+export PATH=/usr/local/sbin:$HOME/.gem/ruby/2.2.2/bin:$HOME/.rubies/ruby-2.2.2/lib/ruby/gems/2.2.0/bin:$HOME/.rubies/ruby-2.2.2/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:$HOME/bin:
 
 # PATH for chefdk
 #export PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:$PATH
