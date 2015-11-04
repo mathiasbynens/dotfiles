@@ -147,3 +147,13 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+#Terminal Usability
+#Add two line breaks for better readability
+alias pp="printf \"\\n\";printf \"\\n\""
+
+#Clear terminal and show present working directory path
+alias cpwd="clear;pwd"
+
+#Clear terminal, show present working directory path, list its files and break the line
+alias cplp="clear;pwd;ls;printf \"\\n\""
