@@ -181,3 +181,9 @@ alias bing='cd /Users/samir.boulil/Workspace/bingShopping'
 
 
 alias m='./manage.py'
+
+alias core='cd /Users/samir.boulil/Workspace/lengow_core_project/lengow_core/python && workon core'
+
+alias rebond='ssh lengow@46.19.183.196'
+
+alias docker_start='. "/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh"'

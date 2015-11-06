@@ -18,7 +18,7 @@ Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 "
 " Python
 "Plugin 'davidhalter/jedi-vim'
@@ -29,6 +29,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'chrisbra/csv.vim'
 Plugin 'jceb/vim-orgmode'
 Plugin 'google/yapf'
+Plugin 'elzr/vim-json'
+
 " Plugin 'Raimondi/delimitMate'
 " Plugin 'tpope/vim-commentary'
 " Plugin 'tpope/vim-unimpaired'
@@ -73,7 +75,6 @@ Plugin 'altercation/vim-colors-solarized'
 " Plugin 'digitaltoad/vim-jade'
 " Plugin 'juvenn/mustache.vim'
 " Plugin 'moll/vim-node'
-" Plugin 'elzr/vim-json'
 " Plugin 'leafgarland/typescript-vim'
 " Plugin 'mxw/vim-jsx'
 " Plugin 'cakebaker/scss-syntax.vim'
@@ -88,7 +89,7 @@ Plugin 'altercation/vim-colors-solarized'
 " Plugin 'timcharper/textile.vim'
 
 " Misc
-Plugin 'mhinz/vim-startify'
+" Plugin 'mhinz/vim-startify'
 
 
 call vundle#end()
@@ -104,11 +105,6 @@ filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -182,9 +178,6 @@ noremap <leader>p :echo "In file"expand("%:t")"at line"<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
-
-" Turn on the WiLd menu
-set wildmenu
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -303,13 +296,26 @@ set number
 "autocmd InsertEnter * :set number
 "autocmd InsertLeave * :set relativenumber
 
+" Use the OS clipboard by default (on versions compiled with `+clipboard`)
+set clipboard=unnamed
+" Enhance command-line completion
+set wildmenu
+" Allow cursor keys in insert mode
+set esckeys
+" Allow backspace in insert mode
+set backspace=indent,eol,start
+" Optimize for fast terminal connections
+set ttyfast
+" Add the g flag to search/replace by default
+set gdefault
+" Use UTF-8 without BOM
+set encoding=utf-8 nobomb
+" Change mapleader
+let mapleader=","
 " Auto run NERDTree
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['\.pyc$']
-
-" Tmux conf
-set clipboard=unnamed
 
 " Tagbar
 let g:tagbar_autofocus = 1
@@ -330,6 +336,9 @@ let g:pymode_lint_on_write = 1
 
 " Don't autocomplete please (so slow)
 let g:pymode_rope_completion = 1
+
+" Disabling rope auto import
+let g:pymode_rope_autoimport = 0 
 
 " Documentation
 let g:pymode_doc = 1
@@ -357,110 +366,7 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " Don't autofold code
 let g:pymode_folding = 0
 
-"
-" Use the Solarized Dark theme
+syntax enable
 set background=dark
 colorscheme solarized
-let g:solarized_termtrans=1
 
-" Make Vim more useful
-set nocompatible
-" Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
-" Enhance command-line completion
-set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
-" Allow backspace in insert mode
-set backspace=indent,eol,start
-" Optimize for fast terminal connections
-set ttyfast
-" Add the g flag to search/replace by default
-set gdefault
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
-" Change mapleader
-let mapleader=","
-" Don’t add empty newlines at the end of files
-set binary
-set noeol
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-if exists("&undodir")
-	set undodir=~/.vim/undo
-endif
-
-" Don’t create backups when editing files in certain directories
-set backupskip=/tmp/*,/private/tmp/*
-
-" Respect modeline in files
-set modeline
-set modelines=4
-" Enable per-directory .vimrc files and disable unsafe commands in them
-set exrc
-set secure
-" Enable line numbers
-set number
-" Enable syntax highlighting
-syntax on
-" Highlight current line
-set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
-" Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
-" Highlight searches
-set hlsearch
-" Ignore case of searches
-set ignorecase
-" Highlight dynamically as pattern is typed
-set incsearch
-" Always show status line
-set laststatus=2
-" Enable mouse in all modes
-set mouse=a
-" Disable error bells
-set noerrorbells
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-" Show the cursor position
-set ruler
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-" Show the current mode
-set showmode
-" Show the filename in the window titlebar
-set title
-" Show the (partial) command as it’s being typed
-set showcmd
-" Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
-
-" Strip trailing whitespace (,ss)
-function! StripWhitespace()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	:%s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
-endfunction
-noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
-
-" Automatic commands
-if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-endif
