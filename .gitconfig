@@ -194,3 +194,9 @@
 
 [credential]
   helper = osxkeychain
+
+[fetch]
+  prune = true
+
+[pull]
+  rebase = true
