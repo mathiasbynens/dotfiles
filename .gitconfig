@@ -5,6 +5,7 @@
 
 	# View the current working tree status using the short format
 	s = status -s
+	st = status
 
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -21,6 +22,12 @@
 	# Commit all changes
 	ca = !git add -A && git commit -av
 
+	# Checkout 
+	co = checkout
+	
+	# Branch
+	br = branch
+	
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
