@@ -112,6 +112,7 @@ brew cask install slack
 brew cask install spectacle
 brew cask install pycharm
 brew cask install intellij-idea
+brew cask install spotify
 #brew cask install 0xdbe-eap
 
 # Remove outdated versions from the cellar.
