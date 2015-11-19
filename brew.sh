@@ -14,6 +14,11 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade --all
 
+# Install Java and Python
+brew install Caskroom/cask/java
+brew install python
+pip install --upgrade pip setuptools
+
 # Install GNU core utilities (those that come with OS X are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
@@ -99,6 +104,15 @@ brew install ssh-copy-id
 brew install tree
 brew install webkit2png
 brew install zopfli
+
+# Install applications via cask, starting with cask itself
+brew install caskroom/cask/brew-cask
+brew cask install google-chrome
+brew cask install slack
+brew cask install spectacle
+brew cask install pycharm
+brew cask install intellij-idea
+#brew cask install 0xdbe-eap
 
 # Remove outdated versions from the cellar.
 brew cleanup
