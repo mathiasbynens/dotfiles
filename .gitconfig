@@ -63,7 +63,7 @@
 	# Merge GitHub pull request on top of the `master` branch
 	mpr = "!f() { \
 		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-			git fetch origin refs/pull/$1/head:pr/$1 && \
+			git fetch ${2:-origin} refs/pull/$1/head:pr/$1 && \
 			git rebase master pr/$1 && \
 			git checkout master && \
 			git merge pr/$1 && \
