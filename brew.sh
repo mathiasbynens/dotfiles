@@ -22,54 +22,54 @@ brew tap     homebrew/dupes
 brew install homebrew/dupes/grep
 
 # databases
-brew install mysql
-
-unset TMPDIR
-mysql_install_db --verbose --user=`brunogermano` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
-
-mkdir -p ~/Library/LaunchAgents
-cp /usr/local/Cellar/mysql/5.5.27/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+# brew install mysql
+#
+# unset TMPDIR
+# mysql_install_db --verbose --user=`brunogermano` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+#
+# mkdir -p ~/Library/LaunchAgents
+# cp /usr/local/Cellar/mysql/5.5.27/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+# launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
 #setting a password root:root
-echo "Setting mysql password root/root."
-$(brew --prefix mysql)/bin/mysqladmin -u root password root
+# echo "Setting mysql password root/root."
+# $(brew --prefix mysql)/bin/mysqladmin -u root password root
+#
+# echo "Start mysql"
+# mysql.server start
+#
+# brew install mongodb
+#
+# mkdir -p ~/Library/LaunchAgents
+# cp /usr/local/Cellar/mongodb/2.2.0-x86_64/homebrew.mxcl.mongodb.plist ~/Library/LaunchAgents/
+# launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
 
-echo "Start mysql"
-mysql.server start
-
-brew install mongodb
-
-mkdir -p ~/Library/LaunchAgents
-cp /usr/local/Cellar/mongodb/2.2.0-x86_64/homebrew.mxcl.mongodb.plist ~/Library/LaunchAgents/
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
-
-echo "Start mongodb"
-mongod run --config /usr/local/etc/mongod.conf
-
-#php
-brew tap     josegonzalez/homebrew-php
-brew install php54 --without-apache --with-mysql
-
-chmod -R ug+w /usr/local/Cellar/php54/5.4.6/lib/php
-pear config-set php_ini /usr/local/etc/php/5.4/php.ini
-
-echo "To enable PHP in Apache add the following to httpd.conf and restart Apache:"
-echo "    LoadModule php5_module    /usr/local/Cellar/php54/5.4.6/libexec/apache2/libphp5.so"
-
-sublime -w /etc/apache2/httpd.conf 
-
-sudo apachectl restart
-brew install xdebug php54-xdebug
-brew insatll php54-mcrypt
+# echo "Start mongodb"
+# mongod run --config /usr/local/etc/mongod.conf
+#
+# #php
+# brew tap     josegonzalez/homebrew-php
+# brew install php54 --without-apache --with-mysql
+#
+# chmod -R ug+w /usr/local/Cellar/php54/5.4.6/lib/php
+# pear config-set php_ini /usr/local/etc/php/5.4/php.ini
+#
+# echo "To enable PHP in Apache add the following to httpd.conf and restart Apache:"
+# echo "    LoadModule php5_module    /usr/local/Cellar/php54/5.4.6/libexec/apache2/libphp5.so"
+#
+# sublime -w /etc/apache2/httpd.conf
+#
+# sudo apachectl restart
+# brew install xdebug php54-xdebug
+# brew insatll php54-mcrypt
 
 # Install everything else
-brew install git
-brew install graphicsmagick
+# brew install git
+# brew install graphicsmagick
 brew install node
 
-# install git and bash-completion 
-brew install bash-completion git
+# install git and bash-completion
+brew install bash-completion
 
 # Remove outdated versions from the cellar
 brew cleanup
