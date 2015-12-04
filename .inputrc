@@ -35,6 +35,3 @@ set skip-completed-text on
 set input-meta on
 set output-meta on
 set convert-meta off
-
-# Use Alt/Meta + Delete to delete the preceding word
-"\e[3;3~": kill-word
