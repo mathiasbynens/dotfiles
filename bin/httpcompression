@@ -1,141 +1,183 @@
 #!/usr/bin/env bash
 
-# Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL
-
-# Useful Links:
+# DESCRIPTION:
 #
-# - HTTP/1.1 (RFC 2616) - Content Codings:
-#   https://tools.ietf.org/html/rfc2616#section-3.5
+#   Provides the content encoding the specified
+#   resources are served with.
 #
-# - SDCH Specification:
-#   http://www.blogs.zeenor.com/wp-content/uploads/2011/01/Shared_Dictionary_Compression_over_HTTP.pdf
-
-# Usage:
+# USAGE:
 #
-#   httpcompression URL
+#   httpcompression URL ...
+#
+# USEFUL LINKS:
+#
+#   * HTTP/1.1 (RFC 2616) - Content-Encoding
+#     https://tools.ietf.org/html/rfc2616#section-14.11
+#
+#   * SDCH Specification:
+#     https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/Shared_Dictionary_Compression_over_HTTP.pdf
 
-declare -r hAE="Accept-Encoding: gzip, deflate, sdch"
-declare -r hCC="Cache-Control: no-cache"
-declare -r hUA="Mozilla/5.0 Gecko"
-declare -r maxConTime=15
-declare -r maxTime=30
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-declare availDicts="" dict="" dictClientID="" dicts="" headers="" i="" \
-        indent="" url="" encoding="" urlHeaders=""
+declare -r -a CURL_DEFAULT_OPTIONS=(
+    --connect-timeout 30
+    --header "Accept-Encoding: gzip, deflate, sdch"
+    --header "Cache-Control: no-cache" # Prevent intermediate proxies
+                                       # from caching the response
 
-headers="$( curl --connect-timeout $maxConTime \
-                 -A "$hUA"    `# Send a fake UA string for sites that sniff it
-                               # instead of using the Accept-Encoding header` \
-                 -D -         `# Get response headers` \
-                 -H "$hAE"     \
-                 -H "$hCC"    `# Prevent intermediate proxies from caching the
-                               # response` \
-                 -L           `# If the page was moved to a different location,
-                               # redo the request` \
-                 -m $maxTime   \
-                 -s           `# Don\'t show the progress meter` \
-                 -S           `# Show error messages` \
-                 -o /dev/null `# Ignore content` \
-                 "$1" )" \
-&& ( \
+    --location                         # If the page was moved to a
+                                       # different location, redo the
+                                       # request
+    --max-time 150
+    --show-error
+    --silent
+    --user-agent "Mozilla/5.0 Gecko"   # Send a fake UA string for sites
+                                       # that sniff it instead of using
+                                       # the Accept-Encoding header
+)
 
-	url="$1"
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	# Iterate over the headers of all redirects
-	while [ -n "$headers" ]; do
+check_for_sdch() {
 
-		# Get headers for the "current" URL
-		urlHeaders="$( printf "%s" "$headers" |
-		               sed -n '1,/^HTTP/p' )"
+    declare availDicts=""
+    declare currentHeaders="$1"
+    declare dict=""
+    declare dictClientID=""
+    declare dicts=""
+    declare i=""
+    declare url="$2"
 
-		# Remove the headers for the "current" URL
-		headers="${headers/"$urlHeaders"/}"
+    # Check if the server advertised any dictionaries
+    dicts="$( printf "%s" "$currentHeaders" |
+              grep -i 'Get-Dictionary:' |
+              cut -d':' -f2 |
+              sed s/,/\ /g )"
 
-		# ----------------------------------------------------------------------
-		# | SDCH                                                               |
-		# ----------------------------------------------------------------------
+    # If it does, check to see if it really supports SDCH
+    if [ -n "$dicts" ]; then
+        for i in $dicts; do
 
-		# SDCH Specification:
-		# - www.blogs.zeenor.com/wp-content/uploads/2011/01/Shared_Dictionary_Compression_over_HTTP.pdf
+            dict=""
 
-		# Check if the server advertised any dictionaries
-		dicts="$( printf "%s" "$urlHeaders" |
-		          grep -i 'Get-Dictionary:' |
-		          cut -d':' -f2 |
-		          sed s/,/\ /g )"
+            # Check if the dictionary location is specified as a path,
+            # and if it is, construct it's URL from the host name of the
+            # referrer URL
 
-		if [ -n "$dicts" ]; then
+            [[ "$i" != http* ]] \
+                && dict="$( printf "%s" "$url" |
+                            sed -En 's/([^/]*\/\/)?([^/]*)\/?.*/\1\2/p' )"
 
-			availDicts=""
-			dict=""
+            dict="$dict$i"
 
-			for i in $dicts; do
+            # Request the dictionaries from the server and
+            # construct the `Avail-Dictionary` header value
+            #
+            # [ The user agent identifier for a dictionary is defined
+            #   as the URL-safe base64 encoding (as described in RFC
+            #   3548, section 4 [RFC3548]) of the first 48 bits (bits
+            #   0..47) of the dictionary's SHA-256 digest ]
 
-				# Check If the dictionary location is specified as a path,
-				# and if so, construct it's URL from the host name of the
-				# referrer URL
-				[[ "$i" != http* ]] \
-				    && dict="$(printf "$url" |
-				               sed -En 's/([^/]*\/\/)?([^/]*)\/?.*/\1\2/p')"
+            dictClientID="$( curl "${CURL_DEFAULT_OPTIONS[@]}" "$dict" |
+                             openssl dgst -sha256 -binary |
+                             openssl base64 |
+                             cut -c 1-8 |
+                             sed -e 's/\+/-/' -e 's/\//_/' )"
 
-				dict="$dict$i"
+            [ -n "$availDicts" ] && availDicts="$availDicts,$dictClientID" \
+                                 || availDicts="$dictClientID"
 
-				# Request the dictionaries from the server and
-				# construct the `Avail-Dictionary` header value
-				#
-				# [ The user agent identifier for a dictionary is defined
-				#   as the URL-safe base64 encoding (as described in RFC
-				#   3548, section 4 [RFC3548]) of the first 48 bits (bits
-				#   0..47) of the dictionary's SHA-256 digest ]
-				#
-				dictClientID="$( curl --connect-timeout $maxConTime \
-				                      -A "$hUA" -LsS -m $maxTime "$dict" |
-				                 openssl dgst -sha256 -binary |
-				                 openssl base64 |
-				                 cut -c 1-8 |
-				                 sed -e 's/\+/-/' -e 's/\//_/' )"
+        done
 
-				[ -n $availDicts ] && availDicts="$adics,$dictClientID" \
-				                   || availDicts="$dictClientID"
+        # Redo the request (advertising the available dictionaries)
+        # and replace the old resulted headers with the new ones
 
-			done
+        printf "$( curl "${CURL_DEFAULT_OPTIONS[@]}" \
+                        -H "Avail-Dictionary: $availDicts" \
+                        --dump-header - \
+                        --output /dev/null \
+                        "$url" )"
 
-			# Redo the request (advertising the available dictionaries)
-			# and replace the old resulted headers with the new ones
-			urlHeaders="$( curl --connect-timeout $maxConTime \
-			                    -A "$hUA" -D - -H "$hAE" \
-			                    -H "Avail-Dictionary: $availDicts" \
-			                    -m $maxTime -o /dev/null -sS "$1" )"
-		fi
+    else
+        printf "%s" "$currentHeaders"
+    fi
+}
 
-		# ----------------------------------------------------------------------
+get_content_encoding() {
 
-		# Get the content encoding header values
-		encoding="$( printf "%s" "$urlHeaders" |
-		             grep -i 'Content-Encoding:' |
-		             cut -d' ' -f2 |
-		             tr "\r" "," |
-		             tr -d "\n" |
-		             sed 's/,$//' )"
+    declare currentHeaders=""
+    declare encoding=""
+    declare headers=""
+    declare indent=""
+    declare tmp=""
+    declare url="$1"
 
-		[ -n "$encoding" ] && encoding="[$encoding]"
+    headers="$(curl "${CURL_DEFAULT_OPTIONS[@]}" \
+                    --dump-header - \
+                    --output /dev/null \
+                    "$url" )" \
+    && ( \
 
-		# Print the output for the "current" URL
-		if [ "$url" != "$1" ]; then
-			printf "%s\n" "$indent$url $encoding"
-			indent="  "$indent
-		else
-			printf "\n%s\n" " $1 $encoding"
-			indent=" ↳"
-		fi
+        # Iterate over the headers of all redirects
+        while [ -n "$headers" ]; do
 
-		# Get the next URL value
-		url="$( printf "%s" "$urlHeaders" |
-		        grep -i 'Location' |
-		        sed -e 's/Location://' |
-		        tr -d '\r' )"
+            # Get headers for the "current" URL
+            currentHeaders="$( printf "%s" "$headers" | sed -n '1,/^HTTP/p' )"
 
-	done
-	printf "\n"
+            # Remove the headers for the "current" URL
+            headers="${headers/"$currentHeaders"/}"
 
-) || printf ""
+            currentHeaders="$(check_for_sdch "$currentHeaders" "$url")"
+
+            # Get the value of the `Content-Encoding` header
+            encoding="$( printf "%s" "$currentHeaders" |
+                         grep -i 'Content-Encoding:' |
+                         cut -d' ' -f2 |
+                         tr "\r" "," |
+                         tr -d "\n" |
+                         sed 's/,$//' )"
+
+            # Print the output for the "current" URL
+            [ -n "$encoding" ] && encoding="[$encoding]"
+
+            if [ "$url" != "$1" ]; then
+                printf "$indent$url $encoding\n"
+                indent="  $indent"
+            else
+                printf "\n  * $1 $encoding\n"
+                indent="    ↳ "
+            fi
+
+            # Get the next URL from the series of redirects
+            tmp="$url"
+            url="$( printf "%s" "$currentHeaders" |
+                    grep -i 'Location' |
+                    sed -e 's/Location://' |
+                    sed 's/^ *//' |
+                    tr -d '\r' )"
+
+            # In case the `Location` header is specified as a path
+            [[ "$url" != http* ]] && url="$tmp$url"
+
+        done
+    )
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+main() {
+
+    # Check if cURL is installed
+    if [ -x "$(command -v "curl")" ]; then
+        while [ $# -ne 0 ]; do
+            get_content_encoding "$1"
+            shift
+        done
+        printf "\n"
+    else
+        printf "cURL is required, please install it!\n"
+    fi
+
+}
+
+main $@
