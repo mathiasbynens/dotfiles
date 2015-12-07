@@ -38,7 +38,9 @@ alias trimcopy="tr -d '\n' | pbcopy"
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-
+alias fix='rm -Rf node_modules && rm -Rf bower_components && npm install && bower install'
+alias fixn='rm -Rf node_modules && npm install'
+alias fixb='rm -Rf bower_components && bower install'
 # PROGRAMMING
 # Find my IP address
 alias ip="ipconfig getifaddr en1"
