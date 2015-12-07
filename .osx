@@ -50,6 +50,9 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
 
+# Disable the over-the-top focus ring animation
+defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
+
 # Disable smooth scrolling
 # (Uncomment if you’re on an older Mac that messes up the animation)
 #defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
