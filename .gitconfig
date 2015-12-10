@@ -47,6 +47,9 @@
 
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
+	
+	# discard current changes and reset to head
+	rs = reset --hard
 
 	# Merge GitHub pull request on top of the current branch or,
 	# if a branch name is specified, on top of the specified branch
