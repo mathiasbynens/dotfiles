@@ -147,3 +147,25 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+# ###
+# Jeroen aliases section
+# ###
+
+# Git workflow
+alias gs='git status'
+alias gc='git commit'
+alias gpush='git stash clear && git stash && git pull --rebase && git push && git stash apply'
+alias gpull='git stash clear && git stash && git pull --rebase && git stash apply'
+
+# Print personal aliases help/manual
+alias hlp='printf "
+Alias \t Command
+----- \t -------
+gs \t git status
+gc \t git commit
+gpush \t git stash clear && git stash && git pull --rebase && git push && git stash apply
+gpull \t git stash clear && git stash && git pull --rebase && git stash apply
+
+work \t Show Ready for Development and In Progress issues
+"'

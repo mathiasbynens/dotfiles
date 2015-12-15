@@ -14,7 +14,11 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade --all
 
-# Frontend development
+# Development environment
+brew install node
+gem install scss_lint
+
+# Frontend development software
 brew cask install atom
 brew cask install google-chrome
 brew cask install google-drive
