@@ -261,6 +261,8 @@ function proxyge(){
 	export HTTP_PROXY="http://http-proxy.corporate.ge.com:80"
 	export https_proxy="http://http-proxy.corporate.ge.com:80"
 	export HTTPS_PROXY="http://http-proxy.corporate.ge.com:80"
+	#export http_proxy=http://cis-americas-pitc-alphaz.proxy.corporate.ge.com:80
+	#export https_proxy=http://cis-americas-pitc-alphaz.proxy.corporate.ge.com:80
 	export no_proxy="10.*, 127.0.0.1, localhost, .ge.com"
 	export all_proxy=$http_proxy
 }
