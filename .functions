@@ -16,6 +16,15 @@ function calc() {
 	printf "\n";
 }
 
+function local_ip() {
+  unamestr=$(uname)
+  if [[ "$unamestr" == 'Darwin' ]]; then
+     route get 10.10.10.10 | grep interface: | cut -d: -f2 | xargs ifconfig | grep 'inet' | cut -d: -f2 | awk '{ print $2}'
+  elif [[ "$unamestr" == 'Linux' ]]; then
+     route | sed -n 3p | awk '{print $NF}' | xargs ifconfig | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}'
+  fi
+}
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
