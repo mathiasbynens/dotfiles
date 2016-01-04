@@ -20,16 +20,20 @@ Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
 "Plugin 'Valloric/YouCompleteMe'
 "
+" PHP
+Plugin 'docteurklein/vim-symfony'
+Plugin 'shawncplus/phpcomplete.vim'
+
 " Python
 "Plugin 'davidhalter/jedi-vim'
-Plugin 'klen/python-mode'
+"Plugin 'klen/python-mode'
+Plugin 'google/yapf'
 
 " utilities
 Plugin 'mileszs/ack.vim'
 Plugin 'chrisbra/csv.vim'
-Plugin 'jceb/vim-orgmode'
-Plugin 'google/yapf'
 Plugin 'elzr/vim-json'
+"Plugin 'jceb/vim-orgmode'
 
 " Plugin 'Raimondi/delimitMate'
 " Plugin 'tpope/vim-commentary'
