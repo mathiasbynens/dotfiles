@@ -21,7 +21,7 @@
 
 declare -r -a CURL_DEFAULT_OPTIONS=(
     --connect-timeout 30
-    --header "Accept-Encoding: gzip, deflate, sdch"
+    --header "Accept-Encoding: br, lzma, gzip, deflate, sdch"
     --header "Cache-Control: no-cache" # Prevent intermediate proxies
                                        # from caching the response
 
