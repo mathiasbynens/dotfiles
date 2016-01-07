@@ -103,4 +103,8 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+	" Hide line numbers during insert mode
+	autocmd InsertEnter * :set norelativenumber
+	autocmd InsertLeave * :set relativenumber
 endif
+
