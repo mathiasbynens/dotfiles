@@ -38,8 +38,9 @@ brew install wget --with-iri
 # Install RingoJS and Narwhal.
 # Note that the order in which these are installed is important;
 # see http://git.io/brew-narwhal-ringo.
-brew install ringojs
-brew install narwhal
+# Disabled ny Jeroen: don't need this
+# brew install ringojs
+# brew install narwhal
 
 # Install more recent versions of some OS X tools.
 brew install vim --override-system-vi
