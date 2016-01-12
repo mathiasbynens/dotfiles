@@ -17,16 +17,20 @@ brew upgrade --all
 # Development environment
 brew install node
 gem install scss_lint
+npm install -g gulp
+npm install -g eslint
 
 # Frontend development software
 brew cask install atom
 brew cask install google-chrome
 brew cask install google-drive
-brew cask install cyberduck
 brew cask install java
+brew install maven
+brew cask install sourcetree
 
 # Personal
 brew cask install spotify
+brew cask install cyberduck
 
 # Remove outdated versions from the cellar.
 brew cleanup
