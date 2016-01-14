@@ -129,6 +129,9 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 #sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg
 #sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultDesktop.jpg
 
+# prevent from opening photos when plugging in iPhone, iPad, iPod or sd card
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
+
 ###############################################################################
 # SSD-specific tweaks                                                         #
 ###############################################################################
