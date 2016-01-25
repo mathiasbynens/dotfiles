@@ -549,3 +549,9 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 
 # Disable continuous spell checking
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
+
+###########################################
+# Crash Report
+###########################################
+# Using notification center for crashreporter
+defaults write com.apple.CrashReporter UseUNC 1
