@@ -327,7 +327,7 @@ sudo nvram boot-args="mbasd=1"
 chflags nohidden ~/Library
 
 # Show the /Volumes folder
-chflags nohidden /Volumes
+sudo chflags nohidden /Volumes
 
 # Remove Dropbox’s green checkmark icons in Finder
 file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
