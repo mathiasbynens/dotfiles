@@ -26,3 +26,8 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
+
+# turn on color output
+export CLICOLOR=1
+# ls color scheme
+export LSCOLORS=GxFxhxDxBxexexcxcxcxcx
