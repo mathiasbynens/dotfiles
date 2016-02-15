@@ -133,6 +133,9 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # SSD-specific tweaks                                                         #
 ###############################################################################
 
+# Enable TRIM on third-party SSDs (OS X 10.10.4 or higher)
+# sudo trimforce enable
+
 # Disable local Time Machine snapshots
 sudo tmutil disablelocal
 
