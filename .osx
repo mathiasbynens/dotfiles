@@ -218,6 +218,7 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Save screenshots to the desktop
+# Changed by Jeroen: add them to my Google Drive/Share folder
 defaults write com.apple.screencapture location -string "${HOME}/Google Drive/Share"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
