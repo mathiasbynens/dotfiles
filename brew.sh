@@ -83,6 +83,7 @@ brew install xz
 # Install other useful binaries.
 brew install ack
 brew install dark-mode
+brew install diff-so-fancy
 #brew install exiv2
 brew install git
 brew install git-lfs
