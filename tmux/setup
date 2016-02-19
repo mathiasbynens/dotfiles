@@ -2,7 +2,8 @@
 
 echo "Setting up tmux"
 
-dotfiles_repo=$HOME/dotfiles
+dotfiles_repo=$HOME/projects/dotfiles
+echo "Dotfiles repo is in $dotfiles_repo"
 
 source_path=$dotfiles_repo/tmux/tmux.conf
 symlink_path=$HOME/.tmux.conf
@@ -17,4 +18,6 @@ if ! [ "$(readlink $symlink_path)" = "$source_path" ]; then
 
     echo "Symlinking $symlink_path to $source_path"
     ln -s $source_path $symlink_path
+else
+    echo "$symlink_path points correctly to $source_path"
 fi

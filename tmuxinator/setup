@@ -2,7 +2,8 @@
 
 echo "Setting up tmuxinator"
 
-dotfiles_repo=$HOME/dotfiles
+dotfiles_repo=$HOME/projects/dotfiles
+echo "Dotfiles repo is in $dotfiles_repo"
 
 source_path=$dotfiles_repo/tmuxinator/yamls
 symlink_path=$HOME/.tmuxinator
@@ -23,7 +24,7 @@ gem list | grep tmuxinator > /dev/null
 
 if [ $? == 1 ]; then
     echo "Installing tmuxinator"
-    gem install tmuxinator
+    gem install tmuxinator --no-ri --no-rdoc
 fi
 
-
+tmuxinator doctor
