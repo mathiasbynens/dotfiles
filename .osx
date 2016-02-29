@@ -200,6 +200,10 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
+# When using Command key as Meta key on Emacs GUI version, Command-Ctrl-d (C-M-d)
+# shortcut does not work unless the system wide OSX shortcut has been disabled.
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 70 '<dict><key>enabled</key><false/></dict>'
+
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
