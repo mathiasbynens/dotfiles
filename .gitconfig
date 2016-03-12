@@ -57,6 +57,13 @@
 	# a.k.a. ‘delete merged’
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
+	# Instantly clean a git repo from extraneous files in a non-blocking fashion
+	purge = "!f() { \
+		declare tmp_dir=$(mktemp -d); \
+		git clean -fdxn | sed -n s'/^Would remove \\(.*\\)/\\1/p' | xargs -I % mv \"%\" \"$tmp_dir\"; \
+		(rm -rf \"$tmp_dir\" &); \
+	}; f"
+
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
 
