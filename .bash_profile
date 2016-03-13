@@ -46,3 +46,10 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# Add `o-github` tab completion
+_o-github() {
+	local cur=${COMP_WORDS[COMP_CWORD]}
+	COMPREPLY=($(compgen -W "$(git remote)" -- $cur))
+}
+complete -F _o-github o-github
