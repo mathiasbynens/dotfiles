@@ -98,6 +98,7 @@ brew install speedtest_cli
 brew install ssh-copy-id
 brew install testssl
 brew install tree
+brew install vbindiff
 brew install webkit2png
 brew install zopfli
 
