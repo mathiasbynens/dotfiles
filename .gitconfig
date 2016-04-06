@@ -125,12 +125,18 @@
 	changed = green
 	untracked = cyan
 
+[commit]
+
+	# https://help.github.com/articles/signing-commits-using-gpg/
+	gpgsign = true
+
 [diff]
 
 	# Detect copies as well as renames
 	renames = copies
 
 [diff "bin"]
+
 	# Use `hexdump` to diff binary files
 	textconv = hexdump -v -C
 
