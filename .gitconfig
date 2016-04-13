@@ -5,7 +5,7 @@
 
 	# Branch, commit & remote management
 	co = checkout
-	br = checkout -b
+	br = "!f() { git checkout -b rhys/$1; }; f"
 	mr = !"git checkout master && git pull"
 	mbr = !"git mr && git br"
 	pl = !"git pull; git submodule foreach git pull origin master"
