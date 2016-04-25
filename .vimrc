@@ -113,3 +113,9 @@ set history=50
 set autoindent
 " Make it smart
 set smartindent
+" To paste from another application:
+"    Start insert mode.
+"    Press F2 (toggles the 'paste' option on).
+"    Use your terminal to paste text from the clipboard.
+"    Press F2 (toggles the 'paste' option off). 
+set pastetoggle=<F2>
