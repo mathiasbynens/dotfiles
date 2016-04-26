@@ -147,3 +147,8 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+# feh - image viewer: always displays filename (tinted), verbose, full screen
+alias feh='feh -d --draw-tinted -V -F'
+# With EXIF information
+alias feh-exif='feh --draw-exif'
