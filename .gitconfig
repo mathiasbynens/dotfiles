@@ -121,14 +121,14 @@
 
 [color "status"]
 
-	added = yellow
-	changed = green
-	untracked = cyan
+	added = green
+	changed = yellow
+	untracked = red
 
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	gpgsign = false
 
 [diff]
 
