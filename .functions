@@ -247,6 +247,8 @@ function tre() {
 
 battery_status()
 {
+	# this file is in unix systems. You may need to change for your laptop
+	# check that dir for BAT0 also.
 	BATTERY=/sys/class/power_supply/BAT1
 
 	if [ -d "$BATTERY" ]
@@ -295,4 +297,17 @@ battery_status()
 
 		echo -e "${COLOUR}${CHARGE}%${NON}${BATSTT}"
 	fi;
+
+	# for OS X
+	if hash ioreg 2> /dev/null;
+	then
+		if ioreg -rn AppleSmartBattery | fgrep FullyCharged | cut -d '=' -f2- | egrep -q Yes;
+		then
+			val='100%'
+		else
+			val="$(ioreg -rn AppleSmartBattery | egrep '(Max|Current)Capacity' | cut -d '=' -f2 | sort | xargs printf '2k %d %d /p 100 *p' | dc | tail -n 1)%"
+		fi
+
+		echo ${val}
+	fi
 }
