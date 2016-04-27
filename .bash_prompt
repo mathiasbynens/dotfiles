@@ -90,12 +90,13 @@ else
 fi;
 
 # Battery status
-bat_status=`battery_status`
-if [[ "${bat_status}" == "" ]]; then
-	bat_status=""
-else
-	bat_status="(${bat_status}) "
-fi;
+bat_status() {
+	if [[ "$(battery_status)" == "" ]]; then
+		echo -e ""
+	else
+		echo -e "($(battery_status)) "
+	fi;
+}
 
 # Highlight the user name when logged in as root.
 if [[ "${USER}" == "root" ]]; then
@@ -114,7 +115,7 @@ fi;
 # Set the terminal title and prompt.
 PS1="\[\033]0;\W\007\]"; # working directory base name
 PS1+="\[${bold}\]\n"; # newline
-PS1+="${bat_status}"
+PS1+="\$(bat_status)"
 PS1+="\[${userStyle}\]\u"; # username
 PS1+="\[${white}\] at ";
 PS1+="\[${hostStyle}\]\h"; # host
