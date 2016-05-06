@@ -64,7 +64,7 @@ function fs() {
 	if [[ -n "$@" ]]; then
 		du $arg -- "$@";
 	else
-		du $arg .[^.]* *;
+		du $arg .[^.]* ./*;
 	fi;
 }
 
@@ -91,7 +91,7 @@ function gitio() {
 		echo "Usage: \`gitio slug url\`";
 		return 1;
 	fi;
-	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
+	curl -i https://git.io/ -F "url=${2}" -F "code=${1}";
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
