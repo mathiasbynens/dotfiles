@@ -1,5 +1,6 @@
+#!~/bin/bash/env bash
 # Add `~/bin` to the `$PATH`
-export PATH="/usr/local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
