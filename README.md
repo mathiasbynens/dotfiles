@@ -1,4 +1,4 @@
-# Dougie'’s dotfiles
+# Dougie’s dotfiles
 
 This is a fork of Mathias [dotfiles] (https://github.com/mathiasbynens/dotfiles)
 
@@ -84,6 +84,6 @@ Suggestions/improvements
 
 ## Acknowledgements
 
-* [Mathias Bynens] and this [dotfiles repository](https://github.com/mathiasbynens/dotfiles)
-* Solarized color theme (http://ethanschoonover.com/solarized)
+* [Mathias Bynens](https://mathiasbynens.be/) and this [dotfiles repository](https://github.com/mathiasbynens/dotfiles)
+* Solarized [color theme] (http://ethanschoonover.com/solarized)
 * Solarized [directory colors] (https://github.com/seebi/dircolors-solarized)
