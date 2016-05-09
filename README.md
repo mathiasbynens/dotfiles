@@ -2,7 +2,7 @@
 
 This is a fork of Mathias [dotfiles] (https://github.com/mathiasbynens/dotfiles)
 
-![Screenshot of my shell prompt](insert url)
+![Screenshot of my shell prompt](http://s32.postimg.org/u5j7aop6t/dougie_shell.png)
 
 ## Installation
 
