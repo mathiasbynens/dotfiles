@@ -8,3 +8,6 @@ GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 git config --global push.default simple
+
+# Automatically link all files located in the /link folder
+ln -srf link/* ~
