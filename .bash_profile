@@ -58,4 +58,4 @@ DOTFILES_DIR=`pwd`
 ln -fs ${DOTFILES_DIR}/link/* ${HOME}
 
 # Setup my directory colors
-ln -s $DOTFILES_DIR/dircolors-solarized/dircolors.256dark ~/.dir_colors
+ln -fs $DOTFILES_DIR/dircolors-solarized/dircolors.256dark ~/.dir_colors
