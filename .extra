@@ -1,3 +1,5 @@
+DOTFILES_DIRECTORY="${HOME}/.dotfiles"
+
 # Git credentials
 # Not in the repository, to prevent people from accidentally committing under my name
 GIT_AUTHOR_NAME="Douglas Morand"
@@ -10,4 +12,4 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 git config --global push.default simple
 
 # Automatically link all files located in the /link folder
-ln -srf link/* ~
+ln -fs ${DOTFILES_DIRECTORY}/link/* ${HOME}

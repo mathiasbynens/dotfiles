@@ -1,4 +1,5 @@
 " Use the Solarized Dark theme
+syntax enable
 set background=dark
 colorscheme solarized
 " tell vim to use 256 colors
@@ -46,8 +47,6 @@ set exrc
 set secure
 " Enable line numbers
 set number
-" Enable syntax highlighting
-syntax on
 " Highlight current line
 set cursorline
 " Make tabs as wide as two spaces
