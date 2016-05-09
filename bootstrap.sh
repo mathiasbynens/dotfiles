@@ -20,3 +20,5 @@ else
 	fi;
 fi;
 unset doIt;
+
+git submodule update --init
