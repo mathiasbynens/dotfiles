@@ -51,11 +51,14 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 #         My stuff         #
 ############################
 
-# DOTFILES_DIR="${HOME}/.dotfiles"
-DOTFILES_DIR=`pwd`
+DOTFILES_DIR="${HOME}/.dotfiles"
+#DOTFILES_DIR=`pwd`
 
 # Automatically link all files located in the /link folder
 ln -fs ${DOTFILES_DIR}/link/* ${HOME}
 
 # Setup my directory colors
-ln -fs $DOTFILES_DIR/dircolors-solarized/dircolors.256dark ~/.dir_colors
+ln -fs ${DOTFILES_DIR}/dircolors-solarized/dircolors.256dark ~/.dir_colors
+
+# run the dircolors to enable solarized
+eval `dircolors ~/.dircolors`
