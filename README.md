@@ -1,6 +1,8 @@
-# Mathias’s dotfiles
+# Dougie'’s dotfiles
 
-![Screenshot of my shell prompt](http://i.imgur.com/EkEtphC.png)
+This is a fork of Mathias dotfiles (https://github.com/mathiasbynens/dotfiles)
+
+![Screenshot of my shell prompt](insert url)
 
 ## Installation
 
@@ -73,14 +75,6 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 ./.osx
 ```
 
-### Install Homebrew formulae
-
-When setting up a new Mac, you may want to install some common [Homebrew](http://brew.sh/) formulae (after installing Homebrew, of course):
-
-```bash
-./brew.sh
-```
-
 ## Feedback
 
 Suggestions/improvements
@@ -92,7 +86,13 @@ Suggestions/improvements
 |---|
 | [Mathias Bynens](https://mathiasbynens.be/) |
 
-## Thanks to…
+## Acknowledgements
+
+* Solarized color theme (http://ethanschoonover.com/solarized)
+* Solarized [directory colors] (https://github.com/seebi/dircolors-solarized)
+* 
+* [Mathias Bynens] and this [dotfiles repository](https://github.com/mathiasbynens/dotfiles)
+
 
 * @ptb and [his _OS X Lion Setup_ repository](https://github.com/ptb/Mac-OS-X-Lion-Setup)
 * [Ben Alman](http://benalman.com/) and his [dotfiles repository](https://github.com/cowboy/dotfiles)

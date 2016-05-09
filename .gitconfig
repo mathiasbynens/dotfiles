@@ -75,6 +75,13 @@
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
 		fi \
 	}; f"
+	
+	last = log -1 --stat
+	cp = cherry-pick
+	co = checkout
+	br = branch
+	unstage = reset HEAD --
+	dc = diff --cached
 
 [apply]
 
@@ -99,7 +106,9 @@
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
-
+	
+	# Don't add crlf
+	autocrlf = false
 [color]
 
 	# Use colors in Git commands that are capable of colored output when
@@ -155,7 +164,7 @@
 	# Use the Git 1.x.x default to avoid errors on machines with old Git
 	# installations. To use `simple` instead, add this to your `~/.extra` file:
 	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
+	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
