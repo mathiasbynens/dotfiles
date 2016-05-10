@@ -128,5 +128,5 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
-# Default the netrw list style to 3
+" Default the netrw list style to 3
 let g:netrw_liststyle=3
