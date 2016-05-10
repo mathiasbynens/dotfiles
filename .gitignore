@@ -14,4 +14,4 @@ Thumbs.db
 .Trashes
 
 # Extra files
-.extra
+*.extra.*
