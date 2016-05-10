@@ -1,14 +1,20 @@
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-" tell vim to use 256 colors
-set t_Co=256
-
-" tell Solarized to use the 256 degraded color mode
-let g:solarized_termcolors=256
-
 " Make Vim more useful
 set nocompatible
+
+if has("syntax")
+    " Enable syntax highlighting
+    syntax enable
+    " Set 256 color terminal support
+    set t_Co=256
+    " Set dark background
+    set background=dark
+    " Set colorscheme
+    silent! colorscheme solarized
+    " tell Solarized to use the 256 degraded color mode
+    let g:solarized_termcolors=256
+endif
+
+
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
 " Enhance command-line completion
@@ -121,3 +127,6 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+# Default the netrw list style to 3
+let g:netrw_liststyle=3
