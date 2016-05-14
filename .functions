@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Simple calculator
 function calc() {
 	local result="";
