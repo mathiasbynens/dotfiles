@@ -9,6 +9,8 @@ alias v="vim"
 alias o="open"
 alias oo="open ."
 
+alias fuck='$(thefuck $(fc -ln -1))'
+
 # dev version of Chrome
 #--user-data-dir=/tmp -- hack fix profile locking issue
 #--disable-web-security -- CORS
@@ -32,9 +34,9 @@ alias glola="git log --graph --decorate --pretty=oneline --abbrev-commit --all"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
+  colorflag="--color"
 else # OS X `ls`
-	colorflag="-G"
+  colorflag="-G"
 fi
 
 # List all files colorized in long format, including dot files
@@ -50,7 +52,7 @@ alias sudo='sudo '
 alias gurl="curl --compressed"
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install -g npm@latest; sudo gem update'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -121,7 +123,7 @@ alias badge="tput bel"
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "$method"="lwp-request -m '$method'"
+  alias "$method"="lwp-request -m '$method'"
 done
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/

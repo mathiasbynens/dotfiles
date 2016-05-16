@@ -1,16 +1,29 @@
 export PYTHONSTARTUP="$HOME/.pythonrc"
 export NODE_PATH=/usr/local/lib/node_modules
 
+# Java
+#export JAVA_HOME=$(/usr/libexec/java_home)
+#export ANDROID_HOME=/opt/android-sdk-macosx
+#PATH=$ANDROID_HOME/tools:$PATH
+#PATH=$ANDROID_HOME/platform-tools:$PATH
+#export M2_HOME=/usr/local/Cellar/maven/3.2.1
+#PATH=$PATH:$M2_HOME/bin
+
 # RVM
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# [[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
 
 # Virtualenv
-PATH=$PATH:/usr/local/share/python
-[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source "/usr/local/bin/virtualenvwrapper.sh"
+#PATH=$PATH:/usr/local/share/python
+export WORKON_HOME=~/.virtualenvs
+# [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source "/usr/local/bin/virtualenvwrapper.sh"
+# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # PHP
-PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+# PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
 # NPM
 PATH=$PATH:/usr/local/share/npm/bin
+
+### Added by the Heroku Toolbelt
+# PATH="/usr/local/heroku/bin:$PATH"

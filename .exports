@@ -1,9 +1,11 @@
 # Make Sublime the default editor
-export EDITOR='sublime -w'
+export EDITOR='subl -w'
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="$ORANGE"
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
@@ -11,3 +13,9 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+
+export _Z_NO_RESOLVE_SYMLINKS=3
+
+iterm2_print_user_vars() {
+  iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
+}

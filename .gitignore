@@ -1,20 +1,26 @@
+# OSX
+.DS_Store
+Desktop.ini
+._*
+Thumbs.db
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# js
+node_modules
+bower_components
+
+# Sass
+.sass-cache
+
 # Sublime files
 *.sublime*
 
 # Compiled Python files
 *.pyc
+__pycache__/
 
 # Intellij idea
 .idea
-
-# Folder view configuration files
-.DS_Store
-Desktop.ini
-
-# Thumbnail cache files
-._*
-Thumbs.db
-
-# Files that might appear on external disks
-.Spotlight-V100
-.Trashes
