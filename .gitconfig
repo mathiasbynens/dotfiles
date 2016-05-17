@@ -177,6 +177,6 @@
 	insteadOf = "gist:"
 [user]
 	name = Samir Boulil
-	email = samir.boulil@lengow.com
+	email = samir.boulil@gmail.com
 [init]
 	templatedir = ~/.git_template
