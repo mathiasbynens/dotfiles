@@ -1,0 +1,18 @@
+#!bin/bash
+
+SESSION=pmp_3
+tmux -2 new-session -d -s $SESSION
+tmux rename-window -t $SESSION:1  vim 
+tmux select-pane -t 0
+# cd and virtualenv
+pmp_3
+vim pymarketplaces/base.py
+
+tmux new-window -t $SESSION -a -n bash 
+pmp_3
+
+tmux new-window -t $SESSION -a -n git 
+git status
+
+tmux select-window -t $SESSION:1
+tmux -2 attach -t $SESSION

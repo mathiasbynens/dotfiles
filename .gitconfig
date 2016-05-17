@@ -75,6 +75,7 @@
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
 		fi \
 	}; f"
+	ctags = !.git/hooks/ctags
 
 [apply]
 
@@ -180,3 +181,8 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	name = Samir Boulil
+	email = samir.boulil@gmail.com
+[init]
+	templatedir = ~/.git_template
