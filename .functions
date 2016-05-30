@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
+# Detect which `ls` flavor is in use
+if /bin/ls --color > /dev/null 2>&1; then # GNU `ls`
+  colorflag="--color"
+else # OS X `ls`
+  colorflag="-G"
+fi
+
+
 function ls () {
-  /bin/ls -xF "$@" | less -EFmn
+  /bin/ls -xF "$colorflag" "$@" | less -EFmn
 }
 
 function l() {
@@ -15,14 +23,6 @@ function ll() {
 function lll() {
   ls -lhA "$@"
 }
-
-# Use Git’s colored diff when available
-hash git &>/dev/null;
-if [ $? -eq 0 ]; then
-  function diff() {
-    git diff --no-index --color-words "$@";
-  }
-fi;
 
 # Run `dig` and display the most useful info
 function digga() {
