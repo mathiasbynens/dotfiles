@@ -38,3 +38,5 @@ set -o notify
 
 FIGNORE="CVS:.svn"
 
+[ -r ~/.git-completion.bash ] && [ -f ~/.git-completion.bash ] && source ~/.git-completion.bash
+
