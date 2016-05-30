@@ -2,6 +2,7 @@
 
 # Shortcuts
 alias b='bell'
+alias e='open -t'
 alias cp='cp -i'
 alias j='jobs -l'
 alias mv='mv -i'
