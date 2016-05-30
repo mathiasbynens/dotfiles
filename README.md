@@ -40,3 +40,7 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 ```bash
 ./.osx
 ```
+
+### See Also
+
+https://dotfiles.github.io/
