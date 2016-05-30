@@ -8,7 +8,7 @@ alias j='jobs -l'
 alias mv='mv -i'
 
 if [ -n "${TERM_PROGRAM}" ]; then
-  alias man=openman
+  alias man='openman'
 fi
 
 # Detect which `ls` flavor is in use
