@@ -45,3 +45,7 @@ done
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# line ending conversions (courtesy of http://stackoverflow.com/a/14155400)
+alias dos2unix="perl -pi -e 's/\r\n|\n|\r/\n/g'"
+alias unix2dos="perl -pi -e 's/\r\n|\n|\r/\r\n/g'"
