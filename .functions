@@ -7,7 +7,6 @@ else # OS X `ls`
   colorflag="-G"
 fi
 
-
 function ls () {
   /bin/ls -xF "$colorflag" "$@" | less -EFmn
 }
