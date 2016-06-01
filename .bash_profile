@@ -34,9 +34,12 @@ umask 022
 ulimit -c 0
 
 set -o noclobber
+# Don't wait for job termination notification
 set -o notify
 
 FIGNORE="CVS:.svn"
 
 [ -r ~/.git-completion.bash ] && [ -f ~/.git-completion.bash ] && source ~/.git-completion.bash
-
+[ -r ~/.gradle-completion.bash ] && [ -f ~/.gradle-completion.bash ] && source ~/.gradle-completion.bash
+[ -r ~/.maven-completion.bash ] && [ -f ~/.maven-completion.bash ] && source ~/.maven-completion.bash
+[ -r ~/.vagrant-completion.bash ] && [ -f ~/.vagrant-completion.bash ] && source ~/.vagrant-completion.bash
