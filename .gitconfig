@@ -43,6 +43,9 @@
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 
+    # Don't mess with line endings.
+    autocrlf = false
+
 [color]
 
 	# Use colors in Git commands that are capable of colored output when
