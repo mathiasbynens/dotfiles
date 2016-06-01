@@ -1,4 +1,6 @@
-# Compiled Python files
+# Compiled source
+*.class
+*.o
 *.pyc
 
 # Folder view configuration files
@@ -12,3 +14,30 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+
+# Windows files
+$RECYCLE.BIN/
+
+# Misc
+*~
+*.bak
+*.log
+*.tmp
+
+# Maven build directory
+target/
+
+# IntelliJ Project Files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse Project Files
+.project
+.metadata
+.settings/
+.classpath
+.loadpath
+*.launch
+.externalToolsBuilders/
