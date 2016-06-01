@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Shortcuts
 case "$OSTYPE" in
     darwin*)
         alias e='open -t'
@@ -11,9 +10,12 @@ case "$OSTYPE" in
 esac
 
 command -v bell > /dev/null && alias b='bell'
+
 alias cp='cp -i'
-alias j='jobs -l'
 alias mv='mv -i'
+alias j='jobs -l'
+
+[ "$OSTYPE" == "cygwin" ] && alias open='cygstart'
 
 [ "$OSTYPE" == "darwin"* ] && [ -n "${TERM_PROGRAM}" ] && alias man='openman'
 
