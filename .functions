@@ -23,7 +23,7 @@ function lll() {
   ls -lhA "$@"
 }
 
-if [ command -v dig > /dev/null ]; then
+if command -v dig > /dev/null; then
     # Run `dig` and display the most useful info
     function digga() {
         dig +nocmd "$1" any +multiline +noall +answer;
