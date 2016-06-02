@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 export EDITOR=/usr/bin/vi
+export VISUAL=$EDITOR
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';

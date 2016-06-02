@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
 
-# Shortcuts
-alias b='bell'
-alias e='open -t'
-alias cp='cp -i'
-alias j='jobs -l'
-alias mv='mv -i'
+case "$OSTYPE" in
+    darwin*)
+        alias e='open -t'
+        ;;
+    *)
+        alias e='vi'
+        ;;
+esac
 
-if [ -n "${TERM_PROGRAM}" ]; then
-  alias man='openman'
-fi
+command -v bell > /dev/null && alias b='bell'
+
+alias cp='cp -i'
+alias mv='mv -i'
+alias j='jobs -l'
+
+[ "$OSTYPE" == "cygwin" ] && alias open='cygstart'
+
+[[ "$OSTYPE" == "darwin"* ]] && [ -n "${TERM_PROGRAM}" ] && alias man='openman'
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
@@ -21,9 +29,9 @@ alias egrep='egrep --color=auto'
 alias sudo='sudo '
 
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+command -v dig > /dev/null && alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+[[ "$OSTYPE" == "darwin"* ]] && alias localip="ipconfig getifaddr en0"
+command -v ifconfig > /dev/null && alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # OS X has no `md5sum`, so use `md5` as a fallback
 command -v md5sum > /dev/null || alias md5sum="md5"
@@ -32,11 +40,13 @@ command -v md5sum > /dev/null || alias md5sum="md5"
 command -v sha1sum > /dev/null || alias sha1sum="shasum"
 
 # Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+    alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+fi
 
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
-alias plistbuddy="/usr/libexec/PlistBuddy"
+[ -x /usr/libexec/PlistBuddy ] && alias plistbuddy="/usr/libexec/PlistBuddy"
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
@@ -44,8 +54,15 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 done
 
 # Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+case "$OSTYPE" in
+    darwin*)
+        alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+        ;;
+    cygwin)
+        alias afk="rundll32.exe user32.dll,LockWorkStation"
+        ;;
+esac
 
 # line ending conversions (courtesy of http://stackoverflow.com/a/14155400)
-alias dos2unix="perl -pi -e 's/\r\n|\n|\r/\n/g'"
-alias unix2dos="perl -pi -e 's/\r\n|\n|\r/\r\n/g'"
+command -v dos2unix > /dev/null || alias dos2unix="perl -pi -e 's/\r\n|\n|\r/\n/g'"
+command -v unix2dos > /dev/null || alias unix2dos="perl -pi -e 's/\r\n|\n|\r/\r\n/g'"
