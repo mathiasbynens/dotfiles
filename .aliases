@@ -17,7 +17,7 @@ alias j='jobs -l'
 
 [ "$OSTYPE" == "cygwin" ] && alias open='cygstart'
 
-[ "$OSTYPE" == "darwin"* ] && [ -n "${TERM_PROGRAM}" ] && alias man='openman'
+[[ "$OSTYPE" == "darwin"* ]] && [ -n "${TERM_PROGRAM}" ] && alias man='openman'
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
@@ -30,7 +30,7 @@ alias sudo='sudo '
 
 # IP addresses
 command -v dig > /dev/null && alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-[ "$OSTYPE" == "darwin"* ] && alias localip="ipconfig getifaddr en0"
+[[ "$OSTYPE" == "darwin"* ]] && alias localip="ipconfig getifaddr en0"
 command -v ifconfig > /dev/null && alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # OS X has no `md5sum`, so use `md5` as a fallback
