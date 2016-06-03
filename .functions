@@ -33,7 +33,7 @@ function targz() {
 
 	size=$(
 		stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
-		stat -c"%s" "${tmpFile}" 2> /dev/null # GNU `stat`
+		stat -c"%s" "${tmpFile}" 2> /dev/null;  # GNU `stat`
 	);
 
 	local cmd="";
@@ -54,7 +54,7 @@ function targz() {
 
 	zippedSize=$(
 		stat -f"%z" "${tmpFile}.gz" 2> /dev/null; # OS X `stat`
-		stat -c"%s" "${tmpFile}.gz" 2> /dev/null # GNU `stat`
+		stat -c"%s" "${tmpFile}.gz" 2> /dev/null; # GNU `stat`
 	);
 
 	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
