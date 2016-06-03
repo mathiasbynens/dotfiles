@@ -48,7 +48,7 @@ function targz() {
 		fi;
 	fi;
 
-	echo "Compressing .tar ($((size / 1000)) kb) using \`${cmd}\`…";
+	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…";
 	"${cmd}" -v "${tmpFile}" || return 1;
 	[ -f "${tmpFile}" ] && rm "${tmpFile}";
 
@@ -57,7 +57,7 @@ function targz() {
 		stat -c"%s" "${tmpFile}.gz" 2> /dev/null # GNU `stat`
 	);
 
-	echo "${tmpFile}.gz ($((zippedSize / 1000)) kb) created successfully.";
+	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
 }
 
 # Determine size of a file or total size of a directory
