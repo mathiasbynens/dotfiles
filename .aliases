@@ -17,6 +17,9 @@ alias g="git"
 alias h="history"
 alias j="jobs"
 
+# Git search
+alias gg="git grep"
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
@@ -149,3 +152,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+# Alias Hub
+alias git=hub
