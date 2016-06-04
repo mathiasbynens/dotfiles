@@ -105,6 +105,12 @@ defaults write com.apple.helpviewer DevMode -bool true
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
+# Disable username list on login window
+sudo defaults write /library/preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+
+# Remove power off and restart buttons on login window
+sudo defaults write /library/preferences/com.apple.loginwindow PowerOffDisabled -bool true
+
 # Restart automatically if the computer freezes
 sudo systemsetup -setrestartfreeze on
 
