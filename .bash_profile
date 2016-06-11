@@ -25,9 +25,6 @@ for option in autocd globstar; do
 	shopt -s "$option" 2> /dev/null
 done
 
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
-
 umask 022
 
 # no core files
@@ -42,4 +39,5 @@ FIGNORE="CVS:.svn"
 [ -r ~/.git-completion.bash ] && [ -f ~/.git-completion.bash ] && source ~/.git-completion.bash
 [ -r ~/.gradle-completion.bash ] && [ -f ~/.gradle-completion.bash ] && source ~/.gradle-completion.bash
 [ -r ~/.maven-completion.bash ] && [ -f ~/.maven-completion.bash ] && source ~/.maven-completion.bash
+[ -r ~/.ssh-completion.bash ] && [ -f ~/.ssh-completion.bash ] && source ~/.ssh-completion.bash
 [ -r ~/.vagrant-completion.bash ] && [ -f ~/.vagrant-completion.bash ] && source ~/.vagrant-completion.bash
