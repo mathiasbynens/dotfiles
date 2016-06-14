@@ -34,7 +34,7 @@ function targz() {
 	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
 
 	size=$(
-		stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
+		stat -f"%z" "${tmpFile}" 2> /dev/null; # macOS `stat`
 		stat -c"%s" "${tmpFile}" 2> /dev/null;  # GNU `stat`
 	);
 
@@ -55,7 +55,7 @@ function targz() {
 	[ -f "${tmpFile}" ] && rm "${tmpFile}";
 
 	zippedSize=$(
-		stat -f"%z" "${tmpFile}.gz" 2> /dev/null; # OS X `stat`
+		stat -f"%z" "${tmpFile}.gz" 2> /dev/null; # macOS `stat`
 		stat -c"%s" "${tmpFile}.gz" 2> /dev/null; # GNU `stat`
 	);
 
