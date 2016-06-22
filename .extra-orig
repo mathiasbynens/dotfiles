@@ -1,0 +1,23 @@
+# Git credentials
+# Not in the repository, to prevent people from accidentally committing under my name
+GIT_AUTHOR_NAME="Douglas Morand"
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="dmorand@gmail.com"
+GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+# Add rgrav path
+#export PATH=$PATH:<add path here>:<add another path here>
+
+################## SSH-AGENT ##################
+
+# Turn SSH_ENABLE on/off (1/0)
+SSH_ENABLE=1
+
+SSH_AGENT=.ssh-agent
+if [ -f "${SSH_AGENT}" ] && [ "${SSH_ENABLE}" -eq 1 ] ; then
+	echo "sourcing SSH Agent"
+	source "$SSH_AGENT";
+fi
+################## END SSH-AGENT ##################
