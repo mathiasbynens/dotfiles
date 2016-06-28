@@ -669,7 +669,7 @@ defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 # Disable the receiving of faxes.
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.efax.plist
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.efax.plist 2> /dev/null
 
 # Enable the debug menu in Disk Utility
 defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
