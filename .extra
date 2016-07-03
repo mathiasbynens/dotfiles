@@ -83,7 +83,7 @@ function gg() {
   if [ $# -gt 0 ]; then
     for i in $(echo $*); do
       if [ -d ${i}/.git ]; then
-        ( msg "Pulling ${i}" && cd ${i} && git pull | grep -v "Already up-to-date." )
+        ( msg "Pulling ${i}" && cd ${i} && git pull | grep -vi "Current branch .* is up to date" )
         ( cd ${i} && git status -s )
       fi
     done
