@@ -47,6 +47,9 @@ if has("syntax")
     let g:solarized_termcolors=256
 endif
 
+"vim-airline"
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts=1
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
