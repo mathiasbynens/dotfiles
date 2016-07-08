@@ -20,7 +20,7 @@ _gradle()
   
   local gradle_files_checksum='';
   if [[ -f build.gradle ]]; then # top-level gradle file
-    if [[ -x `which md5 2 > /dev/null` ]]; then # mac
+    if [[ -x `which md5 2> /dev/null` ]]; then # mac
       local all_gradle_files=$(find . -name build.gradle 2>/dev/null)
       gradle_files_checksum=$(md5 -q -s "$(md5 -q $all_gradle_files)")
     else # linux
