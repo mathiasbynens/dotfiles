@@ -1,3 +1,29 @@
+# Retrieve terminal 
+function getTerminal(){
+    # Additional logic to route based on OS
+    case "$(uname -s)" in
+    Darwin)
+        #echo 'Mac OS X'
+        echo 'nix'
+        ;;
+    Linux)
+        #echo 'Linux'
+        echo 'nix'
+        ;;
+    CYGWIN*|MINGW32*|MSYS*)
+        #echo 'MS Windows'
+        echo 'win'
+        ;;
+    # Add here more strings to compare
+    # See correspondence table at the bottom of this answer
+    *)
+        echo 'other OS' 
+        #echo 'Unable to determine Operating system, exiting...'
+        exit 1
+        ;;
+    esac
+}
+
 # Simple calculator
 function calc() {
 	local result="";
