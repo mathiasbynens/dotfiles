@@ -3,7 +3,11 @@
 cd "$(dirname "${BASH_SOURCE}")";
 
 git pull origin master;
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
+    echo "Vundle not found, installing..."
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
 
 function doIt() {
 	rsync --exclude ".git/" --exclude "link/" --exclude "dircolors-solarized/" --exclude "extra-*" --exclude ".DS_Store" --exclude "bootstrap.sh" \
