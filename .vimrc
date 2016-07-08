@@ -51,6 +51,9 @@ endif
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
 
+"NERDTree"
+"show hidden files"
+let NERDTreeShowHidden=1
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
 " Enhance command-line completion
