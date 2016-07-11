@@ -1,0 +1,56 @@
+##### Dougie's Profile #####
+
+# Export rgrav (if necessary)
+export PATH=$PATH:/c/Users/douglasm/ohop/rgrav:/c/Users/douglasm/stash/orion-technical/scripts
+
+if [ -f ~/.bash-ssh-agent ]; then . ~/.bash-ssh-agent; fi
+if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
+
+function ssh_aws(){
+    ssh -i /C/Users/douglasm/ohop/graviton-cli-vm/puppet_id_rsa centos@$1
+}
+
+function push_jumphost(){
+	if [[ $# -ne 1 ]]; then
+		echo "Must declare target directory.  E.g. solution_hbc_douglasm"
+		return 1
+	fi
+	
+	rsync -rvzh --size-only --progress .gitignore graviton-jump-host:~/solutions/$1/.gitignore	
+	rsync -rvzh --size-only --progress --stats --filter=':- .gitignore' . graviton-jump-host:~/solutions/$1
+}
+
+function pull_jumphost(){
+	if [[ $# -ne 1 ]]; then
+		echo "Must declare target directory.  E.g. solution_hbc_douglasm"
+		return 1
+	fi
+	
+	rsync -azv --progress graviton-jump-host:~/solutions/$1/.gitignore .
+	rsync -avzh --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/solutions/$1/ .
+	#rsync -rzvh --size-only --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/solutions/$1/ .
+}
+
+#function pull_jumphost_old(){
+#	text="Syncing .gitignore..."
+#	rsync -avzh --delete graviton-jump-host:~/solutions/$1/.gitignore . 2>/dev/null &
+#	run_ticker $! "$text"
+#	
+#	text="Syncing files from $1"
+#	rsync -avzh --delete --progress --filter=':- .gitignore' graviton-jump-host:~/solutions/$1/ .
+#	run_ticker $! "$text"
+#}
+
+# NOT USED
+run_ticker() {
+  pid=$1 # Process Id of the previous running command
+  text=$2
+  spin='-\|/'
+  i=0
+  while kill -0 $pid 2>/dev/null
+  do
+    i=$(( (i+1) %4 ))
+    printf "\r$text ${spin:$i:1}"
+    sleep .1
+  done
+}
