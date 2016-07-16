@@ -46,8 +46,12 @@ set number
 syntax on
 " Highlight current line
 set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
+highlight CursorLine ctermbg=DarkGrey
+" Highlight line numbers
+highlight linenr ctermbg=6
+highlight linenr ctermfg=0
+" Expand tabs to spaces
+set expandtab
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -104,3 +108,21 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" Check vim args, if empty then open NERDTree
+function! Startup()
+	if 0 == argc()
+		NERDTree
+	end
+endfunction
+autocmd VimEnter * call Startup()
+
+" This resets the search register
+nnoremap <CR> :noh<CR><CR>
+
+" Set GitGutter options
+set updatetime=000
+let g:gitgutter_override_sign_column_highlight = 0
+highlight SignColumn ctermfg = 0
+let g:gitgutter_sign_modified = '♦'
+

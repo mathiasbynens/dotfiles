@@ -2,7 +2,7 @@
 set completion-ignore-case on
 
 # List all matches in case multiple possible completions are possible
-set show-all-if-ambiguous on
+set show-all-if-ambiguous off
 
 # Immediately add a trailing slash when autocompleting symlinks to directories
 set mark-symlinked-directories on
@@ -18,8 +18,8 @@ set match-hidden-files off
 # Show all autocomplete results at once
 set page-completions off
 
-# If there are more than 200 possible completions for a word, ask to show them all
-set completion-query-items 200
+# If there are more than 45 possible completions for a word, ask to show them all
+set completion-query-items 45
 
 # Show extra file information when completing, like `ls -F` does
 set visible-stats on
