@@ -233,6 +233,7 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
+# Quick script borrowed from elsewhere to calculate 256term color values from hex
 function hex_to_256term(){
     hex=${1#"#"}
     r=$(printf '0x%0.2s' "$hex")
@@ -243,3 +244,14 @@ function hex_to_256term(){
                        (b<75?0:(b-35)/40)     + 16 ))"
 }
 
+# Commit with following message
+function gc() {
+    git commit -m "$(echo $*)"
+}
+
+# Add all files, commit with following message, then push
+function gg() {
+    git add .
+    git commit -m "$(echo $*)"
+    git push
+}

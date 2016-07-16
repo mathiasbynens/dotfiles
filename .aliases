@@ -10,11 +10,21 @@ alias -- -="cd -"
 
 # Shortcuts
 alias dl="cd ~/Downloads"
-alias proj="cd ~/projects"
-alias drive="cd ~/Google Drive"
+alias pj="cd ~/Projects"
+alias drive="cd ~/Google\ Drive"
 alias docs="cd ~/Documents"
 alias dropbox="cd ~/Dropbox"
-alias g="git"
+
+# Git shortcuts
+alias gs="git status"
+alias ga="git add"
+alias gp="git push"
+alias gk="git checkout"
+alias gm="git checkout master"
+alias gb="git branch"
+alias gn="git checkout master && git pull && git checkout -b"
+alias gd="git checkout master && git branch -d"
+
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -24,7 +34,7 @@ else # macOS `ls`
 fi
 
 # List files colorized in long format
-alias l="ls -lF ${colorflag}"
+alias l="clear && ls -lF ${colorflag}"
 
 # Clear screen and list all files
 alias la="clear && ls -laF ${colorflag}"
@@ -46,8 +56,11 @@ alias egrep='egrep --color=auto'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-# Get week number
+# Get week of year
 alias week='date +%V'
+
+# Get day of year
+alias day='date +%j'
 
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'

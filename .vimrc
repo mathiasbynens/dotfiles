@@ -46,7 +46,7 @@ set number
 syntax on
 " Highlight current line
 set cursorline
-highlight CursorLine ctermbg=DarkGrey
+highlight CursorLine ctermbg=016
 " Highlight line numbers
 highlight linenr ctermbg=6
 highlight linenr ctermfg=0
