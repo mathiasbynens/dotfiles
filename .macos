@@ -34,10 +34,10 @@ defaults write com.apple.systemuiserver menuExtras -array \
 	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
 	"/System/Library/CoreServices/Menu Extras/Clock.menu"
 
-# Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string "0.0 0.7 0.85"
+# Set highlight color
+defaults write NSGlobalDomain AppleHighlightColor -string ".68 .82 .80"
 
-# Set sidebar icon size to medium
+# Set sidebar icon size to small (1=small, 2=medium, 3=large)
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
 
 # Always show scrollbars
@@ -754,9 +754,9 @@ defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 ###############################################################################
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
-	"Dock" "Finder" "Google Chrome" "Google Chrome Canary" "Mail" "Messages" \
-	"Opera" "Photos" "Safari" "SizeUp" "Spectacle" "SystemUIServer" "Terminal" \
-	"Transmission" "Tweetbot" "Twitter" "iCal"; do
+	"Dock" "Finder" "Google Chrome" "Google Chrome Canary" "Messages" \
+	"Photos" "Safari" "Spectacle" "SystemUIServer" "Terminal" \
+	"Twitter" "iCal"; do
 	killall "${app}" &> /dev/null
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
