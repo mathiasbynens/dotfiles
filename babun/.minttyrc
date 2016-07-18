@@ -2,6 +2,12 @@ Transparency=low
 RightClickAction=menu
 Columns=159
 Rows=55
+
+BoldAsFont=no
+Font=DejaVu Sans Mono for Powerline
+FontHeight=10
+
+# Custom solarized theme
 ForegroundColour=147,161,161
 BackgroundColour=0,43,54
 CursorColour=253,157,79
