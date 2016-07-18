@@ -1,0 +1,29 @@
+# Export rgrav (if necessary)
+export PATH=$PATH:/c/Users/douglasm/ohop/rgrav:/c/Users/douglasm/stash/orion-technical/scripts
+
+
+
+function ssh_aws(){
+    ssh -i /C/Users/douglasm/ohop/graviton-cli-vm/puppet_id_rsa centos@$1
+}
+
+function push_jumphost(){
+	if [[ $# -ne 1 ]]; then
+		echo "Must declare target directory.  E.g. solution_hbc_douglasm"
+		return 1
+	fi
+	
+	rsync -rvzh --size-only --progress .gitignore graviton-jump-host:~/solutions/$1/.gitignore	
+	rsync -rvzh --size-only --progress --stats --filter=':- .gitignore' . graviton-jump-host:~/solutions/$1
+}
+
+function pull_jumphost(){
+	if [[ $# -ne 1 ]]; then
+		echo "Must declare target directory.  E.g. solution_hbc_douglasm"
+		return 1
+	fi
+	
+	rsync -azv --progress graviton-jump-host:~/solutions/$1/.gitignore .
+	rsync -avzh --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/solutions/$1/ .
+	#rsync -rzvh --size-only --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/solutions/$1/ .
+}

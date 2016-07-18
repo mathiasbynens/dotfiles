@@ -17,7 +17,7 @@ fancy_echo "Updating babun HOME"
     #   zshrc
     #   Anything else I'm missing...
 	successfully rsync -azh --include='.minttyrc' --include='.zshrc' ~
-    successfully rsync -azh --include='../.extra-orig' ~
+    successfully rsync -azh --include='../.bash_aliases' --include='../.gitconfig' --include='../.extra-orig' ~
 
 fancy_echo "Updating VIM Configuration"
     successfully rsync -azh --include='../.vim.*' ~
