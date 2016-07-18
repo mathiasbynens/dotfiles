@@ -16,14 +16,16 @@ fancy_echo "Updating babun HOME"
     #   mintty.rc
     #   zshrc
     #   Anything else I'm missing...
-	successfully rsync -azh --include='.minttyrc' --include='.zshrc' ~
-    successfully rsync -azh --include='../.bash_aliases' --include='../.gitconfig' --include='../.extra-orig' ~
+    successfully ln -fs $USERPROFILE ~/home
+    successfully rsync -azh .minttyrc .zshrc ~
+    successfully rsync -azh '../.aliases' '../.gitconfig' '../.extra-orig' ~
 
 fancy_echo "Updating VIM Configuration"
-    successfully rsync -azh --include='../.vim.*' ~
+    successfully rsync -azh '../.vim' '../.vimrc' ~
+    successfully git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 fancy_echo "Retrieving powerline fonts"
-	successfully curl -k https://github.com/powerline/fonts.git -o ~/powerline-fonts
+	successfully git clone https://github.com/powerline/fonts.git ~/powerline-fonts
 
 
 echo "babun bootstrap complete!"
