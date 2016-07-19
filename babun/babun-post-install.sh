@@ -22,10 +22,14 @@ fancy_echo "Updating babun HOME"
 
 fancy_echo "Updating VIM Configuration"
     successfully rsync -azh '../.vim' '../.vimrc' ~
-    successfully git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	if [[ ! -d "~/.vim/bundle/Vundle.vim" ]]; then
+        successfully git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    fi
 
 fancy_echo "Retrieving powerline fonts"
-	successfully git clone https://github.com/powerline/fonts.git ~/powerline-fonts
+	if [[ ! -d "~/powerline-fonts" ]]; then
+        successfully git clone https://github.com/powerline/fonts.git ~/powerline-fonts
+    fi
 
 
 echo "babun bootstrap complete!"
