@@ -1,4 +1,5 @@
-pace.vim -- An intergalactically friendly Vim theme.
+" -----------------------------------------------------------
+" pace.vim -- An intergalactically friendly Vim theme.
 " Maintainer: Brandon Siders <tyrannicaltoucan@gmail.com>
 " License: MIT
 " Modifed: 13 July 2016
