@@ -1,5 +1,5 @@
 " -----------------------------------------------------------
-" pace.vim -- An intergalactically friendly Vim theme.
+" deep-space.vim -- An intergalactically friendly Vim theme.
 " Maintainer: Brandon Siders <tyrannicaltoucan@gmail.com>
 " License: MIT
 " Modifed: 13 July 2016
@@ -244,7 +244,3 @@ hi link gitcommitSelected gitcommitComment
 hi link gitcommitDiscardedArrow gitcommitDiscardedFile
 hi link gitcommitSelectedArrow gitcommitSelectedFile
 hi link gitcommitUnmergedArrow gitcommitUnmergedFile
-Host mtm-jupiter
-HostName mtm-jupiter
-user mtm-jupiter
-IdentityFile ~/.ssh/mtm_rsa
