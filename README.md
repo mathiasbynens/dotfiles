@@ -1,5 +1,5 @@
 #IMPORTANT
-[Forked from Mathias Bynens for personal editing](https://github.com/mathiasbynens/dotfiles/issues)!
+[Forked from Mathias Bynens for personal editing](https://github.com/mathiasbynens/dotfiles)!
 
 ##Additions
 
@@ -7,7 +7,7 @@
 
 ##Edits
 
->
+#Mathias's readme below
 
 # Mathias’s dotfiles
 
