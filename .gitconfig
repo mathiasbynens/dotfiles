@@ -108,7 +108,7 @@
 
 [color "branch"]
 
-	current = blue
+	current = yellow reverse
 	local = yellow
 	remote = green
 
