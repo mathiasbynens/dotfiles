@@ -1,3 +1,14 @@
+#IMPORTANT
+[Forked from Mathias Bynens for personal editing](https://github.com/mathiasbynens/dotfiles/issues)!
+
+##Additions
+
+##Deletions
+
+##Edits
+
+>
+
 # Mathias’s dotfiles
 
 ![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
