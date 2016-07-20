@@ -7,7 +7,7 @@
 
 ##Edits
 
-#Mathias's readme below
+#Mathias's readme below (edited where appropriate)
 
 # Mathias’s dotfiles
 
