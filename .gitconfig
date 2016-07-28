@@ -64,6 +64,10 @@
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
     type = cat-file -t
     dump = cat-file -p
+
+    # RelaxDiego suggestions
+    fa = fetch --all
+    far = fetch --all --recurse-submodules
     t = log --graph --pretty=oneline --abbrev-commit --decorate --color
     ta = log --graph --pretty=oneline --abbrev-commit --decorate --color --all
 
