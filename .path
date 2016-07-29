@@ -1,1 +1,2 @@
+export PATH="/usr/local/sbin:$PATH"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
