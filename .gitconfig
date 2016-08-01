@@ -60,12 +60,16 @@
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
 
-	# Merge GitHub pull request on top of the `master` branch
+	# Merge GitHub pull request on top of the current branch or,
+	# if a branch name is specified, on top of the specified branch
 	mpr = "!f() { \
+		declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+		declare branch=\"${2:-$currentBranch}\"; \
 		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
 			git fetch origin refs/pull/$1/head:pr/$1 && \
-			git rebase master pr/$1 && \
-			git checkout master && \
+			git checkout -B $branch && \
+			git rebase $branch pr/$1 && \
+			git checkout -B $branch && \
 			git merge pr/$1 && \
 			git branch -D pr/$1 && \
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
@@ -88,7 +92,7 @@
 	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
-	# Make `git rebase` safer on OS X
+	# Make `git rebase` safer on macOS
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
 	trustctime = false
 
@@ -121,12 +125,18 @@
 	changed = green
 	untracked = cyan
 
+[commit]
+
+	# https://help.github.com/articles/signing-commits-using-gpg/
+	gpgsign = true
+
 [diff]
 
 	# Detect copies as well as renames
 	renames = copies
 
 [diff "bin"]
+
 	# Use `hexdump` to diff binary files
 	textconv = hexdump -v -C
 
