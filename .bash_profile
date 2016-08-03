@@ -46,3 +46,8 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Chrome Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# add autocompletion for branches in git
+source /usr/local/git/contrib/completion/git-completion.bash
+GIT_PS1_SHOWDIRTYSTATE=true
+export PS1='[\u@mbp \w$(__git_ps1)]\$ '
