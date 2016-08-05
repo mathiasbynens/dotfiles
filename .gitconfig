@@ -20,8 +20,14 @@
 	# Clone a repository including all submodules
 	c = clone --recursive
 
-	# Commit all changes
-	ca = !git add -A && git commit -av
+	# Commit all changes, just add a commit message in double-quotes
+	ca = git add -A && git commit -m
+
+	ci = commit
+
+	st = status
+
+	co = commit
 
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
