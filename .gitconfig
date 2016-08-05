@@ -85,9 +85,8 @@
 
 [core]
 
-	# Use custom `.gitignore` and `.gitattributes`
+	# Use custom `.gitignore`
 	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line
@@ -130,7 +129,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	# gpgsign = true
 
 [diff]
 
