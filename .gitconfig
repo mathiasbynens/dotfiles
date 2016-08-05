@@ -21,7 +21,7 @@
 	c = clone --recursive
 
 	# Commit all changes, just add a commit message in double-quotes
-	ca = git add -A && git commit -m
+	ca = !git add -A && git commit -m
 
 	ci = commit
 
