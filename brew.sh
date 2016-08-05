@@ -105,5 +105,16 @@ brew install rbenv
 brew install ruby-build
 brew install python3
 
+# Add all kinds of fancy tab auto-completions to bash
+brew install bash-completion
+brew tap homebrew/completions
+brew install apm-bash-completion
+brew install gem-completion
+brew install grunt-completion
+brew install rails-completion
+brew install rake-completion
+brew install ruby-completion
+
+
 # Remove outdated versions from the cellar.
 brew cleanup
