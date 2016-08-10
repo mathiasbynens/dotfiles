@@ -1,5 +1,11 @@
+# Prefer GNU coreutils over BSD ones, i.e. ls, cat. This works only if you run 'brew install coreutils', or run brew.sh
+PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+# Allow access to GNU coreutils man pages before BSD man pages
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+export MANPATH
+
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+# export PATH="$HOME/bin:$PATH";
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -45,4 +51,9 @@ fi;
 complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
-complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+# complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# enable Homebrew package 'bash-completion' to function
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+	. $(brew --prefix)/etc/bash_completion
+fi

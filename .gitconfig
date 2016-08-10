@@ -2,6 +2,8 @@
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	# more verbose history
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
 	# View the current working tree status using the short format
 	s = status -s
@@ -18,8 +20,14 @@
 	# Clone a repository including all submodules
 	c = clone --recursive
 
-	# Commit all changes
-	ca = !git add -A && git commit -av
+	# Commit all changes, just add a commit message in double-quotes
+	ca = !git add -A && git commit -m
+
+	ci = commit
+
+	st = status
+
+	co = commit
 
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -83,9 +91,8 @@
 
 [core]
 
-	# Use custom `.gitignore` and `.gitattributes`
+	# Use custom `.gitignore`
 	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line
@@ -99,6 +106,10 @@
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
+
+	# Prevent future headaches!
+	autocrlf = input
+	safecrlf = true
 
 [color]
 
@@ -128,7 +139,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	# gpgsign = true
 
 [diff]
 
