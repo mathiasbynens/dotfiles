@@ -28,3 +28,14 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
+
+# Use GNU core utilities instead of their BSD variants
+if which brew &> /dev/null; then
+    local brew_prefix=$(brew --prefix coreutils)
+    if [[ -d "${brew_prefix}/libexec/gnubin" ]]; then
+        # Prefer GNU coreutils over BSD ones, i.e. ls, cat. This works only if you run 'brew install coreutils', or run brew.sh
+        export PATH="$(brew --prefix coreutils)/libexec/gnubin:${PATH}"
+        # Allow access to GNU coreutils man pages before BSD man pages
+        export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
+    fi
+fi
