@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 # Install Homebrew if it's not at /usr/local/bin/brew
 if [ `which brew` != '/usr/local/bin/brew' ]; then
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -136,6 +137,8 @@ git clone --depth=1 https://github.com/scrooloose/syntastic.git
 git clone https://github.com/kien/ctrlp.vim.git
 # Improved Status Bar with Airline
 git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
+# GitGutter
+git clone git://github.com/airblade/vim-gitgutter.git
 
 # virtualenv
 pip install virtualenv
