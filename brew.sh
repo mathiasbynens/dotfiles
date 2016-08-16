@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-# Install command-line tools using Homebrew.
+# Install Homebrew if it's not at /usr/local/bin/brew
+if [ `which brew` != '/usr/local/bin/brew' ]; then
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -34,6 +37,12 @@ fi;
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
+
+# iTerm
+brew install Caskroom/cask/iterm2
+
+# gpg
+brew install gpg
 
 # Install RingoJS and Narwhal.
 # Note that the order in which these are installed is important;
@@ -77,7 +86,8 @@ brew install tcpflow
 brew install tcpreplay
 brew install tcptrace
 brew install ucspi-tcp # `tcpserver` etc.
-brew install xpdf
+brew cask install xquartz
+brew install homebrew/x11/xpdf
 brew install xz
 
 # Install other useful binaries.
@@ -101,6 +111,34 @@ brew install tree
 brew install vbindiff
 brew install webkit2png
 brew install zopfli
+
+# iTerm
+brew install Caskroom/cask/iterm2
+
+# tmux
+brew install tmux
+
+# Python3
+brew install python3
+
+# Pathogen & vim packages
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+echo "execute pathogen#infect()" >> ~/.vimrc
+cd ~/.vim/bundle
+# NerdTree
+git clone https://github.com/scrooloose/nerdtree.git
+# Git for NerdTree
+git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git
+# Linter
+git clone --depth=1 https://github.com/scrooloose/syntastic.git
+# Fuzzy Finder
+git clone https://github.com/kien/ctrlp.vim.git
+# Improved Status Bar with Airline
+git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
+
+# virtualenv
+pip install virtualenv
 
 # Remove outdated versions from the cellar.
 brew cleanup

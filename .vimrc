@@ -15,15 +15,10 @@ set esckeys
 set backspace=indent,eol,start
 " Optimize for fast terminal connections
 set ttyfast
-" Add the g flag to search/replace by default
-set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
 " Change mapleader
 let mapleader=","
-" Don’t add empty newlines at the end of files
-set binary
-set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -47,9 +42,9 @@ syntax on
 " Highlight current line
 set cursorline
 highlight CursorLine ctermbg=016
-" Highlight line numbers
-highlight linenr ctermbg=6
-highlight linenr ctermfg=0
+"" Highlight line numbers
+"highlight linenr ctermbg=6
+"highlight linenr ctermfg=0
 " Expand tabs to spaces
 set expandtab
 " Show “invisible” characters
@@ -79,13 +74,13 @@ set showmode
 set title
 " Show the (partial) command as it’s being typed
 set showcmd
-" Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
+"" Use relative line numbers
+"if exists("&relativenumber")
+"	set relativenumber
+"	au BufReadPost * set relativenumber
+"endif
 " Start scrolling three lines before the horizontal window border
-set scrolloff=3
+set scrolloff=8
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()

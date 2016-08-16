@@ -12,6 +12,13 @@ function doIt() {
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
+
+        mkdir -p ~/virtualenvs
+        cd ~/virtualenvs
+        virtualenv -p python3 default
+        echo 'source ~/virtualenvs/default/bin/activate' >> ~/.bash_profile
+        cd -
+
 	source ~/.bash_profile;
 }
 
