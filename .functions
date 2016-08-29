@@ -255,3 +255,29 @@ function gg() {
     git commit -m "$(echo $*)"
     git push
 }
+
+# Create 4 emoji gifs to be uploaded to slack
+# (top-left top-right, bottom-left, bottom-right)
+# Requires imagemagick
+function emojif() {
+    img=$1
+    width=$(identify -ping -format '%w' $img[0])
+    height=$(identify -ping -format '%h' $img[0])
+    dimensions=($width $height)
+    max=$(printf "%d\n" "${dimensions[@]}" | sort -rn | head -1)
+    dw=$(expr $max - $width)
+    dh=$(expr $max - $height)
+    convert $img -gravity center -background none -extent ${max}x${max} square_image.gif
+    side=$(expr $max / 2)
+    quadrants=(tl tr br bl)
+    for q in "${quadrants[@]}"; do
+        if [ $q == tl ] ; then w=-$side && h=-$side ;
+        elif [ $q == tr ] ; then w=+$side && h=-$side ;
+        elif [ $q == bl ] ; then w=-$side && h=+$side ;
+        else w=+$side && h=+$side ;
+        fi
+        convert square_image.gif -gravity center -crop ${w}${h} +repage ${q}_img.gif
+        convert ${q}_img.gif -resize 64x64 ${q}_img.gif
+        convert ~/${q}_img.gif -delay 90 -loop 0 ${q}_img.gif
+    done
+}
