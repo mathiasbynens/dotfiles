@@ -257,8 +257,8 @@ function gg() {
 }
 
 # Create 4 emoji gifs to be uploaded to slack
-# (top-left top-right, bottom-left, bottom-right)
-# Requires imagemagick
+# (top-left, top-right, bottom-left, bottom-right)
+# Requires Imagemagick
 function emojif() {
     img=$1
     width=$(identify -ping -format '%w' $img[0])
@@ -278,6 +278,8 @@ function emojif() {
         fi
         convert square_image.gif -gravity center -crop ${w}${h} +repage ${q}_img.gif
         convert ${q}_img.gif -resize 64x64 ${q}_img.gif
-        convert ~/${q}_img.gif -delay 90 -loop 0 ${q}_img.gif
+        convert ${q}_img.gif -quality 40% ${q}_img.gif 
+        convert ${q}_img.gif -delay 90 -loop 0 ${q}_img.gif
+        convert ${q}_img.gif -fuzz 18% -layers Optimize ${q}_img.gif
     done
 }
