@@ -53,7 +53,9 @@ alias week='date +%V'
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
 
 # In case of errors with brew and ruby this resets it all
-alias resetbrew='sudo chown -R $(whoami):admin /usr/local;cd /usr/local;git fetch;git reset --hard origin/master'
+alias resetbrew='sudo chown -R $(whoami):admin /usr/local;cd /usr/local;git fetch;git reset --hard origin/master;sudo chown -R root:wheel /usr/local/McAfee;sudo chown -R /usr/local/jamf'
+
+alias updategopkg='go get -u all'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -151,4 +153,8 @@ alias dockertoolbox='eval $(docker-machine env default)'
 # Switch to docker for mac native
 alias docker4mac='unset ${!DOCKER_*}'
 
+# Run local godoc server then browser to localhost:8080  to see all docs and run local go tour
+alias localgodoc='godoc -http=":8080"'
+alias localgotour='go tool tour'
+alias updategopkg='go get -u all'
 
