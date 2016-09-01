@@ -149,3 +149,17 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+#Git Aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
+alias gb='git branch'
+alias gl='git log'
+alias gd='git diff'
+alias gmas='git checkout master'
+alias gcb='git checkout -b'
+alias gck='git checkout'
+
+#nand2tetris aliases
+alias hs='HardwareSimulator.sh'

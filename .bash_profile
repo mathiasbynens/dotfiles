@@ -46,3 +46,11 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+#Reference ~/.npm-packages for npm
+NPM_PACKAGES="~/.npm-packages"
+prefix="~/.npm-packages"
+
+#make node reference npm directory
+NODE_PATH=\"\$NPM_PACKAGES/lib/node_modules\:\$NODE_PATH\"
+PATH=\"\$NPM_PACKAGES/bin\:\$PATH\" 
