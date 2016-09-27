@@ -12,9 +12,7 @@ echo
 echo "Please enter a default tmux session name"
 read tmux_session
 
-rm ~/.extra 2> /dev/null
-
-cat << EOT >> ~/.extra
+cat << EOT > ~/.extra
 # This file contains additional configurations
 alias $tmux_alias="tmux a -t $tmux_session || tmux new -s $tmux_session"
 EOT

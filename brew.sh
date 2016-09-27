@@ -135,13 +135,29 @@ git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git
 git clone --depth=1 https://github.com/scrooloose/syntastic.git
 # Fuzzy Finder
 git clone https://github.com/kien/ctrlp.vim.git
-# Improved Status Bar with Airline
-git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 # GitGutter
 git clone git://github.com/airblade/vim-gitgutter.git
+# Surround (change quotes or brackets around a word)
+git clone https://github.com/tpope/vim-surround.git
+# Code completion
+git clone https://github.com/valloric/youcompleteme.git
+# Align stuff
+git clone git://github.com/godlygeek/tabular.git
 
 # virtualenv
 pip install virtualenv
+mkdir -p ~/virtualenvs
+cd ~/virtualenvs
+virtualenv -p python3 default
+source default/bin/activate
+pip install pygments
+pip install numpy
+pip install pandas
+pip install Requests
+pip install django
+pip install flask
+pip install pyyaml
+cd -
 
 # Remove outdated versions from the cellar.
 brew cleanup
