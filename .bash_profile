@@ -59,3 +59,6 @@ test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_i
 
 # add ansible
 # source ~/dev/ansible/hacking/env-setup
+
+# add RVM
+source ~/.profile
