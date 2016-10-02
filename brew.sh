@@ -55,6 +55,7 @@ brew install p7zip
 brew install pigz
 brew install webkit2png
 brew install autojump
+brew install rbenv
 
 # RipGrep Not in Homebrew yet
 brew install https://raw.githubusercontent.com/BurntSushi/ripgrep/master/pkg/brew/ripgrep.rb
@@ -67,6 +68,7 @@ brew install fortune
 brew install cowsay
 brew install no-more-secrets
 brew install asciinema
+brew install figlet
 
 brew install exercism
 brew install heroku

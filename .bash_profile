@@ -55,3 +55,9 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # Add fzf to Bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 complete -F _fzf_file_completion -o default -o bashdefault rspec
+
+# Init RBenv
+eval "$(rbenv init -)"
+
+# Cowsay on reload
+fortune computers science | cowsay -f $(cowsay -l | tail -n +2 | tr ' ' '\n' | gshuf -n 1) | lolcat
