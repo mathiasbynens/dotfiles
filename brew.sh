@@ -43,14 +43,23 @@ brew install homebrew/dupes/screen
 # Install other useful binaries.
 brew install ack
 brew install dark-mode
-#brew install exiv2
 brew install git
+brew install gitsh
+brew install hub
 brew install git-lfs
 brew install imagemagick --with-webp
 brew install lua
 brew install p7zip
 brew install pigz
 brew install webkit2png
+brew install autojump
+
+# Fun Stuff with No Purpose
+brew install fortune
+brew install cowsay
+
+brew install exercism
+brew install heroku
 
 # Remove outdated versions from the cellar.
 brew cleanup
