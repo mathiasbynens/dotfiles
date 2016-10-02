@@ -65,6 +65,7 @@ brew install fzf
 # Fun Stuff with No Purpose
 brew install fortune
 brew install cowsay
+brew install no-more-secrets
 
 brew install exercism
 brew install heroku
