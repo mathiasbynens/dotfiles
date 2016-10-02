@@ -66,6 +66,7 @@ brew install fzf
 brew install fortune
 brew install cowsay
 brew install no-more-secrets
+brew install asciinema
 
 brew install exercism
 brew install heroku
