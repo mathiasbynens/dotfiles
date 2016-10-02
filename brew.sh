@@ -45,6 +45,7 @@ brew install ack
 brew install gpg
 brew install dark-mode
 brew install git
+brew tap thoughtbot/formulae
 brew install gitsh
 brew install hub
 brew install git-lfs
