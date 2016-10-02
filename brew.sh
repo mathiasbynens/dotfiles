@@ -42,6 +42,7 @@ brew install homebrew/dupes/screen
 
 # Install other useful binaries.
 brew install ack
+brew install gpg
 brew install dark-mode
 brew install git
 brew install gitsh
