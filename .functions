@@ -235,3 +235,13 @@ function github {
 
   echo "Opening ${url} $(\open ${url})"
 }
+
+function circle {
+  branch="$(git rev-parse --abbrev-ref HEAD)"
+  url="$(git config --get remote.origin.url)"
+  url=${url/git@github.com:/http://github.com/}
+  url=${url/.git/}
+  url=${url/github.com\//circleci.com\/gh/}
+  url="${url}/tree/${branch}"
+  echo "Opening ${url} $(\open ${url})"
+}
