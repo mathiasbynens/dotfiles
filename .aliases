@@ -38,6 +38,8 @@ alias la="ls -laF ${colorflag}"
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
+alias :cop:="g pull --ff-only; rubocop --auto-correct; git ca -m :cop:; git push"
+
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
 
