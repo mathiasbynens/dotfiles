@@ -150,5 +150,5 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-# Emergency git commit and push
-alias gitit="git add -A; git commit -m 'emergency commit'; git push"
+# Empty trash
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash"
