@@ -56,6 +56,7 @@ brew install webkit2png
 brew install autojump
 brew install rbenv
 brew install tree
+brew install thefuck
 
 # RipGrep Not in Homebrew yet
 brew install https://raw.githubusercontent.com/BurntSushi/ripgrep/master/pkg/brew/ripgrep.rb
