@@ -1,41 +1,53 @@
+// Sublime User Settings
 {
-	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
-	"default_encoding": "UTF-8",
-	"default_line_ending": "unix",
-	"detect_indentation": false,
-	"draw_white_space": "all",
-	"ensure_newline_at_eof_on_save": false,
-	"file_exclude_patterns":
-	[
-		".DS_Store",
-		"Desktop.ini",
-		"*.pyc",
-		"._*",
-		"Thumbs.db",
-		".Spotlight-V100",
-		".Trashes"
-	],
-	"folder_exclude_patterns":
-	[
-		".git",
-		"node_modules"
-	],
-	"font_face": "Monaco",
-	"font_size": 13,
-	"highlight_modified_tabs": true,
-	"hot_exit": false,
-	"line_padding_bottom": 5,
-	"match_brackets": true,
-	"match_brackets_angle": true,
-	"remember_open_files": false,
-	"rulers":
-	[
-		80
-	],
-	"show_encoding": true,
-	"show_line_endings": true,
-	"tab_size": 2,
-	"translate_tabs_to_spaces": false,
-	"trim_trailing_white_space_on_save": true,
-	"word_wrap": true
+    // User Interface
+    // Sets the colors used within the text area
+    "color_scheme": "Packages/Boxy Theme/schemes/Boxy Solarized Dark.tmTheme",
+    // The theme controls the look of Sublime Text's UI (buttons, tabs, scroll bars, etc)
+    "theme": "Boxy Solarized Dark.sublime-theme",
+    // Theme Settings
+    "theme_accent_purple": true,
+    "theme_bar": true,
+    "theme_bar_shadow_hidden": true,
+    "theme_dropdown_atomized": true,
+    "theme_find_panel_atomized": true,
+    "theme_sidebar_disclosure": true,
+    "theme_sidebar_folder_mono": true,
+    "theme_sidebar_indent_sm": true,
+    "theme_statusbar_colored": true,
+    "theme_statusbar_size_md": true,
+    "theme_tab_highlight_text_only": true,
+    "theme_tab_selected_filled": true,
+    "theme_tab_size_md": true,
+    "theme_tabset_line_visible": true,
+    "theme_unified": true,
+
+    // Boxy recommended extra settings
+    "always_show_minimap_viewport": true,
+    "bold_folder_labels": true,
+    "caret_extra_bottom": 1,
+    "caret_extra_top": 1,
+    "caret_extra_width": 1,
+    "caret_style": "blink",
+    "fade_fold_buttons": false,
+    "indent_guide_options": ["draw_normal", "draw_active"],
+    "line_padding_bottom": 2,
+    "line_padding_top": 2,
+    "overlay_scroll_bars": "enabled",
+    "show_encoding": true,
+    "show_line_endings": true,
+
+    // Indentation
+    // The number of spaces a tab is considered equal to
+    "tab_size": 4,
+    // Set to true to insert spaces when tab is pressed
+    "translate_tabs_to_spaces": true,
+
+    // OS X only: When files are opened from finder, or by dragging onto the
+    // dock icon, this controls if a new window is created or not.
+    "open_files_in_new_window": false,
+
+    // List any packages to ignore here. When removing entries from this list,
+    // a restart may be required if the package contains plugins.
+    "ignored_packages": ["Vintage"]
 }
