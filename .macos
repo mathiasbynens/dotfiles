@@ -381,7 +381,7 @@ defaults write com.apple.dock show-process-indicators -bool true
 defaults write com.apple.dock launchanim -bool false
 
 # Speed up Mission Control animations
-# Doesn't work anymore. Mission Control animation is now tied to gesture intensity
+# Doesn't work since Sierra. Mission Control animation is now tied to gesture intensity
 #defaults write com.apple.dock expose-animation-duration -float 0.1
 
 # Don’t group windows by application in Mission Control
