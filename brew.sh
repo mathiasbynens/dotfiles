@@ -57,9 +57,10 @@ brew install autojump
 brew install rbenv
 brew install tree
 brew install thefuck
+brew install tig
 
-# RipGrep Not in Homebrew yet
-brew install https://raw.githubusercontent.com/BurntSushi/ripgrep/master/pkg/brew/ripgrep.rb
+brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
+brew install burntsushi/ripgrep/ripgrep-bin
 
 # FZF
 brew install fzf
