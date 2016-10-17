@@ -149,3 +149,25 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+#'coz asdf are nearer than 123
+alias xda="xd 1"
+alias xds="xd 2"
+alias xdd="xd 3"
+alias xdf="xd 4"
+alias xdg="xd 5"
+alias xdh="xd 6"
+alias xdj="xd 7"
+alias xdk="xd 8"
+alias xdl="xd 9"
+alias xdm="xd 10"
+
+# Pretty print path variables
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+
+# useful when editing dotfiles
+# alias src='source ~/.bash_profile'
+# alias opba="open ~/.bash_profile"
+
+

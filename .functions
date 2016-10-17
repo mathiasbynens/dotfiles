@@ -234,3 +234,70 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Simple calculator
+function calc() {
+	local result="";
+	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
+	#                       └─ default (when `--mathlib` is used) is 20
+	#
+	if [[ "$result" == *.* ]]; then
+		# improve the output for decimal numbers
+		printf "$result" |
+		sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
+		    -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
+		    -e 's/0*$//;s/\.$//';  # remove trailing zeros
+	else
+		printf "$result";
+	fi;
+	printf "\n";
+}
+
+
+function extract()      # Handy Extract Program
+{
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xvjf $1     ;;
+            *.tar.gz)    tar xvzf $1     ;;
+            *.bz2)       bunzip2 $1      ;;
+            *.rar)       unrar x $1      ;;
+            *.gz)        gunzip $1       ;;
+            *.tar)       tar xvf $1      ;;
+            *.tbz2)      tar xvjf $1     ;;
+            *.tgz)       tar xvzf $1     ;;
+            *.zip)       unzip $1        ;;
+            *.Z)         uncompress $1   ;;
+            *.7z)        7z x $1         ;;
+            *)           echo "'$1' cannot be extracted via >extract<" ;;
+        esac
+    else
+        echo "'$1' is not a valid file!"
+    fi
+}
+
+# Creates an archive (*.tar.gz) from given directory.
+function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+
+# Create a ZIP archive of a file or folder.
+function makezip() { zip -r "${1%%/}.zip" "$1" ; }
+
+# cd into dirs in finder with xda, xds...
+# for OS X and Mac OS only
+#xda = xd 1, xds = xd 2..
+#xd n; cd s terminal to nth windows in terminal
+#xda = xd1, xds =xd2
+function xd() { 
+	if [ -f $1 ] ; then
+		xd 1
+	else
+		#creating a file and sourcing it. 
+		xdcmd="\$(osascript -e 'tell app \"Finder\" to return the POSIX path of (target of window $1 as alias)')"
+		#creating in home, to avoid permission issues
+		echo -e "cd \"$xdcmd\"" > ~/.xdhlscript_12345 #random name
+
+		#sourcing because parent returns to original dir after child is completed
+		. ~/.xdhlscript_12345
+		rm ~/.xdhlscript_12345
+	fi
+}
