@@ -162,3 +162,12 @@ alias xdk="xd 8"
 alias xdl="xd 9"
 alias xdm="xd 10"
 
+# Pretty print path variables
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+
+# useful when editing dotfiles
+# alias src='source ~/.bash_profile'
+# alias opba="open ~/.bash_profile"
+
+
