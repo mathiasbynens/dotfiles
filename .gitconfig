@@ -109,6 +109,7 @@
 	
 	# Don't add crlf
 	autocrlf = false
+	editor = vim
 [color]
 
 	# Use colors in Git commands that are capable of colored output when
