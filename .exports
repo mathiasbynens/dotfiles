@@ -26,5 +26,6 @@ export LC_ALL='en_US.UTF-8';
 # Highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}";
 
-# Don’t clear the screen after quitting a manual page.
+# Allow less's default behavior to use termcap. This allows mouse scrolling.
+# Change to 'less -X' to capture output in terminal and disable mouse scrolling.
 export MANPAGER='less';
