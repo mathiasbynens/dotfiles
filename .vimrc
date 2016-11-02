@@ -1,7 +1,7 @@
 " Use the Solarized Dark theme
 set background=dark
-"colorscheme solarized
-colorscheme delek
+colorscheme solarized
+"colorscheme delek
 let g:solarized_termtrans=1
 
 " Make Vim more useful
@@ -20,6 +20,10 @@ set ttyfast
 set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
+set fileencoding=utf-8
+" Set <EOL> to LF and CRLF as failsafe
+set fileformat=unix
+set fileformats=unix,dos
 " Change mapleader
 let mapleader=","
 " Don’t add empty newlines at the end of files
