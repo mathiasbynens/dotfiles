@@ -162,6 +162,13 @@ noremap <leader>fx :%!xmllint --format --recover - 2>/dev/null<CR>
 " Format json document (,fj)
 noremap <leader>fj :%!python -m json.tool<CR>
 
+" Map window naviation keys to make it faster
+nnoremap <C-J> <C-W><C-J>¬
+nnoremap <C-K> <C-W><C-K>¬
+nnoremap <C-L> <C-W><C-L>¬
+nnoremap <C-H> <C-W><C-H>¬
+
+
 " Automatic commands
 if has("autocmd")
 	" Enable file type detection
