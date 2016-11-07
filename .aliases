@@ -49,6 +49,9 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# Add Types to RipGrep since they don't persist anywhere normally
+alias rg="rg --type-add scss:*.scss"
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
