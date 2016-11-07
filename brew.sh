@@ -58,6 +58,7 @@ brew install rbenv
 brew install tree
 brew install thefuck
 brew install tig
+brew install pgcli
 
 brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
 brew install burntsushi/ripgrep/ripgrep-bin
