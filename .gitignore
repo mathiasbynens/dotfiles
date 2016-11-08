@@ -15,3 +15,6 @@ Thumbs.db
 
 # Ignore .extra
 .extra
+
+# Ignore .rspec_failed_examples files
+.rspec_failed_examples
