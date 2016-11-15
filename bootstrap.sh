@@ -1,28 +1,55 @@
 #!/usr/bin/env bash
+#
+#
+# set -x
+#
+__DIR__=`dirname $0`
+cd ${__DIR__}
+__PWD__=`pwd`
+__CURRDIR__=${__PWD__}
 
-cd "$(dirname "${BASH_SOURCE}")";
+TOBE_LINKED=(
+    ".gitconfig"
+    ".gitignore"
+    ".gvimrc"
+    ".macos"
+    ".vimrc"
+    ".vim"
+    ".wgetrc"
+    ".zprezto"
+)
 
-git pull origin master;
+while [ "x${TOBE_LINKED[count]}" != "x" ]
+do
+   count=$(( $count + 1 ))
+   link=${TOBE_LINKED[count]}
+   # echo $link
+   if [[ -e $link ]]; then
+       ln -sf ${__CURRDIR__}/$link ~/$link
+   fi
+done
 
-RSYNC_EXCLUDE_LIST=('.git/' '.DS_Store' 'bootstrap.sh' 'README.md' 'init' 'brew.sh' 'LICENSE-MIT.txt')
-[ -f ~/.gitconfig ] && RSYNC_EXCLUDE_LIST+=('.gitconfig')
 
-function doIt() {
-    exclude_args=""
-    for file in ${RSYNC_EXCLUDE_LIST[@]};do
-        exclude_args="--exclude $file $exclude_args";
-    done
-	rsync $exclude_args -avh --no-perms . ~;
-	source ~/.bash_profile;
-}
+# Setup .zprezto
+#
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
-fi;
-unset doIt;
+ZPREZTORCS=(
+    "zshenv"
+    "zprofile"
+    "zshrc"
+    "zpreztorc"
+    "zlogin"
+    "zlogout"
+)
+count=0
+while [[ "x${ZPREZTORCS[count]}" != "x" ]]; do
+    count=$(( $count + 1 ))
+    rcfile=${ZPREZTORCS[count]}
+    rcpath=$__CURRDIR__/.zprezto/runcoms/${ZPREZTORCS[count]}
+    if [[ -f $rcpath ]]; then
+        ln -sf $rcpath ~/.$rcfile
+    fi
+done
+
+
+

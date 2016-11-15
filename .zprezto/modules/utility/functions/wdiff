@@ -1,0 +1,29 @@
+#
+# Highlights wdiff output.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+function wdiff {
+  if zstyle -t ':prezto:module:utility:wdiff' color; then
+    if (( $+commands[wdiff] )); then
+      command wdiff \
+        --avoid-wraps \
+        --start-delete="$(print -n $FG[red])" \
+        --end-delete="$(print -n $FG[none])" \
+        --start-insert="$(print -n $FG[green])" \
+        --end-insert="$(print -n $FG[none])" \
+        "$@" \
+      | sed 's/^\(@@\( [+-][[:digit:]]*,[[:digit:]]*\)\{2\} @@\)$/;5;6m\10m/g'
+    elif (( $+commands[git] )); then
+      git --no-pager diff --color=auto --no-ext-diff --no-index --color-words "$@"
+    else
+      command wdiff "$@"
+    fi
+  else
+    command wdiff "$@"
+  fi
+}
+
+wdiff "$@"

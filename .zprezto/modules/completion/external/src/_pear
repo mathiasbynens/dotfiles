@@ -1,0 +1,89 @@
+#compdef pear
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for Pear (http://pear.php.net).
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * aki77 (https://github.com/aki77)
+#
+# ------------------------------------------------------------------------------
+
+
+_pear () {
+    local curcontext="$curcontext" state line expl ret=1
+
+    _arguments \
+        '1: :->subcmds' \
+        '*:: :->args' && ret=0
+
+    case $state in
+        subcmds)
+            _pear_commands
+            ;;
+        args)
+            local cmd args
+
+            cmd=$words[1]
+            args=()
+
+            case $cmd in
+                channel-alias|channel-delete|channel-info|channel-update)
+                    args+=(
+                        ':channel:_pear_discovered_channels'
+                    )
+                    ;;
+                uninstall|upgrade|run-scripts)
+                    args+=(
+                        ':package:_pear_installed_packages'
+                    )
+                    ;;
+            esac
+
+            _arguments "$args[@]" && ret=0
+            return
+            ;;
+    esac
+    return ret
+}
+
+_pear_commands () {
+    local commands
+
+    commands=(
+        ${${(f)${"$(_call_program commands $service 2>&1)"#*Commands:}%Usage:*}/[[:blank:]]*[[:blank:]][[:blank:]]/:}
+    )
+    _describe -t commands 'Pear commands' commands
+}
+
+_pear_installed_packages () {
+    local packages
+
+    packages=(
+        ${${(f)"$(pear list)"#*STATE}%%[[:blank:]]*}
+    )
+    _wanted package expl 'package' compadd -a packages
+}
+
+_pear_discovered_channels () {
+    local channels
+
+    channels=(
+        ${${${(f)"$(_call_program commands pear list-channels)"#*SUMMARY}%__uri*}%%[[:blank:]]*}
+    )
+    _wanted channel expl 'channel' compadd -a channels
+}
+
+_pear "$@"
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et

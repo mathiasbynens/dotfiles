@@ -1,0 +1,73 @@
+#compdef geany
+# ------------------------------------------------------------------------------
+# Copyright (c) 2011 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for Geany (http://www.geany.org).
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Julien Nicoulaud <julien.nicoulaud@gmail.com>
+#
+# ------------------------------------------------------------------------------
+
+
+_arguments \
+  '(- 1 *)'{-h,--help}'[Show help options]' \
+  '(- 1 *)--help-all[Show all help options]' \
+  '(- 1 *)--help-gtk[Show GTK+ Options]' \
+  '(- 1 *)'{-V,--version}'[Show version and exit]' \
+  '(--column)--column[Set initial column number for the first opened file (useful in conjunction with --line)]:column number' \
+  '(-c --config)'{-c,--config}'[Use an alternate configuration directory]:configuration file:_files' \
+  '(--ft-names)--ft-names[Print internal filetype names]' \
+  '(-g --generate-tags)'{-g,--generate-tags}'[Generate global tags file (see documentation)]' \
+  '(-P --no-preprocessing)'{-P,--no-preprocessing}'[Don'\''t preprocess C/C++ files when generating tags]' \
+  '(-i --new-instance)'{-i,--new-instance}'[Don'\''t open files in a running instance, force opening a new instance]' \
+  '(--socket-file)--socket-file[Use this socket filename for communication with a running Geany instance]:socket file:_files' \
+  '(--list-documents)--list-documents[Return a list of open documents in a running Geany instance]' \
+  '(-l --line)'{-l,--line}'[Set initial line number for the first opened file]:line number' \
+  '(-m --no-msgwin)'{-m,--no-msgwin}'[Don'\''t show message window at startup]' \
+  '(-n --no-ctags)'{-n,--no-ctags}'[Don'\''t load auto completion data (see documentation)]' \
+  '(-p --no-plugins)'{-p,--no-plugins}'[Don'\''t load plugins]' \
+  '(--print-prefix)--print-prefix[Print Geany'\''s installation prefix]' \
+  '(-s --no-session)'{-s,--no-session}'[Don'\''t load the previous session'\''s files]' \
+  '(-t --no-terminal)'{-t,--no-terminal}'[Don'\''t load terminal support]' \
+  '(--vte-lib)--vte-lib[Filename of libvte.so]:libvte.so filename:_files -g "*.so"' \
+  '(-v --verbose)'{-v,--verbose}'[Be verbose]' \
+  '(--display)--display[X display to use]:X display:_x_display' \
+  '*: :_files'
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et

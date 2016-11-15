@@ -1,0 +1,10 @@
+#
+# Previews files in Quick Look.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+if (( $# > 0 )); then
+  qlmanage -p "$@" &> /dev/null
+fi

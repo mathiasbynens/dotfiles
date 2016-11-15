@@ -1,0 +1,22 @@
+#
+# Highlights diff output.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+function diff {
+  if zstyle -t ':prezto:module:utility:diff' color; then
+    if (( $+commands[colordiff] )); then
+      command diff --unified "$@" | colordiff --difftype diffu
+    elif (( $+commands[git] )); then
+      git --no-pager diff --color=auto --no-ext-diff --no-index "$@"
+    else
+      command diff --unified "$@"
+    fi
+  else
+    command diff --unified "$@"
+  fi
+}
+
+diff "$@"

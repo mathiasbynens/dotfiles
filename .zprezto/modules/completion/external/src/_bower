@@ -1,0 +1,172 @@
+#compdef bower
+# ------------------------------------------------------------------------------
+# Copyright (c) 2016 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for Bower (http://bower.io).
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Joe Lencioni (https://github.com/lencioni)
+#
+# ------------------------------------------------------------------------------
+
+
+local curcontext="$curcontext" state line _packages _opts ret=1
+
+_arguments -C -A "-v" -A "--version" \
+  '(- 1 *)'{-v,--version}'[display version information]' \
+  '1: :->cmds' \
+  '*:: :->args' && ret=0
+
+case $state in
+  cmds)
+    _values "bower command" \
+      "cache[Manage bower cache]" \
+      "help[Display help information about Bower]" \
+      "home[Opens a package homepage into your favorite browser]" \
+      "info[Info of a particular package]" \
+      "init[Interactively create a bower.json file]" \
+      "install[Install a package locally]" \
+      "link[Symlink a package folder]" \
+      "list[List local packages - and possible updates]" \
+      "login[Authenticate with GitHub and store credentials]" \
+      "lookup[Look up a package URL by name]" \
+      "prune[Removes local extraneous packages]" \
+      "register[Register a package]" \
+      "search[Search for a package by name]" \
+      "update[Update a local package]" \
+      "uninstall[Remove a local package]" \
+      "unregister[Remove a package from the registry]" \
+      "version[Bump a package version]"
+    _arguments \
+      '(--force)--force[Makes various commands more forceful]' \
+      '(--json)--json[Output consumable JSON]' \
+      '(--log-level)--log-level[What level of logs to report]' \
+      '(--offline)--offline[Do not hit the network]' \
+      '(--quiet)--quiet[Only output important information]' \
+      '(--silent)--silent[Do not output anything, besides errors]' \
+      '(--verbose)--verbose[Makes output more verbose]' \
+      '(--allow-root)--allow-root[Allows running commands as root]' \
+      '(--version)--version[Output Bower version]' \
+      '(--no-color)--no-color[Disable colors]'
+    ret=0
+    ;;
+  args)
+    case $line[1] in
+      help)
+        _values 'commands' \
+          'cache' \
+          'home' \
+          'info' \
+          'init' \
+          'install' \
+          'link' \
+          'list' \
+          'login' \
+          'lookup' \
+          'prune' \
+          'register' \
+          'search' \
+          'update' \
+          'uninstall' \
+          'unregister' \
+          'version'
+        ret=0
+        ;;
+      (home|info|init|link|lookup|prune|register|search|unregister)
+        _arguments \
+          '(--help)--help[Show help message]'
+        ret=0
+        ;;
+      install)
+        _arguments \
+          '(--force-latest)--force-latest[Force latest version on conflict]' \
+          '(--help)--help[Show help message]' \
+          '(--production)--production[Do not install project devDependencies]' \
+          '(--save)--save[Save installed packages into the project''s bower.json dependencies]' \
+          '(--save-dev)--save-dev[Save installed packages into the project''s bower.json devDependencies]'
+        ret=0
+        ;;
+      list)
+        _arguments \
+          '(--help)--help[Show help message]' \
+          '(--paths)--paths[Generate a simple JSON source mapping]' \
+          '(--relative)--relative[Make paths relative to the directory config property, which defaults to bower_components]'
+        ret=0
+        ;;
+      login)
+        _arguments \
+          '(--help)--help[Show help message]' \
+          '(-t --token)'{-t,--token}'[Pass GitHub auth token (will not prompt for username/password)]'
+        ret=0
+        ;;
+      uninstall)
+        _arguments \
+          '(--help)--help[Show help message]' \
+          '(--save)--save[Save installed packages into th projects''s bower.json dependencies]' \
+          '(--save-dev)--save-dev[Save installed packages into th projects''s bower.json devDependencies]'
+        ret=0
+        ;;
+      update)
+        _arguments \
+          '(--force-latest)--force-latest[Force latest version on conflict]' \
+          '(--help)--help[Show help message]' \
+          '(--production)--production[Do not install project devDependencies]'
+        ret=0
+        ;;
+      version)
+        _arguments \
+          '(--message)--message[Custom git commit and tag message]'
+        ret=0
+        ;;
+      exec)
+        _normal && ret=0
+        ;;
+      *)
+        _opts=(  $(bower help $line[1] | sed -e '/^  \[-/!d; s/^  \[\(-[^=]*\)=.*/\1/') )
+        _opts+=( $(bower help $line[1] | sed -e '/^  -/!d; s/^  \(-.\), \[\(-[^=]*\)=.*/\1 \2/') )
+        if [[ $_opts != "" ]]; then
+          _values 'options' $_opts && ret=0
+        fi
+        ;;
+    esac
+    ;;
+esac
+
+return ret
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et

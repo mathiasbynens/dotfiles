@@ -1,0 +1,62 @@
+#compdef lein
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for Leiningen (https://github.com/technomancy/leiningen)
+#
+#  Source: https://github.com/technolize/zsh-completion-funcs
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * technolize (https://github.com/technolize)
+#
+# ------------------------------------------------------------------------------
+
+local ret=1 state
+_arguments ':subcommand:->subcommand' && ret=0
+
+case $state in
+  subcommand)
+    subcommands=(
+      "check:Check syntax and warn on reflection."
+      "classpath:Print the classpath of the current project."
+      "clean:Remove all files from project's target-path."
+      "compile:Compile Clojure source into .class files."
+      "deploy:Build and deploy jar to remote repository."
+      "deps:Download all dependencies."
+      "do:Higher-order task to perform other tasks in succession."
+      "help:Display a list of tasks or help for a given task."
+      "install:Install the current project to the local repository."
+      "jack-in:Jack in to a Clojure SLIME session from Emacs."
+      "jar:Package up all the project's files into a jar file."
+      "javac:Compile Java source files."
+      "new:Generate project scaffolding based on a template."
+      "pom:Write a pom.xml file to disk for Maven interoperability."
+      "pprint:Pretty-print a representation of the project map."
+      "repl:Start a repl session either with the current project or standalone."
+      "retest:Run only the test namespaces which failed last time around."
+      "run:Run a -main function with optional command-line arguments."
+      "search:Search remote maven repositories for matching jars."
+      "show-profiles:List all available profiles or display one if given an argument."
+      "test:Run the project's tests."
+      "trampoline:Run a task without nesting the project's JVM inside Leiningen's."
+      "uberjar:Package up the project files and dependencies into a jar file."
+      "upgrade:Upgrade Leiningen to specified version or latest stable."
+      "version:Print version for Leiningen and the current JVM."
+      "with-profile:Apply the given task with the profile(s) specified."
+    )
+    _describe -t subcommands 'leiningen subcommands' subcommands && ret=0
+esac
+
+return ret
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et

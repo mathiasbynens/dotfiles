@@ -1,0 +1,84 @@
+#compdef jq
+# ------------------------------------------------------------------------------
+# Copyright (c) 2011 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for jq (http://stedolan.github.io/jq/)
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Hideaki Miyake (https://github.com/mollifier)
+#  * George Kontridze (https://github.com/gkze)
+#
+# ------------------------------------------------------------------------------
+
+declare -a opts args
+args=(
+  '--argfile[This option passes the first value from the named file as a value to the jq program as a predefined variable]'
+  '--unbuffered[Flush the output after each JSON object is printed]'
+  '(-C --color-output)'{-C,--color-output}'[Colorize the output even if writing to a pipe or a file]'
+  '(-I --online-input)'{-I,--online-input}'[When the top-level input value is an array produce its elements instead of the array]'
+  '(-M --monochrome-output)'{-M,--monochrome-output}'[Not colorize the output]'
+  '(-R --raw-input)'{-R,--raw-input}'[Parse the input as not JSON but string]'
+  '(-S --sort-keys)'{-S,--sort-keys}'[Output the fields of each object with the keys in sorted order]'
+  '(-V --version)'{-V,--version}'[Display version information]'
+  '(-a --ascii-output)'{-a,--ascii-output}'[Output with pure ASCII characters]'
+  '(-e --exit-status)'{-e,--exit-status}'[Sets the exitstatus of jq to 0 if the last output values was neither false nor null, 1 if the last output value was either false or null, or 4 if no valid result was ever produced]'
+  '(-c --compact-output)'{-c,--compact-output}'[Compact output]'
+  '(-h --help)'{-h,--help}'[Display help information]'
+  '(-n --null-input)'{-n,--null-input}'[Run the filter using null as the input]'
+  '(-r --raw-output)'{-r,--raw-output}'[Not format string result as a JSON string with quotes]'
+  '(-s --slurp)'{-s,--slurp}'[Run the filter just once]'
+  '--arg[Passes a value to the jq program, e.g. --arg foo bar]:jq variable: '
+  '1: :_guard "^-*" pattern'
+  '*:files:->file'
+)
+local curcontext=$curcontext state line ret=1
+declare -A opt_args
+
+_arguments -C $opts \
+  $args && ret=0
+
+case $state in
+  file)
+    _files && ret=0
+    ;;
+esac
+
+return $ret
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et
+

@@ -1,0 +1,20 @@
+#
+# Lists explicitly installed Pacman packages.
+#
+# Authors:
+#   Benjamin Boudreau <dreurmail@gmail.com>
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+pacman --query --explicit --info \
+  | awk '
+      BEGIN {
+        FS=":"
+      }
+      /^Name/ {
+        print $2
+      }
+      /^Description/ {
+        print $2
+      }
+    '
