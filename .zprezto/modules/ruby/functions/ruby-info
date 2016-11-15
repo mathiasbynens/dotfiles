@@ -1,0 +1,30 @@
+#
+# Exposes information about the Ruby environment via the $ruby_info associative
+# array.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+local version
+local version_format
+local version_formatted
+
+# Clean up previous $ruby_info.
+unset ruby_info
+typeset -gA ruby_info
+
+if (( $+commands[rvm-prompt] )); then
+  version="$(rvm-prompt)"
+elif (( $+commands[rbenv] )); then
+  version="$(rbenv version-name)"
+elif (( $+commands[ruby] )); then
+  version="${${$(ruby --version)[(w)1,(w)2]}/ /-}"
+fi
+
+# Format version.
+if [[ -n "$version" ]]; then
+  zstyle -s ':prezto:module:ruby:info:version' format 'version_format'
+  zformat -f version_formatted "$version_format" "v:$version"
+  ruby_info[version]="$version_formatted"
+fi

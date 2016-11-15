@@ -1,0 +1,26 @@
+#compdef pactree
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+# Completion script for pactree 4.0
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+# * Limao Luo <luolimao@gmail.com>
+#
+# ------------------------------------------------------------------------------
+
+typeset -A opt_args
+
+_pactree() {
+    local -a cmd packages packages_long
+    packages_long=(/var/lib/pacman/local/*(/))
+    packages=( ${${packages_long#/var/lib/pacman/local/}%-*-*} )
+    compadd "$@" -a packages
+}
+
+# run the main dispatcher
+_pactree "$@"

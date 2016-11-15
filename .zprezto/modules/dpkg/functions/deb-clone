@@ -1,0 +1,25 @@
+#
+# Generates a script that can be used to duplicate a dpkg-based system.
+#
+# Authors:
+#   Daniel Bolton <danielbarrettbolton@gmail.com>
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+local clone_script="${0}.sh"
+local package_list=$(
+  perl \
+    -m 'AptPkg::Cache' \
+    -e '
+      $c=AptPkg::Cache->new;
+      for (keys %$c) {
+        push @a, $_ if $c->{$_}->{'CurrentState'} eq 'Installed';
+      }
+      print "$_ " for sort @a;
+    '
+)
+
+rm "$clone_script"
+print '#!/bin/sh\n' > "$clone_script"
+print "aptitude install ${package_list}\n" >> "$clone_script"
+chmod +x "$clone_script"

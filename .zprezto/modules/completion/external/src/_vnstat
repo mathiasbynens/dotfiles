@@ -1,0 +1,114 @@
+#compdef vnstat
+# ------------------------------------------------------------------------------
+# Copyright (c) 2012 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for vnstat 1.10
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Aaron Schrab <aaron@schrab.com>
+#
+# ------------------------------------------------------------------------------
+
+local context state state_descr line
+typeset -A opt_args
+
+local period="-d --days -h --hours -m --months -w --weeks"
+
+_arguments : \
+  '--cleartop[Remove all top 10 entries]' \
+  '--config[Specify alternate configuration file]:file:_files' \
+  "($period)"{-d,--days}'[Show traffic for days]' \
+  "($period)"{-h,--hours}'[Show trafic for last 24 hours]' \
+  "($period)"{-m,--months}'[Show traffic for months]' \
+  "($period)"{-w,--weeks}'[Show traffic for 7 days]' \
+  '--dbdir[Specify database directory]:directory:_files -/' \
+  '(-D --debug)'{-D,--debug}'[Show additional debug output]' \
+  '--delete[Delete database and stop monitoring selected interface]' \
+  '--dumpdb[Dump database in parseable format]' \
+  '(--disable)--enable[Enable updates for selected interface]' \
+  '(--enable)--disable[Disable updates for selected interface]' \
+  '(-i --iface)'{-i,--iface}'[Specify interface for actions]:interface:->interface' \
+  '--iflist[List available interfaces]' \
+  '(-l --live)'{-l,--live}'[Display current transfer rate]:mode:->live' \
+  '--locale[Specify locale]:locale:' \
+  '--nick[Set nickname for alias]:nickname:' \
+  '--oneline[Traffic summary in one-line, parseable format]' \
+  '(-q --query)'{-q,--query}'[Force database query mode]' \
+  '(-r --reset)'{-r,--reset}'[Reset internal counters]' \
+  '--rebuildtotal[Reset total trafic counters]' \
+  '(-ru --rateunit)'{-ru,--rateunit}'[Swap configured rate unit]' \
+  '--savemerged[Write result of database merge]'  \
+  '(-s --short)'{-s,--short}'[Use short output mode]' \
+  '--style[Modify content and style of output]:style:->style' \
+  '--sync[Synchronize internal counters]' \
+  '--testkernel[Test kernel boot time information]' \
+  '(-t --top10)'{-t,--top10}'[Show all time top 10 traffic days]' \
+  '-tr[Calculate amount of traffic in given time]:seconds:' \
+  '(-u --update)'{-u,--update}'[Update databases]' \
+  '--xml[Show database content in XML format]' \
+  '(-)'{-v,--version}'[Show current version]' \
+  '(-)'{-\?,--help}'[Show command summary]' \
+  '(-)--longhelp[Show complete options list]' \
+  && ret=0
+
+case "$state" in
+
+  (live)
+    _values 'Live mode' \
+      '0[Packets per second]' \
+      '1[Traffic counters]'
+    ;;
+
+  (style)
+    _values 'Output style' \
+      '0[Narrow output]' \
+      '1[Enable bar column]' \
+      '2[Bar column with average traffic rate]' \
+      '3[Enable average traffic rate]' \
+      '4[Disable use of terminal control characters]'
+    ;;
+
+  (interface)
+    local interfaces="$(_call_program interfaces 'vnstat --iflist')"
+    interfaces="${interfaces#*:}"
+    _values -s + 'Interface' ${(z)interfaces}
+    ;;
+
+esac
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: filetype=zsh shiftwidth=2 tabstop=2 expandtab

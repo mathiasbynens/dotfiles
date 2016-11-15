@@ -1,0 +1,14 @@
+#
+# Makes a dpkg Linux kernel package.
+#
+# Authors:
+#   Daniel Bolton <dbb@9y.com>
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+make-kpkg clean
+MAKEFLAGS='' time fakeroot make-kpkg \
+  --append-to-version '-custom' \
+  --revision "$(date +"%Y%m%d")" \
+  kernel_image \
+  kernel_headers

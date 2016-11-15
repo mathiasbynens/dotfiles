@@ -1,0 +1,15 @@
+#
+# Displays the current Finder.app selection.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+osascript 2>&1 <<EOF
+  tell application "Finder" to set the_selection to selection
+  if the_selection is not {}
+    repeat with an_item in the_selection
+      log POSIX path of (an_item as text)
+    end repeat
+  end if
+EOF

@@ -1,0 +1,314 @@
+#compdef lunar lin lrm lvu
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for Lunar (http://www.lunar-linux.org)
+#
+#  Source: https://github.com/Valodim/lunar-zsh-completion
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Valodim (https://github.com/Valodim)
+#
+# ------------------------------------------------------------------------------
+
+
+# completion for lunar itself (different name, see below)
+_lunar_comp() {
+    local suf ret=1 curcontext="$curcontext"
+    local -a vals state line expl
+
+    # regular arguments, this will probably just hand down to the * command below
+    _arguments -C \
+        '(- :)-d[Enables debug messages]' \
+        '(- :)-h[Display help text]' \
+        '(- :)-v[Increases the level of message output]' \
+        '*::command:->command' && return 0
+
+    # complete the first word, ie. subcommand
+    if (( CURRENT == 1 )); then
+        local -a lunar_commands
+        # all lunar subcommands
+        lunar_commands=(
+            'prune:Removes old sources and install/compile logs'
+            'renew:Checks ver. against moonbase & recompiles if necessary'
+            'update:Fetches latest moonbase and then does a "renew"'
+            'rebuild:Recompiles all installed modules'
+            'optimize:Shortcut to the optimization menu'
+            'fix:Check and fix all modules and internal state of lunar'
+            'nofix:Check but do not fix modules and internal state'
+            'fixdepends:Check and fix the dependency database of lunar'
+            'set:Check internal variable(s) and assign their values'
+            'unset:Unsets an internal variable'
+            'resurrect:Force modulename(s) to be unpacked from /var/cache'
+            'install:Install a checklist of modules'
+            'remove:Remove a checklist of modules'
+            'hold:Place a hold on a checklist of modules'
+            'unhold:Remove a hold on a checklist of modules'
+            'exile:Remove a module a/o prevent it from being resurrected'
+            'unexile:Allows a module to be compiled|resurrected again')
+
+        # just show the commands with description
+        _describe -t commands 'lunar command' lunar_commands && ret=0
+        return ret
+    else
+
+        # at this point, we have to decide what to complete for specific subcommands
+
+        # make a list of subcommands with no further arguments for later
+        local -a lunar_no_args
+        lunar_no_args=( prune renew update rebuild optimize fix nofix fixdepends )
+
+        # update the current context
+        curcontext="${curcontext%:*:*}:lunar-$words[1]:"
+        # if there is a specific function of the form _lunar-subcommand
+        if (( $+functions[_lunar-$words[1]] )); then
+            # call that for completion
+            _call_function ret _lunar-$words[1]
+        elif [[ -n "${lunar_no_args[(r)${words[1]}]}" ]]; then
+            # all commands from the array above take no further arguments
+            _message "lunar ${words[1]} requires no arguments"
+        else
+            # by default, complete modules
+            _lunar_modules
+        fi
+        return ret
+    fi
+}
+
+# specific completion for lunar set
+_lunar-set() {
+    # second argument: all lunar variables
+    if (( CURRENT == 2 )); then
+        local vars
+        vars=( ${(f)"$(cat /var/lib/lunar/unset.sh | cut -d' ' -f2)"} )
+        _describe -t modules 'lunar variable' vars && return 0
+    # third argument: some value
+    elif (( CURRENT == 3 )); then
+        _message "value"
+    # no further argument
+    else
+        _message "no further arguments"
+    fi
+}
+
+_lunar-unset() {
+    local vars
+    vars=( ${(f)"$(cat /var/lib/lunar/unset.sh | cut -d' ' -f2)"} )
+    _describe -t modules 'lunar variable' vars && return 0
+}
+
+_lunar-unhold() {
+    local vals
+    vals=( ${(f)"$(lvu held | sort | uniq)"} )
+    _describe -t modules 'held modules' vals && return 0
+}
+
+_lunar-unexile() {
+    local vals
+    vals=( ${(f)"$(lvu exiled | sort | uniq)"} )
+    _describe -t modules 'exiled modules' vals && return 0
+}
+
+_lrm() {
+  _arguments \
+    '(-d --debug)'{-d,--debug}'[Enables debug messages]' \
+    '(-D --downgrade)'{-D,--downgrade}'[downgrades a module]:module:_lunar_modules:version' \
+    '(-h --help)'{-h,--help}'[Displays this help text]' \
+    '(-k --keepconfig)'{-k,--keepconfig}'[remove module(s) but keep dependencies and config]' \
+    '(-n --nosustain)'{-n,--nosustain}'[removes module(s) even if they are sustained]' \
+    '(-u --upgrade)'{-u,--upgrade}'[remove the module but do not run scripts etc.]' \
+    '(-v --verbose)'{-v,--verbose}'[Increases the level of message output]' \
+    '(-p --purge)'{-p,--purge}'[Delete all modules that depend on the module(s) being removed as well]' \
+    '*:module:_lunar_installed_modules' && return 0
+}
+
+_lin() {
+  _arguments \
+    '(-c --compile)'{-c,--compile}'[Ignore /var/cache/lunar and compiles]' \
+    '(-d --debug)'{-d,--debug}'[Enables debug messages]' \
+    '--deps[Configure modules and determine dependencies]' \
+    '(-f --from)'{-f,--from}'[Specify an alternate for /var/spool/lunar]:directory:_files -/' \
+    '(-h --help)'{-h,--help}'[Displays help text]' \
+    '--opts[Add custom configure options to the module]:configure option string' \
+    '(-p --probe)'{-p,--probe}'[Only lin if not already installed]' \
+    '(-r --reconfigure)'{-r,--reconfigure}'[Select new dependencies for modules]' \
+    '(-R --resurrect)'{-R,--resurrect}'[Force to be unpacked from /var/cache/lunar]' \
+    '(-s --silent)'{-s,--silent}'[Decreases the level of message output]' \
+    '(-v --verbose)'{-v,--verbose}'[Increases the level of message output]' \
+    '(-w --want)'{-w,--want}'[Try to install a different version]:wanted version' \
+    '*:module:_lunar_modules' && return 0
+}
+
+# completion for lvu, very similar to the lunar one above (therefore uncommented)
+_lvu() {
+    local suf ret=1 curcontext="$curcontext"
+    local -a vals state line expl
+
+  _arguments -C \
+    '(- :)-d[Enables debug messages]' \
+    '(- :)-h[Display help text]' \
+    '(- :)-v[Increases the level of message output]' \
+    '*::command:->command' && return 0
+
+    if (( CURRENT == 1 )); then
+        local -a lvu_commands
+        lvu_commands=(
+            'what:display a module''s description'
+            'short:display a module''s short description'
+            'where:display a module''s section'
+            'cd:change directory to module and execs a new shell'
+            'alien:discover untracked files'
+            'from:discover what installed a given file'
+            'leafs:display installed modules that have no explicit dependencies on them'
+            'orphans:display installed modules that are missing dependencies'
+            'conflicts:display conflicting files'
+            'held:display held modules'
+            'exiled:display exiled modules'
+            'expired:display a list of modules which need an update'
+            'info:display terse summary information about module'
+            'search:searches all modules long descriptions for phrase.'
+            'service:displays modules that provide that service'
+            'website:display a module''s website'
+            'install:display an install log'
+            'size:find and show installed size of a module or ALL (slow)'
+            'installed:display installed modules/version of module'
+            'compile:display a compile log'
+            'compiler:display the compiler version used'
+            'links:display a list of modules that this module links to'
+            'sources:display source files for a module'
+            'urls:display all URLs for a module'
+            'maintainer:display maintainer for a module'
+            'version:display version of module in moonbase'
+            'new:attempt to create a new module from scratch'
+            'edit:copy a module to zlocal for editing'
+            'diff:view changes on edited module'
+            'submit:attempt to submit a module to the lunar ML'
+            'unedit:delete zlocal copy of a module'
+            'sum:display checksums'
+            'md5sum:display md5sums'
+            'export:make snapshot of box''s configuration.'
+            'import:restores an exported snapshot.'
+            'section:display moonbase sections'
+            'moonbase:display text listing of the moonbase'
+            'html:display html listing of the moonbase'
+            'updatelog:display summary log of previous lunar update'
+            'activity:display main log file'
+            'newer:display available modules newer than Aug 01, 2003'
+            'older:display modules installed before Jan 01, 2003'
+            'voyeur:peak into module compilation'
+            'pam:display installed modules that are Linux-PAM aware'
+            'depends:displays installed modules that explicitly or recursively depend on this module.'
+            'tree:displays a tree of the module''s dependencies'
+            'stree:same as ''tree'' but highly abbreviated'
+            'eert:same as ''tree'' but reverse and installed deps only'
+            'leert:full reverse dependency tree')
+
+        _describe -t commands 'lvu command' lvu_commands && ret=0
+
+        return ret
+    elif (( CURRENT == 2 )); then
+        local -a lvu_no_args
+        lvu_no_args=( alien leafs orphans conflicts held exiled expired export moonbase html updatelog pam )
+
+        curcontext="${curcontext%:*:*}:lvu-$words[1]:"
+        if (( $+functions[_lvu-$words[1]] )); then
+            _call_function ret _lvu-$words[1]
+        elif [[ -n "${lvu_no_args[(r)${words[1]}]}" ]]; then
+            _message "lvu ${words[1]} requires no arguments"
+        else
+            _lunar_modules
+        fi
+        return ret
+    else
+        _message "No further arguments"
+    fi
+
+}
+
+_lvu-service() {
+    _alternative \
+     'service:service name:_lvu-service-service' \
+     'port:port number:_guard "[0-9]#" "port number"'
+}
+
+_lvu-service-service() {
+    local vals
+    vals=( ${(f)"$(cat /etc/services | grep -E -o '^(\w+)' | sort | uniq)"} )
+    _describe -t modules 'service' vals && return 0
+}
+
+_lvu-diff() {
+    local vals
+    vals=( /var/lib/lunar/moonbase/zlocal/*(/:t) )
+    _describe -t modules 'moonbase module from zlocal' vals && return 0
+}
+
+_lvu-unedit() {
+    local vals
+    vals=( /var/lib/lunar/moonbase/zlocal/*(/:t) )
+    _describe -t modules 'moonbase module from zlocal' vals && return 0
+}
+
+_lvu-newer() {
+    _message "date string"
+}
+
+_lvu-older() {
+    _message "date string"
+}
+
+_lvu-import() {
+    _files
+}
+
+_lvu-from() {
+    _files
+}
+
+_lvu-new() {
+    _message "module name"
+}
+
+_lvu-search() {
+    _message "search string"
+}
+
+# specific completion for moonbase modules
+_lunar_modules() {
+    local vals
+    vals=( /var/lib/lunar/moonbase/*/*(/:t) )
+    _describe -t modules 'moonbase module' vals && return 0
+}
+
+# specific completion for moonbase modules
+_lunar_installed_modules() {
+    local vals
+    vals=( ${(f)"$(lvu installed | cut -d':' -f1)"} )
+    _describe -t modules 'moonbase installed module' vals && return 0
+}
+
+# hub function called for completion
+_lunar() {
+    # decide which completion to use
+    case "$service" in
+        lin) _lin "$@";;
+        lrm) _lrm "$@";;
+        lvu) _lvu "$@";;
+        lunar) _lunar_comp "$@";;
+        *) _message "unknown command $service";;
+    esac
+}
+
+_lunar "$@"
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et
