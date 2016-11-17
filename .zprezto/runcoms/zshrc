@@ -11,6 +11,12 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+# put several
+if [[ -f ~/.zextra ]]; then
+  source ~/.zextra
+fi
+
 alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 _proxy="http://127.0.0.1:16888"
 _noproxy='localhost,*.sina.com.cn'

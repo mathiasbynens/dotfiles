@@ -42,9 +42,10 @@ typeset -gU cdpath fpath mailpath path
 # )
 
 # Set the list of directories that Zsh searches for programs.
-phpbin=$(brew --prefix homebrew/php/php70)
+phpbin=$(/usr/local/bin/brew --prefix homebrew/php/php70)
+
 path=(
-  ~/bin 
+  ~/bin
   /usr/local/{bin,sbin}
   $phpbin
   $path

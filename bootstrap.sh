@@ -9,6 +9,7 @@ __PWD__=`pwd`
 __CURRDIR__=${__PWD__}
 
 TOBE_LINKED=(
+    ""
     ".gitconfig"
     ".gitignore"
     ".gvimrc"
@@ -17,6 +18,10 @@ TOBE_LINKED=(
     ".vim"
     ".wgetrc"
     ".zprezto"
+    ".editorconfig"
+    ".curlrc"
+    ".screenrc"
+    ".wgetrc"
 )
 
 while [ "x${TOBE_LINKED[count]}" != "x" ]
@@ -30,10 +35,11 @@ do
 done
 
 
-# Setup .zprezto
+# Setup zsh using .zprezto
 #
 
 ZPREZTORCS=(
+    ""
     "zshenv"
     "zprofile"
     "zshrc"
@@ -41,11 +47,11 @@ ZPREZTORCS=(
     "zlogin"
     "zlogout"
 )
-count=0
 while [[ "x${ZPREZTORCS[count]}" != "x" ]]; do
     count=$(( $count + 1 ))
     rcfile=${ZPREZTORCS[count]}
     rcpath=$__CURRDIR__/.zprezto/runcoms/${ZPREZTORCS[count]}
+    # echo $rcpath
     if [[ -f $rcpath ]]; then
         ln -sf $rcpath ~/.$rcfile
     fi
