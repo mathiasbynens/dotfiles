@@ -16,12 +16,3 @@ fi
 if [[ -f ~/.zextra ]]; then
   source ~/.zextra
 fi
-
-alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
-_proxy="http://127.0.0.1:16888"
-_noproxy='localhost,*.sina.com.cn'
-alias ssledge="export http_proxy='${_proxy}' https_proxy='${_proxy}' no_proxy='${_noproxy}'"
-alias unproxy="unset http_proxy https_proxy"
-alias grep="grep -a"
-alias pssh='ssh -o "ProxyCommand=nc -X connect -x 127.0.0.1:16889 %h %p"'
-
