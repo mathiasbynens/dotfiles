@@ -1,13 +1,16 @@
 # Add `~/bin` and brew folders to the `$PATH`
 # and python's path: https://github.com/mxcl/homebrew/wiki/Homebrew-and-Python
 export PATH="$HOME/.rvm/bin:/usr/local/bin:/usr/local/share/python:$HOME/Projects/myStash/bin:$HOME/npm-global/bin:$HOME/bin/node-tools:/usr/local/sbin:$(brew --prefix josegonzalez/php/php54)/bin:$HOME/Projects/libs/depot_tools:$HOME//Projects/libs/AWS-ElasticBeanstalk-CLI-2.5.1/eb/macosx/python2.7:$PATH"
+
 export D8_PATH="$HOME/bin/node-tools"
 
 # Run rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Run nvm node manager
-source ~/.nvm/nvm.sh
+# source ~/.nvm/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Use 0.10
 # nvm use 0.10
