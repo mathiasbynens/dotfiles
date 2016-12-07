@@ -4,6 +4,9 @@ export PATH="$HOME/.rvm/bin:/usr/local/bin:/usr/local/share/python:$HOME/Project
 
 export D8_PATH="$HOME/bin/node-tools"
 
+# Python env
+source /usr/local/bin/virtualenvwrapper.sh
+
 # Run rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
