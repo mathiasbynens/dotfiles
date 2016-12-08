@@ -54,7 +54,10 @@ defaults write com.apple.systemuiserver menuExtras -array \
     "/System/Library/CoreServices/Menu Extras/Battery.menu"
     # @khsing I'm using Day-O instead of system clock.
 
-
+# Disable swap
+#
+launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
+rm /private/var/vm/swapfile*
 
 # Set highlight color to blue, I still love this blue.//@khsing 2016-11-17
 defaults write NSGlobalDomain AppleHighlightColor -string "0.752941 0.964706 0.678431"
@@ -63,8 +66,8 @@ defaults write NSGlobalDomain AppleHighlightColor -string "0.752941 0.964706 0.6
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
 # Always show scrollbars
-# @khsing change to Automatic scrollbar is ugly.
-defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"
+# @khsing change to WhenScrollings scrollbar is ugly.
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
 
 # Disable the over-the-top focus ring animation
@@ -129,6 +132,7 @@ sudo systemsetup -setrestartfreeze on
 sudo systemsetup -setcomputersleep Off > /dev/null
 
 # Disable Notification Center and remove the menu bar icon
+# 2016-12-08 //@khsing re-enable notification center
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
 # Disable smart quotes as they’re annoying when typing code
@@ -196,7 +200,7 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 100
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
@@ -331,7 +335,8 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Disable the warning before emptying the Trash
-defaults write com.apple.finder WarnOnEmptyTrash -bool false
+# @khsing if disable I donot know emptyed or not
+defaults write com.apple.finder WarnOnEmptyTrash -bool true
 
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
