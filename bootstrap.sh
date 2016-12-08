@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 #
-# set -x
+set -x
 #
 __DIR__=`dirname $0`
 cd ${__DIR__}
@@ -9,7 +9,6 @@ __PWD__=`pwd`
 __CURRDIR__=${__PWD__}
 
 TOBE_LINKED=(
-    ""
     ".gitconfig"
     ".gitignore"
     ".gvimrc"
@@ -39,7 +38,6 @@ done
 #
 
 ZPREZTORCS=(
-    ""
     "zshenv"
     "zprofile"
     "zshrc"
@@ -47,13 +45,13 @@ ZPREZTORCS=(
     "zlogin"
     "zlogout"
 )
-while [[ "x${ZPREZTORCS[count]}" != "x" ]]; do
-    count=$(( $count + 1 ))
-    rcfile=${ZPREZTORCS[count]}
-    rcpath=$__CURRDIR__/.zprezto/runcoms/${ZPREZTORCS[count]}
+while [[ "x${ZPREZTORCS[zcount]}" != "x" ]]; do
+    zcount=$(( $zcount + 1 ))
+    rcfile=${ZPREZTORCS[zcount]}
+    rcpath=$__CURRDIR__/.zprezto/runcoms/${ZPREZTORCS[zcount]}
     # echo $rcpath
     if [[ -f $rcpath ]]; then
-        ln -sf $rcpath ~/.$rcfile
+        ln -sf $rcpath ~/.${rcfile}
     fi
 done
 
