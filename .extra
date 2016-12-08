@@ -8,4 +8,5 @@ GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 git config --global push.default simple
-git config --global user.signingkey 451EF6BA9F2964F4
+git config --global user.signingkey F0B1EFC1D6DADC5B
+git config --global gpg.program gpg1
