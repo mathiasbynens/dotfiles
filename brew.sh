@@ -41,7 +41,6 @@ brew install homebrew/dupes/screen
 
 # Install other useful binaries.
 brew install ack
-brew install gpg
 brew install dark-mode
 brew install git
 brew tap thoughtbot/formulae
@@ -75,6 +74,10 @@ brew install figlet
 
 brew install exercism
 brew install heroku
+
+# Security/Yubikey Stuff
+brew install gpg
+brew install pinentry-mac
 
 # Remove outdated versions from the cellar.
 brew cleanup
