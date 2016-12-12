@@ -1,8 +1,6 @@
 [user]
 	name = Corey Alexander
 	email = coreyja@gmail.com
-	signingkey = 5A9DE49BB354255A
-
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
