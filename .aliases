@@ -157,3 +157,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+# Git Current Branch. Mostly for usage in other aliases/functions
+alias current-branch="git rev-parse --abbrev-ref HEAD"
+alias publish="git push --set-upstream origin $(current-branch)"
