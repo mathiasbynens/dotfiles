@@ -16,6 +16,7 @@ alias p="cd ~/projects"
 alias g="git"
 alias h="history"
 alias j="jobs"
+alias be="bundle exec"
 
 # Use Hub for github
 [[ -s $(which hub) ]] && alias git="hub"

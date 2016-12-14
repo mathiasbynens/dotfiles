@@ -190,3 +190,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+	
+# Force SSH auth for GitHub
+[url "git@github.com:"]
+    insteadOf = "https://github.com/"
