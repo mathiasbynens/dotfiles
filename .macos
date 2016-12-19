@@ -127,8 +127,8 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Security                                                                   #
 ##############################################################################
 # Based on:
-# https://github.com/drduh/OS-X-Security-and-Privacy-Guide
-# https://benchmarks.cisecurity.org/tools2/osx/CIS_Apple_OSX_10.11_Benchmark_v1.0.0.pdf
+# https://github.com/drduh/macOS-Security-and-Privacy-Guide
+# https://benchmarks.cisecurity.org/tools2/osx/CIS_Apple_OSX_10.12_Benchmark_v1.0.0.pdf
 
 # Enable firewall. Possible values:
 #   0 = off
