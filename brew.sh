@@ -41,7 +41,7 @@ brew install ringojs
 brew install narwhal
 
 # Install more recent versions of some macOS tools.
-brew install vim --override-system-vi
+brew install vim --with-override-system-vi
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
