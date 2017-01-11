@@ -1,0 +1,1 @@
+- Always use "~/Project/dotfiles" for this directory because we create export paths to folders in this dir

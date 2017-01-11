@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# check if we need to stash somestuff
+if [ -n "$(git status --porcelain)" ]; then
+	STASH=1
+	echo "STASH: " $STASH
+else
+	STASH=0
+	echo "STASH: " $STASH
+fi
+
+# set current branch so we can switch back later
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if [ $STASH -eq 1 ]; then
+	echo "command: git stash -u";
+fi
+
+git checkout develop &&
+git pull &&
+git checkout $CURRENT_BRANCH
+
+if [ $STASH -eq 1 ]; then
+	echo "command: git stash apply";
+fi

@@ -31,6 +31,7 @@ brew install gnu-sed --with-default-names
 brew install bash
 brew tap homebrew/versions
 brew install bash-completion2
+brew install git-extras
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
