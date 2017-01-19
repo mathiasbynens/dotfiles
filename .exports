@@ -1,5 +1,6 @@
 # Make vim the default editor
 export EDITOR="subl -w";
+alias subl="code"
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history;
