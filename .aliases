@@ -16,6 +16,7 @@ alias p="cd ~/projects"
 alias g="git"
 alias h="history"
 alias j="jobs"
+alias be="bundle exec"
 
 # Use Hub for github
 [[ -s $(which hub) ]] && alias git="hub"
@@ -50,7 +51,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Add Types to RipGrep since they don't persist anywhere normally
-alias rg="rg --type-add scss:*.scss"
+alias rg="rg --type-add scss:*.scss --type-add erb:*.erb --type-add htmlerb:*.html.erb --type-add jserb:*.js.erb"
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
