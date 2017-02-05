@@ -161,3 +161,9 @@ alias reload="exec $SHELL -l"
 # Git Current Branch. Mostly for usage in other aliases/functions
 alias current-branch="git rev-parse --abbrev-ref HEAD"
 alias publish="git push --set-upstream origin $(current-branch)"
+
+# Docker Aliases
+alias de="docker-compose exec --user '$(id -u):$(id -g)'"
+
+# Rails Developing Aliases
+alias be="bundle exec"
