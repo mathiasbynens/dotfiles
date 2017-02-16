@@ -54,3 +54,6 @@ export NVM_DIR="$HOME/.nvm"
 #rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+#gdal via KingChaos:
+export PATH=/Library/Frameworks/GDAL.framework/Programs:$PATH
