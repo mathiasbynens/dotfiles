@@ -26,7 +26,7 @@ alias j=z
 . `brew --prefix`/etc/profile.d/z.sh
 
 # todo
-alias todo="subl ~/Dropbox/todo.txt"
+alias todo="code ~/Dropbox/todo.txt"
 
 # http://stackoverflow.com/a/26803738/94668
 alias prune='git branch --merged | grep -v "\*" | egrep -v "master\|development" | xargs -n 1 git branch -d'
@@ -36,7 +36,7 @@ export HISTFILESIZE=10000
 export HISTSIZE=10000
 
 # Misc settings
-export EDITOR='subl -w'
+export EDITOR='code -w'
 
 alias clean='find . -name "*.pyc" -delete; find . -name ".DS_Store" -delete; if [ -d .git ]; then git clean -fdx -- tmp; fi;'
 

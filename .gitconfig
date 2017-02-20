@@ -115,7 +115,7 @@
 
     mergeoptions = --no-edit
 
-    editor = subl -n -w
+    editor = code -n -w
 
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
