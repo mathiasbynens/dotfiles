@@ -24,6 +24,15 @@ else
 		doIt;
 	fi;
 fi;
+
+os=$(uname -s)
+#echo "System: " $os
+
+if [[ $os =~ CYGWIN* ]]; then
+    echo "babun bootstrapping partially completed.  Please run babun/babun-post-install.sh"
+
+fi
+
 unset doIt;
 
 git submodule update --init

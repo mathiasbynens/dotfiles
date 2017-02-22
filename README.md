@@ -69,14 +69,6 @@ git config --global user.email "$GIT_AUTHOR_EMAIL
 
 You could also use `~/.extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/dmorand17/dotfiles/fork) instead, though.
 
-### Sensible OS X defaults
-
-When setting up a new Mac, you may want to set some sensible OS X defaults:
-
-```bash
-./.osx
-```
-
 ## Feedback
 
 Suggestions/improvements
