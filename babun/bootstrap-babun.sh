@@ -18,7 +18,8 @@ fancy_echo "Updating babun HOME"
     #   Anything else I'm missing...
     successfully ln -fs $USERPROFILE ~/home
     successfully rsync -azh .minttyrc .zshrc ~
-    successfully rsync -azh '../.aliases' '../.gitconfig' '../.extra-orig' ~
+    successfully rsync -azh '../.aliases' '../.gitconfig*' '../.extra-orig' '../.ssh-agent' '../.'~
+	
 
 fancy_echo "Updating VIM Configuration"
     successfully rsync -azh '../.vim' '../.vimrc' ~

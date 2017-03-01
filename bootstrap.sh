@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+os=$(uname -s)
 cd "$(dirname "${BASH_SOURCE}")";
 
 git pull origin master;
@@ -9,8 +10,22 @@ if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
+if [[ $os =~ CYGWIN* ]]; then
+    echo "-------------------------------"
+	echo "      Bootstrapping Babun      "
+	echo "-------------------------------"
+	
+	# rsync the relevant babun files 
+	# Exclude the bash_profile and possibly others...
+	#echo "babun bootstrapping partially completed.  Please run babun/babun-post-install.sh"
+	rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "bin/" --exclude "dircolors-solarized/" --exclude ".extra-*" --exclude "bootstrap.sh" \
+		--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
+
+fi
+
+
 function doIt() {
-	rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "dircolors-solarized/" --exclude "extra-*" --exclude ".DS_Store" --exclude "bootstrap.sh" \
+	rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "dircolors-solarized/" --exclude ".extra-*" --exclude "bootstrap.sh" \
 		--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
 	source ~/.bash_profile;
 }
@@ -24,14 +39,6 @@ else
 		doIt;
 	fi;
 fi;
-
-os=$(uname -s)
-#echo "System: " $os
-
-if [[ $os =~ CYGWIN* ]]; then
-    echo "babun bootstrapping partially completed.  Please run babun/babun-post-install.sh"
-
-fi
 
 unset doIt;
 

@@ -1,0 +1,63 @@
+##### Dougie's Babun Profile #####
+
+# Export rgrav (if necessary)
+export PATH=$PATH:/c/Users/douglasm/ohop/rgrav:/c/Users/douglasm/stash/scripts
+
+if [ -f ~/.ssh-agent ]; then . ~/.ssh-agent; fi
+
+function ssh_aws(){
+    ssh -i /C/Users/douglasm/ohop/graviton-cli-vm/puppet_id_rsa centos@$1
+}
+
+function push_jumphost(){
+	if [[ $# -ne 1 ]]; then
+		echo "Must declare target directory.  E.g. solution_hbc_douglasm"
+		return 1
+	fi
+	
+	rsync -rvzh --progress .gitignore graviton-jump-host:~/solutions/$1/.gitignore	
+	rsync -rvzh --progress --stats --filter=':- .gitignore' . graviton-jump-host:~/solutions/$1
+}
+
+function pull_jumphost(){
+	if [[ $# -ne 1 ]]; then
+		echo "Must declare target directory.  E.g. solution_hbc_douglasm"
+		return 1
+	fi
+	
+	rsync -azv --progress graviton-jump-host:~/solutions/$1/.gitignore .
+	rsync -avzh --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/solutions/$1/ .
+	#rsync -rzvh --size-only --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/solutions/$1/ .
+}
+
+function download_graviton_logs(){
+    if [[ $# -ne 1 ]]; then
+        echo "Must declare target directory. e.g. solution_hbc_douglasm"
+        return 1
+    fi
+
+    # compress up the log files
+    echo "Retrieving logs from solution, and packaging up for copy..."
+    ssh graviton-jump-host -- "cd ~/solutions/$1; graviton retrieve-logs -p ec2; tar -vczf graviton_logs.tar.gz graviton.log agent-logs/" &> /dev/null
+    
+    # scp the file
+    echo "Copying graviton logs"
+    scp graviton-jump-host:~/solutions/$1/graviton_logs.tar.gz .
+    
+    echo "Cleaning up..."
+    ssh graviton-jump-host -- "cd ~/solutions/$1; rm graviton_logs.tar.gz" &>/dev/null
+}
+
+# NOT USED
+run_ticker() {
+  pid=$1 # Process Id of the previous running command
+  text=$2
+  spin='-\|/'
+  i=0
+  while kill -0 $pid 2>/dev/null
+  do
+    i=$(( (i+1) %4 ))
+    printf "\r$text ${spin:$i:1}"
+    sleep .1
+  done
+}
