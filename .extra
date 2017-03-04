@@ -1,0 +1,194 @@
+# HISTSIZE is the number of history lines to keep in RAM - I'll take a million.
+unset HISTFILESIZE
+export HISTSIZE=1000000
+unset HISTFILESIZE
+export HISTFILESIZE=500000
+unset HISTTIMEFORMAT
+export HISTTIMEFORMAT='%m-%d %H:%M  '
+
+# export History options, to ignore certain repetitive commands.  Tune these to fit.
+export HISTIGNORE="ls:bg:exit::clear"
+
+# keep only one copy of any given command in our history, ignoring duplicates and lines beginning with a space
+export HISTCONTROL=erasedups:ignoreboth
+
+# includes dotfiles in tab-completion
+shopt -s dotglob
+
+# ls -F style markers for tab-completed items
+set visible-stats on
+
+#
+# convert permissions to octal - http://www.shell-fu.org/lister.php?id=205
+alias lo='ls -l | sed -e 's/--x/1/g' -e 's/-w-/2/g' -e 's/-wx/3/g' -e 's/r--/4/g' -e 's/r-x/5/g' -e 's/rw-/6/g' -e 's/rwx/7/g' -e 's/---/0/g' | column -t'
+
+#
+# get an ordered list of subdirectory sizes - http://www.shell-fu.org/lister.php?id=275
+alias dux='du -sk ./* | sort -n | awk '\''BEGIN{ pref[1]="K"; pref[2]="M"; pref[3]="G";} { total = total + $1; x = $1; y = 1; while( x > 1024 ) { x = (x + 1023)/1024; y++; } printf("%g%s\t%s\n",int(x*10)/10,pref[y],$2); } END { y = 1; while( total > 1024 ) { total = (total + 1023)/1024; y++; } printf("Total: %g%s\n",int(total*10)/10,pref[y]); }'\'''
+
+#
+# tree!
+alias tree="ls -R | grep \":$\" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
+#
+# we have a dual core processor, don't we? let's run concurrent make jobs...
+alias make='make -j6'
+
+#
+# history file - popular commands, for future aliases
+alias histpop='cut -f1 -d" " .bash_history | sort | uniq -c | sort -nr | head -n 30'
+#
+# weather
+alias weather="curl --silent 'http://xml.weather.yahoo.com/forecastrss?p=90278&u=f' | grep -E '(Current Conditions:|F<BR)' | tail -n 1 | cut -d'<' -f 1|sed 's/ F$/°F/'"
+#
+# the "kp" alias ("que pasa"), in honor of tony p.
+alias kp="ps auxwww"
+
+#
+alias less="less -R"
+
+# greps the running process list for the value of $1
+psgrep() {
+        local name=$1
+        ps -ef | grep "${name}" | sed '$d'
+        unset $name
+}
+
+# random alphanumeric password
+randpass() {
+        local chars=$1
+        strings /dev/urandom | grep -o '[[:alnum:]]' | head -n $chars | tr -d '\n'; echo
+        unset chars
+}
+
+# googone - rm's files previously extracted from a tarball
+googone() {
+        local TARB="${1}"
+        tar -tf ${TARB} | xargs rm -r &>/dev/null
+}
+
+# frequency of words in a stream of text/file
+freq() {
+         awk '{for (x=1;x<=NF;x++) print $x}' $1 | sed -e 's/,//g' -e 's/;//g' -e 's/"//g' -e 's/://g' -e s/\'//g | sort | uniq -c | sort -nr
+}
+
+hr() {
+        PATTERN="${1:-─}";
+        for ((x=0; x<$COLUMNS; x++)); do
+                echo -n "${PATTERN}"
+        done
+}
+
+#creates zip file of a folder
+zipf () { zip -r "$1".zip "$1" ; }
+
+# extract most know archives with one command
+extract () {
+    if [ -f $1 ] ; then
+      case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
+# qfind:    Quickly search for file
+alias qfind="find . -name "
+# ff:       Find file under the current directory
+ff () { /usr/bin/find . -name "$@" ; }
+# ffs:      Find file whose name starts with a given string
+ffs () { /usr/bin/find . -name "$@"'*' ; }
+# ffe:      Find file whose name ends with a given string
+ffe () { /usr/bin/find . -name '*'"$@" ; }
+
+#   ---------------------------
+#   5.  PROCESS MANAGEMENT
+#   ---------------------------
+
+#   findPid: find out the pid of a specified process
+#   -----------------------------------------------------
+#       Note that the command name can be specified via a regex
+#       E.g. findPid '/d$/' finds pids of all processes with names ending in 'd'
+#       Without the 'sudo' it will only find processes of the current user
+#   -----------------------------------------------------
+findpid () { lsof -t -c "$@" ; }
+
+#   memHogsTop, memHogsPs:  Find memory hogs
+#   -----------------------------------------------------
+alias ramtop='top -l 1 -o rsize | head -20'
+alias ramps='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
+
+#   cpuHogs:  Find CPU hogs
+#   -----------------------------------------------------
+alias cpuhogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
+
+#   topForever:  Continual 'top' listing (every 10 seconds)
+#   -----------------------------------------------------
+alias toprun='top -l 9999999 -s 10 -o cpu'
+
+#   ttop:  Recommended 'top' invocation to minimize resources
+#   ------------------------------------------------------------
+#       Taken from this macosxhints article
+#       http://www.macosxhints.com/article.php?story=20060816123853639
+#   ------------------------------------------------------------
+alias ttop="top -R -F -s 10 -o rsize"
+
+#   my_ps: List processes owned by my user:
+#   ------------------------------------------------------------
+my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
+
+#   ---------------------------
+#   6.  NETWORKING
+#   ---------------------------
+
+alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
+alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
+alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
+alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
+alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
+alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
+alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on connections for en0
+alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
+alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
+alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rules inc/ blocked IPs
+
+#   ii:  display useful host related informaton
+#   -------------------------------------------------------------------
+ii() {
+    echo -e "\nYou are logged on ${RED}$HOST"
+    echo -e "\nAdditionnal information:$NC " ; uname -a
+    echo -e "\n${RED}Users logged on:$NC " ; w -h
+    echo -e "\n${RED}Current date :$NC " ; date
+    echo -e "\n${RED}Machine stats :$NC " ; uptime
+    echo -e "\n${RED}Current network location :$NC " ; scselect
+    echo -e "\n${RED}Public facing IP Address :$NC " ;myip
+    #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
+    echo
+}
+
+#http utils
+http_headers () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grabs headers from web page
+http_debug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
+
+# Git credentials
+GIT_AUTHOR_NAME="Victor Yushenko"
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+
+# Add git completion
+if [ -f /etc/bash_completion.d/git ]; then
+        source /etc/bash_completion.d/git;
+fi;
+
+source .extra_local
