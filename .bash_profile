@@ -21,7 +21,7 @@ export NVM_DIR="$HOME/.nvm"
 # Raise the limit of open files
 ulimit -n 5000
 
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home/"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
