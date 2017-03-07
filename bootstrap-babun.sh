@@ -17,12 +17,11 @@ fancy_echo "Updating babun HOME"
     #   zshrc
     #   Anything else I'm missing...
     successfully ln -fs $USERPROFILE ~/home
-    successfully rsync -azh .minttyrc .zshrc ~
-    successfully rsync -azh '../.aliases' '../.gitconfig*' '../.extra-orig' '../.ssh-agent' '../.'~
-	
+    successfully rsync -azh ./babun/.minttyrc ./babun/.zshrc ./babun/.extra-babun .ssh-agent ~
+    successfully rsync -azh --exclude .git/ .aliases .git* ~
 
 fancy_echo "Updating VIM Configuration"
-    successfully rsync -azh '../.vim' '../.vimrc' ~
+    successfully rsync -azh '.vim' '.vimrc' ~
 	if [[ ! -d "~/.vim/bundle/Vundle.vim" ]]; then
         successfully git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     fi
