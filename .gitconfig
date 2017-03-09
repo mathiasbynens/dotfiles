@@ -180,3 +180,6 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	name = Jamie Chung
+	email = me@jamiechung.me
