@@ -75,6 +75,12 @@
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
 		fi \
 	}; f"
+	
+	# Undo a `git push`
+	undopush = push -f origin HEAD^:master
+	st = status
+	pg = push origin HEAD:refs/for/master
+	push-gerrit = push origin HEAD:refs/for/master
 
 [apply]
 
@@ -177,6 +183,6 @@
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
 
-[url "git://gist.github.com/"]
+[push]
 
-	insteadOf = "gist:"
+	default = simple

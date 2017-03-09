@@ -49,3 +49,9 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 ## Add tab completion for git
 source "./git-completion.bash"
+
+# If possible, add tab completion for many more commands
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+[ -f /etc/bash_completion ] && source /etc/bash_completion

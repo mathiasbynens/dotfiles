@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Make sure we’re using the latest Homebrew
+brew update
+
+# Upgrade any already-installed formulae
+brew upgrade
+
+# Install GNU core utilities (those that come with OS X are outdated)
+brew install coreutils
+echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+brew install findutils
+
+# Install Bash 4 / curl / git
+brew install bash curl git
+
+# For ruby:
+#brew install autoconf automake apple-gcc42 libtool pkg-config openssl readline libyaml sqlite libxml2 libxslt libksba
+brew apple-gcc42 openssl
+
+# Actually install ruby now
+brew install rbenv
+brew install ruby-build
+brew update
+brew tap homebrew/homebrew-dupes
+brew install apple-gcc42
+
+# Install wget with IRI support
+brew install wget --enable-iri
+
+# Install everything else
+brew install yuicompressor
+brew install jsmin
+brew install bash-completion
+
+# Remove outdated versions from the cellar
+brew cleanup
