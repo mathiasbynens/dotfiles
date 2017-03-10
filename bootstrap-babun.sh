@@ -1,9 +1,9 @@
 successfully() {
-	$* || (echo "\nfailed" 1>&2 && exit 1)
+	$* || (echo "failed" 1>&2 && exit 1)
 }
 
 fancy_echo() {
-	echo "\n$1"
+	echo "$1"
 }
 
 fancy_echo "Updating babun"
@@ -17,8 +17,11 @@ fancy_echo "Updating babun HOME"
     #   zshrc
     #   Anything else I'm missing...
     successfully ln -fs $USERPROFILE ~/home
-    successfully rsync -azh ./babun/.minttyrc ./babun/.zshrc ./babun/.extra-babun .ssh-agent ~
-    successfully rsync -azh --exclude .git/ .aliases .git* ~
+    successfully rsync -azh ./babun/.minttyrc ./babun/.zshrc ~
+	
+	# Need to do something with ssh-agent and extra-babun
+	# successfully rsync -azh ./babun/.extra-babun .ssh-agent ~
+    successfully rsync -azh --exclude .git/ .aliases .inputrc .git* ~
 
 fancy_echo "Updating VIM Configuration"
     successfully rsync -azh '.vim' '.vimrc' ~
