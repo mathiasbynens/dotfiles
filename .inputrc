@@ -38,3 +38,7 @@ set convert-meta off
 
 # Use Alt/Meta + Delete to delete the preceding word
 "\e[3;3~": kill-word
+
+# Use ctrl left/right to scroll through words
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
