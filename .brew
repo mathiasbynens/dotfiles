@@ -20,6 +20,8 @@ brew install homebrew/dupes/grep
 
 # Install everything else
 brew install git
+brew install nvm
+brew install diff-so-fancy
 brew install cloc
 brew install htop
 brew install nload
@@ -27,18 +29,18 @@ brew install mtr
 brew install rename
 brew install tree
 brew install fpp
+brew install peco
 brew install httpie
-brew install ngrok
 
 brew tap caskroom/cask
+brew cask install vlc
 brew cask install google-chrome
 brew cask install dropbox
 brew cask install skype
 brew cask install slack
+brew cask install telegram
 brew cask install iterm2
-brew cask install twitter
 brew cask install sublime-text3
 
 # Remove outdated versions from the cellar
 brew cleanup
-
