@@ -136,7 +136,7 @@
 	renames = copies
 	# Enable an experimental heuristic that shifts the hunk boundary in an
 	# attempt to make the resulting patch easier to read.
-	compactionHeuristic = true
+	indentHeuristic = true
 
 [diff "bin"]
 
