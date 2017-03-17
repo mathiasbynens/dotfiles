@@ -23,7 +23,9 @@ export WORKON_HOME=~/.virtualenvs
 # PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
 # NPM
-PATH=$PATH:/usr/local/share/npm/bin
+export NVM_DIR="$HOME/.nvm"
+. "$(brew --prefix nvm)/nvm.sh"
+
 
 ### Added by the Heroku Toolbelt
 # PATH="/usr/local/heroku/bin:$PATH"
