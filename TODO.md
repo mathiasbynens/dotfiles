@@ -1,0 +1,2 @@
+- add oh-my-zsh install & sync customizations
+- add zsh-autosuggestions install
