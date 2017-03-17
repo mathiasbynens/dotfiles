@@ -81,13 +81,7 @@ When setting up a new Mac, you may want to install some common [Homebrew](http:/
 ./brew.sh
 ```
 
-Some of the functionality of these dotfiles leverages formulae installed by `brew.sh`. If you don't plan to run `brew.sh`, you should look carefully through the script and manually install any particularly important ones. A good example is bash/git completion: the dotfiles use a special version from Homebrew. To enable bash completion without running `brew.sh`:
-
-```bash
-brew install git
-brew tap homebrew/versions
-brew install bash-completion2
-```
+Some of the functionality of these dotfiles leverages formulae installed by `brew.sh`. If you don't plan to run `brew.sh`, you should look carefully through the script and manually install any particularly important ones. A good example is bash/git completion: the dotfiles use a special version from Homebrew. To enable bash completion without running `brew.sh`: `brew tap homebrew/versions && brew install git && brew install bash-completion2`.
 
 ## Feedback
 
