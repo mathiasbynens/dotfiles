@@ -25,6 +25,6 @@ fi
 _USERNAME="$_USERNAME%{$reset_color%}"
 
 
-PROMPT='$_USERNAME%{$fg[cyan]%}@%{$reset_color%}%{$fg[yellow]%}%m%{$reset_color%}%{$fg[red]%}:%{$reset_color%}%{$fg[cyan]%}%0~%{$reset_color%}%{$fg[red]%}|%{$reset_color%}$(nvm_prompt_info)$(git_prompt_info)%{$fg[cyan]%}⇒%{$reset_color%}  '%
+PROMPT='$_USERNAME%{$fg[cyan]%}@%{$reset_color%}%{$fg[yellow]%}%m%{$reset_color%}%{$fg[red]%}:%{$reset_color%}%{$fg[cyan]%}%0~%{$reset_color%}%{$fg[red]%}|%{$reset_color%}$(nvm_prompt_info)$(git_prompt_info)%{$fg[cyan]%}⇒%{$reset_color%}  '
 
 RPS1="${return_code}"
