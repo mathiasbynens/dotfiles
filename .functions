@@ -234,3 +234,40 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# `repo` called from a directory that is a git repository
+# opens the repository on github/bitbucket in the browser
+function repo() {
+	giturl=$(git config --get remote.origin.url)
+	if [ "$giturl" == "" ]
+		then
+		echo "Not a git repository or no remote.origin.url set"
+		exit 1;
+	fi
+	if [[ "$giturl" == *github* ]]
+		then
+		giturl=${giturl/git\@github\.com\:/https://github.com/}
+	elif [[ "$giturl" == *bitbucket* ]]
+		then
+		giturl=${giturl/git\@bitbucket\.org\:/https://bitbucket.org/}
+	else
+		echo "Not a github or bitbucket repository"
+		exit 1;
+	fi
+	giturl=${giturl/\.git//}
+	echo $giturl
+	open $giturl
+}
+
+# `man` adds colors to manual pages
+man() {
+	env \
+	LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+	LESS_TERMCAP_md=$(printf "\e[1;31m") \
+	LESS_TERMCAP_me=$(printf "\e[0m") \
+	LESS_TERMCAP_se=$(printf "\e[0m") \
+	LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+	LESS_TERMCAP_ue=$(printf "\e[0m") \
+	LESS_TERMCAP_us=$(printf "\e[1;32m") \
+	man "$@"
+}
