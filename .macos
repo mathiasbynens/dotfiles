@@ -176,9 +176,11 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Disable wake-on modem
 #sudo systemsetup -setwakeonmodem off
+#sudo pmset -a ring 0
 
 # Disable wake-on LAN
 #sudo systemsetup -setwakeonnetworkaccess off
+#sudo pmset -a womp 0
 
 # Disable file-sharing via AFP or SMB
 #sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.AppleFileServer.plist
