@@ -200,6 +200,9 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Source: https://web.archive.org/web/20160114141929/http://training.apple.com/pdf/WP_FileVault2.pdf
 #sudo pmset destroyfvkeyonstandby 1
 
+# Enable secure virtual memory
+#sudo defaults write /Library/Preferences/com.apple.virtualMemory UseEncryptedSwap -bool true
+
 # Disable Bonjour multicast advertisements
 #sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
 
