@@ -187,16 +187,34 @@ sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
 # Energy saving                                                               #
 ###############################################################################
 
-# Set standby delay to 24 hours (default is 1 hour)
-sudo pmset -a standbydelay 86400
+# Turns on lid wakeup
+sudo pmset -a lidwake 1
+
+# Automatic restart on power loss
+sudo pmset -a autorestart 1
 
 # Restart automatically if the computer freezes
 sudo systemsetup -setrestartfreeze on
 
+# Sets displaysleep to 15 minutes
+sudo pmset -a displaysleep 15
+
+# Do not allow machine to sleep on charger
+sudo pmset -c sleep 0
+
+# Set machine sleep to 5 minutes on battery
+sudo pmset -b sleep 5
+
+# Set standby delay to 24 hours (default is 1 hour)
+sudo pmset -a standbydelay 86400
+
 # Never go into computer sleep mode
 sudo systemsetup -setcomputersleep Off > /dev/null
 
-# Disable hibernation (speeds up entering sleep mode)
+# Hibernation mode
+# 0: Disable hibernation (speeds up entering sleep mode)
+# 3: Copy RAM to disk so the system state can still be restored in case of a
+#    power failure.
 sudo pmset -a hibernatemode 0
 
 # Remove the sleep image file to save disk space
