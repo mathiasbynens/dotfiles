@@ -1,0 +1,152 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$HOME/bin:/opt/graviton/graviton-cli-current/bin:$PATH
+source /opt/graviton/graviton-cli-current/bin/graviton-completion.bash
+
+export NOKOGIRI_USE_SYSTEM_LIBRARIES=1
+export PATH
+
+###### DOUGIE's EXTRAS ########
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/.bash_prompt ]; then
+    . ~/.bash_prompt
+fi
+
+if [ -f ~/.bash-ssh-agent ]; then
+    . ~/.bash-ssh-agent
+fi
+
+eval `dircolors ~/.dircolors`
+
+function git_stash {
+  git "$@" && bundle install --path vendor/bundle
+}
+
+function git-clean-orig {
+    git status -su | grep -e"\.orig$" | cut -f2 -d" " | xargs rm -r
+}
+
+notify_pushover() {
+    if [ $# -ne 3 ]; then
+    cat <<- EOF
+        Usage: $0 <title> <priority> <message>
+EOF
+        exit 1
+    fi
+
+    curl -s \
+    --form-string "token=ac7xvh2zrrmiv6nxqoxgjerm1hsian" \
+    --form-string "user=u71pdbtm2a917erqqijm6mkbror2ht" \
+    --form-string "title=$1" \
+    --form-string "priority=$2" \
+    --form-string "message=$3" \
+    https://api.pushover.net/1/messages.json &>/dev/null
+}
+
+
+function amadeus_run_post_deploy {
+  if [ ! -f solution_definition.yaml ]; then
+    echo "Unable to run post deployment steps, check that you are in your solution directory..." 
+    return 1
+  fi
+
+  for file in ./resources/scripts/{run_db_grants,load_demo_users,load_demo_data}; do
+    [ -r "$file" ] && [ -f "$file" ] && echo "Running script $file ..." && $file;
+  done;
+  
+  echo "Cleaing up build and packaged-solution directories to conserve space"
+  exe rm -rf ./build ./packaged-solution
+}
+
+exe() { echo "\$ $@" ; "$@" ; }
+
+rebase_with_master() {
+    #1) Checks out the master branch.
+    #2) Pulls any remote changes.
+    #3) Swaps back to your original branch.
+    #4) Rebases with master.
+    
+    exe git checkout master && git pull && git checkout - && git rebase master
+}
+
+graviton_deploy() {
+    if [ ! -f solution_definition.yaml ]; then
+        echo "Unable to run post deployment steps, check that you are in your solution directory..." 
+        return 1
+    fi
+    
+    echo "Starting deploy thread..."
+    exe nohup graviton deploy -R connect:0 -p ec2 > graviton-deploy.log &
+    graviton_pid=$! # PID of graviton deploy
+    echo
+
+    # Notify when complete
+    echo "Starting graviton notification thread[$graviton_pid]..."
+    exe nohup ~/.graviton-notifier.sh $graviton_pid > graviton-deploy-monitor.log &
+}
+
+graviton_resume() {
+  if [ ! -f solution_definition.yaml ]; then
+    echo "Unable to run post deployment steps, check that you are in your solution directory..." 
+    return 1
+  fi
+
+  exe graviton resume -p ec2
+}
+
+graviton_clean() {
+    if [ ! -f solution_definition.yaml ]; then
+        echo "Unable to copy file(s), check that you are in your solution directory..." 
+        return 1
+    fi
+    
+    exe graviton clean -p ec2
+
+    if [ -f graviton-deploy.log ]; then
+        exe rm graviton-deploy*.log
+    fi
+
+    if [[ ("$#" -gt 0) && "$1" -eq "-d" ]]; then
+        echo
+        echo "Removing graviton.log file..."
+        exe rm graviton.log
+    fi
+}
+
+function rhapsody_copy_file() {
+    if [ ! -f solution_definition.yaml ]; then
+        echo "Unable to copy file(s), check that you are in your solution directory..." 
+        return 1
+    fi
+
+    if [[ "$#" -ne 2 ]]; then
+        echo "Usage: <file_to_copy> <folder> <rhapsody location>"
+        echo 
+        echo "  Example: rhapsody_copy_file \"resources/dataloader/HZNPharmClaim/*\" \"/tmp/demodata/HZNPharmClaim"
+        return 1
+    fi
+
+    IP=$(graviton status -p ec2 | grep -A 4 -m 1 'rhapsody-ohop' | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
+    
+    echo "Copying $1 to $IP:$2"
+    exe scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $1 centos@$IP:$2 2>/dev/null
+    if [[ $? -eq 0 ]]; then
+        # Update permissions
+        echo "Updating permissions..."
+        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i $HOME/.ssh/puppet_id_rsa centos@$IP -- "sudo chmod -R o+rw /tmp/demodata" 2>/dev/null
+    else
+        echo "Error scp'ing file..."
+        return 1
+    fi
+}

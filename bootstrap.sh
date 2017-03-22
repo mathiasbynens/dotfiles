@@ -18,14 +18,14 @@ if [[ $os =~ CYGWIN* ]]; then
 	# rsync the relevant babun files 
 	# Exclude the bash_profile and possibly others...
 	#echo "babun bootstrapping partially completed.  Please run babun/babun-post-install.sh"
-	rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "bin/" --exclude "dircolors-solarized/" --exclude ".extra-*" --exclude "bootstrap.sh" \
+	rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "bin/" --exclude "dircolors-solarized/" -exclude "bootstrap.sh" \
 		--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
 
 fi
 
 
 function doIt() {
-	rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "dircolors-solarized/" --exclude ".extra-*" --exclude "bootstrap.sh" \
+	rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "dircolors-solarized/" --exclude {"bootstrap.sh","bootstrap-babun.sh"} --exclude "extra/" \
 		--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
 	source ~/.bash_profile;
 }
