@@ -101,5 +101,15 @@ brew install vbindiff
 brew install webkit2png
 brew install zopfli
 
+# Install applications via cask, starting with cask itself
+brew install caskroom/cask/brew-cask
+brew cask install google-chrome
+brew cask install slack
+brew cask install spectacle
+brew cask install pycharm
+brew cask install intellij-idea
+brew cask install spotify
+#brew cask install 0xdbe-eap
+
 # Remove outdated versions from the cellar.
 brew cleanup

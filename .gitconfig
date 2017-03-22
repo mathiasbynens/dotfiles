@@ -5,6 +5,7 @@
 
 	# View the current working tree status using the short format
 	s = status -s
+	st = status
 
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -21,6 +22,12 @@
 	# Commit all changes
 	ca = !git add -A && git commit -av
 
+	# Checkout 
+	co = checkout
+	
+	# Branch
+	br = branch
+	
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
@@ -158,7 +165,7 @@
 	# Use the Git 1.x.x default to avoid errors on machines with old Git
 	# installations. To use `simple` instead, add this to your `~/.extra` file:
 	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
+	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
