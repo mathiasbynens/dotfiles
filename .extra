@@ -1,17 +1,24 @@
-export PYTHONSTARTUP="$HOME/.pythonrc"
+export PYTHONSTARTUP=${HOME}/.pythonrc
 export NODE_PATH=/usr/local/lib/node_modules
 
 # Java
 #export JAVA_HOME=$(/usr/libexec/java_home)
-#export ANDROID_HOME=/opt/android-sdk-macosx
-#PATH=$ANDROID_HOME/tools:$PATH
-#PATH=$ANDROID_HOME/platform-tools:$PATH
+
+# Android
+export ANDROID_HOME=${HOME}/Library/Android/sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/tools/bin
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+# Maven
 #export M2_HOME=/usr/local/Cellar/maven/3.2.1
 #PATH=$PATH:$M2_HOME/bin
 
-# RVM
+# RVM & RBenv
 # PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # [[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
+#export PATH=${HOME}/.rbenv/bin:$PATH
+#eval "$(rbenv init -)"
 
 # Virtualenv
 #PATH=$PATH:/usr/local/share/python
@@ -22,10 +29,11 @@ export WORKON_HOME=~/.virtualenvs
 # PHP
 # PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
-# NPM
+# NVM
 export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
 
+export GOPATH=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
 
-### Added by the Heroku Toolbelt
-# PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$PATH:$HOME/.yarn/bin"
