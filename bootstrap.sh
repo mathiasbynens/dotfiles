@@ -20,6 +20,7 @@ if [[ $os =~ CYGWIN* ]]; then
 	#echo "babun bootstrapping partially completed.  Please run babun/babun-post-install.sh"
 	rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "bin/" --exclude "dircolors-solarized/" -exclude "bootstrap.sh" \
 		--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
+	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 
 fi
 
