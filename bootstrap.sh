@@ -27,6 +27,8 @@ fi
 function doIt() {
 	rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "dircolors-solarized/" --exclude {"bootstrap.sh","bootstrap-babun.sh"} --exclude "extra/" \
 		--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
+
+	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 	source ~/.bash_profile;
 }
 
