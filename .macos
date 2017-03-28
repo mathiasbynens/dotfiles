@@ -206,6 +206,10 @@ sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
 # Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
+# Map Caps Lock key to Left Control key
+# https://developer.apple.com/library/content/technotes/tn2450/_index.html
+hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}'
+
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
