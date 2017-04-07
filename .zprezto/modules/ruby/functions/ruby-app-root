@@ -1,0 +1,18 @@
+#
+# Displays the path to the Ruby application root directory.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+local root_dir="$PWD"
+
+while [[ "$root_dir" != '/' ]]; do
+  if [[ -f "$root_dir/Gemfile" ]]; then
+    print "$root_dir"
+    break
+  fi
+  root_dir="$root_dir:h"
+done
+
+return 1

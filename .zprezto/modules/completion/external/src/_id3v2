@@ -1,0 +1,116 @@
+#compdef id3v2
+
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for id3v2, based on v0.1.12
+#
+#  Last updated: 05.04.2013
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Valodim ( https://github.com/Valodim )
+#
+# ------------------------------------------------------------------------------
+
+_id3v2_genre () {
+
+    setopt localoptions extendedglob
+
+    local -A _id3v2_genres
+    # got them cached?
+    if _cache_invalid id3v2-genres || ! _retrieve_cache id3v2-genres ; then
+
+        # generate from id3 -L otherwise
+        local tmp
+        for line in ${${${(f)"$(_call_program id3v2genres id3v2 -L)"}## #}}; do
+            tmp=( ${(s,: ,)line} )
+            _id3v2_genres[${tmp[1]}]=$tmp[2]
+            # alternate display string, which I decided against in the end
+            # to preserve reasonable alphabetic sorting
+            # "${(l:3:: :)${tmp[1]}}: ${tmp[2]}"
+        done
+
+        # store if we got any
+        (( $#_id3v2_genres > 0 )) && _store_cache id3v2-genres _id3v2_genres
+    fi
+
+    # bail if we don't
+    (( $#_id3v2_genres > 0 )) || { _message "could not fetch genres"; return }
+
+    _wanted id3v2genres expl 'Genres' \
+        compadd -d _id3v2_genres -k _id3v2_genres && return 0
+
+}
+
+# this function assumes _id3v2_frames is defined!
+_id3v2_frame () {
+
+    (( $#_id3v2_frames > 0 )) || { _message "could not fetch genres"; return }
+    local -a framenames
+    framenames=( ${_id3v2_frames#--} )
+    _describe -t framenames 'id3v2 frames' framenames
+
+}
+
+_id3v2 () {
+
+    setopt localoptions extendedglob
+
+    # previous word was a frame name? this is an argument, then.
+    if [[ $words[$CURRENT-1] == --[A-Z](#c4) ]]; then
+        _message 'frame value'
+        return 0
+    fi
+
+    # load frame names
+    local -a _id3v2_frames
+    if _cache_invalid id3v2-frames || ! _retrieve_cache id3v2-frames ; then
+        _id3v2_frames=( ${${${(f)"$(_call_program id3v2frames id3v2 -f)"}## #}/    /:} )
+        (( $#_id3v2_frames > 0 )) && _store_cache id3v2-frames _id3v2_frames
+    fi
+
+    local ret=1
+
+    # if we already have a -- prefix, show all those frames
+    if [[ -prefix -- ]] && (( $#_id3v2_frames > 0 )); then
+        _describe -t frames 'id3v2 frames' _id3v2_frames && ret=0
+    fi
+
+    local showfiles=''
+    (( CURRENT <= 2 )) && showfiles='!'
+
+    # regular arguments either way
+    _arguments \
+      - tagging \
+        '(-s --delete-v1 -d --delete-v2)'{-s,--delete-v1}'[deletes id3v1 tags]' \
+        '(-s --delete-v1 -d --delete-v2)'{-d,--delete-v2}'[deletes id3v2 tags]' \
+        '(-C --convert)'{-C,--convert}'[converts id3v1 tag to id3v2]' \
+        '(-1 --id3v1-only -2 --id3v2-only)'{-1,--id3v1-only}'[write only id3v1 tag]' \
+        '(-1 --id3v1-only -2 --id3v2-only)'{-2,--id3v2-only}'[write only id3v2 tag]' \
+        '(-r --remove-frame)'{-r,--remove-frame}'[removes specified id3v2 frame]:frame id:_id3v2_frame' \
+        '(-a --artist)'{-a,--artist}'[set artist]:artist' \
+        '(-A --album)'{-A,--album}'[set album title]:album' \
+        '(-t --song)'{-t,--song}'[set song title]:song title' \
+        '(-c --comment)'{-c,--comment}'[set comment field]' \
+        '(-g --genre)'{-g,--genre}'[set the genre number]:genre:_id3v2_genre' \
+        '(-y --year)'{-y,--year}'[set the year]:year' \
+        '(-T --track)'{-T,--track}'[set the track number/(optional) total tracks]:track number (current/total)' \
+        '(-R --list-rfc822)'{-R,--list-rfc822}'[lists using an rfc822-style format for output]' \
+        '(-)'{-D,--delete-all}'[deletes both id3v1 and id3v2 tags]' \
+        '(-)'{-l,--list}'[lists the tag(s) on the file(s)]' \
+        $showfiles'*:mp3 file:_files -g "*.mp3"' \
+      - meta \
+        '(- *)'{-f,--list-frames}'[display all possible frames for id3v2]' \
+        '(- *)'{-L,--list-genres}'[lists all id3v1 genres]' \
+        '(- *)'{-h,--help}'[display help and exit]' \
+        '(- *)'{-v,--version}'[display version information and exit]' && ret=0
+
+    return ret
+
+}
+
+_id3v2 "$@"

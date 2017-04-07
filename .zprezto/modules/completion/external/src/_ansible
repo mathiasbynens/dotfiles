@@ -1,0 +1,439 @@
+#compdef ansible
+# ------------------------------------------------------------------------------
+# Copyright (c) 2011 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for ansible v1.8.4 (http://ansible.org)
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Romain Bossart (https://github.com/bosr)
+#
+# ------------------------------------------------------------------------------
+#
+# Needs either ANSIBLE_HOSTS or /etc/ansible/hosts on linux
+# (or /usr/local/etc/ansible/hosts on OSX)
+#
+# Note 1: the following gist (https://gist.github.com/15ed54a438a36d67fd99.git)
+# has some files to help improve the hostfile shell parsing
+#
+# Note 2: I tried to use `_arguments --`, but the output of `ansible --help`
+# is not parsed entirely correctly, and anyway no modules or host would available.
+#
+
+
+# ansible zsh completion
+#
+
+__host_file_location () {
+  # find the location of the host file:
+  # 1. check $ANSIBLE_HOSTS
+  # 2. else check /etc/ansible/hosts or /usr/local/etc/...
+  #    (depending on platform)
+  #
+  [[ "$OSTYPE" == darwin* ]] && FALLBACK="/usr/local/etc/ansible/hosts"
+  [[ "$OSTYPE" == linux* ]] && FALLBACK="/etc/ansible/hosts"
+  HOST_FILE=${ANSIBLE_HOSTS:=${FALLBACK}}
+  [[ -f ${HOST_FILE} ]] || HOST_FILE=/dev/null
+
+  echo ${HOST_FILE}
+}
+
+__ll_group_list () {
+  # parses the ini hostfile for groups only: [...]
+  HOST_FILE=$(__host_file_location)
+
+  local -a group_list
+  group_list=$(command \
+      cat ${HOST_FILE} \
+      | awk '$1 ~ /^\[.*\]$/ && !/=/ && !/:vars/ \
+        { gsub(/[\[\]]/, "", $1); gsub(/:children/, "", $1) ; print $1 }' \
+      | uniq )
+
+  echo ${group_list}
+}
+
+
+__host_list ()
+{
+  # parses the ini hostfile for hosts only
+  # but then has to remove all group occurrences
+  HOST_FILE=$(__host_file_location)
+
+  # this will also contain groups if they are referenced in other groups
+  local -a mixed_host_list
+  mixed_host_list=$(command \
+    cat ${HOST_FILE} \
+    | awk 'NF && $1 !~ /^[:space:]*#|[\[:=]/ { print $1 }' \
+    | sort | uniq)
+
+  # compute set difference h1 - h2
+  local -a h1 h2 host_list
+  h1=${mixed_host_list}
+  h2=$(__ll_group_list)
+  host_list=($(command \
+    sort <(echo $h1) <(echo $h2) <(echo $h2) \
+    | uniq -u \
+    | paste -s -d ' ' - )
+  )
+
+  _wanted application expl 'hosts' compadd ${host_list}
+
+  # method that delegates to ansible (slow)
+  # _wanted application expl 'hosts' compadd $(command ansible \
+  #                                             all --list-hosts\
+  #                                             2>/dev/null)
+}
+
+__group_list ()
+{
+  gl=($(command echo $(__ll_group_list) | paste -s -d ' ' - )) # 'a\nb\nc' -> (a b c)
+  _wanted application2 expl 'groups' compadd $gl
+}
+
+
+_modules=(
+'a10_server:(E) Manage A10 Networks AX/SoftAX/Thunder/vThunder devices'
+'a10_service_group:(E) Manage A10 Networks AX/SoftAX/Thunder/vThunder devices'
+'a10_virtual_server:(E) Manage A10 Networks AX/SoftAX/Thunder/vThunder devices'
+'accelerate:Enable accelerated mode on remote node'
+'acl:Sets and retrieves file ACL information.'
+'add_host:add a host (and alternatively a group) to the ansible-playbook in-memory inventory'
+'airbrake_deployment:(E) Notify airbrake about app deployments'
+'alternatives:(E) Manages alternative programs for common commands'
+'apache2_module:enables/disables a module of the Apache2 webserver'
+'apt:Manages apt-packages'
+'apt_key:Add or remove an apt key'
+'apt_repository:Add and remove APT repositories'
+'apt_rpm:apt_rpm package manager'
+'assemble:Assembles a configuration file from fragments'
+'assert:Fail with custom message'
+'async_status:Obtain status of asynchronous task'
+'at:(E) Schedule the execution of a command or script file via the at command.'
+'authorized_key:Adds or removes an SSH authorized key'
+'azure:create or terminate a virtual machine in azure'
+'bigip_facts:(E) Collect facts from F5 BIG-IP devices'
+'bigip_monitor_http:(E) Manages F5 BIG-IP LTM http monitors'
+'bigip_monitor_tcp:(E) Manages F5 BIG-IP LTM tcp monitors'
+'bigip_node:(E) Manages F5 BIG-IP LTM nodes'
+'bigip_pool:(E) Manages F5 BIG-IP LTM pools'
+'bigip_pool_member:(E) Manages F5 BIG-IP LTM pool members'
+'bigpanda:(E) Notify BigPanda about deployments'
+'boundary_meter:(E) Manage boundary meters'
+'bower:(E) Manage bower packages with bower'
+'bzr:(E) Deploy software (or files) from bzr branches'
+'campfire:(E) Send a message to Campfire'
+'capabilities:(E) Manage Linux capabilities'
+'cloudformation:create a AWS CloudFormation stack'
+'command:Executes a command on a remote node'
+'composer:(E) Dependency Manager for PHP'
+'copy:Copies files to remote locations.'
+'cpanm:(E) Manages Perl library dependencies.'
+'cron:Manage cron.d and crontab entries.'
+'crypttab:(E) Encrypted Linux block devices'
+'datadog_event:(E) Posts events to DataDog service'
+'debconf:(E) Configure a .deb package'
+'debug:Print statements during execution'
+'digital_ocean:Create/delete a droplet/SSH_key in DigitalOcean'
+'digital_ocean_domain:Create/delete a DNS record in DigitalOcean'
+'digital_ocean_sshkey:Create/delete an SSH key in DigitalOcean'
+'django_manage:Manages a Django application.'
+'dnf:(E) Manages packages with the I(dnf) package manager'
+'dnsimple:(E) Interface with dnsimple.com (a DNS hosting service).'
+'dnsmadeeasy:(E) Interface with dnsmadeeasy.com (a DNS hosting service).'
+'docker:manage docker containers'
+'docker_image (D):manage docker images'
+'easy_install:Installs Python libraries'
+'ec2:create, terminate, start or stop an instance in ec2'
+'ec2_ami:create or destroy an image in ec2'
+'ec2_ami_search:Retrieve AWS AMI information for a given operating system.'
+'ec2_asg:Create or delete AWS Autoscaling Groups'
+'ec2_eip:associate an EC2 elastic IP with an instance.'
+'ec2_elb:De-registers or registers instances from EC2 ELBs'
+'ec2_elb_lb:Creates or destroys Amazon ELB.'
+'ec2_facts:Gathers facts about remote hosts within ec2 (aws)'
+'ec2_group:maintain an ec2 VPC security group.'
+'ec2_key:maintain an ec2 key pair.'
+'ec2_lc:Create or delete AWS Autoscaling Launch Configurations'
+'ec2_metric_alarm:Create/update or delete AWS Cloudwatch ‘metric alarms’'
+'ec2_scaling_policy:Create or delete AWS scaling policies for Autoscaling groups'
+'ec2_snapshot:creates a snapshot from an existing volume'
+'ec2_tag:create and remove tag(s) to ec2 resources.'
+'ec2_vol:create and attach a volume, return volume id and device map'
+'ec2_vpc:configure AWS virtual private clouds'
+'ejabberd_user:(E) Manages users for ejabberd servers'
+'elasticache:Manage cache clusters in Amazon Elasticache.'
+'facter:(E) Runs the discovery program I(facter) on the remote system'
+'fail:Fail with custom message'
+'fetch:Fetches a file from remote nodes'
+'file:Sets attributes of files'
+'filesystem:(E) Makes file system on block device'
+'fireball:Enable fireball mode on remote node'
+'firewalld:(E) Manage arbitrary ports/services with firewalld'
+'flowdock:(E) Send a message to a flowdock'
+'gc_storage:This module manages objects/buckets in Google Cloud Storage.'
+'gce:create or terminate GCE instances'
+'gce_img:(E) utilize GCE image resources'
+'gce_lb:create/destroy GCE load-balancer resources'
+'gce_net:create/destroy GCE networks and firewall rules'
+'gce_pd:utilize GCE persistent disk resources'
+'gem:Manage Ruby gems'
+'get_url:Downloads files from HTTP, HTTPS, or FTP to node'
+'getent:(E) a wrapper to the unix getent utility'
+'git:Deploy software (or files) from git checkouts'
+'github_hooks:(E) Manages github service hooks.'
+'glance_image:Add/Delete images from glance'
+'gluster_volume:(E) Manage GlusterFS volumes'
+'group:Add or remove groups'
+'group_by:Create Ansible groups based on facts'
+'grove:(E) Sends a notification to a grove.io channel'
+'haproxy:(E) An Ansible module to handle states enable/disable server and set weight to backend host in haproxy using socket commands.'
+'hg:Manages Mercurial (hg) repositories.'
+'hipchat:(E) Send a message to hipchat'
+'homebrew:(E) Package manager for Homebrew'
+'homebrew_cask:(E) Install/uninstall homebrew casks.'
+'homebrew_tap:(E) Tap a Homebrew repository.'
+'hostname:Manage hostname'
+'htpasswd:manage user files for basic authentication'
+'include_vars:Load variables from files, dynamically within a task.'
+'ini_file:Tweak settings in INI files'
+'irc:(E) Send a message to an IRC channel'
+'jabber:(E) Send a message to jabber user or chat room'
+'jboss:(E) deploy applications to JBoss'
+'jira:(E) create and modify issues in a JIRA instance'
+'kernel_blacklist:(E) Blacklist kernel modules'
+'keystone_user:Manage OpenStack Identity (keystone) users, tenants and roles'
+'layman:(E) Manage Gentoo overlays'
+'librato_annotation:(E) create an annotation in librato'
+'lineinfile:Ensure a particular line is in a file, or replace an existing line using a back-referenced regular expression.'
+'linode:create / delete / stop / restart an instance in Linode Public Cloud'
+'lldp:(E) get details reported by lldp'
+'locale_gen:(E) Creates or removes locales.'
+'logentries:(E) Module for tracking logs via logentries.com'
+'lvg:(E) Configure LVM volume groups'
+'lvol:(E) Configure LVM logical volumes'
+'macports:(E) Package manager for MacPorts'
+'mail:(E) Send an email'
+'modprobe:(E) Add or remove kernel modules'
+'mongodb_user:(E) Adds or removes a user from a MongoDB database.'
+'monit:(E) Manage the state of a program monitored via Monit'
+'mount:Control active and configured mount points'
+'mqtt:(E) Publish a message on an MQTT topic for the IoT'
+'mysql_db:Add or remove MySQL databases from a remote host.'
+'mysql_replication:(E) Manage MySQL replication'
+'mysql_user:Adds or removes a user from a MySQL database.'
+'mysql_variables:Manage MySQL global variables'
+'nagios:(E) Perform common tasks in Nagios related to downtime and notifications.'
+'netscaler:(E) Manages Citrix NetScaler entities'
+'newrelic_deployment:(E) Notify newrelic about app deployments'
+'nexmo:(E) Send a SMS via nexmo'
+'nova_compute:Create/Delete VMs from OpenStack'
+'nova_keypair:Add/Delete key pair from nova'
+'npm:(E) Manage node.js packages with npm'
+'ohai:(E) Returns inventory data from I(Ohai)'
+'open_iscsi:(E) Manage iscsi targets with open-iscsi'
+'openbsd_pkg:(E) Manage packages on OpenBSD.'
+'openvswitch_bridge:(E) Manage Open vSwitch bridges'
+'openvswitch_port:(E) Manage Open vSwitch ports'
+'opkg:(E) Package manager for OpenWrt'
+'osx_say:(E) Makes an OSX computer to speak.'
+'ovirt:(E) oVirt/RHEV platform management'
+'pacman:(E) Manage packages with I(pacman)'
+'pagerduty:(E) Create PagerDuty maintenance windows'
+'patch:(E) Apply patch files using the GNU patch tool.'
+'pause:Pause playbook execution'
+'ping:Try to connect to host and return C(pong) on success.'
+'pingdom:(E) Pause/unpause Pingdom alerts'
+'pip:Manages Python library dependencies.'
+'pkg5:(E) Manages packages with the Solaris 11 Image Packaging System'
+'pkg5_publisher:(E) Manages Solaris 11 Image Packaging System publishers'
+'pkgin:(E) Package manager for SmartOS'
+'pkgng:(E) Package manager for FreeBSD >= 9.0'
+'pkgutil:(E) Manage CSW-Packages on Solaris'
+'portage:(E) Package manager for Gentoo'
+'portinstall:(E) Installing packages from FreeBSD’s ports system'
+'postgresql_db:Add or remove PostgreSQL databases from a remote host.'
+'postgresql_lang:(E) Adds, removes or changes procedural languages with a PostgreSQL database.'
+'postgresql_privs:Grant or revoke privileges on PostgreSQL database objects.'
+'postgresql_user:Adds or removes a users (roles) from a PostgreSQL database.'
+'quantum_floating_ip:Add/Remove floating IP from an instance'
+'quantum_floating_ip_associate:Associate or disassociate a particular floating IP with an instance'
+'quantum_network:Creates/Removes networks from OpenStack'
+'quantum_router:Create or Remove router from openstack'
+'quantum_router_gateway:set/unset a gateway interface for the router with the specified external network'
+'quantum_router_interface:Attach/Dettach a subnet’s interface to a router'
+'quantum_subnet:Add/remove subnet from a network'
+'rabbitmq_parameter:(E) Adds or removes parameters to RabbitMQ'
+'rabbitmq_plugin:(E) Adds or removes plugins to RabbitMQ'
+'rabbitmq_policy:(E) Manage the state of policies in RabbitMQ.'
+'rabbitmq_user:(E) Adds or removes users to RabbitMQ'
+'rabbitmq_vhost:(E) Manage the state of a virtual host in RabbitMQ'
+'raw:Executes a low-down and dirty SSH command'
+'rax:create / delete an instance in Rackspace Public Cloud'
+'rax_cbs:Manipulate Rackspace Cloud Block Storage Volumes'
+'rax_cbs_attachments:Manipulate Rackspace Cloud Block Storage Volume Attachments'
+'rax_cdb:create/delete or resize a Rackspace Cloud Databases instance'
+'rax_cdb_database:create / delete a database in the Cloud Databases'
+'rax_cdb_user:create / delete a Rackspace Cloud Database'
+'rax_clb:create / delete a load balancer in Rackspace Public Cloud'
+'rax_clb_nodes:add, modify and remove nodes from a Rackspace Cloud Load Balancer'
+'rax_dns:Manage domains on Rackspace Cloud DNS'
+'rax_dns_record:Manage DNS records on Rackspace Cloud DNS'
+'rax_facts:Gather facts for Rackspace Cloud Servers'
+'rax_files:Manipulate Rackspace Cloud Files Containers'
+'rax_files_objects:Upload, download, and delete objects in Rackspace Cloud Files'
+'rax_identity:Load Rackspace Cloud Identity'
+'rax_keypair:Create a keypair for use with Rackspace Cloud Servers'
+'rax_meta:Manipulate metadata for Rackspace Cloud Servers'
+'rax_network:create / delete an isolated network in Rackspace Public Cloud'
+'rax_queue:create / delete a queue in Rackspace Public Cloud'
+'rax_scaling_group:Manipulate Rackspace Cloud Autoscale Groups'
+'rax_scaling_policy:Manipulate Rackspace Cloud Autoscale Scaling Policy'
+'rds:create, delete, or modify an Amazon rds instance'
+'rds_param_group:manage RDS parameter groups'
+'rds_subnet_group:manage RDS database subnet groups'
+'redhat_subscription:Manage Red Hat Network registration and subscriptions using the C(subscription-manager) command'
+'redis:(E) Various redis commands, slave and flush'
+'replace:Replace all instances of a particular string in a file using a back-referenced regular expression.'
+'rhn_channel:Adds or removes Red Hat software channels'
+'rhn_register:Manage Red Hat Network registration using the C(rhnreg_ks) command'
+'riak:(E) This module handles some common Riak operations'
+'rollbar_deployment:(E) Notify Rollbar about app deployments'
+'route53:add or delete entries in Amazons Route53 DNS service'
+'rpm_key:Adds or removes a gpg key from the rpm db'
+'s3:S3 module putting a file into S3.'
+'script:Runs a local script on a remote node after transferring it'
+'seboolean:Toggles SELinux booleans.'
+'selinux:Change policy and state of SELinux'
+'service:Manage services.'
+'set_fact:Set host facts from a task'
+'setup:Gathers facts about remote hosts'
+'shell:Execute commands in nodes.'
+'slack:(E) Send Slack notifications'
+'slurp:Slurps a file from remote nodes'
+'snmp_facts:(E) Retrieve facts for a device using SNMP.'
+'sns:(E) Send Amazon Simple Notification Service (SNS) messages'
+'stackdriver:(E) Send code deploy and annotation events to stackdriver'
+'stat:retrieve file or file system status'
+'subversion:Deploys a subversion repository.'
+'supervisorctl:Manage the state of a program or group of programs running via supervisord'
+'svc:(E) Manage daemontools services.'
+'svr4pkg:(E) Manage Solaris SVR4 packages'
+'swdepot:(E) Manage packages with swdepot package manager (HP-UX)'
+'synchronize:Uses rsync to make synchronizing file paths in your playbooks quick and easy.'
+'sysctl:Manage entries in sysctl.conf.'
+'template:Templates a file out to a remote server.'
+'twilio:(E) Sends a text message to a mobile phone through Twilio.'
+'typetalk:(E) Send a message to typetalk'
+'ufw:(E) Manage firewall with UFW'
+'unarchive:Copies an archive to a remote location and unpack it'
+'uptimerobot:(E) Pause and start Uptime Robot monitoring'
+'uri:Interacts with webservices'
+'urpmi:(E) Urpmi manager'
+'user:Manage user accounts'
+'virt:(E) Manages virtual machines supported by libvirt'
+'vsphere_guest:Create/delete/manage a guest VM through VMware vSphere.'
+'wait_for:Waits for a condition before continuing.'
+'win_chocolatey:(E) Installs packages using chocolatey'
+'win_feature:Installs and uninstalls Windows Features'
+'win_get_url:Fetches a file from a given URL'
+'win_group:Add and remove local groups'
+'win_msi:Installs and uninstalls Windows MSI files'
+'win_ping:A windows version of the classic ping module.'
+'win_service:Manages Windows services'
+'win_stat:returns information about a Windows file'
+'win_updates:(E) Lists / Installs windows updates'
+'win_user:Manages local Windows user accounts'
+'xattr:set/retrieve extended attributes'
+'yum:Manages packages with the I(yum) package manager'
+'zabbix_group:(E) Add or remove a host group to Zabbix.'
+'zabbix_maintenance:(E) Create Zabbix maintenance windows'
+'zfs:(E) Manage zfs'
+'zypper:(E) Manage packages on SUSE and openSUSE'
+'zypper_repository:(E) Add and remove Zypper repositories'
+)
+
+
+_ansible ()
+{
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments -C -W \
+    '1:pattern:->pattern'\
+    "(-a --args)"{-a,--args}"[ARGS module arguments]:arguments:(ARG)"\
+    "(-k --ask-pass)"{-k,--ask-pass}"[ask for SSH password]"\
+    '--ask-su-pass[ask for su password]'\
+    "(-K --ask-sudo-pass)"{-K,--ask-sudo-pass}"[ask for sudo password]"\
+    '--ask-vault-pass[ask for vault password]'\
+    "(-B --background)"{-B,--background}"[DURATION run asynchronously for DURATION (s)]:duration:(DURATION)"\
+    "(-C --check)"{-C,--check}"[don't make any changes]"\
+    "(-c --connection)"{-c,--connection}"[CONNECTION connection type to use (default=smart)]:connection type:(smart ssh local chroot)"\
+    "(-f --forks)"{-f,--forks}"[FORKS number of parallel processes to use (default=5)]:forks:(5)"\
+    "(-h --help)"{-h,--help}"[help message]"\
+    "(-i --inventory-file)"{-i,--inventory-file}"[INVENTORY specify inventory host file]:inventory file:_files"\
+    "(-l --limit)"{-l,--limit}"[SUBSET further limit selected hosts to an additional pattern]:subset pattern:->pattern"\
+    '--list-hosts[outputs a list of matching hosts. Does not execute anything else]'\
+    "(-m --module-name)"{-m,--module-name}"[MODULE_NAME module name (default=command)]:module name:->module"\
+    "(-M --module-path)"{-M,--module-path}"[MODULE_PATH specify path to module library (default=None)]:module path:_files -/"\
+    "(-o --one-line)"{-o,--one-line}"[condense output]"\
+    "(-P --poll)"{-P,--poll}"[POLL_INTERVAL set the poll interval (s) if using -B (default=15)]:poll interval:(15)"\
+    "--private-key[PRIVATE_KEY_FILE use this file to authenticate the connection]:private key file:_files"\
+    "(-S --su)"{-S,--su}"[run operations with su]"\
+    "(-R --su-user)"{-R,--su-user}"[SU_USER run operations with su as this user (default=root)]:su user:(root)"\
+    "(-s --sudo)"{-s,--sudo}"[run operations with sudo (nopasswd)]"\
+    "(-U --sudo-user)"{-U,--sudo-user}"[SUDO_USER desired sudo user (default=root)]:su user:(root)"\
+    "(-T --timeout)"{-T,--timeout}"[TIMEOUT override the SSH timeout (s) (default=10)]:ssh timeout:(10)"\
+    "(-t --tree)"{-t,--tree}"[OUTPUT_DIRECTORY log output to this directory]:output directory:_files -/"\
+    "(-u --user)"{-u,--user}"[REMOTE_USER connect as this user (default=${USER})]:connect as user:(${USER})"\
+    "--vault-password-file[VAULT_PASSWORD_FILE vault password file]:vault password file:_files"\
+    "(-v --verbose)"{-v,--verbose}"[verbose mode (-vvv for more, -vvvv to enable connection debugging)]"\
+    "--version[show program's version number and exit]"\
+
+  case $state in
+    pattern)
+      _arguments '*:feature:__host_list'
+      _arguments '*:feature:__group_list'
+      ;;
+    module)
+      _describe -t commands "modules" _modules
+      ;;
+  esac
+}
+
+_ansible "$@"
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et

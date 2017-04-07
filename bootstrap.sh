@@ -1,27 +1,59 @@
 #!/usr/bin/env bash
+#
+#
+set -x
+#
+__DIR__=`dirname $0`
+cd ${__DIR__}
+__PWD__=`pwd`
+__CURRDIR__=${__PWD__}
 
-cd "$(dirname "${BASH_SOURCE}")";
+TOBE_LINKED=(
+    ".gitconfig"
+    ".gitignore"
+    ".gvimrc"
+    ".macos"
+    ".vimrc"
+    ".vim"
+    ".wgetrc"
+    ".zprezto"
+    ".editorconfig"
+    ".curlrc"
+    ".screenrc"
+    ".wgetrc"
+)
 
-git pull origin master;
+while [ "x${TOBE_LINKED[count]}" != "x" ]
+do
+   count=$(( $count + 1 ))
+   link=${TOBE_LINKED[count]}
+   # echo $link
+   if [[ -e $link ]]; then
+       ln -sf ${__CURRDIR__}/$link ~/$link
+   fi
+done
 
-function doIt() {
-	rsync --exclude ".git/" \
-		--exclude ".DS_Store" \
-		--exclude ".osx" \
-		--exclude "bootstrap.sh" \
-		--exclude "README.md" \
-		--exclude "LICENSE-MIT.txt" \
-		-avh --no-perms . ~;
-	source ~/.bash_profile;
-}
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
-fi;
-unset doIt;
+# Setup zsh using .zprezto
+#
+
+ZPREZTORCS=(
+    "zshenv"
+    "zprofile"
+    "zshrc"
+    "zpreztorc"
+    "zlogin"
+    "zlogout"
+)
+while [[ "x${ZPREZTORCS[zcount]}" != "x" ]]; do
+    zcount=$(( $zcount + 1 ))
+    rcfile=${ZPREZTORCS[zcount]}
+    rcpath=$__CURRDIR__/.zprezto/runcoms/${ZPREZTORCS[zcount]}
+    # echo $rcpath
+    if [[ -f $rcpath ]]; then
+        ln -sf $rcpath ~/.${rcfile}
+    fi
+done
+
+
+

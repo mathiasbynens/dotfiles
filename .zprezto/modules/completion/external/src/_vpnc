@@ -1,0 +1,207 @@
+#compdef vpnc vpnc-connect vpnc-disconnect
+# ------------------------------------------------------------------------------
+# Copyright (c) 2011 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for vpnc.
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Julien Nicoulaud <julien.nicoulaud@gmail.com>
+#
+# ------------------------------------------------------------------------------
+
+
+(( $+functions[_vpnc-connect] )) ||
+_vpnc-connect() {
+  _arguments \
+    '(- : *)--version[display version information]' \
+    '(- : *)--'{,long-}'help[display help information]' \
+    '--gateway[IP/name of your IPSec gateway]: :_hosts' \
+    '--id[your group name]: :_groups' \
+    '--username[your username]: :_users' \
+    '--domain[domain name for authentication]: :_domains' \
+    '--xauth-inter[enable interactive extended authentication]' \
+    '--vendor[vendor of your IPSec gateway]: :_vpnc_gateway_vendors' \
+    '--natt-mode[NAT-Traversal method]: :_vpnc_nat_traversal_methods' \
+    '--script[command executed using system() to configure the interface, routing and so on]:command path:_files' \
+    '--dh[name of the IKE DH Group]: :_vpnc_ike_diffie_hellman_groups' \
+    '--pfs[Diffie-Hellman group to use for PFS]: :_vpnc_pfs_diffie_hellman_groups' \
+    '--enable-1des[enable weak single DES encryption]' \
+    '--enable-no-encryption[enable using no encryption for data traffic (key exchanged must be encrypted)]' \
+    '--application-version[application version to report]:application version' \
+    '--ifname[visible name of the TUN/TAP interface]:name' \
+    '--ifmode[mode of TUN/TAP interface]: :_vpnc_tun_tap_modes' \
+    '--debug[show verbose debug messages]: :_vpnc_debug_levels' \
+    '--no-detach[Don'\''t detach from the console after login]' \
+    '--pid-file[store the pid of background process in the file]:pid file:_files' \
+    '--local-addr[local IP to use for ISAKMP/ESP/...]: :_hosts' \
+    '--local-port[local ISAKMP port number to use]: :_vpnc_isakmp_port_numbers' \
+    '--udp-port[local UDP port number to use]: :_vpnc_udp_port_numbers' \
+    '--dpd-idle[send DPD packet after not receiving anything for X seconds]: :_vpnc_dpd_idle_times' \
+    '--non-inter[Don'\''t ask anything, exit on missing options]' \
+    '--auth-mode[authentication mode]: :_vpnc_authentication_modes' \
+    '--ca-file[filename and path to the CA-PEM-File]:CA-PEM file:_files' \
+    '--ca-dir[path of the trusted CA-Directory]:CA directory:_files -/' \
+    '--target-network[target network in dotted decimal or CIDR notation]:target network/netmask' \
+    '--print-config[print your configuration; output can be used as vpnc.conf]' \
+    '*: :_vpnc_confs'
+}
+
+(( $+functions[_vpnc-disconnect] )) ||
+_vpnc-disconnect() {
+  _message 'no more arguments'
+}
+
+(( $+functions[_vpnc_confs] )) ||
+_vpnc_confs() {
+  # FIXME /etc/vpnc/ is only accessible to root, how do we deal with this ?
+  local confs; confs=(/etc/vpnc/*.conf(:t:s/\.conf/))
+  _describe -t confs 'VPNC conf' confs "$@"
+}
+
+(( $+functions[_vpnc_gateway_vendors] )) ||
+_vpnc_gateway_vendors() {
+  local vendors; vendors=(
+    'cisco'
+    'netscreen'
+  )
+  _describe -t vendors 'vendor' vendors "$@"
+}
+
+(( $+functions[_vpnc_nat_traversal_methods] )) ||
+_vpnc_nat_traversal_methods() {
+  local methods; methods=(
+    'natt:NAT-T as defined in RFC3947 (default)'
+    'none:disable use of any NAT-T method'
+    'force-natt:always use NAT-T encapsulation even without presence of a NAT device'
+    'cisco-udp:Cisco proprietary UDP encapsulation, commonly over Port 10000'
+  )
+  _describe -t methods 'NAT traversal method' methods "$@"
+}
+
+(( $+functions[_vpnc_ike_diffie_hellman_groups] )) ||
+_vpnc_ike_diffie_hellman_groups() {
+  local groups; groups=(
+    'dh1'
+    'dh2'
+    'dh5'
+  )
+  _describe -t groups 'IKE Diffie Hellman group' groups "$@"
+}
+
+(( $+functions[_vpnc_pfs_diffie_hellman_groups] )) ||
+_vpnc_pfs_diffie_hellman_groups() {
+  local groups; groups=(
+    'nopfs'
+    'dh1'
+    'dh2'
+    'dh5'
+    'server'
+  )
+  _describe -t groups 'PFS Diffie Hellman group' groups "$@"
+}
+
+(( $+functions[_vpnc_tun_tap_modes] )) ||
+_vpnc_tun_tap_modes() {
+  local modes; modes=(
+    'tun:virtual point to point interface (default)'
+    'tap:virtual ethernet interface'
+  )
+  _describe -t modes 'TUN/TAP interface mode' modes "$@"
+}
+
+(( $+functions[_vpnc_debug_levels] )) ||
+_vpnc_debug_levels() {
+  local levels; levels=(
+    '0:do not print debug information'
+    '1:print minimal debug information'
+    '2:show statemachine and packet/payload type information'
+    '3:dump everything excluding authentication data'
+    '99:dump everything INCLUDING AUTHENTICATION data (e.g. PASSWORDS)'
+  )
+  _describe -t levels 'debug level' levels "$@"
+}
+
+(( $+functions[_vpnc_isakmp_port_numbers] )) ||
+_vpnc_isakmp_port_numbers() {
+  local ports; ports=(
+    '0:use random port'
+    '1:minimum port number'
+    '500:default port number'
+    '65535:maximum port number'
+  )
+  _describe -t ports 'ISAKMP port number' ports "$@"
+}
+
+(( $+functions[_vpnc_udp_port_numbers] )) ||
+_vpnc_udp_port_numbers() {
+  local ports; ports=(
+    '0:use random port'
+    '1:minimum port number'
+    '10000:default port number'
+    '65535:maximum port number'
+  )
+  _describe -t ports 'UDP port number' ports "$@"
+}
+
+(( $+functions[_vpnc_dpd_idle_times] )) ||
+_vpnc_dpd_idle_times() {
+  local times; times=(
+    '0:completely disable DPD'
+    '10:minimum value'
+    '300:default value'
+    '86400:maximum value'
+  )
+  _describe -t times 'DPD idle wait time (seconds)' times "$@"
+}
+
+(( $+functions[_vpnc_authentication_modes] )) ||
+_vpnc_authentication_modes() {
+  local modes; modes=(
+    'psk:pre-shared key (default)'
+    'cert:server + client certificate'
+    'hybrid:server certificate + xauth'
+  )
+  _describe -t modes 'authentication mode' modes "$@"
+}
+
+case $service in
+  vpnc|vpnc-connect) _call_function ret _vpnc-connect && return ret ;;
+  vpnc-disconnect)   _call_function ret _vpnc-disconnect && return ret ;;
+esac
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et

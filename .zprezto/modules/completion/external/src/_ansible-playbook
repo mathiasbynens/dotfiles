@@ -1,0 +1,177 @@
+#compdef ansible-playbook
+# ------------------------------------------------------------------------------
+# Copyright (c) 2011 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for ansible-playbook v1.8.4 (http://ansible.org)
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Romain Bossart (https://github.com/bosr)
+#
+# ------------------------------------------------------------------------------
+#
+# Needs either ANSIBLE_HOSTS or /etc/ansible/hosts on linux
+# (or /usr/local/etc/ansible/hosts on OSX)
+#
+# Note 1: the following gist (https://gist.github.com/15ed54a438a36d67fd99.git)
+# has some files to help improve the hostfile shell parsing
+#
+# Note 2: I tried to use `_arguments --`, but the output of `ansible --help`
+# is not parsed entirely correctly, and anyway no modules or host would available.
+#
+
+# ansible-playbook zsh completion
+#
+__host_file_location () {
+  # find the location of the host file:
+  # 1. check $ANSIBLE_HOSTS
+  # 2. else check /etc/ansible/hosts or /usr/local/etc/...
+  #    (depending on platform)
+  #
+
+  [[ "$OSTYPE" == darwin* ]] && FALLBACK="/usr/local/etc/ansible/hosts"
+  [[ "$OSTYPE" == linux* ]] && FALLBACK="/etc/ansible/hosts"
+  HOST_FILE=${ANSIBLE_HOSTS:=${FALLBACK}}
+  [[ -f ${HOST_FILE} ]] || HOST_FILE=/dev/null
+
+  echo ${HOST_FILE}
+}
+
+__ll_group_list () {
+  # parses the ini hostfile for groups only: [...]
+  HOST_FILE=$(__host_file_location)
+
+  local -a group_list
+  group_list=$(command \
+      cat ${HOST_FILE} \
+      | awk '$1 ~ /^\[.*\]$/ && !/=/ && !/:vars/ \
+        { gsub(/[\[\]]/, "", $1); gsub(/:children/, "", $1) ; print $1 }' \
+      | uniq )
+
+  echo ${group_list}
+}
+
+
+__host_list ()
+{
+  # parses the ini hostfile for hosts only
+  # but then has to remove all group occurrences
+  HOST_FILE=$(__host_file_location)
+
+  # this will also contain groups if they are referenced in other groups
+  local -a mixed_host_list
+  mixed_host_list=$(command \
+    cat ${HOST_FILE} \
+    | awk 'NF && $1 !~ /[\[:=]/ { print $1 }' \
+    | sort | uniq)
+
+  # compute set difference h1 - h2
+  local -a h1 h2 host_list
+  h1=${mixed_host_list}
+  h2=$(__ll_group_list)
+  host_list=($(command \
+    sort <(echo $h1) <(echo $h2) <(echo $h2) \
+    | uniq -u \
+    | paste -s -d ' ' - )
+  )
+
+  _wanted application expl 'hosts' compadd ${host_list}
+
+  # method that delegates to ansible (slow)
+  # _wanted application expl 'hosts' compadd $(command ansible \
+  #                                             all --list-hosts\
+  #                                             2>/dev/null)
+}
+
+__group_list ()
+{
+  gl=($(command echo $(__ll_group_list) | paste -s -d ' ' - )) # 'a\nb\nc' -> (a b c)
+  _wanted application2 expl 'groups' compadd $gl
+}
+
+
+
+_ansible-playbook ()
+{
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments -C -W \
+    "1:playbook yml file:_files -g '*.yml'"\
+    "(-k --ask-pass)"{-k,--ask-pass}"[ask for SSH password]"\
+    '--ask-su-pass[ask for su password]'\
+    "(-K --ask-sudo-pass)"{-K,--ask-sudo-pass}"[ask for sudo password]"\
+    '--ask-vault-pass[ask for vault password]'\
+    "(-C --check)"{-C,--check}"[don't make any changes]"\
+    "(-c --connection)"{-c,--connection}"[CONNECTION connection type to use (default=smart)]:connection type:(smart ssh local chroot)"\
+    "(-D --diff)"{-D,--diff}"[when changing (small files and templates, show the diff in those. Works great with --check)]"\
+    "(-e --extra-vars)"{-e,--extra-vars}"[EXTRA_VARS set additional variables as key=value or YAML/JSON]:extra vars:(EXTRA_VARS)"\
+    '--flush-cache[clear the fact cache]'\
+    '--force-handlers[run handlers even if a task fails]'\
+    "(-f --forks)"{-f,--forks}"[FORKS number of parallel processes to use (default=5)]:forks:(5)"\
+    "(-h --help)"{-h,--help}"[help message]"\
+    "(-i --inventory-file)"{-i,--inventory-file}"[INVENTORY specify inventory host file]:inventory file:_files"\
+    "(-l --limit)"{-l,--limit}"[SUBSET further limit selected hosts to an additional pattern]:subset pattern:->pattern"\
+    '--list-hosts[outputs a list of matching hosts. Does not execute anything else]'\
+    "(-M --module-path)"{-M,--module-path}"[MODULE_PATH specify path to module library (default=None)]:module path:_files -/"\
+    "--private-key[PRIVATE_KEY_FILE use this file to authenticate the connection]:private key file:_files"\
+    "--skip-tags[SKIP_TAGS only run plays and tasks whose tags do not match these values]:skip tags:(SKIP_TAGS)"\
+    "--start-at-task[START_AT start the playbook at the task matching this name]:name:(TASK_NAME)"\
+    '--step[one-step-at-a-time: confirm each task before running]'\
+    "(-S --su)"{-S,--su}"[run operations with su]"\
+    "(-R --su-user)"{-R,--su-user}"[SU_USER run operations with su as this user (default=root)]:su user:(root)"\
+    "(-s --sudo)"{-s,--sudo}"[run operations with sudo (nopasswd)]"\
+    "(-U --sudo-user)"{-U,--sudo-user}"[SUDO_USER desired sudo user (default=root)]:su user:(root)"\
+    '--syntax-check[perform a syntax check on the playbook, but do not execute it]'\
+    "(-t --tags)"{-t,--tags}"[TAGS only run plays and tasks gagged with these values]:task tags:(TAGS)"\
+    "(-T --timeout)"{-T,--timeout}"[TIMEOUT override the SSH timeout (s) (default=10)]:ssh timeout:(10)"\
+    "(-u --user)"{-u,--user}"[REMOTE_USER connect as this user (default=${USER})]:connect as user:(${USER})"\
+    "--vault-password-file[VAULT_PASSWORD_FILE vault password file]:vault password file:_files"\
+    "(-v --verbose)"{-v,--verbose}"[verbose mode (-vvv for more, -vvvv to enable connection debugging)]"\
+    "--version[show program's version number and exit]"\
+
+  case $state in
+    pattern)
+      _arguments '*:feature:__host_list'
+      _arguments '*:feature:__group_list'
+      ;;
+  esac
+}
+
+_ansible-playbook "$@"
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et

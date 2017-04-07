@@ -1,0 +1,70 @@
+#compdef id3
+
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for id3, based on v0.15
+#
+#  Last updated: 03.04.2013
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Valodim ( https://github.com/Valodim )
+#
+# ------------------------------------------------------------------------------
+
+_id3_genre () {
+
+    setopt localoptions extendedglob
+
+    local -A _id3_genres
+    # got them cached?
+    if _cache_invalid id3-genres || ! _retrieve_cache id3-genres ; then
+
+        # generate from id3 -L otherwise
+        local tmp
+        for line in ${${${(f)"$(_call_program id3genre id3 -L)"}## #}}; do
+            tmp=( ${(s,: ,)line} )
+            _id3_genres[${tmp[1]}]=$tmp[2]
+            # alternate display string, which I decided against in the end
+            # to preserve reasonable alphabetic sorting
+            # "${(l:3:: :)${tmp[1]}}: ${tmp[2]}"
+        done
+
+        # store if we got any
+        (( $#_id3_genres > 0 )) && _store_cache id3-genres _id3_genres
+    fi
+
+    # bail if we don't
+    (( $#_id3_genres > 0 )) || { _message "could not fetch genres"; return }
+
+    _wanted id3genres expl 'Genres' \
+        compadd -d _id3_genres -k _id3_genres && return 0
+
+}
+
+# only show files if at least one argument or something has been provided
+local showfiles=''
+(( CURRENT <= 2 )) && showfiles='!'
+
+_arguments \
+  - tagging \
+      '-t[modify title tag]:title' \
+      '-T[modify track tag]:track' \
+      '-a[modify artist tag]:artist' \
+      '-A[modify album tag]:album' \
+      '-y[modify year tag]:year' \
+      '-c[modify comment tag]:comment' \
+      '-g[modify genre tag]:genre:_id3_genre' \
+      '(-)-l[lists tags]' \
+      '-R[use rfc822-style format for output]' \
+      '(-)-d[delete id3 tag]' \
+      $showfiles'*:mp3 file:_files -g \*.mp3' \
+  - meta \
+      '(- *)-L[list all genres]' \
+      '(- *)-h[display help info]' \
+      '(- *)-v[print version info]' && return 0
+

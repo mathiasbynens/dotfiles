@@ -1,7 +1,13 @@
+" execute pathogen#infect()
 " Use the Solarized Dark theme
 set background=dark
 colorscheme solarized
-let g:solarized_termtrans=1
+let g:solarized_termtrans=0
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
+
+
+" let g:solarized_termtrans=1
 
 " Make Vim more useful
 set nocompatible
@@ -41,13 +47,13 @@ set modelines=4
 set exrc
 set secure
 " Enable line numbers
-set number
+set nu
 " Enable syntax highlighting
 syntax on
 " Highlight current line
 set cursorline
 " Make tabs as wide as two spaces
-set tabstop=2
+set tabstop=4
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -60,7 +66,7 @@ set incsearch
 " Always show status line
 set laststatus=2
 " Enable mouse in all modes
-set mouse=a
+" set mouse=a
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
@@ -81,7 +87,7 @@ if exists("&relativenumber")
 	au BufReadPost * set relativenumber
 endif
 " Start scrolling three lines before the horizontal window border
-set scrolloff=3
+set scrolloff=5
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()

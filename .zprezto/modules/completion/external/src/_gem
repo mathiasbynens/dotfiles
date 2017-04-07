@@ -1,0 +1,499 @@
+#compdef gem gem1.9 macgem
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for gem (http://rubygems.org).
+#
+#  Source: https://gist.github.com/164465
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Alex Vollmer (https://github.com/alexvollmer)
+#  * Tim Pope     (https://github.com/tpope)
+#
+# ------------------------------------------------------------------------------
+
+
+gem_general_flags=("(-h --help)"{-h,--help}"[Get help on this command]"
+  "(-V --verbose)"{-V,--verbose}"[Set the verbose level of output]"
+  "(-q --quiet)"{-q,--quiet}"[Silence commands]"
+  "--config-file[Use this config file instead of default]:file:_files"
+  "--backtrace[Show stack backtrace on errors]"
+  "--debug[Turn on Ruby debugging]"
+  $nul_arg
+)
+
+__all_gems() {
+  _gem_names=($(${service} list | awk '{print $1}'))
+  compadd "$@" -k _gem_names
+}
+
+__all_gems_all() {
+  _gem_names=($(gem list | awk '{print $1}') "--all")
+  compadd "$@" -k _gem_names
+}
+
+__gem_help_arguments() {
+  _args=("commands"
+    "examples"
+    "build"
+    "cert"
+    "check"
+    "cleanup"
+    "contents"
+    "dependency"
+    "environment"
+    "fetch"
+    "generate_index"
+    "help"
+    "install"
+    "list"
+    "lock"
+    "mirror"
+    "outdated"
+    "owner"
+    "pristine"
+    "push"
+    "query"
+    "rdoc"
+    "search"
+    "server"
+    "sources"
+    "specification"
+    "stale"
+    "tumble"
+    "uninstall"
+    "unpack"
+    "update"
+    "which")
+  compadd "$@" -k _args
+}
+
+__gem_trust_policies() {
+  _args=("NoSecurity"
+    "LowSecurity"
+    "MediumSecurity"
+    "HighSecurity")
+  compadd "$@" -k _args
+}
+
+_gem_build() {
+  _arguments \
+    *:file:_files -f \
+    $gem_general_flags && ret=0
+}
+
+_gem_cert() {
+  _arguments \
+    "(-a --add)"{-a,--add}"[Add a trusted certificate.]":file:_files \
+    "(-l --list)"{-l,--list}"[List trusted certificates.]" \
+    "(-r --remove)"{-r,--remove}"[Remove trusted certificates containing STRING.]" \
+    "(-b --build)"{-b,--build}"[Build private key and self-signed certificate for EMAIL_ADDR.]" \
+    "(-C --certificate)"{-C,--certificate}"[Certificate for --sign command.]":file:_files \
+    "(-K --private-key)"{-K,--private-key}"[Private key for --sign command.]":file:_files \
+    "(-s --sign)"{-s,--sign}"[Sign a certificate with my key and certificate.]":file:_files \
+    $gem_general_flags && ret=0
+}
+
+_gem_check() {
+  _arguments \
+    "--verify[Verify gem file against its internal checksum]":file:_files \
+    "(-a --alien)"{-a,--alien}"[Report 'unmanaged' or rogue files in the gem repository]" \
+    "(-v --verbose)"{-v,--verbose}"[Spew more words]" \
+    "(-t --test)"{-t,--test}"[Run unit tests for gem]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to run tests for]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_cleanup() {
+  _arguments \
+    "*:gemname:__all_gems" \
+    "(-d --dryrun)"{-d,--dryrun}"[]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_contents() {
+  _arguments \
+    "*:gemname:__all_gems" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to contents]" \
+    "--all[Contents for all gems]" \
+    "(-s --spec-dir)"{-s,--spec-dir}"[Search for gems under specific paths]" \
+    "(-l --no-lib-only)"{-l,--no-lib-only}"[Only return files in the Gem's lib_dirs]" \
+    "--no-prefix[Don't include installed path prefix]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_dependency() {
+  _arguments \
+    ":gemname:__all_gems" \
+    "(-l --local)"{-l,--local}"[Restrict operations to the LOCAL domain]" \
+    "(-r --remote)"{-r,--remote}"[Restrict operations to the REMOTE domain]" \
+    "(-b --both)"{-b,--both}"[Allow LOCAL and REMOTE operations]" \
+    "(-B --bulk-threshold)"{-B,--bulk-threshold}"[Threshold for switching to bulk synchronization (default 1000)]" \
+    "--source[Use URL as the remote source for gems]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    "(-u --no-update-sources)"{-u,--no-update-sources}"[Update local source cache]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to dependency]" \
+    "--platform[Specify the platform of gem to dependency]" \
+    "(-R --no-reverse-dependencies)"{-R,--no-reverse-dependencies}"[Include reverse dependencies in the output]" \
+    "(-p --pipe)"{-p,--pipe}"[Pipe Format (name --version ver)]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_environment() {
+  typeset -g _environment_arg=
+  _environment_arg='::environment:((packageversion\:"display the package version"
+                    gemdir\:"display the path where gems are installed"
+                    gempath\:"display path used to search for gems"
+                    version\:"display the gem format version"
+                    remotesources\:"display the remote gem servers"))'
+  _arguments \
+    $_environment_arg \
+    $gem_general_flags && ret=0
+}
+
+_gem_fetch() {
+  _arguments \
+    "*:gemname:__all_gems" \
+    "(-B --bulk-threshold)"{-B,--bulk-threshold}"[Threshold for switching to bulk synchronization (default 1000)]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    "--source[Use URL as the remote source for gems]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to fetch]" \
+    "--platform[Specify the platform of gem to fetch]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_generate_index() {
+  _arguments \
+    "(-d --directory=DIRNAME)"{-d,--directory=-}"[repository base dir containing gems subdir]":directory:_directories \
+    "--no-legacy[Generate indexes for RubyGems older than 1.2.0]" \
+    "--no-modern[Generate indexes for RubyGems newer than 1.2.0]" \
+    "--update[Update modern indexes with gems added since the last update]" \
+    "--rss-gems-host=-[Host name where gems are served from, used for GUID and enclosure values]" \
+    "--rss-host=-[Host name for more gems information, used for RSS feed link]" \
+    "--rss-title=-[Set title for RSS feed]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_help() {
+  _arguments \
+    ":argument:__gem_help_arguments" \
+    $gem_general_flags && ret=0
+}
+
+_gem_install() {
+  _arguments \
+    "*:gemname:__all_gems" \
+    "(-i --install-dir)"{-i,--install-dir}"[Gem repository directory to get installed gems]":directory:_directories \
+    "(-n --bindir)"{-n,--bindir}"[Directory where binary files are located]":directory:_directories \
+    "(-d --no-rdoc)"{-d,--no-rdoc}"[Generate RDoc documentation for the gem on install]" \
+    "--no-ri[Generate RI documentation for the gem on install]" \
+    "(-E --no-env-shebang)"{-E,--no-env-shebang}"[Rewrite the shebang line on installed scripts to use /usr/bin/env]" \
+    "(-f --no-force)"{-f,--no-force}"[Force gem to install, bypassing dependency checks]" \
+    "(-t --no-test)"{-t,--no-test}"[Run unit tests prior to installation]" \
+    "(-w --no-wrappers)"{-w,--no-wrappers}"[Use bin wrappers for executables Not available on dosish platforms]" \
+    "(-P --trust-policy)"{-P,--trust-policy}"[Specify gem trust policy]:trust policy:__gem_trust_policies" \
+    "--ignore-dependencies[Do not install any required dependent gems]" \
+    "(-y --include-dependencies)"{-y,--include-dependencies}"[Unconditionally install the required dependent gems]" \
+    "--no-format-executable[Make installed executable names match ruby. If ruby is ruby18, foo_exec will be foo_exec18]" \
+    "--no-user-install[Install in user's home directory instead of GEM_HOME. Defaults to using home only if GEM_HOME is not writable.]" \
+    "--development[Install any additional development dependencies]" \
+    "--prerelease[Install prerelease versions of a gem if available. Defaults to skipping prereleases.]" \
+    "(-l --local)"{-l,--local}"[Restrict operations to the LOCAL domain]" \
+    "(-r --remote)"{-r,--remote}"[Restrict operations to the REMOTE domain]" \
+    "(-b --both)"{-b,--both}"[Allow LOCAL and REMOTE operations]" \
+    "(-B --bulk-threshold)"{-B,--bulk-threshold}"[Threshold for switching to bulk synchronization (default 1000)]" \
+    "--source[Use URL as the remote source for gems]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    "(-u --no-update-sources)"{-u,--no-update-sources}"[Update local source cache]" \
+    "--platform[Specify the platform of gem to install]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to install]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_list() {
+  _arguments \
+    ":gem name: " \
+    "(-i --no-installed)"{-i,--no-installed}"[Check for installed gem]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to list]" \
+    "(-d --no-details)"{-d,--no-details}"[Display detailed information of gem(s)]" \
+    "--no-versions[Display only gem names]" \
+    "(-a --all)"{-a,--all}"[Display all gem versions]" \
+    "--prerelease[Display prerelease versions]" \
+    "(-l --local)"{-l,--local}"[Restrict operations to the LOCAL domain]" \
+    "(-r --remote)"{-r,--remote}"[Restrict operations to the REMOTE domain]" \
+    "(-b --both)"{-b,--both}"[Allow LOCAL and REMOTE operations]" \
+    "(-B --bulk-threshold)"{-B,--bulk-threshold}"[Threshold for switching to bulk synchronization (default 1000)]" \
+    "--source[Use URL as the remote source for gems]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    "(-u --no-update-sources)"{-u,--no-update-sources}"[Update local source cache]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_lock() {
+  _arguments \
+    ":gemname:__all_gems" \
+    "(-s --no-strict)"{-s,--no-strict}"[fail if unable to satisfy a dependency]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_mirror() {
+  _arguments \
+    $gem_general_flags && ret=0
+}
+
+_gem_open() {
+  _arguments \
+    "*:gemname:__all_gems" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to open]"
+}
+
+_gem_outdated() {
+  _arguments \
+    "(-l --local)"{-l,--local}"[Restrict operations to the LOCAL domain]" \
+    "(-r --remote)"{-r,--remote}"[Restrict operations to the REMOTE domain]" \
+    "(-b --both)"{-b,--both}"[Allow LOCAL and REMOTE operations]" \
+    "(-B --bulk-threshold)"{-B,--bulk-threshold}"[Threshold for switching to bulk synchronization (default 1000)]" \
+    "--source[Use URL as the remote source for gems]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    "(-u --no-update-sources)"{-u,--no-update-sources}"[Update local source cache]" \
+    "--platform[Specify the platform of gem to outdated]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_owner() {
+  _arguments \
+    "(-a --add)"{-a,--add}"[Add an owner]" \
+    "(-r --remove)"{-r,--remove}"[Remove an owner]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_pristine() {
+  _arguments \
+    ":gem name:__all_gems_all" \
+    "--all[Restore all installed gems to pristine condition]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to restore to pristine condition]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_push() {
+  _arguments \
+    *:file:_files -f \
+    "(-p --http-proxy)"{-p,--http-proxy}"[Use HTTP proxy for remote operations]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_query() {
+  _arguments \
+    "(-i --no-installed)"{-i,--no-installed}"[Check for installed gem]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to query]" \
+    "(-n --name-matches)"{-n,--name-matches}"[Name of gem(s) to query on matches the provided REGEXP]" \
+    "(-d --no-details)"{-d,--no-details}"[Display detailed information of gem(s)]" \
+    "--no-versions[Display only gem names]" \
+    "(-a --all)"{-a,--all}"[Display all gem versions]" \
+    "--prerelease[Display prerelease versions]" \
+    "(-l --local)"{-l,--local}"[Restrict operations to the LOCAL domain]" \
+    "(-r --remote)"{-r,--remote}"[Restrict operations to the REMOTE domain]" \
+    "(-b --both)"{-b,--both}"[Allow LOCAL and REMOTE operations]" \
+    "(-B --bulk-threshold)"{-B,--bulk-threshold}"[Threshold for switching to bulk synchronization (default 1000)]" \
+    "--source[Use URL as the remote source for gems]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    "(-u --no-update-sources)"{-u,--no-update-sources}"[Update local source cache]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_rdoc() {
+  _arguments \
+    ":gem name:__all_gems_all" \
+    "--all[Generate RDoc/RI documentation for all installed gems]" \
+    "--no-rdoc[Include RDoc generated documents]" \
+    "--no-ri[Include RI generated documents]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to rdoc]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_search() {
+  _arguments \
+    ":gem name::" \
+    "(-i --no-installed)"{-i,--no-installed}"[Check for installed gem]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to search]" \
+    "(-d --no-details)"{-d,--no-details}"[Display detailed information of gem(s)]" \
+    "--no-versions[Display only gem names]" \
+    "(-a --all)"{-a,--all}"[Display all gem versions]" \
+    "--prerelease[Display prerelease versions]" \
+    "(-l --local)"{-l,--local}"[Restrict operations to the LOCAL domain]" \
+    "(-r --remote)"{-r,--remote}"[Restrict operations to the REMOTE domain]" \
+    "(-b --both)"{-b,--both}"[Allow LOCAL and REMOTE operations]" \
+    "(-B --bulk-threshold)"{-B,--bulk-threshold}"[Threshold for switching to bulk synchronization (default 1000)]" \
+    "--source[Use URL as the remote source for gems]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    "(-u --no-update-sources)"{-u,--no-update-sources}"[Update local source cache]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_server() {
+  _arguments \
+    "(-p --port=PORT)"{-p,--port=-}"[port to listen on]" \
+    "(-d --dir=GEMDIR)"{-d,--dir=-}"[directory from which to serve gems]":directory:_directories \
+    "--no-daemon[run as a daemon]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_sources() {
+  _arguments \
+    "(-a --add)"{-a,--add}"[Add source]" \
+    "(-l --list)"{-l,--list}"[List sources]" \
+    "(-r --remove)"{-r,--remove}"[Remove source]" \
+    "(-c --clear-all)"{-c,--clear-all}"[Remove all sources (clear the cache)]" \
+    "(-u --update)"{-u,--update}"[Update source cache]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_specification() {
+  _arguments \
+    ":gemname:__all_gems" \
+    "(-l --local)"{-l,--local}"[Restrict operations to the LOCAL domain]" \
+    "(-r --remote)"{-r,--remote}"[Restrict operations to the REMOTE domain]" \
+    "(-b --both)"{-b,--both}"[Allow LOCAL and REMOTE operations]" \
+    "(-B --bulk-threshold)"{-B,--bulk-threshold}"[Threshold for switching to bulk synchronization (default 1000)]" \
+    "--source[Use URL as the remote source for gems]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    "(-u --no-update-sources)"{-u,--no-update-sources}"[Update local source cache]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to examine]" \
+    "--platform[Specify the platform of gem to specification]" \
+    "--all[Output specifications for all versions of the gem]" \
+    "--ruby[Output ruby format]" \
+    "--yaml[Output RUBY format]" \
+    "--marshal[Output Marshal format]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_stale() {
+  _arguments \
+    $gem_general_flags && ret=0
+}
+
+_gem_tumble() {
+  _arguments \
+    $gem_general_flags && ret=0
+}
+
+_gem_uninstall() {
+  _arguments \
+    "*:gemname:__all_gems" \
+    "(-a --no-all)"{-a,--no-all}"[Uninstall all matching versions]" \
+    "(-I --no-ignore-dependencies)"{-I,--no-ignore-dependencies}"[Ignore dependency requirements while uninstalling]" \
+    "(-x --no-executables)"{-x,--no-executables}"[Uninstall applicable executables without confirmation]" \
+    "(-i --install-dir)"{-i,--install-dir}"[Directory to uninstall gem from]":directory:_directories \
+    "(-n --bindir)"{-n,--bindir}"[Directory to remove binaries from]":directory:_directories \
+    "--no-user-install[Uninstall from user's home directory in addition to GEM_HOME.]" \
+    "(-v --version)"{-v,--version}"[Specify version of gem to uninstall]" \
+    "--platform[Specify the platform of gem to uninstall]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_unpack() {
+  _arguments \
+    ":gemname:__all_gems" \
+    "--target=-[target directory for unpacking]":directory:_directories \
+    "(-v --version)"{-v,--version}"[Specify version of gem to unpack]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_update() {
+  _arguments \
+    "*:gemname:__all_gems" \
+    "(-i --install-dir)"{-i,--install-dir}"[Gem repository directory to get installed gems]":directory:_directories \
+    "(-n --bindir)"{-n,--bindir}"[Directory where binary files are located]":directory:_directories \
+    "(-d --no-rdoc)"{-d,--no-rdoc}"[Generate RDoc documentation for the gem on install]" \
+    "--no-ri[Generate RI documentation for the gem on install]" \
+    "(-E --no-env-shebang)"{-E,--no-env-shebang}"[Rewrite the shebang line on installed scripts to use /usr/bin/env]" \
+    "(-f --no-force)"{-f,--no-force}"[Force gem to install, bypassing dependency checks]" \
+    "(-t --no-test)"{-t,--no-test}"[Run unit tests prior to installation]" \
+    "(-w --no-wrappers)"{-w,--no-wrappers}"[Use bin wrappers for executables Not available on dosish platforms]" \
+    "(-P --trust-policy)"{-P,--trust-policy}"[Specify gem trust policy]:trust policy:__gem_trust_policies" \
+    "--ignore-dependencies[Do not install any required dependent gems]" \
+    "(-y --include-dependencies)"{-y,--include-dependencies}"[Unconditionally install the required dependent gems]" \
+    "--no-format-executable[Make installed executable names match ruby. If ruby is ruby18, foo_exec will be foo_exec18]" \
+    "--no-user-install[Install in user's home directory instead of GEM_HOME. Defaults to using home only if GEM_HOME is not writable.]" \
+    "--development[Install any additional development dependencies]" \
+    "--prerelease[Install prerelease versions of a gem if available. Defaults to skipping prereleases.]" \
+    "(-l --local)"{-l,--local}"[Restrict operations to the LOCAL domain]" \
+    "(-r --remote)"{-r,--remote}"[Restrict operations to the REMOTE domain]" \
+    "(-b --both)"{-b,--both}"[Allow LOCAL and REMOTE operations]" \
+    "(-B --bulk-threshold)"{-B,--bulk-threshold}"[Threshold for switching to bulk synchronization (default 1000)]" \
+    "--source[Use URL as the remote source for gems]" \
+    "(-p --[no-]http-proxy)"{-p,--[no-]http-proxy}"[Use HTTP proxy for remote operations]" \
+    "(-u --no-update-sources)"{-u,--no-update-sources}"[Update local source cache]" \
+    "--system[Update the RubyGems system software]" \
+    "--platform[Specify the platform of gem to update]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_which() {
+  _arguments \
+    *:file:_files -f \
+    "(-a --no-all)"{-a,--no-all}"[show all matching files]" \
+    "(-g --no-gems-first)"{-g,--no-gems-first}"[search gems before non-gems]" \
+    $gem_general_flags && ret=0
+}
+
+_gem_migrate() {
+  _arguments \
+    "*:gemname:__all_gems" \
+    $gem_general_flags && ret=0
+}
+
+if (( CURRENT > 2 )); then
+  (( CURRENT-- ))
+  shift words
+  _call_function 1 _gem_${words[1]}
+else
+  _values "gem command" \
+    "build[Build a gem from a gemspec]" \
+    "cert[Manage RubyGems certificates and signing settings]" \
+    "check[Check installed gems]" \
+    "cleanup[Clean up old versions of installed gems in the local repository]" \
+    "contents[Display the contents of the installed gems]" \
+    "dependency[Show the dependencies of an installed gem]" \
+    "environment[Display information about the RubyGems environment]" \
+    "fetch[Download a gem and place it in the current directory]" \
+    "generate_index[Generates the index files for a gem server directory]" \
+    "help[Provide help on the 'gem' command]" \
+    "install[Install a gem into the local repository]" \
+    "list[Display gems whose name starts with STRING]" \
+    "lock[Generate a lockdown list of gems]" \
+    "migrate[Migrate a gem you own from Rubyforge to Gemcutter]" \
+    "mirror[Mirror a gem repository]" \
+    "open[Open a gem in your editor]" \
+    "outdated[Display all gems that need updates]" \
+    "owner[Manage gem owners on Gemcutter]" \
+    "pristine[Restores installed gems to pristine condition from files located in the gem cache]" \
+    "push[Push a gem up to Gemcutter]" \
+    "query[Query gem information in local or remote repositories]" \
+    "rdoc[Generates RDoc for pre-installed gems]" \
+    "search[Display all gems whose name contains STRING]" \
+    "server[Documentation and gem repository HTTP server]" \
+    "sources[Manage the sources and cache file RubyGems uses to search for gems]" \
+    "specification[Display gem specification (in yaml)]" \
+    "stale[List gems along with access times]" \
+    "tumble[Enable or disable Gemcutter as your primary gem source]" \
+    "uninstall[Uninstall gems from the local repository]" \
+    "unpack[Unpack an installed gem to the current directory]" \
+    "update[Update the named gems (or all installed gems) in the local repository]" \
+    "which[Find the location of a library file you can require]"
+fi
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et
+
+

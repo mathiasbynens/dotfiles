@@ -1,0 +1,26 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+# put several
+if [[ -f ~/.zextra ]]; then
+  source ~/.zextra
+fi
+
+# Test for oh-my-zsh
+#export ZSH=$HOME/.oh-my-zsh
+#ZSH_TMUX_AUTOREFRESH=true
+#ZSH_THEME="robbyrussell"
+#plugins=(git tmux)
+#source ~/.oh-my-zsh/oh-my-zsh.sh
+#

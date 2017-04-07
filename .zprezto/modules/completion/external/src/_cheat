@@ -1,0 +1,73 @@
+#compdef cheat
+# ------------------------------------------------------------------------------
+# Copyright (c) 2016 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for Cheat an interactive cheatsheets on the command-line. (https://github.com/chrisallenlane/cheat/).
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Jindřich Pilař (https://github.com/JindrichPilar)
+#
+# ------------------------------------------------------------------------------
+
+local cheats
+
+_cheat_load_cheats() {
+  cheats=("${(f)$(cheat -l | cut -d' ' -f1)}")
+}
+
+
+_cheat() {
+
+
+  _arguments -C -s -S -n \
+    '(- 1 *)'{-d,--directories}'[List directories on CHEATPATH]: :->full' \
+    '(- 1 *)'{-e,--edit}'[Edit cheatsheet]:cheat:->cheats' \
+    '(- 1 *)'{-l,--list}'[List cheatsheets]: :->full' \
+    '(- 1 *)'{-s,--search}'[Search cheatsheets for <keyword>]: :->full' \
+    '(- 1 *)'{-v,--version}'[display version and copyright information]: :->full' \
+
+    case "$state" in
+    (full)
+    ;;
+    (cheats)
+        _cheat_load_cheats
+        _describe -t cheats 'cheats' cheats
+    ;;
+    (*)
+        _cheat_load_cheats
+        _describe -t cheats 'cheats' cheats
+    ;;
+    esac
+}
+
+_cheat
+

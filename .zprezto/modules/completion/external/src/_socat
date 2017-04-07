@@ -1,0 +1,233 @@
+#compdef socat
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for socat ( http://www.dest-unreach.org/socat/ ).
+#
+#  Source: https://github.com/Valodim/zsh-socat-completion
+#  Last updated: 23.02.2013, commit 3c564c9
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Valodim ( https://github.com/Valodim )
+#
+# ------------------------------------------------------------------------------
+
+
+if (( ! $+_socat_params || ! $+_socat_groups )); then
+
+    # we cache socat parameters, groups, option groups, option types parsed
+    # straight from socat, since these are platform specific
+    typeset -gHA _socat_params _socat_groups _socat_opt_groups _socat_opt_types
+
+    if _cache_invalid socat-params || _cache_invalid socat-groups \
+            || ! _retrieve_cache socat-params || ! _retrieve_cache socat-groups ; then
+        () { 
+            setopt localoptions rematchpcre
+            local line
+
+            # anyone know a better way to do "get rest starting from matching line" than awk?
+            _call_program socat-params socat -h | awk '/address-head:/,0 { print }' | while read -r line; do
+
+                # parse line, format: proxy:<proxy-server>:<host>:<port> groups=A,B,C
+                [[ $line =~ '([^:]+)((?::<[^:]+>)*)\s+groups=(.+)' ]] || continue
+
+                # canonicalize and note down parameters
+                _socat_params[$match[1]]=${${${match[2]#:}//(\<|\>)/}//:/,}
+
+                # store groups for this parameter
+                _socat_groups[$match[1]]=${match[3]}
+
+            done
+
+            _store_cache socat-params _socat_params
+            _store_cache socat-groups _socat_groups
+
+        }
+    fi
+
+    if _cache_invalid socat-opt-groups || _cache_invalid socat-opt-types \
+            || ! _retrieve_cache socat-opt-groups || ! _retrieve_cache socat-opt-types ; then
+        () {
+            setopt localoptions rematchpcre
+            local line
+
+            _call_program socat-opts socat -hh | awk '/opt:/,0 { print }' | while read -r line; do
+                # parse format: wronly  groups=OPEN phase=OPEN  type=BOOL
+                [[ $line =~ ' *(\w+)\s+groups=(\w+)\s.+type=(\w+)' ]] || continue
+                _socat_opt_groups[$match[1]]=$match[2]
+                _socat_opt_types[$match[1]]=${(L)match[3]}
+            done
+        }
+
+        _store_cache socat-opt-groups _socat_opt_groups
+        _store_cache socat-opt-types _socat_opt_types
+    fi
+fi
+
+if (( ! $+_socat_param_handler )); then
+    typeset -gHA _socat_param_handler
+    # bunch of manually extracted parameter handlers. names work as both 
+    _socat_param_handler=(
+        create        _files
+        gopen         _files
+        open          _files
+        pipe          '_files -g *(p)'
+        unix-connect  '_files -g *(=)'
+        unix-listen   '_files -g *(=)'
+        unix-sendto   '_files -g *(=)'
+        unix-recvfrom '_files -g *(=)'
+        unix-client   '_files -g *(=)'
+        host          '_hosts -S : -r :,\ \\t\\n\\-'
+    )
+fi
+
+if (( ! $+_socat_opt_handler )); then
+    typeset -gHA _socat_opt_handler
+    # bunch of manually extracted handlers
+    _socat_opt_handler=(
+        history      _files
+        lockfile     _files
+        waitlock     _files
+        allow-table  _files
+        deny-table   _files
+        link         _files
+        cert         _files
+        key          _files
+        dhparams     _files
+        cafile       _files
+        egdfile      _files
+        capath       '_files -/'
+        tcpwrap-etc  '_files -/'
+        capath       '_files -/'
+        chroot-early '_files -/'
+        path         _directories
+        group        _groups
+        group-early  _groups
+        group-late   _groups
+        setgid       _groups
+        setgid-early _groups
+        user         _users
+        user-early   _users
+        user-late    _users
+        setuid       _users
+        setuid-early _users
+        su           _users
+        su-d         _users
+    )
+fi
+
+_socat_address_head() {
+    setopt localoptions extendedglob
+
+    # do we have a socket type yet?
+    if ! compset -P 1 '(#b)(*)(:|,)'; then
+        # all which have pameters (ie, non-empty values)
+        compadd -M 'M:{[:upper:]}={[:lower:]}' -S : -r ":, \t\n\-" -k '_socat_params[(R)?*]'
+        # others (ie, empty value)
+        compadd -M 'M:{[:upper:]}={[:lower:]}' -S , -q -k '_socat_params[(R)]'
+        return 0
+    fi
+
+    local expl ret=1
+
+    # any parameters?
+    local socket_type="${(L)match[1]}" lastop="$match[2]"
+
+    local -a params_left
+    params_left=( "${(@s:,:)_socat_params[$socket_type]}" )
+
+    if [[ $lastop == ':' ]]; then
+
+        # chunk away the parameters
+        while compset -P 1 '[^:]#:'; do
+            (( $#params_left > 0 )) && shift params_left
+        done
+
+        if compset -P '*,'; then
+            lastop=','
+        elif (( $#params_left == 0 )); then 
+            _message -e parameters "No more parameters for $socket_type" && return 0
+        else
+            # do we have a handler? this works either by typename or socket type
+            if (( $+_socat_param_handler[$socket_type] )); then
+                _wanted param expl "parameter $params_left[1]" "${(@z)_socat_param_handler[$socket_type]}" && return 0
+            elif (( $+_socat_param_handler[${params_left[1]}] )); then
+                _wanted param expl "parameter $params_left[1]" "${(@z)_socat_param_handler[$params_left[1]]}" && return 0
+            else
+                _message -e parameters "$params_left[1]" && return 0
+            fi
+        fi
+
+        # shift to make warning msg below accurate
+        (( $#params_left > 0 )) && shift params_left
+
+    fi
+
+    # got any params left? At least leave a note..
+    (( $#params_left > 0 )) && _message -e parameters "Unfilled parameters: $params_left"
+
+    if [[ $lastop == ',' ]]; then
+        # chip away all old opts
+        compset -P '*,'
+        # is it one with a type?
+        if compset -P '(#b)(*)\='; then
+            if (( $+_socat_opt_types[$match[1]] )); then
+                # do we have a handler?
+                if (( $+_socat_opt_handler[$match[1]] )); then
+                    _wanted optparam expl "option parameter <$_socat_opt_types[$match[1]]>" "${(@z)_socat_opt_handler[$match[1]]}" && return 0
+                else
+                    _message -e optparam "opt param for $match[1]: $_socat_opt_types[$match[1]]" && return 0
+                fi
+            else
+                _message -e optparam "opt param for $match[1]: unknown" && return 0
+            fi
+        fi
+
+        # add completions for all groups, then
+        _tags "${(s:,:)_socat_groups[$socket_type]}"
+        while _tags; do
+            for g in ${(s:,:)_socat_groups[$socket_type]}; do
+                _requested $g expl "${(L)g}" \
+                   compadd -M 'M:{[:upper:]}={[:lower:]}' -S = -r '=, \t\n\-' -k "_socat_opt_groups[(R)$g]" && ret=0
+            done
+            (( ret )) || break
+        done
+    fi
+
+    return ret
+}
+
+# complete common options
+_arguments \
+    -V'[print version and feature information to stdout, and exit]' \
+    -h'[print a help text describing command line options and addresses, and exit]' \
+    -hh'[like -h, plus a list of all common address option names]' \
+    -hhh'[like -hh, plus a list of all available address option names]' \
+    \*-d'[increase verbosity (use up to 4 times; 2 are recommended)]' \
+    -D'[analyze file descriptors before loop]' \
+    -ly'[log to syslog, using facility (default is daemon)]:log facility:( auth authpriv cron daemon kern lpr mail mark news security syslog user uucp local0 local1 local2 local3 local4 local5 local6 local7 )' \
+    -lf'[log to file]:log file:_files' \
+    -ls'[log to stderr (default if no other log)]' \
+    -lm'[mixed log mode (stderr during initialization, then syslog)]:log facility:( auth authpriv cron daemon kern lpr mail mark news security syslog user uucp local0 local1 local2 local3 local4 local5 local6 local7 )' \
+    -lp'[set the program name used for logging]:log program name' \
+    -lu'[use microseconds for logging timestamps]' \
+    -lh'[add hostname to log messages]' \
+    '(-x)'-v'[verbose data traffic, text]' \
+    '(-v)'-x'[verbose data traffic, hexadecimal]' \
+    -b'[set data buffer size (8192)]:buffer size (bytes)' \
+    -s'[sloppy (continue on error)]' \
+    -t'[wait seconds before closing second channel]:timeout (seconds)' \
+    -T'[total inactivity timeout in seconds]:timeout (seconds)' \
+    '(-U)'-u'[unidirectional mode (left to right)]' \
+    '(-u)'-U'[unidirectional mode (right to left)]' \
+    -g'[do not check option groups]' \
+    '(-W)'-L'[try to obtain lock, or fail]:lockfile:_files' \
+    '(-L)'-W'[try to obtain lock, or wait]:lockfile:_files' \
+    '(-6)'-4'[prefer IPv4 if version is not explicitly specified]' \
+    '(-4)'-6'[prefer IPv6 if version is not explicitly specified]' \
+   '*:socket:_socat_address_head' && return 0
+
