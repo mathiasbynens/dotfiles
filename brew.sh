@@ -20,7 +20,6 @@ brew install findutils
 brew install gnu-sed --with-default-names
 
 brew tap homebrew/versions
-# brew install bash-completion2
 
 # Install `wget` with IRI support.
 brew install wget --with-iri

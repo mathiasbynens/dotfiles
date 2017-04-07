@@ -80,7 +80,6 @@ get State:/Network/Global/IPv4
 d.show
 EOF
 
-
 # View HTTP traffic
 alias sniff="sudo ngrep -d '$activeif' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i $activeif -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
