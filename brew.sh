@@ -161,7 +161,8 @@ brew cask install virtualbox
 brew cask install vlc
 brew cask install whatsapp
 
-# some plugins to enable different files to work with mac quicklook.includes features like syntax highlighting, markdown rendering, preview of jsons, patch files, csv, zip files etc.
+# some plugins to enable different files to work with mac quicklook.
+# includes features like syntax highlighting, markdown rendering, preview of jsons, patch files, csv, zip files etc.
 brew cask install qlcolorcode
 brew cask install qlstephen
 brew cask install qlmarkdown
@@ -171,6 +172,19 @@ brew cask install quicklook-csv
 brew cask install betterzipql
 brew cask install webpquicklook
 brew cask install suspicious-package
+
+echo 'Please login into App Store to install App Store apps';
+echo 'Press any key to continue...'; read -k1 -s
+echo  '\n'
+
+# app store applications
+mas install 497799835 # xcode
+mas install 402398561 # mindNode Pro
+mas install 443987910 # 1Password
+mas install 422025166 # screenFlow
+mas install 409203825 # numbers
+mas install 403388562 # panic transmit
+mas upgrade
 
 # Remove outdated versions from the cellar.
 brew cleanup --force
