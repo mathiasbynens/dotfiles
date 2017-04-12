@@ -12,15 +12,25 @@ function doIt() {
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
-	source ~/.bash_profile;
+	source ~/.zshrc;
+
+	echo "Done!"
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+
+if [[ "$1" == "--force" || "$1" == "-f" ]]; then
 	doIt;
 else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+	read -q "REPLY?This may overwrite existing files in your home directory. Are you sure? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
+
+		# make development folder
+		mkdir ~/Development
+
+		# install ohmyzsh
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 		doIt;
 	fi;
 fi;
