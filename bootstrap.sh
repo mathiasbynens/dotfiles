@@ -52,11 +52,24 @@ else
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+		# install oh my zsh package manager
+		curl -L git.io/antigen > antigen.zsh
+		source antigen.zsh
+
+		#plugins
+		antigen bundle djui/alias-tips
+		antigen bundle kennethreitz/autoenv
+		antigen bundle walesmd/caniuse.plugin.zsh
+		antigen bundle zsh-users/zsh-autosuggestions
+		antigen bundle zsh-users/zsh-syntax-highlighting
+
+		# iterm2 fonts
 		brew tap caskroom/fonts
 		brew cask install font-droid-sans-mono
 		brew cask install font-droid-sans-mono-for-powerline
 		brew cask install font-awesome-terminal-fonts
 
+		# iterm2 colors
 		cd ~/Downloads
 		wget https://raw.githubusercontent.com/JamieMason/All-iTerm-Colors/master/itermcolors/3024%20Night.itermcolors
 
