@@ -1,3 +1,13 @@
+# Compiled code
+dist
+build
+
+# Bower dependecies
+bower_components
+
+# Node dependecies
+node_modules
+
 # Compiled Python files
 *.pyc
 

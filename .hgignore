@@ -1,6 +1,16 @@
 # Use shell-style glob syntax
 syntax: glob
 
+# Compiled code
+dist
+build
+
+# Bower dependecies
+bower_components
+
+# Node dependecies
+node_modules
+
 # Compiled Python files
 *.pyc
 
