@@ -126,7 +126,6 @@ brew install mongodb --with-openssl
 sudo mkdir -p /data/db
 sudo chown -R `id -u` /data/db
 
-npm install -g  trash-cli
 npm install -g bower
 npm install -g nodemon
 npm install -g foundation-cli
@@ -156,6 +155,7 @@ brew cask install spotify-notifications
 brew cask install skyfonts
 brew cask install sublime-text2
 brew cask install transmission
+brew cask install trash
 brew cask install vagrant
 brew cask install virtualbox
 brew cask install vlc
