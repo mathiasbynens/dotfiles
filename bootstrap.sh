@@ -24,14 +24,34 @@ else
 	read -q "REPLY?This may overwrite existing files in your home directory. Are you sure? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-
-		# make development folder
-		mkdir ~/Development
-
-		# install ohmyzsh
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 		doIt;
 	fi;
+
+	read -q "REPLY?Make desired folders? (y/n) ";
+	echo "";
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		mkdir ~/Development
+	fi;
+
+	read -q "REPLY?Install apps? (y/n) ";
+	echo "";
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		cd ~
+		./brew.sh
+	fi;
+
+	read -q "REPLY?Set userdata? (y/n) ";
+	echo "";
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		cd ~
+		./private.sh
+	fi;
+
+	read -q "REPLY?Install oh-my-zsh? (y/n) ";
+	echo "";
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	fi;
 fi;
+
 unset doIt;
