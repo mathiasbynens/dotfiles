@@ -51,6 +51,17 @@ else
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+		brew tap caskroom/fonts
+		brew cask install font-droid-sans-mono
+		brew cask install font-droid-sans-mono-for-powerline
+		brew cask install font-awesome-terminal-fonts
+
+		cd ~/Downloads
+		wget https://raw.githubusercontent.com/JamieMason/All-iTerm-Colors/master/itermcolors/3024%20Night.itermcolors
+
+		echo 'change iterm font into: "Droid Sans Mono for Powerline Nerd Font Complete // 14px"'
+		echo "import 3024 Night.itermcolors @ preferences > appearance -> colors"
 	fi;
 fi;
 
