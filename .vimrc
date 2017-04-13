@@ -130,5 +130,6 @@ let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 " Find 'tags' file in current directory, or traverse up until it's found.
 " http://stackoverflow.com/a/8285918
 set tags=./tags,tags;
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 let g:syntastic_php_checkers=['php']
