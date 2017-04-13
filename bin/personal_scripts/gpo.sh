@@ -12,5 +12,5 @@ fi
 # The origin name could be passed in, but defaults to "origin"
 [ ! -z $2 ] && ORIGIN="$2" || ORIGIN="origin"
 
-/Users/chill/scripts/git_switch_to_SSH.sh
+git_switch_to_SSH.sh
 git push $ORIGIN $BRANCH
