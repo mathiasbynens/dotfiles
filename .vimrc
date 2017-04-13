@@ -104,3 +104,31 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" Personal prefs, mostly for PHP/Drupal development.
+set expandtab
+set shiftwidth=2
+set autoindent
+set smartindent
+set smartcase
+set pastetoggle=<F2>
+
+if has("autocmd")
+  autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+  " Drupal *.module and *.install files.
+  augroup filetypedetect
+    autocmd BufRead,BufNewFile *.module set filetype=php
+    autocmd BufRead,BufNewFile *.install set filetype=php
+    autocmd BufRead,BufNewFile *.test set filetype=php
+    autocmd BufRead,BufNewFile *.inc set filetype=php
+    autocmd BufRead,BufNewFile *.profile set filetype=php
+    autocmd BufRead,BufNewFile *.view set filetype=php
+  augroup END
+endif
+
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+" Find 'tags' file in current directory, or traverse up until it's found.
+" http://stackoverflow.com/a/8285918
+set tags=./tags,tags;
+
+let g:syntastic_php_checkers=['php']
