@@ -45,6 +45,7 @@ brew install heroku-toolbelt
 heroku update
 brew install lynx
 brew install mas
+brew install python
 brew install pyenv
 brew install pyenv-virtualenv
 brew install pyenv-virtualenvwrapper
