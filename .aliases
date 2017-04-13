@@ -18,7 +18,7 @@ alias j="jobs"
 
 # Git shortcuts
 alias gs="git status"
-alias ga="git checkout"
+alias ga="git add"
 alias go="git checkout"
 alias gd="git diff"
 alias gds="git diff --staged"
