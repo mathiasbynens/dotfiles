@@ -5,17 +5,28 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="drush"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
-alias g="git"
 alias h="history"
 alias j="jobs"
+
+# Git shortcuts
+alias gs="git status"
+alias ga="git checkout"
+alias go="git checkout"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gl="git log"
+alias gc="git commit"
+alias gfa="git fetch --all"
+alias gbc="git branch | grep '*'"
+alias gba="git branch -a"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -41,6 +52,8 @@ alias ls="command ls ${colorflag}"
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
 alias grep='grep --color=auto'
+alias g='grep --color=auto'
+alias mg='grep -rni --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 

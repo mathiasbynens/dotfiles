@@ -76,6 +76,31 @@
 		fi \
 	}; f"
 
+	# Aliases thanks to: http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+	# General commands
+	cp = cherry-pick
+	st = status -s
+	cl = clone --recursive
+	ci = commit
+	co = checkout
+	br = branch
+	dw = diff --word-diff
+	dc = diff --cached
+	# Logging
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	le = log --oneline --decorate
+	filelog = log -u
+	fl = log -u
+	la = "!git config -l | grep alias | cut -c 7-"
+	# Stashing
+	sl = stash list
+	sa = stash apply
+	ss = stash save
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
@@ -100,6 +125,7 @@
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 
+	ignorecase = false
 [color]
 
 	# Use colors in Git commands that are capable of colored output when
@@ -124,11 +150,6 @@
 	added = yellow
 	changed = green
 	untracked = cyan
-
-[commit]
-
-	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
 
 [diff]
 
@@ -162,6 +183,8 @@
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
+	default = simple
+
 # URL shorthands
 
 [url "git@github.com:"]
@@ -183,3 +206,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[user]
+	name = Chris Hill
+	email = chris.hill@bonniercorp.com
