@@ -43,7 +43,7 @@ typeset -gU cdpath fpath mailpath path
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # Set the list of directories that Zsh searches for programs.
-phpbin=$(brew --prefix homebrew/php/php70)
+phpbin=$(brew --prefix homebrew/php/php71)
 
 path=(
   ~/bin

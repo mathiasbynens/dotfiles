@@ -45,11 +45,6 @@ defaults write com.apple.systemuiserver menuExtras -array \
 	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
 	"/System/Library/CoreServices/Menu Extras/Clock.menu"
 
-# Disable swap
-#
-launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
-rm /private/var/vm/swapfile*
-
 # Set highlight color to blue, I still love this blue.//@khsing 2016-11-17
 defaults write NSGlobalDomain AppleHighlightColor -string "0.752941 0.964706 0.678431"
 
@@ -345,7 +340,7 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 # Enable the MacBook Air SuperDrive on any Mac
 # @khsing Since macOS Sierra, you must be booted to the recovery partition to run this command.
 # http://apple.stackexchange.com/questions/256138/trying-to-set-boot-args-with-nvram-gets-general-error-on-sierra
-sudo nvram boot-args="mbasd=1"
+# sudo nvram boot-args="mbasd=1"
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
@@ -880,4 +875,5 @@ for app in "Activity Monitor" \
 	"Terminal" \
 	"iCal"; do
 	killall "${app}" &> /dev/null
+done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
