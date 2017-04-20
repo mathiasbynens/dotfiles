@@ -17,6 +17,7 @@ TOBE_LINKED=(
     ".vim"
     ".wgetrc"
     ".zprezto"
+    ".zshrc"
     ".editorconfig"
     ".curlrc"
     ".screenrc"
@@ -41,7 +42,6 @@ done
 ZPREZTORCS=(
     "zshenv"
     "zprofile"
-    "zshrc"
     "zpreztorc"
     "zlogin"
     "zlogout"
