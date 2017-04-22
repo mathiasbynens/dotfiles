@@ -63,10 +63,14 @@ brew install webkit2png
 brew install wget
 
 npm install -g bower
-npm install -g nodemon
-npm install -g foundation-cli
-npm install -g vue-cli
 npm install -g cordova
+npm install -g jasmine
+npm install -g foundation-cli
+npm install -g karma-cli
+npm install -g nodemon
+npm install -g phantomjs
+npm install -g vue-cli
+npm install -g webpack
 
 # applications
 APPPATH="/Applications/"
@@ -89,6 +93,7 @@ brew cask install sourcetree
 brew cask install spotify
 brew cask install spotify-notifications
 brew cask install skyfonts
+brew cask install skype
 brew cask install sublime-text2
 brew cask install transmission
 brew cask install trash
