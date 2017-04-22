@@ -47,6 +47,13 @@ else
 		./private.sh
 	fi;
 
+	read -q "REPLY?Setup sublime 3? (y/n) ";
+	echo "";
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		cd ~/.sublime
+		./setup.sh
+	fi;
+
 	read -q "REPLY?Install oh-my-zsh? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
