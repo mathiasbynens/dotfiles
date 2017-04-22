@@ -21,40 +21,40 @@ function doIt() {
 if [[ "$1" == "--force" || "$1" == "-f" ]]; then
 	doIt;
 else
-	read -q "REPLY?This may overwrite existing files in your home directory. Are you sure? (y/n) ";
+	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		doIt;
 	fi;
 
-	read -q "REPLY?Make desired folders? (y/n) ";
+	read -p "Make desired folders? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		mkdir ~/Development
 	fi;
 
-	read -q "REPLY?Install apps? (y/n) ";
+	read -p "Install apps? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		cd ~
 		./brew.sh
 	fi;
 
-	read -q "REPLY?Set userdata? (y/n) ";
+	read -p "Set userdata? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		cd ~
 		./private.sh
 	fi;
 
-	read -q "REPLY?Setup sublime 3? (y/n) ";
+	read -p "Setup sublime 3? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		cd ~/.sublime
 		./setup.sh
 	fi;
 
-	read -q "REPLY?Install oh-my-zsh? (y/n) ";
+	read -p "Install oh-my-zsh? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
