@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Ask for the administrator password upfront
+sudo -v
+
+#Install Homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 # Install command-line tools using Homebrew.
 
 # Make sure we’re using the latest Homebrew.
@@ -40,7 +46,6 @@ brew install git
 brew install git-flow
 brew install gpg
 brew install grc
-brew install gls
 brew install heroku-toolbelt
 heroku update
 brew install lynx
@@ -69,6 +74,7 @@ npm install -g foundation-cli
 npm install -g karma-cli
 npm install -g nodemon
 npm install -g phantomjs
+npm install -g trash-cli
 npm install -g vue-cli
 npm install -g webpack
 
@@ -93,10 +99,9 @@ brew cask install sourcetree
 brew cask install spotify
 brew cask install spotify-notifications
 brew cask install skyfonts
-brew cask install skype
-brew cask install sublime-text2
+brew cask install skype-for-business
+brew cask install sublime-text
 brew cask install transmission
-brew cask install trash
 brew cask install vagrant
 brew cask install virtualbox
 brew cask install vlc
@@ -125,6 +130,7 @@ mas install 443987910 # 1Password
 mas install 422025166 # screenFlow
 mas install 409203825 # numbers
 mas install 403388562 # panic transmit
+mas install 409201541 # pages
 mas upgrade
 
 # Remove outdated versions from the cellar.

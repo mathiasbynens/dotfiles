@@ -17,6 +17,11 @@ function doIt() {
 	echo "Done!"
 }
 
+# install xcode
+xcode-select --install
+
+#accept xcode terms
+sudo xcodebuild -license accept
 
 if [[ "$1" == "--force" || "$1" == "-f" ]]; then
 	doIt;
@@ -40,11 +45,12 @@ else
 		./brew.sh
 	fi;
 
-	read -p "Set userdata? (y/n) ";
+
+	read -p "Setup OSX settings? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		cd ~
-		./private.sh
+		~/.macos
 	fi;
 
 	read -p "Setup sublime 3? (y/n) ";
@@ -57,11 +63,21 @@ else
 	read -p "Install oh-my-zsh? (y/n) ";
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
+
+		# Ask for the administrator password upfront
+		sudo -v
+
+		# Install shell
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+		# set ohmyzsh as default shell
+		chsh -s $(which zsh)
 
 		# install oh my zsh package manager
 		curl -L git.io/antigen > antigen.zsh
 		source antigen.zsh
+
+		# BUG
 
 		#plugins
 		antigen bundle djui/alias-tips
