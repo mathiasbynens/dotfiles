@@ -4,7 +4,49 @@ cd "$(dirname "${BASH_SOURCE}")";
 
 git pull origin master;
 
-function doIt() {
+# install xcode
+xcode-select --install
+
+#accept xcode terms
+sudo xcodebuild -license accept
+
+# main menu
+function menu() {
+	echo "";
+	echo "$(tput bold)What do you want to do?$(tput sgr0)";
+	read -p " 1. Install dotfiles `
+		echo $'\n '`2. Install apps `
+		echo $'\n '`3. Set preferences`
+		echo $'\n '`> ";
+
+	if [[ $REPLY =~ ^[1]$ ]]; then
+		installDotfilesMenu;
+	fi;
+
+	if [[ $REPLY =~ ^[2]$ ]]; then
+		installAppsMenu;
+	fi;
+
+	if [[ $REPLY =~ ^[3]$ ]]; then
+		setPreferencesMenu;
+	fi;
+}
+
+# menu for intalling dotfiles
+function installDotfilesMenu() {
+	echo "";
+	read -p "$(tput bold)Set dotfiles? Caution, this removes old dotfiles, proceed? (y/n)$(tput sgr0) ";
+
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		installDotfiles
+	fi;
+
+	menu;
+}
+
+# copies dotfiles into ~/
+function installDotfiles() {
+
 	rsync --exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
@@ -12,66 +54,150 @@ function doIt() {
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
-	source ~/.zshrc;
 
-	echo "Done!"
+		echo "$(tput setaf 2)Dotfiles are set$(tput setaf 7)"
 }
 
-# install xcode
-xcode-select --install
+# installs homebrew apps
+function installHomebrewApps() {
 
-#accept xcode terms
-sudo xcodebuild -license accept
-
-if [[ "$1" == "--force" || "$1" == "-f" ]]; then
-	doIt;
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) ";
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
-
-	read -p "Make desired folders? (y/n) ";
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		mkdir ~/Development
-	fi;
-
-	read -p "Install apps? (y/n) ";
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		cd ~
+	cd ~
 		./brew.sh
+}
+
+# menu for intalling apps
+function installAppsMenu() {
+	echo "";
+	echo "$(tput bold)What do you want to install?$(tput sgr0)";
+	read -p " 1. homebrew apps `
+		echo $'\n '`2. oh my zsh  `
+		echo $'\n '`3. show licenses`
+		echo $'\n '`9. all`
+		echo $'\n '`0. back`
+		echo $'\n '`> ";
+
+	if [[ $REPLY =~ ^[1]$ ]]; then
+		echo ""
+		echo "$(tput setaf 6)Installing homebrew apps$(tput setaf 7)"
+		echo ""
+
+		installHomebrewApps;
+
+		installAppsMenu
 	fi;
 
+	if [[ $REPLY =~ ^[2]$ ]]; then
+		echo ""
+		echo "$(tput setaf 6)Installing oh my zsh$(tput setaf 7)"
+		echo ""
 
-	read -p "Setup OSX settings? (y/n) ";
+		installOhMyZsh;
+
+		installAppsMenu
+	fi;
+
+	if [[ $REPLY =~ ^[3]$ ]]; then
+		echo ""
+		echo "$(tput setaf 6)Opening finder with licenses$(tput setaf 7)"
+
+		open ~/Dropbox/.serials/
+
+		installAppsMenu
+	fi;
+
+	if [[ $REPLY =~ ^[9]$ ]]; then
+		echo ""
+		echo "$(tput setaf 6)Installing all$(tput setaf 7)"
+		echo ""
+
+		installHomebrewApps
+		installOhMyZsh
+
+		installAppsMenu
+	fi;
+
+	if [[ $REPLY =~ ^[0]$ ]]; then
+		menu
+	fi;
+}
+
+function installOhMyZsh() {
+	# Ask for the administrator password upfront
+	sudo -v
+
+	# Install shell
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+	# set ohmyzsh as default shell
+	chsh -s $(which zsh)
+
+	echo "$(tput setaf 2)Oh My ZSH installed$(tput setaf 7)"
+}
+
+# menu for setting preferences
+function setPreferencesMenu() {
 	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
+	echo "$(tput bold)What do you want to set?$(tput sgr0)";
+	read -p " 1. macos `
+		echo $'\n '`2. folders  `
+		echo $'\n '`3. ssh *dropbox`
+		echo $'\n '`4. git *dropbox`
+		echo $'\n '`5. sublime-text`
+		echo $'\n '`6. oh my zsh`
+		echo $'\n '`9. all`
+		echo $'\n '`0. back`
+		echo $'\n '`> ";
+
+	if [[ $REPLY =~ ^[1]$ ]]; then
+		echo ""
+		echo "Set OSX"
+
 		cd ~
 		~/.macos
+
+		setPreferencesMenu
 	fi;
 
-	read -p "Setup sublime 3? (y/n) ";
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
+	if [[ $REPLY =~ ^[2]$ ]]; then
+		echo ""
+		echo "Set folders"
+
+		mkdir ~/Development
+
+		setPreferencesMenu
+	fi;
+
+	if [[ $REPLY =~ ^[3]$ ]]; then
+		echo ""
+		echo "Set ssh"
+
+		cd ~/Dropbox/.configs/ssh/
+		./setup.sh
+
+		setPreferencesMenu
+	fi;
+
+	if [[ $REPLY =~ ^[4]$ ]]; then
+		cd ~/Dropbox/.configs/git/
+		chmod +x setup.sh
+		./setup.sh
+
+		setPreferencesMenu
+	fi;
+
+	if [[ $REPLY =~ ^[5]$ ]]; then
+		echo ""
+		echo "Set sublime"
+
 		cd ~/.sublime
 		./setup.sh
+
+		setPreferencesMenu
 	fi;
 
-	read -p "Install oh-my-zsh? (y/n) ";
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-
-		# Ask for the administrator password upfront
-		sudo -v
-
-		# Install shell
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-		# set ohmyzsh as default shell
-		chsh -s $(which zsh)
+	if [[ $REPLY =~ ^[6]$ ]]; then
+		echo ""
+		echo "Set ohmyzsh"
 
 		# install oh my zsh package manager
 		curl -L git.io/antigen > antigen.zsh
@@ -98,7 +224,21 @@ else
 
 		echo 'change iterm font into: "Droid Sans Mono for Powerline Nerd Font Complete // 14px"'
 		echo "import 3024 Night.itermcolors @ preferences > appearance -> colors"
-	fi;
-fi;
 
-unset doIt;
+		setPreferencesMenu
+	fi;
+
+	if [[ $REPLY =~ ^[9]$ ]]; then
+		echo ""
+		echo "Set all"
+		setPreferencesMenu
+	fi;
+
+	if [[ $REPLY =~ ^[0]$ ]]; then
+		menu
+	fi;
+}
+
+menu
+
+unset installDotFiles;
