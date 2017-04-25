@@ -2,13 +2,24 @@
 
 cd "$(dirname "${BASH_SOURCE}")";
 
+echo "";
+echo "$(tput setaf 6)Checking for updates in repo..$(tput setaf 7)"
 git pull origin master;
 
-# install xcode
-xcode-select --install
 
-#accept xcode terms
-sudo xcodebuild -license accept
+# install xcode
+echo "";
+echo "$(tput setaf 6)Checking xcode cli$(tput setaf 7)"
+if type xcode-select >&- && xpath=$( xcode-select --print-path ) && test -d "${xpath}" && test -x "${xpath}"
+   then
+	echo "xcode cli already installed;"
+else
+	echo "Installing xcode cli"
+	xcode-select --install
+	echo "Accepting xcode terms"
+	sudo xcodebuild -license accept
+fi
+
 
 # main menu
 function menu() {
@@ -55,14 +66,20 @@ function installDotfiles() {
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
 
-		echo "$(tput setaf 2)Dotfiles are set$(tput setaf 7)"
+		echo "$(tput setaf 2)Dotfiles installed$(tput setaf 7)"
 }
 
 # installs homebrew apps
 function installHomebrewApps() {
 
-	cd ~
+	read -p "$(tput bold)Please login into App Store, proceed? (y/n)$(tput sgr0) ";
+
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		sudo -v
+
+		cd ~
 		./brew.sh
+	fi;
 }
 
 # menu for intalling apps
@@ -78,8 +95,6 @@ function installAppsMenu() {
 
 	if [[ $REPLY =~ ^[1]$ ]]; then
 		echo ""
-		echo "$(tput setaf 6)Installing homebrew apps$(tput setaf 7)"
-		echo ""
 
 		installHomebrewApps;
 
@@ -92,7 +107,6 @@ function installAppsMenu() {
 		echo ""
 
 		installOhMyZsh;
-
 		installAppsMenu
 	fi;
 
@@ -168,10 +182,8 @@ function setPreferencesMenu() {
 	fi;
 
 	if [[ $REPLY =~ ^[3]$ ]]; then
-		echo ""
-		echo "Set ssh"
-
 		cd ~/Dropbox/.configs/ssh/
+		chmod +x setup.sh
 		./setup.sh
 
 		setPreferencesMenu

@@ -3,6 +3,10 @@
 # Ask for the administrator password upfront
 sudo -v
 
+echo ""
+echo "$(tput setaf 6)Installing homebrew apps$(tput setaf 7)"
+echo ""
+
 #Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -136,3 +140,7 @@ mas upgrade
 # Remove outdated versions from the cellar.
 brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
+
+echo ""
+echo "$(tput setaf 6)Finished installing homebrew apps$(tput setaf 7)"
+echo ""
