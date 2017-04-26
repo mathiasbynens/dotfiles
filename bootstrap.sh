@@ -14,6 +14,7 @@ fancy_echo() {
 }
 
 update_babun(){
+
 	fancy_echo "Updating babun"
 	successfully pact update
 
@@ -27,9 +28,16 @@ update_babun(){
 	successfully ln -fs $USERPROFILE ~/home
 	successfully rsync -azh ./babun/.minttyrc ./babun/.zshrc ~
 	
+
 	# Need to do something with ssh-agent and extra-babun
-	# successfully rsync -azh ./babun/.extra-babun .ssh-agent ~
-	successfully rsync -azh --exclude .git/ .aliases .inputrc .git* ~
+    if [[ "$workflag" -eq "1" ]]; then
+        echo "Using .extra-work"
+	    successfully cp ./babun/.extra-work ~/.extra
+    else
+	    successfully cp ./babun/.extra ~/
+    fi
+	
+	successfully rsync -azh --exclude .git/ .aliases .inputrc .ssh-agent .git* ~
 
 	fancy_echo "Updating VIM Configuration"
 	successfully rsync -azh --exclude=".vim/bundle/Vundle.vim" '.vim' '.vimrc' ~
@@ -61,7 +69,35 @@ function doIt() {
 	fi
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+workflag=""
+forceflag=""
+
+while getopts "fwh" opt; do
+  case $opt in
+    f)
+        echo "-f was triggered" >&2
+        forceflag=1
+        ;;
+    w)
+        echo "-w was triggered" >&2
+        workflag=1
+        ;;
+	h)
+		echo "Usage: bootstrap.sh [-h] [-w] [-f]"
+		exit 1
+		;;
+    \?)
+        echo "Invalid option" >&2
+        exit 1
+        ;;
+    :)
+        echo "Option -$OPTARG requires an argument." >&2
+        exit 1
+        ;;
+  esac
+done
+
+if [[ $forceflag -eq 1 ]]; then
 	doIt;
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;

@@ -1,11 +1,12 @@
-#!/usr/bin/env bash
-#
-export PATH=$PATH:/c/Users/douglasm/stash/scripts:c/Users/douglasm/stash/solution_helpers/graviton
+##### Dougie's Babun Profile #####
+
+# Export rgrav (if necessary)
+export PATH=$PATH:/c/Users/douglasm/ohop/rgrav:/c/Users/douglasm/stash/scripts
 
 if [ -f ~/.ssh-agent ]; then . ~/.ssh-agent; fi
 
 function ssh_aws(){
-    ssh -i ~/.ssh/puppet_id_rsa centos@$1
+    ssh -i /C/Users/douglasm/ohop/graviton-cli-vm/puppet_id_rsa centos@$1
 }
 
 function push_jumphost(){

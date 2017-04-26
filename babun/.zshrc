@@ -84,8 +84,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [ -f "${HOME}/.extra-babun" ] ; then
-  source "${HOME}/.extra-babun"
+if [ -f "${HOME}/.extra" ] ; then
+  source "${HOME}/.extra"
 fi
 if [ -f "${HOME}/.aliases" ] ; then
   source "${HOME}/.aliases"
