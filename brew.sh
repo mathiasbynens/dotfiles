@@ -103,7 +103,6 @@ brew cask install slack
 brew cask install sourcetree
 brew cask install spotify
 brew cask install spotify-notifications
-brew cask install skyfonts
 brew cask install skype-for-business
 brew cask install sublime-text
 brew cask install transmission
@@ -123,6 +122,43 @@ brew cask install quicklook-csv
 brew cask install betterzipql
 brew cask install webpquicklook
 brew cask install suspicious-package
+
+# fonts
+brew tap caskroom/fonts
+brew cask install font-alegreya font-alegreya-sans
+brew cask install font-archivo-narrow
+brew cask install font-awesome-terminal-fonts
+brew cask install font-bitter
+brew cask install font-cardo
+brew cask install font-crimson-text
+brew cask install font-domine
+brew cask install font-droid-sans-mono
+brew cask install font-droid-sans-mono-for-powerline
+brew cask install font-fira-sans
+brew cask install font-inconsolata
+brew cask install font-pt-sans
+brew cask install font-pt-serif
+brew cask install font-gentium-basic
+brew cask install font-karla
+brew cask install font-lato
+brew cask install font-libre-baskerville
+brew cask install font-libre-franklin
+brew cask install font-lora
+brew cask install font-merriweather
+brew cask install font-merriweather-sans
+brew cask install font-neuton
+brew cask install font-open-sans
+brew cask install font-open-sans-condensed
+brew cask install font-playfair-display
+brew cask install font-poppins
+brew cask install font-rajdhani
+brew cask install font-raleway
+brew cask install font-roboto
+brew cask install font-roboto-slab
+brew cask install font-source-sans-pro
+brew cask install font-source-serif-pro
+brew cask install font-space-mono
+brew cask install font-work-sans
 
 echo 'Please login into App Store to install App Store apps';
 echo 'Press any key to continue...'; read -k1 -s

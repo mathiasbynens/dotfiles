@@ -225,10 +225,10 @@ function setPreferencesMenu() {
 		antigen bundle zsh-users/zsh-syntax-highlighting
 
 		# iterm2 fonts
-		brew tap caskroom/fonts
-		brew cask install font-droid-sans-mono
-		brew cask install font-droid-sans-mono-for-powerline
-		brew cask install font-awesome-terminal-fonts
+		# brew tap caskroom/fonts
+		# brew cask install font-droid-sans-mono
+		# brew cask install font-droid-sans-mono-for-powerline
+		# brew cask install font-awesome-terminal-fonts
 
 		# iterm2 colors
 		cd ~/Downloads
