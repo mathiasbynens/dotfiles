@@ -1,12 +1,19 @@
-##### Dougie's Babun Profile #####
+#!/usr/bin/env bash
+#
+export PATH=$PATH:/c/Users/douglasm/stash/scripts:c/Users/douglasm/stash/solution_helpers/graviton
 
-# Export rgrav (if necessary)
-export PATH=$PATH:/c/Users/douglasm/ohop/rgrav:/c/Users/douglasm/stash/scripts
+# GIT Configurations
+GIT_AUTHOR_NAME="Douglas Morand"
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="douglas.morand@orionhealth.com"
+GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 if [ -f ~/.ssh-agent ]; then . ~/.ssh-agent; fi
 
 function ssh_aws(){
-    ssh -i /C/Users/douglasm/ohop/graviton-cli-vm/puppet_id_rsa centos@$1
+    ssh -i ~/.ssh/puppet_id_rsa centos@$1
 }
 
 function push_jumphost(){
