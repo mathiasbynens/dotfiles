@@ -89,6 +89,7 @@ APPPATH="/Applications/"
 export HOMEBREW_CASK_OPTS="--appdir=$APPPATH"
 
 echo "Installing apps"
+brew cask install balsamiq-mockups
 brew cask install dropbox
 brew cask install firefox
 brew cask install flux
