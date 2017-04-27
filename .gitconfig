@@ -210,3 +210,13 @@
 [user]
 	name = Chris Hill
 	email = chris.hill@bonniercorp.com
+
+[gitflow "branch"]
+	master = master
+	develop = dev
+[gitflow "prefix"]
+	feature =
+	release = release/
+	hotfix = hotfix/
+	support = support/
+	versiontag = v
