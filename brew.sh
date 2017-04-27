@@ -45,6 +45,7 @@ brew install wget --with-iri
 # Install other useful binaries.
 
 # programs
+echo "Installing programs"
 brew install dark-mode
 brew install git
 brew install git-flow
@@ -71,6 +72,7 @@ sudo chown -R `id -u` /data/db
 brew install webkit2png
 brew install wget
 
+echo "npm global packages"
 npm install -g bower
 npm install -g cordova
 npm install -g jasmine
@@ -86,6 +88,7 @@ npm install -g webpack
 APPPATH="/Applications/"
 export HOMEBREW_CASK_OPTS="--appdir=$APPPATH"
 
+echo "Installing apps"
 brew cask install dropbox
 brew cask install firefox
 brew cask install flux
@@ -111,6 +114,7 @@ brew cask install virtualbox
 brew cask install vlc
 brew cask install whatsapp
 
+echo "Installing quicklook helpers"
 # some plugins to enable different files to work with mac quicklook.
 # includes features like syntax highlighting, markdown rendering, preview of jsons, patch files, csv, zip files etc.
 brew cask install qlcolorcode
@@ -124,6 +128,7 @@ brew cask install webpquicklook
 brew cask install suspicious-package
 
 # fonts
+echo "Installing fonts"
 brew tap caskroom/fonts
 brew cask install font-alegreya font-alegreya-sans
 brew cask install font-archivo-narrow
@@ -165,6 +170,7 @@ echo 'Press any key to continue...'; read -k1 -s
 echo  '\n'
 
 # app store applications
+echo "Installing App Store apps"
 mas install 497799835 # xcode
 mas install 402398561 # mindNode Pro
 mas install 443987910 # 1Password
@@ -175,6 +181,7 @@ mas install 409201541 # pages
 mas upgrade
 
 # Remove outdated versions from the cellar.
+echo "cleaning cache"
 brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
 

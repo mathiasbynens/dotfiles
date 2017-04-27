@@ -164,7 +164,7 @@ function setPreferencesMenu() {
 
 	if [[ $REPLY =~ ^[1]$ ]]; then
 		echo ""
-		echo "Set OSX"
+		echo "Setting OSX perferences"
 
 		cd ~
 		~/.macos
@@ -174,7 +174,7 @@ function setPreferencesMenu() {
 
 	if [[ $REPLY =~ ^[2]$ ]]; then
 		echo ""
-		echo "Set folders"
+		echo "Setting folders"
 
 		mkdir ~/Development
 
@@ -199,7 +199,7 @@ function setPreferencesMenu() {
 
 	if [[ $REPLY =~ ^[5]$ ]]; then
 		echo ""
-		echo "Set sublime"
+		echo "Setting sublime peferences"
 
 		cd ~/.sublime
 		./setup.sh
@@ -209,7 +209,7 @@ function setPreferencesMenu() {
 
 	if [[ $REPLY =~ ^[6]$ ]]; then
 		echo ""
-		echo "Set ohmyzsh"
+		echo "Setting oh My Zsh preferences"
 
 		# install oh my zsh package manager
 		curl -L git.io/antigen > antigen.zsh
@@ -242,7 +242,7 @@ function setPreferencesMenu() {
 
 	if [[ $REPLY =~ ^[9]$ ]]; then
 		echo ""
-		echo "Set all"
+		echo "Set all perferences"
 		setPreferencesMenu
 	fi;
 
