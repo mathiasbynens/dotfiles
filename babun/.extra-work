@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-export PATH=$PATH:/c/Users/douglasm/stash/scripts:c/Users/douglasm/stash/solution_helpers/graviton
+export PATH=$PATH:/c/Users/douglasm/stash/scripts:/c/Users/douglasm/stash/solution_helpers/graviton
 
 # GIT Configurations
 GIT_AUTHOR_NAME="Douglas Morand"
@@ -16,43 +16,68 @@ function ssh_aws(){
     ssh -i ~/.ssh/puppet_id_rsa centos@$1
 }
 
-function push_jumphost(){
-	if [[ $# -ne 1 ]]; then
-		echo "Must declare target directory.  E.g. solution_hbc_douglasm"
-		return 1
-	fi
-	
-	rsync -rvzh --progress .gitignore graviton-jump-host:~/solutions/$1/.gitignore	
-	rsync -rvzh --progress --stats --filter=':- .gitignore' . graviton-jump-host:~/solutions/$1
-}
-
-function pull_jumphost(){
-	if [[ $# -ne 1 ]]; then
-		echo "Must declare target directory.  E.g. solution_hbc_douglasm"
-		return 1
-	fi
-	
-	rsync -azv --progress graviton-jump-host:~/solutions/$1/.gitignore .
-	rsync -avzh --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/solutions/$1/ .
-	#rsync -rzvh --size-only --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/solutions/$1/ .
-}
-
-function download_graviton_logs(){
+function pushJumphost(){
     if [[ $# -ne 1 ]]; then
-        echo "Must declare target directory. e.g. solution_hbc_douglasm"
+        echo "Must declare target directory.  E.g. solutions/hbc_review"
+        return 1
+    fi
+
+    rsync -rvzh --progress .gitignore graviton-jump-host:~/$1/.gitignore	
+    rsync -rvzh --progress --stats --filter=':- .gitignore' . graviton-jump-host:~/$1
+}
+
+function pullJumphost(){
+    if [[ $# -ne 1 ]]; then
+        echo "Must declare target directory.  E.g. solutions/hbc_review"
+        return 1
+    fi
+
+    rsync -azv --progress graviton-jump-host:~/$1/.gitignore .
+    rsync -avzh --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/$1/ .
+    #rsync -rzvh --size-only --delete --progress --stats --filter=':- .gitignore' graviton-jump-host:~/$1/ .
+}
+
+function downloadGravitonLogs(){
+    jumphost="graviton-jump-host"
+    solution=""
+    
+    while getopts ":j:s:" opt; do
+        case $opt in
+            j)
+                jumphost=$OPTARG
+                echo "-j was triggered, param: $jumphost" >&2
+                ;;
+            s)
+                solution=$OPTARG
+                echo "-s was triggered, param: $solution" >&2
+                ;;
+            \?)
+                echo "Invalid option: -$OPTARG" >&2
+                return 1
+                ;;
+            :)
+                echo "Option $OPTARG requires an argument" >&2
+                return 1
+                ;;
+        esac
+    done 
+
+    if [[ -z "$solution" ]]; then
+        echo "Must declare a solution directory. e.g. solutions/hbc_review"
         return 1
     fi
 
     # compress up the log files
-    echo "Retrieving logs from solution, and packaging up for copy..."
-    ssh graviton-jump-host -- "cd ~/solutions/$1; graviton retrieve-logs -p ec2; tar -vczf graviton_logs.tar.gz graviton.log agent-logs/" &> /dev/null
+    echo "Retrieving logs from $jumphost [$solution], and packaging up for copy..."
+    #&> /dev/null
     
+    ssh $jumphost -- "cd ~/$solution; graviton retrieve-logs -p ec2; tar -vczf graviton_logs.tar.gz graviton.log agent-logs/" &> /dev/null
     # scp the file
     echo "Copying graviton logs"
-    scp graviton-jump-host:~/solutions/$1/graviton_logs.tar.gz .
+    scp $jumphost:~/$solution/graviton_logs.tar.gz .
     
     echo "Cleaning up..."
-    ssh graviton-jump-host -- "cd ~/solutions/$1; rm graviton_logs.tar.gz" &>/dev/null
+    ssh $jumphost -- "cd ~/$solution; rm graviton_logs.tar.gz" &>/dev/null
 }
 
 # NOT USED
