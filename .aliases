@@ -14,6 +14,10 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
+alias gc='git commit -v'
+alias gd='git diff'
+alias gl='git l'
+alias gst='git status'
 alias h="history"
 alias j="jobs"
 
@@ -43,6 +47,11 @@ alias ls="command ls ${colorflag}"
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ack='ack-grep -a'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
