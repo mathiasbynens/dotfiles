@@ -76,6 +76,12 @@
 		fi \
 	}; f"
 
+	# Simple shortcuts.
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
