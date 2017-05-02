@@ -234,3 +234,22 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+
+# `up` is a convenient way to navigate back up a file tree, and is a general-use
+# replacement for `cd ..`.
+# if no arguments are passed, up is simply an alias for `cd ..`. 
+# with any integer argument n, `cd ..` will be performed n times
+function up() {
+    # number of times to move up in the directory tree
+    TIMES=$1
+
+    if [ -z ${TIMES} ]; then
+        TIMES=1
+    fi
+    while [ ${TIMES} -gt 0 ]; do
+        cd ..
+        TIMES=$((${TIMES} - 1))
+    done
+}
+
