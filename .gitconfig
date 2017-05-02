@@ -52,6 +52,8 @@
 
 	# Find commits by commit message
 	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+	# Remove already merged branches
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
