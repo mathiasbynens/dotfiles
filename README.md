@@ -26,6 +26,12 @@ Alternatively, to update while avoiding the confirmation prompt:
 set -- -f; source bootstrap.sh
 ```
 
+To perform a dry-run and list files which will be overwritten in your home directory:
+
+```bash
+set -- -n; source bootstrap.sh
+```
+
 ### Git-free install
 
 To install these dotfiles without Git:

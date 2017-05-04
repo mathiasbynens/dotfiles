@@ -11,11 +11,14 @@ function doIt() {
 		--exclude "bootstrap.sh" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
-		-avh --no-perms . ~;
+		-avh $1 --no-perms . ~;
 	source ~/.bash_profile;
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+if [ "$1" == "--dry-run" -o "$1" == "-n" ]; then
+	echo "The following files will be overwritten in your home directory:";
+	doIt $1;
+elif [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt;
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
