@@ -103,11 +103,14 @@ brew cask install mamp
 brew cask install macvim
 brew cask install on-the-job
 brew cask install opera
+brew cask install postman
+brew cask install robomongo
 brew cask install slack
 brew cask install sourcetree
 brew cask install spotify
 brew cask install spotify-notifications
 brew cask install skype-for-business
+brew cask install steam
 brew cask install sublime-text
 brew cask install transmission
 brew cask install vagrant
