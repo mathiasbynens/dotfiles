@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-# Install command-line tools using Homebrew.
+
+# Install Homebrew if it's not at /usr/local/bin/brew
+if [ `which brew` != '/usr/local/bin/brew' ]; then
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -33,6 +37,12 @@ fi;
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
+
+# iTerm
+brew install Caskroom/cask/iterm2
+
+# gpg
+brew install gpg
 
 # Install RingoJS and Narwhal.
 # Note that the order in which these are installed is important;
@@ -76,7 +86,8 @@ brew install tcpflow
 brew install tcpreplay
 brew install tcptrace
 brew install ucspi-tcp # `tcpserver` etc.
-brew install xpdf
+brew cask install xquartz
+brew install homebrew/x11/xpdf
 brew install xz
 
 # Install other useful binaries.
@@ -100,6 +111,52 @@ brew install tree
 brew install vbindiff
 brew install webkit2png
 brew install zopfli
+
+# iTerm
+brew install Caskroom/cask/iterm2
+
+# tmux
+brew install tmux
+
+# Python3
+brew install python3
+
+# Pathogen & vim packages
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+echo "execute pathogen#infect()" >> ~/.vimrc
+cd ~/.vim/bundle
+# NerdTree
+git clone https://github.com/scrooloose/nerdtree.git
+# Git for NerdTree
+git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git
+# Linter
+git clone --depth=1 https://github.com/scrooloose/syntastic.git
+# Fuzzy Finder
+git clone https://github.com/kien/ctrlp.vim.git
+# GitGutter
+git clone git://github.com/airblade/vim-gitgutter.git
+# Surround (change quotes or brackets around a word)
+git clone https://github.com/tpope/vim-surround.git
+# Code completion
+git clone https://github.com/valloric/youcompleteme.git
+# Align stuff
+git clone git://github.com/godlygeek/tabular.git
+
+# virtualenv
+pip install virtualenv
+mkdir -p ~/virtualenvs
+cd ~/virtualenvs
+virtualenv -p python3 default
+source default/bin/activate
+pip install pygments
+pip install numpy
+pip install pandas
+pip install Requests
+pip install django
+pip install flask
+pip install pyyaml
+cd -
 
 # Remove outdated versions from the cellar.
 brew cleanup

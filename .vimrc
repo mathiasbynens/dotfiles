@@ -15,15 +15,10 @@ set esckeys
 set backspace=indent,eol,start
 " Optimize for fast terminal connections
 set ttyfast
-" Add the g flag to search/replace by default
-set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
 " Change mapleader
 let mapleader=","
-" Don’t add empty newlines at the end of files
-set binary
-set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -46,8 +41,12 @@ set number
 syntax on
 " Highlight current line
 set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
+highlight CursorLine ctermbg=016
+"" Highlight line numbers
+"highlight linenr ctermbg=6
+"highlight linenr ctermfg=0
+" Expand tabs to spaces
+set expandtab
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -75,13 +74,13 @@ set showmode
 set title
 " Show the (partial) command as it’s being typed
 set showcmd
-" Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
+"" Use relative line numbers
+"if exists("&relativenumber")
+"	set relativenumber
+"	au BufReadPost * set relativenumber
+"endif
 " Start scrolling three lines before the horizontal window border
-set scrolloff=3
+set scrolloff=8
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
@@ -104,3 +103,21 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" Check vim args, if empty then open NERDTree
+function! Startup()
+	if 0 == argc()
+		NERDTree
+	end
+endfunction
+autocmd VimEnter * call Startup()
+
+" This resets the search register
+nnoremap <CR> :noh<CR><CR>
+
+" Set GitGutter options
+set updatetime=000
+let g:gitgutter_override_sign_column_highlight = 0
+highlight SignColumn ctermfg = 0
+let g:gitgutter_sign_modified = '♦'
+

@@ -187,26 +187,6 @@ function getcertnames() {
 	fi;
 }
 
-# `s` with no arguments opens the current directory in Sublime Text, otherwise
-# opens the given location
-function s() {
-	if [ $# -eq 0 ]; then
-		subl .;
-	else
-		subl "$@";
-	fi;
-}
-
-# `a` with no arguments opens the current directory in Atom Editor, otherwise
-# opens the given location
-function a() {
-	if [ $# -eq 0 ]; then
-		atom .;
-	else
-		atom "$@";
-	fi;
-}
-
 # `v` with no arguments opens the current directory in Vim, otherwise opens the
 # given location
 function v() {
@@ -233,4 +213,55 @@ function o() {
 # small enough for one screen.
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+
+# Quick script borrowed from elsewhere to calculate 256term color values from hex
+function hex_to_256term(){
+    hex=${1#"#"}
+    r=$(printf '0x%0.2s' "$hex")
+    g=$(printf '0x%0.2s' ${hex#??})
+    b=$(printf '0x%0.2s' ${hex#????})
+    printf '%03d' "$(( (r<75?0:(r-35)/40)*6*6 + 
+                       (g<75?0:(g-35)/40)*6   +
+                       (b<75?0:(b-35)/40)     + 16 ))"
+}
+
+# Commit with following message
+function gc() {
+    git commit -m "$(echo $*)"
+}
+
+# Add all files, commit with following message, then push
+function gg() {
+    git add .
+    git commit -m "$(echo $*)"
+    git push
+}
+
+# Create 4 emoji gifs to be uploaded to slack
+# (top-left, top-right, bottom-left, bottom-right)
+# Requires Imagemagick
+function emojif() {
+    img=$1
+    width=$(identify -ping -format '%w' $img[0])
+    height=$(identify -ping -format '%h' $img[0])
+    dimensions=($width $height)
+    max=$(printf "%d\n" "${dimensions[@]}" | sort -rn | head -1)
+    dw=$(expr $max - $width)
+    dh=$(expr $max - $height)
+    convert $img -gravity center -background none -extent ${max}x${max} square_image.gif
+    side=$(expr $max / 2)
+    quadrants=(tl tr br bl)
+    for q in "${quadrants[@]}"; do
+        if [ $q == tl ] ; then w=-$side && h=-$side ;
+        elif [ $q == tr ] ; then w=+$side && h=-$side ;
+        elif [ $q == bl ] ; then w=-$side && h=+$side ;
+        else w=+$side && h=+$side ;
+        fi
+        convert square_image.gif -gravity center -crop ${w}${h} +repage ${q}_img.gif
+        convert ${q}_img.gif -resize 64x64 ${q}_img.gif
+        convert ${q}_img.gif -quality 40% ${q}_img.gif 
+        convert ${q}_img.gif -delay 90 -loop 0 ${q}_img.gif
+        convert ${q}_img.gif -fuzz 18% -layers Optimize ${q}_img.gif
+    done
 }

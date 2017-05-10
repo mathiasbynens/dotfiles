@@ -9,13 +9,22 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
-alias g="git"
-alias h="history"
-alias j="jobs"
+alias pj="cd ~/Projects"
+alias drive="cd ~/Google\ Drive"
+alias docs="cd ~/Documents"
+alias dropbox="cd ~/Dropbox"
+
+# Git shortcuts
+alias gs="git status"
+alias ga="git add"
+alias gp="git push"
+alias gk="git checkout"
+alias gm="git checkout master"
+alias gb="git branch"
+alias gn="git checkout master && git pull && git checkout -b"
+alias gd="git checkout master && git branch -d"
+
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -26,11 +35,11 @@ else # macOS `ls`
 	export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 
-# List all files colorized in long format
-alias l="ls -lF ${colorflag}"
+# List files colorized in long format
+alias l="clear && ls -lF ${colorflag}"
 
-# List all files colorized in long format, including dot files
-alias la="ls -laF ${colorflag}"
+# Clear screen and list all files
+alias la="clear && ls -laF ${colorflag}"
 
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
@@ -47,8 +56,11 @@ alias egrep='egrep --color=auto'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-# Get week number
+# Get week of year
 alias week='date +%V'
+
+# Get day of year
+alias day='date +%j'
 
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
@@ -148,14 +160,14 @@ command -v grunt > /dev/null && alias grunt="grunt --stack"
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume output volume 100'"
+alias pumpitup="osascript -e 'set volume output volume 70'"
 
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
 # Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias bye="open -a /Syystem/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
