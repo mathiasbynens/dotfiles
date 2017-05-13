@@ -75,6 +75,7 @@ brew install wget
 echo "npm global packages"
 npm install -g bower
 npm install -g cordova
+npm install -g grunt-cli
 npm install -g jasmine
 npm install -g foundation-cli
 npm install -g karma-cli
@@ -95,6 +96,7 @@ brew cask install firefox
 brew cask install flux
 brew cask install focus
 brew cask install google-chrome
+brew cask install hipchat
 brew cask install iterm2
 brew cask install java
 brew cask install keka
@@ -109,6 +111,7 @@ brew cask install slack
 brew cask install sourcetree
 brew cask install spotify
 brew cask install spotify-notifications
+brew cask install sketch
 brew cask install skype-for-business
 brew cask install steam
 brew cask install sublime-text
