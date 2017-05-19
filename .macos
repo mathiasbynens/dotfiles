@@ -817,6 +817,8 @@ defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false
 # Sublime Text                                                                #
 ###############################################################################
 
+# Launch sublime in order to create skels
+subl
 # Install Sublime Text settings
 cp -r init/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text*/Packages/User/ 2> /dev/null
 cp -r init/Dracula.tmTheme ~/Library/Application\ Support/Sublime\ Text*/Packages/User/ 2> /dev/null
@@ -901,6 +903,7 @@ for app in "Activity Monitor" \
 	"Transmission" \
 	"Tweetbot" \
 	"Twitter" \
+	"Sublime Text" \
 	"iCal"; do
 	killall "${app}" &> /dev/null
 done
