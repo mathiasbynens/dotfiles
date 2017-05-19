@@ -820,6 +820,8 @@ defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false
 # Install Sublime Text settings
 cp -r init/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text*/Packages/User/ 2> /dev/null
 cp -r init/Dracula.tmTheme ~/Library/Application\ Support/Sublime\ Text*/Packages/User/ 2> /dev/null
+# install useful packages
+cp -r init/*.sublime-package ~/Library/Application\ Support/Sublime\ Text*/Installed\ Packages/
 
 ###############################################################################
 # Twitter.app                                                                 #
