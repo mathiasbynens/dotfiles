@@ -52,6 +52,7 @@ brew install colordiff
 brew install ipcalc
 brew install unrar
 brew install w3m
+brew install jq
 
 # work bits
 brew install cli53
