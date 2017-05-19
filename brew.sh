@@ -68,5 +68,14 @@ brew install wakeonlan
 brew install thefuck
 brew install tiny-fugue
 
+# Cask time
+brew cask install sublime-text
+brew cask install spectacle
+brew cask install slack
+brew cask install viscosity
+brew cask install google-chrome
+brew cask install flux
+brew cask install vassal
+
 # Remove outdated versions from the cellar.
 brew cleanup
