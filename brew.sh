@@ -60,6 +60,7 @@ brew install terraform
 brew install awscli
 brew install percona-toolkit
 brew install mysql
+brew cask install java
 brew install maven
 
 # personal
