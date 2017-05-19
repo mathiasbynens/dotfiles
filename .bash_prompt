@@ -66,16 +66,14 @@ if tput setaf 1 &> /dev/null; then
 	bold=$(tput bold);
 	reset=$(tput sgr0);
 	# Solarized colors, taken from http://git.io/solarized-colors.
-	black=$(tput setaf 0);
-	blue=$(tput setaf 33);
-	cyan=$(tput setaf 37);
-	green=$(tput setaf 64);
-	orange=$(tput setaf 166);
-	purple=$(tput setaf 125);
-	red=$(tput setaf 124);
-	violet=$(tput setaf 61);
-	white=$(tput setaf 15);
-	yellow=$(tput setaf 136);
+	black="\[$(tput setaf 0)\]"
+	red="\[$(tput setaf 1)\]"
+	green="\[$(tput setaf 2)\]"
+	yellow="\[$(tput setaf 3)\]"
+	blue="\[$(tput setaf 4)\]"
+	magenta="\[$(tput setaf 5)\]"
+	cyan="\[$(tput setaf 6)\]"
+	white="\[$(tput setaf 7)\]"
 else
 	bold='';
 	reset="\e[0m";
@@ -95,7 +93,7 @@ fi;
 if [[ "${USER}" == "root" ]]; then
 	userStyle="${red}";
 else
-	userStyle="${orange}";
+	userStyle="${white}";
 fi;
 
 # Highlight the hostname when connected via SSH.
@@ -113,7 +111,7 @@ PS1+="\[${white}\]@";
 PS1+="\[${hostStyle}\]\h"; # host
 PS1+="\[${white}\] (";
 PS1+="\[${green}\]\w"; # working directory full path
-PS1+="\$(prompt_git \"\[${white}\]:\[${violet}\]\" \"\[${blue}\]\")\[${white}\])"; # Git repository details
+PS1+="\$(prompt_git \"\[${white}\]:\[${magenta}\]\" \"\[${blue}\]\")\[${white}\])"; # Git repository details
 PS1+="\n";
 PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
 export PS1;
