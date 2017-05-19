@@ -44,10 +44,29 @@ brew install homebrew/php/php56 --with-gmp
 # Install other useful binaries.
 brew install the_silver_searcher
 brew install dark-mode
-#brew install exiv2
 brew install git
 brew install git-lfs
 brew install tree
+brew install nmap
+brew install mtr
+brew install colordiff
+brew install ipcalc
+brew install unrar
+brew install w3m
+
+# work bits
+brew install cli53
+brew install subversion
+brew install terraform
+brew install awscli
+brew install percona-toolkit
+brew install mysql
+brew install maven
+
+# personal
+brew install wakeonlan
+brew install thefuck
+brew install tiny-fugue
 
 # Remove outdated versions from the cellar.
 brew cleanup
