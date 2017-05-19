@@ -68,6 +68,7 @@ brew install maven
 brew install wakeonlan
 brew install thefuck
 brew install tiny-fugue
+brew install wallpaper
 
 # Cask time
 brew cask install sublime-text
