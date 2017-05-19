@@ -47,21 +47,7 @@ brew install dark-mode
 #brew install exiv2
 brew install git
 brew install git-lfs
-brew install imagemagick --with-webp
-brew install lua
-brew install lynx
-brew install p7zip
-brew install pigz
-brew install pv
-brew install rename
-brew install rhino
-brew install speedtest_cli
-brew install ssh-copy-id
-brew install testssl
 brew install tree
-brew install vbindiff
-brew install webkit2png
-brew install zopfli
 
 # Remove outdated versions from the cellar.
 brew cleanup
