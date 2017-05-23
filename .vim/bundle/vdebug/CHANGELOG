@@ -1,0 +1,140 @@
+=== Vdebug 1.5.1 / 2015-09-07
+Bug fixes:
+ * Fix buffers not being wiped out after ending a session (thanks @BlackIkeEagle, #226)
+
+Features:
+ * Add :VdebugEval! command, which remembers the eval expression when stepping
+ through, as an alternative to :VdebugTrace (thanks @benjifisher, #193)
+
+=== Vdebug 1.5.0 / 2015-08-28
+Bug fixes:
+ * Fix for remote and local file paths with a windows/unix setup (thanks @brothert, #130)
+ * Sort path maps by remote path length (thanks @ragol and @adambiggs, #153, #201)
+ * Default "stop" behaviour (default <F6>) actually stops rather than detaches (issue #166)
+ * Various documentation fixes (issue #172, issue #223, thanks @loonies for #210)
+ * Add documentation to show that komodo-debug doesn't work with nodejs > 0.10 (#202, #223)
+ * Don't override previously defined breakpoint highlights (#208)
+
+Features:
+ * Add support for Python 2.4 (thanks @mbarbon, #189)
+ * Add Vagrantfile and bootstrap for easier local development
+ * Add new VdebugTrace command for tracking individual variables and expressions (thanks @escher9, #178)
+ * Show ellipses for truncated arrays in watch window (#177)
+ * Bind to all available interfaces by default, instead of just localhost (#209, thanks @zolem)
+
+Misc:
+ * Changed HISTORY to CHANGELOG
+
+=== Vdebug 1.4.2 / 2014-05-15
+
+Bug fixes:
+ * Allow overriding of options dictionary after sourcing vdebug (issues #112, #113)
+ * Show local file path in stack window if using path mapping (issue #118)
+ * Change function names for stricter rules introduced in Vim v.7.4.260 (thanks @BlackIkeEagle, #158 and #155)
+
+Documentation:
+ * Various fixes
+ * Mention vim-nox package for Debian (thanks @henningda, #138)
+ * Add Python installation for Windows information (issue #135)
+
+Features:
+ * Add completion to :Breakpoint command (thanks @tommcdo, #124)
+ * Add VdebugStart command (thanks @blueyed, #132)
+ * Sleep for 100ms in wait loop, don't consume as much CPU (thanks @blueyed, #133)
+
+=== Vdebug 1.4.1 / 2013-06-09
+
+Bug fixes:
+ * Fix folds being forgotten after debugging (issue #56)
+ * Don't overwrite features array if it exists (issue #59)
+ * Mapping of single modes (thanks @xbot, #66)
+ * Stop empty buffers from being created (issue #70)
+ * Fix ElementTree deprecation warning (thanks @InFog, #89)
+ * Fix minheight error for windows (thanks @zhaocai, #73, also #84)
+ * Fix filename handling on windows (thanks @Chronial, #74)
+ * Use :mkexrc for restoring keymapping (thanks @Chronial and @qstrahl, #75)
+ * Fix window destruction (thanks @Chronial, #76)
+ * Inspect PHP constants with cursor eval (issue #80)
+ * Don't cut final character when inspecting variables at end of line (issue #85)
+
+Documentation:
+ * Test suite requirements (thanks @michaeltwofish, #61)
+ * Add helptag instructions to README (issue #67)
+ * Add 'eval_visual' to documentation (issue #88)
+
+=== Vdebug 1.4.0 / 2013-03-06
+
+Features:
+ * Set debugger features with g:vdebug_features dictionary (issue #55)
+ * Allow use of '~' in log files (issue #53)
+
+Bug fixes:
+ * Print error message if trying to start debugger with unsaved buffers (issue #57)
+ * Don't allow visual eval outside of debugging session (issue #52)
+ * Show updated key mappings in status window (issue #51)
+ * Fix problem with stuck breakpoints after debugging (issue #48, #43)
+ * Swap back to original tab after debugging session closes (issue #23)
+
+=== Vdebug 1.3.2 / 2013-01-28
+
+Features:
+ * Don't allow breakpoints to be set on empty lines (issue #27)
+ * Add :VdebugOpt command for easy setting and getting of options (issue #38)
+
+Bug fixes:
+ * Small fixes for documentation (thanks: https://github.com/grota, #31)
+ * Parse continuous mode option as an integer (thanks: https://github.com/grota, #32)
+ * Stop Xdebug hanging when using the detach command (issue #33)
+ * Don't use recursive Vim mapping (issue #34)
+ * Track movement of line breaks with Vim signs (issue #35)
+ * Add "default" keyword to highlights, to allow custom colours (issue #36)
+ * Fix check for multibyte support (issue #37)
+ * Fix deprecation warning in Python 2.6, catching string exceptions (issue #39)
+ * Stop source code panel opening in incorrect position (issue #40)
+
+=== Vdebug 1.3.1 / 2012-12-21
+
+Bug fixes:
+ * Filepath problems with Windows version
+
+Other:
+ * Packaged tests as an easy-to-run suite
+ * Set up on Travis CI
+
+=== Vdebug 1.3.0 / 2012-12-19
+
+Features:
+ * Added minor version number to versioning, for bug fixes
+ * Support and compatibility fixes for debugging Tcl, plus help file updates
+ * Non-multibyte Vim installations now use ASCII watch window marker characters as a fallback (thanks: https://github.com/satiani, #21)
+ * Watch window marker characters are fully customizable
+ * Added breakpoint list function to Api class
+ * Satiani added multiple file path mappings, for remote debugging (thanks: https://github.com/satiani, #20)
+ * Vdebug re-maps previous key mappings after shutting down (issue #16)
+ * Added 'watch_window_style' option that allows for a compact or (default) expanded watch window (thanks: https://github.com/georgjaehnig, #13)
+ * Simple continuous mode added, where vdebug starts listening after a connection closes, to allow for debugging to start again immediately (issue #19)
+
+Bug fixes:
+ * Fix for watch window characters on Windows versions of Vim (issue #29)
+ * Fix for watch window variable expansion on Windows versions of Vim (issue #28)
+ * Stopped creating empty buffers every time Vdebug started (issue #25)
+ * Fixed bug with file URI quoting
+ * Fixed escaping of characters when calling eval (issue #15)
+ 
+
+=== Vdebug 1.2 / 2012-10-05
+
+ * Support for nodejs debugging using the komodo-debug package in NPM
+ * Keyboard interrupt while Vim is waiting for a connection (thanks: http://github.com/artnez, #6)
+ * Fixed overwriting dir function with badly named variable (thanks: http://github.com/csomme, #8)
+ * Function keys for debugger are only mapped when the session starts, and are unmapped when it's closed (issue #1)
+ * Removed the help tags file from the git repo (issue #10)
+
+=== Vdebug 1.1 / 2012-08-30
+
+ * Fix for Windows file paths (thanks: http://github.com/beatle, #4)
+ * Watch window trees can be closed as well as opened (issue #5)
+
+=== Vdebug 1.0 / 2012-08-14
+
+ * First release!

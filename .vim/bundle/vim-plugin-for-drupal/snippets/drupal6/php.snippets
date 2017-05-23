@@ -1,0 +1,349 @@
+## Forms API
+
+snippet markup
+	$form['${1:/* form element */}'] = array(
+	  '#value' => '<${2:div}>' . '${3:/* markup */}' . '</$2>',
+	);
+
+## Database functions
+
+snippet db_fetch_array
+	while ($${1:row} = db_fetch_array($result)) {
+	  ${2:// Your code here}
+	}
+
+snippet db_fetch_object
+	while ($${1:row} = db_fetch_object($result)) {
+	  ${2:// Your code here}
+	}
+
+snippet db_query
+	$result = db_query('${1:/* Query */}', ${2:/* Arguments */});
+
+snippet db_rewrite_sql
+	$result = db_query(db_rewrite_sql('${1:/* Query */}'), ${2:/* Arguments */});
+
+## drupal_ functions
+
+snippet drupal_add_css
+	drupal_add_css(${1:/* path */}, '${2:/* Type (optional) 'module' or 'theme' */}', '${3:/* Media (optional) e.g. 'all', 'print', or 'screen' */}', ${4:/* preprocess TRUE or FALSE */});
+
+snippet drupal_add_js
+	drupal_add_js(${1:/* Data */}, '${2:/* Type 'core', 'module', 'theme', 'inline' and 'setting' */}', '${3:/* Scope: header or footer */}', ${4:/* Defer TRUE or FALSE */}, ${5:/* Cache TRUE or FALSE*/}, ${6: /* Preprocess TRUE or FALSE */});
+
+snippet drupal_goto
+	drupal_goto('${1:path}', '${2:query}', '${3:anchor}', '${4:http_response_code}');
+
+## Everything else
+
+snippet t
+	t('${1:/* Your text */}', array(${2:/* arguments */}))
+
+## Hooks
+
+snippet hook_block
+	/**
+	 * Implements hook_block().
+	 */
+	function `Filename()`_block($op = 'list', $delta = 0, $edit = array()) {
+	  switch ($op) {
+	    case 'list':
+	      ${1}
+	      break;
+
+	    case 'configure':
+	      break;
+
+	    case 'save':
+	      break;
+
+	    case 'view':
+	      break;
+	  }
+	}
+
+snippet hook_comment
+	/**
+	 * Implements hook_comment().
+	 */
+	function `Filename()`_comment(&$a1, $op) {
+	  switch ($op) {
+	    case 'insert':
+	      ${1:// Your code here}
+	      break;
+
+	    case 'update':
+	      break;
+
+	    case 'view':
+	      break;
+
+	    case 'validate':
+	      break;
+
+	    case 'publish':
+	      break;
+
+	    case 'unpublish':
+	      break;
+
+	    case 'delete':
+	      break;
+	  }
+	}
+
+snippet hook_node_info
+	/**
+	 * Implements hook_node_info().
+	 */
+	function `Filename()`_node_info() {
+	  return array(
+	    '${1:/* machine-readable name */}' => array(
+	      'name' => t('${2:/* human-readable name */}'),
+	      'module' => '`Filename()`',
+	      'description' => t('${3:/* description */}'),
+	    ),
+	  );
+	}
+
+snippet hook_node_type
+	/**
+	 * Implements hook_node_type().
+	 */
+	function `Filename()`_node_type($op, $info) {
+	  switch ($op) {
+	    case 'delete':
+	      ${1:// Your code here.}
+	      break;
+
+	    case 'insert':
+	      break;
+
+	    case 'update':
+	      break;
+	  }
+	}
+
+snippet hook_nodeapi
+	/**
+	 * Implements hook_nodeapi().
+	 */
+	function `Filename()`_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+	  switch ($op) {
+	    case 'alter':
+	      ${1:// Your code here.}
+	      break;
+
+	    case 'delete':
+	      break;
+
+	    case 'delete revision':
+	      break;
+
+	    case 'insert':
+	      break;
+
+	    case 'load':
+	      break;
+
+	    case 'prepare':
+	      break;
+
+	    case 'prepare translation':
+	      break;
+
+	    case 'print':
+	      break;
+
+	    case 'rss item':
+	      break;
+
+	    case 'search result':
+	      break;
+
+	    case 'presave':
+	      break;
+
+	    case 'update':
+	      break;
+
+	    case 'update index':
+	      break;
+
+	    case 'validate':
+	      break;
+
+	    case 'view':
+	      break;
+	  }
+	}
+
+snippet hook_perm
+	/**
+	 * Implements hook_perm().
+	 */
+	function `Filename()`_perm() {
+	  return array('${1:/* permission */}');
+	}
+
+snippet hook_requirements
+	/**
+	 * Implements hook_requirements().
+	 * @param string $phase
+	 *  The phase in which hook_requirements is run:
+	 *    'install': the module is being installed.
+	 *    'runtime': the runtime requirements are being checked and shown on the
+	 *      status report page.
+	 * @return
+	 *   A keyed array of requirements. Each requirement is itself an array with
+	 *     the following items:
+	 *       'title': the name of the requirement.
+	 *       'value': the current value (e.g. version, time, level, ...).
+	 *         During install phase, this should only be used for version
+	 *         numbers, do not set it if not applicable.
+	 *       'description': description of the requirement/status.
+	 *       'severity': the requirement's result/severity level, one of:
+	 *         REQUIREMENT_INFO: For info only.
+	 *         REQUIREMENT_OK: The requirement is satisfied.
+	 *         REQUIREMENT_WARNING: The requirement failed with a warning.
+	 *         REQUIREMENT_ERROR: The requirement failed with an error.
+	 *
+	 */
+	function `Filename()`_requirements($phase) {
+	  $requirements = array();
+
+	  ${1:// Your code here.}
+
+	  return $requirements;
+	}
+
+snippet hook_schema
+	/**
+	 * Implements hook_schema().
+	 */
+	function `Filename()`_schema() {
+	  $schema['${1:table}'] = array(
+	    'description' => '${2}',
+	    'fields' => array(
+	      '${3:column}' => array(
+	        'description' => '${4}',
+	        'type' => '${5}',
+	        'unsigned' => ${6},
+	        'not null' => ${7},
+	      ),
+	    ),
+	    'indexes' => array(
+	      ${8}
+	    ),
+	    'unique keys' => array(
+	      ${9}
+	    ),
+	    'primary key' => array(${10}),
+	  );
+	  return $schema
+	}
+
+snippet hook_taxonomy
+	/**
+	 * Implements hook_taxonomy().
+	 */
+	function `Filename()`_taxonomy($op, $type, $array = NULL) {
+	  switch ($op) {
+	    case 'delete':
+	      ${1:// Your code here.}
+	      break;
+
+	    case 'insert':
+	      break;
+
+	    case 'update':
+	      break;
+	  }
+	}
+
+snippet hook_update_N
+	/**
+	 * ${1:This line is shown to the user when the update is run.}
+	 *
+	 * Implements hook_update_N().
+	 * @see http://api.drupal.org/api/drupal/developer--hooks--install.php/function/hook_update_N/6
+	 * @return array $ret
+	 *   An array with the results of the calls to update_sql().
+	 */
+	function `Filename()`_update_${2:6000}(&$sandbox) {
+	  $ret = array();
+
+	  ${3:// Your code here.}
+
+	  return $ret;
+	}
+
+snippet hook_user
+	/**
+	 * Implements hook_user().
+	 */
+	function `Filename()`_user($op, &$edit, &$account, $category = NULL) {
+	  switch ($op) {
+	    case 'after_update':
+	      ${1:// Your code here.}
+	      break;
+
+	    case 'categories':
+	      break;
+
+	    case 'delete':
+	      break;
+
+	    case 'form':
+	      break;
+
+	    case 'insert':
+	      break;
+
+	    case 'load':
+	      break;
+
+	    case 'login':
+	      break;
+
+	    case 'logout':
+	      break;
+
+	    case 'register':
+	      break;
+
+	    case 'submit':
+	      break;
+
+	    case 'update':
+	      break;
+
+	    case 'validate':
+	      break;
+
+	    case 'view':
+	      break;
+	  }
+	}
+
+## Views hooks
+
+snippet hook_views_api
+	/**
+	 * Implements hook_views_api().
+	 */
+	function `Filename()`_views_api() {
+	  return array(
+	    'api' => 2,
+	    'path' => drupal_get_path('module', '`Filename()`') . '/views',
+	  );
+	}
+
+snippet hook_views_query_alter
+	/**
+	 * Implements hook_views_query_alter().
+	 */
+	function `Filename()`_views_query_alter(&$view, &$query) {
+	  ${2:// Your code here.}
+	}
+

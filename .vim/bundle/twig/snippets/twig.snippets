@@ -1,0 +1,50 @@
+# Basic Twig snippets
+# Maintainer: F. Gabriel Gosselin <gabrielNOSPAM@evidens.ca>
+
+# include
+snippet inc
+	{% include '${1}' %}
+# extend
+snippet ext
+	{% extends '${1:template.html.twig}' %}
+# extends
+snippet extends
+	{% extends '${1:template}' %}${2}
+# if
+snippet if
+	{% if ${1} %}
+		${2}
+	{% endif %}
+# else
+snippet else
+	{% else %}
+		${1}
+# for
+snippet for
+	{% for ${2:} in ${1} %}
+		${3}{{ $2 }}
+	{% endfor %}
+# Set
+snippet set
+	{% set ${1:var} = ${2:value} %}${3}
+# Print variable
+snippet }}
+	{{ ${1} }}${2}
+# Single Regular execution block
+snippet %%
+	{% ${1} %}${2}
+# Comment block
+snippet ##
+	{# ${1} #}${2}
+# Open/close block
+snippet %end
+	{% ${1:block} %}${2}{% end$1 %}
+# Named block
+snippet block
+	{% block ${1:name} %}${2}{% endblock %}
+snippet f_date
+	{{ ${1:a_date}|date("${2:m/d/Y}") }}
+
+# debug
+snippet debug
+	{% debug ${1:varName} %}

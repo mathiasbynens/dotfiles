@@ -1,26 +1,44 @@
+" Following lines added by drush vimrc-install on Tue, 23 May 2017 17:11:03 +0000.
+set nocompatible
+call pathogen#infect('/Users/chill/.drush/vimrc/bundle/{}')
+call pathogen#infect('/Users/chill/.vim/bundle/{}')
+" End of vimrc-install additions.
+execute pathogen#infect()
+
+" Allow Vim-only settings even if they break vi keybindings.
+set nocompatible
+
+" Use UTF-8 without BOM
+set encoding=utf-8 nobomb
+
+" Enable filetype detection
+filetype plugin on
+
 " Use the Solarized Dark theme
 set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1
 
-" Make Vim more useful
-set nocompatible
+" General settings
+set incsearch               "Find as you type
+set scrolloff=2             "Number of lines to keep above/below cursor
+set number                  "Show line numbers
+set wildmode=longest,list   "Complete longest string, then list alternatives
+set pastetoggle=<F2>        "Toggle paste mode
+set fileformats=unix        "Use Unix line endings
+set history=300             "Number of commands to remember
+set showmode                "Show whether in Visual, Replace, or Insert Mode
+set showmatch               "Show matching brackets/parentheses
+set backspace=2             "Use standard backspace behavior
+set hlsearch                "Highlight matches in search
+set ruler                   "Show line and column number
+set formatoptions=1         "Don't wrap text after a one-letter word
+set linebreak               "Break lines when appropriate
+
+" Enable mouse in all modes
+set mouse=a
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
-" Enhance command-line completion
-set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
-" Allow backspace in insert mode
-set backspace=indent,eol,start
-" Optimize for fast terminal connections
-set ttyfast
-" Add the g flag to search/replace by default
-set gdefault
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
-" Change mapleader
-let mapleader=","
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
@@ -30,47 +48,19 @@ set directory=~/.vim/swaps
 if exists("&undodir")
 	set undodir=~/.vim/undo
 endif
-
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
-
-" Respect modeline in files
-set modeline
-set modelines=4
-" Enable per-directory .vimrc files and disable unsafe commands in them
-set exrc
-set secure
-" Enable line numbers
-set number
-" Enable syntax highlighting
-syntax on
 " Highlight current line
 set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
-" Highlight searches
-set hlsearch
-" Ignore case of searches
-set ignorecase
-" Highlight dynamically as pattern is typed
-set incsearch
-" Always show status line
-set laststatus=2
-" Enable mouse in all modes
-set mouse=a
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
-" Show the cursor position
-set ruler
 " Don’t show the intro message when starting Vim
 set shortmess=atI
-" Show the current mode
-set showmode
 " Show the filename in the window titlebar
 set title
 " Show the (partial) command as it’s being typed
@@ -83,53 +73,42 @@ endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
-" Strip trailing whitespace (,ss)
-function! StripWhitespace()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	:%s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
-endfunction
-noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
-
-" Automatic commands
-if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-endif
-
 " Personal prefs, mostly for PHP/Drupal development.
 set expandtab
 set shiftwidth=2
 set autoindent
 set smartindent
 set smartcase
-set pastetoggle=<F2>
 
-if has("autocmd")
-  autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-  " Drupal *.module and *.install files.
-  augroup filetypedetect
-    autocmd BufRead,BufNewFile *.module set filetype=php
-    autocmd BufRead,BufNewFile *.install set filetype=php
-    autocmd BufRead,BufNewFile *.test set filetype=php
-    autocmd BufRead,BufNewFile *.inc set filetype=php
-    autocmd BufRead,BufNewFile *.profile set filetype=php
-    autocmd BufRead,BufNewFile *.view set filetype=php
-  augroup END
+" Enforce consistent line endings: if 'ff' is set to "unix" and there are any
+" stray '\r' characters at ends of lines, then automatically remove them. See
+" $VIMRUNTIME/indent/php.vim .
+let PHP_removeCRwhenUnix = 1
+
+" Persistent Undo (vim 7.3 and later)
+if exists('&undofile') && !&undofile
+  set undodir=~/.vim_runtime/undodir
+  set undofile
 endif
 
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-" Find 'tags' file in current directory, or traverse up until it's found.
-" http://stackoverflow.com/a/8285918
-set tags=./tags,tags;
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+" Enable syntax highlighting
+if &t_Co > 1
+  syntax enable
+endif
+syntax on
 
-let g:syntastic_php_checkers=['php']
+" When in split screen, map <C-LeftArrow> and <C-RightArrow> to switch panes.
+nn [5C <C-W>w
+nn [5R <C-W>W
+
+" Custom key mapping
+map <S-u> :redo<cr>
+map <C-n> :tabn<cr>
+map <C-p> :tabp<cr>
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+ \| exe "normal! g'\"" | endif
+endif

@@ -1,0 +1,501 @@
+*drupal.txt*    For Vim version 7.1 or later.  Last change:  2011 Oct 13
+
+                           Configuration for Drupal
+
+*drupal* *ultimate-drupal-vimrc*
+
+1. Installation                                         |drupal-installation|
+2. Filetype detection                                   |drupal-filetypes|
+3. Drupal plugin                                        |drupal-plugin|
+4. Drupal filetype plugin                               |drupal-ftplugin|
+5. Editing .info files                                  |drupal-info|
+6. Tag searches for Drupal core and contrib             |drupal-tags|
+7. Drupal/PHP omni-completion                           |ft-drupal-omni|
+8. Coder support                                        |ft-drupal-coder|
+9. Drush integration                                    |drupal-drush|
+10. GUI menus                                           |drupal-menus|
+11. Drupal snippets                                     |drupal-snippets|
+12. Updates and support                                 |drupal-update|
+
+The functionality mentioned here is provided by several files.  See the
+installation section.
+
+==============================================================================
+1. Installation                    *drupal-installation* *drush-vimrc-install*
+
+INSTALLATION WITH DRUSH
+
+This is the recommended method. Drush will download this project to
+~/.drush/vimrc (or to /usr/share/drush/commands/vimrc--see `drush help dl`).
+Then the installation script will install Pathogen, if needed, and continue as
+described below. You can install to another directory if you prefer. From a
+command line, >
+        $ drush @none dl vimrc
+        $ drush help vimrc-install
+        $ drush -v vimrc-install <options>
+If the drush version is at least 5.5, then the recommended plugins will be
+installed in the bundle/ subdirectry of your vimfiles directory.
+
+INSTALLATION AS A VIM 8 PACKAGE
+
+If you use Vim 8, then you can install most of this project using the new
+|package| feature.
+
+Download this project to your packages directory, usually `~/.vim/pack/`, and
+rename the `bundle` subdirectory to `start`. Then you should have, for example,
+`~/.vim/pack/vimrc/start/vim-plugin-for-drupal/plugin/drupal.vim`.
+
+Before the line >
+	filetype plugin on
+in your vimrc file, add the lines >
+	if v:version >= 800
+	  packloadall
+	endif
+This will enable the `filetype.vim` in this project when determining file types.
+You can omit the version check if you only use Vim 8.
+
+The only thing you lose with this method are the drush commands. If you want
+to use them, then you can copy or symlink `vimrc.drush.inc` from this project to
+a directory that drush searches for commands, such as `~/.drush`.
+
+INSTALLATION WITH PATHOGEN
+
+Pathogen (http://www.vim.org/scripts/script.php?script_id=2332) is a package
+manager for vim. Using Pathogen, the files from this project will be kept
+separate from other Vim plugins, so it is easier to update or remove, and you
+do not have to worry about name collisions.
+
+With Pathogen, you can install this project anywhere you like.  One suggestion
+is to create ~/.drush/vimrc and put it there.  Explicitly, the documentation
+will be >
+        ~/.drush/vimrc/bundle/vim-plugin-for-drupal/doc/drupal.txt (Linux etc.)
+        ~\.drush\vimrc\bundle\vim-plugin-for-drupal\doc\drupal.txt (Windows)
+Then add the line >
+        :call pathogen#infect('~/.drush/vimrc/bundle')
+to your |vimrc| file.  (The Windows variant is left as an exercise.)  Another
+suggestion is to make a symbolic link to the bundle/ directory under your
+|vimfiles| directory. Explicitly, >
+        $ mkdir ~/.vim/bundle
+        $ ln -s path/to/vimrc/bundle/vim-plugin-for-drupal ~/.vim/bundle
+In this case, add the line >
+        :call pathogen#infect()
+to your |vimrc| file if it is not already there.
+
+In either case, you can use the command >
+        :Helptags
+instead of |:helptags|, and let pathogen figure out the path for you.
+
+BASIC INSTALLATION (without pathogen)
+
+Copy the files from the bundle/vim-plugin-for-drupal/ subdirectory into your
+|vimfiles| directory.  If you have downloaded these files as vimrc.tar.gz and
+your vimfiles directory is ~/.vim, then this should work on UNIX-like systems: >
+        $ cd ~/.vim
+        $ tar xzf path/to/vimrc.tar.gz --strip-components 3 \
+                  vimrc/bundle/vim-plugin-for-drupal
+Note:  if there are filename conflicts, then tar will silently overwrite the
+existing files.
+
+When you are done, you should have the following directory structure inside
+your |vimfiles| directory: >
+        autoload/drupal.vim
+        compiler/coder.vim
+        doc/drupal.txt
+        ftdetect/drupal.vim
+        ftplugin/drini.vim
+        ftplugin/drupal.vim
+        plugin/drupal.vim
+        snipmate/drupal/php.snippets
+        snipmate/drupal6/php.snippets
+        snipmate/drupal7/php.snippets
+        syntax/drini.vim
+        syntax/drupal.vim
+        tagfiles/drupal6.tags
+        tagfiles/drupal7.tags
+        tagfiles/drupal8.tags
+
+In order to use the tags defined in this help file, start vim and >
+        :helptags ~/.vim/doc
+(assuming that this file is installed as ~/.vim/doc/drupal.txt).  See
+|add-local-help| for details.
+
+SAMPLE VIMRC FILES
+
+If you are new to vim (or have never bothered to configure it before) then you
+may want to use one of the supplied vimrc files.  You can copy one of them to
+$HOME/.vimrc (or $HOME\_vimrc on Windows:  see |vimrc|) or |:source| one of
+them from your own vimrc file.  If you already have a vimrc file, then you may
+want to copy some settings from these files.  See also |vimrc_example.vim|. >
+        vimrc_minimal.vim:  very basic
+        vimrc_standard.vim:  this will :source vimrc_example.vim
+        vimrc_timplunkett.vim:  this has many settings, with comments.
+When the vimrc project first started, it was one file, similar to
+vimrc_timplunkett.vim.  Now that the project contains many files, and some
+users are bothered by the original choices, we have moved these settings into
+this optional file.
+
+AUTOCOMPLETION IN .INFO FILES
+
+The drini (DRupal INI) filetype is used for .info and similar files.  The
+syntax/drini.vim included in this project defines keywords that can be
+auto-completed using syntaxcomplete.vim, but this requires version 8.0 of that
+script.  Version 7.0 is included in the vim 7.3 distribution (in the autoload/
+directory) and is also available from
+http://www.vim.org/scripts/script.php?script_id=3172 .  As of late 2011, the
+only way to get version 8.0 is to patch version 7.0 with the patch at
+http://drupal.org/node/1303122#comment-5213300 .
+
+TODO:  There should be a way to install with drush.
+
+==============================================================================
+2. Filetype detection                                   *drupal-filetypes*
+
+The file ftdetect/drupal.vim ensures that files with these extensions are
+recognized as PHP: >
+        .module, .php, .install, .inc, .profile, .theme, .engine, .test, .view
+and these are recognized as drini (DRupal INI) format: >
+        .info, .make, .build
+This assumes that you have |filetype| detection on.  See also |ftdetect|.
+
+==============================================================================
+3. Drupal plugin                                        *drupal-plugin*
+
+GLOBAL OPTIONS                                          *drupal-global*
+The file plugin/drupal.vim sets several |options|.  These will apply whether
+or not you are editing Drupal-related files:
+        'backspace'=2
+        'nocompatible'
+        'encoding'=utf-8
+        'fileformats'=unix
+        'formatoptions'=1
+        'history'=300
+        'hlsearch'
+        'incsearch'
+        'linebreak'
+        'number'
+        'pastetoggle'=<F2>
+        'ruler'
+        'scrolloff'=2
+        'showmatch'
+        'showmode'
+        'undodir'=~/.vim_runtime/undodir
+        'undofile'
+        'wildmode'=longest,list
+
+GLOBAL MAPPINGS                                                 *drupal-maps*
+The script defines the following mappings: >
+        :nn [5C <C-W>w
+        :nn [5R <C-W>W
+        :map <S-u> :redo<cr>
+        :map <C-n> :tabn<cr>
+        :map <C-p> :tabp<cr>
+
+DRUPAL MAGIC                    *drupal-magic* *DrupalInit* *b:Drupal_info*
+When you edit a Drupal file, the script tries to find the root of your Drupal
+installation and a .info file for your current project.  If it succeeds, then
+it defines the |buffer-variable| b:Drupal_info, a |Dictionary| with the
+following keys:
+        DRUPAL_ROOT:    the path to your Drupal installation
+        INFO_FILE:      the path to your project's .info file
+        OPEN_COMMAND:   a command for opening URL's on your system
+        TYPE:           "module" or "theme", as appropriate for the project
+        CORE:           the Drupal main version number
+Explicitly, b:Drupal_info.OPEN_COMMAND is set to "open" on Mac OS X,
+"cygstart" on Windows/Cygwin, "cmd /c start" on other Windows, and "xdg-open"
+on UNIX-like systems.
+
+The script always defines all these keys.  If it cannot determine a reasonable
+value, it will use an empty string.
+
+                                                               *g:Drupal_dirs*
+If you are editing a project that is not inside your Drupal root, then it
+should still be able to determine the version of Drupal core.  In this case,
+define the |Dictionary| g:Drupal_dirs in your vimrc file.
+
+The keys of the Dictionary should be the versions of Drupal core you use, and
+the value should be an absolute path to the corresponding Drupal root.  For
+example, >
+
+        :let g:Drupal_dirs = {6: '/var/www/drupal6.22', 7: '/path/to/D7'}
+
+Then the script will set b:Drupal_info.DRUPAL_ROOT to the directory
+corresponding to the value of b:Drupal_info.CORE.
+
+The |drupal-ftplugin| file uses b:Drupal_info.DRUPAL_ROOT to define the
+environment variable $DRUPAL_ROOT.  This is done using a |BufEnter|
+autocommand, so the variable will be set correctly even if you switch between
+files related to different versions of Drupal.
+
+MISCELLANEOUS                                           *drupal-miscellaneous*
+In addition, this script
+        - sets |:filetype| detection and |ftplugin| support on;
+        - sets the global variables php_htmlInStrings and
+          php_parent_error_open used by the |php-syntax| file;
+        - tells vim to jump to the last position when reopening a file;
+        - and it highlights trailing whitespace as Error in Drupal files.
+
+==============================================================================
+4. Drupal filetype plugin                       *ft-drupal* *drupal-ftplugin*
+
+When editing a Drupal file, "drupal" is added as a secondary 'filetype'.  For
+example, 'filetype' may be set to "php.drupal" when editing a PHP file or to
+"css.drupal" when editing a CSS file.  When this happens, ftplugin/drupal.vim
+is |:source|d.
+
+LOCAL OPTIONS                                           *ft-drupal-options*
+The ftplugin file sets the following options:
+        'autoindent'
+        'expandtab'
+        'formatoptions'+=croql
+        'formatoptions'-=t
+        'nojoinspaces'
+        'shiftwidth'=2
+        'smartindent'
+        'smarttab'
+        'tabstop'=2
+        'tags'
+        'textwidth'=80
+This helps you to follow Drupal coding standards:  vim will indent with
+spaces, not tabs, and vim will not add a second line when joining a line
+ending in "." to the line below.  Comments (both doc blocks and //-style) will
+automatically break at 80 characters, and you can reformat them with |gq|.
+
+The 'tags' option is modified only if the CORE and DRUPAL_ROOT keys are
+defined in |b:Drupal_info|.  See |drupal-tags| and |ft-drupal-omni|.
+
+                                                        *ft-drupal-syntax*
+The script syntax/drupal.vim also encourages you to follow Drupal coding
+standards by highlighting comments as errors if they are longer than 80
+characters.
+
+PHP SETTINGS                                            *drupal-PHP*
+The file ftplugin/drupal.vim sets the following options when editing PHP
+files:
+        'comments'
+        'ignorecase'
+        'smartcase'
+You can start a doc block with
+"/**<CR>" and the indentation and comment leader will be inserted.  To end the
+block, just type "<CR>/" and the inserted "* " will automatically turn into
+"*/".  To delete the automatically inserted "// ", you can use <C-U>.
+
+LOCAL MAPPINGS                                          *drupal-local-maps*
+The ftplugin file also defines the following buffer-local mappings:
+
+                                                     *drupal-api* *drupal-\da*
+\da     Look up the API docs for a drupal function under cursor and open it in
+        a web browser.
+                                                    *drupal-hook* *drupal-\dh*
+\dh     Look up the API docs for a hook implemented by the drupal function
+        under the cursor and open it in a web browser.
+                                                 *drupal-contrib* *drupal-\dc*
+\dc     Same as \da but use http://drupalcontrib.org/.
+                                              *drupal-drush-API* *drupal-\dda*
+\dda    Look up the API docs for a drush function under cursor and open it in
+        a web browser.
+                                                *drupal-variable* *drupal-\dv*
+\dv     Get the value of the drupal variable under cursor.  (Requires drush.)
+
+You can define the |maplocalleader| variable to be something other than the
+default if you do not want these maps to start with a backslash.
+
+==============================================================================
+5. Editing .info files                          *drupal-info* *drupal-drini*
+
+Files with the extension .info, .make, and .build are recognized as "dot info"
+files and given the filetype drini (for DRupal INI).  Keys and values are
+highlighted:  standard keys with the Identifier highlight group and other keys
+with the Keyword group.  Drupal coding standards are observed.  For example,
+the name should start with an uppercase letter and the rest should be
+lowercase; the description should start with an uppercase letter and end with
+a period.  If dependencies include version restrictions, then these are
+highlighted with the |WarningMsg| group.
+
+The 'omnifunc' option is set to use syntax-based completion:  keywords can be
+completed with CTRL-X CTRL-O. See |i_CTRL-X_CTRL-O| and |syntax-omni|.  This
+works best with version 8.0 or later of the script syntaxcomplete.vim.
+Version 7.0 is included with vim 7.3, in the $VIMRUNTIME/autocomplete
+directory, and is available from
+http://www.vim.org/scripts/script.php?script_id=3172 .  As of late 2011, the
+only way to get version 8.0 is to start with 7.0 and apply the patch at
+http://drupal.org/node/1303122#comment-5213300 .
+
+==============================================================================
+6. Tag searches for Drupal core                   *drupal-tags* *$DRUPAL_ROOT*
+                                  *drupal6.tags* *drupal7.tags* *drupal8.tags*
+
+If the scripts can determine the root of your Drupal installation, then they
+will set the environment variable $DRUPAL_ROOT and add the appropriate tags
+file (currently drupal6.tags, drupal7.tags, or drupal8.tags) to the 'tags'
+option.  This lets you use vim's |tag-commands| to jump to functions and more
+that are defined in Drupal core.  For example, if the cursor is on the start
+of the line >
+        drupal_set_message('Hello, world!');
+then you can use <C-W>] to open drupal/includes/bootstrap.inc in a new window
+and jump to the definition of drupal_set_message().  See also section |29.1|
+in the user manual and |window-tag|.
+                                                         *drush-vimrc-tag-gen*
+If your system has |Exuberant_ctags| and drush installed, then you can create
+tags files for your own projects, contrib projects, or your entire Drupal
+installation with the included vimrc-tag-gen (alias tags) drush command. For
+details, see >
+  $ drush help vimrc-tag-gen
+or >
+  :Drush help vimrc-tag-gen
+
+==============================================================================
+7. Drupal/PHP omni-completion                           *ft-drupal-omni*
+
+The default |ftplugin| for PHP sets the 'omnifunc' option to use the PHP
+omni-completion script included in the standard vim distribution.  This script
+can use tags files to offer completions.  It always completes standard PHP
+functions.  If the scripts in this project can determine the root of your
+Drupal installation, then Drupal core functions and more can be completed.  If
+you provide tags files for your own projects, or contributed modules and
+themes, then their functions will also be completed.
+
+To trigger omnicompletion, type <C-X><C-O> in Insert mode.  For example, you
+can type >
+        drupal_se<C-X><C-O>
+to find 15 possible completions, including drupal_send_headers() and
+drupal_set_message().  See |compl-omni|.
+
+==============================================================================
+8. Coder support                        *ft-drupal-coder* *ft-drupal-make*
+
+If you install and enable the Coder module, then it includes a PHP script that
+will correct coding violations, saving the original file as
+<filename>.coder.orig and replacing the file with the corrected one.  The
+vimrc project includes a |:compiler| plugin that invokes the Coder script.  To
+set the compiler, simply >
+        :compiler coder
+and then use the |:make| command: >
+        :make %         " % refers to the current file.
+        :e!             " re-load the updated file.
+        :diffsplit %.coder.orig
+to update the file and compare with the original version in |diff-mode|.  (See
+also |08.7| in the users' manual for an introduction to diff mode.)  After
+setting the compiler, you can also update other files or entire directories: >
+        :make another_file.php
+        :make includes/myfile.inc
+        :make includes/
+        :make .         " . refers to vim's working directory
+        :make %:p:h     " directory of the current file
+
+==============================================================================
+9. Drush integration                            *drupal-drush* *drupal-:Drush*
+
+See also |vimrc-install|, |vimrc-tag-gen|, |drupal-\dv|, and |drupal-\dda|.
+
+If drush is installed, then the command >
+        :Drush <subcommand>
+will execute the subcommand using drush and save the output in a scratch
+buffer.  This only works for non-interactive commands; you can use the --yes
+or --no drush flags if you are sure.  Subcommands and site aliases (start with
+'@') are completed intelligently. |cmdline-completion| Examples: >
+        :Drush help
+        " Compare installed packages on local and stage:
+        :Drush @local pml
+        :diffthis
+        :Drush @stage pml
+        :diffthis
+        " Living dangerously:
+        :Drush --yes rsync @stage:%files @local:%files
+
+==============================================================================
+10. GUI menus                           *drupal-menus* *drupal-CreateMaps*
+
+If you are using a GUI version of vim (as opposed to running vim in a terminal
+window) then there are several options available under the Drupal menu.  You
+can add your own menus, including command-line hints, using
+drupal#CreateMaps().  Example: >
+        :let s:options = {'root': 'Drupal', 'special': '<buffer>'}
+        :nmap <Plug>DrupalAPI :silent call <SID>OpenURL("api.d.o")<CR><C-L>
+        :call drupal#CreateMaps('n', 'Drupal API', '<LocalLeader>da',
+                \ '<Plug>DrupalAPI', s:options)
+These lines (from ftplugin/drupal.vim) define the menu item
+'Drupal.Drupal API' with the command-line hint |\da|, calling the s:OpenURL()
+function to open api.drupal.org on the page describing the function under the
+cursor.  The "n" argument indicates that this menu item is available only in
+Normal mode.
+
+Some menu items perform complicated or rarely-used tasks. Others are there
+mostly to teach you the keyboard shortcuts. Here is a summary of the menus:
+
+Tag commands: Drupal.Tags |tag-commands|                    *drupal-menu-tags*
+  Tag under cursor:
+    Jump to the definition of the keyword under the cursor. |CTRL-]|
+  Ditto, split window:
+    Open a new window and jump to the definition of the keyword under the
+    cursor. |CTRL-W_]|
+  Got to a tag.:
+    Enter a tag, such as "node.module", on the command line. |:tag|
+  Ditto, split window:
+    Enter a tag on the command line and split the window. |:stag|
+  Search for tag.:
+    Enter a |pattern|, such as "drupal_set_" or "node_.*form\>", on the
+    command line. |:tag|
+  Ditto, split window:
+    Enter a |pattern| on the command line and split the window. |:stag|
+  Choose one match.:
+    See a list of all tag matches for the previous tag command and jump to one
+    of them. Even if you use a complete tag, there may be multiple matches.
+    For example, "execute" is defined for several database-related classes.
+    |:tselect|
+  tag-gen options:
+    Show the help text for the |vimrc-tag-gen| drush command, using |:Drush|.
+  tag-gen current project:
+    Generate a tags file for the current project (module, theme, etc.) using
+    |vimrc-tag-gen|.
+  tag-gen Drupal root:
+    Generate a tags file for the Drupal root directory using |vimrc-tag-gen|.
+    See |$DRUPAL_ROOT|.
+
+The three tag-gen menu items are only present if exuberant |ctags| is in your
+path or one of /usr/bin/ or /usr/local/bin/.
+
+Top-level commands: these menu items may be rearranged in a future release.
+  Drupal API:
+    Lookup the API docs for a drupal function under cursor.       |drupal-\da|
+  Drupal hook:
+    Lookup the API docs for a hook implemented by the drupal      |drupal-\dh|
+        function under the cursor.
+  Drupal contrib:
+    Same as \da but use http://drupalcontrib.org/.                |drupal-\dc|
+  Drush API:
+    Lookup the API docs for a drush function under cursor.       |drupal-\dda|
+  Get variable:
+    Get the value of the drupal variable under cursor.            |drupal-\dv|
+        (Requires drush.)
+
+The menu items that open a web browser are only present if one of the commands
+open (Mac), start (Windows), or xdg-open (Linux) is available.
+
+Configuration Drupal.Configure                         *drupal-menu-configure*
+  Set Drupal root:
+    If the script cannot guess the location of your Drupal root directory, you
+    can set it using this item. See |g:Drupal_dirs| to set permanent defaults.
+  Show Drupal info:
+    Show the current value of |b:Drupal_info|.
+
+==============================================================================
+11. Drupal snippets                                     *drupal-snippets*
+
+This project includes many snippets, organized by Drupal version, for use with
+the snipMate plugin (https://github.com/msanders/snipmate.vim).  If you have
+installed snipMate.vim, then see |snipMate-usage| for details.  (After
+installing snipMate.vim, you should have used |:Helptags| or |:helptags| to
+install the help files.)  Example: >
+        hook_block<Tab>
+(in Insert mode) will expand to an outline of the code you need to implement
+hook_block().
+
+==============================================================================
+12. Updates and support                 *drupal-update* *drupal-support*
+
+For the latest version of this project, see http://drupal.org/project/vimrc .
+To file a bug report or feature request, see the corresponding issues queue:
+http://drupal.org/project/issues/vimrc?status=All&categories=All
+
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:

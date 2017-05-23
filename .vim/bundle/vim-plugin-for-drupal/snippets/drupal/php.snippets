@@ -1,0 +1,266 @@
+## Forms API
+
+snippet checkbox
+	$form['${1:/* form element */}'] = array(
+	  '#type' => 'checkbox',
+	  '#title' => t('${2:/* title */}'),
+	  '#description' => t('${3:/* description */}'),
+	);
+
+snippet checkboxes
+	$form['${1:/* form element */}'] = array(
+	  '#type' => 'checkboxes',
+	  '#title' => t('${2:/* title */}'),
+	  '#description' => t('${3:/* description */}'),
+	  '#options' => array(
+	    '${4:/* key */}' => t('${5:/* value */}'),
+	  ),
+	);
+
+snippet file
+	$form['${1:/* form element */}'] = array(
+	  '#type' => 'file',
+	  '#title' => t('${2:/* title */}'),
+	  '#description' => t('${3:/* description */}'),
+	);
+
+snippet select
+	$form['${1:/* form element */}'] = array(
+	  '#type' => 'select',
+	  '#title' => t('${2:/* title */}'),
+	  '#description' => t('${3:/* description */}'),
+	  '#options' => array(
+	    '${4:/* key */}' => t('${5:/* value */}'),
+	  ),
+	);
+
+snippet submit
+	$form['${1:/* form element */}'] = array(
+	  '#type' => 'submit',
+	  '#value' => t('${2:/* value */}'),
+	);
+
+snippet textarea
+	$form['${1:/* form element */}'] = array(
+	  '#type' => 'textarea',
+	  '#title' => t('${2:/* title */}'),
+	  '#rows' => ${3:/* default:5 */},
+	);
+
+snippet textfield
+	$form['${1:/* form element */}'] = array(
+	  '#type' => 'textfield',
+	  '#title' => t('${2:/* title */}'),
+	  '#size' => ${3:/* default:60 */},
+	);
+
+snippet text_format
+	$form['${1:/* form element */}'] = array(
+	  '#type' => 'text_format',
+	  '#title' => t('${2:/* title */}'),
+	  '#size' => ${3:/* default:60 */},
+	  '#format' => ${4:NULL},
+	);
+
+## drupal_ functions
+
+snippet drupal_get_form
+	drupal_get_form('${1:/* Form ID */}', $${2:argument});
+
+snippet drupal_get_path
+	drupal_get_path('${1:/* Type: module, theme or theme_engine */}', '${2:/* Name */}');
+
+snippet drupal_get_path_alias
+	drupal_get_path_alias('node/${1:nid}', ${2:language (optional)});
+
+# Shortcut for drupal_set_message
+snippet dsm
+	drupal_set_message('${1:message}.', '${2:status, warning, or error}', ${3:repeat (default:TRUE)});
+
+## Hooks
+
+snippet hook_cron
+	/**
+	 * Implements hook_cron().
+	 */
+	function `Filename()`_cron() {
+	  /*
+	   *  // Short-running operation example, not using a queue:
+	   *  // Delete all expired records since the last cron run.
+	   *  $expires = variable_get('mymodule_cron_last_run', REQUEST_TIME);
+	   *  db_delete('mymodule_table')
+	   *    ->condition('expires', $expires, '>=')
+	   *    ->execute();
+	   *  variable_set('mymodule_cron_last_run', REQUEST_TIME);
+	   *
+	   *  // Long-running operation example, leveraging a queue:
+	   *  // Fetch feeds from other sites.
+	   *  $result = db_query('SELECT * FROM {aggregator_feed} WHERE checked + refresh < :time AND refresh != :never', array(
+	   *    ':time' => REQUEST_TIME,
+	   *    ':never' => AGGREGATOR_CLEAR_NEVER,
+	   *  ));
+	   *  $queue = DrupalQueue::get('aggregator_feeds');
+	   *  foreach ($result as $feed) {
+	   *    $queue->createItem($feed);
+	   *  }
+	   */
+	   ${1:/* Your code here */}
+	}
+snippet hook_form_alter
+	/**
+	 * Implements hook_form_alter().
+	 */
+	function `Filename()`_form_alter(&$form, $form_state, $form_id) {
+	  switch ($form_id) {
+	    case '${1:/* your form */}':
+	      ${2:// your code.}
+	  }
+	}
+
+snippet hook_help
+	/**
+	 * Implements hook_help().
+	 */
+	function `Filename()`_help($path, $arg) {
+	  switch ($path) {
+	    // Main module help for the block module
+	    /*
+	     *case 'admin/help#block':
+	     *  return '<p>' . t('Blocks are boxes of content rendered into an area, or region, of a web page. The default theme Bartik, for example, implements the regions "Sidebar first", "Sidebar second", "Featured", "Content", "Header", "Footer", etc., and a block may appear in any one of these areas. The <a href="@blocks">blocks administration page</a> provides a drag-and-drop interface for assigning a block to a region, and for controlling the order of blocks within regions.', array('@blocks' => url('admin/structure/block'))) . '</p>';
+	     */
+	    case '${1:admin/help#`Filename()`}':
+	      return '<p>' . t('${2:help text}', array('${3:@placeholder}' => ${4:value})) . '</p>';
+	  }
+	}
+snippet hook_init
+	/**
+	 * Implements hook_init().
+	 */
+	function `Filename()`_init() {
+	  ${1:/* your code here */}
+	}
+
+snippet hook_mail_alter
+	/**
+	 * Implements hook_mail_alter().
+	 */
+	function `Filename()`_mail_alter(&$message) {
+	  /*
+	   *if ($message['id'] == 'modulename_messagekey') {
+	   *  $message['body'][] = "--\nMail sent out from " . variable_get('sitename', t('Drupal'));
+	   *}
+	   */
+	  if ($message['id'] == '${1}') {
+	    $message['body'][] = "${2}";
+	  }
+	}
+snippet hook_menu
+	/**
+	 * Implements hook_menu().
+	 */
+	function `Filename()`_menu() {
+	  /*
+	   *$items['blog'] = array(
+	   *  'title' => 'blogs',
+	   *  'page callback' => 'blog_page',
+	   *  'access arguments' => array('access content'),
+	   *  'type' => MENU_SUGGESTED_ITEM,
+	   *);
+	   */
+	  $items['${1:path/to/register}'] = array(
+	    'title' => '${2:Page title}',
+	    'page callback' => '${3:callback_function}',
+	    'page arguments' => array(${4}),
+	    'access arguments' => array('${5:View published content}'),
+	    'type' => ${6:MENU_NORMAL_ITEM}, // MENU_CALLBACK, MENU_LOCAL_TASK, MENU_DEFAULT_LOCAL_TASK, MENU_LOCAL_ACTION, MENU_SUGGESTED_ITEM,
+	    // 'file' => '${7:`Filename()`.pages.inc}',
+	  );
+	
+	  return $items;
+	}
+snippet hook_menu_alter
+	/**
+	 * Implements hook_menu_alter().
+	 */
+	function `Filename()`_menu_alter(&$items) {
+	  // Example - disable the page at node/add
+	  /*
+	   *$items['node/add']['access callback'] = FALSE;
+	   */
+	  ${1:/* Your code here */}
+	}
+snippet hook_node_operations
+	/**
+	 * Implements hook_node_operations().
+	 */
+	function `Filename()`_node_operations() {
+	  $operations = array(
+	    '${1:/* operation */}' => array(
+	      'label' => t('${2:/* label */}'),
+	      'callback' => '${3:/* callback */}',
+	    ),
+	  );
+	  return $operations;
+	}
+	
+	/**
+	 * Callback function
+	 */
+	function $3 {
+	  ${4:// Your code here.}
+	}
+
+snippet hook_theme
+	/**
+	 * Implements hook_theme().
+	 */
+	function `Filename()`_theme($existing, $type, $theme, $path) {
+	  return array(
+	    /*
+	     *'forum_icon' => array(
+	     *  'variables' => array('new_posts' => NULL, 'num_posts' => 0, 'comment_mode' => 0, 'sticky' => 0),
+	     *),
+	     *'status_report' => array(
+	     *  'render element' => 'requirements',
+	     *  'file' => 'system.admin.inc',
+	     *),
+	     */
+	    '${1}' => array(
+	      'render element' => '${2}',
+	      'file' => '${3}',
+	      'variables' => array('${4}' => NULL, '${5}' => NULL${6}),
+	    ),
+	  );
+	}
+snippet hook_user_operations
+	/**
+	 * Implements hook_user_operations().
+	 */
+	function `Filename()`_user_operations() {
+	  $operations = array(
+	    '${1:/* operation */}' => array(
+	      'label' => t('${2:/* label */}'),
+	      'callback' => '${3:/* callback */}',
+	    ),
+	  );
+	  return $operations;
+	}
+	
+	/**
+	 * Callback function
+	 */
+	function $3 {
+	  ${4:// Your code here.}
+	}
+
+## Everything else
+
+snippet l
+	l(${1:/* text */}, ${2:/* link */})
+
+snippet url
+	url('${1:path}', array('query' => '${2:query}', 'absolute' => ${3:false}))
+
+snippet watchdog
+	watchdog('${1:/* type */}', '${2:/* message */}'${3});
+

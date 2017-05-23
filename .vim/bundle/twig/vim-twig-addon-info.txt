@@ -1,0 +1,9 @@
+{
+  "name" : "vim-twig",
+  "version" : "0.1",
+  "author"  : "F. Gabriel Gosselin <gabriel@evidens.ca>",
+  "maintainer"  : "F. Gabriel Gosselin <gabriel@evidens.ca>",
+  "repository": { "type" : "git", "url" : "git://github.com/beyondwords/vim-twig.git"},
+  "dependencies" : {},
+  "description" : "Support Twig template language"
+}
