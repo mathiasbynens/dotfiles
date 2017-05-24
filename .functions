@@ -234,3 +234,10 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+function o-github() {
+	[[ -z $1 ]] && set origin;
+	local slug=$(git remote get-url $1 | sed -n 's/.*:\(.*\)$/\1/p');
+	[[ $slug =~ .+\/.+ ]] || { echo "Couldn't parse remote url!"; return 1; };
+	open "https://github.com/${slug}";
+}
