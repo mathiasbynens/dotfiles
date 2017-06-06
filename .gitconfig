@@ -1,10 +1,20 @@
+[user]
+	name = Corey Alexander
+	email = coreyja@gmail.com
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%C(cyan)\\ [%cn]" --decorate --date=relative
 
 	# View the current working tree status using the short format
 	s = status -s
+
+	#co shourtcut for checkout
+	co = checkout
+
+	# Current Branch
+	current-branch = symbolic-ref --short HEAD
 
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -66,7 +76,7 @@
 	# Merge GitHub pull request on top of the current branch or,
 	# if a branch name is specified, on top of the specified branch
 	mpr = "!f() { \
-		declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+		declare currentBranch=\"$(git current-branch)\"; \
 		declare branch=\"${2:-$currentBranch}\"; \
 		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
 			git fetch origin refs/pull/$1/head:pr/$1 && \
@@ -161,7 +171,7 @@
 	# Use the Git 1.x.x default to avoid errors on machines with old Git
 	# installations. To use `simple` instead, add this to your `~/.extra` file:
 	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
+	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
@@ -186,3 +196,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+	
+# Force SSH auth for GitHub
+[url "git@github.com:"]
+    insteadOf = "https://github.com/"

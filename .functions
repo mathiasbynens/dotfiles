@@ -234,3 +234,16 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Run RuboCop auto-correct with the Cache
+function autocorrect () {
+  echo 'Running Rubocop on all files (with cache)'
+  FAILED_FILES=$(bundle exec rubocop -f files)
+  if [ -n "$FAILED_FILES" ]; then
+    echo "Errors found with the following files. Running autocorrect on them."
+    echo $FAILED_FILES
+    bundle exec rubocop --auto-correct $FAILED_FILES
+  else
+    echo 'No Files to AutoCorrect!'
+  fi
+}

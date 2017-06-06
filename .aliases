@@ -17,6 +17,9 @@ alias g="git"
 alias h="history"
 alias j="jobs"
 
+# Use Hub for github
+[[ -s $(which hub) ]] && alias git="hub"
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
@@ -35,6 +38,8 @@ alias la="ls -laF ${colorflag}"
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
+alias :cop:="g pull --ff-only; autocorrect; git ca -m :cop:; git push"
+
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
 
@@ -43,6 +48,9 @@ alias ls="command ls ${colorflag}"
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+# Add Types to RipGrep since they don't persist anywhere normally
+alias rg="rg --type-add scss:*.scss --type-add erb:*.erb --type-add htmlerb:*.html.erb --type-add jserb:*.js.erb"
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -162,3 +170,14 @@ alias reload="exec $SHELL -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# Git Current Branch. Mostly for usage in other aliases/functions
+alias current-branch="git rev-parse --abbrev-ref HEAD"
+alias publish="git push --set-upstream origin $(current-branch)"
+
+# Docker Aliases
+alias de="docker-compose exec --user '$(id -u):$(id -g)'"
+
+# Rails Developing Aliases
+alias be="bundle exec"
+

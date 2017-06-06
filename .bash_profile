@@ -1,5 +1,7 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
+# Add GnuCoreUtils to the Path
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -46,3 +48,30 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# Enable AutoJump
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# Add fzf to Bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+complete -F _fzf_file_completion -o default -o bashdefault rspec
+complete -F _fzf_file_completion -o default -o bashdefault rake
+
+# Init RBenv
+eval "$(rbenv init -)"
+
+# TheFuck
+eval $(thefuck --alias)
+
+# In order for gpg to find gpg-agent, gpg-agent must be running,
+# and there must be an env variable pointing GPG to the gpg-agent socket.
+# This little script, which must be sourced
+# in your shell's init script (ie, .bash_profile, .zshrc, whatever),
+# will either start gpg-agent or set up the
+# GPG_AGENT_INFO variable if it's already running.
+if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
+    source ~/.gnupg/.gpg-agent-info
+    export GPG_AGENT_INFO
+else
+    eval $(gpg-agent --daemon --enable-ssh-support --write-env-file ~/.gnupg/.gpg-agent-info)
+fi
