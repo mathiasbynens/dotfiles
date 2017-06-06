@@ -141,6 +141,22 @@ sudo touch /private/var/vm/sleepimage
 sudo chflags uchg /private/var/vm/sleepimage
 
 ###############################################################################
+# Firewall                                                                    #
+###############################################################################
+
+# Enable the firewall
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -bool true
+
+# Allow built in software to receive incoming connections
+sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -bool true
+
+# Allow downloaded and signed software to receive incoming connections
+sudo defaults write /Library/Preferences/com.apple.alf allowdownloadsignedenabled -bool true
+
+# Enable firewall stealth mode (no response to ICMP / ping requests)
+sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -bool true
+
+###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
