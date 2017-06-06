@@ -24,6 +24,9 @@ brew install gnu-sed --with-default-names
 brew install bash
 brew tap homebrew/versions
 brew install bash-completion2
+# Adding Bash 4 to shell
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+chsh -s /usr/local/bin/bash
 
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
@@ -88,6 +91,7 @@ brew install git-lfs
 brew install imagemagick --with-webp
 brew install lua
 brew install lynx
+brew install node
 brew install p7zip
 brew install pigz
 brew install pv

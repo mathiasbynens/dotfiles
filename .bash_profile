@@ -1,3 +1,9 @@
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+if which phpenv > /dev/null; then eval "$(phpenv init -)"; fi
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
+
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
