@@ -234,3 +234,10 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# unzips zip file in directory with same name without extension
+function uzip() {
+  filename=$(basename "$1")
+  filename="${filename%.*}"
+  unzip -d $filename $1
+}
