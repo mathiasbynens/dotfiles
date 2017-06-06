@@ -1,5 +1,7 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
+# cd directly into any $HOME directory from any current directory
+export CDPATH=".:$HOME"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -9,21 +11,16 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 done;
 unset file;
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
-
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
-
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Autocorrect typos in path names when using `cd`
 # * Recursive globbing, e.g. `echo **/*.txt`
-for option in autocd globstar; do
+# * Append to the Bash history file, rather than overwriting it
+# * Case-insensitive globbing (used in pathname expansion)
+for option in autocd cdspell globstar histappend nocaseglob; do
 	shopt -s "$option" 2> /dev/null;
 done;
+unset option;
 
 # Add tab completion for many Bash commands
 if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
@@ -34,7 +31,7 @@ fi;
 
 # Enable tab completion for `g` by marking it as an alias for `git`
 if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	complete -o default -o nospace -F _git g;
+	complete -o "default" -o "nospace" -F _git g;
 fi;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
