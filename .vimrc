@@ -112,3 +112,8 @@ if has("autocmd")
  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
  \| exe "normal! g'\"" | endif
 endif
+
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+" Find 'tags' file in current directory, or traverse up until it's found.
+" http://stackoverflow.com/a/8285918
+set tags=./tags,tags;
