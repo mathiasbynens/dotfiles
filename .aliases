@@ -17,6 +17,10 @@ alias h="history"
 alias j="jobs"
 alias ex="exit"
 
+# Get around to common places
+alias gtsan="cd /Users/chill/Projects/sandcastle/docroot/sites/all"
+alias gttheme="cd /Users/chill/Projects/sandcastle/docroot/sites/vm.sandcastle.bonniercorp.com/themes/sand"
+
 # Git shortcuts
 alias gs="git status"
 alias ga="git add"
