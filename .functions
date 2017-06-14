@@ -245,3 +245,7 @@ function circle {
   url="${url}/tree/${branch}"
   echo "Opening ${url} $(\open ${url})"
 }
+
+function ffs {
+	eslint "**/*.js" --fix
+}
