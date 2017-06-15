@@ -12,6 +12,10 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 if [ -f ~/.ssh-agent ]; then . ~/.ssh-agent; fi
 
+function ssh_proxy(){
+    ssh -D 12345 -N douglasm@graviton-jump-host-scottsdale
+}
+
 function ssh_aws(){
     ssh -i ~/.ssh/puppet_id_rsa centos@$1
 }
