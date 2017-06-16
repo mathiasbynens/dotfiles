@@ -13,7 +13,7 @@ warning, please configure dropbox and download .config folder
     2. install apps
     3. install ohmyzsh
 
-2. set preferences
+2. set preferencesi 
     warning, please configure dropbox and download .config folder (verify folders!)
     1. setup osx
     2. setup ssh
