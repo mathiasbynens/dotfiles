@@ -28,10 +28,7 @@
 	"match_brackets": true,
 	"match_brackets_angle": true,
 	"remember_open_files": false,
-	"rulers":
-	[
-		80
-	],
+	"rulers":[],
 	"show_encoding": true,
 	"show_line_endings": true,
 	"tab_size": 2,
