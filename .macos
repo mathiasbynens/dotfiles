@@ -31,8 +31,8 @@ sudo nvram SystemAudioVolume=" "
 # Disable transparency in the menu bar and elsewhere on Yosemite
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
-# Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string "0.968627 0.831373 1.000000"
+# Set highlight color to dracula orange
+defaults write NSGlobalDomain AppleHighlightColor -string "0.998459 0.720155 0.423132"
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
