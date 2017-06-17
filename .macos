@@ -32,7 +32,7 @@ sudo nvram SystemAudioVolume=" "
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
 # Set highlight color to dracula orange
-defaults write NSGlobalDomain AppleHighlightColor -string "0.998459 0.720155 0.423132"
+defaults write NSGlobalDomain AppleHighlightColor -string "0.546599 0.913398 0.993855"
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
