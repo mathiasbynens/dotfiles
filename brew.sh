@@ -69,6 +69,7 @@ brew install wakeonlan
 brew install thefuck
 brew install tiny-fugue
 brew install wallpaper
+brew cask install microsoft-remote-desktop-beta
 
 # Cask time
 brew cask install sublime-text
