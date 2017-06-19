@@ -23,12 +23,20 @@
 	"font_face": "Monaco",
 	"font_size": 12,
 	"highlight_modified_tabs": true,
+  "highlight_line": true,
 	"hot_exit": false,
-	"line_padding_bottom": 5,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	// "line_padding_top": 1,
+ //  "line_padding_bottom": 1,
 	"match_brackets": true,
 	"match_brackets_angle": true,
 	"remember_open_files": false,
-	"rulers":[],
+	"rulers":
+	[
+	],
 	"show_encoding": true,
 	"show_line_endings": true,
 	"tab_size": 2,
