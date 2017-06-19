@@ -21,7 +21,7 @@
 		"node_modules"
 	],
 	"font_face": "Monaco",
-	"font_size": 12,
+	"font_size": 13,
 	"highlight_modified_tabs": true,
   "highlight_line": true,
 	"hot_exit": false,
