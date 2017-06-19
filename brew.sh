@@ -64,6 +64,14 @@ brew install mysql
 brew cask install java
 brew install maven
 
+# puppet-site shit
+brew cask install virtualbox
+brew cask install vagrant
+vagrant plugin install vagrant-host-shell
+vagrant plugin install vagrant-share --plugin-version 1.1.8
+# not technically from homebrew
+# gem install r10k --user-install
+
 # personal
 brew install wakeonlan
 brew install thefuck
