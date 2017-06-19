@@ -112,8 +112,8 @@ PS1+="\[${hostStyle}\]\h"; # host
 PS1+="\[${white}\] (";
 PS1+="\[${blue}\]\w"; # working directory full path
 PS1+="\$(prompt_git \"\[${white}\]:\[${cyan}\]\" \"\[${red}\]\")\[${white}\])"; # Git repository details
-PS1+="\n";
-PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
+PS1+="\[${reset}\]\n";
+PS1+="$ "; # `$` (and reset color)
 export PS1;
 
 PS2="\[${yellow}\]→ \[${reset}\]";
