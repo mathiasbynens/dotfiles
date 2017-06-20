@@ -58,6 +58,7 @@ brew install jq
 brew install cli53
 brew install subversion
 brew install terraform
+brew install terraform-docs
 brew install awscli
 brew install percona-toolkit
 brew install mysql
