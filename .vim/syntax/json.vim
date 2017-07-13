@@ -31,10 +31,10 @@ syn match   jsonEscape    "\\u\x\{4}" contained
 syn match   jsonNoQuotes  "\<\a\+\>"
 
 " Syntax: Numbers {{{2
-syn match   jsonNumber    "-\=\<\%(0\|[1-9]\d*\)\%(\.\d\+\)\=\%([eE][-+]\=\d\+\)\=\>"
+syn match   jsonNumber    "-\=\<\%(0\|[1-9]\d* \)\%(\.\d\+\)\=\%([eE][-+]\=\d\+\)\=\>"
 
 " Syntax: An integer part of 0 followed by other digits is not allowed.
-syn match   jsonNumError  "-\=\<0\d\.\d*\>"
+syn match   jsonNumError  "-\=\<0\d\.\d* \>"
 
 " Syntax: Boolean {{{2
 syn keyword jsonBoolean   true false

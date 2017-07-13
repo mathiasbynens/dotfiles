@@ -37,12 +37,12 @@
 " 2.  Next, move or clone the `vim-colors-solarized` directory so that it is
 "     a subdirectory of the `.vim/bundle` directory.
 "
-"     a. **clone with git:**
+"     a. * * clone with git:* * 
 "
 "       $ cd ~/.vim/bundle
 "       $ git clone git://github.com/altercation/vim-colors-solarized.git
 "
-"     b. **or move manually into the pathogen bundle directory:**
+"     b. * * or move manually into the pathogen bundle directory:* * 
 "         In the parent directory of vim-colors-solarized:
 "
 "         $ mv vim-colors-solarized ~/.vim/bundle/
@@ -81,11 +81,11 @@
 " IMPORTANT NOTE FOR TERMINAL USERS:
 " 
 " If you are going to use Solarized in Terminal mode (i.e. not in a GUI version 
-" like gvim or macvim), **please please please** consider setting your terminal 
+" like gvim or macvim), * * please please please* *  consider setting your terminal 
 " emulator's colorscheme to used the Solarized palette. I've included palettes 
 " for some popular terminal emulator as well as Xdefaults in the official 
 " Solarized download available from [Solarized homepage]. If you use 
-" Solarized *without* these colors, Solarized will need to be told to degrade
+" Solarized * without*  these colors, Solarized will need to be told to degrade
 " its colorscheme to a set compatible with the limited 256 terminal palette 
 " (whereas by using the terminal's 16 ansi color values, you can set the 
 " correct, specific values for the Solarized palette).
@@ -94,7 +94,7 @@
 " the box for you. If you are using a terminal emulator that supports 256 
 " colors and don't want to use the custom Solarized terminal colors, you will 
 " need to use the degraded 256 colorscheme. To do so, simply add the following 
-" line *before* the `colorschem solarized` line:
+" line * before*  the `colorschem solarized` line:
 " 
 "     let g:solarized_termcolors=256
 " 
@@ -115,7 +115,7 @@
 "     imap <unique> <F5> <Plug>ToggleBackground
 "     vmap <unique> <F5> <Plug>ToggleBackground
 " 
-" Note that it is important to *not* use the noremap map variants. The plugin 
+" Note that it is important to * not*  use the noremap map variants. The plugin 
 " uses noremap internally. You may run `:help togglebg` for more information.
 "
 " ---------------------------------------------------------------------
@@ -148,7 +148,7 @@
 " to the Solarized palette).
 "
 " If you are going to use Solarized in Terminal mode (i.e. not in a GUI
-" version like gvim or macvim), **please please please** consider setting your
+" version like gvim or macvim), * * please please please* *  consider setting your
 " terminal emulator's colorscheme to used the Solarized palette. I've included
 " palettes for some popular terminal emulator as well as Xdefaults in the
 " official Solarized download available from:
@@ -163,7 +163,7 @@
 " If you use a terminal emulator with a transparent background and Solarized
 " isn't displaying the background color transparently, set this to 1 and
 " Solarized will use the default (transparent) background of the terminal
-" emulator. *urxvt* required this in my testing; iTerm2 did not.
+" emulator. * urxvt*  required this in my testing; iTerm2 did not.
 "
 " Note that on Mac OS X Terminal.app, solarized_termtrans is set to 1 by 
 " default as this is almost always the best option. The only exception to this 
@@ -207,10 +207,10 @@
 " ---------------------------------------------------------------------
 " Download palettes and files from: http://ethanschoonover.com/solarized
 "
-" L\*a\*b values are canonical (White D65, Reference D50), other values are
+" L\* a\* b values are canonical (White D65, Reference D50), other values are
 " matched in sRGB space.
 "
-" SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      sRGB        HSB
+" SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L* A* B      sRGB        HSB
 " --------- ------- ---- -------  ----------- ---------- ----------- -----------
 " base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
 " base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
@@ -371,7 +371,7 @@ elseif g:solarized_termcolors == 256
     let s:green       = "64"
 else
     let s:vmode       = "cterm"
-    let s:bright      = "* term=bold cterm=bold"
+    let s:bright      = "*  term=bold cterm=bold"
     let s:base03      = "0".s:bright
     let s:base02      = "0"
     let s:base01      = "2".s:bright
@@ -567,10 +567,10 @@ endif
 exe "hi! Normal"         .s:fmt_none   .s:fg_base0  .s:bg_back
 
 exe "hi! Comment"        .s:fmt_ital   .s:fg_base01 .s:bg_none
-"       *Comment         any comment
+"       * Comment         any comment
 
 exe "hi! Constant"       .s:fmt_none   .s:fg_cyan   .s:bg_none
-"       *Constant        any constant
+"       * Constant        any constant
 "        String          a string constant: "this is a string"
 "        Character       a character constant: 'c', '\n'
 "        Number          a number constant: 234, 0xff
@@ -578,33 +578,33 @@ exe "hi! Constant"       .s:fmt_none   .s:fg_cyan   .s:bg_none
 "        Float           a floating point constant: 2.3e10
 
 exe "hi! Identifier"     .s:fmt_none   .s:fg_blue   .s:bg_none
-"       *Identifier      any variable name
+"       * Identifier      any variable name
 "        Function        function name (also: methods for classes)
 "
 exe "hi! Statement"      .s:fmt_none   .s:fg_green  .s:bg_none
-"       *Statement       any statement
+"       * Statement       any statement
 "        Conditional     if, then, else, endif, switch, etc.
 "        Repeat          for, do, while, etc.
 "        Label           case, default, etc.
-"        Operator        "sizeof", "+", "*", etc.
+"        Operator        "sizeof", "+", "* ", etc.
 "        Keyword         any other keyword
 "        Exception       try, catch, throw
 
 exe "hi! PreProc"        .s:fmt_none   .s:fg_orange .s:bg_none
-"       *PreProc         generic Preprocessor
+"       * PreProc         generic Preprocessor
 "        Include         preprocessor #include
 "        Define          preprocessor #define
 "        Macro           same as Define
 "        PreCondit       preprocessor #if, #else, #endif, etc.
 
 exe "hi! Type"           .s:fmt_none   .s:fg_yellow .s:bg_none
-"       *Type            int, long, char, etc.
+"       * Type            int, long, char, etc.
 "        StorageClass    static, register, volatile, etc.
 "        Structure       struct, union, enum, etc.
 "        Typedef         A typedef
 
 exe "hi! Special"        .s:fmt_none   .s:fg_red    .s:bg_none
-"       *Special         any special symbol
+"       * Special         any special symbol
 "        SpecialChar     special character in a constant
 "        Tag             you can use CTRL-] on this
 "        Delimiter       character that needs attention
@@ -612,16 +612,16 @@ exe "hi! Special"        .s:fmt_none   .s:fg_red    .s:bg_none
 "        Debug           debugging statements
 
 exe "hi! Underlined"     .s:fmt_none   .s:fg_violet .s:bg_none
-"       *Underlined      text that stands out, HTML links
+"       * Underlined      text that stands out, HTML links
 
 exe "hi! Ignore"         .s:fmt_none   .s:fg_none   .s:bg_none
-"       *Ignore          left blank, hidden  |hl-Ignore|
+"       * Ignore          left blank, hidden  |hl-Ignore|
 
 exe "hi! Error"          .s:fmt_bold   .s:fg_red    .s:bg_none
-"       *Error           any erroneous construct
+"       * Error           any erroneous construct
 
 exe "hi! Todo"           .s:fmt_bold   .s:fg_magenta.s:bg_none
-"       *Todo            anything that needs extra attention; mostly the
+"       * Todo            anything that needs extra attention; mostly the
 "                        keywords TODO FIXME and XXX
 "
 "}}}
@@ -940,7 +940,7 @@ hi! link pandocMetadataTitle             pandocMetadata
 " mode (detected with the script scope s:vmode variable). It also allows for 
 " other potential terminal customizations that might make gui mode suboptimal.
 "
-autocmd GUIEnter * if (s:vmode != "gui") | exe "colorscheme " . g:colors_name | endif
+autocmd GUIEnter *  if (s:vmode != "gui") | exe "colorscheme " . g:colors_name | endif
 "}}}
 " License "{{{
 " ---------------------------------------------------------------------

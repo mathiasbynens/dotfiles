@@ -54,7 +54,7 @@ function fs() {
 	if [[ -n "$@" ]]; then
 		du $arg -- "$@";
 	else
-		du $arg .[^.]* ./*;
+		du $arg .[^.]*  ./* ;
 	fi;
 }
 
@@ -69,7 +69,7 @@ fi;
 # Create a data URL from a file
 function dataurl() {
 	local mimeType=$(file -b --mime-type "$1");
-	if [[ $mimeType == text/* ]]; then
+	if [[ $mimeType == text/*  ]]; then
 		mimeType="${mimeType};charset=utf-8";
 	fi
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
@@ -106,7 +106,7 @@ function phpserver() {
 function gz() {
 	local origsize=$(wc -c < "$1");
 	local gzipsize=$(gzip -c "$1" | wc -c);
-	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
+	local ratio=$(echo "$gzipsize *  100 / $origsize" | bc -l);
 	printf "orig: %d bytes\n" "$origsize";
 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
@@ -115,7 +115,7 @@ function gz() {
 # Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
 function json() {
 	if [ -t 0 ]; then # argument
-		python -mjson.tool <<< "$*" | pygmentize -l javascript;
+		python -mjson.tool <<< "$* " | pygmentize -l javascript;
 	else # pipe
 		python -mjson.tool | pygmentize -l javascript;
 	fi;
@@ -168,13 +168,13 @@ function getcertnames() {
 	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
 		| openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1);
 
-	if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
+	if [[ "${tmp}" = * "-----BEGIN CERTIFICATE-----"*  ]]; then
 		local certText=$(echo "${tmp}" \
 			| openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
 			no_serial, no_sigdump, no_signame, no_validity, no_version");
 		echo "Common Name:";
 		echo ""; # newline
-		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//";
+		echo "${certText}" | grep "Subject:" | sed -e "s/^.* CN=//" | sed -e "s/\/emailAddress=.* //";
 		echo ""; # newline
 		echo "Subject Alternative Name(s):";
 		echo ""; # newline

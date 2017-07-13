@@ -32,7 +32,7 @@ if exists("&undodir")
 endif
 
 " Don’t create backups when editing files in certain directories
-set backupskip=/tmp/*,/private/tmp/*
+set backupskip=/tmp/* ,/private/tmp/* 
 
 " Respect modeline in files
 set modeline
@@ -78,7 +78,7 @@ set showcmd
 " Use relative line numbers
 if exists("&relativenumber")
 	set relativenumber
-	au BufReadPost * set relativenumber
+	au BufReadPost *  set relativenumber
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
@@ -100,7 +100,7 @@ if has("autocmd")
 	" Enable file type detection
 	filetype on
 	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+	autocmd BufNewFile,BufRead * .json setfiletype json syntax=javascript
 	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+	autocmd BufNewFile,BufRead * .md setlocal filetype=markdown
 endif
