@@ -1,8 +1,9 @@
-set ts=4			"Tabs to 4
+set ts=4		"Tabs to 4
 set shiftwidth=4	"shift width equals tabs
 set ignorecase		"ignore case for search opeartions
-set number			"activate linenumbers
+set number		"activate linenumbers
 set autoindent		"set automatic shifting - zeileneinrücken
+set paste           	"do not reformat when pasting stuff
 set smartindent		"intelligent shifting - intelligentes einrücken
 set showmatch		"show matching brackets
 set langmenu=en_US.UTF-8 "set language to english
