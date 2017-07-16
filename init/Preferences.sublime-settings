@@ -24,7 +24,7 @@
 	"font_size": 13,
 	"highlight_modified_tabs": true,
   "highlight_line": true,
-	"hot_exit": false,
+	"hot_exit": true,
 	"ignored_packages":
 	[
 		"Vintage"
@@ -33,7 +33,7 @@
  //  "line_padding_bottom": 1,
 	"match_brackets": true,
 	"match_brackets_angle": true,
-	"remember_open_files": false,
+	"remember_open_files": true,
 	"rulers":
 	[
 	],
