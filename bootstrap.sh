@@ -9,6 +9,7 @@ __PWD__=`pwd`
 __CURRDIR__=${__PWD__}
 
 TOBE_LINKED=(
+    "x"
     ".gitconfig"
     ".gitignore"
     ".gvimrc"
@@ -40,6 +41,7 @@ done
 #
 
 ZPREZTORCS=(
+    "x"
     "zshenv"
     "zprofile"
     "zpreztorc"
