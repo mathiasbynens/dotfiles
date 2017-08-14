@@ -58,8 +58,12 @@ function doIt() {
 		echo "-------------------------------"
 		update_babun
 	else
-		rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "dircolors-solarized/" --exclude {"bootstrap.sh","bootstrap-babun.sh"} --exclude "extra/" \
+		rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "dircolors-solarized/" --exclude {"bootstrap.sh"} --exclude "extra/" \
 			--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
+		if [[ "$workflag" -eq "1" ]]; then
+		    echo "Using .extra-work"
+		    successfully cp .extra-work ~/.extra
+		fi
 		source ~/.bash_profile;
 	fi
 

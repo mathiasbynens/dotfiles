@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 #
-export PATH=$PATH:/c/Users/douglasm/stash/scripts:/c/Users/douglasm/stash/solution_helpers/graviton
+
+export RGRAV_HOME="/c/Users/douglasm/solutions/rgrav"
+#export PATH=$JAVA_HOME/bin:$PATH:$RGRAV_HOME
+#source $RGRAV_HOME/rgrav-completion.bash
+export PATH=$PATH:/c/Users/douglasm/stash/scripts:/c/Users/douglasm/stash/solution_helpers/graviton:/c/Users/douglasm/stash/solution_helpers/network:$RGRAV_HOME
 
 # GIT Configurations
 GIT_AUTHOR_NAME="Douglas Morand"
