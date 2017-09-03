@@ -126,6 +126,12 @@ if [[ -f "\${HOME}/.dougie_profile" ]]; then
 fi
 EOF
 		fi
+		if ! grep -q DEFAULT_USER $HOME/.zshrc ; then	
+			echo "Updating DEAFULT_USER in .zshrc ..."
+		cat >> ${HOME}/.zshrc <<EOF
+DEFAULT_USER="\$USER"
+EOF
+		fi
 		sed -i 's/ZSH_THEME=.*/ZSH_THEME=dracula/' $HOME/.zshrc
 		
 		ln -fs $dir/dracula/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
