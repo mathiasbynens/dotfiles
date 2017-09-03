@@ -4,3 +4,21 @@
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "powerline-fonts"]
+	path = powerline-fonts
+	url = https://github.com/powerline/fonts.git
+[submodule "dracula/dracula-zsh"]
+	path = dracula/dracula-zsh
+	url = https://github.com/dracula/zsh.git
+[submodule "dracula/dracula-visual-studio-code"]
+	path = dracula/dracula-visual-studio-code
+	url = https://github.com/dracula/visual-studio-code.git
+[submodule "dracula/dracula-vim"]
+	path = dracula/dracula-vim
+	url = https://github.com/dracula/vim.git
+[submodule "dracula/dracula-notepad-plus-plus"]
+	path = dracula/dracula-notepad-plus-plus
+	url = https://github.com/dracula/notepad-plus-plus.git
+[submodule "dracula/dracula-hyper"]
+	path = dracula/dracula-hyper
+	url = https://github.com/dracula/hyper.git
