@@ -1,7 +1,11 @@
 ## Dougie Bootstrappah rsync filter
 
 - extras
-- .git
+- .git/
+- .gitmodules
+- .gitignore
+- dracula
+- powerline-fonts
 - babun
 - link
 - LICENSE-MIT.txt
