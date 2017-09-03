@@ -2,7 +2,7 @@
 #                     MY STUFF                    #
 ###################################################
 
-for file in ~/.{path,aliases,functions,git-completion,extra}; do
+for file in ~/.{path,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;

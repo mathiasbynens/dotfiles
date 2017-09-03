@@ -40,11 +40,11 @@ if has("syntax")
     " Set 256 color terminal support
     set t_Co=256
     " Set dark background
-    set background=dark
+    " set background=dark
     " Set colorscheme
-    silent! colorscheme solarized
+    " silent! colorscheme solarized
     " tell Solarized to use the 256 degraded color mode
-    let g:solarized_termcolors=256
+    " let g:solarized_termcolors=256
 endif
 
 "vim-airline"
@@ -111,8 +111,9 @@ set pastetoggle=<F2>            " when in insert mode, press <F2> to go to
                                 "    that won't be autoindented
 
 " Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
+" set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+" set lcs=trail:·,eol:¬,nbsp:_
+" set list
 " Highlight searches
 set hlsearch
 " Ignore case of searches

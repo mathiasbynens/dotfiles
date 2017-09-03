@@ -1,7 +1,23 @@
 #!/usr/bin/env bash
 
+currentDirectory=$(dirname $0)
+
+if [[ ! -f bootstrap.sh ]]; then
+	echo "Bootstrap must be run from dotfiles directory ..."
+	exit 1
+fi
+
+dir=~/dotfiles
+cat extras/dougie-bootstrap
+
 os=$(uname -s)
 cd "$(dirname "${BASH_SOURCE}")";
+
+# Enable this if I need to check if this is being run as sudo
+#if [[ "$EUID" -ne 0 ]]; then
+#	echo "Please run this script with sudo or root user ..."
+#	exit 1
+#fi
 
 git pull origin master;
 
@@ -12,6 +28,8 @@ successfully() {
 fancy_echo() {
 	echo "$1"
 }
+
+exe() { echo "\$ $@" ; "$@" ; }
 
 update_babun(){
 
@@ -40,8 +58,6 @@ update_babun(){
 	successfully rsync -azh --exclude .git/ .aliases .inputrc .ssh-agent .git* ~
 
 	fancy_echo "Updating VIM Configuration"
-	successfully rsync -azh --exclude=".vim/bundle/Vundle.vim" '.vim' '.vimrc' ~
-
 	if [[ ! -d ~/powerline-fonts ]]; then
 		fancy_echo "Retrieving powerline fonts"
 		successfully git clone https://github.com/powerline/fonts.git ~/powerline-fonts
@@ -58,23 +74,77 @@ function doIt() {
 		echo "-------------------------------"
 		update_babun
 	else
-		rsync --exclude ".git/" --exclude "link/" --exclude "babun/" --exclude "dircolors-solarized/" --exclude {"bootstrap.sh"} --exclude "extra/" \
-			--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
+		# Check for Windows Ubuntu
+		if [[ $(cat /proc/version | grep Microsoft) ]]; then
+			echo -ne "\nEnter home directory (if installing on windows) or press enter if none: "
+			read windowsDir
+			windowsHome=/mnt/c/Users/$windowsDir
+			
+			if [[ ! -d "$windowsHome" ]]; then
+				echo "$windowsHome does not exist ... "
+				exit 1
+			fi
+			echo -e "Creating link to $windowsHome ...\n"
+			exe ln -fs $windowsHome ~/home
+			echo "Copying hyper properties ..."
+			exe cp ./extras/.hyper.js $windowsHome
+			echo ""
+		fi 
+
+		rsync --filter="merge rsync-filter" -ah --no-perms . ~;
+
+		# Additional handling if work flag was passed
 		if [[ "$workflag" -eq "1" ]]; then
 		    echo "Using .extra-work"
-		    successfully cp .extra-work ~/.extra
+		    successfully cp ./extras/work-extra ~/.extra
 		fi
-		source ~/.bash_profile;
-	fi
+		
+		#source ~/.bash_profile;
 
-	if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
-		echo "Vundle not found, installing..."
-		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+		echo "Installing oh-my-zsh ..."
+		successfully sudo apt-get install zsh
+		successfully curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
+		
+		echo -e "\nInstalling powerline-fonts ..."
+		currDir=`pwd`
+		cd powerline-fonts
+		./install.sh
+		cd $currDir		
+		
+		echo -e "\nUpdating ~/.bashrc to run oh-my-zsh ..."
+		cat > $HOME/.bashrc <<EOF
+if test -t 1; then
+  # ...start zsh
+  exec zsh
+fi
+EOF
+		if ! grep -q dougie_profile $HOME/.zshrc ; then	
+			echo "Updating .zshrc ..."
+		cat >> ${HOME}/.zshrc <<EOF
+if [[ -f "\${HOME}/.dougie_profile" ]]; then
+	source \${HOME}/.dougie_profile
+fi
+EOF
+		fi
+		sed -i 's/ZSH_THEME=.*/ZSH_THEME=dracula/' $HOME/.zshrc
+		
+		ln -fs $dir/dracula/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
+		if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]]; then 
+			git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+			else
+				echo "zsh-syntax-highlighting already installed ..."
+		fi
+		sed -i 's/plugins=.*/plugins=(git zsh-syntax-highlighting)/' $HOME/.zshrc
+		
 	fi
 }
 
 workflag=""
 forceflag=""
+
+
+echo -e "Initializing submodules...\n"
+git submodule update --init
 
 while getopts "fwh" opt; do
   case $opt in
@@ -101,6 +171,20 @@ while getopts "fwh" opt; do
   esac
 done
 
+# Backup the current dotfiles
+olddir=~/dotfiles.old
+echo "re-creating backup directory [$olddir]"
+if [[ -d "$olddir" ]]; then
+	rm -rf $olddir
+	mkdir -p $olddir
+else
+	mkdir -p $olddir
+fi
+
+echo "Backing up original files..."
+find ~ -maxdepth 1 -name ".[^.]*" -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
+echo ""
+
 if [[ $forceflag -eq 1 ]]; then
 	doIt;
 else
@@ -111,6 +195,6 @@ else
 	fi;
 fi;
 
-unset doIt;
+echo -e "\nBoostrapping complete, please exit the shell ..."
 
-git submodule update --init
+unset doIt;
