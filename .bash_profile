@@ -1,5 +1,5 @@
 # Add `~/bin` to the `$PATH`
-export PATH="node_modules/.bin:$HOME/bin:$PATH:$HOME/.nvm";
+export PATH="/usr/local/rubygems/bin:node_modules/.bin:$HOME/bin:$PATH:$HOME/.nvm";
 
 # make sure homebrew gets precedence over system default CLIs
 export PATH="/usr/local/bin:$PATH";

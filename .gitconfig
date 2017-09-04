@@ -23,7 +23,7 @@
 	a = add -A
 	c = commit -m
 	ca = !"git a && git c"
-	ph = push --tags origin HEAD
+	ph = push --tags origin HEAD --no-verify
 	fix = commit --amend --reuse-message=HEAD --no-edit
 	fixup = !git fix && git push origin HEAD --force
 	fixupa = !git a && git fixup
