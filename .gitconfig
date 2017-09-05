@@ -43,13 +43,13 @@
 
 	move = "!f() { \
 		MESSAGE = git log -1 HEAD --pretty=format:%s); \
-		echo $MESSAGE; \
-}; f"
-# git reset HEAD~ --soft;
-		# git stash;
-		# git checkout $1 || git br $1;
-		# git stash pop;
-		# g ca $MESSAGE;
+		git reset HEAD~ --soft; \
+		git stash; \
+		git checkout $1 || git br $1; \
+		git stash pop; \
+		g ca $MESSAGE; \
+	}; f"
+
 
 [core]
 
