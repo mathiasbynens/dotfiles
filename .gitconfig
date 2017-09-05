@@ -41,14 +41,14 @@
 	find = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
 	root = '[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 
-	# move = "!f() {
+	move = "!f() { }; f"
 	# 	MESSAGE = git log -1 HEAD --pretty=format:%s);
 	# 	git reset HEAD~ --soft;
 	# 	git stash;
 	# 	git checkout $1 || git br $1;
 	# 	git stash pop;
 	# 	g ca $MESSAGE;
-	# }; f"
+
 [core]
 
 	# Use custom `.gitignore` and `.gitattributes`
