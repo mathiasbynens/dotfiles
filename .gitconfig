@@ -42,14 +42,14 @@
 	root = '[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 
 	move = "!f() { \
-\
+		MESSAGE = git log -1 HEAD --pretty=format:%s); \
+		echo $MESSAGE; \
 }; f"
-	# 	MESSAGE = git log -1 HEAD --pretty=format:%s);
-	# 	git reset HEAD~ --soft;
-	# 	git stash;
-	# 	git checkout $1 || git br $1;
-	# 	git stash pop;
-	# 	g ca $MESSAGE;
+# git reset HEAD~ --soft;
+		# git stash;
+		# git checkout $1 || git br $1;
+		# git stash pop;
+		# g ca $MESSAGE;
 
 [core]
 
