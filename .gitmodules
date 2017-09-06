@@ -22,3 +22,6 @@
 [submodule "dracula/dracula-hyper"]
 	path = dracula/dracula-hyper
 	url = https://github.com/dracula/hyper.git
+[submodule "extras/cobalt2"]
+	path = extras/cobalt2
+	url = https://github.com/wesbos/Cobalt2-iterm
