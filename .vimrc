@@ -40,7 +40,7 @@ if has("syntax")
     " Set 256 color terminal support
     set t_Co=256
     " Set dark background
-    " set background=dark
+    set background=dark
     " Set colorscheme
     " silent! colorscheme solarized
     " tell Solarized to use the 256 degraded color mode
