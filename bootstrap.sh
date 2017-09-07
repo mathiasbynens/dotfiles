@@ -96,7 +96,7 @@ function doIt() {
 		# Additional handling if work flag was passed
 		if [[ "$workflag" -eq "1" ]]; then
 		    echo "Using .extra-work"
-		    successfully cp ./extras/work-extra ~/.extra
+		    successfully cp ./extras/.work-extra ~/.extra
 		fi
 		
 		#source ~/.bash_profile;
