@@ -48,13 +48,6 @@ update_babun(){
 	
 
 	# Need to do something with ssh-agent and extra-babun
-    if [[ "$workflag" -eq "1" ]]; then
-        echo "Using .extra-work"
-	    successfully cp ./babun/.extra-work ~/.extra
-    else
-	    successfully cp ./babun/.extra ~/
-    fi
-	
 	successfully rsync -azh --exclude .git/ .aliases .inputrc .ssh-agent .git* ~
 
 	fancy_echo "Updating VIM Configuration"
@@ -93,11 +86,6 @@ function doIt() {
 
 		rsync --filter="merge rsync-filter" -ah --no-perms . ~;
 
-		# Additional handling if work flag was passed
-		if [[ "$workflag" -eq "1" ]]; then
-		    echo "Using .extra-work"
-		    successfully cp ./extras/.work-extra ~/.extra
-		fi
 		
 		#source ~/.bash_profile;
 
@@ -144,6 +132,13 @@ EOF
 		fi
 		sed -i 's/plugins=.*/plugins=(git zsh-syntax-highlighting)/' $HOME/.zshrc
 		
+	fi
+
+
+	# Additional handling if work flag was passed
+	if [[ "$workflag" -eq "1" ]]; then
+	    echo "Using .extra-work"
+	    successfully cp ./extras/.work-extra ~/.extra
 	fi
 }
 
