@@ -118,5 +118,5 @@ alias gh=github
 alias onport="lsof -i -P | grep $1"
 
 alias up="g ph && gh -p"
-alias resolve="g s | grep UU | xargs s"
+alias resolve="g s | grep UU | sed s/UU// | xargs s"
 alias sync="g pull origin master && resolve"
