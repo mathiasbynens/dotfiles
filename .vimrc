@@ -48,7 +48,7 @@ if has("syntax")
 endif
 
 "vim-airline"
-let g:airline_theme='solarized'
+let g:airline_theme='dark'
 let g:airline_powerline_fonts=1
 
 "NERDTree"

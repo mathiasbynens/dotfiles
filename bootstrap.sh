@@ -131,7 +131,12 @@ EOF
 				echo "zsh-syntax-highlighting already installed ..."
 		fi
 		sed -i 's/plugins=.*/plugins=(git zsh-syntax-highlighting)/' $HOME/.zshrc
-		
+	
+        # install Vundle if necessary
+        if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
+            git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+        fi
+
 	fi
 
 
