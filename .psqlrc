@@ -1,0 +1,21 @@
+\set QUIET 1
+\pset null '\\N'
+
+\x auto
+
+\set HISTFILE /Users/bakongo/.postgres_history- :DBNAME
+\set HISTCONTROL ignoredups
+
+
+--\set PROMPT1 '%[%033[1m%][%/] # '
+-- \set PROMPT3 '... # '
+
+
+\timing
+
+\set VERBOSITY verbose
+
+\set G '\\x\\g\\x'
+
+\set COMP_KEYWORD_CASE upper
+\unset QUIET

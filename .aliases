@@ -1,5 +1,30 @@
 #!/usr/bin/env bash
 
+# file listing aliases
+alias ll='ls -lth'
+alias h='history'
+alias la='ls -A'
+alias l='ls -CF'
+# find jobs
+alias hf='history | grep $1'
+
+# git aliases
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias gl='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
+alias got='git '
+alias get='git '
+
+# find and remove
+alias fj='ps auxww | grep $1'
+
+# clean intermediate emacs files
+alias purge='ls *~; rm *~'
+
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -9,10 +34,8 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
 alias g="git"
 
 # Detect which `ls` flavor is in use
