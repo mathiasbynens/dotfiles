@@ -164,7 +164,7 @@ alias reload="exec $SHELL -l"
 alias path='echo -e ${PATH//:/\\n}'
 
 # can't live without ducks
-alias ducks='du -cks * | sort -rn | head -11'
+alias ducks='du -chs * | sort -rh | head -11'
 
 # svaddall because I can't forget it
 alias svaddall='sv status | grep "^\?" | awk "{print \$2}" | xargs svn add'
