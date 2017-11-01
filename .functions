@@ -76,6 +76,7 @@ function dataurl() {
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
+# (Requires python 2.x)
 function server() {
 	local port="${1:-8000}";
 	sleep 1 && open "http://localhost:${port}/" &
@@ -103,6 +104,7 @@ function gz() {
 }
 
 # Syntax-highlight JSON strings or files
+# (Requires python 2.x or 3.x and Pygments package - http://pygments.org/)
 # Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
 function json() {
 	if [ -t 0 ]; then # argument
