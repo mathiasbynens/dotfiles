@@ -249,3 +249,7 @@ function circle {
 function ffs {
 	eslint "**/*.js" --fix
 }
+
+function ignoreall {
+	new=$(g s | grep '??' | sed "s/?? //"); for path in $new; do echo $path >> .gitignore; done;
+}
