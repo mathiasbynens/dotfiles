@@ -78,7 +78,7 @@ function doIt() {
 				exit 1
 			fi
 			echo -e "Creating link to $windowsHome ...\n"
-			exe ln -fs $windowsHome ~/home
+			exe ln -s $windowsHome ~/$windowsDir
 			echo "Copying hyper properties ..."
 			exe cp ./extras/.hyper.js $windowsHome
 			echo ""
@@ -130,7 +130,7 @@ EOF
 			else
 				echo "zsh-syntax-highlighting already installed ..."
 		fi
-		sed -i 's/plugins=.*/plugins=(git zsh-syntax-highlighting)/' $HOME/.zshrc
+		#sed -i 's/plugins=.*/plugins=(git zsh-syntax-highlighting)/' $HOME/.zshrc
 	
         # install Vundle if necessary
         if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
