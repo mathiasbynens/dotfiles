@@ -14,3 +14,5 @@ eval `dircolors -b dircolors-solarized/dircolors.ansi-dark`
 if [[ -f .ssh-agent ]]; then
 	source .ssh-agent
 fi
+
+export PATH=~/.local/bin:$PATH
