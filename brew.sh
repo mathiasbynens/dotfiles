@@ -30,9 +30,6 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   chsh -s /usr/local/bin/bash;
 fi;
 
-# Install `wget` with IRI support.
-brew install wget --with-iri
-
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
 
@@ -91,6 +88,7 @@ brew install rlwrap
 brew install ssh-copy-id
 brew install tree
 brew install vbindiff
+brew install wget
 brew install zopfli
 
 # Remove outdated versions from the cellar.
