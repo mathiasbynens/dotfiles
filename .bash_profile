@@ -47,5 +47,8 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Chrome Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
-# Enable git automcompletion
+#git branch autocompletion
 source ~/git-completion.bash
+
+# adjust colors for ls command
+export LSCOLORS="cxfxcxdxbxegedbxbxcxcx"
