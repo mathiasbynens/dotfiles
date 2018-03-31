@@ -1,12 +1,5 @@
 # Set the default editor
-if [ -f /usr/local/bin/sublime ]; then
-    export EDITOR='sublime -w'
-elif [ -f /usr/local/bin/mate ]; then
-    export EDITOR='mate'
-    export GIT_EDITOR='mate -wl1'
-else
-	export EDITOR="vim"
-fi
+export EDITOR="vim"
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 # Highlight section titles in manual pages
@@ -17,10 +10,7 @@ export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 
-# Fix psycopg2 on 10.7.3
-export PGHOST=/tmp
-
 # no ._ files in archives please
 export COPYFILE_DISABLE=true
 
-export TZ='Americas/Sao_Paulo'
+export TZ='America/Sao_Paulo'

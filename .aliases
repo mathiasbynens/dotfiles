@@ -8,15 +8,13 @@ alias -- -="cd -"
 
 # Shortcuts
 alias d="cd ~/Dropbox"
-alias s="cd ~/Sites"
+alias p="cd ~/Projects"
 alias g="git"
 alias h="history"
 alias j="jobs"
 alias v="vim"
-alias m="mate ."
-alias subl="sublime ."
-alias o="open"
-alias oo="open ."
+alias o="xdg-open"
+alias oo="xdg-open ."
 
 alias hist='history | grep $1' #Requires one input
 
@@ -43,12 +41,9 @@ export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-# Get OS X Software Updates, update Homebrew itself, and upgrade installed Homebrew packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
-
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1"
+# alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
 
 # Enhanced WHOIS lookups

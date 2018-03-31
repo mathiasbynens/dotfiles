@@ -1,19 +1,16 @@
 # PATH additions
 for another_bin in \
-    $HOME/bin \
-    /usr/local/php5/bin \
-    $HOME/.rbenv/bin
+    $HOME/bin
 do
     [[ -e $another_bin ]] && export PATH=$another_bin:$PATH
 done
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 export PATH=/usr/local/share/npm/bin:$PATH
 
 
 # add in path rvm
 # export PATH=/Users/brunogermano/.rvm/bin/rvm:$PATH
-source /Users/brunogermano/.rvm/scripts/rvm
+# source /Users/brunogermano/.rvm/scripts/rvm
 # rvm install 1.9.3
 # rvm use 1.9.3
 # rvm rubygems latest
