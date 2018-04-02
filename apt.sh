@@ -4,7 +4,13 @@ sudo -u
 apt-get update
 
 # install tools
-sudo apt-get install curl coreutils net-tools apt-transport-https ca-certificates software-properties-common -y
+sudo apt-get install curl coreutils net-tools apt-transport-https ca-certificates software-properties-common ubuntu-restricted-extras gnome-tweak-tool tlp tlp-rdw thermald laptop-mode-tools indicator-cpufreq psensor -y
+
+# install cafeine repository
+sudo add-apt-repository ppa:caffeine-developers/ppa
+
+# install stacer monitor repository
+sudo add-apt-repository ppa:oguzhaninan/stacer
 
 # install enpass repository
 echo "deb http://repo.sinew.in/ stable main" >   /etc/apt/sources.list.d/enpass.list
@@ -28,6 +34,7 @@ apt remove cmdtest
 apt-get update
 
 apt-get install nodejs yarn -y
+apt-get install stacer -y
 apt-get install enpass -y
 apt-get install git-all -y
 
@@ -47,3 +54,7 @@ docker run hello-world
 
 chown germano:germano /home/germano/.docker -R
 chmod g+rwx "/home/germano/.docker" -R
+
+# ctop
+sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.1/ctop-0.7.1-linux-amd64 -O /usr/local/bin/ctop
+sudo chmod +x /usr/local/bin/ctop
