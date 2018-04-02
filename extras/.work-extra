@@ -18,12 +18,31 @@ if [ -f ~/.ssh-agent ]; then . ~/.ssh-agent; fi
 
 sudo cp ~/dotfiles/extras/windows/resolv.conf /etc/resolv.conf
 
+exe() { echo "\$ $@" ; "$@" ; }
+
 function ssh_proxy(){
     echo "Starting ssh proxy in background on port: 12345"
     ssh -D 12345 -N douglasm@graviton-jump-host-scottsdale 2>&1 & 
 
     pid=$!
     echo "Kill process $pid once finished..."
+}
+
+function bastion_tunnel(){
+    # Builds tunnels via the Bastion jumphost
+    # Pass 1..n files to setup tunnels
+
+    tunnels=()
+    for tunnelFile in $@; do
+        while IFS= read line
+        do
+            if [[ ! -z "$line" && "$line" != "#"* ]]; then
+                #echo "$line"
+                tunnels+=("-L $line")
+            fi
+        done < "$tunnelFile"
+    done
+	exe ssh bastion "${tunnels[@]}"
 }
 
 function ssh_aws(){
