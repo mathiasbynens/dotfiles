@@ -12,6 +12,9 @@ wget -O - https://dl.sinew.in/keys/enpass-linux.key | apt-key add -
 
 # install node repository
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
 
 # install docker repository
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -21,9 +24,10 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
+apt remove cmdtest
 apt-get update
 
-apt-get install nodejs -y
+apt-get install nodejs yarn -y
 apt-get install enpass -y
 apt-get install git-all -y
 
