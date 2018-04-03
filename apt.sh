@@ -21,6 +21,11 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
+#install sublime 3 repopsitory
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+
+
 
 # install docker repository
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -33,6 +38,7 @@ sudo add-apt-repository \
 apt remove cmdtest
 apt-get update
 
+apt-get install sublime-text -y
 apt-get install nodejs yarn -y
 apt-get install stacer -y
 apt-get install enpass -y
