@@ -4,7 +4,7 @@ sudo -u
 apt-get update
 
 # install tools
-sudo apt-get install curl coreutils net-tools apt-transport-https ca-certificates software-properties-common ubuntu-restricted-extras gnome-tweak-tool tlp tlp-rdw thermald laptop-mode-tools indicator-cpufreq psensor -y
+sudo apt-get install curl coreutils net-tools apt-transport-https ca-certificates software-properties-common ubuntu-restricted-extras gnome-tweak-tool -y
 
 # install cafeine repository
 sudo add-apt-repository ppa:caffeine-developers/ppa
