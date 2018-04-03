@@ -4,7 +4,7 @@ sudo -u
 apt-get update
 
 # install tools
-sudo apt-get install curl coreutils net-tools apt-transport-https ca-certificates software-properties-common ubuntu-restricted-extras gnome-tweak-tool network-manager-openvpn-gnome -y
+sudo apt-get install curl coreutils net-tools apt-transport-https ca-certificates software-properties-common ubuntu-restricted-extras gnome-tweak-tool network-manager-openvpn-gnome libxss1 libappindicator1 libindicator7 -y
 
 # install cafeine repository
 sudo add-apt-repository ppa:caffeine-developers/ppa
@@ -21,14 +21,19 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-#install sublime 3 repopsitory
+# install sublime 3 repopsitory
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
-#instal vscode repository
+# instal vscode repository
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+
+# install chrome repository
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+
 
 # install docker repository
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -47,6 +52,7 @@ apt-get install sublime-text -y
 apt-get install code -y
 apt-get install stacer -y
 apt-get install enpass -y
+apt-get install google-chrome-stable -y
 
 # docker
 apt-get install docker-ce -y
