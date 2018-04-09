@@ -34,6 +34,14 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
 sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 
+# install shutter (screeshoot) repository
+sudo add-apt-repository ppa:shutter/ppa
+
+# install peek (screnshoot gif) repository
+sudo add-apt-repository ppa:peek-developers/stable
+
+# install Kazzan (screencast) repository
+sudo add-apt-repository ppa:kazam-team/stable-series
 
 # install docker repository
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -51,6 +59,9 @@ apt-get install nodejs yarn -y
 apt-get install sublime-text -y
 apt-get install code -y
 apt-get install stacer -y
+apt-get install shutter -y
+apt-get install peek -y
+apt-get install kazam -y
 apt-get install enpass -y
 apt-get install google-chrome-stable -y
 
