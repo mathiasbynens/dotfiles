@@ -28,6 +28,30 @@ function ssh_proxy(){
     echo "Kill process $pid once finished..."
 }
 
+function graviton_tunnel(){
+    # Builds tunnels via the graviton jumphost
+    #
+    # Arg 1 - hostname to tunnel e.g. hbc-review-graviton-jump-host-scottsdale.graviton.odl.io
+    # Arg 2..n - Files to setup tunnels
+
+    tunnels=()
+    graviton_env=$1
+    echo "Building Tunnels"
+    echo "======================================"
+    for tunnelFile in ${@:2}; do
+        while IFS= read line
+        do
+            if [[ ! -z "$line" && "$line" != "#"* ]]; then
+                host=${line/<HOST>/$graviton_env}
+                echo $host
+                tunnels+=("-L $host")
+            fi
+        done < "$tunnelFile"
+    done
+    echo ""
+	exe ssh graviton-jump-host "${tunnels[@]}"
+}
+
 function bastion_tunnel(){
     # Builds tunnels via the Bastion jumphost
     # Pass 1..n files to setup tunnels
