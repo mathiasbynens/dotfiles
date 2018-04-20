@@ -1,4 +1,19 @@
+
+
+[user]
+      name = Daniele Galluccio
+      email = daniele.galluccio@mymedsandme.com
+
 [alias]
+	br = branch
+	co = checkout
+	ci = commit
+	st = status
+	unstage = reset HEAD
+	undo-commit = reset --soft HEAD^
+	poh = push origin HEAD
+	pulloh = pull origin HEAD
+	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
@@ -152,6 +167,9 @@
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
 
+[branch]
+  autosetupmerge = always
+
 [merge]
 
 	# Include summaries of merged commits in newly created merge commit messages
@@ -160,7 +178,7 @@
 [push]
 
 	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = simple
+	default = current
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
