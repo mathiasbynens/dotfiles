@@ -197,3 +197,30 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+#Install and save npm module locally and add as 'devDependencies' to 'package.json'
+function npmlocdev(){
+	npm install $1 --save-dev
+}
+
+#Install and save npm module locally and add to package.json
+function npmloc(){
+	npm install $1 --save
+}
+
+#UnInstall npm module and update 'package.json'
+function npmrmloc(){
+	npm uninstall $1 --save
+}
+
+#UnInstall npm dev module and update 'package.json'
+function npmrmlocdev(){
+	npm uninstall $1 --save-dev
+}
+
+#run jasmine-node with watch and auto test with coffee script
+function jasminecoffeetest(){
+	jasmine-node $1 --autotest --watch --coffee
+}
+
+

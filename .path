@@ -1,0 +1,4 @@
+PATH=$HOME/.node/bin:${PATH}
+PATH=/usr/local/sbin:${PATH}
+
+export PATH

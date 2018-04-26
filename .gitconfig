@@ -1,7 +1,13 @@
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	l = log --pretty=format:"%h%x09%an%x09%ad%x09%s" -n 20 --graph --abbrev-commit --date=short
+	
+	#add all current changes
+	a = add .
+
+	#commit short message
+	cm = commit -m
 
 	# View the current working tree status using the short format
 	s = status -s
@@ -12,8 +18,8 @@
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
-	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull; git submodule foreach git pull origin master"
+	# Pull in remote changes for the current repository and all its submodules and prune remotes
+	p = !"git pull; git submodule foreach git pull origin masteri; git gc; git remote prune origin"
 
 	# Clone a repository including all submodules
 	c = clone --recursive
@@ -128,8 +134,8 @@
 
 [color "status"]
 
-	added = yellow
-	changed = green
+	added = green
+	changed = yellow
 	untracked = cyan
 
 [commit]
@@ -156,6 +162,13 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	tool = p4merge 
+
+[mergetool "p4merge"]
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	keepTemporaries = false
+	trustExitCode = false
+	keepBackup = false
 
 [push]
 
@@ -185,3 +198,5 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[credential]
+	helper = osxkeychain
