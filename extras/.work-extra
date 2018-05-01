@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
-#
 
-export RGRAV_HOME="/c/Users/douglasm/solutions/rgrav"
-#export PATH=$JAVA_HOME/bin:$PATH:$RGRAV_HOME
-#source $RGRAV_HOME/rgrav-completion.bash
-export PATH=$PATH:/c/Users/douglasm/stash/scripts:/c/Users/douglasm/stash/solution_helpers/graviton:/c/Users/douglasm/stash/solution_helpers/network:$RGRAV_HOME
+export PATH=$PATH:/mnt/c/Users/douglasm/stash/scripts:/mnt/c/Users/douglasm/stash/solution_helpers/graviton:/mnt/c/Users/douglasm/stash/solution_helpers/network
 
 # GIT Configurations
 GIT_AUTHOR_NAME="Douglas Morand"
@@ -20,7 +16,7 @@ sudo cp ~/dotfiles/extras/windows/resolv.conf /etc/resolv.conf
 
 exe() { echo "\$ $@" ; "$@" ; }
 
-function ssh_proxy(){
+function ssh-proxy(){
     echo "Starting ssh proxy in background on port: 12345"
     ssh -D 12345 -N douglasm@graviton-jump-host-scottsdale 2>&1 & 
 
@@ -28,7 +24,7 @@ function ssh_proxy(){
     echo "Kill process $pid once finished..."
 }
 
-function graviton_tunnel(){
+function tunnel-graviton(){
     # Builds tunnels via the graviton jumphost
     #
     # Arg 1 - hostname to tunnel e.g. hbc-review-graviton-jump-host-scottsdale.graviton.odl.io
@@ -52,7 +48,7 @@ function graviton_tunnel(){
 	exe ssh graviton-jump-host "${tunnels[@]}"
 }
 
-function bastion_tunnel(){
+function tunnel-bastion(){
     # Builds tunnels via the Bastion jumphost
     # Pass 1..n files to setup tunnels
 
@@ -69,7 +65,7 @@ function bastion_tunnel(){
 	exe ssh bastion "${tunnels[@]}"
 }
 
-function ssh_aws(){
+function ssh-aws(){
     ssh -i ~/.ssh/puppet_id_rsa centos@$1
 }
 
