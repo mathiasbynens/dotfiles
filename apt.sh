@@ -13,7 +13,7 @@ sudo add-apt-repository ppa:caffeine-developers/ppa
 sudo add-apt-repository ppa:oguzhaninan/stacer
 
 # install enpass repository
-echo "deb http://repo.sinew.in/ stable main" >   /etc/apt/sources.list.d/enpass.list
+echo "deb http://repo.sinew.in/ stable main" > sudo tee /etc/apt/sources.list.d/enpass.list
 wget -O - https://dl.sinew.in/keys/enpass-linux.key | apt-key add -
 
 # install node repository
@@ -51,19 +51,19 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
-apt remove cmdtest
-apt-get update
+sudo apt remove cmdtest
+sudo apt-get update
 
-apt-get install git-all -y
-apt-get install nodejs yarn -y
-apt-get install sublime-text -y
-apt-get install code -y
-apt-get install stacer -y
-apt-get install shutter -y
-apt-get install peek -y
-apt-get install kazam -y
-apt-get install enpass -y
-apt-get install google-chrome-stable -y
+sudo apt-get install git-all -y
+sudo apt-get install nodejs yarn -y
+sudo apt-get install sublime-text -y
+sudo apt-get install code -y
+sudo apt-get install stacer -y
+sudo apt-get install shutter -y
+sudo apt-get install peek -y
+sudo apt-get install kazam -y
+sudo apt-get install enpass -y
+sudo apt-get install google-chrome-stable -y
 
 # docker
 apt-get install docker-ce -y
