@@ -149,3 +149,93 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# John's Stuff ------------------------------------
+
+alias dj='python manage.py'
+alias djrun='python manage.py runserver_plus'
+alias djshell='python manage.py shell_plus'
+
+# Git aliases
+alias ga='git add'
+alias gap='git add -p'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gco='git checkout'
+alias gc='git commit -v'
+alias gcop='git commit -p'
+alias gcl='git config --list'
+alias gd='git diff'
+alias gde='git diff | $EDITOR'
+alias gdt='git difftool'
+alias gf='git fetch'
+alias gfa='git fetch --all'
+alias ghist='git log --pretty=format:"%C(yellow)%h%Creset | %C(cyan)%s%Cred%d %Creset[ %Cgreen%an %Creset: %C(white)%ar%Creset ]" --graph --date=short'
+alias gl='git log --decorate --graph --date-order'
+alias gll='git log --oneline --graph --decorate --left-right --boundary --date-order'
+alias glll="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias glog='git log --oneline --decorate --color --graph'
+alias gmff='git merge --ff-only'
+alias gp='git push'
+alias gup='git pull --rebase'
+alias gu='git up'
+
+# work with remote files
+alias gr='git remote'
+alias gra='git remote add'
+alias grmv='git remote rename'
+alias grrm='git remote remove'
+alias grv='git remote -v'
+alias grp='git remote prune' # pass name of remote to clean up delete branches
+
+alias gmff='git merge --ff-only'
+alias gmno='git merge --no-ff'
+
+alias grbi='git rebase -i'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbo='git rebase --onto'
+
+alias grh='git reset --soft HEAD'
+alias grhh='git reset HEAD --hard'
+
+alias gs='git status'
+alias gss='git status -s'
+alias gsta='git stash'
+alias gstp='git stash pop'
+
+alias gcl='git config --list' # review global and project git config settings
+
+# http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+# alias assume = update-index --assume-unchanged
+# alias unassume = update-index --no-assume-unchanged
+# alias assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+# alias snapshot = !git stash save "snapshot: $(date)" && git staash apply "stash@{0}"
+# alias ours = "!f() { git checkout --ours $0 && git add $0; }; f"
+# alias theirs = "if() { git checkout --theirs $0 && git add $0; }; f"
+
+# DJANGO
+alias dj='python manage.py'
+alias djserver='python manage.py runserver_plus'
+alias djshell='python manage.py shell_plus --ptpython'
+
+
+#new messages
+#[3:24]
+# ls options: A = include hidden (but not . or ..), F = put `/` after folders, h = byte unit suffixes
+alias ls='gls -AFh ${colorflag} --group-directories-first'
+alias ll='ls'
+alias l.='ls -d .*'           # list hidden files
+alias lsd='ls -l | grep "^d"' # only directories
+
+# Carlie's FC Stuff
+# alias cdv='cdvirtualenv'
+# alias v2='cd v2fluentcity'
+# alias cdfc='workon v2fluentcity; cdvirtualenv; cd v2fluentcity;'
+# alias hkprod='dropdb v2fluentcity; heroku pg:pull DATABASE_URL v2fluentcity --app v2fluentcity-prod;'
+
+# The Lab Stuff
+alias cdp='cd Projects';
+alias du='./bin/dcd up';
+alias dj='./bin/dcd run --rm web ./manage.py';
+alias dbs='./bin/bootstrap-dev.sh';
