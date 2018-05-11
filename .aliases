@@ -14,6 +14,18 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
 
+
+
+alias cls='clear'
+alias cp='cp -i'
+alias ll='ls -la'
+alias mcd='makeDirAndCD'
+alias mv='mv -i'
+alias rm='rm -i'
+alias shist='history | grep'
+alias reboot='sudo reboot'
+
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
