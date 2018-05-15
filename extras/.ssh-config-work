@@ -1,0 +1,64 @@
+Host *
+	ServerAliveInterval 120
+
+Host graviton-jump-host
+  User douglasm
+  Hostname graviton-jump-host-scottsdale
+  IdentityFile ~/.ssh/id_rsa
+
+# Graviton hosts
+Host *.graviton.odl.io
+	User centos
+	IdentityFile ~/.ssh/puppet_id_rsa
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+    ProxyJump graviton-jump-host
+
+Host hbc-review-proxy
+	Hostname haproxy1.hbc-review-graviton-jump-host-scottsdale.graviton.odl.io
+Host hbc-review-empi
+	Hostname empi1.hbc-review-graviton-jump-host-scottsdale.graviton.odl.io
+Host hbc-review-frontend
+	Hostname frontend1.hbc-review-graviton-jump-host-scottsdale.graviton.odl.io
+Host hbc-review-backend
+	Hostname backend1.hbc-review-graviton-jump-host-scottsdale.graviton.odl.io
+Host hbc-review-rhapsody-ohop
+	Hostname rhapsody-ohop1.hbc-review-graviton-jump-host-scottsdale.graviton.odl.io
+Host hbc-review2-frontend
+	Hostname frontend1.hbc-review2-graviton-jump-host-scottsdale.graviton.odl.io
+Host hbc-review2-backend
+	Hostname backend1.hbc-review2-graviton-jump-host-scottsdale.graviton.odl.io
+Host hbc-review2-rhapsody
+	Hostname rhapsody-ohop1.hbc-review2-graviton-jump-host-scottsdale.graviton.odl.io
+
+Host *.us-west-2.orionsaas bastion.us-west-2.orionhealth-saas-mgmt.com bastion2.us-west-2.orionhealth-saas-mgmt.com
+  ControlMaster auto
+  ControlPath /tmp/%r@%h:%p
+  ControlPersist 30
+  # If you get 'Bad configuration option: useroaming', you can safely delete this line:
+  UseRoaming no
+
+Host *.us-west-2.orionsaas *.us-east-1.orionsaas
+  #GSSAPIAuthentication no
+  PasswordAuthentication no
+  IdentitiesOnly yes
+  ProxyCommand ssh -W %h:%p bastion.us-west-2.orionhealth-saas-mgmt.com
+  IdentityFile ~/.ssh/id_rsa
+  User douglasm
+
+Host bastion.us-west-2.orionhealth-saas-mgmt.com bastion2.us-west-2.orionhealth-saas-mgmt.com
+  User douglasm
+
+Host bastion-stable
+    User douglasm
+    Hostname bastion.stable.mgmt.odl.io
+    LocalForward 8080 tac01:8080
+    LocalForward 8081 tac01:8081
+
+Host dougie-fresh.xyz
+  User dougie
+  IdentityFile "~/dougie-desktop/id_rsa-public-key.pub"
+  Port 2222
+
+Host github.com
+  IdentityFile ~/.ssh/id_rsa_github
