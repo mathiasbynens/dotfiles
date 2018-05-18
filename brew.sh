@@ -42,6 +42,7 @@ brew cask slack
 brew cask install tomighty
 brew cask install authy
 
+brew cask install iterm2
 brew cask install atom
 brew cask install intellij-idea-ce
 brew cask install virtualbox
