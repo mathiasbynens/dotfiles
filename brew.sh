@@ -38,7 +38,7 @@ brew cask install firefox
 brew cask install atext
 brew cask install avira-antivirus
 brew cask install keka
-brew cask slack
+brew cask install slack && ./addDockIcon.sh "Slack"
 brew cask install tomighty
 brew cask install authy
 
