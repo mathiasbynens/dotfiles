@@ -24,15 +24,47 @@ brew install gnu-sed --with-default-names
 brew install bash
 brew install bash-completion2
 
+# DG start
+# command line json editor
+brew install jq
+brew install awscli
+
+brew install caskroom/cask/brew-cask
+brew tap caskroom/cask
+
+brew cask install google-chrome
+brew cask install firefox
+
+brew cask install atext
+brew cask install avira-antivirus
+brew cask install keka
+brew cask slack
+brew cask install tomighty
+brew cask install authy
+
+brew cask install atom
+brew cask install intellij-idea-ce
+brew cask install virtualbox
+# brew cask install virtualbox-extension-pack
+# brew cask install docker
+
+brew cask install dropbox
+brew cask install google-backup-and-sync
+
+# office related
+brew cask install onedrive
+brew cask install microsoft-office
+brew cask install tunnelblick
+
+# DG end
+
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
   chsh -s /usr/local/bin/bash;
 fi;
 
-# DG start
-# command line json editor
-brew install jq
+
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
