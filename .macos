@@ -27,7 +27,19 @@ sudo pmset -a standbydelay 86400
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
+
+
 # DG
+# set power saving settings
+sudo systemsetup -setcomputersleep Never
+sudo systemsetup -setdisplaysleep 20
+
+# set computer name
+sudo systemsetup -setcomputername dgmini
+sudo systemsetup -setlocalsubnetname dgmini
+
+
+
 # # Disable transparency in the menu bar and elsewhere on Yosemite
 # defaults write com.apple.universalaccess reduceTransparency -bool true
 #
