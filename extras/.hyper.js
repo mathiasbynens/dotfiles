@@ -154,8 +154,9 @@ module.exports = {
   //   `project#1.0.1`
   //,'hyperterm-bold-tab','hyperterm-tabs'
   //plugins: ['hyper-material-theme','hyperborder'],
-
-  plugins: ['hyper-material-theme','hyperterm-tabs','hyperterm-bold-tab'],
+  //'hyperterm-tabs','hyperterm-bold-tab'
+  
+  plugins: ['hyper-material-theme','hyper-tabs-enhanced'],
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
