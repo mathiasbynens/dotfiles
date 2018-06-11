@@ -46,6 +46,8 @@ brew install wget --with-iri
 
 # programs
 echo "Installing programs"
+brew install ctags
+brew install cmake
 brew install dark-mode
 brew install git
 brew install git-flow
@@ -55,6 +57,8 @@ brew install heroku-toolbelt
 heroku update
 brew install lynx
 brew install mas
+brew install macvim --env-std --with-override-system-vim
+brew install neovim
 brew install python
 brew install pyenv
 brew install pyenv-virtualenv
@@ -64,6 +68,7 @@ brew install mysql
 brew install redis
 brew install rename
 brew install testssl
+brew install the_silver_searcher
 brew install tree
 brew install node
 brew install mongodb --with-openssl
@@ -74,29 +79,32 @@ brew install wget
 
 echo "npm global packages"
 npm install -g bower
+npm install -g browser-sync
 npm install -g cordova
-npm install -g grunt-cli
 npm install -g jasmine
+npm install -g jshint
 npm install -g foundation-cli
 npm install -g karma-cli
 npm install -g nodemon
 npm install -g phantomjs
 npm install -g trash-cli
+npm install -g tslint
+npm install -g typescript
 npm install -g vue-cli
 npm install -g webpack
+npm install -g git+https://github.com/ramitos/jsctags.git
 
 # applications
+echo "Installing apps"
 APPPATH="/Applications/"
 export HOMEBREW_CASK_OPTS="--appdir=$APPPATH"
-
-echo "Installing apps"
 brew cask install balsamiq-mockups
 brew cask install dropbox
 brew cask install firefox
 brew cask install flux
 brew cask install focus
+brew cask install ghostlab
 brew cask install google-chrome
-brew cask install hipchat
 brew cask install iterm2
 brew cask install java
 brew cask install keka
@@ -107,13 +115,13 @@ brew cask install on-the-job
 brew cask install opera
 brew cask install postman
 brew cask install robomongo
+brew cask install sketch
+brew cask install sequel-pro
 brew cask install slack
 brew cask install sourcetree
 brew cask install spotify
 brew cask install spotify-notifications
-brew cask install sketch
 brew cask install skype-for-business
-brew cask install steam
 brew cask install sublime-text
 brew cask install transmission
 brew cask install vagrant
