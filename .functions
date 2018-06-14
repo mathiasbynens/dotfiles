@@ -255,7 +255,9 @@ function ignoreall {
 }
 
 function fixn {
+	echo "deleting node_modules"
 	rm -Rf node_modules
-	[ -f package-lock.json ] && rm package-lock.json
+	[ -f package-lock.json ] && rm package-lock.json && echo "deleted package-lock.json"
+	echo "reinstalling node_modules"
 	npm install --no-progress --no-spinner
 }
