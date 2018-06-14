@@ -46,6 +46,9 @@ brew install wget --with-iri
 
 # programs
 echo "Installing programs"
+brew install python
+brew install node
+
 brew install ctags
 brew install cmake
 brew install dark-mode
@@ -59,7 +62,6 @@ brew install lynx
 brew install mas
 brew install macvim --env-std --with-override-system-vim
 brew install neovim
-brew install python
 brew install pyenv
 brew install pyenv-virtualenv
 brew install pyenv-virtualenvwrapper
@@ -70,23 +72,19 @@ brew install rename
 brew install testssl
 brew install the_silver_searcher
 brew install tree
-brew install node
 brew install mongodb --with-openssl
 sudo mkdir -p /data/db
 sudo chown -R `id -u` /data/db
 brew install webkit2png
 brew install wget
+brew install yarn
 
 echo "npm global packages"
 npm install -g bower
 npm install -g browser-sync
-npm install -g cordova
-npm install -g jasmine
-npm install -g jshint
-npm install -g foundation-cli
 npm install -g karma-cli
 npm install -g nodemon
-npm install -g phantomjs
+npm install -g prettier
 npm install -g trash-cli
 npm install -g tslint
 npm install -g typescript

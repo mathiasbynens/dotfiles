@@ -78,8 +78,6 @@ function installHomebrewApps() {
 
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		sudo -v
-
-		cd ~
 		./brew.sh
 	fi;
 }
