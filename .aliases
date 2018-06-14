@@ -39,7 +39,6 @@ alias trimcopy="tr -d '\n' | pbcopy"
 alias sudo='sudo '
 
 alias fix='fixn & fixb'
-alias fixn='rm -Rf node_modules && npm install --no-progress --no-spinner'
 alias fixb='rm -Rf bower_components && bower install'
 # PROGRAMMING
 # Find my IP address

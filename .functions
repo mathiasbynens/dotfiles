@@ -253,3 +253,9 @@ function ffs {
 function ignoreall {
 	new=$(g s | grep '??' | sed "s/?? //"); for path in $new; do echo $path >> .gitignore; done;
 }
+
+function fixn {
+	rm -Rf node_modules
+	[ -f package-lock.json ] && rm package-lock.json
+	npm install --no-progress --no-spinner
+}
