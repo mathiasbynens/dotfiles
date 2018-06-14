@@ -259,5 +259,5 @@ function fixn {
 	rm -Rf node_modules
 	[ -f package-lock.json ] && rm package-lock.json && echo "deleted package-lock.json"
 	echo "reinstalling node_modules"
-	npm install --no-progress --no-spinner
+	npm install
 }
