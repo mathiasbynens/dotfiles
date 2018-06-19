@@ -39,6 +39,7 @@ brew cask install atext
 brew cask install avira-antivirus
 brew cask install keka
 # brew cask slack !!! ERROR HERE ?
+brew cask install slack && ./addDockIcon.sh "Slack"
 brew cask install tomighty
 brew cask install authy
 
