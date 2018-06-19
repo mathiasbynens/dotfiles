@@ -30,7 +30,7 @@ brew install jq
 brew install awscli
 
 brew install caskroom/cask/brew-cask
-brew tap caskroom/cask
+# brew tap caskroom/cask # !!! ERROR HERE ?
 
 brew cask install google-chrome
 brew cask install firefox
@@ -38,7 +38,7 @@ brew cask install firefox
 brew cask install atext
 brew cask install avira-antivirus
 brew cask install keka
-brew cask slack
+# brew cask slack !!! ERROR HERE ?
 brew cask install tomighty
 brew cask install authy
 
