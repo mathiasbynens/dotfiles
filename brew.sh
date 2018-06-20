@@ -45,5 +45,21 @@ brew install p7zip
 brew install rename
 brew install tree
 
+# Install Node dependencies
+brew install nvm
+brew install node
+brew install yarn
+
+# Install Python dependencies
+brew install python
+brew install python3
+
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# Add cask
+brew tap homebrew/cask
+brew cask install gimp 
+brew cask install java iterm2 sublime-text sshfs google-chrome 
+brew cask install spotify rambox
+
