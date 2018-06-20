@@ -63,6 +63,7 @@ alias g='grep --color=auto'
 alias mg='grep -rni --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias gg='git grep -ni'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
