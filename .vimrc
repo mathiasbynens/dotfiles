@@ -105,6 +105,7 @@ nn [5R <C-W>W
 map <S-u> :redo<cr>
 map <C-n> :tabn<cr>
 map <C-p> :tabp<cr>
+imap fj <Esc>
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -117,3 +118,4 @@ let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 " Find 'tags' file in current directory, or traverse up until it's found.
 " http://stackoverflow.com/a/8285918
 set tags=./tags,tags;
+
