@@ -12,7 +12,7 @@ alias -- -="cd -"
 alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
+alias dev="cd ~/Development/fubotv/"
 alias g="git"
 
 # Detect which `ls` flavor is in use
