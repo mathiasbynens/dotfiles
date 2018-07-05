@@ -167,4 +167,13 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ducks='du -chs * | sort -rh | head -11'
 
 # svaddall because I can't forget it
-alias svaddall='sv status | grep "^\?" | awk "{print \$2}" | xargs svn add'
+alias svaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
+
+# maven local build
+alias maven-local-build='docker run -it --rm -w /usr/src/app -v $PWD:/usr/src/app -v $HOME/.m2:/root/.m2 maven mvn clean install -Dmaven.test.skip=true'
+
+# dockertf
+alias dockertf='docker run -i -t -v $(pwd):/app/ -v ~/.ssh:/root/.ssh -v ~/.aws:/root/.aws -w /app/ hashicorp/terraform'
+
+# run a docker container with important dirs mapped
+alias mydocker='docker run -it --rm -w /usr/src/app -v $PWD:/usr/src/app -v $HOME/.ssh:/root/.ssh -v $HOME/.aws:/root/.aws -v $HOME/.m2:/root/.m2'
