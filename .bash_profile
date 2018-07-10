@@ -49,3 +49,5 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 # add the fucking alias
 eval $(thefuck --alias)
+
+export PATH="/usr/local/sbin:$PATH"
