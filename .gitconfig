@@ -70,6 +70,15 @@
 		fi \
 	}; f"
 
+	# partial stashing with stash push + file names
+	pstash = stash push -- 
+
+    # interactive stash with 
+    istash = stash save -p 
+
+    # pop stash easily
+	stp = stash pop 
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
