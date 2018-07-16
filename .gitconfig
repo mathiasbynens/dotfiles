@@ -73,10 +73,10 @@
 	# partial stashing with stash push + file names
 	pstash = stash push -- 
 
-    # interactive stash with 
-    istash = stash save -p 
+	# interactive stash with 
+	istash = stash save -p 
 
-    # pop stash easily
+	# pop stash easily
 	stp = stash pop 
 
 [apply]
