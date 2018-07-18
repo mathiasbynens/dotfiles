@@ -49,8 +49,7 @@ complete -W "NSGlobalDomain" defaults;
 #         My stuff         #
 ############################
 
-DOTFILES_DIR="${HOME}/.dotfiles"
-#DOTFILES_DIR=`pwd`
+DOTFILES_DIR="${HOME}/dotfiles"
 
 # Automatically link all files located in the /link folder
 ln -fs ${DOTFILES_DIR}/link/* ${HOME}
