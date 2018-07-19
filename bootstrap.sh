@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Ensure we are using the most up-to-date version
+git pull origin master;
+
 currentDirectory=$(dirname $0)
 
 if [[ ! -f bootstrap.sh ]]; then
@@ -10,7 +13,6 @@ fi
 dir=~/dotfiles
 cat extras/dougie-bootstrap
 
-os=$(uname -s)
 cd "$(dirname "${BASH_SOURCE}")";
 
 # Enable this if I need to check if this is being run as sudo
@@ -18,8 +20,6 @@ cd "$(dirname "${BASH_SOURCE}")";
 #	echo "Please run this script with sudo or root user ..."
 #	exit 1
 #fi
-
-git pull origin master;
 
 successfully() {
 	$* || (echo "failed" 1>&2 && exit 1)
@@ -32,9 +32,14 @@ fancy_echo() {
 exe() { echo "\$ $@" ; "$@" ; }
 
 function installApps() {
-	sudo apt-get install -y curl
-	sudo apt-get install -y git
-	sudo apt-get install -y vim 
+	sudo apt-get install -y \
+		curl \
+		git \
+		vim \
+		rsync \
+        ssh
+
+	cp extras/.bash* ~/
 }
 
 function doIt() {
@@ -55,9 +60,9 @@ function doIt() {
         echo ""
     fi 
 
-	if [[ $os == "nix" ]]; then
-		installApps;
-	fi
+    if [[ $operating_sys == "nix" ]]; then
+        installApps;
+    fi
 
     rsync --filter="merge rsync-filter" -ah --no-perms . ~;
     
@@ -135,14 +140,10 @@ case "$(uname -s)" in
 	 operating_sys='win'
      ;;
    *)
-     #echo 'other OS'
-	 echo 'Unable to determine Operating system, exiting...'
 	 exit 1
      ;;
 esac
 
-echo -e "Initializing submodules...\n"
-git submodule update --init
 
 while getopts "fwh" opt; do
   case $opt in
@@ -169,20 +170,6 @@ while getopts "fwh" opt; do
   esac
 done
 
-# Backup the current dotfiles
-DATE=$(date +"%Y%m%d-%H%M")
-olddir=~/dotfiles.old
-echo "re-creating backup directory [$olddir]"
-if [[ -d "$olddir" ]]; then
-	rm -rf $olddir
-	mkdir -p $olddir
-else
-	mkdir -p $olddir
-fi
-
-echo "Backing up original files..."
-find ~ -maxdepth 1 -name ".[^.]*" -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
-echo ""
 
 if [[ $forceflag -eq 1 ]]; then
 	doIt;
@@ -190,6 +177,23 @@ else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		echo -e "Initializing submodules...\n"
+		git submodule update --init
+
+		# Backup the current dotfiles
+		DATE=$(date +"%Y%m%d-%H%M")
+		olddir=~/dotfiles-$DATE.old
+		echo "re-creating backup directory [$olddir]"
+		if [[ -d "$olddir" ]]; then
+			rm -rf $olddir
+			mkdir -p $olddir
+		else
+			mkdir -p $olddir
+		fi
+
+		echo "Backing up original files..."
+		find ~ -maxdepth 1 -name ".[^.]*" -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
+		echo ""
 		doIt;
 	fi;
 fi;
