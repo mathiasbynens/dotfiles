@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 
 # Create a new directory and enter it
-function mkd() {
+function mcd() {
 	mkdir -p "$@" && cd "$_";
+}
+
+function capture() {
+    sudo dtrace -p "$1" -qn '
+        syscall::write*:entry
+        /pid == $target && arg0 == 1/ {
+            printf("%s", copyinstr(arg1, arg2));
+        }
+    '
 }
 
 # Change working directory to the top-most Finder window location

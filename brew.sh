@@ -8,6 +8,11 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
+# utility to interact with Accessibility support from command line
+# (needed also to complete install of atext, avira and ... )
+#  COMMENTED AS DOES NOT ALLOW CHANGES SINCE SIERRA
+# brew install tccutil
+
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
@@ -24,29 +29,29 @@ brew install gnu-sed --with-default-names
 brew install bash
 brew install bash-completion2
 
-# DG start
-# command line json editor
-brew install jq
-brew install awscli
 
 brew install caskroom/cask/brew-cask
 # brew tap caskroom/cask # !!! ERROR HERE ?
 
-brew cask install google-chrome
-brew cask install firefox
-
-brew cask install atext
-brew cask install avira-antivirus
+## Generic utilities
+# command line json editor
+brew install jq
+brew install awscli
 brew cask install keka
+
+
+
+# how to add licence number?
+brew cask install atext
+brew cask install tomighty
+
+brew cask install google-chrome && ./addDockIcon.sh "Google Chrome"
+brew cask install firefox && ./addDockIcon.sh "Firefox"
 # brew cask slack !!! ERROR HERE ?
 brew cask install slack && ./addDockIcon.sh "Slack"
-brew cask install tomighty
-brew cask install authy
-
-brew cask install iterm2
-brew cask install atom
-brew cask install intellij-idea-ce
-brew cask install virtualbox
+brew cask install authy && ./addDockIcon.sh "Authy"
+brew cask install iterm2 && ./addDockIcon.sh "iTerm"
+brew cask install atom && ./addDockIcon.sh "Atom"
 # brew cask install virtualbox-extension-pack
 # brew cask install docker
 
@@ -56,7 +61,15 @@ brew cask install google-backup-and-sync
 # office related
 brew cask install onedrive
 brew cask install microsoft-office
-brew cask install tunnelblick
+
+
+# DEV tools
+# Attention: this installs latest Oracle java (10.x currently), requires password
+brew cask install java
+brew install maven
+brew cask install intellij-idea-ce && ./addDockIcon.sh "IntelliJ IDEA CE"
+
+
 
 # DG end
 
@@ -130,6 +143,18 @@ brew install ssh-copy-id
 brew install tree
 brew install vbindiff
 brew install zopfli
+
+
+
+# failed on first install & requires password
+brew cask install virtualbox
+# requires extra consent in Security & Privacy panel
+brew cask install avira-antivirus
+# requires password
+brew cask install tunnelblick
+
+
+
 
 # Remove outdated versions from the cellar.
 brew cleanup
