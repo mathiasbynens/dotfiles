@@ -13,7 +13,8 @@ module.exports = {
 
     // font family with optional fallbacks
     //fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
-	fontFamily: '"DejaVu Sans Mono for Powerline", Consolas, "Lucida Console", monospace',
+	//fontFamily: '"DejaVu Sans Mono for Powerline", Consolas, "Lucida Console", monospace',
+	fontFamily: 'Menlo, "DejaVu Sans Mono for Powerline", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
@@ -86,7 +87,13 @@ module.exports = {
       lightWhite: '#FFFFFF',
     },
 	
-    MaterialTheme: {
+    verminal: {
+		fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+		//fontFamily: '"DejaVu Sans Mono for Powerline", Consolas, "Lucida Console", monospace',
+		fontSize: 14
+	},
+
+	MaterialTheme: {
         // Set the theme variant,
         // OPTIONS: 'Darker', 'Palenight', ''
         theme: '',
@@ -104,6 +111,8 @@ module.exports = {
         vibrancy: 'dark'
     },
 	
+	opacity: 0.85,
+
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
     //
@@ -136,6 +145,9 @@ module.exports = {
     // if `true` (without backticks and without quotes), hyper will be set as the default protocol client for SSH
     defaultSSHApp: true,
 
+	// hyper-opacity configuration
+	//opacity: 0.95
+
     // if `true` (without backticks and without quotes), on right click selected text will be copied or pasted if no
     // selection is present (`true` by default on Windows and disables the context menu feature)
     // quickEdit: true,
@@ -155,8 +167,9 @@ module.exports = {
   //,'hyperterm-bold-tab','hyperterm-tabs'
   //plugins: ['hyper-material-theme','hyperborder'],
   //'hyperterm-tabs','hyperterm-bold-tab'
+  //'hyper-opacity'
   
-  plugins: ['hyper-material-theme','hyper-tabs-enhanced'],
+  plugins: ['verminal','hyper-opacity','hyperterm-tabs'],
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
