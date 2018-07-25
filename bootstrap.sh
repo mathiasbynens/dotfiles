@@ -69,7 +69,7 @@ function doIt() {
     #source ~/.bash_profile;
 
     echo "Installing oh-my-zsh ..."
-    successfully sudo apt-get install zsh
+    successfully sudo apt-get install zsh -y
     successfully curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
     
     echo -e "\nInstalling powerline-fonts ..."
@@ -115,7 +115,7 @@ EOF
             echo "zsh-syntax-highlighting already installed ..."
     fi
     
-    sed -i 's/plugins=.*/plugins=(git zsh-syntax-highlighting zsh-autosuggestions)/' $HOME/.zshrc
+    sed -i '/plugins=/{n;s/git/git zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
 
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
     
@@ -123,6 +123,8 @@ EOF
     if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     fi
+
+    mkdir $HOME/.ssh
 
 	# Additional handling if work flag was passed
 	if [[ "$workflag" -eq "1" ]]; then
