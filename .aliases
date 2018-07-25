@@ -11,6 +11,7 @@ alias -- -="cd -"
 
 # Shortcuts
 alias d="drush"
+alias td="terminus drush"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias h="history"
@@ -20,6 +21,9 @@ alias ex="exit"
 # Get around to common places
 alias gtsan="cd /Users/chill/Projects/sandcastle/docroot/sites/all"
 alias gttheme="cd /Users/chill/Projects/sandcastle/docroot/sites/vm.sandcastle.bonniercorp.com/themes/sand"
+alias gtgw="cd /Users/chill/Projects/genomeweb-drupalvm/app"
+alias gtgw_custom="cd /Users/chill/Projects/genomeweb-drupalvm/app/web/sites/default/modules/custom"
+alias gtgw_themes="cd /Users/chill/Projects/genomeweb-drupalvm/app/web/sites/default/themes"
 
 # Git shortcuts
 alias gs="git status"
