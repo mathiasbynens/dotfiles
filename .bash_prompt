@@ -62,18 +62,18 @@ prompt_git() {
 }
 
 if tput setaf 1 &> /dev/null; then
-	tput sgr0; # reset colors
-	bold=$(tput bold);
-	reset=$(tput sgr0);
-	# Solarized colors, taken from http://git.io/solarized-colors.
-	black="\[$(tput setaf 0)\]"
-	red="\[$(tput setaf 1)\]"
-	green="\[$(tput setaf 2)\]"
-	yellow="\[$(tput setaf 3)\]"
-	blue="\[$(tput setaf 4)\]"
-	magenta="\[$(tput setaf 5)\]"
-	cyan="\[$(tput setaf 6)\]"
-	white="\[$(tput setaf 7)\]"
+  tput sgr0; # reset colors
+  bold=$(tput bold);
+  reset=$(tput sgr0);
+  # Solarized colors, taken from http://git.io/solarized-colors.
+  black="$(tput setaf 0)"
+  red="$(tput setaf 1)"
+  green="$(tput setaf 2)"
+  yellow="$(tput setaf 3)"
+  blue="$(tput setaf 4)"
+  magenta="$(tput setaf 5)"
+  cyan="$(tput setaf 6)"
+  white="$(tput setaf 7)"
 else
 	bold='';
 	reset="\e[0m";
