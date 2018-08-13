@@ -71,7 +71,7 @@ if tput setaf 1 &> /dev/null; then
 	cyan=$(tput setaf 37);
 	green=$(tput setaf 40);
 	orange=$(tput setaf 202);
-	magenta=$(tput setaf 50);
+	magenta=$(tput setaf 13);
 	purple=$(tput setaf 125);
 	red=$(tput setaf 124);
 	violet=$(tput setaf 61);
@@ -96,7 +96,7 @@ fi;
 if [[ "${USER}" == "root" ]]; then
 	userStyle="${red}";
 else
-	userStyle="${magenta}";
+	userStyle="${green}";
 fi;
 
 # Highlight the hostname when connected via SSH.
@@ -108,8 +108,8 @@ fi;
 
 # Set the terminal title and prompt.
 # PS1="\[\033]0;\W\007\]"; # working directory base name
-PS1="\[$(tput setaf 40)\]┌──[\[${userStyle}\]\u";
-PS1+="\[${white}\]@\[${hostStyle}\]\h";
+PS1="\[${green}\]┌──[\[${userStyle}\]\u";
+PS1+="\[${white}\]@\[$(tput setaf 45)\]\h";
 PS1+="\[${green}\]]─";
 PS1+="\[${orange}\][\w]\n\[${green}\]└──╼  ";
 PS1+="";
