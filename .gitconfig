@@ -79,6 +79,9 @@
 	# pop stash easily
 	stp = stash pop 
 
+	# recent branches
+	rb = for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
