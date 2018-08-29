@@ -1,39 +1,31 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-
 " SYNTAX "
 Plugin 'mxw/vim-jsx'                        " Syntax highlighting and indenting for JSX "
 Plugin 'pangloss/vim-javascript'            " provides syntax highlighting and improved indentation "
 Plugin 'posva/vim-vue'                      " .vue support "
 Plugin 'w0rp/ale'                           " linter "
-
 " INPUT "
 Plugin 'alvan/vim-closetag'                 " Auto-close HTML nodes "
 Plugin 'Raimondi/delimitMate'               " automatic closing of quotes, parenthesis, brackets, etc "
 Plugin 'prettier/vim-prettier',{ 'do': 'npm install' }" Makes code pretty "
-
+Plugin 'christoomey/vim-tmux-navigator'     " vim style navigating between tmux and vim "
 " TOOLS "
 Plugin 'kien/ctrlp.vim'                     " fuzzy search "
 Plugin 'airblade/vim-gitgutter'             " git diff next to ruler "
+Plugin 'editorconfig/editorconfig-vim'      " set editorconfig "
 Plugin 'scrooloose/nerdtree'                " sitemap in sidebar "
 Plugin 'ternjs/tern_for_vim'                " provides Tern-based JavaScript editing support, for youcompleteme"
 Plugin 'valloric/youcompleteme'             " fuzzy-search code completion engine "
 Plugin 'qpkorr/vim-bufkill'                 " nload, delete or wipe a buffer without closing the window or split "
 Plugin 'SirVer/ultisnips'                   " snippets engine."
 Plugin 'honza/vim-snippets'                 " snippets preset "
-
+Plugin 'mileszs/ack.vim'                    " search string "
 " UI "
 Plugin 'ap/vim-css-color'                   " color values as a color in css "
 Plugin 'flazz/vim-colorschemes'             " color schemes "
@@ -43,28 +35,12 @@ Plugin 'ryanoasis/vim-devicons'             " icons in Nerdtree "
 Plugin 'vim-airline/vim-airline'            " git status bar "
 Plugin 'vim-airline/vim-airline-themes'     " git status bar themes "
 
-
-
-" All of your Plugins must be added before the following line "
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 let mapleader=" "
-filetype plugin on
 
 " Appearance "
 syntax on
-set background=dark
 set guifont=*
 set guifont=SauceCodePro\ Nerd\ Font:h25
 "set guifont=Source\ Code\ Pro\ for\ Powerline:h15 "make sure to escape the spaces in the name properly
@@ -93,7 +69,8 @@ set modeline                        " Respect modeline in files "
 set modelines=4
 set exrc                            " Enable per-directory .vimrc files and disable unsafe commands in them "
 set secure
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_ " invisible charachters to show "
+"set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_ " invisible charachters to show "
+set lcs=tab:▸\ ,trail:·             " invisible charachters to show "
 set list                            " Show “invisible” characters "
 set hlsearch                        " Highlight searches "
 set ignorecase                      " Ignore case of searches "
@@ -109,12 +86,40 @@ set showcmd                         " Show the (partial) command as it’s being
 set scrolloff=3                     " Start scrolling three lines before the horizontal window border "
 set autoindent smartindent          " auto/smart indent "
 set smarttab                        " tab and backspace are smart "
-set softtabstop=4                   " control how many columns vim uses when you hit Tab in insert mode "
-set shiftwidth=4                    " control how many columns text is indented with the reindent operations (<< and >>) "
-set expandtab                       " When expandtab is set, hitting Tab in insert mode will produce the appropriate number of spaces
-"
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
 syntax match Tab /\t/
 hi Tab gui=underline guifg=blue ctermbg=red
+
+" highlights the background in a subtle red for text that goes over the 120 column limit
+highlight ColorColumn ctermbg=gray
+set colorcolumn=120
+
+" Open new split panes to right and bottom, which feels more natural than Vim’s default: "
+set splitbelow
+set splitright
+
+
+" current window will be .. lines
+" set winheight=50
+
+" all splits will be at least .. height lines
+" set winminheight=5
+
+" current window will be .. chars width
+" set winwidth=150
+
+" all splits will be at least .. width chars
+" set winminwidth=25
+
+
+" use + and - to increase or decrease windows by a sane amount
+"nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+"nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+
 
 " Performance
 let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
@@ -131,19 +136,32 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" ctrl p for previous buffer"
+" nmap <C-P> :bp<CR> "
+" ctrl n for previous buffer"
+nmap <C-N> :bn<CR>
+
+" Ack "
+
+" Immediatly search for the word un der the cursor in a new tab."
+nmap <leader>P :tab split<CR>:Ack <C-r><C-w><CR>
+
+
 " Airline "
 let g:airline#extensions#tabline#enabled = 1    " Automatically displays all buffers when there's only one tab open. "
 let g:airline_powerline_fonts = 1
 
 " Ale "
-let b:ale_fixers = ['prettier', 'eslint']
+"let b:ale_fixers = ['prettier', 'eslint']
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+" stop Elm.vim trying to show compiler erorrs in Vim
+let g:elm_format_fail_silently = 1
 
-" AUTO CLOSE XML/HTML "
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.vue"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.erb,*.vue'
-let g:closetag_emptyTags_caseSensitive = 1
-let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = '<leader>>'
+let g:ale_lint_on_save = 1
+let g:ale_set_highlights = 0
+let g:ale_fixers = {}
+let g:ale_fix_on_save = 1
 
 
 " CTRLP "
@@ -162,6 +180,8 @@ let g:ctrlp_custom_ignore = {
 " Use NerdTree folder as CTRL search directoryh
 let g:NERDTreeChDirMode       = 2
 let g:ctrlp_working_path_mode = 'rw'
+let g:NERDTreeIgnore = ['\.pyc$', '\.swp']
+
 
 " Use a leader instead of the actual named binding "
 
@@ -174,13 +194,17 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 " JSX for .js files
 let g:jsx_ext_required = 0
+"let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
 " Prettier
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+" Auto prettier when saving
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+nnoremap <c-p>:Prettier<cr>
 
 " Nerd tree
-cd ~/development                  " navigate to development folder "
 let NERDTreeShowHidden=1          " show hidden files "
 " autocmd VimEnter * NERDTree     " start NERDtree on startup "
 " autocmd VimEnter * wincmd p     " dont focus NERDtree on startup "
@@ -191,6 +215,12 @@ nmap <leader>n :NERDTreeToggle<cr>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-]>"
 let g:UltiSnipsJumpBackwardTrigger="<c-[>"
+
+" Dev icons
+" after a re-source, fix syntax matching issues (concealing brackets):
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
 
 "see: https://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme#answer-18685821
 function! g:UltiSnips_Complete()
@@ -211,10 +241,11 @@ endfunction
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-e>"
-" this mapping Enter key to <C-y> to chose the current highlight item 
+" this mapping Enter key to <C-y> to chose the current highlight item
 " and close the selection list, same as other IDEs.
 " CONFLICT with some plugins like tpope/Endwise
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Colorscheme "
+set background=dark
 colorscheme molokai
