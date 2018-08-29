@@ -48,7 +48,10 @@ brew install wget --with-iri
 echo "Installing programs"
 brew install python
 brew install node
-
+brew install mysql
+brew install docker-cloud
+brew install docker-compose
+brew install ack
 brew install ctags
 brew install cmake
 brew install dark-mode
@@ -56,8 +59,7 @@ brew install git
 brew install git-flow
 brew install gpg
 brew install grc
-brew install heroku-toolbelt
-heroku update
+brew install htop
 brew install lynx
 brew install mas
 brew install macvim --env-std --with-override-system-vim
@@ -66,22 +68,27 @@ brew install pyenv
 brew install pyenv-virtualenv
 brew install pyenv-virtualenvwrapper
 brew install nodeenv
-brew install mysql
 brew install redis
 brew install rename
 brew install testssl
 brew install the_silver_searcher
 brew install tree
+brew install tmux
 brew install mongodb --with-openssl
 sudo mkdir -p /data/db
 sudo chown -R `id -u` /data/db
+brew install watchman
 brew install webkit2png
 brew install wget
 brew install yarn
 
+brew install heroku-toolbelt
+heroku update
+
 echo "npm global packages"
 npm install -g bower
 npm install -g browser-sync
+npm install -g expo-cli
 npm install -g karma-cli
 npm install -g nodemon
 npm install -g prettier
@@ -111,6 +118,8 @@ brew cask install mamp
 brew cask install macvim
 brew cask install on-the-job
 brew cask install opera
+brew cask install pgadmin4
+brew cask install postgres
 brew cask install postman
 brew cask install robomongo
 brew cask install sketch
@@ -118,14 +127,13 @@ brew cask install sequel-pro
 brew cask install slack
 brew cask install sourcetree
 brew cask install spotify
-brew cask install spotify-notifications
-brew cask install skype-for-business
 brew cask install sublime-text
 brew cask install transmission
 brew cask install vagrant
 brew cask install virtualbox
 brew cask install vlc
 brew cask install whatsapp
+brew cask install docker
 
 echo "Installing quicklook helpers"
 # some plugins to enable different files to work with mac quicklook.
