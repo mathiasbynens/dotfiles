@@ -206,6 +206,9 @@ echo "cleaning cache"
 brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
 
+echo "Installing other deps"
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
 echo ""
 echo "$(tput setaf 6)Finished installing homebrew apps$(tput setaf 7)"
 echo ""
