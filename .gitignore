@@ -11,6 +11,12 @@ node_modules
 # Compiled Python files
 *.pyc
 
+# IDE files
+*.swo
+*.swp
+.vscode
+.idea
+
 # Folder view configuration files
 .DS_Store
 Desktop.ini
