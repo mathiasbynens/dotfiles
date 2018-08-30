@@ -64,6 +64,7 @@ brew install lynx
 brew install mas
 brew install macvim --env-std --with-override-system-vim
 brew install neovim
+brew install vim
 brew install pyenv
 brew install pyenv-virtualenv
 brew install pyenv-virtualenvwrapper
@@ -73,7 +74,6 @@ brew install rename
 brew install testssl
 brew install the_silver_searcher
 brew install tree
-brew install tmux
 brew install mongodb --with-openssl
 sudo mkdir -p /data/db
 sudo chown -R `id -u` /data/db
@@ -106,7 +106,6 @@ export HOMEBREW_CASK_OPTS="--appdir=$APPPATH"
 brew cask install balsamiq-mockups
 brew cask install dropbox
 brew cask install firefox
-brew cask install flux
 brew cask install focus
 brew cask install ghostlab
 brew cask install google-chrome
