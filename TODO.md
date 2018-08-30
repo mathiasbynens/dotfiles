@@ -1,32 +1,16 @@
-1.  copy dotfiles
-2.  setup osx
-3.  create folders
-4.  install apps
-    warning, please configure dropbox and download .config folder
-5.  setup sublime
-6.  install ohmyzsh
-7.  install ohmyzsh plugins
+SEE my local notes with to do for happy flow
 
-8.  install
-
-    # XCODE INSTALL AND ACCEPT
-
-    1.  Set dotfiles? Caution, this removes old dotfiles, proceed?
-    2.  install apps
-    3.  install ohmyzsh
-
-9.  set preferences
-    warning, please configure dropbox and download .config folder (verify folders!)
-    1.  setup osx
-    2.  setup ssh
-    3.  setups folders
-    4.  setup sublime (package.json alike?)
-    5.  setup ohmyzsh
-    6.  remarks:
-        1.  notify iterm2 settings | COLORS!
-            - Colors
-            - Fonts
-        2.  notify sublime | COLORS!
-            - install package control
-            - restart
-        3.  open licenses folder in finder | COLORS!
+* bootstrap installer
+* ONE time ask password
+* readme how to install
+* make symlinks of dotfiles
+* current brew.sh is a mess, it should be divived within applciations, fonts, utilities and npm?
+* applications, fonts etc as array
+* install messages by function
+* installing by function
+* quiete installs
+* vim install
+* vim Vundle install already done by dotfiles?
+* clean up zsh?
+* a nice prompt in ohmzsh
+* make macos settings to retrieve from github (well known dotfiles), do my mutations after installing it
