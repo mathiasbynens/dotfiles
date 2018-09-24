@@ -1,6 +1,6 @@
 # Add `~/bin` and brew folders to the `$PATH`
 # and python's path: https://github.com/mxcl/homebrew/wiki/Homebrew-and-Python
-export PATH="$HOME/.rvm/bin:/usr/local/bin:/usr/local/share/python:$HOME/Projects/myStash/bin:/usr/local/sbin"
+export PATH="$HOME/.rvm/bin:/usr/local/bin:/usr/local/share/python:$HOME/Projects/myStash/bin:$HOME/npm-global/bin:$HOME/bin/node-tools:/usr/local/sbin:$HOME/Projects/libs/depot_tools:$HOME//Projects/libs/AWS-ElasticBeanstalk-CLI-2.5.1/eb/macosx/python2.7:~/Library/Python/2.7/bin:$PATH"
 
 # Run rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
