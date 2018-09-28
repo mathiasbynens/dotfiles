@@ -1,6 +1,7 @@
 " Use the Solarized Dark theme
 set background=dark
 colorscheme solarized
+"colorscheme delek
 let g:solarized_termtrans=1
 
 " Make Vim more useful
@@ -19,6 +20,10 @@ set ttyfast
 set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
+set fileencoding=utf-8
+" Set <EOL> to LF and CRLF as failsafe
+set fileformat=unix
+set fileformats=unix,dos
 " Change mapleader
 let mapleader=","
 " Don’t add empty newlines at the end of files
@@ -45,9 +50,9 @@ set number
 " Enable syntax highlighting
 syntax on
 " Highlight current line
-set cursorline
+"set cursorline
 " Make tabs as wide as two spaces
-set tabstop=2
+set tabstop=8
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -68,7 +73,7 @@ set nostartofline
 " Show the cursor position
 set ruler
 " Don’t show the intro message when starting Vim
-set shortmess=atI
+"set shortmess=atI
 " Show the current mode
 set showmode
 " Show the filename in the window titlebar
@@ -76,10 +81,10 @@ set title
 " Show the (partial) command as it’s being typed
 set showcmd
 " Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
+"if exists("&relativenumber")
+"	set relativenumber
+"	au BufReadPost * set relativenumber
+"endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
@@ -99,8 +104,22 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 if has("autocmd")
 	" Enable file type detection
 	filetype on
+	filetype plugin on
+	filetype indent on
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+" number of lines to keep in history
+set history=50
+" Automatic indentation
+set autoindent
+" Make it smart
+set smartindent
+" To paste from another application:
+"    Start insert mode.
+"    Press F2 (toggles the 'paste' option on).
+"    Use your terminal to paste text from the clipboard.
+"    Press F2 (toggles the 'paste' option off). 
+set pastetoggle=<F2>
