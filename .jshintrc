@@ -1,0 +1,27 @@
+{
+    // To fix column positions for JSHint errors you may want to add `"indent": 1` to your
+    // **User** "jshint_options". This issue affects users with tabs for indentation.
+    // This fix was reverted due to a conflict with using the `"white": true` option.
+    "indent": 4,
+    "evil": false,
+    "regexdash": true,
+    "browser": true,
+    "wsh": true,
+    "sub": true,
+    "curly": true,
+    "eqeqeq": true,
+    "immed": true,
+    "latedef": true,
+    "noarg": true,
+    "undef": true,
+    "eqnull": true,
+    "strict": true,
+    "jquery": true,
+    "node": true,
+    "unused": true,
+    "devel": false,
+    "predef" : [
+        "_gaq",
+        "ga"
+    ]
+}
