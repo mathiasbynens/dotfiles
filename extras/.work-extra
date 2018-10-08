@@ -12,7 +12,8 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 if [ -f ~/.ssh-agent ]; then . ~/.ssh-agent; fi
 
-sudo cp ~/dotfiles/extras/windows/resolv.conf /etc/resolv.conf
+# No longer needed as resolv.conf is stored in /etc/resolvconf/resolv.conf.d/base
+#sudo cp ~/dotfiles/extras/windows/resolv.conf /etc/resolv.conf
 
 exe() { echo "\$ $@" ; "$@" ; }
 
