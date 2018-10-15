@@ -170,6 +170,16 @@ function s() {
 	fi;
 }
 
+# `x` with no arguments opens the current directory in VSC Editor, otherwise
+# opens the given location
+function x() {
+	if [ $# -eq 0 ]; then
+		code .;
+	else
+		code "$@";
+	fi;
+}
+
 # `v` with no arguments opens the current directory in Vim, otherwise opens the
 # given location
 function v() {
