@@ -239,3 +239,6 @@ alias cdp='cd Projects';
 alias du='./bin/dcd up';
 alias dj='./bin/dcd run --rm web ./manage.py';
 alias dbs='./bin/bootstrap-dev.sh';
+
+alias vaws='aws-vault exec ${AWS_DEFAULT_PROFILE:-tsi} -- aws'
+alias start-dev="tmux -CC new-session 'accordance sync ~/.accordance/projects.yml' \; split-window 'sshuttle -r ccopeland@ccopeland.builds.tsiaws.com 172.17.0.0/16'"
