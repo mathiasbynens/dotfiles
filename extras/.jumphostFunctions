@@ -1,0 +1,94 @@
+#!/bin/bash
+#
+# DESCRIPTION
+# These functions assist with automating some basic tasks which are used over and over in Amadeus deployments.
+#
+# Author: Doug Morand
+
+# INSTALLATION
+# =========================================================================================
+# Add the following block to your .bash_profile in your $HOME directory:
+#
+#   if [ -f ~/.jumphostFunctions ]; then
+#       . ~/.jumphostFunctions
+#   fi
+# =========================================================================================
+
+exe() { echo "\$ $@" ; "$@" ; }
+
+rebaseWithMaster() {
+    #1) Checks out the master branch.
+    #2) Pulls any remote changes.
+    #3) Swaps back to your original branch.
+    #4) Rebases with master.
+
+    exe git checkout master && git pull && git checkout - && git rebase master
+}
+
+cleanOrig() {
+    # Useful for cleaning up .orig* files post handling merge conflicts
+    #git status -su | grep --null "\.orig$" | cut -c4- | xargs -0 rm -r
+    find . -name '*.orig' -delete
+}
+
+amadeusPostDeploy() {
+    # Runs through post deployment steps for an Amadeus deployment
+    # Arguments:
+    #   --postDeployFile <file>: list of post deployment scripts that should be run
+    #
+    # postDeployFile file format:  
+    #   resources/scripts/run_db_grants
+    #   resources/scripts/load_demo_users
+    #   ...
+    #
+    if [ ! -f solution_definition.yaml ]; then
+        echo "Unable to run ${FUNCNAME[0]} check that you are in your solution directory..." 
+        return 1
+    fi
+
+    if [[ "$#" -ne "2" ]]; then
+        echo "Usage: ${FUNCNAME[0]} --postDeployFile <file>"
+        return 1
+    fi
+
+    postDeployFile=$2
+
+    if [ ! -f $postDeployFile ]; then
+        echo "$postDeployFile does not exist, exiting..."
+        return 1
+    fi
+    
+    # Run commands supplied in postDeployFile
+    awk 'BEGIN{print "Running scripts...\n"};
+        {print "================================================================="};
+        {print "Executing "$0 "..."};
+        {print "================================================================="};
+        {system($0)}; 
+        {print $0 " Finished...\n"};' $postDeployFile
+
+    echo "Cleaing up build and packaged-solution directories..."
+    exe rm -rf ./build
+}
+
+gravitonClean(){
+    # Runs graviton clean and (if necessary) deletes graviton logs
+    # Arguments: 
+    #   --deleteLogs: Removes graviton logs after clean is run
+
+    if [ ! -f solution_definition.yaml ]; then
+        echo "Unable to run ${FUNCNAME[0]}, check that you are in your solution directory..." 
+        return 1
+    fi
+
+    deleteLogs=false
+    if [[ "$#" -gt "0" && "$1" == "--deleteLogs" ]]; then
+        deleteLogs=true
+        echo -e "Delete logs after clean: $deleteLogs\n"
+    fi
+    exe git clean -fd
+    exe graviton clean
+
+    if [[ $deleteLogs -eq "true" ]]; then
+        exe rm graviton*.log
+    fi
+}
