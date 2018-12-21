@@ -164,6 +164,9 @@
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
+[ghq]
+    root = ~/src
+
 # URL shorthands
 
 [url "git@github.com:"]
