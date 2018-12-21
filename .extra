@@ -6,3 +6,7 @@ git config --global user.name "$GIT_AUTHOR_NAME"
 GIT_AUTHOR_EMAIL="ks6088ts@gmail.com"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+# GOLANG
+export GOPATH="$HOME";
+export PATH="$GOPATH/bin:$PATH";
