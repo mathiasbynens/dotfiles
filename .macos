@@ -28,6 +28,9 @@ sudo pmset -a standbydelay 86400
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
+# Enable Dark mode
+osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+
 # Disable transparency in the menu bar and elsewhere on Yosemite
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
