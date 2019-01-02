@@ -96,5 +96,24 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 
+# Install polas set
+ab
+adns
+autoconf
+automake
+ffmpeg
+freetype
+glib
+heroku
+hub
+jq
+iperf3
+media-info
+mongodb
+postgresql
+pyenv-virtualenv
+rabbitmq
+redis
+
 # Remove outdated versions from the cellar.
 brew cleanup
