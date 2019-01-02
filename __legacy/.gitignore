@@ -1,6 +1,3 @@
-# Use shell-style glob syntax
-syntax: glob
-
 # Compiled Python files
 *.pyc
 
@@ -15,3 +12,10 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+
+# Ignore .extra file
+.extra
+
+# Ignore .svn files
+.svn
+

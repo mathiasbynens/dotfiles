@@ -1,19 +1,13 @@
 [alias]
-	# View the SHA, description, and history graph of the latest 20 commits
-	ls = log --pretty=oneline -n 20 --graph
 
-	# View the short SHA, short date and graph history of the latest 30 commits
-  # optionally define the number of latest commits
-	l = "!x() { git log --pretty=format:\"%C(yellow)%h %Cblue%ad %C(yellow)%cn: %Creset%s\" --date=short -n ${1:-30} --graph; }; x"
+	# View abbreviated SHA, description, and history graph of the latest 20 commits
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
 	# View the current working tree status using the short format
 	s = status -s
 
-	# Show branches sorted by recent commits
-	latest = for-each-ref --sort=-committerdate refs/heads/
-
 	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
@@ -28,21 +22,18 @@
 	ca = !git add -A && git commit -av
 
 	# Switch to a branch, creating it if necessary
-	# go = checkout -B
-  go = "!g() { \
-    if (( $(git br | grep $1 | wc -l) == 1 )); then \
-      git checkout $1; \
-    else \
-      git checkout -B $1; \
-    fi }; g"
+	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
 
-  # Cancel last commit
-  cancel = reset --soft HEAD~1
+	# List aliases
+	aliases = config --get-regexp alias
+
+	# Amend the currently staged files to the latest commit
+	amend = commit --amend --reuse-message=HEAD
 
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
@@ -50,97 +41,147 @@
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# Undo a `git push`
-	undopush = push -f origin HEAD^:master
+	# Remove the old tag with this name and tag the latest commit with it.
+	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 
+	# Find branches containing commit
+	fb = "!f() { git branch -a --contains $1; }; f"
 
-  co = checkout
-  gb = branch
-  gl = pull
-  gp = push
-  gc = commit -a -m
-  com = commit -a -m
-  st = status
-  br = branch
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	# Find tags containing commit
+	ft = "!f() { git describe --always --contains $1; }; f"
 
+	# Find commits by source code
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
+	# Find commits by commit message
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+	# Remove branches that have already been merged with master
+	# a.k.a. ‘delete merged’
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+	# List contributors with number of commits
+	contributors = shortlog --summary --numbered
+
+	# Merge GitHub pull request on top of the current branch or,
+	# if a branch name is specified, on top of the specified branch
+	mpr = "!f() { \
+		declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+		declare branch=\"${2:-$currentBranch}\"; \
+		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+			git fetch origin refs/pull/$1/head:pr/$1 && \
+			git checkout -B $branch && \
+			git rebase $branch pr/$1 && \
+			git checkout -B $branch && \
+			git merge pr/$1 && \
+			git branch -D pr/$1 && \
+			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+		fi \
+	}; f"
 
 [apply]
+
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
 
 [core]
+
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-  editor = vi
-  # autocrlf = input
+
+	# Treat spaces before tabs and all kinds of trailing whitespace as an error
+	# [default] trailing-space: looks for spaces at the end of a line
+	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+	# Make `git rebase` safer on macOS
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
+
+	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
+	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	precomposeunicode = false
+
+	# Speed up commands involving untracked files such as `git status`.
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
 
 [color]
-	# Use colors in Git commands that are capable of colored output when outputting to the terminal
+
+	# Use colors in Git commands that are capable of colored output when
+	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
 	ui = auto
+
 [color "branch"]
+
 	current = yellow reverse
 	local = yellow
 	remote = green
+
 [color "diff"]
+
 	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+	frag = magenta bold # line info
+	old = red # deletions
+	new = green # additions
+
 [color "status"]
+
 	added = yellow
 	changed = green
 	untracked = cyan
+
+[commit]
+
+	# https://help.github.com/articles/signing-commits-using-gpg/
+	gpgsign = true
+
+[diff]
+
+	# Detect copies as well as renames
+	renames = copies
+
+[diff "bin"]
+
+	# Use `hexdump` to diff binary files
+	textconv = hexdump -v -C
+
+[help]
+
+	# Automatically correct and execute mistyped commands
+	autocorrect = 1
+
 [merge]
+
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
-	# My weapon of choise
-	tool = diffmerge
 
-[mergetool "extMerge"]
-  cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-  trustExitCode = false
+[push]
 
-[mergetool "diffmerge"]
-        cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-        trustExitCode = true
-
-[difftool "diffmerge"]
-	cmd = "diffmerge $LOCAL $REMOTE"
-
-
-# Use `origin` as the default remote on the `master` branch in all cases
-[branch "master"]
-	remote = origin
-	merge = refs/heads/master
+	# https://git-scm.com/docs/git-config#git-config-pushdefault
+	default = simple
+	# Make `git push` push relevant annotated tags when pushing branches out.
+	followTags = true
 
 # URL shorthands
+
 [url "git@github.com:"]
+
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "git://github.com/"
+
 [url "git://github.com/"]
+
 	insteadOf = "github:"
+
 [url "git@gist.github.com:"]
+
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
+
 [url "git://gist.github.com/"]
+
 	insteadOf = "gist:"
-
-
-[credential]
-  helper = osxkeychain
-
-[push]
-  default = simple
-[user]
-  name = thanpolas
-  email = thanpolas@gmail.com
-        
-[filter "media"]
-        clean = git-media-clean %f
-        smudge = git-media-smudge %f
-        

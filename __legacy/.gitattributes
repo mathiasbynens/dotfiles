@@ -1,0 +1,3 @@
+# Automatically normalize line endings for all text-based files
+# Don't do this globaly
+#* text=auto
