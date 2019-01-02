@@ -12,3 +12,10 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+
+# Ignore .extra file
+.extra
+
+# Ignore .svn files
+.svn
+
