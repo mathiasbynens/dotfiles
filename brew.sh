@@ -49,7 +49,7 @@ brew cask install google-chrome && ./addDockIcon.sh "Google Chrome"
 brew cask install firefox && ./addDockIcon.sh "Firefox"
 # brew cask slack !!! ERROR HERE ?
 brew cask install slack && ./addDockIcon.sh "Slack"
-brew cask install authy && ./addDockIcon.sh "Authy"
+brew cask install authy && ./addDockIcon.sh "Authy Desktop"
 brew cask install iterm2 && ./addDockIcon.sh "iTerm"
 brew cask install atom && ./addDockIcon.sh "Atom"
 # brew cask install virtualbox-extension-pack
