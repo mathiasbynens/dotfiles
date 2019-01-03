@@ -79,6 +79,18 @@
 		fi \
 	}; f"
 
+  # Thanpolas prefs
+  co = checkout
+  gb = branch
+  gl = pull
+  gp = push
+  gc = commit -a -m
+  com = commit -a -m
+  st = status
+  br = branch
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
