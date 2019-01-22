@@ -2,25 +2,11 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="my"
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+plugins=(git z osx zsh-autosuggestions zsh-syntax-highlighting vscode alias-tips zsh-completions kubectl)
 
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git nvm z osx sublime docker zsh-autosuggestions)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
+export NVM_AUTO_USE=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -33,3 +19,14 @@ for file in ~/.{exports,aliases,functions,extra}; do
     [ -r "$file" ] && source "$file"
 done
 unset file
+
+autoload -U promptinit; promptinit
+prompt pure
+
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+
+KUBE_PS1_PREFIX=""
+KUBE_PS1_SUFFIX=""
+KUBE_PS1_SEPARATOR=""
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1) '$PS1
