@@ -1,6 +1,6 @@
 [user]
     name = Artem Vitiuk
-    email = artem@devart.in.ua
+    email = artem@vitiuk.me
 
 [alias]
     # View the SHA, description, and history graph of the latest 20 commits
@@ -72,6 +72,7 @@
 # URL shorthands
 [url "git@github.com:"]
     insteadOf = "gh:"
+    insteadOf = https://github.com/
     pushInsteadOf = "github:"
     pushInsteadOf = "git://github.com/"
 [url "git://github.com/"]
