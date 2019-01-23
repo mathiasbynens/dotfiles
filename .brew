@@ -43,3 +43,6 @@ brew cask install iterm2
 
 # Remove outdated versions from the cellar
 brew cleanup
+
+npm install -g yarn
+npm install -g pure-prompt
