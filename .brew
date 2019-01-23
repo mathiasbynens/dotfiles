@@ -5,7 +5,6 @@ brew upgrade
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
@@ -31,6 +30,7 @@ brew install tree
 brew install fpp
 brew install peco
 brew install httpie
+brew install kube-ps1
 
 brew tap caskroom/cask
 brew cask install vlc
@@ -40,7 +40,6 @@ brew cask install skype
 brew cask install slack
 brew cask install telegram
 brew cask install iterm2
-brew cask install sublime-text3
 
 # Remove outdated versions from the cellar
 brew cleanup
