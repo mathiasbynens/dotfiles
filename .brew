@@ -18,7 +18,6 @@ brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
 # Install everything else
-brew install zsh-syntax-highlighting
 brew install git
 brew install nvm
 brew install diff-so-fancy
@@ -32,6 +31,10 @@ brew install fpp
 brew install peco
 brew install httpie
 brew install kube-ps1
+
+brew install zsh-syntax-highlighting
+brew install zsh-autosuggestions
+brew install zsh-completions
 
 brew tap caskroom/cask
 brew cask install vlc
