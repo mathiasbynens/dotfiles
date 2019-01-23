@@ -18,6 +18,7 @@ brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
 # Install everything else
+brew install zsh-syntax-highlighting
 brew install git
 brew install nvm
 brew install diff-so-fancy
@@ -44,5 +45,6 @@ brew cask install iterm2
 # Remove outdated versions from the cellar
 brew cleanup
 
+nvm i
 npm install -g yarn
 npm install -g pure-prompt
