@@ -3,10 +3,9 @@
 local="@genomeweb.local"
 remote="@pantheon.genomeweb.small-db"
 
-if [[ $1 == "y" ]]; then
+if [[ $1 == "y" || $1 == "yes" ]]; then
   drush $local sql-drop -y
   drush sql-sync $remote $local -y
 fi
 
-drush $local dev \
-  && drush $local en -y devel stage_file_proxy views_ui field_ui \
+drush $local local
