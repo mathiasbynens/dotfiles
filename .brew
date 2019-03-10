@@ -31,6 +31,9 @@ brew install fpp
 brew install peco
 brew install httpie
 brew install kube-ps1
+brew install fzf
+brew install fd
+brew install ripgrep
 
 brew install zsh-syntax-highlighting
 brew install zsh-autosuggestions
