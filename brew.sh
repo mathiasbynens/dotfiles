@@ -19,7 +19,8 @@ brew install moreutils
 echo 'Add `$(brew --prefix findutils)/libexec/gnubin` to `$PATH` if you would prefer these be the defaults.'
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+echo 'Be sure to add `$(brew --prefix gnu-sed)/libexec/gnubin` to `$PATH`.'
+brew install gnu-sed
 # Install a modern version of Bash.
 brew install bash
 brew install bash-completion2
