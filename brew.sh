@@ -83,7 +83,7 @@ brew install ack
 brew install git
 brew install git-lfs
 brew install gs
-brew install imagemagick --with-webp
+brew install imagemagick
 brew install lua
 brew install lynx
 brew install p7zip
