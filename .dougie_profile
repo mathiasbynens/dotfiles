@@ -8,7 +8,7 @@ done;
 unset file;
 
 # Setup directory colors
-eval `dircolors -b dircolors-solarized/dircolors.ansi-dark`
+eval `dircolors -b ~/dircolors-solarized/dircolors.ansi-dark`
 
 # Start ssh agent
 if [[ -f .ssh-agent ]]; then

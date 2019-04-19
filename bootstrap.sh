@@ -69,9 +69,8 @@ function doIt() {
     #source ~/.bash_profile;
 
     echo "Installing oh-my-zsh ..."
-    successfully sudo apt-get install zsh -y
-    successfully curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
-    
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
     echo -e "\nInstalling powerline-fonts ..."
     currDir=`pwd`
     cd powerline-fonts
@@ -124,8 +123,9 @@ EOF
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     fi
 
-    mkdir $HOME/.ssh
-
+    if [[ ! -d $HOME/.ssh ]]; then
+        mkdir $HOME/.ssh
+    fi
 	# Additional handling if work flag was passed
 	if [[ "$workflag" -eq "1" ]]; then
 	    echo "Using .extra-work"
