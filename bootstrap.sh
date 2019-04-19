@@ -40,6 +40,7 @@ function installApps() {
         ssh
 
 	cp extras/.bash* ~/
+    cp extras/.extra-orig ~/.extra
 }
 
 function doIt() {
@@ -69,6 +70,7 @@ function doIt() {
     #source ~/.bash_profile;
 
     echo "Installing oh-my-zsh ..."
+    sudo apt-get install zsh -y
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     echo -e "\nInstalling powerline-fonts ..."
