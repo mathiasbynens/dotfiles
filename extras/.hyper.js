@@ -1,4 +1,4 @@
-// Future versions of Hyper may add additional config options,
+﻿// Future versions of Hyper may add additional config options,
 // which will not automatically be merged into this file.
 // See https://hyper.is#cfg for all currently supported options.
 
@@ -6,15 +6,14 @@ module.exports = {
   config: {
     // choose either `'stable'` for receiving highly polished,
     // or `'canary'` for less polished but more frequent updates
-    updateChannel: 'stable',
+    updateChannel: 'canary',
 
     // default font size in pixels for all tabs
-    fontSize: 12,
+    fontSize: 14,
 
     // font family with optional fallbacks
     //fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
-	//fontFamily: '"DejaVu Sans Mono for Powerline", Consolas, "Lucida Console", monospace',
-	fontFamily: 'Menlo, "DejaVu Sans Mono for Powerline", Consolas, "Lucida Console", monospace',
+    fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
@@ -45,7 +44,7 @@ module.exports = {
     selectionColor: 'rgba(248,28,229,0.3)',
 
     // border color (window, tabs)
-    borderColor: '#333',
+    borderColor: 'white',
 
     // custom CSS to embed in the main window
     css: '',
@@ -86,16 +85,10 @@ module.exports = {
       lightCyan: '#68FDFE',
       lightWhite: '#FFFFFF',
     },
-	
-    verminal: {
-		fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
-		//fontFamily: '"DejaVu Sans Mono for Powerline", Consolas, "Lucida Console", monospace',
-		fontSize: 14
-	},
 
-	MaterialTheme: {
+    MaterialTheme: {
         // Set the theme variant,
-        // OPTIONS: 'Darker', 'Palenight', ''
+        // OPTIONS: 'Darker', 'Palenight', 'Ocean', ''
         theme: '',
 
         // [Optional] Set the rgba() app background opacity, useful when enableVibrance is true
@@ -109,9 +102,7 @@ module.exports = {
         // OPTIONS: 'dark', 'ultra-dark', 'bright'
         // NOTE: The backgroundOpacity should be between 0.1 and 0.9 to see the effect.
         vibrancy: 'dark'
-    },
-	
-	opacity: 0.85,
+    },	
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
@@ -126,12 +117,12 @@ module.exports = {
     // PowerShell on Windows
     // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
     //shell: '',
-	shell: 'C:\\Windows\\System32\\bash.exe',
+    shell: 'C:\\Windows\\System32\\wsl.exe',
 
     // for setting shell arguments (i.e. for using interactive shellArgs: `['-i']`)
     // by default `['--login']` will be used
-   // shellArgs: ['--login'],
-	shellArgs: ['~'],
+    //shellArgs: ['--login'],
+    shellArgs: ['~'],
    
     // for environment variables
     env: {},
@@ -145,8 +136,11 @@ module.exports = {
     // if `true` (without backticks and without quotes), hyper will be set as the default protocol client for SSH
     defaultSSHApp: true,
 
-	// hyper-opacity configuration
-	//opacity: 0.95
+    // hyper-opacity configuration
+    opacity: {
+      focus: .95,
+      blur: 0.5
+    }
 
     // if `true` (without backticks and without quotes), on right click selected text will be copied or pasted if no
     // selection is present (`true` by default on Windows and disables the context menu feature)
@@ -165,11 +159,12 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   //,'hyperterm-bold-tab','hyperterm-tabs'
-  //plugins: ['hyper-material-theme','hyperborder'],
+  //plugins: ['hyper-material-theme','hyper-pane'],
   //'hyperterm-tabs','hyperterm-bold-tab'
   //'hyper-opacity'
   
-  plugins: ['verminal','hyper-opacity','hyperterm-tabs'],
+  plugins: ['hyperborder','hyper-material-theme','hyper-opacity','hyperterm-tabs','hyper-pane'],
+  //plugins: ['verminal','hyper-opacity','hyperterm-tabs','hyper-pane'],
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
