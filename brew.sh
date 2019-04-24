@@ -8,9 +8,13 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
+# Save Homebrew’s installed location.
+BREW_PREFIX=$(brew --prefix)
+
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
+ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
@@ -19,33 +23,28 @@ brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
 # Install Bash 4.
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
-# running `chsh`.
 brew install bash
-brew tap homebrew/versions
 brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
-if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
-  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
-  chsh -s /usr/local/bin/bash;
+if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
+  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
+  chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
 
-# Install RingoJS and Narwhal.
-# Note that the order in which these are installed is important;
-# see http://git.io/brew-narwhal-ringo.
-brew install ringojs
-brew install narwhal
+# Install GnuPG to enable PGP-signing commits.
+brew install gnupg
 
 # Install more recent versions of some macOS tools.
 brew install vim --with-override-system-vi
-brew install homebrew/dupes/grep
-brew install homebrew/dupes/openssh
-brew install homebrew/dupes/screen
-brew install homebrew/php/php56 --with-gmp
+brew install grep
+brew install openssh
+brew install screen
+brew install php
+brew install gmp
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -81,7 +80,6 @@ brew install xz
 
 # Install other useful binaries.
 brew install ack
-brew install dark-mode
 #brew install exiv2
 brew install git
 brew install git-lfs
@@ -92,13 +90,10 @@ brew install p7zip
 brew install pigz
 brew install pv
 brew install rename
-brew install rhino
-brew install speedtest_cli
+brew install rlwrap
 brew install ssh-copy-id
-brew install testssl
 brew install tree
 brew install vbindiff
-brew install webkit2png
 brew install zopfli
 
 # Install applications via cask, starting with cask itself
