@@ -21,7 +21,8 @@ brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew install gnu-sed
+export PATH="/usr/local/bin:$PATH"
 # Install Bash 4.
 brew install bash
 brew install bash-completion2
