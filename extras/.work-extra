@@ -10,8 +10,6 @@ GIT_AUTHOR_EMAIL="douglas.morand@orionhealth.com"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
-if [ -f ~/.ssh-agent ]; then . ~/.ssh-agent; fi
-
 # No longer needed as resolv.conf is stored in /etc/resolvconf/resolv.conf.d/base
 #sudo cp ~/dotfiles/extras/windows/resolv.conf /etc/resolv.conf
 

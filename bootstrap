@@ -5,7 +5,7 @@ git pull origin master;
 
 currentDirectory=$(dirname $0)
 
-if [[ ! -f bootstrap.sh ]]; then
+if [[ ! -f bootstrap ]]; then
 	echo "Bootstrap must be run from dotfiles directory ..."
 	exit 1
 fi
@@ -14,12 +14,6 @@ dir=~/dotfiles
 cat extras/dougie-bootstrap
 
 cd "$(dirname "${BASH_SOURCE}")";
-
-# Enable this if I need to check if this is being run as sudo
-#if [[ "$EUID" -ne 0 ]]; then
-#	echo "Please run this script with sudo or root user ..."
-#	exit 1
-#fi
 
 successfully() {
 	$* || (echo "failed" 1>&2 && exit 1)
@@ -43,46 +37,12 @@ function installApps() {
     cp extras/.extra-orig ~/.extra
 }
 
-function doIt() {
-    # Check for Windows Ubuntu
-    if [[ $(cat /proc/version | grep Microsoft) ]]; then
-        echo -ne "\nEnter home directory (if installing on windows) or press enter if none: "
-        read windowsDir
-        windowsHome=/mnt/c/Users/$windowsDir
-        
-        if [[ ! -d "$windowsHome" ]]; then
-            echo "$windowsHome does not exist ... "
-            exit 1
-        fi
-        echo -e "Creating link to $windowsHome ...\n"
-        exe ln -s $windowsHome ~/$windowsDir
-        echo "Copying hyper properties ..."
-        exe cp ./extras/.hyper.js $windowsHome
-        echo ""
-    fi 
-
-    if [[ $operating_sys == "nix" ]]; then
-        installApps;
-    fi
-
-    rsync --filter="merge rsync-filter" -ah --no-perms . ~;
-    
-    #source ~/.bash_profile;
-
-    echo "Installing oh-my-zsh ..."
+function installzsh() {
     sudo apt-get install zsh -y
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-    echo -e "\nInstalling powerline-fonts ..."
-    currDir=`pwd`
-    cd powerline-fonts
-    ./install.sh
-    cd $currDir		
-    
     echo -e "\nUpdating ~/.bashrc to run oh-my-zsh ..."
     cat > $HOME/.bashrc <<EOF
 if test -t 1; then
-# ...start zsh
 exec zsh
 fi
 EOF
@@ -100,6 +60,7 @@ EOF
 DEFAULT_USER="\$USER"
 EOF
     fi
+
     sed -i 's/ZSH_THEME=.*/ZSH_THEME=dracula/' $HOME/.zshrc
     
     ln -fs $dir/dracula/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
@@ -119,6 +80,45 @@ EOF
     sed -i '/plugins=/{n;s/git/git zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
 
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
+}
+
+function doIt() {
+    # Check for Windows Ubuntu
+    if [[ $(cat /proc/version | grep Microsoft) ]]; then
+        echo -ne "\nEnter home directory (if installing on windows) or press enter if none: "
+        read windowsDir
+        windowsHome=/mnt/c/Users/$windowsDir
+        
+        if [[ ! -d "$windowsHome" ]]; then
+            echo "$windowsHome does not exist ... "
+            exit 1
+        fi
+        echo -e "Creating link to $windowsHome ...\n"
+        exe ln -s $windowsHome ~/$windowsDir
+        echo "Copying hyper properties ..."
+        exe cp ./extras/windows/.hyper.js $windowsHome
+        echo ""
+    fi 
+
+    if [[ $operating_sys == "nix" ]]; then
+        installApps;
+    fi
+
+    rsync --filter="merge rsync-filter" -ah --no-perms . ~;
+
+	read -p "Install zsh? (y/n) " -n 1;
+	echo "";
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+        echo "Installing oh-my-zsh ..."
+        installzsh;
+    fi
+
+    echo -e "\nInstalling powerline-fonts ..."
+    currDir=`pwd`
+    cd powerline-fonts
+    ./install.sh
+    cd $currDir		
+    
     
     # install Vundle if necessary
     if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then

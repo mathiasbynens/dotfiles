@@ -2,13 +2,35 @@
 #                     MY STUFF                    #
 ###################################################
 
-for file in ~/.{path,aliases,functions,extra}; do
+for file in ~/.{path,bash_prompt,exports,aliases,functions,git-completion,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
 
-# Setup directory colors
-eval `dircolors -b ~/dircolors-solarized/dircolors.ansi-dark`
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob;
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend;
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell;
+
+if [ -f /etc/bash_completion ]; then
+	source /etc/bash_completion;
+fi;
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+
+DOTFILES_DIR="${HOME}/dotfiles"
+
+# Automatically link all files located in the /link folder
+ln -fs ${DOTFILES_DIR}/link/* ${HOME}
+
+#Setup directory colors
+eval `dircolors -b "${HOME}/dircolors-solarized/dircolors.ansi-dark`"
 
 # Start ssh agent
 if [[ -f .ssh-agent ]]; then

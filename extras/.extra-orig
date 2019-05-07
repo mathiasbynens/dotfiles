@@ -7,9 +7,6 @@ GIT_AUTHOR_EMAIL="dmorand@gmail.com"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
-# Add rgrav path
-#export PATH=$PATH:<add path here>:<add another path here>
-
 ################## SSH-AGENT ##################
 
 # Turn SSH_ENABLE on/off (1/0)
