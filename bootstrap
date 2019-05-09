@@ -96,7 +96,7 @@ function doIt() {
         echo -e "Creating link to $windowsHome ...\n"
         exe ln -s $windowsHome ~/$windowsDir
         echo "Copying hyper properties ..."
-        exe cp ./extras/windows/.hyper.js $windowsHome
+        exe cp ./extras/windows/.hyper.js /c/Users/$windowsDir/AppData/Roaming/Hyper
         echo ""
     fi 
 
