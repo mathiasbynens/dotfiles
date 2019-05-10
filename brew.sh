@@ -39,7 +39,10 @@ brew install jq
 brew install awscli
 brew cask install keka
 
-
+# npm environment manager
+brew install nvm
+# http test tool (curl-like)
+brew install httpie
 
 # how to add licence number?
 brew cask install atext
