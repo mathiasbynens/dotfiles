@@ -24,8 +24,11 @@ else # macOS `ls`
 	export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 
-# List all files colorized in long format
+# List non-hidden files colorized in long format
 alias l="ls -lF ${colorflag}"
+
+# List all files colorized in long format
+alias ll="ls -al  ${colorflag}"
 
 # List all files colorized in long format, excluding . and ..
 alias la="ls -lAF ${colorflag}"

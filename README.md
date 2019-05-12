@@ -8,7 +8,7 @@
 
 ### Using Git and the bootstrap script
 
-You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
+You can clone the repository wherever you want. (I like to keep it in `~/Projects/.conf/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
 
 ```bash
 git clone https://github.com/martelogan-forked-dependencies/dotfiles.git && cd dotfiles && source bootstrap.sh
@@ -71,6 +71,15 @@ git config --global user.name "$GIT_AUTHOR_NAME"
 GIT_AUTHOR_EMAIL="logan.martel@outlook.com"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+# Pip should only run if there is a virtualenv currently activated
+export PIP_REQUIRE_VIRTUALENV=true
+
+# Install or upgrade a global package
+# Usage: gpip install –upgrade pip setuptools virtualenv
+gpip(){
+   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
 ```
 
 You could also use `~/.extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/martelogan-forked-dependencies/dotfiles/fork) instead, though.
