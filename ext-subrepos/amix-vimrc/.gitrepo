@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/amix/vimrc.git
+	branch = master
+	commit = 95d2b0849035c90594b0b7a2f9f8112f38e561df
+	parent = 79b138fc8249bb09ad186b925263419c0b926753
+	method = merge
+	cmdver = 0.4.0
