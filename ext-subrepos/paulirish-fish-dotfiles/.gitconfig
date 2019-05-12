@@ -1,0 +1,115 @@
+[alias]
+	c = commit -am
+	fpush = push --force
+	s = status
+	sclone = clone --depth=1
+	amend = commit --amend --all
+	undocommit = reset HEAD~
+	hreset = reset --hard
+	co = checkout
+	df = diff --color --color-words --abbrev
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	cherrypick = cherry-pick
+	cherry = cherry-pick
+	cp = cherry-pick
+
+	# Show the diff between the latest commit and the current state
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+	reup = rebase-update # depot_tools specific
+	git = !exec git
+
+[core]
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+
+[pager]
+	# insanely beautiful diffs ==> npm install -g diff-so-fancy
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
+
+[interactive]
+  # disabled until github.com/so-fancy/diff-so-fancy/pull/172 is resolved :(
+	# diffFilter = "diff-so-fancy"
+
+# so much color
+[color]
+	ui = auto
+[color "diff"]
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+    newMoved = cyan
+    oldMoved = blue
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+# git mergetool
+[merge]
+	tool = opendiff
+	renameLimit = 0
+
+# rewrites of repo paths
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+	pushInsteadOf = "https://github.com/"
+
+[url "git://github.com/"]
+	insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+	pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
+	
+[url "git://gist.github.com/"]
+	insteadOf = "gist:"
+
+# correct typos
+[help]
+	autocorrect = 1
+
+# push easily. http://stackoverflow.com/a/23918418/89484
+[push]
+	default = current
+	followTags = true
+
+# use separate file for username / github token / etc
+[include]
+  path = ~/.gitconfig.local
+
+#[init]
+#	templatedir = ~/.git_template
+
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+
+[fetch]
+	prune = true
+[diff]
+    # Show blocks of moved text of at least 20 alphanumeric characters differently than adds/deletes
+    # https://blog.github.com/2018-04-05-git-217-released/
+    colorMoved = zebra
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[stash]
+	showPatch = true
+[log]
+	date = relative

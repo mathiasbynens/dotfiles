@@ -1,0 +1,32 @@
+#!/bin/bash
+
+branches_to_die=$(git branch --no-color --merged origin/master | grep -v '\smaster$')
+echo "Local branches to be deleted:"
+echo "$branches_to_die"
+
+kill_branches(){
+	echo $branches_to_die | xargs -n 1 git branch -D
+}
+
+remote_branches_to_die=$(git branch --no-color --remote --merged origin/master | grep -v '\smaster$' | grep -v '\/master$' | grep -v "origin\/HEAD" | grep -v "origin\/master")
+echo "Remote branches to be deleted:"
+echo "$remote_branches_to_die"
+
+kill_remote_branches(){
+	# Remove remote branches
+	for remote in $remote_branches_to_die
+	do
+        # branches=`echo "$remote_branches" | grep "$remote/" | sed 's/\(.*\)\/\(.*\)/:\2 /g' | tr -d '\n'`
+        git branch -rD "$remote"
+	done
+}
+
+echo ""
+echo "Enter Y to confirm"
+read -p "> " confirm
+
+[[ $confirm == "Y" ]] && kill_branches && kill_remote_branches
+
+echo ""
+echo "Pruning all remotes"
+git remote | xargs -n 1 git remote prune

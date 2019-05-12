@@ -1,0 +1,35 @@
+# Add Comment
+snippet com
+	/* ------------------------------ ${1:Title} ------------------------------ */$2
+snippet comm
+	/*------------------------------------*\
+	    ${1:Title}
+	\*------------------------------------*/$2
+# jQuery
+snippet jq
+	jQuery${1:()}
+# jQuery Ready
+snippet jqr
+	jQuery(function() {
+		${1:codes}
+	});
+# Prototype DOM loaded
+snippet pdl
+	document.observe("dom:loaded", function(${1:event}) {
+		${2:codes}
+	});
+# Function
+snippet fn
+	function(${1:param}) { ${2:codes}}
+# PDoc
+snippet pdoc
+	/**
+	 * ${1:Class#method(param) -> Return}
+	 * ${2:- param (Type): Description}
+	 * 
+	 * ${3:Method description.}
+	 * 
+	 * ### Examples
+	 * 
+	 *     ${4:irc_instance.raw(":YourNick TOPIC #channel :LOL This is awesome!"); // Set a channel topic}
+	**/

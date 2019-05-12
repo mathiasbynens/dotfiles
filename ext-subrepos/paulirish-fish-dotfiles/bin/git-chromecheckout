@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# from your current repo, checkout the pull request that's in the foreground browser tab 
+# git chromecheckout
+# git chromecheckout canary   # for canary's foremost tab.
+
+# needs hub: brew install hub
+
+
+green="\e[38;5;121m"
+white="\e[38;5;7m"
+reset="\e[0m"
+
+app="Google Chrome"
+
+if [[ $@ == *'canary'* ]]; then
+	app="Google Chrome Canary"
+fi
+
+active_chrome_url() {
+	osascript -e "tell application \"$app\" to get URL of active tab of front window"
+}
+checkout() {
+	url=$(active_chrome_url)
+	if hash hub 2>/dev/null && [[ $url == *"https://github.com"* && $url == *"/pull/"* ]]; then
+		printf "%bChecking out: %b$url %b...%b\n" "$green" "$white" "$green" "$reset"
+		hub checkout "$url"
+	else
+		echo "GitHub pull request not found in foreground tab: $url"
+	fi
+}
+
+checkout

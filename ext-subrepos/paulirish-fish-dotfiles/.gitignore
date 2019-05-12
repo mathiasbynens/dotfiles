@@ -1,0 +1,38 @@
+*-chrome-mac.zip
+third_party/WebKit/Source/devtools/front_end/audits2/lighthouse/renderer/logger.js
+third_party/WebKit/Source/devtools/front_end/audits2/lighthouse/renderer/report-ui-features.js
+
+# working files
+.vim/viminfo
+.vim/swaps/*
+.vim/undo
+
+# git credential file
+.gitconfig.local
+
+
+# no thx
+node_modules
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Compiled Python files
+*.pyc
+
+# fish shell
+fishd.*
+.config/fish/fish_history
+fish/fish_history
+
+# random
+shilocation
