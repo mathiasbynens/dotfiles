@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Path modifications for git-subrepo
+export PATH="/opt/git-subrepo/lib:$PATH";
+export MANPATH="/opt/git-subrepo/man:$MANPATH";
