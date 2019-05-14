@@ -1,0 +1,41 @@
+services:
+  - docker
+
+language: minimal
+
+jobs:
+  include:
+    - stage: test
+      name: "Test on Fish-2.5.0"
+      before_script: 
+        - docker pull ohmyfish/fish:2.5.0
+        - make build-pure-on FISH_VERSION=2.5.0
+      script:
+        - make test-pure-on FISH_VERSION=2.5.0
+
+    - stage: test
+      name: "Test on Fish-2.6.0"
+      before_script: 
+        - docker pull ohmyfish/fish:2.6.0
+        - make build-pure-on FISH_VERSION=2.6.0
+      script:
+        - make test-pure-on FISH_VERSION=2.6.0
+
+    - stage: test
+      name: "Test on Fish-2.7.1"
+      before_script: 
+        - docker pull ohmyfish/fish:2.7.1
+        - make build-pure-on FISH_VERSION=2.7.1
+      script:
+        - make test-pure-on FISH_VERSION=2.7.1
+
+    - stage: test
+      name: "Test on Fish-3.0.0"
+      before_script: 
+        - docker pull ohmyfish/fish:3.0.0
+        - make build-pure-on FISH_VERSION=3.0.0
+      script:
+        - make test-pure-on FISH_VERSION=3.0.0
+
+notifications:
+  email: false
