@@ -132,6 +132,7 @@ function doIt() {
 	if [[ "$workflag" -eq "1" ]]; then
 	    echo "Using .extra-work"
 	    successfully cp ./extras/.work-extra ~/.extra
+	    successfully cp ./extras/.ssh-agent-work ~/.ssh-agent
 	fi
 }
 
