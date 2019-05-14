@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Note, to execute these in fish, run:
+# exec bash -c "source .bash_functions; func_name args; exec fish"
+# or simply execute in bash shell / bash script loading .bash_functions
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
