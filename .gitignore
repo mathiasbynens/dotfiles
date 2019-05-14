@@ -16,3 +16,36 @@ Thumbs.db
 # (ALERT) By default: ignores the following src in all repos
 .extra
 .vscode/
+
+# Below lines inspired by:
+# https://gist.github.com/pksunkara/988716#file-gitignore
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Temporary files #
+###################
+*.swp
+*.swo
+*~
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+ehthumbs.db
+Icon?
+Thumbs.db
+
+*.lock
+
