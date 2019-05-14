@@ -163,7 +163,7 @@ module.exports = {
   //'hyperterm-tabs','hyperterm-bold-tab'
   //'hyper-opacity'
   
-  plugins: ['hyperborder','hyper-material-theme','hyper-opacity','hyperterm-tabs','hyper-pane'],
+  plugins: ['hyperborder','hyper-material-theme','hyper-opacity','hyper-pane'],
   //plugins: ['verminal','hyper-opacity','hyperterm-tabs','hyper-pane'],
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
