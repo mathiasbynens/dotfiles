@@ -1,8 +1,135 @@
+# The Ultimate EditorConfig File
+# https://github.com/astraloverflow/editorconfig
+# http://editorconfig.org
+
+# Project Root, Don't Look Any Higher
 root = true
 
+# Default Settings For All Files
 [*]
 charset = utf-8
-indent_style = tab
 end_of_line = lf
+indent_style = space # Spaces VS Tabs
+indent_size = 2 # Two Spaces Wide
 insert_final_newline = true
 trim_trailing_whitespace = true
+
+# JSON Settings
+[*.{json}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+
+# Markdown & YAML Settings
+[*.{md,yml}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+# Ruby Settings
+[*.{rb,erb}]
+indent_style = space
+indent_size = 2
+
+# Python Settings
+[*.{py}]
+indent_style = space
+indent_size = 4
+
+# PHP Settings (PSR2 Style)
+[*.{php}]
+indent_style = space
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+
+# ** Below section from: **
+# https://gist.github.com/NickCraver/3c7fd53e329f7477e17154168025c446
+
+[*.less]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[**.cshtml]
+indent_size = 4
+
+# size matters when we render html emails
+[StackOverflow/Views/Email/**.Html.cshtml]
+indent_style = tab
+tab_width = 4
+trim_trailing_whitespace = true
+
+# Code files
+[*.{cs,csx,vb,vbx}]
+indent_size = 4
+insert_final_newline = true
+charset = utf-8-bom
+trim_trailing_whitespace = true
+
+# Xml project files
+[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
+indent_size = 2
+
+# Xml config files
+[*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
+indent_size = 2
+
+# Dotnet code style settings:
+[*.{cs,vb}]
+# Sort using and Import directives with System.* appearing first
+dotnet_sort_system_directives_first = true
+# Avoid "this." and "Me." if not necessary
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_event = false:suggestion
+
+# Use language keywords instead of framework type names for type references
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+dotnet_style_predefined_type_for_member_access = true:suggestion
+
+# Suggest more modern language features when available
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_explicit_tuple_names = true:suggestion
+
+# CSharp code style settings:
+[*.cs]
+# Prefer "var" everywhere
+#csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = true:suggestion
+
+# Prefer method-like constructs to have a expression-body
+csharp_style_expression_bodied_methods = true:none
+csharp_style_expression_bodied_constructors = true:none
+csharp_style_expression_bodied_operators = true:none
+
+# Prefer property-like constructs to have an expression-body
+csharp_style_expression_bodied_properties = true:none
+csharp_style_expression_bodied_indexers = true:none
+csharp_style_expression_bodied_accessors = true:none
+
+# Suggest more modern language features when available
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+csharp_style_inlined_variable_declaration = true:suggestion
+csharp_style_throw_expression = true:suggestion
+csharp_style_conditional_delegate_call = true:suggestion
+
+# Newline settings
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types = true
+
+# Space settings
+csharp_space_after_keywords_in_control_flow_statements = true:suggestion
