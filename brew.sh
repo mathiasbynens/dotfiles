@@ -96,5 +96,14 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 
+# CUSTOM INSTALLS
+
+# Install fzf
+brew install fzf
+$(brew --prefix)/opt/fzf/install
+
+# Install grc
+brew install grc
+
 # Remove outdated versions from the cellar.
 brew cleanup
