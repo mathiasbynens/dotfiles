@@ -1,0 +1,10 @@
+{
+    "editor.tabSize": 4,
+    "editor.rulers": [80],
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "workbench.editor.enablePreview": false,
+    "workbench.colorTheme": "Atom One Dark",
+    "emmet.triggerExpansionOnTab": true,
+    "terminal.integrated.fontFamily": "Meslo LG M for Powerline"
+  }

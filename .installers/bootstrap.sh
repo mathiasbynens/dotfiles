@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
+cd "$(dirname "${BASH_SOURCE}")"/..;
 
 git pull origin master;
 
 function doIt() {
 	rsync --exclude ".git/" \
+		--exclude ".prefs/" \
+		--exclude ".installers/" \
 		--exclude ".config/" \
 		--exclude ".vscode/" \
 		--exclude "ext-subrepos/" \

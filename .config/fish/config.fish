@@ -9,6 +9,8 @@ if not type -q bass
     exec bash -c "exit" && exit
 end
 
+source /usr/local/etc/grc.fish
+
 bass source ~/.path
 bass source ~/.exports
 bass source ~/.aliases
@@ -21,7 +23,6 @@ source ~/.config/fish/functions.fish
 source ~/.config/fish/chromium.fish
 
 source ~/.config/fish/conf.d/scmpuff.fish
-source /usr/local/etc/grc.fish
 
 # for things not checked into git..
 if test -e "$HOME/.extra.fish";

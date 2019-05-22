@@ -20,8 +20,8 @@ ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+# Install GNU `sed` as gsed
+brew install gnu-sed
 # Install Bash 4.
 brew install bash
 brew install bash-completion2
@@ -29,7 +29,9 @@ brew install bash-completion2
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
   echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
-  chsh -s "${BREW_PREFIX}/bin/bash";
+  if [ "$SHELL" != "/usr/local/bin/fish" ]; then
+    chsh -s "${BREW_PREFIX}/bin/bash";
+  fi;
 fi;
 
 # Install `wget` with IRI support.
@@ -75,7 +77,7 @@ brew install tcpflow
 brew install tcpreplay
 brew install tcptrace
 brew install ucspi-tcp # `tcpserver` etc.
-brew install xpdf
+brew install homebrew/x11/xpdf
 brew install xz
 
 # Install other useful binaries.
@@ -98,6 +100,8 @@ brew install zopfli
 
 # CUSTOM INSTALLS
 
+# ** Fish compatability **
+
 # Install fzf
 brew install fzf
 $(brew --prefix)/opt/fzf/install
@@ -105,5 +109,49 @@ $(brew --prefix)/opt/fzf/install
 # Install grc
 brew install grc
 
+# ** Programming **
+# largely from https://github.com/donnemartin/dev-setup/blob/master/brew.sh
+
+# More git
+brew install git-flow
+brew install git-extras
+brew install hub
+
+# Cask
+brew tap caskroom/cask
+brew install brew-cask-completion
+brew tap caskroom/versions
+
+# Install Python
+brew install python
+brew install python3
+
+# Install ruby-build and rbenv
+brew install ruby-build
+brew install rbenv
+LINE='eval "$(rbenv init -)"'
+grep -q "$LINE" ~/.extra || echo "$LINE" >> ~/.extra
+
+# Java
+brew tap AdoptOpenJDK/openjdk
+brew cask install adoptopenjdk/openjdk/adoptopenjdk8
+brew cask install adoptopenjdk/openjdk/adoptopenjdk11
+
+brew install jenv
+
+LINE='if which jenv > /dev/null; then eval "$(jenv init -)"; fi'
+grep -q "$LINE" ~/.extra || echo "$LINE" >> ~/.extra
+
+# Lxml and Libxslt
+brew install libxml2
+brew install libxslt
+brew link libxml2 --force
+brew link libxslt --force
+
+# Misc
+brew install pkg-config libffi
+brew install pandoc
+
 # Remove outdated versions from the cellar.
 brew cleanup
+brew cask cleanup
