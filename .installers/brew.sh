@@ -43,7 +43,8 @@ brew install gnupg
 # Install more recent versions of some macOS tools.
 brew install vim --with-override-system-vi
 brew install grep
-brew install openssh
+# # OPTIONAL: below can cause issues on Mac
+# brew install openssh
 brew install screen
 brew install php
 brew install gmp
@@ -127,8 +128,7 @@ brew install python
 brew install python3
 
 # Install ruby-build and rbenv
-brew install ruby-build
-brew install rbenv
+brew install rbenv ruby-build rbenv-default-gems rbenv-gemset
 LINE='eval "$(rbenv init -)"'
 grep -q "$LINE" ~/.extra || echo "$LINE" >> ~/.extra
 
