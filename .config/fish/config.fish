@@ -14,7 +14,6 @@ source /usr/local/etc/grc.fish
 bass source ~/.path
 bass source ~/.exports
 bass source ~/.aliases
-bass source ~/.extra
 
 source ~/.config/fish/path.fish
 source ~/.config/fish/aliases.fish
@@ -24,7 +23,13 @@ source ~/.config/fish/chromium.fish
 
 source ~/.config/fish/conf.d/scmpuff.fish
 
-# for things not checked into git..
+# for bash things not checked into git..
+if test -e "$HOME/.extra";
+	source ~/.extra
+end
+
+
+# for fish things not checked into git..
 if test -e "$HOME/.extra.fish";
 	source ~/.extra.fish
 end
