@@ -15,7 +15,7 @@ brew install wget --enable-iri
 
 # Install everything else
 brew install git
-brew install nvm
+brew install node
 brew install diff-so-fancy
 brew install cloc
 brew install htop
@@ -49,6 +49,4 @@ brew cask install visual-studio-code
 # Remove outdated versions from the cellar
 brew cleanup
 
-nvm i
-npm install -g yarn
 npm install -g pure-prompt
