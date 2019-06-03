@@ -13,10 +13,6 @@ brew install ack
 # Install wget with IRI support
 brew install wget --enable-iri
 
-# Install more recent versions of some OS X tools
-brew tap homebrew/dupes
-brew install homebrew/dupes/grep
-
 # Install everything else
 brew install git
 brew install nvm
@@ -34,6 +30,7 @@ brew install kube-ps1
 brew install fzf
 brew install fd
 brew install ripgrep
+brew install bat
 
 brew install zsh-syntax-highlighting
 brew install zsh-autosuggestions
@@ -42,11 +39,12 @@ brew install zsh-completions
 brew tap caskroom/cask
 brew cask install vlc
 brew cask install google-chrome
+brew cask install firefox
 brew cask install dropbox
-brew cask install skype
 brew cask install slack
 brew cask install telegram
 brew cask install iterm2
+brew cask install visual-studio-code
 
 # Remove outdated versions from the cellar
 brew cleanup
