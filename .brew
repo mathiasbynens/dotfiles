@@ -8,7 +8,6 @@ brew install coreutils
 
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
-brew install ack
 
 # Install wget with IRI support
 brew install wget --enable-iri
@@ -32,6 +31,7 @@ brew install fzf
 brew install fd
 brew install ripgrep
 brew install bat
+brew install exa
 
 brew install zsh-syntax-highlighting
 brew install zsh-autosuggestions
