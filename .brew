@@ -16,6 +16,7 @@ brew install wget --enable-iri
 # Install everything else
 brew install git
 brew install node
+brew install go
 brew install diff-so-fancy
 brew install cloc
 brew install htop
