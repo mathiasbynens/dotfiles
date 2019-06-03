@@ -1,3 +1,5 @@
+alias cat='bat'
+
 # Command line head / tail shortcuts
 alias -g H='| head'
 alias -g T='| tail'
@@ -9,6 +11,7 @@ alias -g CA="2>&1 | cat -A"
 alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g P="2>&1| pygmentize -l pytb"
+
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
 alias p='ps -f'
@@ -29,18 +32,9 @@ alias gmm="git merge --no-ff"
 alias glol="git log --graph --decorate --pretty=oneline --abbrev-commit"
 alias glola="git log --graph --decorate --pretty=oneline --abbrev-commit --all"
 
-# Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-  colorflag="--color"
-else # OS X `ls`
-  colorflag="-G"
-fi
-
-# List all files colorized in long format, including dot files
-alias la="ls -la ${colorflag}"
-
-# List only directories
-alias lsd='ls -l ${colorflag} | grep "^d"'
+alias ls="exa"
+alias ll="exa -lh"
+alias la="exa -lhaa"
 
 # Gzip-enabled `curl`
 alias gurl="curl --compressed"
@@ -119,8 +113,3 @@ alias badge="tput bel"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="lwp-request -m '$method'"
 done
-
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume 7'"
-alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
