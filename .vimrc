@@ -35,6 +35,7 @@ endif
 set backupskip=/tmp/*,/private/tmp/*
 
 " For security reasons, disable modeline in files
+set modelines=0
 set nomodeline
 " Enable per-directory .vimrc files and disable unsafe commands in them
 set exrc
