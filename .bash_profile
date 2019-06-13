@@ -1,11 +1,11 @@
 # Add `~/bin` to the `$PATH`
-export PATH="/usr/local/rubygems/bin:node_modules/.bin:$HOME/bin:$PATH:$HOME/.nvm";
+export PATH="/usr/local/rubygems/bin:node_modules/.bin:$HOME/bin:$PATH";
 
 # make sure homebrew gets precedence over system default CLIs
 export PATH="/usr/local/bin:$PATH";
 
 # Make vim the default editor
-export EDITOR="vim";
+export EDITOR='subl -w'
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768;
@@ -35,8 +35,9 @@ for file in ~/.{path,bash_prompt,aliases,functions,locals}; do
 done;
 unset file;
 
+
 # setting up the sublime symlink
-ln -sf /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
+ln -sf /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/s /usr/local/bin/sublime
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
