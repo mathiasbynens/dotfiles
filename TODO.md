@@ -1,3 +1,0 @@
-- add oh-my-zsh install & sync customizations
-- add zsh-autosuggestions install
-- `ln -s /usr/local/opt/nvm/nvm.sh $NVM_DIR/nvm.sh`
