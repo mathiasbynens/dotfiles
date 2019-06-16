@@ -3,36 +3,51 @@
 brew update
 brew upgrade
 
+# OSX related
+brew install m-cli    
+brew install mas      # cli App store
+
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
-
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-brew install findutils
 
 # Install wget with IRI support
 brew install wget --enable-iri
 
 # Install everything else
 brew install git
+brew install diff-so-fancy
+
 brew install node
 brew install go
-brew install diff-so-fancy
+brew install jq 
+brew install lnav # logs browsing
 brew install cloc
+
 brew install htop
+
+brew install wget
 brew install nload
 brew install mtr
+brew install wrk
+brew install httpie
+
+brew install kubectx
+brew install kube-ps1
+brew install kubernetes-helm
+brew tap wagoodman/dive
+brew install dive       # explore docker container layers
+
+brew install findutils  # GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed 
 brew install rename
 brew install tree
 brew install fpp
-brew install peco
-brew install httpie
-brew install kube-ps1
 brew install fzf
-brew install fd
-brew install ripgrep
-brew install bat
-brew install exa
+brew install ripgrep    
+brew install fd         # enhanced find
+brew install bat        # enhanced cat
+brew install exa        # enhanced ls
 
+# zsh plugins
 brew install zsh-syntax-highlighting
 brew install zsh-autosuggestions
 brew install zsh-completions
@@ -45,6 +60,7 @@ brew cask install dropbox
 brew cask install slack
 brew cask install telegram
 brew cask install iterm2
+brew cask install sequel-pro
 brew cask install visual-studio-code
 
 # Remove outdated versions from the cellar
