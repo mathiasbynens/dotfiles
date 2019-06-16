@@ -42,3 +42,4 @@ iterm2_print_user_vars() {
 }
 
 export GPG_TTY=$(tty)
+export PATH="$PATH:$HOME/bin"
