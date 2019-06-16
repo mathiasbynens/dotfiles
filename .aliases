@@ -40,7 +40,7 @@ alias la="exa -lhaa"
 alias gurl="curl --compressed"
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install -g npm@latest; sudo gem update'
+alias update='sudo softwareupdate -i -a; mas upgrade; brew update; brew upgrade; brew cleanup; npm install -g npm@latest; upgrade_oh_my_zsh'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
