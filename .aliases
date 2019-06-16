@@ -1,3 +1,5 @@
+alias cx=cht.sh
+
 alias cat='bat'
 
 # Command line head / tail shortcuts
