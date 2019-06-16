@@ -22,6 +22,7 @@ brew install cloc
 brew install htop
 
 brew install wget --enable-iri
+brew install youtube-dl
 brew install nload
 brew install mtr
 brew install wrk
