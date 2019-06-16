@@ -10,10 +10,6 @@ brew install mas      # cli App store
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
 
-# Install wget with IRI support
-brew install wget --enable-iri
-
-# Install everything else
 brew install git
 brew install diff-so-fancy
 
@@ -25,7 +21,7 @@ brew install cloc
 
 brew install htop
 
-brew install wget
+brew install wget --enable-iri
 brew install nload
 brew install mtr
 brew install wrk
@@ -38,6 +34,7 @@ brew tap wagoodman/dive
 brew install dive       # explore docker container layers
 
 brew install gnupg
+brew install ssh-copy-id
 brew install findutils  # GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed 
 brew install rename
 brew install tree
