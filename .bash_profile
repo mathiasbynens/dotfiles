@@ -5,7 +5,7 @@ export PATH="/usr/local/rubygems/bin:node_modules/.bin:$HOME/bin:$PATH";
 export PATH="/usr/local/bin:$PATH";
 
 # Make vim the default editor
-export EDITOR='subl -w'
+export EDITOR='vi -w'
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768;
