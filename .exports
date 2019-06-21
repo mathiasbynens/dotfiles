@@ -1,4 +1,6 @@
-# Make vim the default editor
+#!/usr/bin/env bash
+
+# Make sublime the default editor
 export EDITOR="subl -w";
 
 # Enable persistent REPL history for `node`.
@@ -26,3 +28,7 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
+
+# Avoid issues with `gpg` as installed via Homebrew.
+# https://stackoverflow.com/a/42265848/96656
+export GPG_TTY=$(tty);
