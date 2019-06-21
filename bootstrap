@@ -87,14 +87,14 @@ function doIt() {
     if [[ $(cat /proc/version | grep Microsoft) ]]; then
         echo -ne "\nEnter home directory (if installing on windows) or press enter if none: "
         read windowsDir
-        windowsHome=/mnt/c/Users/$windowsDir
+        windowsHome=/c/Users/$windowsDir
         
         if [[ ! -d "$windowsHome" ]]; then
             echo "$windowsHome does not exist ... "
             exit 1
         fi
         echo -e "Creating link to $windowsHome ...\n"
-        exe ln -s $windowsHome ~/$windowsDir
+        exe ln -fs $windowsHome ${HOME}/${windowsDir}
         echo "Copying hyper properties ..."
         exe cp ./extras/windows/.hyper.js /c/Users/$windowsDir/AppData/Roaming/Hyper
         echo ""
