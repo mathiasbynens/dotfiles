@@ -14,6 +14,7 @@
 	poh = push origin HEAD
 	pulloh = pull origin HEAD
 	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+  alltags = tag -l --format=\"%(creatordate:short) | %(refname:short) | %(objectname) \" --sort=-refname
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
