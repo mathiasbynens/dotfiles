@@ -59,6 +59,9 @@
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	
+	# Remove stale branches that are gone on remote
+	dg = "!git branch -vv | grep ': gone]'|  grep -v '\\*' | awk '{ print $1; }' | xargs -I F git branch -D \"F\""
 
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
