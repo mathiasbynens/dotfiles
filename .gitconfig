@@ -82,6 +82,10 @@
 		fi \
 	}; f"
 
+	# Compare two branches and show which commits are not in the first
+	# but in the second branch
+	compare = "!f() { git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $1..$2; }; f"
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
