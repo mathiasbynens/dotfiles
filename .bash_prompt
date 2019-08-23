@@ -43,6 +43,17 @@ prompt_git() {
 			if $(git rev-parse --verify refs/stash &>/dev/null); then
 				s+='$';
 			fi;
+			
+			# Check for changes behind & after
+			gitstatus=$(git status 2> /dev/null)
+
+			if [[ $gitstatus == *"behind"* ]]; then
+				s+='--';
+			fi;
+
+			if [[ $gitstatus == *"ahead"* ]]; then
+				s+='++';
+			fi;
 
 		fi;
 
