@@ -44,10 +44,16 @@ brew install nvm
 # http test tool (curl-like)
 brew install httpie
 
+# file system watch and execute command on file change
+brew install fswatch
+
+
+
 # how to add licence number?
 brew cask install atext
 brew cask install tomighty
 
+brew cask install macdown && ./addDockIcon.sh "MacDown"
 brew cask install google-chrome && ./addDockIcon.sh "Google Chrome"
 brew cask install firefox && ./addDockIcon.sh "Firefox"
 # brew cask slack !!! ERROR HERE ?
@@ -55,6 +61,7 @@ brew cask install slack && ./addDockIcon.sh "Slack"
 brew cask install authy && ./addDockIcon.sh "Authy Desktop"
 brew cask install iterm2 && ./addDockIcon.sh "iTerm"
 brew cask install atom && ./addDockIcon.sh "Atom"
+
 # brew cask install virtualbox-extension-pack
 # brew cask install docker
 
@@ -138,14 +145,14 @@ brew install imagemagick --with-webp
 brew install lua
 brew install lynx
 brew install p7zip
-brew install pigz
+# brew install pigz
 brew install pv
 brew install rename
 brew install rlwrap
 brew install ssh-copy-id
 brew install tree
 brew install vbindiff
-brew install zopfli
+# brew install zopfli
 
 
 
