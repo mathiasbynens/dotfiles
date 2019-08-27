@@ -34,10 +34,16 @@ brew install caskroom/cask/brew-cask
 # brew tap caskroom/cask # !!! ERROR HERE ?
 
 ## Generic utilities
+##############################################
+
 # command line json editor
 brew install jq
+# AWS command line interface
 brew install awscli
+# file compressor
 brew cask install keka
+# multi-protocol (HTTP(S), FTP, SFTP, BitTorrent, and Metalink) download utility
+brew install aria2
 
 # npm environment manager
 brew install nvm
