@@ -34,6 +34,10 @@ endif
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
 
+" Sets the number of columns for a TAB
+set softtabstop=4
+" Expand TABs to spaces
+set expandtab
 " Respect modeline in files
 set modeline
 set modelines=4
@@ -48,6 +52,8 @@ syntax on
 set cursorline
 " Make tabs as wide as two spaces
 set tabstop=2
+" Indents will have a width of 2
+set shiftwidth=2
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
