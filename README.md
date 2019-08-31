@@ -1,4 +1,5 @@
-# Mathias’s dotfiles
+# Nic's dotfiles
+This is a fork of Mathias’s dotfiles with motifications made for my setup
 
 ![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
 
