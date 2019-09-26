@@ -47,7 +47,7 @@ module.exports = {
     borderColor: 'white',
 
     // custom CSS to embed in the main window
-    css: '',
+    css: `.splitpane_divider { background-color: white !important; }`,
 
     // custom CSS to embed in the terminal window
     termCSS: '',
