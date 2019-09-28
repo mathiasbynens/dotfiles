@@ -45,11 +45,13 @@ KUBE_PS1_SEPARATOR=""
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1) '$PS1
 
-ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^[end' autosuggest-accept
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+ZSH_HIGHLIGHT_MAXLENGTH=60
 #ZSH_HIGHLIGHT_STYLES[root]='bg=red'
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
