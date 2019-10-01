@@ -40,16 +40,10 @@ brew install findutils  # GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefi
 brew install rename
 brew install tree
 brew install fpp
-brew install fzf
 brew install ripgrep    
 brew install fd         # enhanced find
 brew install bat        # enhanced cat
 brew install exa        # enhanced ls
-
-# zsh plugins
-brew install zsh-syntax-highlighting
-brew install zsh-autosuggestions
-brew install zsh-completions
 
 brew tap caskroom/cask
 brew cask install vlc
