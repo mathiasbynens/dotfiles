@@ -36,21 +36,21 @@ export PATH="/usr/local/opt/go@1.12/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# Two regular plugins loaded without tracking.
-zplugin light zsh-users/zsh-autosuggestions
-zplugin light zdharma/fast-syntax-highlighting
-zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
-
 zplugin ice from"gh-r" as"program"; zplugin load junegunn/fzf-bin
 zplugin ice multisrc'shell/{completion,key-bindings}.zsh'; zplugin load junegunn/fzf
 
 zplugin ice "rupa/z" pick"z.sh"; zplugin light rupa/z
 
+zplugin ice wait as"program" pick"bin/git-dsf"; zplugin light zdharma/zsh-diff-so-fancy
+zplugin ice wait lucid; zplugin light zsh-users/zsh-autosuggestions
+zplugin ice wait lucid; zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait lucid; zplugin snippet OMZ::lib/key-bindings.zsh 
 zplugin ice wait lucid; zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin ice wait lucid; zplugin snippet OMZ::plugins/vscode/vscode.plugin.zsh
 
 zplugin ice wait lucid atinit"zpcompinit; zpcdreplay"; zplugin light jonmosco/kube-ps1
+
+zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
 
 for file in ~/.{exports,aliases,functions,extra}; do
     [ -r "$file" ] && source "$file"
@@ -58,4 +58,5 @@ done
 unset file
 
 #if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+#test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
