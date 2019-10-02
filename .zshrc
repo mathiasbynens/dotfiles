@@ -1,7 +1,12 @@
 #zmodload zsh/zprof
 
+# Install zplugin if not installed
+if [ ! -d "${HOME}/.zplugin" ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+fi
+
 ### Added by Zplugin's installer
-source '/Users/artem/.zplugin/bin/zplugin.zsh'
+source "${HOME}/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin installer's chunk
