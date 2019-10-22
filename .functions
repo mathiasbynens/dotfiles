@@ -144,3 +144,92 @@ function unquarantine() {
 		xattr -r -d "$attribute" "$@"
 	done
 }
+
+function ssl-check() {
+    f=~/.localhost_ssl;
+    ssl_crt=$f/server.crt
+    ssl_key=$f/server.key
+    b=$(tput bold)
+    c=$(tput sgr0)
+
+    # local_ip=$(ipconfig getifaddr $(route get default | grep interface | wak '{print $2}'))
+    local_ip=10.0.1.37 # (uncomment for testing)
+
+    domains=(
+        "localhost"
+        "$local_ip"
+    )
+
+    if [[ ! -f $ssl_crt ]]; then
+        echo -e "\n🛑  ${b}Couldn't find a Slate SSL certificate:${c}"
+        make_key=true
+    elif [[ ! $(openssl x509 -noout -text -in $ssl_crt | grep $local_ip) ]]; then
+        echo -e "\n🛑  ${b}Your IP Address has changed:${c}"
+        make_key=true
+    else
+        echo -e "\n✅  ${b}Your IP address is still the same.${c}"
+    fi
+
+    if [[ $make_key == true ]]; then
+        echo -e "Generating a new Slate SSL certificate...\n"
+        count=$(( ${#domains[@]} - 1))
+        mkcert ${domains[@]}
+
+        # Create Slate's default certificate directory, if it doesn't exist
+        test ! -d $f && mkdir $f
+
+        # It appears mkcert bases its filenames off the number of domains passed after the first one.
+        # This script predicts that filename, so it can copy it to Slate's default location.
+        if [[ $count = 0 ]]; then
+            mv ./localhost.pem $ssl_crt
+            mv ./localhost-key.pem $ssl_key
+        else
+            mv ./localhost+$count.pem $ssl_crt
+            mv ./localhost+$count-key.pem $ssl_key
+        fi
+    fi
+}
+
+function ffmpeg-davinci-converter() {
+	local ext="${1:-MP4}"
+
+	echo "This files will be converted to 1920x1080 24fps:"
+	for i in *.$ext;
+		do echo "- $i";
+	done
+
+	read -p "Continue (y/n)?" choice
+	echo
+	if [[ ! $choice =~ ^[Yy]$ ]]
+	then
+	    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+	fi
+
+	for i in *.$ext;
+	  do name=`echo $i | cut -d'.' -f1`;
+	  echo $name;
+	  ffmpeg-bar -i "$i" -vcodec dnxhd -acodec pcm_s16le -s 1920x1080 -r 24000/1001 -b:v 36M -pix_fmt yuv422p -f mov "${name}.mov";
+	done
+} 
+
+function ffmpeg-mp3-wav() {
+	local ext="mp3"
+
+	echo "This files will be converted to WAV PCM 16 bits:"
+	for i in *.$ext;
+		do echo "- $i";
+	done
+
+	read -p "Continue (y/n)?" choice
+	echo
+	if [[ ! $choice =~ ^[Yy]$ ]]
+	then
+	    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+	fi
+
+	for i in *.$ext;
+	  do name=`echo $i | cut -d'.' -f1`;
+	  echo $name;
+	  ffmpeg-bar -i "$i" -acodec pcm_s16le -f wav "${name}.wav";
+	done
+}
