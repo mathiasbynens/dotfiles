@@ -14,6 +14,7 @@ sudo snap install okular
 sudo snap install postman
 sudo snap install skype --classic
 sudo snap install gnome-clocks
+sudo snap install gitkraken
 
 # theme
 sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/home:Horst3180.list"
