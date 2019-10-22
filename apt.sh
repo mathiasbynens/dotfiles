@@ -117,3 +117,4 @@ sudo chmod +x /usr/local/bin/ctop
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
 
 . ./google-fonts.sh
+. ./snaps.sh
