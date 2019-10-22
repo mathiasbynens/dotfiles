@@ -4,7 +4,26 @@ sudo -u
 apt-get update
 
 # install tools
-sudo apt-get install curl coreutils net-tools apt-transport-https ca-certificates software-properties-common ubuntu-restricted-extras gnome-tweak-tool network-manager-openvpn-gnome libxss1 libappindicator1 libindicator7 vim -y
+sudo apt-get install \
+   curl \
+   coreutils \
+   net-tools \
+   apt-transport-https \
+   ca-certificates \
+   software-properties-common \
+   ubuntu-restricted-extras \
+   gnome-tweak-tool \
+   gnome-shell-extensions \
+   network-manager-openvpn-gnome \
+   libxss1 \
+   libappindicator1 \
+   libindicator7 \
+   vim \
+   nfs-common \
+   nfs-kernel-server \
+   psensor \
+
+   -y
 
 # install cafeine repository
 sudo add-apt-repository ppa:caffeine-developers/ppa
@@ -43,6 +62,10 @@ sudo add-apt-repository ppa:peek-developers/stable
 # install Kazzan (screencast) repository
 sudo add-apt-repository ppa:kazam-team/stable-series
 
+# install brave
+curl https://s3-us-west-2.amazonaws.com/brave-apt/keys.asc | sudo apt-key add -
+
+
 # install docker repository
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key fingerprint 0EBFCD88
@@ -64,6 +87,7 @@ sudo apt-get install peek -y
 sudo apt-get install kazam -y
 sudo apt-get install enpass -y
 sudo apt-get install google-chrome-stable -y
+sudo apt install snapd -y
 
 # docker
 apt-get install docker-ce -y
@@ -86,6 +110,10 @@ chmod g+rwx "/home/germano/.docker" -R
 sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.1/ctop-0.7.1-linux-amd64 -O /usr/local/bin/ctop
 sudo chmod +x /usr/local/bin/ctop
 
-
 # setup bash prompt
 (cd /tmp && git clone --depth 1 --config core.autocrlf=false https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
+
+#  node
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
+
+. ./google-fonts.sh
