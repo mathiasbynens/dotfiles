@@ -169,3 +169,13 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Commits and pushes the code to the repository.
+function gp() {
+	git commit -am "$*" && git push
+}
+
+# Commits the all the current changes.
+function gc() {
+	git commit -am "$*"
+}
