@@ -146,3 +146,8 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+
+# Docker Laravel related aliases
+alias phpd="docker-compose exec app php"
+alias appd="docker-compose exec app"
