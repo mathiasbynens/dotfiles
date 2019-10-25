@@ -5,6 +5,10 @@ function mcd() {
 	mkdir -p "$@" && cd "$_";
 }
 
+function pidof() {
+	ps -Ao pid,user,command | grep -i $1 | grep -v grep | gawk '{print $1}'
+}
+
 function capture() {
     sudo dtrace -p "$1" -qn '
         syscall::write*:entry
