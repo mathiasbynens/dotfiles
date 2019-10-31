@@ -156,3 +156,6 @@
 
 	insteadOf = "github:"
 
+[oh-my-zsh]
+    hide-dirty = 1
+    hide-status = 0
