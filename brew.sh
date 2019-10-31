@@ -18,16 +18,23 @@ brew upgrade
 brew install coreutils
 
 # Install some other useful utilities like `sponge`.
-brew install moreutils
+# brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
+
 # Install Bash 4.
 # Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
 # running `chsh`.
 brew install bash
 brew install bash-completion2
+# Switch to using brew-installed bash as default shell
+if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
+  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
+  chsh -s /usr/local/bin/bash;
+fi;
+
 
 
 brew install caskroom/cask/brew-cask
@@ -38,21 +45,24 @@ brew install caskroom/cask/brew-cask
 
 # command line json editor
 brew install jq
+
 # AWS command line interface
 brew install awscli
+
 # file compressor
 brew cask install keka
+
 # multi-protocol (HTTP(S), FTP, SFTP, BitTorrent, and Metalink) download utility
-brew install aria2
+# brew install aria2
 
 # npm environment manager
 brew install nvm
+
 # http test tool (curl-like)
 brew install httpie
 
 # file system watch and execute command on file change
 brew install fswatch
-
 
 
 # how to add licence number?
@@ -75,25 +85,22 @@ brew cask install dropbox
 brew cask install google-backup-and-sync
 
 # office related
-brew cask install onedrive
 brew cask install microsoft-office
+brew cask install onedrive
 
+# requires extra consent in Security & Privacy panel
+brew cask install avira-antivirus
 
 # DEV tools
 # Attention: this installs latest Oracle java (10.x currently), requires password
-brew cask install java
-brew install maven
-brew cask install intellij-idea-ce && ./addDockIcon.sh "IntelliJ IDEA CE"
+# brew cask install java
+# brew install maven
+# brew cask install intellij-idea-ce && ./addDockIcon.sh "IntelliJ IDEA CE"
 
 
 
 # DG end
 
-# Switch to using brew-installed bash as default shell
-if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
-  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
-  chsh -s /usr/local/bin/bash;
-fi;
 
 
 
@@ -149,25 +156,23 @@ brew install git
 brew install git-lfs
 brew install imagemagick --with-webp
 brew install lua
-brew install lynx
-brew install p7zip
-# brew install pigz
+# brew install lynx
+# brew install p7zip
+# # brew install pigz
 brew install pv
 brew install rename
 brew install rlwrap
 brew install ssh-copy-id
 brew install tree
-brew install vbindiff
+# brew install vbindiff
 # brew install zopfli
 
 
 
-# failed on first install & requires password
-brew cask install virtualbox
-# requires extra consent in Security & Privacy panel
-brew cask install avira-antivirus
-# requires password
-brew cask install tunnelblick
+# # failed on first install & requires password
+# brew cask install virtualbox
+# # requires password
+# brew cask install tunnelblick
 
 
 
