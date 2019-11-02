@@ -247,12 +247,6 @@ defaults write com.apple.finder QuitMenuItem -bool true
 # Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
 
-# Set Desktop as the default location for new Finder windows
-# PfHm is Home, PfDe is Desktop
-# For other paths, use `PfLo` and `file:///full/path/here/`
-defaults write com.apple.finder NewWindowTarget -string "PfHm"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
-
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
@@ -327,8 +321,44 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
 
 # Use column view in all Finder windows by default
+# Icon View   : `icnv`
+# List View   : `Nlsv`
+# Column View : `clmv`
+# Cover Flow  : `Flwv`
 # Four-letter codes for the view modes: 'icnv', 'clmv', 'Nlsv', 'glyv'
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+
+# View Options
+# ColumnShowIcons    : Show preview column
+# ShowPreview        : Show icons
+# ShowIconThumbnails : Show icon preview
+# ArrangeBy          : Sort by
+#   dnam : Name
+#   kipl : Kind
+#   ludt : Date Last Opened
+#   pAdd : Date Added
+#   modd : Date Modified
+#   ascd : Date Created
+#   logs : Size
+#   labl : Tags
+/usr/libexec/PlistBuddy \
+    -c "Set :StandardViewOptions:ColumnViewOptions:ColumnShowIcons bool    false" \
+    -c "Set :StandardViewOptions:ColumnViewOptions:FontSize        integer 11"    \
+    -c "Set :StandardViewOptions:ColumnViewOptions:ShowPreview     bool    true"  \
+    -c "Set :StandardViewOptions:ColumnViewOptions:ArrangeBy       string  dnam"  \
+    ~/Library/Preferences/com.apple.finder.plist
+
+# New window target
+# Computer     : `PfCm`
+# Volume       : `PfVo`
+# $HOME        : `PfHm`
+# Desktop      : `PfDe`
+# Documents    : `PfDo`
+# All My Files : `PfAF`
+# Other…       : `PfLo`
+defaults write com.apple.finder NewWindowTarget -string 'PfHm'
+# IF using 'PfLo' then use the following NewWindowTargetPath string
+#defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
