@@ -64,6 +64,9 @@ brew install httpie
 # file system watch and execute command on file change
 brew install fswatch
 
+# yaml/json merger -> https://github.com/geofffranks/spruce
+brew tap starkandwayne/cf
+brew install spruce
 
 # how to add licence number?
 brew cask install atext
