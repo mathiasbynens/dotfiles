@@ -157,6 +157,7 @@
 
 	# Detect copies as well as renames
 	renames = copies
+  submodule = log
 
 [diff "bin"]
 
