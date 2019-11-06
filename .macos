@@ -152,8 +152,8 @@ defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain KeyRepeat -int 4
+defaults write NSGlobalDomain InitialKeyRepeat -int 40
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
@@ -357,7 +357,7 @@ defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 # All My Files : `PfAF`
 # Other…       : `PfLo`
 defaults write com.apple.finder NewWindowTarget -string 'PfHm'
-# IF using 'PfLo' then use the following NewWindowTargetPath string
+# IF using 'PfLo' then use the following NewWindowTargetPath string   
 #defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
 # Disable the warning before emptying the Trash
