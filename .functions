@@ -9,6 +9,23 @@ function pidof() {
 	ps -Ao pid,user,command | grep -i $1 | grep -v grep | gawk '{print $1}'
 }
 
+# Squash last X commits with a Commit message.
+# Usage: squash X 'COMMIT_MSG'
+# where X= Number of last commits.
+# where COMMIT_MSG= New commit msg.
+function squash() {
+    if [ -z "${1}" -o -z "${2}" ]; then
+        echo "Usage: \`squash X COMMIT_MSG\`"
+        echo "X= Number of last commits."
+        echo "COMMIT_MSG= New commit msg."
+        return 1
+    fi
+
+    git reset --soft HEAD~"$1"
+    git add . && git ci -m "$2" # With 100 emoji
+    git push --force
+}
+
 function capture() {
     sudo dtrace -p "$1" -qn '
         syscall::write*:entry
