@@ -328,7 +328,7 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 # Four-letter codes for the view modes: 'icnv', 'clmv', 'Nlsv', 'glyv'
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 
-# View Options
+# View Options, PRE_CATALINA
 # ColumnShowIcons    : Show preview column
 # ShowPreview        : Show icons
 # ShowIconThumbnails : Show icon preview
@@ -341,12 +341,12 @@ defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 #   ascd : Date Created
 #   logs : Size
 #   labl : Tags
-/usr/libexec/PlistBuddy \
-    -c "Set :StandardViewOptions:ColumnViewOptions:ColumnShowIcons bool    false" \
-    -c "Set :StandardViewOptions:ColumnViewOptions:FontSize        integer 11"    \
-    -c "Set :StandardViewOptions:ColumnViewOptions:ShowPreview     bool    true"  \
-    -c "Set :StandardViewOptions:ColumnViewOptions:ArrangeBy       string  dnam"  \
-    ~/Library/Preferences/com.apple.finder.plist
+#/usr/libexec/PlistBuddy \
+#    -c "Set :StandardViewOptions:ColumnViewOptions:ColumnShowIcons bool    false" \
+#    -c "Set :StandardViewOptions:ColumnViewOptions:FontSize        integer 11"    \
+#    -c "Set :StandardViewOptions:ColumnViewOptions:ShowPreview     bool    true"  \
+#    -c "Set :StandardViewOptions:ColumnViewOptions:ArrangeBy       string  dnam"  \
+#    ~/Library/Preferences/com.apple.finder.plist
 
 # New window target
 # Computer     : `PfCm`
@@ -610,7 +610,7 @@ defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnab
 # Disable Spotlight indexing for any volume that gets mounted and has not yet
 # been indexed before.
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 # Change indexing order and disable some search results
 # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
 # 	MENU_DEFINITION
@@ -729,7 +729,7 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Disable local Time Machine backups
-hash tmutil &> /dev/null && sudo tmutil disablelocal
+hash tmutil &> /dev/null && sudo tmutil disable local
 
 ###############################################################################
 # Activity Monitor                                                            #
