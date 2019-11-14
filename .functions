@@ -172,3 +172,8 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Brew - update 'brew', then upgrade all installed packages, then cleeanup and report
+function brewup () {                                                                                     ✔
+        brew update && brew upgrade && brew cleanup && brew doctor
+}
