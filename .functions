@@ -1,8 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-function brewup() {                                                                                                                127 ↵
-        brew update && brew upgrade && brew cleanup && brew doctor
-		
+# Brew - update 'brew', then upgrade all installed packages, then cleanup and report
+function brewup () {
+	brew update && brew upgrade && brew cleanup && brew doctor
+}
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
@@ -173,7 +175,26 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
-# Brew - update 'brew', then upgrade all installed packages, then cleeanup and report
-function brewup () {                                                                                     ✔
-        brew update && brew upgrade && brew cleanup && brew doctor
+# Separate the grain from the chaff (empty linees or comment lines)
+function grain () {
+	grep -E -v '^(#|;|$|[ ]*#)' "$@"
+}
+
+# checkusers - Cautionary script to check for nefarious hidden users
+function checkusers () {
+	if [ $(uname -s) = 'Darwin' ]; then
+		lw="/Library/Preferences/com.apple.loginwindow"
+		printf "Current users:\n %s\n" $(/usr/bin/users)
+		declare -a allowedusers=("daemon","root","nobody","Guest")
+		printf "\n%-12s %-5s\n" "User" "ID"
+		for i in $(dscl . -list /Users | grep -vE '^_'); do
+			if [[ ! "${allowedusers[@]}" =~ "${i}" ]]; then
+				k=$(id -u ${i})
+				printf "  %-10s %-5s\n" ${i} ${k}
+			fi
+		done
+		printf "\nLogin Window:\n%s\n" "$(defaults read "${lw}")"
+	else
+		echo "Not yet implemented for $(uname -s)"
+	fi
 }
