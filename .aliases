@@ -1,3 +1,5 @@
+alias cx=cht.sh
+
 alias cat='bat'
 
 # Command line head / tail shortcuts
@@ -40,7 +42,7 @@ alias la="exa -lhaa"
 alias gurl="curl --compressed"
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install -g npm@latest; sudo gem update'
+alias update='sudo softwareupdate -i -a; mas upgrade; brew update; brew upgrade; brew cleanup; npm install -g npm@latest; upgrade_oh_my_zsh'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -113,3 +115,10 @@ alias badge="tput bel"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="lwp-request -m '$method'"
 done
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"

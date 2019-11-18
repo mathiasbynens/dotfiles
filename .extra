@@ -10,30 +10,6 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/tools/bin
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
-# Maven
-#export M2_HOME=/usr/local/Cellar/maven/3.2.1
-#PATH=$PATH:$M2_HOME/bin
-
-# RVM & RBenv
-# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-# [[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
-#export PATH=${HOME}/.rbenv/bin:$PATH
-#eval "$(rbenv init -)"
-
 # Virtualenv
-#PATH=$PATH:/usr/local/share/python
 export WORKON_HOME=~/.virtualenvs
-# [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source "/usr/local/bin/virtualenvwrapper.sh"
 # if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-# PHP
-# PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
-
-export GOPATH=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-
-export PATH="$PATH:$HOME/.yarn/bin"

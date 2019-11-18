@@ -1,55 +1,82 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+#zmodload zsh/zprof
 
-ZSH_THEME=""
+# Install zplugin if not installed
+if [ ! -d "${HOME}/.zplugin" ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+fi
 
-plugins=(git z osx vscode alias-tips kubectl)
+### Added by Zplugin's installer
+source '/Users/artem/.zplugin/bin/zplugin.zsh'
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin installer's chunk
 
-fpath=(/usr/local/share/zsh-completions $fpath)
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 
-#autoload -U compinit && compinit
+# https://github.com/zsh-users/zsh-autosuggestions/issues/303#issuecomment-361814419
+#if [[ "${terminfo[kcuu1]}" != "" ]]; then
+#  autoload -U up-line-or-beginning-search
+#  zle -N up-line-or-beginning-search
+#  bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+#fi
 
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
-export NVM_AUTO_USE=true
+#if [[ "${terminfo[kcud1]}" != "" ]]; then
+#  autoload -U down-line-or-beginning-search
+#  zle -N down-line-or-beginning-search
+#  bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+#fi
 
-source $ZSH/oh-my-zsh.sh
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+export PATH="/usr/local/opt/go@1.12/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+zplugin ice "rupa/z" pick"z.sh"; zplugin light rupa/z
+
+zplugin ice wait as"program" pick"bin/git-dsf"; zplugin light zdharma/zsh-diff-so-fancy
+zplugin ice wait lucid; zplugin light zsh-users/zsh-autosuggestions
+zplugin ice wait lucid; zplugin light zdharma/fast-syntax-highlighting
+zplugin ice wait lucid; zplugin snippet OMZ::lib/history.zsh
+zplugin ice wait lucid; zplugin snippet OMZ::lib/key-bindings.zsh 
+zplugin ice wait lucid; zplugin snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zplugin ice wait lucid; zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+zplugin ice wait lucid; zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin ice wait lucid; zplugin snippet OMZ::plugins/vscode/vscode.plugin.zsh
+
+zplugin ice from"gh-r" as"program"; zplugin load junegunn/fzf-bin
+zplugin ice wait lucid multisrc"shell/{completion,key-bindings}.zsh" id-as"junegunn/fzf_completions" pick"/dev/null"; zplugin load junegunn/fzf
+
+# FIXME: drop
+zplugin ice wait lucid atinit"zpcompinit; zpcdreplay"; zplugin light jonmosco/kube-ps1
+
+zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
+
+export WORDCHARS=""
 
 for file in ~/.{exports,aliases,functions,extra}; do
     [ -r "$file" ] && source "$file"
 done
 unset file
 
-#ZPLUG_SUDO_PASSWORD=""
-#zplug "jhawthorn/fzy", as:command, rename-to:fzy, hook-build:"make && sudo make install"
-#zplug "b4b4r07/enhancd", use:init.sh
+#if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
-#zplug "zsh-users/zsh-history-substring-search"
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-
-#if zplug check b4b4r07/enhancd; then
-#    export ENHANCD_FILTER=fzy:fzf-tmux:peco
-#fi
-
-autoload -U promptinit; promptinit
-prompt pure
-
-if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
-
-KUBE_PS1_PREFIX=""
-KUBE_PS1_SUFFIX=""
-KUBE_PS1_SEPARATOR=""
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-PS1='$(kube_ps1) '$PS1
-
-ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^[end' autosuggest-accept
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
-#ZSH_HIGHLIGHT_STYLES[root]='bg=red'
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+iterm2_print_user_vars() {
+  KUBECONTEXT=$(CTX=$(kubectl config current-context) 2> /dev/null;if [ $? -eq 0 ]; then echo $CTX;fi)
+  KUBENS=$(kubectl config view --minify --output 'jsonpath={..namespace}')
+  iterm2_set_user_var kubeContext "${KUBECONTEXT}[${KUBENS}]"
+}

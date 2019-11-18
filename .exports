@@ -1,21 +1,41 @@
-# Make Sublime the default editor
-export EDITOR='subl -w'
-# Don’t clear the screen after quitting a manual page
+export EDITOR='vim'
 export MANPAGER="less -X"
-# Highlight section titles in manual pages
 export LESS_TERMCAP_md="$ORANGE"
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US.UTF-8"
 
-# Larger bash history (allow 32³ entries; default is 500)
+# LANGUAGE must be set by en_US
+export LANGUAGE="en_US.UTF-8"
+export LANG="${LANGUAGE}"
+export LC_ALL="${LANGUAGE}"
+export LC_CTYPE="${LANGUAGE}"
+
+export PAGER=less
+export LESS='-R -f -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+export LESSCHARSET='utf-8'
+
+# LESS man page colors (makes Man pages more readable).
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[00;44;37m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+export HISTFILE=~/.history
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+export HISTIGNORE="z *:ls:cd:cd -:pwd:exit:date:* --help"
 
 export _Z_NO_RESOLVE_SYMLINKS=3
 
 iterm2_print_user_vars() {
   iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
 }
+
+# Avoid issues with `gpg` as installed via Homebrew.
+# https://stackoverflow.com/a/42265848/96656
+export GPG_TTY=$(tty)
+
+export PATH="$PATH:$HOME/bin"
