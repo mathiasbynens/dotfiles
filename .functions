@@ -198,3 +198,11 @@ function checkusers () {
 		echo "Not yet implemented for $(uname -s)"
 	fi
 }
+
+# increment a version number
+# echo "1.2.3" | inc_version 3 = 1.2.4
+# echo "1.2.3" | inc_version 1 = 2.0.0
+# from https://gir.st/blog/inc-version.htm
+function inc_version() {
+        awk -F. -v OFS=. '{ $ver++; while(ver++<NF) $ver=0; print $0 }' ver=$1
+}
