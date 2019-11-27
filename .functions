@@ -169,3 +169,9 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# echo the IP address for the currently active network interface 
+function localip() {
+	local activeIf=$(netstat -rn | grep default | awk '{print $NF}' | head -1)
+	ipconfig getifaddr ${activeIf}
+}
