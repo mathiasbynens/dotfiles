@@ -52,3 +52,9 @@ source ~/git-completion.bash
 
 # adjust colors for ls command
 export LSCOLORS="cxfxcxdxbxegedbxbxcxcx"
+
+
+# add go paths
+export GOPATH="${HOME}/git/go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
