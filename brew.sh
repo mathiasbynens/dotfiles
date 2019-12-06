@@ -65,6 +65,7 @@ brew tap homebrew/cask
 # brew cask install gimp
 brew cask install java iterm2 sublime-text sshfs google-chrome 
 brew cask install spotify rambox
+brew cask install jitouch
 
 # install go
 export GOPATH="${HOME}/git/go"
