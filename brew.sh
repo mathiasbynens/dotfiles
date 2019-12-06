@@ -57,6 +57,10 @@ brew install yarn
 brew install python
 brew install python3
 
+# install commong dbs
+brew install postgres
+brew install mysql
+
 # Remove outdated versions from the cellar.
 brew cleanup
 
