@@ -1,10 +1,16 @@
 #!/usr/bin/env zsh
 
-# if using bash
-# cd "$(dirname "${BASH_SOURCE}")";
+place="$PWD"
 
-# if using zsh
-cd "$(dirname "${(%):-%x}")"
+if [ -n "$ZSH_VERSION" ]; then
+	# assume Zsh
+	cd "$(dirname "${(%):-%x}")"
+elif [ -n "$BASH_VERSION" ]; then
+	# assume Bash
+	cd "$(dirname "${BASH_SOURCE}")";
+else
+   # asume something else
+fi
 
 git pull origin master;
 
@@ -30,3 +36,4 @@ else
 	fi;
 fi;
 unset doIt;
+cd $place
