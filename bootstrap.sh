@@ -1,18 +1,23 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-cd "$(dirname "${BASH_SOURCE}")";
+# if using bash
+# cd "$(dirname "${BASH_SOURCE}")";
+
+# if using zsh
+cd "$(dirname "${(%):-%x}")"
 
 git pull origin master;
 
 function doIt() {
-	rsync --exclude ".git/" \
+	rsync --dry-run \
+		--exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
-	source ~/.bash_profile;
+	# source ~/.bash_profile;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

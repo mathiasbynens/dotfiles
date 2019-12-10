@@ -146,3 +146,12 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# timetrap timesheets - https://github.com/samg/timetrap
+alias timetrap="/usr/local/lib/ruby/gems/2.6.0/bin/timetrap"
+
+# FFMPEG aliases
+alias ffmpeg="ffmpeg -hide_banner"
+alias ffm="ffmpeg"
+alias ffprobe="ffprobe -hide_banner"
+alias ffp="ffprobe"
