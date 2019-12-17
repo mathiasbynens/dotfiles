@@ -155,3 +155,7 @@ alias ffmpeg="ffmpeg -hide_banner"
 alias ffm="ffmpeg"
 alias ffprobe="ffprobe -hide_banner"
 alias ffp="ffprobe"
+
+# Python aliases
+alias p3="python3"
+alias p2="python2"

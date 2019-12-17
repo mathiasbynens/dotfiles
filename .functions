@@ -9,18 +9,17 @@ function brewup () {
 function updatetools () {
 	# Ask for the administrator password upfront
 	sudo -v
-	# Keep-alive: update existing `sudo` time stamp until update has finished
-	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-	# Update App Store apps
+	echo "Update App Store apps"
 	sudo softwareupdate -i -a
-	# Update Homebrew (Cask) & packages
-	brew update && brew upgrade && brew cleanup
-	# Update npm & packages
-	npm install npm -g && npm update -g && npm install -g npm
-	# Update Ruby & gems
+	echo "Update Ruby & gems"
 	sudo gem update —system && sudo gem update
-	# cleanup
+	# cleanup sudo
 	sudo -k
+	echo "Update Homebrew (Cask) & packages"
+	brew update && brew upgrade && brew cleanup
+	echo "Update npm & packages"
+	npm install npm -g && npm update -g && npm install -g npm
+	
 }
 
 # Create a new directory and enter it
