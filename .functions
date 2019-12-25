@@ -223,3 +223,16 @@ function checkusers () {
 function inc_version() {
         awk -F. -v OFS=. '{ $ver++; while(ver++<NF) $ver=0; print $0 }' ver=$1
 }
+
+# ISO-8601 naming
+# Rename a file to include the creation date
+function rename_iso_append() {
+	oldfile=$1
+	oldfileroot="${oldfile%.*}"
+	oldfiletype="${oldfile##*.}"
+	iso="$(gdate -d "$(stat "${oldfile}" | cut -f2 -d'"')" +"%Y%m%dT%H%M%S")"
+	case ${oldfile} in 
+		*\.*) echo "mv ${oldfile} ${oldfileroot}-${iso}.${oldfiletype}" ;;
+		*) echo "mv ${oldfile} ${oldfileroot}-${iso}" ;;
+	esac
+}
