@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 # Easier navigation: .., ..., ...., ....., ~ and -
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
+# alias ..="cd .."
+# alias ...="cd ../.."
+# alias ....="cd ../../.."
+# alias .....="cd ../../../.."
+# alias ~="cd ~" # `cd` is probably faster to type though
+# alias -- -="cd -"
 
 # Shortcuts
 alias d="cd ~/Documents/Dropbox"
@@ -159,3 +159,7 @@ alias ffp="ffprobe"
 # Python aliases
 alias p3="python3"
 alias p2="python2"
+
+# ISO-8601 date formatting
+alias i8f='TZ="America/Los_Angeles" date +"%Y%m%dT%H%M%S"'
+alias ria="rename_iso_append"
