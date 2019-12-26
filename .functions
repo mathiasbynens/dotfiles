@@ -232,7 +232,7 @@ function rename_iso_append() {
 	oldfiletype="${oldfile##*.}"
 	iso="$(gdate -d "$(stat "${oldfile}" | cut -f2 -d'"')" +"%Y%m%dT%H%M%S")"
 	case ${oldfile} in 
-		*\.*) echo "mv ${oldfile} ${oldfileroot}-${iso}.${oldfiletype}" ;;
-		*) echo "mv ${oldfile} ${oldfileroot}-${iso}" ;;
+		*\.* ) mv -v "${oldfile}" "${oldfileroot}-${iso}.${oldfiletype}" ;;
+		*    ) mv -v "${oldfile}" "${oldfileroot}-${iso}" ;;
 	esac
 }
