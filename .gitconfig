@@ -1,3 +1,8 @@
+[user]
+        name = Thanasis Polychronakis
+        email = thanpolas@gmail.com
+        signingkey = 92446438A1B083BE
+
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
