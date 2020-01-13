@@ -192,7 +192,7 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
-# Separate the grain from the chaff (empty linees or comment lines)
+# Separate the grain from the chaff (empty lines or comment lines)
 function grain () {
 	grep -E -v '^(#|;|$|[ ]*#)' "$@"
 }
@@ -235,4 +235,12 @@ function rename_iso_append() {
 		*\.* ) mv -v "${oldfile}" "${oldfileroot}-${iso}.${oldfiletype}" ;;
 		*    ) mv -v "${oldfile}" "${oldfileroot}-${iso}" ;;
 	esac
+}
+# Convert shortened ISO8601 to readable date
+function i82d () {
+	echo $1 | gsed -e 's/^\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)T\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)/\1-\2-\3T\4:\5:\6/'
+}
+# Convert shortened ISO8601 to epoch seconds
+function i82ec () {
+	gdate -d"$(i82d $1)" +%s
 }
