@@ -237,10 +237,21 @@ function rename_iso_append() {
 	esac
 }
 # Convert shortened ISO8601 to readable date
-function i82d () {
+function i82d() {
 	echo $1 | gsed -e 's/^\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)T\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)/\1-\2-\3T\4:\5:\6/'
 }
 # Convert shortened ISO8601 to epoch seconds
 function i82ec () {
 	gdate -d"$(i82d $1)" +%s
+}
+
+# `mount` with no arguments neatly shows currrent state, 
+# otherwise does the rerquested mount operations
+# location
+function mount() {
+	if [ $# -eq 0 ]; then
+		mount | column -t ;
+	else
+		mount "$@";
+	fi;
 }
