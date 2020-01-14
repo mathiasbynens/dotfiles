@@ -246,12 +246,42 @@ function i82ec () {
 }
 
 # `mount` with no arguments neatly shows currrent state, 
-# otherwise does the rerquested mount operations
-# location
+# otherwise does the requested mount operations
 function mount() {
 	if [ $# -eq 0 ]; then
-		mount | column -t ;
+		/sbin/mount | column -t ;
 	else
-		mount "$@";
+		/sbin/mount "$@";
 	fi;
+}
+
+# Wake On LAN
+# ** requires "brew install wakeonlan"
+# Get remote server MAC Address
+function mac_address() {
+	if [ $# -eq 0 ]; then
+		echo "mac_address remoteServerName"
+	else
+		rhost="$@"
+		macaddr=$(ssh "${USER}"@"${rhost}" "ifconfig en0" | grep ether | cut -d' ' -f2)
+		 
+		if grep -q "${rhost}" "$HOME/Library/system.d/network2309.csv"; then
+			echo "Found in network file:"
+			grep "${rhost}" "$HOME/Library/system.d/network2309.csv"
+			echo "Retrieved from remote ${rhost}:"
+			echo "${macaddr},${rhost}"
+		else
+			echo "${macaddr},${rhost}" >>| ${HOME}/Library/system.d/network2309.csv
+		fi
+	fi
+}
+# wakeup by hostname
+function wakeup() {
+	rhost="$@"
+	if grep -q "${rhost}" "$HOME/Library/system.d/network2309.csv"; then
+		macaddr=$(grep "${rhost}" "$HOME/Library/system.d/network2309.csv" | cut -d',' -f1)
+		wakeonlan "${macaddr}"
+	else
+		echo "${rhost} not found in network file. Use 'mac_addrerss' to add this."
+	fi
 }
