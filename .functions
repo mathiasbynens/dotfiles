@@ -258,30 +258,32 @@ function mount() {
 # Wake On LAN
 # ** requires "brew install wakeonlan"
 # Get remote server MAC Address
+networkfile="${HOME}/Library/system.d/network2309.csv"
 function mac_address() {
 	if [ $# -eq 0 ]; then
-		echo "mac_address remoteServerName"
+		echo "$0 remoteServerName"
 	else
 		rhost="$@"
-		macaddr=$(ssh "${USER}"@"${rhost}" "ifconfig en0" | grep ether | cut -d' ' -f2)
-		 
-		if grep -q "${rhost}" "$HOME/Library/system.d/network2309.csv"; then
-			echo "Found in network file:"
-			grep "${rhost}" "$HOME/Library/system.d/network2309.csv"
-			echo "Retrieved from remote ${rhost}:"
-			echo "${macaddr},${rhost}"
+		if grep -q "${rhost}" "${networkfile}" 2> /dev/null ; then
+			fnd=("${(s:,:)$(grep "${rhost}" "${networkfile}")}")
+			macaddr=${fnd[1]}
+			echo "${(U)macaddr}" # ${macaddr} from Network file"
+		elif nc -z "${rhost}" 22 2> /dev/null; then
+			macaddr=$(ssh "${USER}"@"${rhost}" "ifconfig en0" | grep ether | cut -d' ' -f2)
+			echo "${(U)macaddr},${rhost}" >>| ${networkfile}
+			echo "${(U)macaddr}" # "${macaddr} Added to Network file for ${rhost}"
 		else
-			echo "${macaddr},${rhost}" >>| ${HOME}/Library/system.d/network2309.csv
+			echo "Unknown host ${rhost} not available."
 		fi
 	fi
 }
 # wakeup by hostname
 function wakeup() {
 	rhost="$@"
-	if grep -q "${rhost}" "$HOME/Library/system.d/network2309.csv"; then
-		macaddr=$(grep "${rhost}" "$HOME/Library/system.d/network2309.csv" | cut -d',' -f1)
+	if grep -q "${rhost}" "${networkfile}"; then
+		macaddr=$(grep "${rhost}" "${networkfile}" | cut -d',' -f1)
 		wakeonlan "${macaddr}"
 	else
-		echo "${rhost} not found in network file. Use 'mac_addrerss' to add this."
+		echo "${rhost} not found in network file. \nUse 'mac_address ${rhost}' to add this."
 	fi
 }
