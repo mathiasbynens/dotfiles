@@ -12,10 +12,11 @@ else
    # asume something else
 fi
 
-git pull origin master;
+echo $PWD
+# git pull origin master;
 
 function doIt() {
-	rsync --dry-run \
+	/usr/local/bin/rsync --dry-run \
 		--exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
@@ -26,13 +27,14 @@ function doIt() {
 	# source ~/.bash_profile;
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+if [[ ( $# > 0 ) && ( "$1" = "--force" || "$1" = "-f" ) ]]; then
 	doIt;
 else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
+	read -qs "REPLY?*** Overwrite existing files in your home directory? (y/N) "
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		doIt;
+	else
+		echo "Aborting."
 	fi;
 fi;
 unset doIt;
