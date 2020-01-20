@@ -79,6 +79,9 @@
 		fi \
 	}; f"
 
+	# Show the user email for the current repository.
+	whoami = config user.email
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
