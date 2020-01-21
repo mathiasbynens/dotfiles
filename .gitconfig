@@ -13,7 +13,7 @@
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
 	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull; git submodule foreach git pull origin master"
+	p = git pull --recurse-submodules
 
 	# Clone a repository including all submodules
 	c = clone --recursive
@@ -28,6 +28,9 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
+
+	# List aliases
+	aliases = config --get-regexp alias
 
 	# Amend the currently staged files to the latest commit
 	amend = commit --amend --reuse-message=HEAD
@@ -76,6 +79,8 @@
 		fi \
 	}; f"
 
+	# Show the user email for the current repository.
+	whoami = config user.email
 	# Aliases thanks to: http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
 	# General commands
 	cp = cherry-pick
@@ -125,6 +130,10 @@
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 
+	# Speed up commands involving untracked files such as `git status`.
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
 	ignorecase = false
 [color]
 
@@ -155,9 +164,6 @@
 
 	# Detect copies as well as renames
 	renames = copies
-	# Enable an experimental heuristic that shifts the hunk boundary in an
-	# attempt to make the resulting patch easier to read.
-	indentHeuristic = true
 
 [diff "bin"]
 
@@ -176,10 +182,8 @@
 
 [push]
 
-	# Use the Git 1.x.x default to avoid errors on machines with old Git
-	# installations. To use `simple` instead, add this to your `~/.extra` file:
-	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
+	# https://git-scm.com/docs/git-config#git-config-pushdefault
+	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
