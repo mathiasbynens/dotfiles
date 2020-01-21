@@ -119,3 +119,5 @@ let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 " http://stackoverflow.com/a/8285918
 set tags=./tags,tags;
 
+" Allow big files enough time to do syntax highlighting.
+set redrawtime=10000

@@ -2,13 +2,22 @@
 
 env="$1"
 op="$2"
-filename="dev.settings.php"
+type="$3"
 container=/Users/chill/temp/gw-pantheon-settings
 
-if [[ -z $env || -z $op ]]; then
+if [[ -z $env || -z $op || -z $type ]]; then
   >&2 echo "Error: Missing required arguments."
-  >&2 echo "Usage: $0 [environment] [get|put]"
-  >&2 echo "Example: $0 gw-123 get"
+  >&2 echo "Usage: $0 [environment] [get|put] [dev|live]"
+  >&2 echo "Example: $0 gw-123 get dev"
+  exit 1
+fi
+
+if [[ $type == "dev" ]]; then
+  filename="dev.settings.php"
+elif [[ $type == "live" ]]; then
+  filename="live.settings.php"
+else
+  >&2 echo "Error: The type must be either 'dev' or 'live'."
   exit 1
 fi
 
