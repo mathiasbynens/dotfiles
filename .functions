@@ -287,3 +287,13 @@ function wakeup() {
 		echo "${rhost} not found in network file. \nUse 'mac_address ${rhost}' to add this."
 	fi
 }
+
+# time it - time a set of commands
+function tit() {
+	start=$(gdate +%s.%N)
+	"${@}"
+	end=$(gdate +%s.%N)
+	runtime=$( echo "$end - $start" | bc -l )
+	echo "time: ${@}: ${runtime}"
+
+}
