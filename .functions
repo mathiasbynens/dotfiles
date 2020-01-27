@@ -9,16 +9,33 @@ function brewup () {
 function updatetools () {
 	# Ask for the administrator password upfront
 	sudo -v
-	echo "Update App Store apps"
-	sudo softwareupdate -i -a
-	echo "Update Ruby & gems"
-	sudo gem update —system && sudo gem update
+	# Apple softwareupdate
+	if hash softwareupdate 2> /dev/null; then
+		echo "Update App Store apps"
+		sudo softwareupdate -i -a
+	fi;
+	# Ruby Gems
+	if hash gem 2> /dev/null; then
+		echo "Update Ruby & gems"
+		sudo gem update —system && sudo gem update
+	fi;
+	# Homebrew
+	if hash brew 2> /dev/null; then
+		echo "Update Homebrew (Cask) & packages"
+		brew update && brew upgrade && brew cleanup
+	fi;
+	# Linux apt
+	if hash apt 2> /dev/null; then
+		echo "Update 'apt' & packages"
+		sudo apt update && sudo apt upgrade
+	fi;
 	# cleanup sudo
 	sudo -k
-	echo "Update Homebrew (Cask) & packages"
-	brew update && brew upgrade && brew cleanup
-	echo "Update npm & packages"
-	npm install npm -g && npm update -g && npm install -g npm
+	# NPM
+	if hash npm 2> /dev/null; then
+		echo "Update npm & packages"
+		npm install npm -g && npm update -g && npm install -g npm
+	fi;
 	
 }
 
