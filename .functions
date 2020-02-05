@@ -14,14 +14,19 @@ function updatetools () {
 		echo "Update App Store apps"
 		# sudo softwareupdate -i -a
 	fi;
+
 	# Pyrhon pip
 	# updates pip2 and pip3, and set the latter (pip3) as the default 'pip'
-	if hash pip 2> /dev/null; then
-		echo "Update pip"
-		[ hash pip2 2> /dev/null ] && sudo -H pip2 install --upgrade pip
-		[ hash pip3 2> /dev/null ] && sudo -H pip3 install --upgrade pip
-	fi;
-	
+	PIPS=("pip2" "pip3")
+	for TMPPIP in "$PIPS[@]"
+	do
+		if hash ${TMPPIP} 2> /dev/null; then
+			echo "Update ${TMPPIP}"
+			hash ${TMPPIP} 2> /dev/null && sudo -H ${TMPPIP} install --upgrade pip
+		fi;
+	done
+	unset PIPS
+
 	# Ruby Gems
 	if hash gem 2> /dev/null; then
 		echo "Update Ruby & gems"
