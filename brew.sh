@@ -26,23 +26,27 @@ brew install gnu-sed --with-default-names
 # Install a modern version of Bash.
 brew install bash
 brew install bash-completion2
-# Install a modern version of Bash.
+# Install a modern version of zsh.
 brew install zsh
 brew install zsh-completions
 brew install zsh-history-substring-search
 brew install zsh-syntax-highlighting
 
-# Switch to using brew-installed bash as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
-  # chsh -s "${BREW_PREFIX}/bin/bash";
-fi;
-
-# Switch to using brew-installed zsh as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells;
-  chsh -s "${BREW_PREFIX}/bin/zsh";
-fi;
+NEWSHELLS=("bash" "zsh")
+for TMPSHL in "$NEWSHELLS[@]"
+do 
+  # Add brew-installed shell to /etc/shells if missing
+  if ! grep -F -q "${BREW_PREFIX}/bin/${TMPSHL}" /etc/shells; then
+    echo "${BREW_PREFIX}/bin/${TMPSHL}" | sudo tee -a /etc/shells;
+    ; # chsh -s "${BREW_PREFIX}/bin/${TMPSHL}";
+  fi;
+  # Switch to using brew-installed shell as default shell
+  if grep -F -q "${BREW_PREFIX}/bin/${TMPSHL}" /etc/shells && [ "$SHELL" != "${BREW_PREFIX}/bin/${TMPSHL}" ]; then
+    ; # chsh -s "${BREW_PREFIX}/bin/${TMPSHL}";
+    echo "Your default shell is now ${BREW_PREFIX}/bin/${TMPSHL}"
+  fi;
+done
+unset NEWSHELLS
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
@@ -60,7 +64,7 @@ brew install php
 brew install gmp
 
 # Install font tools.
-brew tap bramstein/webfonttools
+# brew tap bramstein/webfonttools
 brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
