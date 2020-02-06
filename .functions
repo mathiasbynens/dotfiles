@@ -52,6 +52,19 @@ function updatetools () {
 	
 }
 
+# pip upgrade - upgrades all install modules found with pip
+function pipupgrade() {
+	PIPS=("pip2" "pip3")
+	for TMPPIP in "$PIPS[@]"
+	do
+		if hash ${TMPPIP} 2> /dev/null; then
+			echo "Upgrade modules for ${TMPPIP}"
+			hash ${TMPPIP} 2> /dev/null && ${TMPPIP} freeze --local | egrep -v '^\-e' | cut -d = -f 1 | xargs -n1 sudo -H ${TMPPIP} install --upgrade
+		fi;
+	done
+	unset PIPS
+}
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
