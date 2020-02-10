@@ -85,3 +85,7 @@ go get github.com/golang/lint/golint
 brew install mas
 mas install 1091189122 # Bear - Notes App
 mas install 965442961  # Screenie - Screenshot Utitlity
+
+# override macos settings
+defaults write NSGlobalDomain KeyRepeat -int 1 # speed up key repeat rate
+defaults write -g InitialKeyRepeat -int 15 # delay until key repeat 225 ms
