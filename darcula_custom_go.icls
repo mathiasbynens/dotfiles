@@ -1,0 +1,64 @@
+<scheme name="Darcula (custom)" version="142" parent_scheme="Darcula">
+  <metaInfo>
+    <property name="created">2019-12-18T16:45:18</property>
+    <property name="ide">GoLand</property>
+    <property name="ideVersion">2019.3.0.0</property>
+    <property name="modified">2019-12-18T16:45:34</property>
+    <property name="originalScheme">Darcula (custom)</property>
+  </metaInfo>
+  <attributes>
+    <option name="DEFAULT_DOT">
+      <value>
+        <option name="FOREGROUND" value="7d7d7d" />
+      </value>
+    </option>
+    <option name="DEFAULT_FUNCTION_CALL">
+      <value>
+        <option name="FOREGROUND" value="a8b1c3" />
+      </value>
+    </option>
+    <option name="DEFAULT_FUNCTION_DECLARATION">
+      <value>
+        <option name="FOREGROUND" value="d7d7d7" />
+      </value>
+    </option>
+    <option name="DEFAULT_LOCAL_VARIABLE">
+      <value>
+        <option name="FOREGROUND" value="d7d7d7" />
+      </value>
+    </option>
+    <option name="DEFAULT_OPERATION_SIGN">
+      <value>
+        <option name="FOREGROUND" value="945928" />
+      </value>
+    </option>
+    <option name="DEFAULT_PARENTHS">
+      <value>
+        <option name="FOREGROUND" value="7d7d7d" />
+      </value>
+    </option>
+    <option name="GO_EXPORTED_FUNCTION_CALL" baseAttributes="DEFAULT_FUNCTION_CALL" />
+    <option name="GO_LOCAL_FUNCTION">
+      <value />
+    </option>
+    <option name="GO_LOCAL_FUNCTION_CALL" baseAttributes="DEFAULT_FUNCTION_CALL" />
+    <option name="GO_METHOD_RECEIVER">
+      <value>
+        <option name="FOREGROUND" value="a8b1c3" />
+      </value>
+    </option>
+    <option name="GO_PACKAGE" baseAttributes="DEFAULT_IDENTIFIER" />
+    <option name="GO_TYPE_REFERENCE">
+      <value>
+        <option name="FOREGROUND" value="d4a278" />
+      </value>
+    </option>
+    <option name="TEXT">
+      <value>
+        <option name="FOREGROUND" value="f5f5f5" />
+        <option name="BACKGROUND" value="2b2b2b" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+  </attributes>
+</scheme>

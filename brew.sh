@@ -70,6 +70,7 @@ brew tap homebrew/cask
 brew cask install java iterm2 sublime-text sshfs google-chrome 
 brew cask install spotify rambox
 brew cask install jitouch
+brew cask install flux
 
 # install go
 export GOPATH="${HOME}/git/go"
@@ -79,3 +80,8 @@ test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 brew install go
 go get golang.org/x/tools/cmd/godoc
 go get github.com/golang/lint/golint
+
+# install appstore cli & apps
+brew install mas
+mas install 1091189122 # Bear - Notes App
+mas install 965442961  # Screenie - Screenshot Utitlity
