@@ -82,6 +82,18 @@
 	# recent branches
 	rb = for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/
 
+	# switch to most recently used other branch
+	rbs = "!f() {\
+		declare current_branch=\"$(git rev-parse --abbrev-ref HEAD)\"; \
+		declare branch1=\"$(git rb | head -n 1)\"; \
+		declare branch2=\"$(git rb | tail -n +2 | head -n 1)\"; \
+		if [ $branch1 == $current_branch ]; then \
+			git checkout $branch2; \
+		else \
+			git checkout $branch1; \
+		fi \
+	}; f"
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
