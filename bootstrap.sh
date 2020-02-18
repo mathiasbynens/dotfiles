@@ -9,14 +9,14 @@ elif [ -n "$BASH_VERSION" ]; then
 	# assume Bash
 	cd "$(dirname "${BASH_SOURCE}")";
 else
-   # asume something else
+   echo "oops"# asume something else
 fi
 
 echo $PWD
 # git pull origin master;
 
 function doIt() {
-	/usr/local/bin/rsync --dry-run \
+	/usr/local/bin/rsync \
 		--exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \

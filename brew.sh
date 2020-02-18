@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install command-line tools using Homebrew.
-command -v brew >/dev/null 2>&1 || { /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" }
+command -v brew >/dev/null 2>&1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -33,29 +33,32 @@ brew install zsh-history-substring-search
 brew install zsh-syntax-highlighting
 
 NEWSHELLS=("bash" "zsh")
-for TMPSHL in "$NEWSHELLS[@]"
+for TMPSHL in "${NEWSHELLS[@]}";
 do 
   # Add brew-installed shell to /etc/shells if missing
   if ! grep -F -q "${BREW_PREFIX}/bin/${TMPSHL}" /etc/shells; then
     echo "${BREW_PREFIX}/bin/${TMPSHL}" | sudo tee -a /etc/shells;
-    ; # chsh -s "${BREW_PREFIX}/bin/${TMPSHL}";
+    echo "Added ${BREW_PREFIX}/bin/${TMPSHL} to /etc/shells";
   fi;
   # Switch to using brew-installed shell as default shell
   if grep -F -q "${BREW_PREFIX}/bin/${TMPSHL}" /etc/shells && [ "$SHELL" != "${BREW_PREFIX}/bin/${TMPSHL}" ]; then
-    ; # chsh -s "${BREW_PREFIX}/bin/${TMPSHL}";
+    chsh -s "${BREW_PREFIX}/bin/${TMPSHL}";
     echo "Your default shell is now ${BREW_PREFIX}/bin/${TMPSHL}"
   fi;
 done
 unset NEWSHELLS
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+brew install wget # --with-iri
 
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
 
+# Install rsync
+brew install rsync
+
 # Install more recent versions of some macOS tools.
-brew install vim --with-override-system-vi
+brew install vim # --with-override-system-vi
 brew install grep
 brew install openssh
 brew install openssl
@@ -65,8 +68,8 @@ brew install gmp
 
 # Install font tools.
 # brew tap bramstein/webfonttools
-brew install sfnt2woff
-brew install sfnt2woff-zopfli
+# brew install sfnt2woff
+# brew install sfnt2woff-zopfli
 brew install woff2
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
