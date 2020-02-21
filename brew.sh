@@ -61,13 +61,16 @@ brew install python3
 brew install postgres
 brew install mysql
 
+# macos stuff
+brew install dockutil
+
 # Remove outdated versions from the cellar.
 brew cleanup
 
 # Add cask
 brew tap homebrew/cask
 # brew cask install gimp
-brew cask install java iterm2 sublime-text sshfs google-chrome 
+brew cask install java iterm2 sublime-text sshfs google-chrome
 brew cask install spotify rambox
 brew cask install jitouch
 brew cask install flux
