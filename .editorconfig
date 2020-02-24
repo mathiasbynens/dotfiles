@@ -2,10 +2,14 @@ root = true
 
 [*]
 charset = utf-8
-indent_style = tab
+indent_style = space
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
+
+[*.{sh}]
+indent_style = space
+indent_size = 2
 
 [*.{json,yml,md}]
 indent_style = space
@@ -16,12 +20,16 @@ indent_size = 2
 indent_style = space
 indent_size = 4
 
+# 4 space indentation
+[*.haml]
+indent_style = space
+indent_size = 4
+
 # 2 space indentation
 [*.rb]
 indent_style = space
 indent_size = 2
 spaces_around_operators = true
-
 
 # Tab indentation (no size specified)
 [Makefile]
