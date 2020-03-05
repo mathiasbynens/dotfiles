@@ -1,3 +1,10 @@
+# kongakong's dotfiles
+
+Forked from Mathias's dotfiles
+
+Main development branch: `dev`
+
+
 # Mathias’s dotfiles
 
 ![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
