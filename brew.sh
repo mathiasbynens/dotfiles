@@ -57,6 +57,12 @@ brew install gnupg
 # Install rsync
 brew install rsync
 
+# Install perl
+brew install perl
+brew link --overwrite perl
+# update perl modules
+# sudo su -c 'curl -L https://cpanmin.us | perl - App::cpanminus ; cpanm App::cpanoutdated ; cpan-outdated -p | cpanm'
+
 # Install more recent versions of some macOS tools.
 brew install vim # --with-override-system-vi
 brew install grep

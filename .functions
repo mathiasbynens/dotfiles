@@ -10,7 +10,7 @@ function updatetools () {
 	# Ask for the administrator password upfront
 	sudo -v
 	# Apple softwareupdate
-	if hash softwareupdate 2> /dev/null; then
+	if (( $+commands[softwareupdate] )); then
 		echo "Update App Store apps"
 		# sudo softwareupdate -i -a
 	fi;
@@ -20,32 +20,32 @@ function updatetools () {
 	PIPS=("pip2" "pip3")
 	for TMPPIP in "$PIPS[@]"
 	do
-		if hash ${TMPPIP} 2> /dev/null; then
+		if (( $+commands[${TMPPIP}] )); then
 			echo "Update ${TMPPIP}"
-			hash ${TMPPIP} 2> /dev/null && sudo -H ${TMPPIP} install --upgrade pip
+			sudo -H ${TMPPIP} install --upgrade pip
 		fi;
 	done
 	unset PIPS
 
 	# Ruby Gems
-	if hash gem 2> /dev/null; then
+	if (( $+commands[gem] )); then
 		echo "Update Ruby & gems"
 		sudo gem update —system && sudo gem update
 	fi;
 	# Homebrew
-	if hash brew 2> /dev/null; then
+	if (( $+commands[brew] )); then
 		echo "Update Homebrew (Cask) & packages"
 		brew update && brew upgrade && brew cleanup
 	fi;
 	# Linux apt
-	if hash apt 2> /dev/null; then
+	if (( $+commands[apt] )); then
 		echo "Update 'apt' & packages"
 		sudo apt update && sudo apt upgrade
 	fi;
 	# cleanup sudo
 	sudo -k
 	# NPM
-	if hash npm 2> /dev/null; then
+	if (( $+commands[npm] )); then
 		echo "Update npm & packages"
 		npm install npm -g && npm update -g && npm install -g npm
 	fi;
@@ -57,9 +57,9 @@ function pipupgrade() {
 	PIPS=("pip2" "pip3")
 	for TMPPIP in "$PIPS[@]"
 	do
-		if hash ${TMPPIP} 2> /dev/null; then
+		if (( $+commands[${TMPPIP}] )); then
 			echo "Upgrade modules for ${TMPPIP}"
-			hash ${TMPPIP} 2> /dev/null && ${TMPPIP} freeze --local | egrep -v '^\-e' | cut -d = -f 1 | xargs -n1 sudo -H ${TMPPIP} install --upgrade
+			${TMPPIP} freeze --local | egrep -v '^\-e' | cut -d = -f 1 | xargs -n1 sudo -H ${TMPPIP} install --upgrade
 		fi;
 	done
 	unset PIPS
@@ -86,15 +86,13 @@ function targz() {
 	);
 
 	local cmd="";
-	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
+	if (( size < 52428800 )) && (( $+commands[zopfli] )); then
 		# the .tar file is smaller than 50 MB and Zopfli is available; use it
 		cmd="zopfli";
+	elif (( $+commands[pigz] )); then
+		cmd="pigz";
 	else
-		if hash pigz 2> /dev/null; then
-			cmd="pigz";
-		else
-			cmd="gzip";
-		fi;
+		cmd="gzip";
 	fi;
 
 	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…";
@@ -124,7 +122,7 @@ function fs() {
 }
 
 # Use Git’s colored diff when available
-if hash git 2> /dev/null; then
+if (( $+commands[git] )); then
 	function diff() {
 		git diff --no-index --color-words "$@";
 	}
@@ -339,4 +337,116 @@ function tit() {
 	runtime=$( echo "$end - $start" | bc -l )
 	echo "time: ${@}: ${runtime}"
 
+}
+
+# List new files recursively by date created within current directory. Displays relative dates. 
+# based on https://gist.github.com/benwoodward/8873c8ad5517ce255ad04bd082979146
+function relative-date() {
+  while read input_string; do
+    local file_path=`echo $input_string | cut -d ' ' -f 5-`
+    local ls_date=`echo $input_string | cut -d ' ' -f 1,2,3,4`
+    # Accepts date in format found in `ls` output, and converts to epoch
+    local date="$(gdate --date="$ls_date" +"%s")"
+    local now="$(gdate +"%s")"
+    local time_diff=$((now - date))
+
+    if ((time_diff > 48*60*60)); then
+      date_string=`printf "%3.0f days ago" $((time_diff/(24*60*60)))`
+    elif ((time_diff > 60*60)); then
+      date_string=`printf "%3.0f hours ago" $((time_diff/(60*60)))`;
+    elif ((time_diff > 60)); then
+      date_string=`printf "%3.0f minutes ago" $((time_diff/60))`;
+    else
+      date_string=`printf "%3.0f seconds ago" $time_diff`;
+    fi
+
+    # date_string=${(r:15:)date_string}
+    echo "${(r:15:)date_string}\e[32m$file_path\e[m"
+  done
+}
+zle -N relative-date
+
+function relative_date(){
+        local -A stat
+        zstat -H stat $1
+        local -i time_diff=$((EPOCHSECONDS  - stat[mtime]))
+        if ((time_diff > 48*60*60)); then
+            printf -v REPLY '%.0f days ago' $((time_diff/(24*60*60)))
+        elif ((time_diff > 60*60)); then
+            printf -v REPLY "%.0f hours ago" $((time_diff/(60*60)))
+        elif ((time_diff > 60)); then
+            printf -v REPLY "%.0f minutes ago" $((time_diff/60))
+        else
+            printf -v REPLY "%s seconds ago" $time_diff
+        fi
+    }
+function list-files(){
+        setopt extendedglob
+		zmodload -F zsh/stat b:zstat
+        #zmodload zsh/stat b:zstat
+        local -a results
+        if (($1)); then
+            results=( (^(.git*|.tags*)/)#^(.git*|.tags*)(.om[1,$1]) )
+        else
+            results=( (^(.git*|.tags*)/)#^(.git*|.tags*)(.om1,10) )
+        fi
+        for result in $results; do
+            local REPLY
+			echo "$result"
+            relative-date $result
+            print "${(r:18:)REPLY} \e[32m$result\e[0m"
+       done
+    }
+	
+function list-new-files() {
+	if [ -n "$ZSH_VERSION" ]; then
+		headn=$1; shift
+		for arg in "$@"
+		do
+			# srch="${(j.,.)@:-.}" # "${@:-.}"
+			srch=${arg}'/**/*(.om[1,'${headn}'])'
+			[[ $#@ -gt 1 ]] && echo "# ${arg}"
+			ls -ltT $~srch | tr -s "\t" ' ' \
+				| cut -d' ' -f6- | relative-date 
+		done
+	elif [ -n "$BASH_VERSION" ]; then
+		cmd=( find "${@:-.}" -type f \
+		-not \( -wholename './.git*' -prune \) \
+		-not \( -wholename './tags*' -prune \) \
+		-exec ls -lTU \{\} \; \| rev \| cut -d ' ' -f 1,2,3,4,5 \| rev \
+		\| relative-date \
+		\| sort -k 1 -r \| rev \| cut -d ':' -f 1,2 \| rev \
+		\| sed 's/://g' )
+	else
+		echo "oops"# asume something else
+	fi
+}
+zle -N list-new-files
+
+function new-files() {
+	fdir=()
+	headn=10
+	for arg in "$@"
+	do
+		[[ -d "$arg" ]] && fdir+=(${arg})
+		[[ "${arg}" -gt 0 ]] && headn=${arg}
+		shift
+	done
+	list-new-files "$headn" "$fdir[@]"  
+}
+
+function check_cmd() {
+	for arg in "$@"
+	do
+		cmd="${arg}"
+		if [ -n "$ZSH_VERSION" ]; then
+			# assume Zsh
+			(( $+commands[${cmd}] )) && echo "Found command ${cmd}"
+		elif [ -n "$BASH_VERSION" ]; then
+			# assume Bash
+			[[ command -v ls &>/dev/null ]] && echo "Found command ${cmd}"
+		else
+			echo "oops"# asume something else
+		fi
+	done
 }
