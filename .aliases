@@ -131,3 +131,11 @@ alias reload="exec $SHELL -l"
 
 # List all alias
 alias aliases="alias | sed 's/=.*//'"
+
+# Kubernetes
+alias ku="kubectl"
+alias kugp="kubectl get pods "
+alias kugd="kubectl get deployments "
+alias kugs="kubectl get services "
+alias kugi="kubectl get ingress "
+alias kugn="kubectl get namespaces "
