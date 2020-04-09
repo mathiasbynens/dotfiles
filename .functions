@@ -271,7 +271,7 @@ function rename_iso_append() {
 	oldfile=$1
 	oldfileroot="${oldfile%.*}"
 	oldfiletype="${oldfile##*.}"
-	iso="$(gdate -d "$(stat "${oldfile}" | cut -f2 -d'"')" +"%Y%m%dT%H%M%S")"
+	iso="$(gdate -d "$(/usr/bin/stat "${oldfile}" | cut -f2 -d'"')" +"%Y%m%dT%H%M%S")"
 	case ${oldfile} in 
 		*\.* ) mv -v "${oldfile}" "${oldfileroot}-${iso}.${oldfiletype}" ;;
 		*    ) mv -v "${oldfile}" "${oldfileroot}-${iso}" ;;
@@ -449,4 +449,31 @@ function check_cmd() {
 			echo "oops"# asume something else
 		fi
 	done
+}
+
+function toggle() {
+	case "#1" in
+		icon )
+			if [ ! $(uname -s) = 'Darwin' ]; then
+				mystate=$(defaults read com.apple.finder CreateDesktop)
+				case ${mystate} in 
+					true  ) flip="false" ;;
+					false ) flip="true" ;;
+				esac
+				defaults write com.apple.finder CreateDesktop ${flip}
+				killall Finder
+			fi
+			;;
+		* )
+			echo "Unknown toggle" ;;
+	esac
+}
+
+function downloads() {
+	if (( $+commands[sqlite3] )); then
+		echo "from the Quarantine Manager : "
+		sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* \
+			'select LSQuarantineDataURLString from LSQuarantineEvent' \
+			| grain | tee >(wc -l) >| $HOME/LSQuarantineEvent.txt
+	fi;
 }
