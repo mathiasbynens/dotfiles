@@ -9,7 +9,7 @@
 # alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias drop="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
@@ -42,13 +42,16 @@ alias l="ls -lF ${colorflag}"
 alias la="ls -lAF ${colorflag}"
 
 # List only directories
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
-
+if [ -n "$ZSH_VERSION" ]; then
+	alias lsd="ls -dlF ${colorflag} *(/)"
+else
+	alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+fi
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto --text'
+alias fgrep='fgrep --color=auto --text'
 alias egrep='egrep --color=auto'
 
 # Enable aliases to be sudo’ed

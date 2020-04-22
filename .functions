@@ -15,7 +15,7 @@ function updatetools () {
 		# sudo softwareupdate -i -a
 	fi;
 
-	# Pyrhon pip
+	# Python pip
 	# updates pip2 and pip3, and set the latter (pip3) as the default 'pip'
 	PIPS=("pip2" "pip3")
 	for TMPPIP in "$PIPS[@]"
@@ -444,7 +444,7 @@ function check_cmd() {
 			(( $+commands[${cmd}] )) && echo "Found command ${cmd}"
 		elif [ -n "$BASH_VERSION" ]; then
 			# assume Bash
-			[[ command -v ls &>/dev/null ]] && echo "Found command ${cmd}"
+			[ command -v ls &>/dev/null ] && echo "Found command ${cmd}"
 		else
 			echo "oops"# asume something else
 		fi

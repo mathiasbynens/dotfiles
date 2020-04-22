@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 
 # Install command-line tools using Homebrew.
+
+if ! command -v brew &>/dev/null 2>&1; then
+  notice "Installing Homebrew..."
+  #   Ensure that we can actually, like, compile anything.
+  if [[ ! $(command -v gcc) || ! "$(command -v git)" ]]; then
+    _commandLineTools_
+  fi
+
+  # Install Homebrew
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew analytics off
+else
+  return 0
+fi
 command -v brew >/dev/null 2>&1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
 
 # Make sure we’re using the latest Homebrew.
@@ -110,18 +124,18 @@ brew install ack
 brew install git
 brew install git-lfs
 brew install gs
-brew install imagemagick --with-webp
-brew install lua
+brew install imagemagick
+brew install lua luarocks
 brew install lynx
 brew install p7zip
 brew install pigz
+brew install zopfli
 brew install pv
 brew install rename
 brew install rlwrap
 brew install ssh-copy-id
 brew install tree
 brew install vbindiff
-brew install zopfli
 
 # Remove outdated versions from the cellar.
 brew cleanup
