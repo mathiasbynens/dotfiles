@@ -4,6 +4,9 @@ export PATH="$HOME/bin:$PATH";
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+# Suppress the "The default interactive shell is now zsh." OSX message
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Load the shell dotfiles, and then some:
