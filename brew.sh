@@ -97,23 +97,19 @@ brew install vbindiff
 brew install zopfli
 
 # Install polas set
-ab
-adns
-autoconf
-automake
-ffmpeg
-freetype
-glib
-heroku
-hub
-jq
-iperf3
-media-info
-mongodb
-postgresql
-pyenv-virtualenv
-rabbitmq
-redis
+brew install ab
+brew install adns
+brew install autoconf
+brew install automake
+brew install ffmpeg
+brew install freetype
+brew install glib
+brew install heroku
+brew install hub
+brew install jq
+brew install iperf3
+brew install media-info
+brew install pyenv-virtualenv
 
 # Remove outdated versions from the cellar.
 brew cleanup
