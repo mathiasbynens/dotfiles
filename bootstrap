@@ -31,9 +31,10 @@ function installApps() {
 		git \
 		vim \
 		rsync \
-        ssh
+		python3-pip \
+		ssh
 
-	cp extras/.bash* ~/
+	#cp extras/.bash* ~/
     cp extras/.extra-orig ~/.extra
 }
 
@@ -106,9 +107,9 @@ function doIt() {
 
     rsync --filter="merge rsync-filter" -ah --no-perms . ~;
 
-	read -p "Install zsh? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
+    read -p "Install zsh? (y/n) " -n 1;
+    echo "";
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "Installing oh-my-zsh ..."
         installzsh;
     fi
@@ -128,12 +129,12 @@ function doIt() {
     if [[ ! -d $HOME/.ssh ]]; then
         mkdir $HOME/.ssh
     fi
-	# Additional handling if work flag was passed
-	if [[ "$workflag" -eq "1" ]]; then
-	    echo "Using .extra-work"
-	    successfully cp ./extras/.work-extra ~/.extra
-	    successfully cp ./extras/.ssh-agent-work ~/.ssh-agent
-	fi
+    # Additional handling if work flag was passed
+    if [[ "$workflag" -eq "1" ]]; then
+	echo "Using .extra-work"
+	successfully cp ./extras/.work-extra ~/.extra
+	successfully cp ./extras/.ssh-agent-work ~/.ssh-agent
+    fi
 }
 
 workflag=""
@@ -205,7 +206,7 @@ else
 		fi
 
 		echo "Backing up original files..."
-		find ~ -maxdepth 1 -name ".[^.]*" -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
+		find ~ -maxdepth 1 -name ".[^.]*" -type f -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
 		echo ""
 		doIt;
 	fi;
