@@ -34,6 +34,8 @@ function installApps() {
 		python3-pip \
 		ssh
 
+    sudo pip3 install virtualenvwrapper
+
 	#cp extras/.bash* ~/
     cp extras/.extra-orig ~/.extra
 }
