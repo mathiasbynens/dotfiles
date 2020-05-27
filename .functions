@@ -428,8 +428,8 @@ function new-files() {
 	headn=10
 	for arg in "$@"
 	do
-		[[ -d "$arg" ]] && fdir+=(${arg})
-		[[ "${arg}" -gt 0 ]] && headn=${arg}
+		[[ -d "$arg" ]] && fdir+=(${arg}) && echo "dir: ${arg}"
+		[[ "${arg}" -gt 0 ]] && headn=${arg} && echo "num: ${arg}"
 		shift
 	done
 	list-new-files "$headn" "$fdir[@]"  
@@ -476,4 +476,15 @@ function downloads() {
 			'select LSQuarantineDataURLString from LSQuarantineEvent' \
 			| grain | tee >(wc -l) >| $HOME/LSQuarantineEvent.txt
 	fi;
+}
+
+function genpassword() {
+	_len=${1:-14}
+	if (( $+commands[gpg] )); then
+		echo -n "gpg: "; gpg --gen-random --armor 1 ${_len} | head -c ${_len} ; echo
+	elif (( $+commands[openssl] )); then
+		echo -n "openssl: "; openssl rand -base64 ${_len} | head -c ${_len} ; echo
+	else
+		date +%s | sha256sum| base64| head -c ${_len} ; echo
+	fi
 }
