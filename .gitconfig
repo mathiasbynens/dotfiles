@@ -188,3 +188,8 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+# Please adapt and uncomment the following lines:
+        name = Brandon Ganem
+        email = brandonganem@github.com
+        signingkey = B911513FAF632671
