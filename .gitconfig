@@ -188,3 +188,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[init]
+
+	templateDir = ~/.config/git/template/
