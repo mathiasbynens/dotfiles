@@ -472,9 +472,10 @@ function toggle() {
 function downloads() {
 	if (( $+commands[sqlite3] )); then
 		echo "from the Quarantine Manager : "
+		echo "from the Quarantine Manager - $(date +%F) : " >>| $HOME/LSQuarantineEvent.txt
 		sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* \
 			'select LSQuarantineDataURLString from LSQuarantineEvent' \
-			| grain | tee >(wc -l) >| $HOME/LSQuarantineEvent.txt
+			| grain | tee >(wc -l) >>| $HOME/LSQuarantineEvent.txt
 	fi;
 }
 
