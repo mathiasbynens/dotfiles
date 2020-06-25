@@ -58,17 +58,18 @@ brew install nvm
 brew install httpie
 
 # file system watch and execute command on file change
-brew install fswatch
+# brew install fswatch
 
 # yaml/json merger -> https://github.com/geofffranks/spruce
 brew tap starkandwayne/cf
 brew install spruce
 
-# how to add licence number?
-brew cask install atext
-brew cask install tomighty
 
-brew cask install macdown && ./addDockIcon.sh "MacDown"
+brew cask install atext       # Shortcut manager / how to add licence number?
+brew cask install tomighty    # Pomodoro tecnique focus manager
+brew cask install day-o       # Menubar Calendar replacement
+
+# brew cask install macdown && ./addDockIcon.sh "MacDown"
 brew cask install google-chrome && ./addDockIcon.sh "Google Chrome"
 brew cask install firefox && ./addDockIcon.sh "Firefox"
 # brew cask slack !!! ERROR HERE ?
@@ -154,6 +155,8 @@ brew install ack
 #brew install exiv2
 brew install git
 brew install git-lfs
+brew install tig
+
 brew install gs
 brew install imagemagick --with-webp
 brew install lua
