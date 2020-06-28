@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-export PATH=$PATH:/mnt/c/Users/douglasm/stash/scripts:/mnt/c/Users/douglasm/stash/solution_helpers/graviton:/mnt/c/Users/douglasm/stash/solution_helpers/network
+export PATH=$PATH:/c/Users/douglasm/stash/scripts:/c/Users/douglasm/stash/solution_helpers/graviton:/c/Users/douglasm/stash/solution_helpers/network:~/amadeus/solutions/flow-playbooks/:/c/chromedriver
+export PATH=$PATH:$HOME/.npm-global/bin
+
+alias chrome="/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe"
 
 # GIT Configurations
 GIT_AUTHOR_NAME="Douglas Morand"
@@ -10,15 +13,33 @@ GIT_AUTHOR_EMAIL="douglas.morand@orionhealth.com"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
-# No longer needed as resolv.conf is stored in /etc/resolvconf/resolv.conf.d/base
+if [ -f ~/.ssh-agent ]; then . ~/.ssh-agent; fi
+
 #sudo cp ~/dotfiles/extras/windows/resolv.conf /etc/resolv.conf
 
+## Environment Variabes
+export GRAVITON_BD_ES_TOKEN="Basic PASSWORD"
+
+# Python virtual environments
+export WORKON_HOME=$HOME/.virtualenvs   # Optional
+export PROJECT_HOME=$HOME/python_projects     # Optional
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
+source $HOME/.local/bin/virtualenvwrapper.sh
+##
+
 exe() { echo "\$ $@" ; "$@" ; }
+
+function sshTunnels(){
+    ssh_procs=$(pgrep ssh -xla | grep -v "graviton")
+    while IFS= read -r line; do
+        echo "line -> $line"
+    done <<< "$ssh_procs"
+}
 
 function proxy-jumphost(){
     echo "Starting ssh proxy in background on port: 12345"
     ssh -D 12345 -N douglasm@graviton-jump-host-scottsdale 2>&1 & 
-
     pid=$!
     echo "Kill process $pid once finished..."
 }
@@ -52,16 +73,16 @@ function tunnel-bastion(){
     # Pass 1..n files to setup tunnels
 
     tunnels=()
-    for tunnelFile in $@; do
+    for tunnelFile in ${@:1}; do
         while IFS= read line
         do
             if [[ ! -z "$line" && "$line" != "#"* ]]; then
-                #echo "$line"
+                echo "Tunnel -> $line"
                 tunnels+=("-L $line")
             fi
         done < "$tunnelFile"
     done
-	exe ssh bastion "${tunnels[@]}"
+	exe ssh bastion.us-west-2.orionhealth-saas-mgmt.com -D12345 "${tunnels[@]}"
 }
 
 function ssh-aws(){
