@@ -84,6 +84,9 @@ EOF
     sed -i '/plugins=/{n;s/git/git zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
 
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
+
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
 }
 
 function doIt() {
