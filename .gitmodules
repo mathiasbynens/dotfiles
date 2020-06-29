@@ -22,3 +22,6 @@
 [submodule "extras/cobalt2"]
 	path = extras/cobalt2
 	url = https://github.com/wesbos/Cobalt2-iterm
+[submodule "powerlevel10k"]
+	path = powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
