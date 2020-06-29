@@ -3,6 +3,8 @@
 export PATH=$PATH:/c/Users/douglasm/stash/scripts:/c/Users/douglasm/stash/solution_helpers/graviton:/c/Users/douglasm/stash/solution_helpers/network:~/amadeus/solutions/flow-playbooks/:/c/chromedriver
 export PATH=$PATH:$HOME/.npm-global/bin
 
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
 alias chrome="/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe"
 
 # GIT Configurations
@@ -18,7 +20,8 @@ if [ -f ~/.ssh-agent ]; then . ~/.ssh-agent; fi
 #sudo cp ~/dotfiles/extras/windows/resolv.conf /etc/resolv.conf
 
 ## Environment Variabes
-export GRAVITON_BD_ES_TOKEN="Basic PASSWORD"
+export GRAVITON_BD_ES_TOKEN="Basic YWRtaW46T1lNcmRydVpHUkV1bGt6NWdGSmlxbFgxTUNvbFoxNEI="
+export INTDEV_BD_ES_TOKEN="Basic WXZuWWtlcVo5QzNJUWlOYUpXeXNXRXFic2V0ZTZaMFI="
 
 # Python virtual environments
 export WORKON_HOME=$HOME/.virtualenvs   # Optional
@@ -26,9 +29,22 @@ export PROJECT_HOME=$HOME/python_projects     # Optional
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
 source $HOME/.local/bin/virtualenvwrapper.sh
-##
+## 
 
 exe() { echo "\$ $@" ; "$@" ; }
+
+function httpProxy(){
+    echo "Socks proxy config(s):"
+    echo    "11048 - graviton"
+    echo    "12048 - bastion"
+    if [[ $# -ne 1 ]]; then
+        echo "Must provide socks port"
+    else
+        socksPort=$1
+
+        hpts -s 127.0.0.1:${socksPort} -p 8888
+    fi
+}
 
 function sshTunnels(){
     ssh_procs=$(pgrep ssh -xla | grep -v "graviton")
