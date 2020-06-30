@@ -43,12 +43,6 @@ function installApps() {
 function installzsh() {
     sudo apt-get install zsh -y
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    echo -e "\nUpdating ~/.bashrc to run oh-my-zsh ..."
-    cat > $HOME/.bashrc <<EOF
-if test -t 1; then
-exec zsh
-fi
-EOF
     if ! grep -q dougie_profile $HOME/.zshrc ; then	
         echo "Updating .zshrc ..."
     cat >> ${HOME}/.zshrc <<EOF
