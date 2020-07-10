@@ -489,3 +489,13 @@ function genpassword() {
 		date +%s | sha256sum| base64| head -c ${_len} ; echo
 	fi
 }
+
+function f {
+	hunt="$1" ; shift
+	find "${argv[@]:-.}" -iname "*${hunt}*" | grep --color=always -E "${hunt}"  | less -FRNX }
+function fd {
+	hunt="$1" ; shift
+	find "${argv[@]:-.}" -iname "*${hunt}*" -type d | grep --color=always -E "${hunt}"  | less -FRNX }
+function ff {
+	hunt="$1" ; shift
+	find "${argv[@]:-.}" -iname "*${hunt}*" -type f | grep --color=always -E "${hunt}"  | less -FRNX }
