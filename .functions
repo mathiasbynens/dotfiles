@@ -481,12 +481,15 @@ function downloads() {
 
 function genpassword() {
 	_len=${1:-14}
-	if (( $+commands[gpg] )); then
-		echo -n "gpg: "; gpg --gen-random --armor 1 ${_len} | head -c ${_len} ; echo
+	_char=${2:-'!-~'}
+	if [ -e /dev/urandom ]; then
+		echo -n "urandom: "; < /dev/urandom tr -dc "${_char}" | head -c ${_len} | xargs -0
+	elif (( $+commands[gpg] )); then
+		echo -n "gpg: "; gpg --gen-random --armor 1 ${_len} | head -c ${_len} | xargs -0
 	elif (( $+commands[openssl] )); then
-		echo -n "openssl: "; openssl rand -base64 ${_len} | head -c ${_len} ; echo
+		echo -n "openssl: "; openssl rand -base64 ${_len} | head -c ${_len} | xargs -0
 	else
-		date +%s | sha256sum| base64| head -c ${_len} ; echo
+		date +%s | sha256sum | base64 | head -c ${_len} | xargs -0
 	fi
 }
 
@@ -499,3 +502,7 @@ function fd {
 function ff {
 	hunt="$1" ; shift
 	find "${argv[@]:-.}" -iname "*${hunt}*" -type f | grep --color=always -E "${hunt}"  | less -FRNX }
+
+function mydns() {
+	networksetup -getdnsservers Wi-Fi
+}

@@ -107,6 +107,9 @@
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
 
+[credential]
+    helper = osxkeychain
+
 [color]
 
 	# Use colors in Git commands that are capable of colored output when
@@ -185,3 +188,9 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[user]
+    name = Buckley Collum	
+    email = buckleywhat@gmail.com
+[gpg]
+	program = /usr/local/bin/gpg
