@@ -192,5 +192,11 @@
 [user]
     name = Buckley Collum	
     email = buckleywhat@gmail.com
+	signingkey = 795E8549010C8DA4
 [gpg]
 	program = /usr/local/bin/gpg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
