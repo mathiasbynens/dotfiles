@@ -9,7 +9,7 @@ elif [ -n "$BASH_VERSION" ]; then
 	# assume Bash
 	cd "$(dirname "${BASH_SOURCE}")";
 else
-   echo "oops"# asume something else
+   echo "oops"# assume something else
 fi
 
 echo $PWD
@@ -24,7 +24,7 @@ function doIt() {
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
-	# source ~/.bash_profile;
+	source ~/.zprofile ;
 }
 
 if [[ ( $# > 0 ) && ( "$1" = "--force" || "$1" = "-f" ) ]]; then
