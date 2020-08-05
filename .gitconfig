@@ -9,7 +9,7 @@
 	mr = !"(git checkout main || git checkout master) && git pull"
 	mbr = !"git mr && git br"
 	pl = pull origin HEAD
-	sync = !"(git pull origin main || git pull origin master)
+	sync = !"(git pull origin main || git pull origin master)"
 	cl = clone --recursive
 	lg = !"git --no-pager log --color --graph -n 20  --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 	# a.k.a. ‘delete merged’
