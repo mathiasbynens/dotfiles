@@ -75,7 +75,7 @@ EOF
             echo "zsh-syntax-highlighting already installed ..."
     fi
     
-    sed -i '/plugins=/{n;s/git/git zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
+    sed -i '/plugins=/{n;s/git/git fzf zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
 
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
 
