@@ -174,7 +174,7 @@ alias p3="python3"
 alias p2="python2"
 
 # ISO-8601 date formatting
-alias i8f='TZ="America/Los_Angeles" date +"%Y%m%dT%H%M%S"'
+alias i8f='TZ="America/Los_Angeles" date +"%Y%m%dT%H%M%S%z"'
 alias ria="rename_iso_append"
 
 # Epoch Seconds formatting
