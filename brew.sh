@@ -20,6 +20,22 @@ command -v brew >/dev/null 2>&1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.gi
 # Make sure we’re using the latest Homebrew.
 brew update
 
+# Use the Brewfile if it is found
+# Allows for use of Bucklet's latest brew dump, e.g., 'Brewfile-20200831T135042'
+shopt -s nullglob
+set -- ./Brewfile-*
+if [ "$#" -gt 0 ]; then
+  cp $(ls -1t "$@" | head -1) ./Brewfile
+fi
+set -- $HOME/Brewfile-*
+if [ "$#" -gt 0 ]; then
+  cp $(ls -1t "$@" | head -1) ./Brewfile
+fi
+shopt -u nullglob
+if [ -e ./Brewfile ]; then
+  brew bundle
+fi
+
 # Upgrade any already-installed formulae.
 brew upgrade
 
