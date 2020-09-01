@@ -508,3 +508,8 @@ function ff {
 function mydns() {
 	networksetup -getdnsservers Wi-Fi
 }
+
+function p1ng() {
+	# Ping
+	ping -c 1 --apple-connect -n -Q ${argv[@]:-localhost}  | sed -n '4p;6p'
+}
