@@ -193,3 +193,5 @@ if (( $+commands[zmv] )) ; then
 	alias zln='noglob zmv -L'
 	alias zsy='noglob zmv -Ls'
 fi
+
+alias p1="p1ng"
