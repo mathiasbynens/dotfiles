@@ -48,7 +48,7 @@ if has("syntax")
 endif
 
 "vim-airline"
-let g:airline_theme='dark'
+let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
 
 "NERDTree"
@@ -124,6 +124,8 @@ set incsearch
 set laststatus=2
 " Enable mouse in all modes
 " set mouse=a
+" disable all bells
+set belloff=all
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
