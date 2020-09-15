@@ -1,0 +1,25 @@
+
+# Update commure-repos
+function rebaseRepos(){
+    currDir=`pwd`
+    echo "Current directory: ${currDir}"
+
+    echo "Updating dotfiles..."
+    exe cd ~/dotfiles && git pull --rebase
+    echo
+
+    echo "------------------------------"
+    echo "    Updating Commure repos"
+    echo "------------------------------"
+    exe cd ~/workspace/commure && git pull --rebase
+    echo
+
+    exe cd ~/workspace/serv-configs && git pull --rebase
+    echo
+
+    exe cd ~/workspace/environments && git pull --rebase
+    echo
+
+    echo "Finished rebase"
+    cd "${currDir}"
+}

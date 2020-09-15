@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+# TODO: Fix this script to be compatible with setting up on a Mac
+
+case "$OSTYPE" in
+  darwin*)
+    export SYSTEM_ICON=""
+	operating_sys='mac'
+    ;;
+  *)
+    export SYSTEM_ICON="🐧"
+	operating_sys='nix'
+    ;;
+esac
+
 # Ensure we are using the most up-to-date version
 git pull origin master;
 
@@ -129,34 +142,38 @@ function doIt() {
     if [[ ! -d $HOME/.ssh ]]; then
         mkdir $HOME/.ssh
     fi
+
     # Additional handling if work flag was passed
     if [[ "$workflag" -eq "1" ]]; then
 	echo "Using .extra-work"
 	successfully cp ./extras/.work-extra ~/.extra
 	successfully cp ./extras/.ssh-agent-work ~/.ssh-agent
     fi
+
+    chmod 700 ~/.ssh
+    chmod 600 ~/.ssh/authorized_keys
 }
 
 workflag=""
 forceflag=""
 
-case "$(uname -s)" in
-   Darwin)
-     #echo 'Mac OS X'
-	 operating_sys='mac'
-     ;;
-   Linux)
-     #echo 'Linux'
-	 operating_sys='nix'
-     ;;
-   CYGWIN*|MINGW*|MSYS*)
-     #echo 'MS Windows'
-	 operating_sys='win'
-     ;;
-   *)
-	 exit 1
-     ;;
-esac
+#case "$(uname -s)" in
+#   Darwin)
+#     #echo 'Mac OS X'
+#	 operating_sys='mac'
+#     ;;
+#   Linux)
+#     #echo 'Linux'
+#	 operating_sys='nix'
+#     ;;
+#   CYGWIN*|MINGW*|MSYS*)
+#     #echo 'MS Windows'
+#	 operating_sys='win'
+#     ;;
+#   *)
+#	 exit 1
+#     ;;
+#esac
 
 
 while getopts "fwh" opt; do

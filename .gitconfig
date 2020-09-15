@@ -56,6 +56,7 @@
 	dc = diff --cached
 	
 	cleanorig = clean -f *.orig
+    deleteall = !"git ls-files --delete | xargs -I {} git rm {}"
 
 [apply]
 
