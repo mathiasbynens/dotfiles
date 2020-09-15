@@ -45,11 +45,12 @@ function installApps() {
 		vim \
 		rsync \
 		python3-pip \
+        ripgrep \
 		ssh
 
     sudo pip3 install virtualenvwrapper
 
-	#cp extras/.bash* ~/
+    # TODO move this somewhere else
     cp extras/.extra-orig ~/.extra
 }
 

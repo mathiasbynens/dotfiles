@@ -48,17 +48,17 @@ if has("syntax")
 endif
 
 "vim-airline"
-let g:airline_theme='solarized'
+let g:airline_theme='dark'
 let g:airline_powerline_fonts=1
 
 "NERDTree"
+"shortcut to launch NerdTree"
 map <C-n> :NERDTreeToggle<CR>
+
 "show hidden files"
 let NERDTreeShowHidden=1
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
-" Enhance command-line completion
-set wildmenu
 " Allow cursor keys in insert mode
 set esckeys
 " Allow backspace in insert mode
@@ -125,10 +125,9 @@ set incsearch
 set laststatus=2
 " Enable mouse in all modes
 " set mouse=a
-" disable all bells
-set belloff=all
 " Disable error bells
 set noerrorbells
+set novisualbell
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
 " Show the cursor position
@@ -139,8 +138,6 @@ set shortmess=atI
 set showmode
 " Show the filename in the window titlebar
 set title
-" Show the (partial) command as it’s being typed
-set showcmd
 " Use relative line numbers
 if exists("&relativenumber")
 	set relativenumber
@@ -172,16 +169,6 @@ nnoremap <C-K> <C-W><C-K>¬
 nnoremap <C-L> <C-W><C-L>¬
 nnoremap <C-H> <C-W><C-H>¬
 
-
-" Automatic commands
-if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-endif
-
-" Default the netrw list style to 3
-let g:netrw_liststyle=3
+" Map 'x' to blackhole register
+nnoremap d "_d
+vnoremap d "_d
