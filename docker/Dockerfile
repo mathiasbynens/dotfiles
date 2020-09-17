@@ -12,6 +12,7 @@ RUN apt-get update -y && apt-get install -y \
 	curl \
 	git \
 	vim \
+    jq \
 	sudo
 
 # add dotuser user
@@ -25,9 +26,8 @@ ENV HOME /home/dotuser
 
 WORKDIR $HOME
 
-# Hack used to ensure that the git clone isn't cached
-ARG CACHE_DATE=2016-01-01
-
-# get dotuser
-RUN cd $HOME && \
+# Using SHA gets past the issue of the git clone being cached and not pulling in most recent commits
+ARG SHA=LATEST
+RUN SHA=${SHA} \
+    cd $HOME \
     git clone https://github.com/dmorand17/dotfiles.git

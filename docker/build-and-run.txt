@@ -1,5 +1,5 @@
 # Building Image
-docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d:%H:%M:%S) -t dotfiles-tester:latest .
+docker build --build-arg SHA=$(curl -s 'https://api.github.com/repos/dmorand17/dotfiles/git/refs/heads/master' | jq -r '.object.sha') -t dotfiles-tester:latest .
 
 # Running dotfiles-tester
 docker run -it dotfiles-tester /bin/bash
