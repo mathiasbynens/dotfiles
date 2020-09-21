@@ -94,6 +94,8 @@
 		fi \
 	}; f"
 
+	cmp = "!f() { git checkout master && git pull; }; f"
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
