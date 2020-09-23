@@ -5,11 +5,11 @@
 case "$OSTYPE" in
   darwin*)
     export SYSTEM_ICON=""
-	operating_sys='mac'
+	os='mac'
     ;;
   *)
     export SYSTEM_ICON="🐧"
-	operating_sys='nix'
+	os='nix'
     ;;
 esac
 
@@ -49,9 +49,6 @@ function installApps() {
 		ssh
 
     sudo pip3 install virtualenvwrapper
-
-    # TODO move this somewhere else
-    cp extras/.extra-orig ~/.extra
 }
 
 function installzsh() {
@@ -115,7 +112,7 @@ function doIt() {
         echo ""
     fi 
 
-    if [[ $operating_sys == "nix" ]]; then
+    if [[ $os == "nix" ]]; then
         installApps;
     fi
 
@@ -146,9 +143,7 @@ function doIt() {
 
     # Additional handling if work flag was passed
     if [[ "$workflag" -eq "1" ]]; then
-	echo "Using .extra-work"
-	successfully cp ./extras/.work-extra ~/.extra
-	successfully cp ./extras/.ssh-agent-work ~/.ssh-agent
+        echo "Additional processing... [WORK]"
     fi
 
     chmod 700 ~/.ssh
@@ -157,25 +152,6 @@ function doIt() {
 
 workflag=""
 forceflag=""
-
-#case "$(uname -s)" in
-#   Darwin)
-#     #echo 'Mac OS X'
-#	 operating_sys='mac'
-#     ;;
-#   Linux)
-#     #echo 'Linux'
-#	 operating_sys='nix'
-#     ;;
-#   CYGWIN*|MINGW*|MSYS*)
-#     #echo 'MS Windows'
-#	 operating_sys='win'
-#     ;;
-#   *)
-#	 exit 1
-#     ;;
-#esac
-
 
 while getopts "fwh" opt; do
   case $opt in

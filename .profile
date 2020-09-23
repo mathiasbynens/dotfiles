@@ -1,14 +1,4 @@
-###################################################
-#                     MY STUFF                    #
-###################################################
-jdk() {
-	version=$1
-    export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
-    java -version
- }
-
-
-for file in ~/.{path,aliases,functions,extra}; do
+for file in ~/.{path,aliases,functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 
     # Local version of file
@@ -17,25 +7,24 @@ for file in ~/.{path,aliases,functions,extra}; do
 done;
 unset file;
 
+if [ -d ~/.functions ]; then
+	for F in ~/.functions/*; do
+		source $F
+	done
+fi
+
+# mac specific
 # Setup directory colors
-eval `gdircolors -b ~/dircolors-solarized/dircolors.ansi-light`
-
-
-export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:~/.local/bin:$PATH
-export PATH=$PATH:$HOME/workspace/commure/bin
-export PATH=$PATH:$HOME/workspace/commure/tools/sebastian
-export fend="~/workspace/commure"
+if [[ "$OSTYPE" == "darwin*" ]]; then
+    eval `gdircolors -b ~/dircolors-solarized/dircolors.ansi-light`
+else
+    eval `dircolors -b ~/dircolors-solarized/dircolors.ansi-light`
+fi
+# End mac specific
 
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs   # Optional
 export PROJECT_HOME=$HOME/dev_python     # Optional
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
-
-## Source the functions directory
-#if [ -d ~/.functions ]; then
-#    for F in ~/.functions/*; do
-#        source $F
-#    done
-#fi

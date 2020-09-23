@@ -1,0 +1,11 @@
+Host *
+  ServerAliveInterval 60
+  ServerAliveCountMax 300
+
+Host dougie-fresh.xyz dougie-desktop
+  User dougie
+  IdentityFile "~/.ssh/id_rsa_dougiedesktop"
+  Port 2222
+
+Host github.com
+  IdentityFile ~/.ssh/id_rsa_github
