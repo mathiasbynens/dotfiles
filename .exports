@@ -35,3 +35,5 @@ export GPG_TTY=$(tty);
 
 # Environment variable exposing git-subrepo
 export GIT_SUBREPO_ROOT="/opt/git-subrepo";
+# Hide the “default interactive shell is now zsh” warning on macOS.
+export BASH_SILENCE_DEPRECATION_WARNING=1;
