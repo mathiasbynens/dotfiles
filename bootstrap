@@ -132,9 +132,10 @@ function doIt() {
     cd $currDir		
     
     
-    # install Vundle if necessary
-    if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
-        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    # install vim-plug if necessary
+    if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
 
     if [[ ! -d $HOME/.ssh ]]; then
