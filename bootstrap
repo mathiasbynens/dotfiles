@@ -82,17 +82,6 @@ EOF
 
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
 
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
-
-    # Install starship
-    curl -fsSL https://starship.rs/install.sh | bash
-
-    if [[ ! -d "~/.config" ]]; then
-        mkdir ~/.config
-    fi
-
-    cp .starship.toml ~/.config
 }
 
 function doIt() {
@@ -150,6 +139,19 @@ function doIt() {
 
     chmod 700 ~/.ssh
     chmod 600 ~/.ssh/authorized_keys
+
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+
+    # Install starship
+    curl -fsSL https://starship.rs/install.sh | bash
+
+    if [[ ! -d "~/.config" ]]; then
+        mkdir ~/.config
+    fi
+
+    cp .starship.toml ~/.config
+    echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
 
 workflag=""
