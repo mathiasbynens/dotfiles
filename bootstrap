@@ -54,14 +54,6 @@ function installApps() {
 function installzsh() {
     sudo apt-get install zsh -y
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    if ! grep -q dougie_profile $HOME/.zshrc ; then	
-        echo "Updating .zshrc ..."
-    cat >> ${HOME}/.zshrc <<EOF
-if [[ -f "\${HOME}/.dougie_profile" ]]; then
-source \${HOME}/.dougie_profile
-fi
-EOF
-    fi
     if ! grep -q DEFAULT_USER $HOME/.zshrc ; then	
         echo "Updating DEAFULT_USER in .zshrc ..."
     cat >> ${HOME}/.zshrc <<EOF
@@ -92,6 +84,15 @@ EOF
 
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
+
+    # Install starship
+    curl -fsSL https://starship.rs/install.sh | bash
+
+    if [[ ! -d "~/.config" ]]; then
+        mkdir ~/.config
+    fi
+
+    cp .starship.toml ~/.config
 }
 
 function doIt() {
