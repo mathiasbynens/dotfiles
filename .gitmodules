@@ -1,27 +1,15 @@
-[submodule "dircolors-solarized"]
-	path = dircolors-solarized
-	url = https://github.com/seebi/dircolors-solarized
-[submodule "powerline-fonts"]
-	path = powerline-fonts
-	url = https://github.com/powerline/fonts.git
-[submodule "dracula/dracula-zsh"]
-	path = dracula/dracula-zsh
-	url = https://github.com/dracula/zsh.git
-[submodule "dracula/dracula-visual-studio-code"]
-	path = dracula/dracula-visual-studio-code
-	url = https://github.com/dracula/visual-studio-code.git
-[submodule "dracula/dracula-vim"]
-	path = dracula/dracula-vim
-	url = https://github.com/dracula/vim.git
-[submodule "dracula/dracula-notepad-plus-plus"]
-	path = dracula/dracula-notepad-plus-plus
-	url = https://github.com/dracula/notepad-plus-plus.git
-[submodule "dracula/dracula-hyper"]
-	path = dracula/dracula-hyper
-	url = https://github.com/dracula/hyper.git
-[submodule "extras/cobalt2"]
-	path = extras/cobalt2
-	url = https://github.com/wesbos/Cobalt2-iterm
-[submodule "powerlevel10k"]
-	path = powerlevel10k
+[submodule "plugins/powerlevel10k"]
+	path = plugins/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "plugins/dircolors-solarized"]
+	path = plugins/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized
+[submodule "plugins/dracula/vim"]
+	path = plugins/dracula/vim
+	url = https://github.com/dracula/vim.git
+[submodule "plugins/dracula/zsh"]
+	path = plugins/dracula/zsh
+	url = https://github.com/dracula/zsh.git
+[submodule "plugins/powerline"]
+	path = plugins/powerline
+	url = https://github.com/powerline/fonts.git

@@ -20,14 +20,15 @@ brew install wget
 brew install ripgrep
 brew install bat
 brew install jq
+brew install fzf
 brew install xmlsec1
 brew install node
 brew install tree
+brew install starship
 
 # Cask applications
 brew cask install virtualbox
 brew cask install spotify
-brew cask install lightshot
 
 # Docker
 brew install docker

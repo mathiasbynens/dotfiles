@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 
-# TODO: Fix this script to be compatible with setting up on a Mac
+set -euo pipefail
+
+if [[ ! -f bootstrap ]]; then
+	echo "Bootstrap must be run from dotfiles directory ..."
+	exit 1
+fi
+
+# COLORS
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+WHITE='\033[1;37m'
+GREEN='\033[0;32m'
+NC='\033[0m'
 
 case "$OSTYPE" in
   darwin*)
@@ -13,61 +26,129 @@ case "$OSTYPE" in
     ;;
 esac
 
-# Ensure we are using the most up-to-date version
-git pull origin master;
-
-# Update the submodules
-git submodule update --remote --merge
-
-currentDirectory=$(dirname $0)
-
-if [[ ! -f bootstrap ]]; then
-	echo "Bootstrap must be run from dotfiles directory ..."
-	exit 1
-fi
-
-dir=~/dotfiles
+dotfiles=$HOME/dotfiles
 cat extras/dougie-bootstrap
-
-cd "$(dirname "${BASH_SOURCE}")";
 
 successfully() {
 	$* || (echo "failed" 1>&2 && exit 1)
 }
 
-fancy_echo() {
-	echo "$1"
-}
-
 exe() { echo "\$ $@" ; "$@" ; }
 
-function installApps() {
+exe_fancy(){
+    "$@"
+    if [[ $? -eq 0 ]]; then
+        icon_success
+    else
+        icon_fail
+    fi
+}
+
+icon_success() {
+    # 
+    echo "\t{GREEN}\Uf058{NC}"
+}
+
+icon_fail() {
+    # 
+    echo "\t{RED}\Uf06a{NC}"
+}
+
+icon_question() {
+    # 
+    echo "\t{BLUE}\Uf059{NC}"
+}
+
+icon_warning() {
+    # 
+    echo "\t{YELLOW}\Uf071{NC}"
+}
+
+info() {
+   printf "$1"
+}
+error() {
+    printf "$1"
+}
+warning() {
+    printf "$1"
+}
+
+nerdfont_robotomono() {
+    info "Downloading RobotoMono Nerd Fonts..."
+    exe_fancy curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+}
+
+update_repo(){
+    info "\Uf1d2 updating git \Uf1d2\n"
+    info "---------------------------\n"
+    info "Updating repository..."
+    exe_fancy git pull origin master
+
+    info "Updating submodules..."
+    exe_fancy git submodule update --init
+}
+
+config_ssh() {
+    info "Configuring SSH..."
+    if [[ ! -d $HOME/.ssh ]]; then
+        mkdir $HOME/.ssh
+    fi
+
+    chmod 700 ~/.ssh
+    chmod 600 ~/.ssh/authorized_keys
+}
+
+bootstrap_linux() {
+    info "{YELLOW}\uf17c{NC} Setting up Mac{YELLOW}\uf17c{NC}"
+    # Add Python repository
+    sudo add-apt-repository ppa:deadsnakes/ppa
+
 	sudo apt-get install -y \
 		curl \
 		git \
 		vim \
 		rsync \
+        python3 \
+        python3.8 \
 		python3-pip \
         ripgrep \
 		ssh
 
     sudo pip3 install virtualenvwrapper
+
+    info "Installing fzf..."
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    exe_fancy ~/.fzf/install
+
+    # Install starship
+    info "Installing starship..."
+    exe_fancy curl -fsSL https://starship.rs/install.sh | bash
 }
 
-function installzsh() {
-    sudo apt-get install zsh -y
+bootstrap_mac(){
+    info "{BLUE}\uf179{NC} Setting up Mac{BLUE}\uf179{NC}"
+    exe_fancy sh brew.sh
+}
+
+bootstrap_windows() {
+    info "{BLUE}\uf17a{NC} Setting up Windows{BLUE}\uf17a{NC}"
+}
+
+install_zsh() {
+    info "Installing zsh..."
+    exe_fancy sudo apt-get install zsh -y
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
     if ! grep -q DEFAULT_USER $HOME/.zshrc ; then	
         echo "Updating DEAFULT_USER in .zshrc ..."
-    cat >> ${HOME}/.zshrc <<EOF
-DEFAULT_USER="\$USER"
-EOF
+        echo "export DEFAULT_USER=`whoami`" >> $HOME/.zshrc
     fi
 
-    ln -fs $dir/dracula/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
-    ln -fs $dir/powerlevel10k/powerlevel10k.zsh-theme ~/.oh-my-zsh/themes/powerlevel10k.zsh-theme
+    ln -fs $dotfiles/dracula/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
+    ln -fs $dotfiles/powerlevel10k/powerlevel10k.zsh-theme ~/.oh-my-zsh/themes/powerlevel10k.zsh-theme
 
-    cp .p10k.zsh ~
+    cp .p10k.zsh $HOME
 
     # Default theme should be draculs
     sed -i 's/ZSH_THEME=.*/ZSH_THEME=dracula/' $HOME/.zshrc
@@ -75,85 +156,74 @@ EOF
     # powerlevel10k 
     #sed -i 's/ZSH_THEME=.*/ZSH_THEME=powerlevel10k/' $HOME/.zshrc
 
+    info "Installing zsh-autosuggestions..."
     if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then 
         git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
         else
-            echo "zsh-autosuggestions already installed ..."
+            warning "already installed"
     fi
     
+    info "Installing zsh-syntax-highlighting..."
     if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]]; then 
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
         else
-            echo "zsh-syntax-highlighting already installed ..."
+            warning "already installed"
     fi
     
     sed -i '/plugins=/{n;s/git/git fzf zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
 
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
-
 }
 
-function doIt() {
-    # Check for Windows Ubuntu
-    if [[ $(cat /proc/version | grep Microsoft) ]]; then
-        echo -ne "\nEnter home directory (if installing on windows) or press enter if none: "
-        read windowsDir
-        windowsHome=/c/Users/$windowsDir
-        
-        if [[ ! -d "$windowsHome" ]]; then
-            echo "$windowsHome does not exist ... "
-            exit 1
-        fi
-        echo -e "Creating link to $windowsHome ...\n"
-        exe ln -fs $windowsHome ${HOME}/${windowsDir}
-        echo "Copying hyper properties ..."
-        exe cp ./extras/windows/.hyper.js /c/Users/$windowsDir/AppData/Roaming/Hyper
-        echo ""
-    fi 
-
-    if [[ $os == "nix" ]]; then
-        installApps;
+backup() {
+    info "Backing up dotfiles..."
+    # Backup the current dotfiles
+    DATE=$(date +"%Y%m%d-%H%M")
+    olddir=$HOME/dotfiles-$DATE.old
+    info "re-creating backup directory [$olddir]"
+    if [[ -d "$olddir" ]]; then
+        rm -rf $olddir
+        mkdir -p $olddir
+    else
+        mkdir -p $olddir
     fi
 
-    rsync --filter="merge rsync-filter" -ah --no-perms . ~;
+    info "Backup complete..."
+    exe_fancy find ~ -maxdepth 1 -name ".[^.]*" -type f -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
+}
+
+bootstrap() {
+    case $os in
+        nix)
+            bootstrap_linux
+            ;;
+        mac)
+            bootstrap_mac
+            ;;
+    esac
+
+    exe rsync --filter="merge rsync-filter" -ah --no-perms . ~;
 
     read -p "Install zsh? (y/n) " -n 1;
     echo "";
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "Installing oh-my-zsh ..."
-        installzsh;
+        install_zsh;
     fi
 
-    echo -e "\nInstalling powerline-fonts ..."
-    currDir=`pwd`
-    cd powerline-fonts
-    ./install.sh
-    cd $currDir		
+    info "Installing powerline-fonts ..."
+    pushd powerline-fonts
+    exe_fancy ./install.sh
+    popd
     
-    
-    # install vim-plug if necessary
+    echo "Installing vim-plug..."
     if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
-        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        exe_fancy curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    else
+        warning "already installed"
     fi
 
-    if [[ ! -d $HOME/.ssh ]]; then
-        mkdir $HOME/.ssh
-    fi
-
-    # Additional handling if work flag was passed
-    if [[ "$workflag" -eq "1" ]]; then
-        echo "Additional processing... [WORK]"
-    fi
-
-    chmod 700 ~/.ssh
-    chmod 600 ~/.ssh/authorized_keys
-
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
-
-    # Install starship
-    curl -fsSL https://starship.rs/install.sh | bash
 
     if [[ ! -d "~/.config" ]]; then
         mkdir ~/.config
@@ -162,10 +232,8 @@ function doIt() {
     cp .starship.toml ~/.config
     # Ignore this until starship git prompt speeds up
     # echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-
 }
 
-workflag=""
 forceflag=""
 
 while getopts "fwh" opt; do
@@ -173,10 +241,6 @@ while getopts "fwh" opt; do
     f)
         echo "-f was triggered" >&2
         forceflag=1
-        ;;
-    w)
-        echo "-w was triggered" >&2
-        workflag=1
         ;;
 	h)
 		echo "Usage: bootstrap.sh [-h] [-w] [-f]"
@@ -193,34 +257,17 @@ while getopts "fwh" opt; do
   esac
 done
 
+update_repo
 
 if [[ $forceflag -eq 1 ]]; then
-	doIt;
+	bootstrap;
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		echo -e "Initializing submodules...\n"
-		git submodule update --init
-
-		# Backup the current dotfiles
-		DATE=$(date +"%Y%m%d-%H%M")
-		olddir=~/dotfiles-$DATE.old
-		echo "re-creating backup directory [$olddir]"
-		if [[ -d "$olddir" ]]; then
-			rm -rf $olddir
-			mkdir -p $olddir
-		else
-			mkdir -p $olddir
-		fi
-
-		echo "Backing up original files..."
-		find ~ -maxdepth 1 -name ".[^.]*" -type f -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
 		echo ""
-		doIt;
+		bootstrap;
 	fi;
 fi;
 
-echo -e "\nBoostrapping complete, please exit the shell ..."
-
-unset doIt;
+info "{BLUE}\uf3a5Boostrapping complete, please reload the shell ...{BLUE}\uf3a5{NC}"

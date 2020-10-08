@@ -26,8 +26,11 @@ ENV HOME /home/dotuser
 
 WORKDIR $HOME
 
+# If BRANCH not passed, default to 'master'
+ARG BRANCH=master
+
 # Using SHA gets past the issue of the git clone being cached and not pulling in most recent commits
 ARG SHA=LATEST
 RUN SHA=${SHA} \
     cd $HOME \
-    git clone https://github.com/dmorand17/dotfiles.git
+    git clone -b ${BRANCH} https://github.com/dmorand17/dotfiles.git
