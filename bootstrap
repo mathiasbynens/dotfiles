@@ -61,10 +61,16 @@ DEFAULT_USER="\$USER"
 EOF
     fi
 
-    sed -i 's/ZSH_THEME=.*/ZSH_THEME=dracula/' $HOME/.zshrc
-    
     ln -fs $dir/dracula/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
     ln -fs $dir/powerlevel10k/powerlevel10k.zsh-theme ~/.oh-my-zsh/themes/powerlevel10k.zsh-theme
+
+    cp .p10k.zsh ~
+
+    # Default theme should be draculs
+    sed -i 's/ZSH_THEME=.*/ZSH_THEME=dracula/' $HOME/.zshrc
+
+    # powerlevel10k
+    #sed -i 's/ZSH_THEME=.*/ZSH_THEME=powerlevel10k/' $HOME/.zshrc
 
     if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then 
         git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -151,7 +157,9 @@ function doIt() {
     fi
 
     cp .starship.toml ~/.config
-    echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+    # Ignore this until starship git prompt speeds up
+    # echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+
 }
 
 workflag=""
