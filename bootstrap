@@ -16,6 +16,9 @@ esac
 # Ensure we are using the most up-to-date version
 git pull origin master;
 
+# Update the submodules
+git submodule update --remote --merge
+
 currentDirectory=$(dirname $0)
 
 if [[ ! -f bootstrap ]]; then
@@ -68,8 +71,8 @@ EOF
 
     # Default theme should be draculs
     sed -i 's/ZSH_THEME=.*/ZSH_THEME=dracula/' $HOME/.zshrc
-
-    # powerlevel10k
+    
+    # powerlevel10k 
     #sed -i 's/ZSH_THEME=.*/ZSH_THEME=powerlevel10k/' $HOME/.zshrc
 
     if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then 
@@ -155,7 +158,7 @@ function doIt() {
     if [[ ! -d "~/.config" ]]; then
         mkdir ~/.config
     fi
-
+    
     cp .starship.toml ~/.config
     # Ignore this until starship git prompt speeds up
     # echo 'eval "$(starship init zsh)"' >> ~/.zshrc
