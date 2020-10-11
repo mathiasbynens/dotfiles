@@ -7,6 +7,8 @@ if [[ ! -f bootstrap ]]; then
 	exit 1
 fi
 
+DOTFILES=$HOME/dotfiles
+
 # COLORS
 RED='\033[0;31m'
 BLUE='\033[0;34m'
@@ -17,16 +19,13 @@ NC='\033[0m'
 
 case "$OSTYPE" in
   darwin*)
-    export SYSTEM_ICON=""
 	os='mac'
     ;;
   *)
-    export SYSTEM_ICON="🐧"
 	os='nix'
     ;;
 esac
 
-dotfiles=$HOME/dotfiles
 cat extras/dougie-bootstrap
 
 successfully() {
@@ -135,6 +134,12 @@ bootstrap_windows() {
     info "{BLUE}\uf17a{NC} Setting up Windows{BLUE}\uf17a{NC}"
 }
 
+zplug() {
+    info "Installing antigen..."
+    exe_fancy $ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+}
+
 install_zsh() {
     info "Installing zsh..."
     exe_fancy sudo apt-get install zsh -y
@@ -145,8 +150,8 @@ install_zsh() {
         echo "export DEFAULT_USER=`whoami`" >> $HOME/.zshrc
     fi
 
-    ln -fs $dotfiles/dracula/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
-    ln -fs $dotfiles/powerlevel10k/powerlevel10k.zsh-theme ~/.oh-my-zsh/themes/powerlevel10k.zsh-theme
+    ln -fs $DOTFILES/dracula/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
+    ln -fs $DOTFILES/powerlevel10k/powerlevel10k.zsh-theme ~/.oh-my-zsh/themes/powerlevel10k.zsh-theme
 
     cp .p10k.zsh $HOME
 
@@ -155,22 +160,8 @@ install_zsh() {
     
     # powerlevel10k 
     #sed -i 's/ZSH_THEME=.*/ZSH_THEME=powerlevel10k/' $HOME/.zshrc
-
-    info "Installing zsh-autosuggestions..."
-    if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then 
-        git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-        else
-            warning "already installed"
-    fi
     
-    info "Installing zsh-syntax-highlighting..."
-    if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]]; then 
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-        else
-            warning "already installed"
-    fi
-    
-    sed -i '/plugins=/{n;s/git/git fzf zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
+    sed -i '/plugins=/{n;s/git/git zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
 
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
 }
