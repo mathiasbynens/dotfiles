@@ -1,15 +1,9 @@
-[submodule "plugins/powerlevel10k"]
-	path = plugins/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
 [submodule "plugins/dircolors-solarized"]
 	path = plugins/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized
 [submodule "plugins/dracula/vim"]
 	path = plugins/dracula/vim
 	url = https://github.com/dracula/vim.git
-[submodule "plugins/dracula/zsh"]
-	path = plugins/dracula/zsh
-	url = https://github.com/dracula/zsh.git
 [submodule "plugins/powerline"]
 	path = plugins/powerline
 	url = https://github.com/powerline/fonts.git

@@ -25,5 +25,10 @@ else
 endif
 
 update_submodules:
-	#echo "Updating submodules..."
+	@echo "Updating submodules..."
 	git submodule update --remote --rebase
+
+link:
+	@echo "linking dotfiles"
+
+.PHONY: build test clean update_submodules

@@ -73,99 +73,6 @@ warning() {
     printf "$1"
 }
 
-nerdfont_robotomono() {
-    info "Downloading RobotoMono Nerd Fonts..."
-    exe_fancy curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
-}
-
-update_repo(){
-    info "\Uf1d2 updating git \Uf1d2\n"
-    info "---------------------------\n"
-    info "Updating repository..."
-    exe_fancy git pull origin master
-
-    info "Updating submodules..."
-    exe_fancy git submodule update --init
-}
-
-config_ssh() {
-    info "Configuring SSH..."
-    if [[ ! -d $HOME/.ssh ]]; then
-        mkdir $HOME/.ssh
-    fi
-
-    chmod 700 ~/.ssh
-    chmod 600 ~/.ssh/authorized_keys
-}
-
-bootstrap_linux() {
-    info "{YELLOW}\uf17c{NC} Setting up Mac{YELLOW}\uf17c{NC}"
-    # Add Python repository
-    sudo add-apt-repository ppa:deadsnakes/ppa
-
-	sudo apt-get install -y \
-		curl \
-		git \
-		vim \
-		rsync \
-        python3 \
-        python3.8 \
-		python3-pip \
-        ripgrep \
-		ssh
-
-    sudo pip3 install virtualenvwrapper
-
-    info "Installing fzf..."
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    exe_fancy ~/.fzf/install
-
-    # Install starship
-    info "Installing starship..."
-    exe_fancy curl -fsSL https://starship.rs/install.sh | bash
-}
-
-bootstrap_mac(){
-    info "{BLUE}\uf179{NC} Setting up Mac{BLUE}\uf179{NC}"
-    exe_fancy sh brew.sh
-}
-
-bootstrap_windows() {
-    info "{BLUE}\uf17a{NC} Setting up Windows{BLUE}\uf17a{NC}"
-}
-
-zplug() {
-    info "Installing antigen..."
-    exe_fancy $ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-
-}
-
-install_zsh() {
-    info "Installing zsh..."
-    exe_fancy sudo apt-get install zsh -y
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-    if ! grep -q DEFAULT_USER $HOME/.zshrc ; then	
-        echo "Updating DEAFULT_USER in .zshrc ..."
-        echo "export DEFAULT_USER=`whoami`" >> $HOME/.zshrc
-    fi
-
-    ln -fs $DOTFILES/dracula/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
-    ln -fs $DOTFILES/powerlevel10k/powerlevel10k.zsh-theme ~/.oh-my-zsh/themes/powerlevel10k.zsh-theme
-
-    cp .p10k.zsh $HOME
-
-    # Default theme should be draculs
-    sed -i 's/ZSH_THEME=.*/ZSH_THEME=dracula/' $HOME/.zshrc
-    
-    # powerlevel10k 
-    #sed -i 's/ZSH_THEME=.*/ZSH_THEME=powerlevel10k/' $HOME/.zshrc
-    
-    sed -i '/plugins=/{n;s/git/git zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
-
-    chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
-}
-
 backup() {
     info "Backing up dotfiles..."
     # Backup the current dotfiles
@@ -183,6 +90,125 @@ backup() {
     exe_fancy find ~ -maxdepth 1 -name ".[^.]*" -type f -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
 }
 
+update_repo(){
+    info "\Uf1d2 updating git \Uf1d2\n"
+    info "---------------------------\n"
+    info "Updating repository..."
+    exe_fancy git pull origin master
+
+    info "Updating submodules..."
+    exe_fancy git submodule update --init
+}
+
+
+bootstrap_linux() {
+    info "{YELLOW}\uf17c{NC} Setting up Mac{YELLOW}\uf17c{NC}"
+    # Add Python repository
+    sudo add-apt-repository ppa:deadsnakes/ppa
+    sudp apt-get update
+
+	sudo apt-get install -y \
+		curl \
+		git \
+		vim \
+        fzf \
+		rsync \
+        python3 \
+        python3.8 \
+		python3-pip \
+        ripgrep \
+		ssh
+
+    sudo pip3 install virtualenvwrapper
+}
+
+bootstrap_mac(){
+    info "{BLUE}\uf179{NC} Setting up Mac{BLUE}\uf179{NC}"
+    exe_fancy sh brew.sh
+}
+
+bootstrap_windows() {
+    info "{BLUE}\uf17a{NC} Setting up Windows{BLUE}\uf17a{NC}"
+}
+
+nerdfont_robotomono() {
+    info "Downloading RobotoMono Nerd Fonts..."
+    exe_fancy curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+}
+
+configure_ssh() {
+    info "Configuring SSH..."
+    if [[ ! -d $HOME/.ssh ]]; then
+        mkdir $HOME/.ssh
+    fi
+
+    chmod 700 ~/.ssh
+    chmod 600 ~/.ssh/authorized_keys
+}
+
+configure_vim() {
+    echo "Installing vim-plug..."
+    if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
+        exe_fancy curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    else
+        warning "already installed"
+    fi
+}
+
+install_fzf() {
+    info "Installing fzf..."
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    exe_fancy ~/.fzf/install
+}
+
+install_starship() {
+    # Install starship
+    info "Installing starship..."
+    exe_fancy curl -fsSL https://starship.rs/install.sh | bash
+
+    cp .starship.toml ~/.config
+    # Ignore this until starship git prompt speeds up
+    # echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+}
+
+install_powerline() {
+    info "Installing powerline-fonts ..."
+    pushd powerline-fonts
+    exe_fancy ./install.sh
+    popd
+}
+
+install_zplug() {
+    info "Installing antigen..."
+    exe_fancy $ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+}
+
+change_zsh_theme() {
+    THEME=${1:-dracula}
+    sed -i "s/ZSH_THEME=.*/ZSH_THEME=${THEME}/" $HOME/.zshrc
+}
+
+install_zsh() {
+    info "Installing zsh..."
+    exe_fancy sudo apt-get install zsh -y
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+    # Updating DEFAULT_USER to suppress username from prompt
+    if ! grep -q DEFAULT_USER $HOME/.zshrc ; then	
+        echo "Updating DEAFULT_USER in .zshrc ..."
+        echo "export DEFAULT_USER=`whoami`" >> $HOME/.zshrc
+    fi
+
+    install_zplug
+    change_zsh_theme dracula
+    
+    sed -i '/plugins=/{n;s/git/git zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
+
+    chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
+}
+
+
 bootstrap() {
     case $os in
         nix)
@@ -193,8 +219,6 @@ bootstrap() {
             ;;
     esac
 
-    exe rsync --filter="merge rsync-filter" -ah --no-perms . ~;
-
     read -p "Install zsh? (y/n) " -n 1;
     echo "";
     if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -202,27 +226,10 @@ bootstrap() {
         install_zsh;
     fi
 
-    info "Installing powerline-fonts ..."
-    pushd powerline-fonts
-    exe_fancy ./install.sh
-    popd
-    
-    echo "Installing vim-plug..."
-    if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
-        exe_fancy curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    else
-        warning "already installed"
-    fi
-
-
+    info "Creating .config directory (if necessary)"
     if [[ ! -d "~/.config" ]]; then
         mkdir ~/.config
     fi
-    
-    cp .starship.toml ~/.config
-    # Ignore this until starship git prompt speeds up
-    # echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
 
 forceflag=""
