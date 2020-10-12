@@ -131,6 +131,11 @@ bootstrap_windows() {
     info "{BLUE}\uf17a{NC} Setting up Windows{BLUE}\uf17a{NC}"
 }
 
+link() {
+    info "Linking $1 -> $2..."
+    exe_fancy ln -fs $1 $2
+}
+
 nerdfont_robotomono() {
     info "Downloading RobotoMono Nerd Fonts..."
     exe_fancy curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
@@ -180,12 +185,15 @@ install_powerline() {
 }
 
 install_zplug() {
-    info "Installing antigen..."
+    info "Installing zplug..." 
     exe_fancy $ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    
+    link apps/zplug/.zplug.zsh $HOME/.zplug.zsh
+    echo "[ -f ~/.zplug.zsh ] && source ~/.zplug.zsh" >> $HOME/.zshrc
 }
 
 change_zsh_theme() {
-    THEME=${1:-dracula}
+    THEME=${1:-dracula} 
     sed -i "s/ZSH_THEME=.*/ZSH_THEME=${THEME}/" $HOME/.zshrc
 }
 
@@ -207,7 +215,6 @@ install_zsh() {
 
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
 }
-
 
 bootstrap() {
     case $os in
@@ -232,18 +239,22 @@ bootstrap() {
     fi
 }
 
-forceflag=""
+FORCE=""
+FUNCTION=bootstrap
 
-while getopts "fwh" opt; do
+while getopts "fwhm:" opt; do
   case $opt in
     f)
         echo "-f was triggered" >&2
-        forceflag=1
+        FORCE=1
         ;;
 	h)
 		echo "Usage: bootstrap.sh [-h] [-w] [-f]"
 		exit 1
 		;;
+    m) 
+        FUNCTION=$OPTARG
+        ;;
     \?)
         echo "Invalid option" >&2
         exit 1
@@ -257,14 +268,15 @@ done
 
 update_repo
 
-if [[ $forceflag -eq 1 ]]; then
+if [[ $FORCE -eq 1 ]]; then
 	bootstrap;
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo ""
-		bootstrap;
+        # perform function(s) passed
+		${FUNCTION}
 	fi;
 fi;
 

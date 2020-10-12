@@ -8,6 +8,9 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'peitalin/vim-jsx-typescript' "React syntax"
 
 " Initialize plugin system
 call plug#end()
@@ -34,7 +37,7 @@ let g:airline_powerline_fonts=1
 "coc settings
 set nobackup
 set nowritebackup
-set updatetime=300
+set updatetime=4000
 
 " Use <c-space> to trigger completion.
 if has('nvim')

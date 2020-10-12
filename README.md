@@ -1,25 +1,30 @@
 # dotfiles
 
 ## Installation
-
-
-## Updates
-
-## Linking Files
-
-### Using Git and the bootstrap script
-
-You can clone the repository wherever you want. (I like to keep it in `~/.dotfiles`) The bootstrapper script will pull in the latest version and copy the files to your home folder.
-
+1.  Clone repository
 ```bash
-git clone https://github.com/dmorand17/dotfiles.git && cd dotfiles && source bootstrap.sh
+git clone https://github.com/dmorand17/dotfiles.git && cd dotfiles
+```
+2.  Run bootstrap: `make bootstrap`
+
+## Upgrade
+Run `make upgrade` to upgrade existing solution
+
+## Additional Commands
+Output from `make help`
+```
+bootstrap              Bootstrap system (install/configure apps, link dotfiles)
+docker_build           Build dotfiles container. \n[BRANCH]=branch to build (defaults to 'master')
+docker_clean           Clean dotfiles docker containers/images
+docker_test            Test dotfiles using docker
+function               Perform 1..n functions defined from bootstrap script
+link                   Links files for shell
+upgrade                Upgrade the local repository, and run any updates
+update_submodules      Update submodules
 ```
 
-To update, `cd` into your local `dotfiles` repository and then:
-
-```bash
-source bootstrap.sh
-```
+### Linking Files
+**Shell**: Any linked shell configuration can be extended by creating a `.local` version (e.g. .alias.local)
 
 Alternatively, to update while avoiding the confirmation prompt:
 
@@ -35,6 +40,15 @@ GIT_AUTHOR_EMAIL="user@example.com"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL" 
 git config --global user.email "$GIT_AUTHOR_EMAIL
 ```
+
+## Testing using `docker`
+A docker image can be created with the repository to be used for testing out the configuration.
+
+`make docker_build [BRANCH='branch']` to build an image.
+    Default `BRANCH=master`
+`make docker_test` to launch docker container to perform necessary tests
+`make docker_clean` to clean any unused images/containers
+
 ## Applications Bootstrapped
 * [fzf|https://github.com/junegunn/fzf] command-line fuzzy finder
 * [bat|https://github.com/sharkdp/bat] `cat` clone with syntax highlighting
