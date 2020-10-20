@@ -1,4 +1,4 @@
-# Stephan’s dotfiles
+# Marcelo’s dotfiles
 
 _forked from_ --> https://github.com/mathiasbynens/dotfiles
 
