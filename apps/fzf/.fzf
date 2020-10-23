@@ -1,0 +1,6 @@
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='
+    --bind="f2:toggle-preview,enter:execute(less {})
+    --preview "bat --style=numbers --color=always --line-range :500 {}"
+    --preview-window=right:60%:hidden'
