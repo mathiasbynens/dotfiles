@@ -100,9 +100,8 @@ update_repo(){
     exe_fancy git submodule update --init
 }
 
-
 bootstrap_linux() {
-    info "{YELLOW}\uf17c{NC} Setting up Mac{YELLOW}\uf17c{NC}"
+    info "{YELLOW}\uf17c{NC} Setting up Linux{YELLOW}\uf17c{NC}"
     # Add Python repository
     sudo add-apt-repository ppa:deadsnakes/ppa
     sudp apt-get update
@@ -192,7 +191,7 @@ install_zplug() {
     echo "[ -f ~/.zplug.zsh ] && source ~/.zplug.zsh" >> $HOME/.zshrc
 }
 
-change_zsh_theme() {
+zsh_theme() {
     THEME=${1:-dracula} 
     sed -i "s/ZSH_THEME=.*/ZSH_THEME=${THEME}/" $HOME/.zshrc
 }
@@ -209,10 +208,9 @@ install_zsh() {
     fi
 
     install_zplug
-    change_zsh_theme dracula
+    zsh_theme dracula
     
     sed -i '/plugins=/{n;s/git/git zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
-
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
 }
 
@@ -230,13 +228,16 @@ bootstrap() {
     echo "";
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "Installing oh-my-zsh ..."
-        install_zsh;
+        install_zsh
     fi
 
     info "Creating .config directory (if necessary)"
     if [[ ! -d "~/.config" ]]; then
         mkdir ~/.config
     fi
+
+    configure_vim
+    configure_ssh
 }
 
 FORCE=""
