@@ -113,7 +113,7 @@ alias pumpitup="osascript -e 'set volume 10'"
 
 alias bowerprune="bower list | grep extraneous | sed -E 's/^.{4}//' | sed -E 's/\#.*$//' | egrep -i -e '^[a-z]' | awk '{print \"./bower_components/\"$1}' | xargs rm -Rdf"
 
-alias gh=github
+alias gp=githubNav -p
 alias onport="lsof -i -P | grep $1"
 
 alias up="g ph && gh -p"

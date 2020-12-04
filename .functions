@@ -205,7 +205,7 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
-function github {
+function githubNav {
   branch="$(git rev-parse --abbrev-ref HEAD)"
   url="$(git config --get remote.origin.url)"
   url=${url/git@github.com:/http://github.com/}
