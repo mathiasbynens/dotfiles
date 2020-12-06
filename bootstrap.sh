@@ -1,27 +1,30 @@
-#!/usr/bin/env bash
+#!/bin/sh
+set -eu # for safety
+
 
 cd "$(dirname "${BASH_SOURCE}")";
 
 git pull origin main;
 
-function doIt() {
+doIt() {
 	rsync --exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
-		-avh --no-perms . ~;
-	source ~/.bash_profile;
+		-avh --no-perms . "$HOME";
+	. "$HOME"/.bash_profile;
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+case "$1" in ("--force"|"-f")
 	doIt;
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+;;(*)
+	echo "This may overwrite existing files in your home directory. Are you sure? (y/n) " 2>&1;
+	REPLY=$(stty raw; dd bs=1 count=1 2>/dev/null; stty -raw)
 	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
+	case $REPLY in ([Yy])
 		doIt;
-	fi;
-fi;
-unset doIt;
+	esac;
+esac;
+unset -f doIt;
