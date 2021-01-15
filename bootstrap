@@ -15,7 +15,7 @@ BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 WHITE='\033[1;37m'
 GREEN='\033[0;32m'
-NC='\033[0m'
+RESET='\033[0m'
 
 case "$OSTYPE" in
   darwin*)
@@ -43,34 +43,38 @@ exe_fancy(){
     fi
 }
 
+HEADER="%-30s %6s"
+DIVIDER="========================================="
+DIVIDER=${DIVIDER}${DIVIDER}
+
+printf "${HEADER}" "Task" "Status"
+printf "\n${DIVIDER}\n"
+
 icon_success() {
     # 
-    echo "\t{GREEN}\Uf058{NC}"
+    echo "\t{GREEN}\Uf058{RESET}"
 }
 
 icon_fail() {
     # 
-    echo "\t{RED}\Uf06a{NC}"
+    echo "\t{RED}\Uf06a{RESET}"
 }
 
 icon_question() {
     # 
-    echo "\t{BLUE}\Uf059{NC}"
+    echo "\t{BLUE}\Uf059{RESET}"
 }
 
 icon_warning() {
     # 
-    echo "\t{YELLOW}\Uf071{NC}"
+    echo "\t{YELLOW}\Uf071{RESET}"
 }
 
+# 
+# 
+
 info() {
-   printf "$1"
-}
-error() {
-    printf "$1"
-}
-warning() {
-    printf "$1"
+   printf "%-30s" "$1"
 }
 
 backup() {
@@ -101,7 +105,7 @@ update_repo(){
 }
 
 bootstrap_linux() {
-    info "{YELLOW}\uf17c{NC} Setting up Linux{YELLOW}\uf17c{NC}"
+    info "{YELLOW}\uf17c{RESET} Setting up Linux{YELLOW}\uf17c{RESET}"
     # Add Python repository
     sudo add-apt-repository ppa:deadsnakes/ppa
     sudp apt-get update
@@ -122,12 +126,12 @@ bootstrap_linux() {
 }
 
 bootstrap_mac(){
-    info "{BLUE}\uf179{NC} Setting up Mac{BLUE}\uf179{NC}"
+    info "{BLUE}\uf179{RESET} Setting up Mac{BLUE}\uf179{RESET}"
     exe_fancy sh brew.sh
 }
 
 bootstrap_windows() {
-    info "{BLUE}\uf17a{NC} Setting up Windows{BLUE}\uf17a{NC}"
+    info "{BLUE}\uf17a{RESET} Setting up Windows{BLUE}\uf17a{RESET}"
 }
 
 link() {

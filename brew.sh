@@ -16,6 +16,7 @@ BREW_PREFIX=$(brew --prefix)
 brew install gnu-sed
 
 brew install coreutils
+brew install gawk
 brew install wget
 brew install ripgrep
 brew install bat
@@ -25,10 +26,16 @@ brew install xmlsec1
 brew install node
 brew install tree
 brew install starship
+brew install csvkit
+
+# dbeaver
+brew install --cask dbeaver-community
+brew install --cask adoptopenjdk
 
 # Cask applications
 brew cask install virtualbox
 brew cask install spotify
+brew cask install burp-suite
 
 # Docker
 brew install docker

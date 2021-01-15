@@ -47,9 +47,3 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-
-# Mac specific aliases
-alias brew_update='brew update && brew outdated && brew upgrade && brew cask outdated && brew upgrade --cask'
-
-# Work specific aliases
-alias ssh="/Users/douglasm/scripts/shell/ssh-iTerm2"

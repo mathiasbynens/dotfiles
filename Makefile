@@ -28,7 +28,7 @@ update_submodules: ## Update submodules
 	@echo "Updating submodules..."
 	git submodule update --remote --rebase
 
-link: ## Links files for shell
+link: ## TODO: Links files for shell
 	@echo "Linking dotfiles..."
 
 upgrade: ## Update the local repository, and run any updates
@@ -40,7 +40,12 @@ bootstrap: ## Bootstrap system (install/configure apps, link dotfiles)
 	@echo "Bootstrapping system..."
 	./bootstrap
 
-function: ## Perform 1..n functions defined from bootstrap script
+bootstrap-min: ## Bootstrap minimum necessary (vim, profile, aliases)
+	@echo "Bootstrapping minimum configuration..."
+	ln -fs shell/.aliases ${HOME}/.aliases
+	ln -fs shell/.profile ${HOME}/.profile
+
+function: ## TODO Perform function(s) defined from bootstrap script
 	@echo "Performing function(s)..."
 ifneq ($(FUNCTION),)
 	@for f in $(FUNCTION); do echo " > [$$f]"; done
@@ -48,7 +53,7 @@ else
 	@echo "Must pass at least 1 FUNCTION value"
 endif
 
-.PHONY: docker_build docker_test docker_clean update_submodules link function bootstrap upgrade
+.PHONY: docker_build docker_test docker_clean update_submodules link function bootstrap upgrade bootstrap-min
 
 # Automatically build a help menu
 help:
