@@ -152,3 +152,7 @@ alias path='echo -e ${PATH//:/\\n}'
 # Docker Laravel related aliases
 alias phpd="docker-compose exec app php"
 alias appd="docker-compose exec app"
+
+# Laravel Sail alias
+alias sail='bash vendor/bin/sail'
+
