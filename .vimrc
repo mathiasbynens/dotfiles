@@ -1,12 +1,40 @@
-" Use the Solarized Dark theme
 set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
 
-" Make Vim more useful
-set nocompatible
-" Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'preservim/nerdtree'
+
+" All of your Plugin must be added before the following line
+
+call vundle#end()
+
+" Minimalist-AutoCompletePop-Plugin
+set completeopt=menu,menuone,noinsert
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+autocmd InsertCharPre * call AutoComplete()
+fun! AutoComplete()
+    if v:char =~ '\K'
+        \ && getline('.')[col('.') - 4] !~ '\K'
+        \ && getline('.')[col('.') - 3] =~ '\K'
+        \ && getline('.')[col('.') - 2] =~ '\K' " last char
+        \ && getline('.')[col('.') - 1] !~ '\K'
+
+        call feedkeys("\<C-P>", 'n')
+    end
+endfun
+colorscheme gruvbox
+
+filetype plugin indent on    " required
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 " Enhance command-line completion
 set wildmenu
 " Allow cursor keys in insert mode
@@ -28,7 +56,7 @@ set noeol
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
-	set undodir=~/.vim/undo
+set undodir=~/.vim/undo
 endif
 
 " Don’t create backups when editing files in certain directories
@@ -77,19 +105,19 @@ set title
 set showcmd
 " Use relative line numbers
 if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
+set relativenumber
+au BufReadPost * set relativenumber
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	:%s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
+let save_cursor = getpos(".")
+let old_query = getreg('/')
+:%s/\s\+$//e
+call setpos('.', save_cursor)
+call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
@@ -97,10 +125,10 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 " Automatic commands
 if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+" Enable file type detection
+filetype on
+" Treat .json files as .js
+autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+" Treat .md files as Markdown
+autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
