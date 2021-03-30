@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Required for non-interactive bash, e.g. from vim
+shopt -s expand_aliases
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."

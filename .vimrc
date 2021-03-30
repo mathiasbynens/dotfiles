@@ -104,3 +104,7 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" Allow vim to see aliases
+" Requires `shopt -s expand_aliases` in specified BASH_ENV file
+let $BASH_ENV = "~/.aliases"
