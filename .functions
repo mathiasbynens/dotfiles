@@ -172,7 +172,7 @@ function tre() {
 
 # Commits and pushes the code to the repository.
 function gp() {
-	git commit -am "$*" && git push
+	git add . && git commit -am "$*" && git push
 }
 
 # Commits the all the current changes.
