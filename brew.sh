@@ -33,14 +33,19 @@ brew install --cask dbeaver-community
 brew install --cask adoptopenjdk
 
 # Cask applications
-brew cask install virtualbox
-brew cask install spotify
-brew cask install burp-suite
+brew install --cask virtualbox
+brew install --cask spotify
+brew install --cask burp-suite
+brew install --cask meld
 
 # Docker
 brew install docker
 brew install docker-compose
 brew install docker-machine
+
+# psql
+brew install libpq
+brew link --force libpq
 
 # Remove outdated versions from the cellar.
 brew cleanup

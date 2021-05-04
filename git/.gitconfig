@@ -147,6 +147,9 @@
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
+[pull]
+    ff = only
+
 # URL shorthands
 
 [url "git@github.com:"]
