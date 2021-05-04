@@ -17,10 +17,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-#sudo scutil --set ComputerName "0x6D746873"
-#sudo scutil --set HostName "0x6D746873"
-#sudo scutil --set LocalHostName "0x6D746873"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
+sudo scutil --set ComputerName "JSF.MBA"
+sudo scutil --set HostName "JSF.MBA"
+sudo scutil --set LocalHostName "JSF.MBA"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
@@ -161,16 +161,16 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
-defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleLanguages -array "en" "US"
+defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
+defaults write NSGlobalDomain AppleMetricUnits -bool False
 
 # Show language menu in the top right corner of the boot screen
 sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
+sudo systemsetup -settimezone "Americas/Chicago" > /dev/null
 
 # Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
@@ -262,7 +262,7 @@ defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Finder: show hidden files by default
-#defaults write com.apple.finder AppleShowAllFiles -bool true
+defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -380,10 +380,10 @@ defaults write com.apple.dock show-process-indicators -bool true
 # Wipe all (default) app icons from the Dock
 # This is only really useful when setting up a new Mac, or if you don’t use
 # the Dock to launch apps.
-#defaults write com.apple.dock persistent-apps -array
+defaults write com.apple.dock persistent-apps -array
 
 # Show only open applications in the Dock
-#defaults write com.apple.dock static-only -bool true
+defaults write com.apple.dock static-only -bool true
 
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
@@ -851,7 +851,7 @@ cp -r init/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ 
 ###############################################################################
 
 # Set up my preferred keyboard shortcuts
-cp -r init/spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2> /dev/null
+#cp -r init/spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2> /dev/null
 
 ###############################################################################
 # Transmission.app                                                            #
