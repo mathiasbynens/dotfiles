@@ -542,6 +542,12 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Enable “Do Not Track”
 defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
+# Deny location services access from websites
+# 0: Deny without Prompting
+# 1: Prompt for each website once each day
+# 2: Prompt for each website one time only
+defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 0
+
 # Update extensions automatically
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
