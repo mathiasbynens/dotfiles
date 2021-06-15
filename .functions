@@ -179,3 +179,42 @@ function gp() {
 function gc() {
 	git commit -am "$*"
 }
+
+function vid() {
+	ERR="[ERRROR] use format \n$ vid default|decent|shitty input.mp4 output.mp4'";
+	T="default";
+	INPUT="";
+	OUTPUT="";
+
+	# if [[ -z "$1" ]] || [[ -z "$2" ]]; then
+	# 	printf "${ERR}"
+	# 	return 1;
+	# fi;
+
+	if [[ $1 = "default" ]] || [[ $1 = "shitty" ]] || [[ $1 = "decent" ]]; then
+		echo "Using custom setting"
+		T=$1;
+		INPUT=$2pm ;
+		OUTPUT=$3;
+	else
+		echo "Using default setting"
+		INPUT=$1;
+		OUTPUT=$2;
+	fi;
+
+	if [[ "$T" = "default" ]]; then
+		echo "using default"
+		ffmpeg -i "${INPUT}" -vcode h264 -acodec mp2 "${OUTPUT}"
+	elif [[ "$T" = "decent" ]]; then
+	echo "using decent"
+		ffmpeg -i "${INPUT}" -s 1280x720 -acodec copy -y "${OUTPUT}"
+	elif [[ "$T" = "shitty" ]]; then
+	echo "using shitty"
+		ffmpeg -i "${INPUT}" -vcodec h264 -b:v 1000k -acodec mp3 "${OUTPUT}"
+	else
+		printf "${ERR}"
+		return 1;
+	fi;
+
+	return 0;
+}
