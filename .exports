@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2154
 
 # Make vim the default editor.
 export EDITOR='vim';
@@ -31,7 +32,8 @@ export MANPAGER='less -X';
 
 # Avoid issues with `gpg` as installed via Homebrew.
 # https://stackoverflow.com/a/42265848/96656
-export GPG_TTY=$(tty);
+GPG_TTY=$(tty);
+export GPG_TTY
 
 # Hide the “default interactive shell is now zsh” warning on macOS.
 export BASH_SILENCE_DEPRECATION_WARNING=1;
