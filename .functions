@@ -2,7 +2,7 @@
 
 # Create a new directory and enter it
 function mkd() {
-	mkdir -p "$@" && cd "$_" || return;
+	mkdir -p "$@" && cd "$_" || return;
 }
 
 # Change working directory to the top-most Finder window location
