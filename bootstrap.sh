@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")" || exit;
+cd "$(dirname "${BASH_SOURCE[0]:-$0}")" || exit;
 
 git pull origin main;
 
