@@ -59,6 +59,10 @@
 	
 	cleanorig = clean -f *.orig
     deleteall = !"git ls-files --delete | xargs -I {} git rm {}"
+    pullmaster = !"git checkout master && git pull && git checkout -"
+
+    # Delete all branches marked [gone] on remote
+    gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
 
 [apply]
 
