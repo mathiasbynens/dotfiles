@@ -97,5 +97,13 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 
+# macos casks
+brew install --cask google-chrome
+brew install --cask bettertouchtool
+brew install --cask alfred
+brew install --cask sublime-text
+brew install --cask kitty
+brew install --cask vlc
+
 # Remove outdated versions from the cellar.
 brew cleanup
