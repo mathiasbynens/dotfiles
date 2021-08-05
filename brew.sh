@@ -97,13 +97,46 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 
-# macos casks
+# Install macos casks
 brew install --cask google-chrome
 brew install --cask bettertouchtool
 brew install --cask alfred
 brew install --cask sublime-text
 brew install --cask kitty
+brew install --cask tinypng4mac
+brew install --cask suspicious-package
+brew install --cask svgcleaner
+brew install --cask runjs
+brew install --cask poedit
+brew install --cask nsregextester
+brew install --cask noun-project
+brew install --cask keka
+brew install --cask jdiskreport
+brew install --cask hacker-menu
+# brew install --cask glyphfinder
+brew install --cask geekbench
+brew install --cask geektool
+brew install --cask docker
+brew install --cask developerexcuses
+brew install --cask deepl
+brew install --cask console
+brew install --cask bigsur-cache-cleaner
+
 brew install --cask vlc
+brew install --cask xld
+brew install --cask vox
+brew install --cask spek
+brew install --cask soulseek
+brew install --cask transmission
+brew install --cask musicbrainz-picard
+brew install --cask moebius
+brew install --cask mixed-in-key
+brew install --cask losslesscut
+brew install --cask fastclicker
+brew install --cask cocktail
+brew install --cask cncnet
+brew install --cask camera-live
+
 
 # Remove outdated versions from the cellar.
 brew cleanup
