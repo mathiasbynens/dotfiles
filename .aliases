@@ -15,6 +15,14 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
 
+alias gs="git status"
+alias gd="git diff"
+alias ga="git add"
+alias gcm="git commit -m"
+
+
+
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"

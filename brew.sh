@@ -96,6 +96,7 @@ brew install ssh-copy-id
 brew install tree
 brew install vbindiff
 brew install zopfli
+brew install archey
 
 # Install macos casks
 brew install --cask google-chrome
@@ -121,6 +122,7 @@ brew install --cask developerexcuses
 brew install --cask deepl
 brew install --cask console
 brew install --cask bigsur-cache-cleaner
+
 
 brew install --cask vlc
 brew install --cask xld
