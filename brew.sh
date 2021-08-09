@@ -138,6 +138,7 @@ brew install --cask fastclicker
 brew install --cask cocktail
 brew install --cask cncnet
 brew install --cask camera-live
+brew install bandcamp-dl
 
 
 # Remove outdated versions from the cellar.
