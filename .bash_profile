@@ -53,6 +53,9 @@ source ~/git-completion.bash
 # adjust colors for ls command
 export LSCOLORS="cxfxcxdxbxegedbxbxcxcx"
 
+# kubernetes autocompletion
+source <(kubectl completion bash)
+complete -F __start_kubectl ku
 
 # add go paths
 export GOPATH="${HOME}/git/go"
