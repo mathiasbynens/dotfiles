@@ -1,0 +1,13 @@
+alias branch-name='git rev-parse --abbrev-ref HEAD'
+alias fetch='git fetch --all -p'
+alias fetch_reb='git fetch --all -p && git rebase'
+alias push_new='git push origin `branch-name`:`branch-name` && git branch -u origin/`branch-name`'
+
+co() {
+  git fetch --all -p 
+  git checkout $1
+}
+
+nb() {
+  git checkout -b $1
+}

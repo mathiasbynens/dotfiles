@@ -1,3 +1,9 @@
+**Files have been heavily edited by me - you might want to check Mathias's original repository instead of mine. It has a lot more content. **
+
+I use [Oh My ZSH](https://ohmyz.sh). 
+
+Add `source "$HOME/dotfiles/.entry"` to `.zshrc` at the end. 
+
 # Mathias’s dotfiles
 
 ![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)

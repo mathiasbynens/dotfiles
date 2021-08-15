@@ -1,0 +1,9 @@
+# Add `~/bin` to the `$PATH`
+export PATH="$HOME/bin:$PATH";
+
+source "$HOME/dotfiles/.aliases"
+source "$HOME/dotfiles/.functions"
+source "$HOME/dotfiles/.git_functions"
+
+# it has to be the last file to load
+source "$HOME/dotfiles/.tools_setup"
