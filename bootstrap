@@ -108,9 +108,9 @@ bootstrap_linux() {
     info "{YELLOW}\uf17c{RESET} Setting up Linux{YELLOW}\uf17c{RESET}"
     # Add Python repository
     sudo add-apt-repository ppa:deadsnakes/ppa
-    sudo apt-get update
+    sudo apt-get update -qq
 
-	sudo apt-get install -y \
+	sudo apt-get install -qq \
 		curl \
 		git \
 		vim \
@@ -144,6 +144,12 @@ nerdfont_robotomono() {
     exe_fancy curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
 }
 
+link_shell() {
+    for FILE in shell; do
+        link $FILE $HOME
+    done
+}
+
 configure_ssh() {
     info "Configuring SSH..."
     if [[ ! -d $HOME/.ssh ]]; then
@@ -162,12 +168,6 @@ configure_vim() {
     else
         warning "already installed"
     fi
-}
-
-install_fzf() {
-    info "Installing fzf..."
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    exe_fancy ~/.fzf/install
 }
 
 install_starship() {
@@ -242,6 +242,7 @@ bootstrap() {
 
     configure_vim
     configure_ssh
+    link_shell
 }
 
 FORCE=""
