@@ -148,7 +148,7 @@ nerdfont_robotomono() {
 
 link_shell() {
     for FILE in shell; do
-        link $FILE $HOME
+        link "$DOTFILES/shell/$FILE" $HOME
     done
 }
 
@@ -193,7 +193,7 @@ install_zplug() {
     info "Installing zplug..." 
     exe_fancy /bin/zsh -c "$(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh)"
     
-    link apps/zplug/.zplug.zsh $HOME/.zplug.zsh
+    link $DOTFILES/apps/zplug/.zplug.zsh $HOME/.zplug.zsh
     echo "[ -f ~/.zplug.zsh ] && source ~/.zplug.zsh" >> $HOME/.zshrc
 }
 
