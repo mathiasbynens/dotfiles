@@ -107,7 +107,7 @@ update_repo(){
 bootstrap_linux() {
     info "{YELLOW}\uf17c{RESET} Setting up Linux{YELLOW}\uf17c{RESET}"
     # Add Python repository
-    sudo add-apt-repository ppa:deadsnakes/ppa >/dev/null
+    sudo add-apt-repository ppa:deadsnakes/ppa
     sudo apt-get update -qq
 
 	sudo apt-get install -qq \
@@ -116,8 +116,7 @@ bootstrap_linux() {
 		vim \
         fzf \
 		rsync \
-        python3 \
-        python3.8 \
+        python3.9 \
 		python3-pip \
         ripgrep \
 		ssh
@@ -125,7 +124,7 @@ bootstrap_linux() {
     sudo pip3 install virtualenvwrapper -qq
 
     # Install homebrew for linux
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 bootstrap_mac(){
@@ -205,7 +204,7 @@ zsh_theme() {
 
 install_zsh() {
     info "Installing zsh..."
-    #exe_fancy sudo apt-get install zsh -y
+    exe_fancy sudo apt-get install zsh -y
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
     # Updating DEFAULT_USER to suppress username from prompt
