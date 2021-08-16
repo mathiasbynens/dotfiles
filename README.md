@@ -41,8 +41,8 @@ GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL
 ```
 
-## Testing using `docker`
-A docker image can be created with the repository to be used for testing out the configuration.
+## Testing Bootstrap
+A docker image can be created to be used for testing out the configuration.
 
 `make docker_build [BRANCH='branch']` to build an image.
     Default `BRANCH=master`
@@ -67,7 +67,7 @@ A docker image can be created with the repository to be used for testing out the
 * powerlevel10k
 
 ### `vim` plugins
-Current list of VIM plugins which are installed
+Current list of VIM plugins which are installed via vim-plug plugin manager
 * [vim-plug|https://github.com/junegunn/vim-plug]
 * [nerdtree|https://github.com/preservim/nerdtree]
 * [vim-airline|https://github.com/vim-airline/vim-airline]

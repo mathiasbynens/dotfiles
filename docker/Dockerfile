@@ -8,12 +8,16 @@ FROM ubuntu:latest
 
 MAINTAINER Doug Morand <dmorand@gmail.com>
 
+# Needed to allow for tzdata to be installed without asking for geographical information
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update -y && apt-get install -y \
 	curl \
 	git \
 	vim \
     jq \
-	sudo
+	sudo \
+    software-properties-common
 
 # add dotuser user
 RUN adduser dotuser --disabled-password --gecos ""                      && \

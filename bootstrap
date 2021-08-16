@@ -52,22 +52,22 @@ printf "\n${DIVIDER}\n"
 
 icon_success() {
     # 
-    echo "\t{GREEN}\Uf058{RESET}"
+    printf "\t{GREEN}\Uf058{RESET\n"
 }
 
 icon_fail() {
     # 
-    echo "\t{RED}\Uf06a{RESET}"
+    printf "\t{RED}\Uf06a{RESET}\n"
 }
 
 icon_question() {
     # 
-    echo "\t{BLUE}\Uf059{RESET}"
+    printf "\t{BLUE}\Uf059{RESET}\n"
 }
 
 icon_warning() {
     # 
-    echo "\t{YELLOW}\Uf071{RESET}"
+    printf "\t{YELLOW}\Uf071{RESET}"
 }
 
 # 
@@ -108,7 +108,7 @@ bootstrap_linux() {
     info "{YELLOW}\uf17c{RESET} Setting up Linux{YELLOW}\uf17c{RESET}"
     # Add Python repository
     sudo add-apt-repository ppa:deadsnakes/ppa
-    sudp apt-get update
+    sudo apt-get update
 
 	sudo apt-get install -y \
 		curl \
