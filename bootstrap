@@ -191,7 +191,7 @@ install_powerline() {
 
 install_zplug() {
     info "Installing zplug..." 
-    exe_fancy $ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    exe_fancy /bin/zsh -c "$(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh)"
     
     link apps/zplug/.zplug.zsh $HOME/.zplug.zsh
     echo "[ -f ~/.zplug.zsh ] && source ~/.zplug.zsh" >> $HOME/.zshrc
