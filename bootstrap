@@ -37,18 +37,13 @@ exe() { echo "\$ $@" ; "$@" ; }
 exe_fancy(){
     "$@"
     if [[ $? -eq 0 ]]; then
-        icon_success
+        #icon_success
+        printf "Success \Uf058"
     else
-        icon_fail
+        #icon_fail
+        printf "Failed \Uf06a"
     fi
 }
-
-HEADER="%-30s %6s"
-DIVIDER="========================================="
-DIVIDER=${DIVIDER}${DIVIDER}
-
-printf "${HEADER}" "Task" "Status"
-printf "\n${DIVIDER}\n"
 
 icon_success() {
     # 
@@ -74,7 +69,7 @@ icon_warning() {
 # 
 
 info() {
-   printf "%-30s" "$1"
+   printf "%-30s" "$1\n"
 }
 
 bootstrap_linux() {
@@ -121,6 +116,7 @@ nerdfont_robotomono() {
 
 link_shell() {
     for FILE in shell; do
+        echo "Processing $FILE..."
         link "$DOTFILES/shell/$FILE" $HOME
     done
 }
