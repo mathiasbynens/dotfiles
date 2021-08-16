@@ -10,12 +10,12 @@ fi
 DOTFILES=$HOME/dotfiles
 
 # COLORS
-RED='\033[0;31m'
-BLUE='\033[0;34m'
-YELLOW='\033[1;33m'
-WHITE='\033[1;37m'
-GREEN='\033[0;32m'
-RESET='\033[0m'
+RED='\e[0;31m'
+BLUE='\e[0;34m'
+YELLOW='\e[1;33m'
+WHITE='\e[1;37m'
+GREEN='\e[0;32m'
+RESET='\e[0m'
 
 case "$OSTYPE" in
   darwin*)
