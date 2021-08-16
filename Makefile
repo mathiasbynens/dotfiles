@@ -5,17 +5,17 @@ BRANCH ?= master
 
 SHA := $(shell curl -s 'https://api.github.com/repos/dmorand17/dotfiles/git/refs/heads/$(BRANCH)' | jq -r '.object.sha')
 
-docker_build: ## Build dotfiles container. [BRANCH]=branch to build (defaults to 'master')
+build: ## Build dotfiles container. [BRANCH]=branch to build (defaults to 'master')
 	@echo "gitsha1 -> $(SHA)"
 ifeq ($(SHA),null)
 	$(error SHA is not set.  Please ensure that [$(BRANCH)] exists)
 endif
 	docker build --file docker/Dockerfile --build-arg BRANCH=$(BRANCH) --build-arg SHA=$(SHA) -t dotfiles:latest .
 
-docker_test: ## Test dotfiles using docker
+test: ## Test dotfiles using docker
 	docker run -e LANG="en_US.UTF-8" -e LANGUAGE="en_US.UTF-8" --label type=dotfiles -it dotfiles /bin/bash
 
-docker_clean: ## Clean dotfiles docker containers/images
+clean: ## Clean dotfiles docker containers/images
 ifneq ($(CONTAINERS),)
 	@echo "Removing containers: $(CONTAINERS)"
 	docker rm $(CONTAINERS)
@@ -53,7 +53,7 @@ else
 	@echo "Must pass at least 1 FUNCTION value"
 endif
 
-.PHONY: docker_build docker_test docker_clean update_submodules link function bootstrap upgrade bootstrap-min
+.PHONY: build test clean update_submodules link function bootstrap upgrade bootstrap-min
 
 # Automatically build a help menu
 help:

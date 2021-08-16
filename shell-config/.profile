@@ -1,7 +1,7 @@
 for file in ~/.{path,aliases,functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 
-    # Local version of file
+    # Allow for local version overrides
     local="${file}.local"
 	[ -r "$local" ]  && [ -f "$local" ] && source "$local";
 done;

@@ -102,6 +102,7 @@ bootstrap_mac(){
 
 bootstrap_windows() {
     info "Setting up Windows"
+    info "Not yet implemented"
 }
 
 link() {
@@ -114,11 +115,11 @@ nerdfont_robotomono() {
     exe_fancy curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
 }
 
-link_shell() {
+link_shell_config() {
     info "Linking files"
     #find ./config -type f | xargs -I{} link "{}" $HOME
     shopt -s dotglob
-    for file in config/*; do
+    for file in shell-config/*; do
         filename=$(basename $file)
         link "$file" "$HOME/$filename"
     done    
@@ -220,7 +221,7 @@ bootstrap() {
 
     configure_vim
     configure_ssh
-    link_shell
+    link_shell_config
 }
 
 update_repo(){
