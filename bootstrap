@@ -107,7 +107,7 @@ update_repo(){
 bootstrap_linux() {
     info "{YELLOW}\uf17c{RESET} Setting up Linux{YELLOW}\uf17c{RESET}"
     # Add Python repository
-    sudo add-apt-repository ppa:deadsnakes/ppa
+    sudo add-apt-repository ppa:deadsnakes/ppa >/dev/null
     sudo apt-get update -qq
 
 	sudo apt-get install -qq \
@@ -122,7 +122,7 @@ bootstrap_linux() {
         ripgrep \
 		ssh
 
-    sudo pip3 install virtualenvwrapper
+    sudo pip3 install virtualenvwrapper -qq
 }
 
 bootstrap_mac(){

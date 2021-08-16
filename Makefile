@@ -13,7 +13,7 @@ endif
 	docker build --file docker/Dockerfile --build-arg BRANCH=$(BRANCH) --build-arg SHA=$(SHA) -t dotfiles:latest .
 
 docker_test: ## Test dotfiles using docker
-	docker run -e LANG="en_US.UTF-8" --label type=dotfiles -it dotfiles /bin/bash
+	docker run -e LANG="en_US.UTF-8" -e LANGUAGE="en_US.UTF-8" --label type=dotfiles -it dotfiles /bin/bash
 
 docker_clean: ## Clean dotfiles docker containers/images
 ifneq ($(CONTAINERS),)
