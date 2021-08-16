@@ -7,15 +7,15 @@ if [[ ! -f bootstrap ]]; then
 	exit 1
 fi
 
-DOTFILES=$HOME/dotfiles
+DOTFILES=$(pwd)
 
 # COLORS
-RED='\e[0;31m'
-BLUE='\e[0;34m'
-YELLOW='\e[1;33m'
-WHITE='\e[1;37m'
-GREEN='\e[0;32m'
-RESET='\e[0m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+WHITE='\033[1;37m'
+GREEN='\033[0;32m'
+RESET='\033[0m'
 
 case "$OSTYPE" in
   darwin*)
@@ -52,7 +52,7 @@ printf "\n${DIVIDER}\n"
 
 icon_success() {
     # 
-    printf "\t{GREEN}\Uf058{RESET\n"
+    printf "\t{GREEN}\Uf058{RESET}\n"
 }
 
 icon_fail() {
@@ -77,35 +77,8 @@ info() {
    printf "%-30s" "$1"
 }
 
-backup() {
-    info "Backing up dotfiles..."
-    # Backup the current dotfiles
-    DATE=$(date +"%Y%m%d-%H%M")
-    olddir=$HOME/dotfiles-$DATE.old
-    info "re-creating backup directory [$olddir]"
-    if [[ -d "$olddir" ]]; then
-        rm -rf $olddir
-        mkdir -p $olddir
-    else
-        mkdir -p $olddir
-    fi
-
-    info "Backup complete..."
-    exe_fancy find ~ -maxdepth 1 -name ".[^.]*" -type f -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
-}
-
-update_repo(){
-    info "\Uf1d2 updating git \Uf1d2\n"
-    info "---------------------------\n"
-    info "Updating repository..."
-    exe_fancy git pull origin master
-
-    info "Updating submodules..."
-    exe_fancy git submodule update --init
-}
-
 bootstrap_linux() {
-    info "{YELLOW}\uf17c{RESET} Setting up Linux{YELLOW}\uf17c{RESET}"
+    info "Setting up Linux"
     # Add Python repository
     sudo add-apt-repository ppa:deadsnakes/ppa
     sudo apt-get update -qq
@@ -128,12 +101,12 @@ bootstrap_linux() {
 }
 
 bootstrap_mac(){
-    info "{BLUE}\uf179{RESET} Setting up Mac{BLUE}\uf179{RESET}"
+    info "Setting up Mac"
     exe_fancy sh brew.sh
 }
 
 bootstrap_windows() {
-    info "{BLUE}\uf17a{RESET} Setting up Windows{BLUE}\uf17a{RESET}"
+    info "Setting up Windows"
 }
 
 link() {
@@ -156,6 +129,10 @@ configure_ssh() {
     info "Configuring SSH..."
     if [[ ! -d $HOME/.ssh ]]; then
         mkdir $HOME/.ssh
+    fi
+
+    if [[ ! -f $HOME/.ssh/authorized_keys ]]; then
+        touch $HOME/.ssh/authorized_keys
     fi
 
     chmod 700 ~/.ssh
@@ -189,19 +166,6 @@ install_powerline() {
     popd
 }
 
-install_zplug() {
-    info "Installing zplug..." 
-    exe_fancy /bin/zsh -c "$(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh)"
-    
-    link $DOTFILES/apps/zplug/.zplug.zsh $HOME/.zplug.zsh
-    echo "[ -f ~/.zplug.zsh ] && source ~/.zplug.zsh" >> $HOME/.zshrc
-}
-
-zsh_theme() {
-    THEME=${1:-dracula} 
-    sed -i "s/ZSH_THEME=.*/ZSH_THEME=${THEME}/" $HOME/.zshrc
-}
-
 install_zsh() {
     info "Installing zsh..."
     exe_fancy sudo apt-get install zsh -y
@@ -218,6 +182,19 @@ install_zsh() {
     
     sed -i '/plugins=/{n;s/git/git zsh-syntax-highlighting zsh-autosuggestions/};' $HOME/.zshrc
     chmod -R g-w,o-w ~/.oh-my-zsh/custom/plugins/
+}
+
+zsh_theme() {
+    THEME=${1:-dracula}
+    sed -i "s/ZSH_THEME=.*/ZSH_THEME=${THEME}/" $HOME/.zshrc
+}
+
+install_zplug() {
+    info "Installing zplug..."
+    exe_fancy /bin/zsh -c "$(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh)"
+
+    link $DOTFILES/apps/zplug/.zplug.zsh $HOME/.zplug.zsh
+    echo "[ -f ~/.zplug.zsh ] && source ~/.zplug.zsh" >> $HOME/.zshrc
 }
 
 bootstrap() {
@@ -245,6 +222,33 @@ bootstrap() {
     configure_vim
     configure_ssh
     link_shell
+}
+
+update_repo(){
+    info "Updating Project files...\n"
+    info "---------------------------\n"
+    info "Updating repository..."
+    exe_fancy git pull origin master
+
+    info "Updating submodules..."
+    exe_fancy git submodule update --init
+}
+
+backup() {
+    info "Backing up dotfiles..."
+    # Backup the current dotfiles
+    DATE=$(date +"%Y%m%d-%H%M")
+    olddir=$HOME/dotfiles-$DATE.old
+    info "re-creating backup directory [$olddir]"
+    if [[ -d "$olddir" ]]; then
+        rm -rf $olddir
+        mkdir -p $olddir
+    else
+        mkdir -p $olddir
+    fi
+
+    info "Backup complete..."
+    exe_fancy find ~ -maxdepth 1 -name ".[^.]*" -type f -exec echo "backing up {} ..." \; -exec cp -rf "{}" $olddir \;
 }
 
 FORCE=""
@@ -275,6 +279,7 @@ while getopts "fwhm:" opt; do
 done
 
 update_repo
+backup
 
 if [[ $FORCE -eq 1 ]]; then
 	bootstrap;
@@ -288,4 +293,5 @@ else
 	fi;
 fi;
 
-info "{BLUE}\uf3a5Boostrapping complete, please reload the shell ...{BLUE}\uf3a5{NC}"
+info "Boostrapping complete, please reload the shell e.g. `exec zsh`"
+info "If changing to zsh, switch shell using `chsh -s $(which zsh)`"

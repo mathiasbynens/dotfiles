@@ -37,3 +37,6 @@ ARG BRANCH=master
 ARG SHA=LATEST
 RUN SHA=${SHA} \
     git clone -b ${BRANCH} https://github.com/dmorand17/dotfiles.git
+
+WORKDIR $HOME/dotfiles
+CMD "bootstrap"
