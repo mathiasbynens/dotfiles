@@ -116,7 +116,12 @@ nerdfont_robotomono() {
 
 link_shell() {
     info "Linking files"
-    find ./config -type f | xargs -I{} link "{}" $HOME
+    #find ./config -type f | xargs -I{} link "{}" $HOME
+    shopt -s dotglob
+    for file in config/*; do
+        filename=$(basename $file)
+        link "$file" "$HOME/$filename"
+    done    
 }
 
 configure_ssh() {
@@ -179,14 +184,14 @@ install_zsh() {
 }
 
 zsh_theme() {
-    THEME=${1:-dracula}
+    THEME=${1:-dracula} 
     sed -i "s/ZSH_THEME=.*/ZSH_THEME=${THEME}/" $HOME/.zshrc
 }
 
 install_zplug() {
-    info "Installing zplug..."
+    info "Installing zplug..." 
     exe_fancy /bin/zsh -c "$(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh)"
-
+    
     link $DOTFILES/apps/zplug/.zplug.zsh $HOME/.zplug.zsh
     echo "[ -f ~/.zplug.zsh ] && source ~/.zplug.zsh" >> $HOME/.zshrc
 }
