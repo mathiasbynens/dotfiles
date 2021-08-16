@@ -64,6 +64,9 @@
     # Delete all branches marked [gone] on remote
     gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
 
+    # Delete all local branches
+    dellocalbranch = !"git branch | grep -v master | xargs git branch -D"
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
