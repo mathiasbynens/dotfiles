@@ -1,0 +1,5 @@
+# keep scrollback n lines
+defscrollback 5000
+
+# Display a caption bar to indicate in a screen session
+caption always "%{= kc}Screen session on %H (system load: %l)%-28=%{= .m}%D %d.%m.%Y %0c"

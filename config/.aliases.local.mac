@@ -1,0 +1,7 @@
+# Mac specific aliases
+alias brew_update='brew update && brew outdated && brew upgrade && brew outdated --cask && brew upgrade --cask'
+
+# Work specific aliases
+alias ssh="/Users/douglasm/scripts/shell/ssh-iTerm2"
+
+alias tailf="tail -f $@"
