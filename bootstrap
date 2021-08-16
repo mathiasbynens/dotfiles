@@ -123,6 +123,9 @@ bootstrap_linux() {
 		ssh
 
     sudo pip3 install virtualenvwrapper -qq
+
+    # Install homebrew for linux
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 bootstrap_mac(){
@@ -202,8 +205,8 @@ zsh_theme() {
 
 install_zsh() {
     info "Installing zsh..."
-    exe_fancy sudo apt-get install zsh -y
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    #exe_fancy sudo apt-get install zsh -y
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
     # Updating DEFAULT_USER to suppress username from prompt
     if ! grep -q DEFAULT_USER $HOME/.zshrc ; then	
