@@ -132,6 +132,7 @@ configure_ssh() {
     fi
 
     if [[ ! -f $HOME/.ssh/authorized_keys ]]; then
+        echo "Creating $HOME/.ssh/authorized_keys"
         touch $HOME/.ssh/authorized_keys
     fi
 
