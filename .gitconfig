@@ -180,4 +180,7 @@
 
 [init]
 
-	defaultBranch = main
+  defaultBranch = master
+[user]
+  name = Kunsang Norbu Tsering
+  email = tsering@sumnergroh.com
