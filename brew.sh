@@ -101,10 +101,12 @@ brew install archey
 # Install macos casks
 brew install --cask google-chrome
 brew install --cask brave-browser
+brew install --cask firefox
 brew install --cask bettertouchtool
 brew install --cask alfred
 brew install --cask sublime-text
 brew install --cask kitty
+brew install --cask local
 brew install --cask tinypng4mac
 brew install --cask suspicious-package
 brew install --cask svgcleaner
@@ -115,7 +117,6 @@ brew install --cask noun-project
 brew install --cask keka
 brew install --cask jdiskreport
 brew install --cask hacker-menu
-# brew install --cask glyphfinder
 brew install --cask geekbench
 brew install --cask geektool
 brew install --cask docker
