@@ -102,6 +102,7 @@ brew install archey
 brew install --cask google-chrome
 brew install --cask brave-browser
 brew install --cask firefox
+brew install --cask vivaldi
 brew install --cask bettertouchtool
 brew install --cask alfred
 brew install --cask sublime-text
