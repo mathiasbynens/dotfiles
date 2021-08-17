@@ -100,6 +100,7 @@ brew install archey
 
 # Install macos casks
 brew install --cask google-chrome
+brew install --cask brave-browser
 brew install --cask bettertouchtool
 brew install --cask alfred
 brew install --cask sublime-text
@@ -118,7 +119,6 @@ brew install --cask hacker-menu
 brew install --cask geekbench
 brew install --cask geektool
 brew install --cask docker
-brew install --cask developerexcuses
 brew install --cask deepl
 brew install --cask console
 brew install --cask bigsur-cache-cleaner
