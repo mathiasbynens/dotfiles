@@ -15,6 +15,14 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
 
+alias gs="git status"
+alias gd="git diff"
+alias ga="git add"
+alias gcm="git commit -m"
+alias gp="git push"
+
+
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
@@ -56,7 +64,8 @@ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
 
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ip{4,}='dig @resolver4.opendns.com myip.opendns.com +short -4' #you can use ip4 or ip to get your ipv4
+alias ip6='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -6' #https://unix.stackexchange.com/a/81699
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
@@ -137,6 +146,8 @@ alias pumpitup="osascript -e 'set volume output volume 100'"
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+# force kill all chrome tabs (previous method didnt work after BIG SUR)
+alias killchrome='kill -9 $(ps aux | grep -i "Chrome\ Helper" | awk "{print $2}")'
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
