@@ -17,9 +17,9 @@ alias pip="pip3"
 alias pipenv="~/.local/bin/pipenv"
 alias kc="kubectl"
 alias kcc="kubectl config set-context --current --namespace="
-alias mountDags="gcsfuse --only-dir dags --implicit-dirs $DAG_DEV_BCKT $DAG_FLDR"
-alias unmountDags="fusermount -u $DAG_FLDR"
-alias mountUploads="gcsfuse --implicit-dirs $UPL_DEV_BCKT $UPL_BCKT"
+alias mountDags="gcsfuse --only-dir dags --implicit-dirs \"${DAG_DEV_BCKT}\" \"${DAG_FLDR}\""
+alias unmountDags="fusermount -u ${DAG_FLDR}"
+alias mountUploads="gcsfuse --implicit-dirs \"${UPL_DEV_BCKT} \"${UPL_BCKT}"
 alias codeCheck="pre-commit run --all-files"
 
 # Detect which `ls` flavor is in use
