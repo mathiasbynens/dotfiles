@@ -9,10 +9,17 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # config pyenv if available
-if [ -d "$HOME/.pyenv/bin" ] ; then
+if [ -d "$HOME/.pyenv" ] ; then
 	export PYENV_ROOT="$HOME/.pyenv"
 	export PATH="$PYENV_ROOT/bin:$PATH"
 	eval "$(pyenv init --path)"
+fi
+
+# config jenv if available
+if [ -d "$HOME/.jenv" ] ; then
+	export JENV_ROOT="$HOME/.jenv"
+	export PATH="$JENV_ROOT/bin:$PATH"
+	eval "$(jenv init -)"
 fi
 
 # Load the shell dotfiles, and then some:
