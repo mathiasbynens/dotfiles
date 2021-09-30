@@ -14,13 +14,17 @@ alias g="git"
 alias c="clear"
 alias python="python3"
 alias pip="pip3"
-alias pipenv="~/.local/bin/pipenv"
 alias kc="kubectl"
 alias kcc="kubectl config set-context --current --namespace="
-alias mountDags="gcsfuse --only-dir dags --implicit-dirs \"${DAG_DEV_BCKT}\" \"${DAG_FLDR}\""
-alias unmountDags="fusermount -u ${DAG_FLDR}"
-alias mountUploads="gcsfuse --implicit-dirs \"${UPL_DEV_BCKT} \"${UPL_BCKT}"
 alias codeCheck="pre-commit run --all-files"
+
+for entity in DAG_STG DAG_DEV UPL_STG UPL_DEV; do
+	local_BCKT=${entity}_BCKT
+	local_FLDR=${entity}_FLDR
+
+	alias "mount${entity}"="gcsfuse --implicit-dirs \${$local_BCKT} \${$local_FLDR}"
+	alias "unmount${entity}"="fusermount -u \${$local_FLDR}"
+done
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
