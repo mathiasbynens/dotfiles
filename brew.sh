@@ -102,15 +102,22 @@ brew install ab
 brew install adns
 brew install autoconf
 brew install automake
+brew install aspell
+brew install bash-completion@2
+brew install ethereum
 brew install ffmpeg
 brew install freetype
+brew install git
+brew install git-lfs
 brew install glib
 brew install heroku
+brew install heroku-node
 brew install hub
 brew install jq
 brew install iperf3
 brew install media-info
 brew install pyenv-virtualenv
+brew install z
 
 # Remove outdated versions from the cellar.
 brew cleanup
