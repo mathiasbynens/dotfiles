@@ -5,7 +5,7 @@
 
 [pull]
         ff = only
-		
+
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
@@ -103,6 +103,11 @@
 
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
+
+[branch]
+
+	# Show most recently changed branches first.
+	sort = -committerdate
 
 [core]
 
@@ -205,3 +210,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[init]
+
+	defaultBranch = main
