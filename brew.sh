@@ -112,5 +112,10 @@ brew install media-info
 brew install pyenv-virtualenv
 brew install pinentry-mac
 
+# Heroku
+brew tap heroku/brew && brew install heroku
+
+
+
 # Remove outdated versions from the cellar.
 brew cleanup
