@@ -106,3 +106,10 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# Measures the startup time for the shell
+# https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
+timezsh() {
+	shell=${1-$SHELL}
+	for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
