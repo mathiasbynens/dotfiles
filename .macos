@@ -27,7 +27,6 @@ sudo pmset -a standbydelay 86400
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
-
 # Disable transparency in the menu bar and elsewhere on Yosemite
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
@@ -133,13 +132,6 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Disable hibernation (speeds up entering sleep mode)
 # sudo pmset -a hibernatemode 0
 
-# Remove the sleep image file to save disk space
-sudo rm /private/var/vm/sleepimage
-# Create a zero-byte file instead…
-sudo touch /private/var/vm/sleepimage
-# …and make sure it can’t be rewritten
-sudo chflags uchg /private/var/vm/sleepimage
-
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
@@ -166,10 +158,21 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
-# Follow the keyboard focus while zoomed in
-defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+
+# universalaccess preferences
+defaults write com.apple.universalaccess closeViewDesiredZoomFactor -string "2.707906701517116";
+defaults write com.apple.universalaccess closeViewHotkeysEnabled -int 0;
+defaults write com.apple.universalaccess closeViewScrollWheelModifiersInt -int 1048576;
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -int 1;
+defaults write com.apple.universalaccess closeViewSplitScreenRatio -string "0.2";
+defaults write com.apple.universalaccess closeViewZoomDisplayID -int 0;
+defaults write com.apple.universalaccess closeViewZoomFactor -int 1;
+defaults write com.apple.universalaccess closeViewZoomFactorBeforeTermination -int 1;
+defaults write com.apple.universalaccess closeViewZoomedIn -int 0;
+defaults write com.apple.universalaccess hoverTextEnabled -int 0;
+defaults write com.apple.universalaccess login -int 0;
+defaults write com.apple.universalaccess selectedTab -int 23;
+defaults write com.apple.universalaccess sessionChange -int 0;
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
@@ -190,7 +193,7 @@ defaults write NSGlobalDomain AppleMetricUnits -bool true
 sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/London" > /dev/null
+sudo systemsetup -settimezone "Europe/Athens" > /dev/null
 
 # Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
@@ -374,9 +377,6 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 # (i.e. use the old Exposé behavior instead)
 defaults write com.apple.dock expose-group-by-app -bool false
 
-# Disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -bool true
-
 # Don’t show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
 
@@ -389,13 +389,26 @@ defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -float 0
 
 # Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide -bool false
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
+
+# Set prefered dock size
+defaults write com.apple.dock largesize -int 73
+
+# Dock Maginification
+defaults write com.apple.dock magnification -int 1
+
+# Where to position the dock
+defaults write com.apple.dock orientation -string right
+
+# Disable Dashboard
+defaults write com.apple.dashboard mcx-disabled -bool true
+
 
 # Disable the Launchpad gesture (pinch with thumb and three fingers)
 #defaults write com.apple.dock showLaunchpadGestureEnabled -int 0

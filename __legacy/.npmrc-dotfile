@@ -1,6 +1,0 @@
-prefix = /Users/thanpolas/npm-global
-init.author.email = thanpolas@gmail.com
-init.author.name = Thanasis Polychronakis
-init.author.url = https://github.com/thanpolas
-loglevel = warn
-viewer = browser
