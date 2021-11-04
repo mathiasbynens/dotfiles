@@ -22,6 +22,11 @@ if [ -d "$HOME/.jenv" ] ; then
 	eval "$(jenv init -)"
 fi
 
+# set get-opt from gnu / Apache Airflow
+if [ -d "$HOME/projects/airflow" ] ; then
+	export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+fi
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
