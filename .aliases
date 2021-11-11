@@ -17,6 +17,7 @@ alias pip="pip3"
 alias kc="kubectl"
 alias kcc="kubectl config set-context --current --namespace="
 alias codeCheck="pre-commit run --all-files"
+alias rmpy="find . -type d -name '*__pycache__' -ls -exec rm -r {} +"
 
 for entity in DAG_STG DAG_DEV UPL_STG UPL_DEV; do
 	local_BCKT=${entity}_BCKT
