@@ -83,7 +83,9 @@
 	attributesfile = ~/.gitattributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
-	# [default] trailing-space: looks for spaces at the end of a line
+	# [default] blank-at-eol: spaces at the end of line
+ 	# [default] blank-at-eof:spaces at the end of file
+	# [default] trailing-space: looks for spaces at the end of a line and file (join)
 	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
@@ -139,6 +141,11 @@
 	# Use `hexdump` to diff binary files.
 	textconv = hexdump -v -C
 
+[fetch]
+
+	prune = true
+
+
 [help]
 
 	# Automatically correct and execute mistyped commands.
@@ -149,10 +156,14 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+[pull]
+
+	rebase = merges
+
 [push]
 
 	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = simple
+	default = current
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
