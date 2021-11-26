@@ -15,7 +15,7 @@ alias c="clear"
 alias python="python3"
 alias pip="pip3"
 alias kc="kubectl"
-alias kcc="kubectl config set-context --current --namespace="
+alias kcc="kubectl config set-context --current --namespace"
 alias codeCheck="pre-commit run --all-files"
 alias rmpy="find . -type d -name '*__pycache__' -ls -exec rm -r {} +"
 
