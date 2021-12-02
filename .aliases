@@ -17,7 +17,7 @@ alias pip="pip3"
 alias kc="kubectl"
 alias kcc="kubectl config set-context --current --namespace"
 alias codeCheck="pre-commit run --all-files"
-alias rmpy="find . -type d -name '*__pycache__' -ls -exec rm -r {} +"
+alias rmpy="find . -type d -regextype 'posix-extended' -regex '.*(__pycache__|\.pytest_cache)' -ls -exec rm -r {} +"
 
 for entity in "${entities[@]}"; do
 	local_BCKT=${entity}_BCKT
