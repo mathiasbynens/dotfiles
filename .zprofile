@@ -12,14 +12,12 @@ fi
 if [ -d "$HOME/.pyenv" ] ; then
 	export PYENV_ROOT="$HOME/.pyenv"
 	export PATH="$PYENV_ROOT/bin:$PATH"
-	eval "$(pyenv init --path)"
 fi
 
 # config jenv if available
 if [ -d "$HOME/.jenv" ] ; then
 	export JENV_ROOT="$HOME/.jenv"
 	export PATH="$JENV_ROOT/bin:$PATH"
-	eval "$(jenv init -)"
 fi
 
 # set get-opt from gnu / Apache Airflow
