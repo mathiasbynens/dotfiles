@@ -1,0 +1,19 @@
+# If you come from bash you might have to change your $PATH.
+export PATH="$HOME/bin:$HOME/utils:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+# coreutils, for gnubin utilities
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# Python 3.10
+export PATH="$PATH:/usr/local/opt/python@3.10/bin"
+# Jupyter Labs
+export PATH="$PATH:/usr/local/opt/python@3.9/bin:$HOME/Library/Python/3.9/bin/"
+# Add VSCodium (code)
+export PATH="$PATH:/Applications/VSCodium.app/Contents/Resources/app/bin"
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# Rust Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
+
+# Remove redundant PATH dirs
+export PATH=$( echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}' )
+

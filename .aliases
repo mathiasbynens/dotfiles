@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 # alias ..="cd .."
@@ -14,6 +14,15 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
+
+# Set the PAGER: most, less, more
+if _exists most ; then
+	alias m='most'
+elif _exists less ; then
+	alias m='less'
+elif _exists more ; then
+	alias m='more'
+fi
 
 # Detect which `ls` flavor is in use
 if ls --color -d . >/dev/null 2>&1; then  # GNU ls
@@ -99,7 +108,12 @@ unset jscbin;
 alias c="tr -d '\n' | pbcopy"
 
 # Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+if _exists fd ; then
+	alias cleanup="fd -H '^\.DS_Store$' -tf -X rm"
+else
+	alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+fi
+
 
 # Empty the Trash on all mounted volumes and the main HDD.
 # Also, clear Apple’s System Logs to improve shell startup speed.
@@ -194,4 +208,5 @@ if (( $+commands[zmv] )) ; then
 	alias zsy='noglob zmv -Ls'
 fi
 
-alias p1="p1ng"
+alias p1='p1ng'
+

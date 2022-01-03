@@ -1,8 +1,15 @@
 #!/usr/bin/env zsh
 
+# Exists - function to check if command exists
+function _exists() { (( $+commands[$1] )) }
+
+
 # Brew - update 'brew', then upgrade all installed packages, then cleanup and report
 function brewup () {
 	brew update && brew upgrade && brew cleanup && brew doctor
+}
+function brewf () {
+	brew bundle dump && ria ~/Brewfile
 }
 
 # UPDATE the important tools
@@ -10,7 +17,7 @@ function updatetools () {
 	# Ask for the administrator password upfront
 	sudo -v
 	# Apple softwareupdate
-	if (( $+commands[softwareupdate] )); then
+	if _exists softwareupdate; then
 		echo "Update App Store apps"
 		# sudo softwareupdate -i -a
 	fi;
@@ -22,7 +29,7 @@ function updatetools () {
 	PIPS=("pip2" "pip3")
 	for TMPPIP in "$PIPS[@]"
 	do
-		if (( $+commands[${TMPPIP}] )); then
+		if _exists ${TMPPIP} ; then
 			echo "Update ${TMPPIP}"
 			sudo -H ${TMPPIP} install --upgrade pip
 		fi;
@@ -30,24 +37,24 @@ function updatetools () {
 	unset PIPS
 
 	# Ruby Gems
-	if (( $+commands[gem] )); then
+	if _exists gem; then
 		echo "Update Ruby & gems"
 		sudo gem update —system && sudo gem update
 	fi;
 	# Homebrew
-	if (( $+commands[brew] )); then
+	if _exists brew; then
 		echo "Update Homebrew (Cask) & packages"
 		brew update && brew upgrade && brew cleanup
 	fi;
 	# Linux apt
-	if (( $+commands[apt] )); then
+	if _exists apt && [ ! $(uname -s) = 'Darwin' ]; then
 		echo "Update 'apt' & packages"
-		sudo apt update && sudo apt upgrade
+		sudo apt update && sudo apt -y full-upgrade && sudo apt install -y unattended-upgrades
 	fi;
 	# cleanup sudo
 	sudo -k
 	# NPM
-	if (( $+commands[npm] )); then
+	if _exists npm; then
 		echo "Update npm & packages"
 		npm install npm -g && npm update -g && npm install -g npm
 	fi;
@@ -59,7 +66,7 @@ function pipupgrade() {
 	PIPS=("pip2" "pip3")
 	for TMPPIP in "$PIPS[@]"
 	do
-		if (( $+commands[${TMPPIP}] )); then
+		if _exists ${TMPPIP}; then
 			echo "Upgrade modules for ${TMPPIP}"
 			${TMPPIP} freeze --local | egrep -v '^\-e' | cut -d = -f 1 | xargs -n1 sudo -H ${TMPPIP} install --upgrade
 		fi;
@@ -88,10 +95,10 @@ function targz() {
 	);
 
 	local cmd="";
-	if (( size < 52428800 )) && (( $+commands[zopfli] )); then
+	if (( size < 52428800 )) && _exists zopfli; then
 		# the .tar file is smaller than 50 MB and Zopfli is available; use it
 		cmd="zopfli";
-	elif (( $+commands[pigz] )); then
+	elif _exists pigs; then
 		cmd="pigz";
 	else
 		cmd="gzip";
@@ -124,7 +131,7 @@ function fs() {
 }
 
 # Use Git’s colored diff when available
-if (( $+commands[git] )); then
+if _exists git ; then
 	function diff() {
 		git diff --no-index --color-words "$@";
 	}
@@ -472,7 +479,7 @@ function toggle() {
 }
 
 function downloads() {
-	if (( $+commands[sqlite3] )); then
+	if _exists sqlite3; then
 		echo "from the Quarantine Manager : "
 		echo "from the Quarantine Manager - $(date +%F) : " >>| $HOME/LSQuarantineEvent.txt
 		sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* \
@@ -498,10 +505,10 @@ function genpassword() {
 function f {
 	hunt="$1" ; shift
 	find "${argv[@]:-.}" -iname "*${hunt}*" | grep --color=always -E "${hunt}"  | less -FRNX }
-function fd {
+function findd {
 	hunt="$1" ; shift
 	find "${argv[@]:-.}" -iname "*${hunt}*" -type d | grep --color=always -E "${hunt}"  | less -FRNX }
-function ff {
+function findf {
 	hunt="$1" ; shift
 	find "${argv[@]:-.}" -iname "*${hunt}*" -type f | grep --color=always -E "${hunt}"  | less -FRNX }
 
