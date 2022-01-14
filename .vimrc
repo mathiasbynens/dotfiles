@@ -3,7 +3,6 @@ set background=dark
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
@@ -11,25 +10,28 @@ Plugin 'rking/ag.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'preservim/nerdtree'
-
-" All of your Plugin must be added before the following line
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'tpope/vim-surround'
+Plugin 'ncm2/ncm2'
+Plugin 'mhinz/vim-startify'
 
 call vundle#end()
 
 " Minimalist-AutoCompletePop-Plugin
-set completeopt=menu,menuone,noinsert
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-autocmd InsertCharPre * call AutoComplete()
-fun! AutoComplete()
-    if v:char =~ '\K'
-        \ && getline('.')[col('.') - 4] !~ '\K'
-        \ && getline('.')[col('.') - 3] =~ '\K'
-        \ && getline('.')[col('.') - 2] =~ '\K' " last char
-        \ && getline('.')[col('.') - 1] !~ '\K'
+"set completeopt=menu,menuone,noinsert
+"inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+"autocmd InsertCharPre * call AutoComplete()
+"fun! AutoComplete()
+"    if v:char =~ '\K'
+"        \ && getline('.')[col('.') - 4] !~ '\K'
+"        \ && getline('.')[col('.') - 3] =~ '\K'
+"        \ && getline('.')[col('.') - 2] =~ '\K' " last char
+"        \ && getline('.')[col('.') - 1] !~ '\K'
+"
+"        call feedkeys("\<C-P>", 'n')
+"    end
+"endfun
 
-        call feedkeys("\<C-P>", 'n')
-    end
-endfun
 colorscheme gruvbox
 
 filetype plugin indent on    " required
@@ -101,6 +103,9 @@ set shortmess=atI
 set showmode
 " Show the filename in the window titlebar
 set title
+" Set tabs to 4 spaces
+:set expandtab
+:set tabstop=4
 " Show the (partial) command as it’s being typed
 set showcmd
 " Use relative line numbers
@@ -132,3 +137,6 @@ autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 " Treat .md files as Markdown
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+set splitbelow
+set splitright
