@@ -1,0 +1,64 @@
+{
+	"binary_file_patterns":
+	[
+		"bower_components/**/*",
+		"*.jpg",
+		"*.jpeg",
+		"*.png",
+		"*.gif",
+		"*.ttf",
+		"*.tga",
+		"*.dds",
+		"*.ico",
+		"*.eot",
+		"*.pdf",
+		"*.swf",
+		"*.jar",
+		"*.zip",
+		"*.map"
+	],
+	"bold_folder_labels": true,
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"default_encoding": "UTF-8",
+	"default_line_ending": "unix",
+	"detect_indentation": true,
+	"draw_minimap_border": true,
+	"draw_white_space": "selection",
+	"ensure_newline_at_eof_on_save": true,
+	"file_exclude_patterns":
+	[
+		".DS_Store",
+		"Desktop.ini",
+		"*.pyc",
+		"._*",
+		"Thumbs.db",
+		".Trashes"
+	],
+	"folder_exclude_patterns":
+	[
+		".git",
+		"sass-cache"
+	],
+	"font_size": 15.0,
+	"hot_exit": false,
+	"ignored_packages":
+	[
+		"Markdown",
+		"Vintage",
+	],
+	"line_numbers": true,
+	"match_brackets": true,
+	"match_tags": true,
+	"remember_open_files": false,
+	"rulers":
+	[
+		80
+	],
+	"show_encoding": true,
+	"show_line_endings": true,
+	"tab_size": 2,
+	"theme": "Default.sublime-theme",
+	"translate_tabs_to_spaces": false,
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": "auto",
+}
