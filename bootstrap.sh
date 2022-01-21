@@ -1,26 +1,31 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 cd "$(dirname "${BASH_SOURCE}")";
 
 git pull origin master;
 
 function doIt() {
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "install.sh" \
-		--exclude "README.md" --exclude "LICENSE-MIT.txt" --exclude "dotfiles_tmp" -avh --no-perms . ~;
-	source ~/install.sh;
-	
+	cp -rf ./dotfiles/ ~;
+
+	source ./install.sh;
+
+	if [ -z "$GIT_NAME" ]; then
+		read -p "Enter your Git Name ";
+		echo "";
+		GIT_NAME=$REPLY
+	fi
+	if [ -z "$GIT_EMAIL" ]; then
+		read -p "Enter your Git email address ";
+		echo "";
+		GIT_EMAIL=$REPLY
+	fi
 	git config --global user.name "$GIT_NAME"
 	git config --global user.email $GIT_EMAIL
 
+	source ~/.zshrc
+	echo "Finished installing"
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
-fi;
+doIt;
+
 unset doIt;

@@ -1,0 +1,36 @@
+export GIT_NAME="Rhys Evans"
+export GIT_EMAIL=rhys.evans@ft.com
+# Set the Vault cluster address.
+export VAULT_ADDR=https://vault.in.ft.com
+export VAULT_AUTH_GITHUB_TOKEN="$(security find-generic-password -a $USER -s "FT Vault" -w)"
+export HEROKU_ORGANIZATION=financial-times
+
+hl () {
+    heroku login --sso
+}
+
+function circle {
+  branch="$(git rev-parse --abbrev-ref HEAD)"
+  url="$(git config --get remote.origin.url)"
+  url=${url/git@github.com:/http://github.com/}
+  url=${url/.git/}
+  url=${url/github.com\//circleci.com\/gh/}
+  url="${url}/tree/${branch}"
+  echo "Opening ${url} $(\open ${url})"
+}
+
+function circle () {
+    repo=$(g remote -v | grep origin | tail -1 | sed -E s/".*github\.com\/"// | sed s/\.git.*//); open https://circleci.com/gh/$repo
+}
+
+# Prevent `vault write` commands from being stored in history.
+function vault () {
+  command vault "$@"
+  if [[ $1 == write ]]; then history -d $((HISTCMD-1)) &> /dev/null; fi
+}
+
+function vc () {
+   echo $VAULT_AUTH_GITHUB_TOKEN | pbcopy
+}
+
+alias vl="vault auth --method github"

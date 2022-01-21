@@ -1,0 +1,46 @@
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+function fixn {
+	echo "deleting node_modules"
+	rm -Rf node_modules
+	[ -f package-lock.json ] && rm package-lock.json && echo "deleted package-lock.json"
+	echo "reinstalling node_modules"
+	npm install
+}
+
+
+function githubNav {
+  branch="$(git rev-parse --abbrev-ref HEAD)"
+  url="$(git config --get remote.origin.url)"
+  url=${url/git@github.com:/http://github.com/}
+  url=${url/.git/}
+  if [[ $1 != "" ]];
+  then
+    base=$1
+    if [[ $1 =~ "-c" ]];
+    then
+      action="compare"
+      base=""
+      if [[ $2 != "" ]]; then base="$2..."; fi
+    elif [[ $1 =~ "-p" ]];
+    then
+      action="pull"
+      base=""
+      if [[ $2 != "" ]]; then base="$2..."; fi
+    else
+      action="tree";
+      base=$1
+    fi
+  else
+    base="";
+    action="tree"
+  fi
+  url="${url}/${action}/${base}${branch}"
+
+  echo "Opening ${url} $(\open ${url})"
+}
+
+alias gp=githubNav -p
+alias resolve="g s | grep UU | sed s/UU// | xargs s"
+
