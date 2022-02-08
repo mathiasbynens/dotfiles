@@ -89,8 +89,8 @@ export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 brew install go
-go get golang.org/x/tools/cmd/godoc
-go get github.com/golang/lint/golint
+go install golang.org/x/tools/cmd/godoc@latest
+go install golang.org/x/lint@latest
 
 # # install appstore cli & apps
 # brew install mas
