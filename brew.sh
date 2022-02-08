@@ -10,6 +10,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.profile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -27,7 +29,7 @@ sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 # running `chsh`.
 brew install bash
 brew tap homebrew/versions
-brew install bash-completion2
+brew install bash-completion@2
 
 brew install zsh
 
@@ -50,6 +52,7 @@ brew install tree
 
 # Install Node dependencies
 brew install nvm
+	# TODO: set up nvm into .profile of terminal
 brew install node
 brew install yarn
 
@@ -70,8 +73,9 @@ brew cleanup
 # Add cask
 brew tap homebrew/cask
 # brew cask install gimp
-brew cask install java iterm2 sublime-text sshfs google-chrome
-brew cask install spotify rambox
+# DEPRECATED: brew install --cask java iterm2 sublime-text sshfs google-chrome
+brew install --cask iterm2 sublime-text
+brew install --cask spotify rambox
 
 # More mac gestures for touchpad
 # brew cask install jitouch
