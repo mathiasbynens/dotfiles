@@ -9,7 +9,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # install homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -72,8 +72,12 @@ brew tap homebrew/cask
 # brew cask install gimp
 brew cask install java iterm2 sublime-text sshfs google-chrome
 brew cask install spotify rambox
-brew cask install jitouch
-brew cask install flux
+
+# More mac gestures for touchpad
+# brew cask install jitouch
+
+# Screen auto night shift
+# brew cask install flux
 
 # install go
 export GOPATH="${HOME}/git/go"
@@ -84,11 +88,15 @@ brew install go
 go get golang.org/x/tools/cmd/godoc
 go get github.com/golang/lint/golint
 
-# install appstore cli & apps
-brew install mas
-mas install 1091189122 # Bear - Notes App
-mas install 965442961  # Screenie - Screenshot Utitlity
+# # install appstore cli & apps
+# brew install mas
+# mas install 1091189122 # Bear - Notes App
+# mas install 965442961  # Screenie - Screenshot Utitlity
 
 # override macos settings
 defaults write NSGlobalDomain KeyRepeat -int 1 # speed up key repeat rate
 defaults write -g InitialKeyRepeat -int 15 # delay until key repeat 225 ms
+
+## new commands from me from here ##
+
+
