@@ -58,37 +58,37 @@ brew install jq
 # work bits
 brew install cli53
 brew install subversion
-brew install terraform
-brew install terraform-docs
+# brew install terraform
+# brew install terraform-docs
 brew install awscli
 brew install percona-toolkit
 brew install mysql
-brew cask install java
-brew install maven
+# brew cask install java
+# brew install maven
 
 # puppet-site shit
-brew cask install virtualbox
-brew cask install vagrant
-vagrant plugin install vagrant-host-shell
-vagrant plugin install vagrant-share --plugin-version 1.1.8
+# brew cask install virtualbox
+# brew cask install vagrant
+# vagrant plugin install vagrant-host-shell
+# vagrant plugin install vagrant-share --plugin-version 1.1.8
 # not technically from homebrew
 # gem install r10k --user-install
 
 # personal
-brew install wakeonlan
+# brew install wakeonlan
 brew install thefuck
-brew install tiny-fugue
+# brew install tiny-fugue
 brew install wallpaper
-brew cask install microsoft-remote-desktop-beta
+# brew cask install microsoft-remote-desktop-beta
 
 # Cask time
 brew cask install sublime-text
-brew cask install spectacle
+# brew cask install spectacle
 brew cask install slack
 brew cask install viscosity
-brew cask install google-chrome
-brew cask install flux
-brew cask install vassal
+# brew cask install google-chrome
+# brew cask install flux
+# brew cask install vassal
 
 # Remove outdated versions from the cellar.
 brew cleanup

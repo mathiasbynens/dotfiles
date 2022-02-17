@@ -122,7 +122,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
 # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
-/usr/local/bin/wallpaper "${HOME}/init/pixelmountain.jpg"
+/usr/local/bin/wallpaper set "${HOME}/init/pixelmountain.jpg"
 
 # turn darkmode on
 /usr/local/bin/dark-mode on
