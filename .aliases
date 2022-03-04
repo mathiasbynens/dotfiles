@@ -188,7 +188,7 @@ alias p3="python3"
 alias p2="python2"
 
 # ISO-8601 date formatting
-alias i8f='TZ="America/Los_Angeles" date +"%Y%m%dT%H%M%S%z"'
+alias i8f='TZ="$(readlink --canonicalize /etc/localtime | rev | cut -f1-2 -d'/' | rev)" date +"%Y%m%dT%H%M%S%z"'
 alias ria="rename_iso_append"
 
 # Epoch Seconds formatting
@@ -210,3 +210,7 @@ fi
 
 alias p1='p1ng'
 
+# DIFF related
+if _exists kitty && _exists diff; then
+	alias kd="kitty +kitten diff"
+fi
