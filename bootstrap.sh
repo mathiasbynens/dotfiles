@@ -4,20 +4,23 @@ place="$PWD"
 
 if [ -n "$ZSH_VERSION" ]; then
 	# assume Zsh
-	cd "$(dirname "${(%):-%x}")"
+	src_dir=$(dirname "${(%):-%x}")
 elif [ -n "$BASH_VERSION" ]; then
 	# assume Bash
-	cd "$(dirname "${BASH_SOURCE}")";
+	src_dir=$(dirname "${BASH_SOURCE}")
 else
    echo "oops"# assume something else
+   exit 1
 fi
 
-echo $PWD
+echo "${place} > ${src_dir}" 
 # git pull origin master;
 
 function doIt() {
+	cd "${src_dir}"
 	/usr/local/bin/rsync \
 		--exclude ".git/" \
+		--exclude ".idea/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
@@ -37,5 +40,9 @@ else
 		echo "Aborting."
 	fi;
 fi;
-unset doIt;
+
 cd $place
+echo "${src_dir} > ${place}" 
+
+unset src_dir;
+unset doIt;
