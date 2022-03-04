@@ -1,6 +1,8 @@
 # export VERBOSE="make some noise"
 (( ${+VERBOSE} )) && echo -n ".zprofile ... "
 
+export TZ="$(/usr/bin/readlink /etc/localtime | rev | cut -f1-2 -d'/' | rev)"
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
