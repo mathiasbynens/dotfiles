@@ -24,6 +24,12 @@ if [ -d "$HOME/.jenv" ] ; then
 	eval "$(jenv init -)"
 fi
 
+# config poetry if available
+if [ -d "$HOME/.poetry" ] ; then
+	export POETRY_ROOT="$HOME/.poetry"
+	export PATH="$POETRY_ROOT/bin:$PATH"
+fi
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
