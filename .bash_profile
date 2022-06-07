@@ -30,6 +30,13 @@ if [ -d "$HOME/.poetry" ] ; then
 	export PATH="$POETRY_ROOT/bin:$PATH"
 fi
 
+# config chruby if available
+if [ -d "/usr/local/opt/chruby/share/chruby" ] ; then
+	source /usr/local/opt/chruby/share/chruby/chruby.sh
+	source /usr/local/opt/chruby/share/chruby/auto.sh
+	eval "$(jenv init -)"
+fi
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
