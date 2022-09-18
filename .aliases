@@ -126,7 +126,7 @@ alias reload="exec ${SHELL} -l"
 alias path='echo -e ${PATH//:/\\n}'
 
 # Work in progress commit
-alias gwip="git commit -a -m 'work in progress -f'"
+alias gwip="git commit -a -m 'work in progress - fixup'"
 
 # Journal shortcuts
 alias pj="git commit -a -m '$(date +%F) - personal journal update'"
