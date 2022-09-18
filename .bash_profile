@@ -47,23 +47,3 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
-
-export PATH="/usr/local/Cellar/gcc-arm-none-eabi-9-2020-q2-update/bin:$PATH"
-export PATH="/Library/Application Support/Mbed Studio/mbed-studio-tools/ac6/bin:$PATH"
-export GCC_ARM_PATH=/usr/local/Cellar/gcc-arm-none-eabi-9-2020-q2-update/bin/
-export ARMC6_PATH=/Library/Application\ Support/Mbed\ Studio/mbed-studio-tools/ac6/bin
-
-# export ARMLMD_LICENSE_FILE=/Applications/Mbed\ Studio.app/Contents/tools-config/ac6-license.dat
-#export ARMLMD_LICENSE_FILE=7010@euhpc-lic-armlmd.euhpc.arm.com
-export ARMLMD_LICENSE_FILE=7010@cam-lic03.cambridge.arm.com
-export ARM_TOOL_VARIANT=mdk_pro_flex
-
-# Setting PATH for Python 3.5
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
-
-# Setting PATH for Python 3.9
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
-export PATH

@@ -128,6 +128,10 @@ noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
+" Tab switching keymaps
+noremap L :tabnext<CR>
+noremap H :tabprev<CR>
+
 " Automatic commands
 if has("autocmd")
 " Enable file type detection
