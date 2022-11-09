@@ -49,7 +49,6 @@ brew tap caskroom/cask
 brew cask install vlc
 brew cask install google-chrome
 brew cask install firefox
-brew cask install dropbox
 brew cask install slack
 brew cask install telegram
 brew cask install iterm2
