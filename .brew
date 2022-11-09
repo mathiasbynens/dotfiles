@@ -35,7 +35,6 @@ brew tap wagoodman/dive
 brew install dive       # explore docker container layers
 
 brew install gnupg
-brew install ssh-copy-id
 brew install findutils  # GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed 
 brew install rename
 brew install tree
