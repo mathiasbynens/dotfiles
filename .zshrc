@@ -26,9 +26,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
-export PATH="/usr/local/opt/go@1.12/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 _fzf_compgen_path() {
@@ -42,9 +40,9 @@ _fzf_compgen_dir() {
 
 zplugin ice "rupa/z" pick"z.sh"; zplugin light rupa/z
 
-zplugin ice wait as"program" pick"bin/git-dsf"; zplugin light zdharma/zsh-diff-so-fancy
+zplugin ice wait as"program" pick"bin/git-dsf"; zplugin light zdharma-continuum/zsh-diff-so-fancy
 zplugin ice wait lucid; zplugin light zsh-users/zsh-autosuggestions
-zplugin ice wait lucid; zplugin light zdharma/fast-syntax-highlighting
+zplugin ice wait lucid; zplugin light zdharma-continuum/fast-syntax-highlighting
 zplugin ice wait lucid; zplugin snippet OMZ::lib/history.zsh
 zplugin ice wait lucid; zplugin snippet OMZ::lib/key-bindings.zsh 
 zplugin ice wait lucid; zplugin snippet OMZ::plugins/sudo/sudo.plugin.zsh
