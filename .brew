@@ -50,7 +50,7 @@ brew install --cask firefox
 brew install --cask slack
 brew install --cask telegram
 brew install --cask iterm2
-brew install --cask sequel-pro
+brew install --cask sequel-ace
 brew install --cask visual-studio-code
 
 # Remove outdated versions from the cellar
