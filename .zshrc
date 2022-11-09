@@ -1,16 +1,12 @@
 #zmodload zsh/zprof
 
-# Install zplugin if not installed
-if [ ! -d "${HOME}/.zplugin" ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
-fi
-
 ### Added by Zplugin's installer
-source '/Users/artem/.zplugin/bin/zplugin.zsh'
-autoload -Uz _zplugin
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
+autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin installer's chunk
-
+ 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # https://github.com/zsh-users/zsh-autosuggestions/issues/303#issuecomment-361814419
@@ -80,3 +76,13 @@ iterm2_print_user_vars() {
   KUBENS=$(kubectl config view --minify --output 'jsonpath={..namespace}')
   iterm2_set_user_var kubeContext "${KUBECONTEXT}[${KUBENS}]"
 }
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
