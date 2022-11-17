@@ -56,9 +56,6 @@ zplugin ice wait lucid; zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 zplugin ice wait lucid; zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin ice wait lucid; zplugin snippet OMZ::plugins/vscode/vscode.plugin.zsh
 
-zplugin ice from"gh-r" as"program"; zplugin load junegunn/fzf-bin
-zplugin ice wait lucid multisrc"shell/{completion,key-bindings}.zsh" id-as"junegunn/fzf_completions" pick"/dev/null"; zplugin load junegunn/fzf
-
 # FIXME: drop
 zplugin ice wait lucid atinit"zpcompinit; zpcdreplay"; zplugin light jonmosco/kube-ps1
 
