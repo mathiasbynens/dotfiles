@@ -12,6 +12,7 @@ brew install coreutils
 
 brew install git
 brew install diff-so-fancy
+brew install fzf
 
 brew install node
 brew install go
