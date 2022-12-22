@@ -30,4 +30,4 @@ SETUVAR fish_pager_color_completion:\x1d
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_user_paths:/opt/arm/developmentstudio_platinum\x2d2022\x2eb/bin/\x1e/usr/bin/arm/gcc\x2darm\x2d10\x2e3\x2d2021\x2e07\x2dx86_64\x2daarch64\x2dnone\x2delf/bin/
+SETUVAR fish_user_paths:/opt/arm/developmentstudio_platinum\x2d2022\x2eb/bin/\x1e/opt/arm/gcc\x2darm\x2d10\x2e3\x2d2021\x2e07\x2dx86_64\x2darm\x2dnone\x2deabi/arm\x2dnone\x2deabi/bin\x1e/opt/arm/gcc\x2darm\x2d10\x2e3\x2d2021\x2e07\x2dx86_64\x2darm\x2dnone\x2deabi/bin
