@@ -25,7 +25,7 @@ if [ -d "$HOME/.jenv" ] ; then
 fi
 
 # config poetry if available
-if [ -d "$HOME/.local/bin/poetry" ] ; then
+if [ -f "$HOME/.local/bin/poetry" ] ; then
 	export POETRY="$HOME/.local/bin/poetry"
 	export PATH="$POETRY:$PATH"
 fi
