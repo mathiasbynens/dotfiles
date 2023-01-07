@@ -157,6 +157,10 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	
+[push]
+	# automatically set upstream when pushing on new branch for the first time
+        default = current
 
 
 # URL shorthands
