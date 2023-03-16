@@ -95,7 +95,7 @@ function phpserver() {
 
 # Compare original and gzipped file size
 function gz() {
-	local origsize=$(wc -c < "$1");
+	local origsize=$(stat -c "%s" "$1");
 	local gzipsize=$(gzip -c "$1" | wc -c);
 	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
 	printf "orig: %d bytes\n" "$origsize";
