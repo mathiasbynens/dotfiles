@@ -93,17 +93,12 @@ function phpserver() {
 	php -S "${ip}:${port}";
 }
 
-function sizeof() {
-	if [ "$(uname -s)" = 'Darwin' ]; then
-		stat -Lf "%z" -- "$1";
-	else
-		stat -Lc "%s" -- "$1";
-	fi
-}
-
 # Compare original and gzipped file size
 function gz() {
-	local origsize=$(sizeof "$1");
+	local origsize=$(
+		stat -f"%z" -- "$1" 2> /dev/null; # macOS `stat`
+		stat -c"%s" -- "$1" 2> /dev/null;  # GNU `stat`
+	);
 	local gzipsize=$(gzip -c "$1" | wc -c);
 	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
 	printf "orig: %d bytes\n" "$origsize";
