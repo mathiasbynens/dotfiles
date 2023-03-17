@@ -95,9 +95,9 @@ function phpserver() {
 
 function sizeof() {
 	if [ "$(uname -s)" = 'Darwin' ]; then
-		stat -fL "%z" -- "$1";
+		stat -Lf "%z" -- "$1";
 	else
-		stat -cL "%s" -- "$1";
+		stat -Lc "%s" -- "$1";
 	fi
 }
 
