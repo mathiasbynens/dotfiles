@@ -3,38 +3,31 @@ set background=dark
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'kien/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'preservim/nerdtree'
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'tpope/vim-surround'
-Plugin 'ncm2/ncm2'
-Plugin 'mhinz/vim-startify'
+	Plugin 'VundleVim/Vundle.vim'
+	Plugin 'kien/ctrlp.vim'
+	Plugin 'rking/ag.vim'
+	Plugin 'mileszs/ack.vim'
+	Plugin 'ncm2/ncm2'
+	
+	Plugin 'Xuyuanp/nerdtree-git-plugin' " improv: show a little star if dirty
+	Plugin 'Raimondi/delimitMate'       " auto adds/removes closing brackets
+	Plugin 'compnerd/arm64asm-vim'      " syntax: arm64 assembly
+	Plugin 'ycm-core/YouCompleteMe'
+	Plugin 'airblade/vim-gitgutter'
+	Plugin 'editorconfig/editorconfig-vim'
 
+	" color schemes
+	Plugin 'morhetz/gruvbox'
+	Plugin 'flazz/vim-colorschemes'
+	Plugin 'preservim/tagbar'           " tagbar: list of tags
+	Plugin 'preservim/nerdtree'
+	Plugin 'arcticicestudio/nord-vim'
+	Plugin 'whatyouhide/vim-gotham'
 call vundle#end()
 
-" Minimalist-AutoCompletePop-Plugin
-"set completeopt=menu,menuone,noinsert
-"inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-"autocmd InsertCharPre * call AutoComplete()
-"fun! AutoComplete()
-"    if v:char =~ '\K'
-"        \ && getline('.')[col('.') - 4] !~ '\K'
-"        \ && getline('.')[col('.') - 3] =~ '\K'
-"        \ && getline('.')[col('.') - 2] =~ '\K' " last char
-"        \ && getline('.')[col('.') - 1] !~ '\K'
-"
-"        call feedkeys("\<C-P>", 'n')
-"    end
-"endfun
+colorscheme Benokai 
 
-colorscheme gruvbox
-
-filetype plugin indent on    " required
+filetype plugin indent on    " c
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 " Enhance command-line completion
@@ -53,7 +46,6 @@ set encoding=utf-8 nobomb
 let mapleader=","
 " Don’t add empty newlines at the end of files
 set binary
-set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -76,8 +68,10 @@ set number
 syntax on
 " Highlight current line
 set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
+" Set the maximum textwidth to 80 characters
+set textwidth=80
+" Make tabs as wide as four spaces
+" set tabstop=4
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -98,14 +92,11 @@ set nostartofline
 " Show the cursor position
 set ruler
 " Don’t show the intro message when starting Vim
-set shortmess=atI
+set shortmess=aTI
 " Show the current mode
 set showmode
 " Show the filename in the window titlebar
 set title
-" Set tabs to 4 spaces
-:set expandtab
-:set tabstop=4
 " Show the (partial) command as it’s being typed
 set showcmd
 " Use relative line numbers
@@ -124,6 +115,7 @@ let old_query = getreg('/')
 call setpos('.', save_cursor)
 call setreg('/', old_query)
 endfunction
+
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
@@ -144,3 +136,9 @@ endif
 
 set splitbelow
 set splitright
+
+digraph gy 127947
+digraph gc 9989
+digraph rx 10060
+digraph cb 129395
+digraph rn 127939

@@ -1,7 +1,4 @@
 [ -n "$PS1" ] && source ~/.bash_profile;
-export PATH="/usr/local/Cellar/gcc-arm-none-eabi-9-2020-q2-update/bin:$PATH"
-export PATH="/Library/Application\ Support/Mbed\ Studio/mbed-studio-tools/ac6/bin:$PATH"
-
 
 countdown(){
     date1=$((`date +%s` + $1));
@@ -35,3 +32,4 @@ pomodoro(){
     countdown 60*25;
 }
 
+. "$HOME/.cargo/env"

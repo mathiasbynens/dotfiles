@@ -12,6 +12,7 @@ alias -- -="cd -"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
+alias tf="cd ~/projects/tf-a-projects"
 alias g="git"
 
 # Detect which `ls` flavor is in use
@@ -37,9 +38,9 @@ alias ls="command ls ${colorflag}"
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias grep='grep -n --color=auto'
+alias fgrep='fgrep -n --color=auto'
+alias egrep='egrep -n --color=auto'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
