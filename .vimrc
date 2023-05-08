@@ -8,7 +8,7 @@ call vundle#begin()
 	Plugin 'rking/ag.vim'
 	Plugin 'mileszs/ack.vim'
 	Plugin 'ncm2/ncm2'
-	
+
 	Plugin 'Xuyuanp/nerdtree-git-plugin' " improv: show a little star if dirty
 	Plugin 'Raimondi/delimitMate'       " auto adds/removes closing brackets
 	Plugin 'compnerd/arm64asm-vim'      " syntax: arm64 assembly
@@ -25,7 +25,7 @@ call vundle#begin()
 	Plugin 'whatyouhide/vim-gotham'
 call vundle#end()
 
-colorscheme Benokai 
+colorscheme gruvbox
 
 filetype plugin indent on    " c
 " alternatively, pass a path where Vundle should install plugins
@@ -59,6 +59,8 @@ set backupskip=/tmp/*,/private/tmp/*
 " Respect modeline in files
 set modeline
 set modelines=4
+" Don't show a colorcolumn at the max line!
+let g:EditorConfig_max_line_indicator = "none"
 " Enable per-directory .vimrc files and disable unsafe commands in them
 set exrc
 set secure
@@ -70,8 +72,6 @@ syntax on
 set cursorline
 " Set the maximum textwidth to 80 characters
 set textwidth=80
-" Make tabs as wide as four spaces
-" set tabstop=4
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -142,3 +142,7 @@ digraph gc 9989
 digraph rx 10060
 digraph cb 129395
 digraph rn 127939
+set cc=
+
+setlocal spell spelllang=en_gb
+set path+=**
