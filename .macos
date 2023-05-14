@@ -456,6 +456,9 @@ defaults write com.apple.dock wvous-tr-modifier -int 0
 defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
+# show switch app on all screens
+# defaults write com.apple.Dock appswitcher-all-displays -bool true
+
 ###############################################################################
 # Safari & WebKit                                                             #
 ###############################################################################
