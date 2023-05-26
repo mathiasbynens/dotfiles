@@ -21,6 +21,12 @@ if [ -d "$HOME/.jenv" ] ; then
 	export PATH="$JENV_ROOT/bin:$PATH"
 fi
 
+# config poetry if available
+if [ -f "$HOME/.local/bin/poetry" ] ; then
+	export POETRY="$HOME/.local/bin/"
+	export PATH="$POETRY:$PATH"
+fi
+
 # set get-opt from gnu / Apache Airflow
 if [ -d "$HOME/projects/airflow" ] ; then
 	export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"

@@ -1,6 +1,7 @@
-# Source pyenv shims first thing in path to source the correct version of python
+#!/bin/zsh
 
-path=("$HOME/.pyenv/shims" $path)
+# Omit commands that begin with a space from history
+setopt HIST_IGNORE_SPACE
 
-export PATH
-
+# Omit duplicates
+setopt HIST_IGNORE_DUPS
