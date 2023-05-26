@@ -1,6 +1,9 @@
 sudo apt update
 sudo apt install htop iftop zsh neofetch build-essential
 
+# Shellcheck
+sudo apt install shellcheck
+
 # Powerline Fonts
 sudo apt-get install fonts-powerline
 
