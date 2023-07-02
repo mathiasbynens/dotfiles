@@ -16,7 +16,11 @@ prompt_git() {
 	local branchName='';
 
 	# Check if the current directory is in a Git repository.
-	git rev-parse --is-inside-work-tree &>/dev/null || return;
+	local is_git;
+	is_git=$(git rev-parse --is-inside-work-tree 2>/dev/null)
+	if [ $? -ne 0 ] || [[ "$is_git" == "false" ]]; then
+		return
+	fi
 
 	# Check for what branch we’re on.
 	# Get the short symbolic ref. If HEAD isn’t a symbolic ref, get a
