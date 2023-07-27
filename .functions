@@ -175,3 +175,7 @@ function tre() {
 function acp() {
 	sed 's/schedule_interval\=.*/schedule_interval=None,/g' "$1" > "$2"
 }
+
+function install_pyenv() {
+    curl https://pyenv.run | bash
+}
