@@ -1,3 +1,5 @@
-function gwip --wraps=git\ commit\ -a\ -m\ \'work\ in\ progress\ -\ fixup\' --description alias\ gwip=git\ commit\ -a\ -m\ \'work\ in\ progress\ -\ fixup\'
-    git commit -an -m 'work in progress - fixup' $argv
+function gwip --description 'git commit a work-in-progress branch'
+    git add -u
+    git rm (git ls-files --deleted) 2>/dev/null
+    git commit -m "fixup chore(no-merge): work in progress" --no-verify
 end
