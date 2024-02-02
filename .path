@@ -1,19 +1,80 @@
-# If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:$HOME/utils:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
-# coreutils, for gnubin utilities
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-# Python 3.10
-export PATH="$PATH:/usr/local/opt/python@3.10/bin"
-# Jupyter Labs
-export PATH="$PATH:/usr/local/opt/python@3.9/bin:$HOME/Library/Python/3.9/bin/"
-# Add VSCodium (code)
-export PATH="$PATH:/Applications/VSCodium.app/Contents/Resources/app/bin"
-# Add Visual Studio Code (code)
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# # If you come from bash you might have to change your $PATH.
+# export PATH="$HOME/bin:$HOME/utils:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+
+# # coreutils, for gnubin utilities
+# export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# # Python 3.12
+# export PATH="$PATH:/usr/local/opt/python@3.12/bin"
+# # Jupyter Labs
+# export PATH="$PATH:/usr/local/opt/python@3.11/bin:$HOME/Library/Python/3.11/bin/"
+
+# # Add VSCodium (code)
+# export PATH="$PATH:/Applications/VSCodium.app/Contents/Resources/app/bin"
+# # Add Visual Studio Code (code)
+# export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# # Rust Cargo
+# export PATH="$HOME/.cargo/bin:$PATH"
+
+# # Setting PATH for Python 3.9
+# # The original version is saved in .zprofile.pysave
+# # PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
+# # export PATH
+
+
+# # Remove redundant PATH dirs
+# export PATH=$( echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}' )
+
+
+# force path & PATH to have unique values with:
+typeset -U path PATH
+
+# Add directory to beginning of 'path'
+function path_prepend() {
+    path=("$1" "$path[@]")
+	# path[1,0]="$1"
+}
+# Add directory to end of 'path'
+function path_append() {
+	path+=("$1")
+}
+
+# path order matters -- insure that your preferred items are earlier in the path.
+# I.e., preferred dirs higher in 'prepend' and lower in 'append'
+
+
+#PREPENDS - add to the beginning of the path - lower in this list is sooner in the path
+# Homebrew and coreutils
+if command -v /opt/homebrew/bin/brew &>/dev/null 2>&1; then
+    path_prepend "/opt/homebrew/bin"
+elif command -v /usr/local/bin/brew &>/dev/null 2>&1; then
+    path_prepend "/usr/local/bin"
+fi
+if brew --prefix coreutils &>/dev/null 2>&1; then
+    path_prepend $(brew --prefix coreutils)/libexec/gnubin
+fi
+
 # Rust Cargo
-export PATH="$HOME/.cargo/bin:$PATH"
+path_prepend "$HOME/.cargo/bin"
+
+# my 'normal' bin directories
+my_executables=("$HOME/.local/bin" "$HOME/bin" "$HOME/utils")
+for exe in "${my_executables[@]}" ;do
+    path_prepend "$exe"
+done
 
 
-# Remove redundant PATH dirs
-export PATH=$( echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}' )
+# APPENDS - append to the end of the path
+# Python 3.11 - installed with Homebrew
+path_append "$(brew --prefix python@3.11)/bin"
+# Python 3.12 - installed with Homebrew
+path_append "$(brew --prefix python@3.12)/bin"
+# Jupyter Labs
+# same as the python paths above
+
+# Add VSCodium (code)
+path_append "/Applications/VSCodium.app/Contents/Resources/app/bin"
+# Add Visual Studio Code (code)
+path_append "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 

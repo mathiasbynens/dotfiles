@@ -10,7 +10,7 @@ for file in ~/.{path,exports,functions,aliases,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-export GPG_TTY=$(tty)
+export GPG_TTY=$(tty 2>/dev/null || /usr/bin/tty)
 
 # Homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
@@ -18,10 +18,11 @@ export HOMEBREW_NO_ANALYTICS=1
 # Add pyenv executable to PATH and
 # enable shims by adding the following
 # to ~/.profile and ~/.zprofile:
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-(( $+commands[pyenv] )) && eval "$(pyenv init --path)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# (( $+commands[pyenv] )) && eval "$(pyenv init --path)"
 
 
 # Cleanup up PATH, just in case you have added duplicate entries
-export PATH=$( echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}' )
+# SEE '.path' file for this
+# export PATH=$( echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}' )

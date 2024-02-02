@@ -7,7 +7,7 @@ function _exists() { (( $+commands[$1] )) }
 # Brew - update 'brew', then upgrade all installed packages, then cleanup and report
 if _exists brew; then
 	function brewup () {
-		brew update && brew upgrade && brew cleanup && brew doctor
+		brew update --verbose && brew upgrade && brew cleanup
 	}
 	function brewf () {
 		(cd ~ ; brew bundle dump && ria ~/Brewfile)
@@ -26,14 +26,15 @@ function updatetools () {
 
 	# Python pip
 	# updates pip2 and pip3, and set the latter (pip3) as the default 'pip'
+	# Note: now only updating pip3 and ignoring pip2
 	#
 	# # python3 -m pip install --upgrade pip
-	PIPS=("pip3")  # include "pip2" for older pip
+	PIPS=("pip")  # was 'pip3' & 'pip2'; include "pip2" for older pip
 	for TMPPIP in "$PIPS[@]"
 	do
 		if _exists ${TMPPIP} ; then
 			echo "Update ${TMPPIP}"
-			sudo -H ${TMPPIP} install --upgrade pip
+			python3 -m ${TMPPIP} install --upgrade pip
 		fi;
 	done
 	unset PIPS
@@ -66,6 +67,18 @@ function updatetools () {
 	if _exists npm; then
 		echo "Update npm & packages"
 		npm install npm -g && npm update -g && npm install -g npm
+	fi;
+	
+	# Rust
+	if _exists rustup; then
+		echo "Update Rust"
+		rustup update
+	fi;
+	
+	# Cargo
+	if _exists cargo; then
+		echo "Update cargo packages"
+		cargo update
 	fi;
 	
 }
@@ -224,7 +237,7 @@ function getcertnames() {
 
 # Normalize `open` across Linux, macOS, and Windows.
 # This is needed to make the `o` function (see below) cross-platform.
-if [ ! $(uname -s) = 'Darwin' ]; then
+if [ ! $(/usr/bin/uname -s) = 'Darwin' ]; then
 	if grep -q Microsoft /proc/version; then
 		# Ubuntu on Windows using the Linux subsystem
 		alias open='explorer.exe';
@@ -240,7 +253,7 @@ function o() {
 		open .;
 	else
 		open "$@";
-	fi;
+	fi
 }
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
@@ -258,7 +271,7 @@ function grain () {
 
 # checkusers - Cautionary script to check for nefarious hidden users
 function checkusers () {
-	if [ $(uname -s) = 'Darwin' ]; then
+	if [ $(/usr/bin/uname -s) = 'Darwin' ]; then
 		lw="/Library/Preferences/com.apple.loginwindow"
 		printf "Current users:\n %s\n" $(/usr/bin/users)
 		declare -a allowedusers=("daemon","root","nobody","Guest")
@@ -359,62 +372,67 @@ function tit() {
 
 # List new files recursively by date created within current directory. Displays relative dates. 
 # based on https://gist.github.com/benwoodward/8873c8ad5517ce255ad04bd082979146
-function relative-date() {
-  while read input_string; do
-    local file_path=`echo $input_string | cut -d ' ' -f 5-`
-    local ls_date=`echo $input_string | cut -d ' ' -f 1,2,3,4`
-    # Accepts date in format found in `ls` output, and converts to epoch
-    local date="$(gdate --date="$ls_date" +"%s")"
-    local now="$(gdate +"%s")"
-    local time_diff=$((now - date))
+# function relative-date() {
+#   while read input_string; do
+#     local file_path=`echo $input_string | cut -d ' ' -f 5-`
+#     local ls_date=`echo $input_string | cut -d ' ' -f 1,2,3,4`
+#     # Accepts date in format found in `ls` output, and converts to epoch
+#     local date="$(gdate --date="$ls_date" +"%s")"
+#     local now="$(gdate +"%s")"
+#     local time_diff=$((now - date))
 
-    if ((time_diff > 48*60*60)); then
-      date_string=`printf "%3.0f days ago" $((time_diff/(24*60*60)))`
-    elif ((time_diff > 60*60)); then
-      date_string=`printf "%3.0f hours ago" $((time_diff/(60*60)))`;
-    elif ((time_diff > 60)); then
-      date_string=`printf "%3.0f minutes ago" $((time_diff/60))`;
-    else
-      date_string=`printf "%3.0f seconds ago" $time_diff`;
-    fi
+#     if ((time_diff > 48*60*60)); then
+#       date_string=`printf "%3.0f days ago" $((time_diff/(24*60*60)))`
+#     elif ((time_diff > 60*60)); then
+#       date_string=`printf "%3.0f hours ago" $((time_diff/(60*60)))`;
+#     elif ((time_diff > 60)); then
+#       date_string=`printf "%3.0f minutes ago" $((time_diff/60))`;
+#     else
+#       date_string=`printf "%3.0f seconds ago" $time_diff`;
+#     fi
 
-    # date_string=${(r:15:)date_string}
-    echo "${(r:15:)date_string}\e[32m$file_path\e[m"
-  done
-}
-zle -N relative-date
+#     # date_string=${(r:15:)date_string}
+#     echo "${(r:15:)date_string}\e[32m$file_path\e[m"
+#   done
+# }
 
 function relative_date(){
-        local -A stat
-        zstat -H stat $1
-        local -i time_diff=$((EPOCHSECONDS  - stat[mtime]))
-        if ((time_diff > 48*60*60)); then
-            printf -v REPLY '%.0f days ago' $((time_diff/(24*60*60)))
-        elif ((time_diff > 60*60)); then
-            printf -v REPLY "%.0f hours ago" $((time_diff/(60*60)))
-        elif ((time_diff > 60)); then
-            printf -v REPLY "%.0f minutes ago" $((time_diff/60))
-        else
-            printf -v REPLY "%s seconds ago" $time_diff
-        fi
-    }
+	typeset -A stat
+	zstat -H stat $1
+	local -i time_diff=$((EPOCHSECONDS - stat[mtime]))
+	unset stat
+	if ((time_diff > 48*60*60)); then
+		printf -v REPLY '%3.0f days ago' $((time_diff/24/60/60))
+	elif ((time_diff > 60*60)); then
+		printf -v REPLY "%3.0f hours ago" $((time_diff/60/60))
+	elif (( time_diff > 60 )); then
+		printf -v REPLY "%3.0f minutes ago" $((time_diff/60))
+	else
+		printf -v REPLY "%3.0f seconds ago" $time_diff
+	fi
+}
 function list-files(){
-        setopt extendedglob
-		zmodload -F zsh/stat b:zstat
-        #zmodload zsh/stat b:zstat
-        local -a results
-        if (($1)); then
-            results=( (^(.git*|.tags*)/)#^(.git*|.tags*)(.om[1,$1]) )
-        else
-            results=( (^(.git*|.tags*)/)#^(.git*|.tags*)(.om1,10) )
-        fi
-        for result in $results; do
-            local REPLY
-			echo "$result"
-            relative-date $result
-            print "${(r:18:)REPLY} \e[32m$result\e[0m"
-       done
-    }
+	setopt extendedglob
+	zmodload -F zsh/stat b:zstat
+	#zmodload zsh/stat b:zstat
+	local -a results
+	if ()(($#)) *$1*(NY1-.); then
+		results=( *$1*(.om) )
+	elif [[ "$1" =~ ^[1-9][0-9]*$ ]]; then
+		results=( (^(.git*|.tags*)/)#^(.git*|.tags*)(.om[1,$1]) )
+	else
+		results=( (^(.git*|.tags*)/)#^(.git*|.tags*)(.om) )
+	fi
+	for result in $results; do
+		local REPLY
+		# echo "$result"
+		relative_date $result
+		# print "${(r:18:)REPLY} \e[32m$result\e[0m"
+		print "${(r:16:)REPLY} $result"
+		unset REPLY
+	done
+	unset results
+}
 	
 function list-new-files() {
 	if [ -n "$ZSH_VERSION" ]; then
@@ -425,14 +443,14 @@ function list-new-files() {
 			srch=${arg}'/**/*(.om[1,'${headn}'])'
 			[[ $#@ -gt 1 ]] && echo "# ${arg}"
 			ls -ltT $~srch | tr -s "\t" ' ' \
-				| cut -d' ' -f6- | relative-date 
+				| cut -d' ' -f6- | relative_date 
 		done
 	elif [ -n "$BASH_VERSION" ]; then
 		cmd=( find "${@:-.}" -type f \
 		-not \( -wholename './.git*' -prune \) \
 		-not \( -wholename './tags*' -prune \) \
 		-exec ls -lTU \{\} \; \| rev \| cut -d ' ' -f 1,2,3,4,5 \| rev \
-		\| relative-date \
+		\| relative_date \
 		\| sort -k 1 -r \| rev \| cut -d ':' -f 1,2 \| rev \
 		\| sed 's/://g' )
 	else
@@ -518,7 +536,7 @@ function genpassword() {
 		local _entropy=$(echo "l(${2:?16}^${_len})/l(2)" | bc -l | tr -d '\n' | xargs -0 printf "%.0f")
 
 		if [ ${_entropy} -gt 150 ]; then
-			_color=${BRIGHT}
+			_color=${BRIGHT}${CYAN}
 			_alert="paranoid is good"
 		elif [ ${_entropy} -gt 120 ]; then
 			_color=${GREEN}
