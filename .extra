@@ -1,0 +1,23 @@
+# PATH additions
+for another_bin in \
+    $HOME/bin
+do
+    [[ -e $another_bin ]] && export PATH=$another_bin:$PATH
+done
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
+
+
+# Git credentials
+GIT_AUTHOR_NAME="Bruno Germano"
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="bruno.germano@gmail.com"
+GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+hash rbenv &>/dev/null
+if [ $? -eq 0 ]; then
+	eval "$(rbenv init -)"
+	rbenv global 1.9.3-p194
+fi
