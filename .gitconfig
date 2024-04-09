@@ -127,7 +127,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	# gpgsign = true
 
 [diff]
 
@@ -180,4 +180,7 @@
 
 [init]
 
-	defaultBranch = main
+  defaultBranch = master
+[user]
+  name = Kunsang Norbu Tsering
+  email = tsering@sumnergroh.com
