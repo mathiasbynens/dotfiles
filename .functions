@@ -2,17 +2,17 @@
 
 # Create a new directory and enter it
 function mkd() {
-	mkdir -p "$@" && cd "$_";
+	mkdir -p "$@" && cd "$_" || return;
 }
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')" || return;
 }
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
-	local tmpFile="${@%/}.tar";
+	local tmpFile="${*%/}.tar";
 	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
 
 	size=$(
@@ -51,7 +51,7 @@ function fs() {
 	else
 		local arg=-sh;
 	fi
-	if [[ -n "$@" ]]; then
+	if [[ -n "$*" ]]; then
 		du $arg -- "$@";
 	else
 		du $arg .[^.]* ./*;
@@ -59,8 +59,7 @@ function fs() {
 }
 
 # Use Git’s colored diff when available
-hash git &>/dev/null;
-if [ $? -eq 0 ]; then
+if hash git &>/dev/null; then
 	function diff() {
 		git diff --no-index --color-words "$@";
 	}
@@ -68,7 +67,8 @@ fi;
 
 # Create a data URL from a file
 function dataurl() {
-	local mimeType=$(file -b --mime-type "$1");
+	local mimeType;
+	mimeType=$(file -b --mime-type "$1");
 	if [[ $mimeType == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8";
 	fi
@@ -87,17 +87,19 @@ function server() {
 # Start a PHP server from a directory, optionally specifying the port
 # (Requires PHP 5.4.0+.)
 function phpserver() {
-	local port="${1:-4000}";
-	local ip=$(ipconfig getifaddr en1);
+	local port, ip;
+	port="${1:-4000}";
+	ip=$(ipconfig getifaddr en1);
 	sleep 1 && open "http://${ip}:${port}/" &
 	php -S "${ip}:${port}";
 }
 
 # Compare original and gzipped file size
 function gz() {
-	local origsize=$(wc -c < "$1");
-	local gzipsize=$(gzip -c "$1" | wc -c);
-	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
+	local origsize, gzipsize, ratio;
+	origsize=$(wc -c < "$1");
+	gzipsize=$(gzip -c "$1" | wc -c);
+	ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
 	printf "orig: %d bytes\n" "$origsize";
 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
@@ -115,15 +117,17 @@ function getcertnames() {
 		return 1;
 	fi;
 
-	local domain="${1}";
+	local domain, tmp, certText;
+
+	domain="${1}";
 	echo "Testing ${domain}…";
 	echo ""; # newline
 
-	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
+	tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
 		| openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1);
 
 	if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
-		local certText=$(echo "${tmp}" \
+		certText=$(echo "${tmp}" \
 			| openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
 			no_serial, no_sigdump, no_signame, no_validity, no_version");
 		echo "Common Name:";
@@ -143,7 +147,7 @@ function getcertnames() {
 
 # Normalize `open` across Linux, macOS, and Windows.
 # This is needed to make the `o` function (see below) cross-platform.
-if [ ! $(uname -s) = 'Darwin' ]; then
+if [ ! "$(uname -s)" = 'Darwin' ]; then
 	if grep -q Microsoft /proc/version; then
 		# Ubuntu on Windows using the Linux subsystem
 		alias open='explorer.exe';
