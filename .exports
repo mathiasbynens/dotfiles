@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Make vim the default editor.
 export EDITOR='vim';
@@ -23,6 +23,12 @@ export HISTCONTROL='ignoreboth';
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
+# local TimeZone
+export TZ="$(/usr/bin/readlink /etc/localtime | rev | cut -f1-2 -d'/' | rev)"
+
+# Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
+
 # Highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}";
 
@@ -32,3 +38,5 @@ export MANPAGER='less -X';
 # Avoid issues with `gpg` as installed via Homebrew.
 # https://stackoverflow.com/a/42265848/96656
 export GPG_TTY=$(tty 2>/dev/null || /usr/bin/tty);
+
+export MODULAR_HOME="$HOME/.modular"
