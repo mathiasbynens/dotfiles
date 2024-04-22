@@ -1,19 +1,13 @@
 # export VERBOSE="make some noise"
 (( ${+VERBOSE} )) && echo -n ".zprofile ... "
 
-export TZ="$(/usr/bin/readlink /etc/localtime | rev | cut -f1-2 -d'/' | rev)"
-
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,exports,functions,aliases,extra}; do
+for file in ~/.{exports,path,functions,aliases,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-export GPG_TTY=$(tty 2>/dev/null || /usr/bin/tty)
-
-# Homebrew analytics
-export HOMEBREW_NO_ANALYTICS=1
 
 # Add pyenv executable to PATH and
 # enable shims by adding the following
