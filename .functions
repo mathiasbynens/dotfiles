@@ -580,10 +580,10 @@ function f {
 	fi
 }
 function findf {
+	hunt="$1" ; shift
 	if (( $+commands[fd] )); then
-		fd -tf "$1" "${argv[@]:-}"
+		fd -tf "$hunt" "${argv[@]:-}"
 	else
-		hunt="$1" ; shift
 		find "${argv[@]:-.}" -iname "*${hunt}*" -type f | grep --color=always -E "${hunt}"  | less -FRNX
 	fi
 }
