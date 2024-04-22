@@ -73,6 +73,11 @@ path_append "$(brew --prefix python@3.12)/bin"
 # Jupyter Labs
 # same as the python paths above
 
+# Modular Mojo
+if [[ -v MODULAR_HOME ]]; then
+    path_append "$MODULAR_HOME/pkg/packages.modular.com_mojo/bin"
+fi
+
 # Add VSCodium (code)
 path_append "/Applications/VSCodium.app/Contents/Resources/app/bin"
 # Add Visual Studio Code (code)
