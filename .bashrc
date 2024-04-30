@@ -1,1 +1,1 @@
-[ -n "$PS1" ] && source ~/.bash_profile;
+export MYSQL_PWD="	${PASS}"
