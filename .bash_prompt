@@ -30,7 +30,7 @@ prompt_git() {
 	# Early exit for Chromium & Blink repo, as the dirty check takes too long.
 	# Thanks, @paulirish!
 	# https://github.com/paulirish/dotfiles/blob/dd33151f/.bash_prompt#L110-L123
-	repoUrl="$(git config --get remote.origin.url)";
+	local repoUrl="$(git config --get remote.origin.url)";
 	if grep -q 'chromium/src.git' <<< "${repoUrl}"; then
 		s+='*';
 	else
