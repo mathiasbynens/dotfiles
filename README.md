@@ -1,17 +1,38 @@
-# Mathias’s dotfiles
+# Ahemed’s dotfiles [![Build Status](https://travis-ci.com/ahemed-haneen/dotfiles.svg?branch=master)](https://travis-ci.com/ahemed-haneen/dotfiles) ![GitHub language count](https://img.shields.io/github/languages/count/ahemed-haneen/dotfiles)
 
-![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
+> These are my dotfiles. There are many like them, but these are mine.
+
+Since [dotfiles](https://dotfiles.github.io) are very personal, I would not recommend just installing mine. Take a look and get inspiration, but there are better places to start off from. (such as the repo this one is forked from)
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
+- [Installation](#installation)
+  - [Using Git and the bootstrap script](#using-git-and-the-bootstrap-script)
+  - [Git-free install](#git-free-install)
+  - [Specify the `$PATH`](#specify-the-path)
+  - [Add custom commands without creating a new fork](#add-custom-commands-without-creating-a-new-fork)
+  - [Sensible macOS defaults](#sensible-macos-defaults)
+  - [Install Homebrew formulae](#install-homebrew-formulae)
+- [Inspiration:](#inspiration)
+- [Feedback](#feedback)
+- [Original Author](#original-author)
+- [Thanks to…](#thanks-to)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Installation
 
-**Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!
+**Warning:** If you want to give these dotfiles a try, you should first fork this repository :heavy_check_mark: , review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!
 
 ### Using Git and the bootstrap script
 
 You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
 
 ```bash
-git clone https://github.com/mathiasbynens/dotfiles.git && cd dotfiles && source bootstrap.sh
+git clone https://github.com/ahemed-haneen/dotfiles.git && cd dotfiles && source bootstrap.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
@@ -26,15 +47,11 @@ Alternatively, to update while avoiding the confirmation prompt:
 set -- -f; source bootstrap.sh
 ```
 
-### Git-free install
+### Oh My Zsh
 
-To install these dotfiles without Git:
-
-```bash
-cd; curl -#L https://github.com/mathiasbynens/dotfiles/tarball/main | tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh,.osx,LICENSE-MIT.txt}
 ```
-
-To update later on, just run that command again.
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
 ### Specify the `$PATH`
 
@@ -55,15 +72,15 @@ My `~/.extra` looks something like this:
 ```bash
 # Git credentials
 # Not in the repository, to prevent people from accidentally committing under my name
-GIT_AUTHOR_NAME="Mathias Bynens"
+GIT_AUTHOR_NAME="Haneen Ahemed"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 git config --global user.name "$GIT_AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="mathias@mailinator.com"
+GIT_AUTHOR_EMAIL="haneenahemed.a@gmail.com"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 ```
 
-You could also use `~/.extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/mathiasbynens/dotfiles/fork) instead, though.
+You could also use `~/.extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork the repository](https://github.com/ahemed-haneen/dotfiles/fork) instead, though.
 
 ### Sensible macOS defaults
 
@@ -73,6 +90,8 @@ When setting up a new Mac, you may want to set some sensible macOS defaults:
 ./.macos
 ```
 
+Definitely go through and check each setting before running, this can change some major things!
+
 ### Install Homebrew formulae
 
 When setting up a new Mac, you may want to install some common [Homebrew](https://brew.sh/) formulae (after installing Homebrew, of course):
@@ -81,14 +100,23 @@ When setting up a new Mac, you may want to install some common [Homebrew](https:
 ./brew.sh
 ```
 
+(aliases)
+
 Some of the functionality of these dotfiles depends on formulae installed by `brew.sh`. If you don’t plan to run `brew.sh`, you should look carefully through the script and manually install any particularly important ones. A good example is Bash/Git completion: the dotfiles use a special version from Homebrew.
+
+## Inspiration:
+
+Where I ~~stole ideas~~ got inspiration from.
+
+- [Matthias](https://mathiasbynens.be/), obviously
+- https://github.com/mathiasbynens/dotfiles
 
 ## Feedback
 
 Suggestions/improvements
-[welcome](https://github.com/mathiasbynens/dotfiles/issues)!
+[welcome](https://github.com/ahemed-haneen/dotfiles/issues)!
 
-## Author
+## Original Author
 
 | [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/mathias "Follow @mathias on Twitter") |
 |---|

@@ -6,13 +6,25 @@ git pull origin main;
 
 function doIt() {
 	rsync --exclude ".git/" \
+		--exclude "setup/" \
+  		--exclude "docs/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
+		--exclude ".DS_Store" \
+		--exclude ".github/" \
+		--exclude ".travis.yml" \
 		-avh --no-perms . ~;
-	source ~/.bash_profile;
+  if [ -n "$ZSH_VERSION" ]; then
+     source ~/.zshrc;
+  elif [ -n "$BASH_VERSION" ]; then
+     source ~/.bash_profile;
+  else
+     echo 'unknown shell'
+  fi
+
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

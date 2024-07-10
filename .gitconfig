@@ -19,7 +19,7 @@
 	c = clone --recursive
 
 	# Commit all changes.
-	ca = !git add ':(exclude,attr:builtin_objectmode=160000)' && git commit -av
+	ca = !git add -Av && git commit -av
 
 	# Switch to a branch, creating it if necessary.
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -65,6 +65,17 @@
 
 	# Show the user email for the current repository.
 	whoami = config user.email
+	# Merge GitHub pull request on top of the current branch or,
+	# if a branch name is specified, on top of the specified branch
+	# rbmr = "!f() { \
+	# 	declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+	# 	declare branch=\"${2:-$currentBranch}\"; \
+	# 	if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+	# 		git fetch origin refs/pull/$1/head:pr/$1 && \
+	# 		git checkout -B $branch && \
+	# 		git rebase -i $branch pr/$1
+	# 	fi \
+	# }; f"
 
 [apply]
 
@@ -155,6 +166,9 @@
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+
+[github]
+	user = "ahemed-haneen"
 
 # URL shorthands
 

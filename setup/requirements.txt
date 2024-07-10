@@ -1,0 +1,2 @@
+beautysh
+speedtest-cli
