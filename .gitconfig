@@ -2,12 +2,17 @@
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits.
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  # Scope to current directory
+  ld = log --pretty=oneline -n 20 --graph --abbrev-commit -- .
+  # Without graph
+  lr = log --pretty=oneline -n 20 --abbrev-commit
 
 	# View the current working tree status using the short format.
 	s = status -s
 
-	# Show the diff between the latest commit and the current state.
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+	# Show the diff between the latest commit and the current state
+	# d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+	d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
 
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state.
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
@@ -60,6 +65,12 @@
 	# a.k.a. ‘delete merged’
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
+  # Remove all local branches
+  da = "!git branch | grep -v '\\*' | xargs -n 1 git branch -D"
+
+  # Log current branch
+  b = "!git branch | grep '\\*' | xargs -n 1 | grep -v '\\*'"
+
 	# List contributors with number of commits.
 	contributors = shortlog --summary --numbered
 
@@ -98,6 +109,7 @@
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [color]
 
@@ -113,10 +125,12 @@
 
 [color "diff"]
 
-	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
+	meta = 11
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
 
 [color "status"]
 
@@ -128,11 +142,13 @@
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = true
+	template = /Users/zwang/.stCommitMsg
 
 [diff]
 
 	# Detect copies as well as renames.
 	renames = copies
+	tool = Kaleidoscope
 
 [diff "bin"]
 
@@ -148,6 +164,7 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	tool = Kaleidoscope
 
 [push]
 
@@ -177,7 +194,34 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	name = Zhe Wang
+	email = auzwang@gmail.com
+[difftool "sourcetree"]
+	cmd = /usr/local/bin/ksdiff -w \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[rerere]
+	enabled = true
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+	keepBackup = false
+[pull]
+	rebase = true
 
-[init]
-
-	defaultBranch = main
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[url "https://71b7484b12b826ba6a20720d8eecbe781f13ebd1:@github.com/"]
+	insteadOf = https://github.com/

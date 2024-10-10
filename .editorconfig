@@ -2,7 +2,18 @@ root = true
 
 [*]
 charset = utf-8
-indent_style = tab
+indent_style = space
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
+indent_size = 2
+
+[*.{kt,kts}]
+# possible values: number (e.g. 2), "unset" (makes ktlint ignore indentation completely)
+indent_size=4
+# true (recommended) / false
+insert_final_newline=true
+# possible values: number (e.g. 120) (package name, imports & comments are ignored), "off"
+# it's automatically set to 100 on `ktlint --android ...` (per Android Kotlin Style Guide)
+max_line_length=off
+indent_style = space

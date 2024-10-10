@@ -104,3 +104,6 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" fzf
+set rtp+=/usr/local/opt/fzf

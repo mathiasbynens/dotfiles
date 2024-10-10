@@ -1,0 +1,73 @@
+# Press escape for power!
+# set -o vi
+
+# Enable git command  autocompletion for 'g' as well
+complete -o default -o nospace -F _git g
+
+# Reset to Git 2.0+ push.default
+# git config --global push.default simple
+
+# cd into android tools
+alias androidsdk="cd ~/Library/Android/sdk/"
+alias scpy="scrcpy -m 1280 --max-fps 60 --shortcut-mod=lsuper,rsuper,lctrl --show-touches --stay-awake --turn-screen-off"
+alias scpyr="scrcpy -m 1280 --max-fps 60 --shortcut-mod=lsuper,rsuper,lctrl --show-touches --stay-awake --record scrcpy-recording.mp4"
+
+# start redis
+alias redis="redis-server /usr/local/etc/redis.conf &"
+
+# flush redis
+alias fr="redis-cli flushall"
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# git log
+alias gll="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gld="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all -- ."
+
+# kafka
+alias ks='zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties & kafka-server-start /usr/local/etc/kafka/server.properties'
+
+# Java 11 for Android
+alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_152`; java -version"
+alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
+
+# List processes occupying a given port
+ports() { lsof -i :$@; }
+
+# Docker
+# Get latest container ID
+alias dl="docker ps -l -q"
+
+# Get container process
+alias dps="docker ps"
+
+# Bash into running container
+dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
+
+# Sh into running container
+dsh() { docker exec -it $(docker ps -aqf "name=$1") sh; }
+
+function dstop() { docker stop $(docker ps -aq); }
+function drm() { docker rm $(docker ps -a -q); }
+
+function fblog() {
+  adb shell setprop log.tag.FA VERBOSE
+  adb shell setprop log.tag.FA-SVC VERBOSE
+  adb logcat -v time -s FA FA-SVC
+}
+
+alias fbdebug="adb shell setprop debug.firebase.analytics.app com.localz.technician.local"
+alias fbundebug="adb shell setprop debug.firebase.analytics.app .none."
+
+alias ylinks="find ~/.config/yarn/link -type l"
+alias ylinked="find node_modules -type l | grep -v .bin"
+
+function usefulcommands() {
+  echo "
+    aws sts get-caller-identity
+    export AWS_DEFAULT_PROFILE=external-report-dev-temp
+    aws s3api list-objects-v2 --bucket localz-external-reports-master-eu-west-1 --prefix SYB65K4Jpmje6LQIdxMIiMG1S24o1XplALb73000
+    aws s3api get-object --bucket localz-external-reports-master-eu-west-1 --key 6XSdrf8Y8wNM71tUoj90EeRxgSJlTPP7GyOG3000/rj_RFVUe8iRuj4lhnHI-trackingLinkByProject-daily-2021-04-25T23:00:00.000Z-2021-04-26T23:00:00.000Z.json report.json
+  "
+}
