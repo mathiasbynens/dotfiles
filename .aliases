@@ -52,7 +52,12 @@ alias week='date +%V'
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 # Google Chrome
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+if [ -f '/opt/google/chrome/google-chrome' ] ; then
+	alias chrome='/opt/google/chrome/google-chrome'
+else
+	alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+fi
+
 alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
 
 # IP addresses
