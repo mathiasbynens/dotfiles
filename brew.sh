@@ -2,11 +2,23 @@
 
 # Install command-line tools using Homebrew.
 
-# Make sure we’re using the latest Homebrew.
-brew update
+# First, check if Homebrew is installed.
+if ! command -v brew &> /dev/null; then
+    echo "Homebrew is not installed. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+    # Add Homebrew to PATH for Apple Silicon (M1/M2).
+    if [[ $(uname -m) == 'arm64' ]]; then
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+else
+    # Make sure we're using the latest Homebrew if is already installed.
+    brew update
 
-# Upgrade any already-installed formulae.
-brew upgrade
+    # Upgrade any already-installed formulae.
+    brew upgrade
+fi
 
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
