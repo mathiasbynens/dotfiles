@@ -1,4 +1,17 @@
 {
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f .claude/settings.local.json ] && ! git check-ignore -q .claude/settings.local.json 2>/dev/null; then echo '.claude/settings.local.json' >> .gitignore && echo '✓ Added .claude/settings.local.json to .gitignore'; fi"
+          }
+        ]
+      }
+    ]
+  },
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
