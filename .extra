@@ -87,19 +87,21 @@ export EDITOR='code -w'
 # Larger bash history (default is 500)
 export HISTSIZE=10000000
 export SAVEHIST=10000000
-setopt BANG_HIST              # Treat the '!' character specially during expansion.
-setopt EXTENDED_HISTORY       # Write the history file in the ":start:elapsed;command" format.
-setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY          # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history.
-setopt HIST_IGNORE_DUPS       # Don't record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS   # Delete old recorded entry if new entry is a duplicate.
-setopt HIST_FIND_NO_DUPS      # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE      # Don't record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS      # Don't write duplicate entries in the history file.
-setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks before recording entry.
-setopt HIST_VERIFY            # Don't execute immediately upon history expansion.
-setopt HIST_BEEP              # Beep when accessing nonexistent history.
+if [ -n "$ZSH_VERSION" ]; then
+  setopt BANG_HIST              # Treat the '!' character specially during expansion.
+  setopt EXTENDED_HISTORY       # Write the history file in the ":start:elapsed;command" format.
+  setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
+  setopt SHARE_HISTORY          # Share history between all sessions.
+  setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history.
+  setopt HIST_IGNORE_DUPS       # Don't record an entry that was just recorded again.
+  setopt HIST_IGNORE_ALL_DUPS   # Delete old recorded entry if new entry is a duplicate.
+  setopt HIST_FIND_NO_DUPS      # Do not display a line previously found.
+  setopt HIST_IGNORE_SPACE      # Don't record an entry starting with a space.
+  setopt HIST_SAVE_NO_DUPS      # Don't write duplicate entries in the history file.
+  setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks before recording entry.
+  setopt HIST_VERIFY            # Don't execute immediately upon history expansion.
+  setopt HIST_BEEP              # Beep when accessing nonexistent history.
+fi
 
 alias clean='find . -name "*.pyc" -delete; find . -name ".DS_Store" -delete; if [ -d .git ]; then git clean -fdx -- tmp; fi;'
 
@@ -144,14 +146,20 @@ alias b="npx bun"
 # cci - Claude Commit: commit staged/modified files with AI-generated message
 # Usage: cci [optional context]
 cci() {
-  claude -p "commit all staged and modified files with a concise commit message${1:+ (context: $1)}" --model haiku
+  claude -p "commit all staged and modified files with a concise commit message. Do NOT add Co-Authored-By or Generated-with lines.${1:+ Context: $1}" \
+    --model haiku \
+    --verbose \
+    --allowedTools "Bash(git add:*)" "Bash(git commit:*)" "Bash(git status:*)" "Bash(git diff:*)" "Bash(git log:*)"
 }
 
 # cpr - Claude PR: move HEAD commit to feature branch, reset current branch, create PR
 # Usage: cpr [base-branch] - defaults to current branch
 cpr() {
   local base="${1:-$(git branch --show-current)}"
-  claude -p "move the last commit to a new feature branch, reset $base back one commit, push the feature branch, and create a PR targeting $base" --model haiku
+  claude -p "move the last commit to a new feature branch, reset $base back one commit, push the feature branch, and create a PR targeting $base. Do NOT add Co-Authored-By or Generated-with lines." \
+    --model haiku \
+    --verbose \
+    --allowedTools "Bash(git:*)" "Bash(gh pr:*)"
 }
 
 zipall() {
