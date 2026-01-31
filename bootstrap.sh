@@ -28,6 +28,8 @@ EXCLUDES=(
 	"README.md"
 	"LICENSE-MIT.txt"
 	"brew.sh"
+	"CLAUDE.md"
+	"AGENTS.md"
 )
 
 # Build exclude parameters for rsync

@@ -140,6 +140,20 @@ alias tailog="taillog"
 
 alias b="npx bun"
 
+# Claude Code CLI helpers (non-interactive, uses haiku for speed/cost)
+# cci - Claude Commit: commit staged/modified files with AI-generated message
+# Usage: cci [optional context]
+cci() {
+  claude -p "commit all staged and modified files with a concise commit message${1:+ (context: $1)}" --model haiku
+}
+
+# cpr - Claude PR: move HEAD commit to feature branch, reset current branch, create PR
+# Usage: cpr [base-branch] - defaults to current branch
+cpr() {
+  local base="${1:-$(git branch --show-current)}"
+  claude -p "move the last commit to a new feature branch, reset $base back one commit, push the feature branch, and create a PR targeting $base" --model haiku
+}
+
 zipall() {
   local ts
   ts=$(date +%Y%m%d)
