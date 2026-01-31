@@ -150,7 +150,8 @@ cci() {
     --model haiku \
     --verbose \
     --output-format stream-json \
-    --allowedTools "Bash(git add:*)" "Bash(git commit:*)" "Bash(git status:*)" "Bash(git diff:*)" "Bash(git log:*)"
+    --allowedTools "Bash(git add:*)" "Bash(git commit:*)" "Bash(git status:*)" "Bash(git diff:*)" "Bash(git log:*)" \
+    | jq -r 'select(.type == "assistant" or .type == "result") | if .type == "result" then "✓ \(.result)" elif .message.content then .message.content[] | if .type == "text" then .text elif .type == "tool_use" then "→ \(.name): \(.input.command // .input.description // "")" else empty end else empty end'
 }
 
 # cpr - Claude PR: move HEAD commit to feature branch, reset current branch, create PR
@@ -161,7 +162,8 @@ cpr() {
     --model haiku \
     --verbose \
     --output-format stream-json \
-    --allowedTools "Bash(git:*)" "Bash(gh pr:*)"
+    --allowedTools "Bash(git:*)" "Bash(gh pr:*)" \
+    | jq -r 'select(.type == "assistant" or .type == "result") | if .type == "result" then "✓ \(.result)" elif .message.content then .message.content[] | if .type == "text" then .text elif .type == "tool_use" then "→ \(.name): \(.input.command // .input.description // "")" else empty end else empty end'
 }
 
 zipall() {
