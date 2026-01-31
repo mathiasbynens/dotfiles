@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if [ -f .claude/settings.local.json ] && ! git check-ignore -q .claude/settings.local.json 2>/dev/null; then echo '.claude/settings.local.json' >> .gitignore && echo '✓ Added .claude/settings.local.json to .gitignore'; fi"
+            "command": "grep -Fq '*local*' .gitignore 2>/dev/null || (echo '*local*' >> .gitignore && echo '✓ Added *local* to .gitignore')"
           }
         ]
       }
