@@ -17,4 +17,4 @@
 ### Behavior
 
 - Don't ask "would you like me to implement X?" - just do it.
-- Never add `Co-Authored-By` lines to commits or PRs.
+- Never add `Co-Authored-By` or `🤖 Generated with` lines to commits or PRs.
