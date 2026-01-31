@@ -1,5 +1,17 @@
 {
   "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/precompact-memory.sh",
+            "timeout": 60,
+            "statusMessage": "Extracting session learnings..."
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "matcher": "startup",
