@@ -308,7 +308,6 @@ macos_formulae=(
 macos_casks=(
 	malwarebytes
 	rectangle
-	little-snitch-mini
 	appcleaner
 )
 
