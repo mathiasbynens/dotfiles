@@ -25,7 +25,6 @@ let g:airline_theme = 'solarized'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
 if !exists('g:airline_symbols')
@@ -66,9 +65,6 @@ endif
 " BracketedPaste: automatically turn off and on paste mode
 Plug 'ConradIrwin/vim-bracketed-paste'
 
-" Dispatch: kick off jobs based on actions (Installed for Omnisharp)
-Plug 'tpope/vim-dispatch'
-
 " EditorConfig: Allow projects to override local config settings
 Plug 'editorconfig/editorconfig-vim'
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -80,14 +76,6 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 Plug 'https://github.com/mileszs/ack.vim', { 'on': 'Ack' }
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
-
-" Tagbar: ctag file navigation
-Plug 'majutsushi/tagbar'
-" Set some defaults for tagbar
-let g:tagbar_autoclose = 1
-let g:tagbar_left = 1
-" Set a mapping for the tagbar.vim plugin.  Toggles the tagbar window.
-nmap <leader>t :TagbarToggle<cr>
 
 " FastFold: Fixed a bug where vim tries to refold and causes severe slow down
 Plug 'https://github.com/Konfekt/FastFold'
@@ -191,26 +179,12 @@ Plug 'https://github.com/airblade/vim-gitgutter', executable('git') ? {} : { 'on
 
 " Fugitive: Git wrapper
 Plug 'https://github.com/tpope/vim-fugitive'
-
-" VCSCommand: VCS (cvs,svn,git,hg) managment
-Plug 'vim-scripts/vcscommand.vim'
 " }}}
 
 " Language Plugins {{{
 
 " Perl: yup
 Plug 'neybar/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny'  }
-
-" IndentLine: Provides visual indent levels
-" Plug 'Yggdroot/indentLine', { 'for': 'python' }
-Plug 'Yggdroot/indentLine'
-let g:indentLine_enabled = 1
-let g:indentLine_concealcursor = ''
-let g:indentLine_char = '┆'
-let g:indentLine_faster = 1
-
-" Go: Go functionality
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " }}}
 
 " Syntax Plugins {{{
@@ -229,11 +203,6 @@ Plug 'cakebaker/scss-syntax.vim'
 
 " HashiCorp: (Syntax and other tools for Vagrant,Terraform,Packer, etc)
 Plug 'hashivim/vim-hashicorp-tools'
-
-" Typescript: Add some typescript syntax and linting
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
-let g:yats_host_keyword = 1
 " }}}
 
 " Color Plugins {{{
@@ -275,11 +244,13 @@ endfunction
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-n>" : "\<S-Tab>"
 
 " UltiSnips starts python, which slows down vim's startup, so load it the
-" first time insert mode is entered.  It maps <tab> as it loads, so map ours
-" after it.
+" first time insert mode is entered (only if vim has python3).  It maps <tab>
+" as it loads, so map ours after it.
 function! s:LoadUltiSnips() abort
     autocmd! lazy_ultisnips
-    call plug#load('ultisnips')
+    if has('python3')
+        call plug#load('ultisnips')
+    endif
     inoremap <silent> <expr> <Tab> <SID>SmartTab()
 endfunction
 augroup lazy_ultisnips
