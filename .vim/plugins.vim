@@ -124,18 +124,17 @@ Plug 'https://github.com/jiangmiao/auto-pairs'
 " Tuned to stay out of the way during light edits of existing text:
 " - FlyMode off: typing a closer like ) inserts one instead of jumping ahead
 "   to an existing closer.
-" - Shortcuts disabled: they are insert mode mappings, so on <Leader> (,) they
-"   hijacked text like 'a,b' and made every comma wait for timeoutlen.  The
-"   defaults are <M-..> keys, which can fire on Option characters (é) in a
-"   terminal, so turn them off rather than unset them.
-" - <Leader>ap toggles auto-pairs for the current buffer (normal mode only;
-"   the built-in toggle would also map it in insert mode).
+" - <Leader>P toggles auto-pairs for the current buffer (normal mode only;
+"   the built-in toggle would also map it in insert mode).  Not <Leader>ap,
+"   which would collide with the <Leader>a Ack mapping.
+" Note: the <Leader> shortcuts below are insert mode mappings too, so typing
+" ',b' ',n' or ',e' with no space after the comma triggers them.
 let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutBackInsert = ''
-let g:AutoPairsShortcutJump = ''
-let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutBackInsert = '<Leader>b'
+let g:AutoPairsShortcutJump= '<Leader>n'
+let g:AutoPairsShortcutFastWrap= '<Leader>e'
 let g:AutoPairsShortcutToggle = ''
-nnoremap <silent> <leader>ap :call AutoPairsToggle()<CR>
+nnoremap <silent> <leader>P :call AutoPairsToggle()<CR>
 
 " DelimitMate: Auto closer pairs.  I'm trying auto-pairs at the moment
 " Plug 'Raimondi/delimitMate'
