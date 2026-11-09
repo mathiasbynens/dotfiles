@@ -194,15 +194,13 @@ if has("autocmd")
 endif " has("autocmd")
 " }}}
 " plugins {{{
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --vimgrep\ $*
-  set grepformat=%f:%l:%c:%m
-  let g:ackprg = 'ag --vimgrep'
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  " Was having trouble getting this to give the right results
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore .git --ignore .DS_Store -g ""'
-endif
+" Use ripgrep (installed via the Brewfile) over grep
+" --smart-case: case-insensitive unless the pattern has an uppercase letter
+set grepprg=rg\ --vimgrep\ --smart-case\ $*
+set grepformat=%f:%l:%c:%m
+let g:ackprg = 'rg --vimgrep --smart-case'
+" Use rg in CtrlP for listing files. Fast and respects .gitignore
+let g:ctrlp_user_command = 'rg %s --files --color=never --hidden --glob "!.git" --glob "!.DS_Store"'
 
 runtime plugins.vim
 " }}}
