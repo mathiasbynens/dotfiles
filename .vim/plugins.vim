@@ -211,11 +211,6 @@ Plug 'cakebaker/scss-syntax.vim'
 
 " HashiCorp: (Syntax and other tools for Vagrant,Terraform,Packer, etc)
 Plug 'hashivim/vim-hashicorp-tools'
-
-" Typescript: Add some typescript syntax and linting
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
-let g:yats_host_keyword = 1
 " }}}
 
 " Color Plugins {{{
