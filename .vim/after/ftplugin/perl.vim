@@ -27,6 +27,3 @@ set complete-=i
 " Allow <c-p> and <c-n> to recognize ':' as significant.  Enables ins-complete
 " on module names
 set iskeyword+=:
-
-" Enable Perl Linting
-let b:ale_linters = ['perl', 'perlcritic']

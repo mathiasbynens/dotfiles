@@ -119,12 +119,14 @@ Plug 'https://github.com/haya14busa/is.vim'
 
 " Lazy Typing Plugins {{{
 
-" Supertab: autocompletion with Tab
-Plug 'https://github.com/ervandew/supertab'
-
 " AutoPairs: Auto close pairs of things Eg: ""''{} etc
 Plug 'https://github.com/jiangmiao/auto-pairs'
-let g:AutoPairsFlyMode = 1
+" FlyMode off so it stays out of the way during light edits of existing text:
+" typing a closer like ) inserts one instead of jumping ahead to an existing
+" closer.
+" Note: the <Leader> shortcuts below are insert mode mappings, so typing ',b'
+" ',n' or ',e' with no space after the comma triggers them.
+let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<Leader>b'
 let g:AutoPairsShortcutJump= '<Leader>n'
 let g:AutoPairsShortcutFastWrap= '<Leader>e'
@@ -174,8 +176,8 @@ Plug 'tommcdo/vim-exchange'
 " SplitJoin: split or join code into one-liners vs verbose layouts
 Plug 'AndrewRadev/splitjoin.vim'
 
-" Ultisnips: Snippets
-Plug 'sirver/ultisnips'
+" Ultisnips: Snippets (loaded on first insert, see the end of this file)
+Plug 'sirver/ultisnips', { 'on': [] }
 
 " VimSnippets: Various snippets for lots of languages
 Plug 'honza/vim-snippets'
@@ -195,10 +197,6 @@ Plug 'vim-scripts/vcscommand.vim'
 " }}}
 
 " Language Plugins {{{
-
-" ALE: Asynchronous Lint Engine
-Plug 'dense-analysis/ale'
-let g:airline#extensions#ale#enabled = 1
 
 " Perl: yup
 Plug 'neybar/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny'  }
@@ -232,12 +230,6 @@ Plug 'cakebaker/scss-syntax.vim'
 " HashiCorp: (Syntax and other tools for Vagrant,Terraform,Packer, etc)
 Plug 'hashivim/vim-hashicorp-tools'
 
-" Groovy: syntax files
-Plug 'modille/groovy.vim'
-
-" Jenkinsfile: helper that loads up Groovy and a few other keywords
-Plug 'martinda/Jenkinsfile-vim-syntax'
-
 " Typescript: Add some typescript syntax and linting
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -260,12 +252,39 @@ if &diff
     colorscheme solarized
 endif
 
-" UltiSnips has built-in SuperTab support: pressing <Tab> will first try to
-" expand/jump a snippet, then fall back to SuperTab completion automatically.
-let g:SuperTabDefaultCompletionType = '<c-p>'
+" Tab: expand a snippet if one matches, otherwise use native keyword
+" completion (<c-p>).  At the start of a line or after whitespace it inserts a
+" real tab.  While the completion menu is open, Tab/S-Tab move through it.
 let g:UltiSnipsExpandTrigger = "<tab>"
 " Use Ctrl-j and Ctrl-b to navigate between snippet tabstops
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-b>"
+
+function! s:SmartTab() abort
+    if pumvisible()
+        return "\<C-p>"
+    endif
+    if col('.') <= 1 || getline('.')[col('.') - 2] =~ '\s'
+        return "\<Tab>"
+    endif
+    if exists('g:did_plugin_ultisnips') && UltiSnips#CanExpandSnippet()
+        return "\<C-r>=UltiSnips#ExpandSnippet()\<CR>"
+    endif
+    return "\<C-p>"
+endfunction
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-n>" : "\<S-Tab>"
+
+" UltiSnips starts python, which slows down vim's startup, so load it the
+" first time insert mode is entered.  It maps <tab> as it loads, so map ours
+" after it.
+function! s:LoadUltiSnips() abort
+    autocmd! lazy_ultisnips
+    call plug#load('ultisnips')
+    inoremap <silent> <expr> <Tab> <SID>SmartTab()
+endfunction
+augroup lazy_ultisnips
+    autocmd!
+    autocmd InsertEnter * call s:LoadUltiSnips()
+augroup END
 
 " vim:foldmethod=marker:foldlevel=0
