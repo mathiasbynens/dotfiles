@@ -550,7 +550,7 @@ function! s:reorg_rtp()
 
   let s:middle = get(s:, 'middle', &rtp)
   let rtps     = map(s:loaded_names(), 's:rtp(g:plugs[v:val])')
-  let afters   = filter(map(copy(rtps), 'globpath(v:val, "after")'), '!empty(v:val)')
+  let afters   = map(filter(copy(rtps), 'isdirectory(v:val."/after")'), 's:path(v:val."/after")')
   let rtp      = join(map(rtps, 'escape(v:val, ",")'), ',')
                  \ . ','.s:middle.','
                  \ . join(map(afters, 'escape(v:val, ",")'), ',')
@@ -570,10 +570,14 @@ function! s:doautocmd(...)
 endfunction
 
 function! s:dobufread(names)
+  " Nothing to detect in an unnamed empty buffer, e.g. the one on startup
+  if empty(bufname('%')) && line('$') == 1 && empty(getline(1))
+    return
+  endif
   for name in a:names
     let path = s:rtp(g:plugs[name])
     for dir in ['ftdetect', 'ftplugin', 'after/ftdetect', 'after/ftplugin']
-      if len(finddir(dir, path))
+      if isdirectory(path.'/'.dir)
         if exists('#BufRead')
           doautocmd BufRead
         endif
@@ -997,7 +1001,7 @@ function! s:bang(cmd, ...)
     let [sh, shellcmdflag, shrd] = s:chsh(a:0)
     " FIXME: Escaping is incomplete. We could use shellescape with eval,
     "        but it won't work on Windows.
-    let cmd = a:0 ? s:with_cd(a:cmd, a:1) : a:cmd
+    let cmd = a:0 ? s:with_cd(a:cmd, a:1, {'shell': s:is_win ? 'cmd.exe' : &shell}) : a:cmd
     if s:is_win
       let [batchfile, cmd] = s:batchfile(cmd)
     endif
@@ -1192,8 +1196,8 @@ function! s:update_impl(pull, force, args) abort
   endif
 
   let use_job = s:nvim || s:vim8
-  let python = (has('python') || has('python3')) && !use_job
-  let ruby = has('ruby') && !use_job && (v:version >= 703 || v:version == 702 && has('patch374')) && !(s:is_win && has('gui_running')) && threads > 1 && s:check_ruby()
+  let python = !use_job && (has('python3') || has('python'))
+  let ruby = !use_job && (v:version >= 703 || v:version == 702 && has('patch374')) && !(s:is_win && has('gui_running')) && threads > 1 && has('ruby') && s:check_ruby()
 
   let s:update = {
     \ 'start':   reltime(),
@@ -1229,7 +1233,7 @@ function! s:update_impl(pull, force, args) abort
   let s:submodule_opt = s:git_version_requirement(2, 8) ? ' --jobs='.threads : ''
 
   " Python version requirement (>= 2.7)
-  if python && !has('python3') && !ruby && !use_job && s:update.threads > 1
+  if python && !ruby && s:update.threads > 1 && !has('python3')
     redir => pyv
     silent python import platform; print platform.python_version()
     redir END
@@ -1462,7 +1466,7 @@ function! s:spawn(name, spec, queue, opts)
   elseif s:vim8
     let cmd = join(map(copy(argv), 'plug#shellescape(v:val, {"script": 0})'))
     if has_key(a:opts, 'dir')
-      let cmd = s:with_cd(cmd, a:opts.dir, 0)
+      let cmd = s:with_cd(cmd, a:opts.dir, {'shell': s:is_win ? 'cmd.exe' : 'sh', 'script': 0})
     endif
     let argv = s:is_win ? ['cmd', '/s', '/c', '"'.cmd.'"'] : ['sh', '-c', cmd]
     let jid = job_start(s:is_win ? join(argv, ' ') : argv, {
@@ -1643,7 +1647,7 @@ endwhile
 endfunction
 
 function! s:update_python()
-let py_exe = has('python') ? 'python' : 'python3'
+let py_exe = has('python3') ? 'python3' : 'python'
 execute py_exe "<< EOF"
 import datetime
 import functools
@@ -2328,11 +2332,18 @@ function! s:format_message(bullet, name, message)
 endfunction
 
 function! s:with_cd(cmd, dir, ...)
-  let script = a:0 > 0 ? a:1 : 1
-  let pwsh = s:is_powershell(&shell)
+  let opts = a:0 > 0 && type(a:1) == s:TYPE.dict ? a:1 : {}
+  let opts.shell = get(opts, 'shell', &shell)
+  let opts.script = get(opts, 'script', 1)
+
+  let pwsh = s:is_powershell(opts.shell)
   let cd = s:is_win && !pwsh ? 'cd /d' : 'cd'
   let sep = pwsh ? ';' : '&&'
-  return printf('%s %s %s %s', cd, plug#shellescape(a:dir, {'script': script, 'shell': &shell}), sep, a:cmd)
+  let pwsh_block_required = pwsh && !has('patch-9.2.6')
+  let start = pwsh_block_required ? '& { ' : ''
+  let end = pwsh_block_required ? ' }' : ''
+
+  return printf('%s%s %s %s %s%s', start, cd, plug#shellescape(a:dir, opts), sep, a:cmd, end)
 endfunction
 
 function! s:system_job(cmd) abort
@@ -2372,9 +2383,9 @@ function! s:system(cmd, ...)
       let cmd = a:cmd
     endif
     if a:0 > 0
-      let cmd = s:with_cd(cmd, a:1, type(a:cmd) != s:TYPE.list)
+      let cmd = s:with_cd(cmd, a:1, {'script': type(a:cmd) != s:TYPE.list})
     endif
-    if s:is_win && type(a:cmd) != s:TYPE.list
+    if s:is_win && type(a:cmd) != s:TYPE.list && !s:is_powershell(&shell)
       let [batchfile, cmd] = s:batchfile(cmd)
     endif
     if s:vim8 && has('gui_running') && !s:is_win
@@ -2462,9 +2473,11 @@ endfunction
 
 function! s:rm_rf(dir)
   if isdirectory(a:dir)
-    return s:system(s:is_win
-    \ ? 'rmdir /S /Q '.plug#shellescape(a:dir)
-    \ : ['rm', '-rf', a:dir])
+    return s:system(!s:is_win
+    \ ? ['rm', '-rf', a:dir]
+    \ : s:is_powershell(&shell)
+    \ ? ['Remove-Item', '-Recurse', '-Force', a:dir]
+    \ : 'rmdir /S /Q '.plug#shellescape(a:dir))
   endif
 endfunction
 
