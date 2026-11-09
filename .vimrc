@@ -106,9 +106,9 @@ nmap <leader>pp :setlocal paste! paste?<CR>
 map <leader>/ /\%V
 vmap <leader>/ <Esc>/\%V
 
-map <leader>t2 :setlocal shiftwidth = 2<cr>
-map <leader>t4 :setlocal shiftwidth = 4<cr>
-map <leader>t8 :setlocal shiftwidth = 8<cr>
+map <leader>t2 :setlocal shiftwidth=2<cr>
+map <leader>t4 :setlocal shiftwidth=4<cr>
+map <leader>t8 :setlocal shiftwidth=8<cr>
 
 "Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
