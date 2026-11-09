@@ -1,6 +1,9 @@
 "colors and fonts {{{
 syntax enable
-colors desert
+" desert is only a fallback for when solarized (see plugins.vim) isn't installed
+if empty(glob('~/.vim/plugged/vim-colors-solarized'))
+    colors desert
+endif
 set background=dark
 
 if has("gui_running")
@@ -10,14 +13,6 @@ if has("gui_running")
 endif
 " }}}
 " general settings {{{
-
-" This is to fix an error with python and vim where you will see the following
-" error: 
-" DeprecationWarning: the imp module is deprecated in favour of
-" importlib; see the module's documentation for alternative uses
-if has('python3')
-  silent! python3 1
-endif
 
 set nocompatible
 set history=300		           " keep 300 lines of command line history
