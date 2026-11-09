@@ -185,14 +185,6 @@ Plug 'https://github.com/tpope/vim-fugitive'
 
 " Perl: yup
 Plug 'neybar/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny'  }
-
-" IndentLine: Provides visual indent levels
-" Plug 'Yggdroot/indentLine', { 'for': 'python' }
-Plug 'Yggdroot/indentLine'
-let g:indentLine_enabled = 1
-let g:indentLine_concealcursor = ''
-let g:indentLine_char = '┆'
-let g:indentLine_faster = 1
 " }}}
 
 " Syntax Plugins {{{

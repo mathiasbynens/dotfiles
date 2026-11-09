@@ -39,6 +39,7 @@ set smarttab              "might need to remove this
 set ai                    "Auto indent
 set shiftround
 set wrap                  " Wrap lines
+set list                  " Show listchars; used for indent guides (see IndentGuides)
 filetype plugin indent on " Enable file type detection.
 " }}}
 " user interface {{{
@@ -154,6 +155,19 @@ function! TrimTrailingWS ()
 endfunction
 "Double-delete to remove trailing whitespace...
 map <silent> <BS><BS>  mz:call TrimTrailingWS()<CR>`z
+
+" Draw indent guides with listchars, replacing the indentLine plugin.
+" listchars is window-local but shiftwidth is buffer-local, so this is
+" re-run when the buffer or shiftwidth changes.
+let &listchars = 'tab:┆ ,leadmultispace:┆   '
+function! IndentGuides ()
+    if &buftype == '' && shiftwidth() > 0
+        let &l:listchars = 'tab:┆ ,leadmultispace:┆' . repeat(' ', shiftwidth() - 1)
+        setlocal list
+    else
+        setlocal nolist
+    endif
+endfunction
 " }}}
 " autogroup {{{
 " Only do this part when compiled with support for autocommands.
@@ -174,6 +188,10 @@ if has("autocmd")
     " http://vim.wikia.com/wiki/Automatically_open_the_quickfix_window_on_:make
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
+
+    " Refresh the indent guides, since listchars is window-local
+    autocmd BufWinEnter,BufEnter,FileType,TerminalOpen * call IndentGuides()
+    autocmd OptionSet shiftwidth,tabstop call IndentGuides()
   augroup END
 
   if exists("+omnifunc")
