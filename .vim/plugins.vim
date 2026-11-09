@@ -121,20 +121,15 @@ Plug 'https://github.com/haya14busa/is.vim'
 
 " AutoPairs: Auto close pairs of things Eg: ""''{} etc
 Plug 'https://github.com/jiangmiao/auto-pairs'
-" Tuned to stay out of the way during light edits of existing text:
-" - FlyMode off: typing a closer like ) inserts one instead of jumping ahead
-"   to an existing closer.
-" - <Leader>P toggles auto-pairs for the current buffer (normal mode only;
-"   the built-in toggle would also map it in insert mode).  Not <Leader>ap,
-"   which would collide with the <Leader>a Ack mapping.
-" Note: the <Leader> shortcuts below are insert mode mappings too, so typing
-" ',b' ',n' or ',e' with no space after the comma triggers them.
+" FlyMode off so it stays out of the way during light edits of existing text:
+" typing a closer like ) inserts one instead of jumping ahead to an existing
+" closer.
+" Note: the <Leader> shortcuts below are insert mode mappings, so typing ',b'
+" ',n' or ',e' with no space after the comma triggers them.
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<Leader>b'
 let g:AutoPairsShortcutJump= '<Leader>n'
 let g:AutoPairsShortcutFastWrap= '<Leader>e'
-let g:AutoPairsShortcutToggle = ''
-nnoremap <silent> <leader>P :call AutoPairsToggle()<CR>
 
 " DelimitMate: Auto closer pairs.  I'm trying auto-pairs at the moment
 " Plug 'Raimondi/delimitMate'
