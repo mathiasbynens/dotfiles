@@ -76,7 +76,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " Navigation Plugins {{{
 
-" Ack: Integration with ack/ag searching
+" Ack: Integration with ack/rg searching (see g:ackprg in .vimrc)
 Plug 'https://github.com/mileszs/ack.vim', { 'on': 'Ack' }
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>

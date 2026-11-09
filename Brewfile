@@ -46,7 +46,7 @@ brew 'readline'
 brew 'rename'
 brew 'ssh-copy-id'
 brew 'tag'
-brew 'the_silver_searcher'
+brew 'ripgrep' # better grep (replaces the_silver_searcher)
 brew 'thefuck'
 brew 'tree'
 brew 'vim'
@@ -56,7 +56,6 @@ brew 'yt-dlp'
 # Stuff I haven't used in a while
 # brew 'shellcheck'
 # brew 'sqlmap' # pen test tool for SQL vulnerabilies
-# brew 'tflint' #terraform linter
 # brew 'tmux'
 # brew 'webkit2png'
 
@@ -80,6 +79,7 @@ cask 'quicklook-video'  # Quicklook plugin for video preview
 cask 'slack'
 cask 'steam'
 cask 'syntax-highlight' # Quicklook plugin for code colorizing
+cask 'terraform-linters/tap/tflint' # terraform linter (removed from homebrew-core)
 # cask 'scroll-reverser' #allows mouse and trackpad to have separate scroll directions
 cask 'transmission'
 cask 'viscosity' # https://sparklabs.com/viscosity VPN client
