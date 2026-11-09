@@ -244,11 +244,13 @@ endfunction
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-n>" : "\<S-Tab>"
 
 " UltiSnips starts python, which slows down vim's startup, so load it the
-" first time insert mode is entered.  It maps <tab> as it loads, so map ours
-" after it.
+" first time insert mode is entered (only if vim has python3).  It maps <tab>
+" as it loads, so map ours after it.
 function! s:LoadUltiSnips() abort
     autocmd! lazy_ultisnips
-    call plug#load('ultisnips')
+    if has('python3')
+        call plug#load('ultisnips')
+    endif
     inoremap <silent> <expr> <Tab> <SID>SmartTab()
 endfunction
 augroup lazy_ultisnips
