@@ -93,11 +93,9 @@ install_extensions() {
 
   local extensions=(
     "Google.google-antigravity"
-    "ai-engineer-coach.ai-engineer-coach"
     "akamud.vscode-theme-onedark"
     "akamud.vscode-theme-onelight"
     "dbaeumer.vscode-eslint"
-    "google.gemini-cli-vscode-ide-companion"
     "vitest.explorer"
   )
 
