@@ -17,10 +17,11 @@ echo "💻 Setting up Visual Studio Code..."
 # ------------------------------------------------------------------------------
 ensure_code_cli() {
   if command -v code &>/dev/null; then
-    echo "✅ 'code' CLI is already available: $(which code)"
+    echo "✅ 'code' CLI is available: $(which code)"
     return 0
   fi
 
+  # On macOS, if the GUI app is installed but 'code' CLI isn't in PATH, symlink it to ~/.local/bin/code
   if is_macos; then
     local mac_code_bin="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
     if [[ -f "$mac_code_bin" ]]; then
@@ -28,33 +29,19 @@ ensure_code_cli() {
       mkdir -p "$HOME/.local/bin"
       ln -sf "$mac_code_bin" "$HOME/.local/bin/code"
       export PATH="$HOME/.local/bin:$PATH"
-    elif command -v brew &>/dev/null; then
-      echo "📦 Installing Visual Studio Code via Homebrew..."
-      brew install --cask visual-studio-code
-      if [[ -f "$mac_code_bin" ]]; then
-        mkdir -p "$HOME/.local/bin"
-        ln -sf "$mac_code_bin" "$HOME/.local/bin/code"
-        export PATH="$HOME/.local/bin:$PATH"
-      fi
     fi
-  elif is_linux; then
-    echo "📦 Installing Visual Studio Code via apt..."
-    sudo apt install -y wget gpg apt-transport-https
-    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /tmp/packages.microsoft.gpg
-    sudo install -D -o root -g root -m 644 /tmp/packages.microsoft.gpg /usr/share/keyrings/microsoft.gpg
-    rm -f /tmp/packages.microsoft.gpg
-    echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
-    sudo apt update
-    sudo apt install -y code
   fi
 
-  if ! command -v code &>/dev/null; then
-    echo "⚠️  Warning: 'code' CLI is not found on PATH."
-    echo "   If VS Code is already installed, ensure the 'code' command is in your PATH."
-    return 1
+  if command -v code &>/dev/null; then
+    echo "✅ 'code' CLI is now available: $(which code)"
+    return 0
   fi
-  echo "✅ 'code' CLI is now available."
+
+  echo "ℹ️  Visual Studio Code is not installed (or 'code' is not in PATH)."
+  echo "   Install it via brew.sh (macOS) or apps-linux.sh (Linux) first."
+  return 1
 }
+
 
 # ------------------------------------------------------------------------------
 # 2. Sync Settings and Keybindings
