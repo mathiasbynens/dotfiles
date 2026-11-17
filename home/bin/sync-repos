@@ -7,9 +7,10 @@
 
 set -uo pipefail
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECTS_DIR="${PROJECTS_DIR:-${HOME}/projects}"
 WORK_DIR="${WORK_DIR:-${HOME}/work}"
-DOTFILES="${DOTFILES:-${PROJECTS_DIR}/dotfiles}"
+DOTFILES="${DOTFILES:-$( cd "$SCRIPT_DIR/../.." && pwd )}"
 
 CONFIG_DIR="${DOTFILES}/config/repos"
 WORK_REPOS_FILE="${CONFIG_DIR}/work.txt"

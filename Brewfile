@@ -41,19 +41,22 @@ cask "copilot-cli"
 brew "googleworkspace-cli"
 
 ## GUI Applications
-# cask "visual-studio-code"
+cask "visual-studio-code"
+cask "iterm2"
 cask "stats"
 cask "bruno"
 
+## Fonts
+cask "font-fira-code"
+# Popular alternatives / Nerd Font options:
+# cask "font-fira-code-nerd-font"
+# cask "font-jetbrains-mono-nerd-font"
+# cask "font-meslo-lg-nerd-font"
+# cask "font-hack-nerd-font"
+
 ## VS Code Extensions
-vscode "ai-engineer-coach.ai-engineer-coach"
-# favourite themes for vscode
-vscode "akamud.vscode-theme-onedark"
-vscode "akamud.vscode-theme-onelight"
-# vscode "bruno-api-client.bruno"
-vscode "dbaeumer.vscode-eslint"
-vscode "google.gemini-cli-vscode-ide-companion"
-vscode "vitest.explorer"
+# Managed centrally across macOS & Linux via ./vscode.sh
+
 
 ## Global NPM Packages
 npm "@google/jules"

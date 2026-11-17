@@ -82,15 +82,21 @@ echo "--------------------------------------------------------"
 echo "  [✓] Core prerequisites (git, curl, zsh, stow, Oh My Zsh) [Required]"
 
 RUN_BREW=0
+RUN_APPS_MACOS=0
 RUN_APT=0
 RUN_APPS_LINUX=0
 RUN_BOOTSTRAP=0
+RUN_VSCODE=0
+RUN_SYNC_REPOS=0
 RUN_MACOS=0
 RUN_UBUNTU=0
 
 if is_macos; then
   if ask_yes_no "📦 Install/Upgrade Homebrew packages (brew.sh)?"; then
     RUN_BREW=1
+  fi
+  if ask_yes_no "🖥️  Install macOS applications & dev tools (apps-macos.sh)?"; then
+    RUN_APPS_MACOS=1
   fi
 elif is_linux; then
   if ask_yes_no "📦 Install/Upgrade Ubuntu CLI packages (apt.sh)?"; then
@@ -103,6 +109,14 @@ fi
 
 if ask_yes_no "🔗 Sync dotfiles to home directory (bootstrap.sh)?"; then
   RUN_BOOTSTRAP=1
+fi
+
+if ask_yes_no "💻 Setup VS Code extensions & settings (vscode.sh)?"; then
+  RUN_VSCODE=1
+fi
+
+if ask_yes_no "📂 Clone/update development repositories (sync-repos)?"; then
+  RUN_SYNC_REPOS=1
 fi
 
 if is_macos; then
@@ -119,9 +133,12 @@ echo ""
 echo "📋 Summary of planned actions:"
 echo "   • Ensure core prerequisites (core.sh)"
 [[ $RUN_BREW -eq 1 ]]       && echo "   • Install/upgrade Homebrew packages (brew.sh)"
+[[ $RUN_APPS_MACOS -eq 1 ]] && echo "   • Install macOS apps & dev tools (apps-macos.sh)"
 [[ $RUN_APT -eq 1 ]]        && echo "   • Install/upgrade Ubuntu packages (apt.sh)"
 [[ $RUN_APPS_LINUX -eq 1 ]] && echo "   • Install Linux GUI apps & dev tools (apps-linux.sh)"
 [[ $RUN_BOOTSTRAP -eq 1 ]]  && echo "   • Back up conflicts & symlink dotfiles to \$HOME (bootstrap.sh)"
+[[ $RUN_VSCODE -eq 1 ]]     && echo "   • Configure VS Code extensions & settings (vscode.sh)"
+[[ $RUN_SYNC_REPOS -eq 1 ]] && echo "   • Clone/update development repositories (sync-repos)"
 [[ $RUN_MACOS -eq 1 ]]      && echo "   • Apply macOS system defaults (macos.sh)"
 [[ $RUN_UBUNTU -eq 1 ]]     && echo "   • Apply Ubuntu desktop defaults (ubuntu.sh)"
 echo ""
@@ -153,6 +170,11 @@ if [[ $RUN_BREW -eq 1 ]]; then
   bash "$SOURCE_DIR/brew.sh"
 fi
 
+if [[ $RUN_APPS_MACOS -eq 1 ]]; then
+  echo ""
+  bash "$SOURCE_DIR/apps-macos.sh"
+fi
+
 if [[ $RUN_APT -eq 1 ]]; then
   echo ""
   bash "$SOURCE_DIR/apt.sh"
@@ -166,6 +188,16 @@ fi
 if [[ $RUN_BOOTSTRAP -eq 1 ]]; then
   echo ""
   bash "$SOURCE_DIR/bootstrap.sh" --force
+fi
+
+if [[ $RUN_VSCODE -eq 1 ]]; then
+  echo ""
+  bash "$SOURCE_DIR/vscode.sh"
+fi
+
+if [[ $RUN_SYNC_REPOS -eq 1 ]]; then
+  echo ""
+  bash "$SOURCE_DIR/home/bin/sync-repos"
 fi
 
 if [[ $RUN_MACOS -eq 1 ]]; then

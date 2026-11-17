@@ -48,9 +48,19 @@ You can also run individual steps manually:
 
 # On macOS:
 ./brew.sh
+# optional: installs standalone macOS tools (e.g. Antigravity CLI)
+./apps-macos.sh
+# optional: applies sensible macOS defaults
+./macos.sh
 
 # Symlink dotfiles to $HOME (automatically backs up existing conflicts to ~/.dotfiles-backup):
 ./bootstrap.sh
+
+# Cross-platform: Configure VS Code settings & install extensions:
+./vscode.sh
+
+# Clone or pull your development repositories from config/repos/*.txt:
+./home/bin/sync-repos
 ```
 
 ## Updating the dotfiles

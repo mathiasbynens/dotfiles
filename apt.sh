@@ -30,13 +30,14 @@ PACKAGES=(
   gifsicle
   libimage-exiftool-perl
 
-  # Development Tools
+  # Development Tools & Fonts
   golang-go
   jq
   libnss3-tools
   mkcert
   python3
   tree
+  fonts-firacode
 
   # Containers
   # docker.io # for now disabled

@@ -12,6 +12,11 @@ export PATH="$HOME/.local/bin:$PATH"
 # managed by Homebrew, and should take precedence over system binaries.
 export PATH="$HOME/bin:$PATH";
 
+# Antigravity CLI (agy)
+if [[ -d "$HOME/.antigravity/bin" ]]; then
+  export PATH="$HOME/.antigravity/bin:$PATH"
+fi
+
 # pnpm
 if [[ "$OSTYPE" == darwin* ]]; then
   export PNPM_HOME="$HOME/Library/pnpm"

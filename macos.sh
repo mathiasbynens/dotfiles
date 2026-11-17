@@ -649,6 +649,17 @@ defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
+# Configure iTerm2 to load preferences from app-configs/
+if [[ -f "$SOURCE_DIR/app-configs/iTerm2 State.itermexport" ]]; then
+  echo "📟 Configuring iTerm2 custom preferences folder..."
+  # Extract UserDefaults.plist into com.googlecode.iterm2.plist if not already present
+  if [[ ! -f "$SOURCE_DIR/app-configs/com.googlecode.iterm2.plist" ]]; then
+    tar -zxf "$SOURCE_DIR/app-configs/iTerm2 State.itermexport" user-defaults/UserDefaults.plist -O > "$SOURCE_DIR/app-configs/com.googlecode.iterm2.plist" 2>/dev/null || true
+  fi
+  defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$SOURCE_DIR/app-configs"
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+fi
+
 ###############################################################################
 # Time Machine                                                                #
 ###############################################################################
