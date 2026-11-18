@@ -92,7 +92,7 @@ alias path='echo -e ${PATH//:/\\n}'
 # -----------------------------------------------------
 
 # calculate total size of folder
-alias dut='du -ch | grep total'
+alias dut='du -ch | tail -1'
 
 # use htop instead
 alias top='htop'
